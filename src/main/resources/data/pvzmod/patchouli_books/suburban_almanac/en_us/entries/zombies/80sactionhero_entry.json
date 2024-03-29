@@ -1,0 +1,69 @@
+{
+  "name": "80s Action Hero",
+  "icon": "pvzmod:80sactionhero_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 701,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)85",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Rocket Damage: $()$(#ff0000)15 DMG/0.5s",
+        "$(br)$(#bd951a)Rocket Blast Radius: $()$(#ff0000)1.5 Blocks",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Stun. Flies for 8 seconds when touching a Plant once, launching Rockets underneath him.",
+        "$(br)$(#bd951a)80s Action Heroes are all about explosions. Explosions from afar, from above, from behind cover, and even where they are standing."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/80sactionhero.png"
+      ],
+      "title": "Hard Basic Zombie",
+      "border": "true",
+      "text": "$(#25228d)Rides a Rocket Launcher to destroy your lawn."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/springprincess_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/cattail_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/smackadamia_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Battle for Neighborville: $()$(#ff0000)80s Action Hero"
+      ]
+    }
+  ]
+}

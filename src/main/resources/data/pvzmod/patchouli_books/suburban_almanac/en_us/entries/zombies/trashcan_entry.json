@@ -1,0 +1,54 @@
+{
+  "name": "Trash Can Zombie",
+  "icon": "pvzmod:trashcan_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 31,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27 ",
+        "$(#bd951a)Obstacle Metal Trash Can Health: $()$(#ff0000)225",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Creeper (Carrying)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Carries a Trash Can around. The Trash Can stays around if this is defeated. This and Browncoat can take Trash Cans.",
+        "$(br)$(#bd951a)Sadly he isn't here to pick up litter, or offer tips on how to recycle your vegetable peelings. What a shame."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/trashcan.png"
+      ],
+      "title": "Basic Zombie",
+      "border": "true",
+      "text": "$(#25228d)A can of trash makes him slower but tougher."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/cabbagepult_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/spikerock_entry",
+        "pvzmod:plants/gravebuster_entry",
+        "pvzmod:plants/frisbloom_entry",
+        "pvzmod:plants/electropea_entry",
+        "pvzmod:plants/burstshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Troglobite",
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Octo Zombie"
+      ]
+    }
+  ]
+}

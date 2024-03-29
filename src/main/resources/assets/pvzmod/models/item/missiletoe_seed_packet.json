@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "pvzmod:items/missiletoe_seed_packet"
+  }
+}

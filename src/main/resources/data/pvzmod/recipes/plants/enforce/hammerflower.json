@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "pvzmod:beet_seed_packet"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:hammerflower_seed_packet",
+    "count": 1
+  }
+}

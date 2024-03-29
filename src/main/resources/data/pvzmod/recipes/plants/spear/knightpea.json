@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "pvzmod:peashooter_seed_packet"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:knightpea_seed_packet",
+    "count": 2
+  }
+}

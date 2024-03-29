@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:squash_seed_packet",
+    "count": 1
+  }
+}

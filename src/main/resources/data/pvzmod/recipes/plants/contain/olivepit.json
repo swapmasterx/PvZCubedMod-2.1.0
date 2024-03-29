@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:oilyolive_seed_packet"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:olivepit_seed_packet",
+    "count": 1
+  }
+}

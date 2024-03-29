@@ -1,0 +1,62 @@
+{
+  "name": "Mummy Flag Zombie",
+  "icon": "pvzmod:flagmummy_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 71,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)50 (Paper)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)60s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Summons x2 Buckethead Mummies, x1 Pyramid Head, x3 Conehead Mummies, and x6 Mummies behind them.",
+        "$(br)$(#bd951a)Egyptian Flag Zombie is so far behind he thinks he's in first place. He's clearly living in de-Nile."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/flagmummy.png"
+      ],
+      "title": "Ancient Egypt Zombie",
+      "border": "true",
+      "text": "$(#25228d)Marks the arrival of a huge sandy \"wave\" of zombies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/chillypepper_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/dropea_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/breezeshroom_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/beautyshroom_entry",
+        "pvzmod:plants/admiralnavybean_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Flag Mummy Zombie"
+      ]
+    }
+  ]
+}

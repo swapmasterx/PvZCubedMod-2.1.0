@@ -1,0 +1,49 @@
+{
+  "name": "Scientist Zombie",
+  "icon": "pvzmod:scientist_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 502,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Drops a Metal Heal Station Obstacle with 60 HP and 2 seconds of Invincibility that heals Zombies by 12 HP/1s in a 3.5 Block area, clears negative status effects, and Wets them.",
+        "$(br2)$(#bd951a)Scientists are incapable of pondering mysteries deeper than \"brainz or plants.\""
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/scientist.png"
+      ],
+      "title": "Hard Basic Zombie",
+      "border": "true",
+      "text": "$(#25228d)Leaves a Healing Station on death."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/retrogatling_entry",
+        "pvzmod:plants/bloomerang_entry",
+        "pvzmod:plants/lightningreed_entry",
+        "pvzmod:plants/gravebuster_entry",
+        "pvzmod:plants/empeach_entry",
+        "pvzmod:plants/cattail_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Garden Warfare: $()$(#ff0000)Scientist",
+        "$(br)$(#bd951a)Plants vs. Zombies: Battle for Neighborville: $()$(#ff0000)Scientist"
+      ]
+    }
+  ]
+}

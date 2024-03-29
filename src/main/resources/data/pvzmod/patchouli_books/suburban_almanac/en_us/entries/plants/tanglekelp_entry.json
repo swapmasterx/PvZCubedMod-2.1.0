@@ -1,0 +1,41 @@
+{
+  "name": "Tangle Kelp",
+  "icon": "pvzmod:tanglekelp_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 19,
+  "advancement": "pvzmod:make_navybean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)Insta-kill",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)4 Blocks",
+        "$(br)$(#bd951a)Delay: $()$(#ff0000)2.75s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Aquatic, Low Profile. Drags a single Zombie underwater. Won't target big zombies.",
+        "$(br)$(#bd951a)Tangle Kelp likes to go deep, he'll go on and on about Nietzsche's \"Thus Spoke Zucchini\", but sometimes you just want to talk about the weather."
+        ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/tanglekelp.png"
+      ],
+      "title": "\uD83D\uDDE1 Enforce Family",
+      "border": "true",
+      "text": "$(#25228d)Tangle Kelp are aquatic plants that pull the first Zombie that nears them."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enforce/tanglekelp"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Tangle Kelp",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Tangle Kelp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Sunflower Seed",
+  "icon": "pvzmod:sunflowerseed_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 323,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1s (Area)",
+        "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Med Profile. 5 Blocks",
+        "$(br)$(#bd951a)Sun: $()$(#ff0000)Small",
+        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)3 minutes, after shooting.",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Produces sun when attacking. Spawns commonly during the day. Drops Petal Plant Food.",
+        "$(br)$(#bd951a)From every night's end comes the beginning of a new Sunflower's dawn."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/sunflowerseed.png"
+      ],
+      "title": "☀ Enlighten Family",
+      "border": "true",
+      "text": "$(#25228d)They hit Zombies around them and their Petal Plant Food makes flower plants."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enlighten/sunflowerseed"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Heroes: $()$(#ff0000)Sunflower Seed"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Coffee Bean",
+  "icon": "pvzmod:coffeebean_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 34,
+  "advancement": "pvzmod:start_pvz",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Wakes up a Nocturnal Plant forever.",
+        "$(br2)$(#bd951a)\"Hey, guys, hey!\" says Coffee Bean. \"Hey! What's up? Who's that? Hey! Didja see that thing? What thing? Whoa! Lions!\" Yep, Coffee Bean sure does get excited."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/coffeebean.png"
+      ],
+      "title": "⭐ Enchant Family",
+      "border": "true",
+      "text": "$(#25228d)Use Coffee Beans to wake up sleeping mushrooms."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enchant/coffeebean"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Coffee Bean",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Coffee Bean"
+      ]
+    }
+  ]
+}

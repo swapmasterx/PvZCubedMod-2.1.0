@@ -1,0 +1,81 @@
+{
+  "name": "Loco Coco",
+  "icon": "pvzmod:locococo_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 302,
+  "advancement": "pvzmod:make_tallnut",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)42",
+        "$(br)$(#bd951a)Targeting Range: $()$(#ff0000)6 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Smacks the non-flying nut directly in front of it. Turn page for details.",
+        "$(br)$(#bd951a)Loco Coco's motive for only smacking nuts around is a mystery. Is he just a self- appointed nut tyrant? Does he hate nuts so much he removed 'nut' from his name? Does he show love in a twisted way? IS HE NUTS!?!? We will never know."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/locococo.png"
+      ],
+      "title": "⛨ Reinforce Family",
+      "border": "true",
+      "text": "$(#25228d)Slaps your nuts at Zombies."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)$(#bd951a)Wall-nut Bowling",
+        "$(br)$(#bd951a)Reusable: $()$(#ff0000)No",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Projectile Range: $()$(#ff0000)15 Blocks.",
+        "$(br)$(#bd951a)Condition: $()$(#ff0000)6 or more Zombies in Targeting Range.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Rolls around, turning some degrees to the left or right after hitting a Zombie."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)$(#bd951a)Tall-nut Smash",
+        "$(br)$(#bd951a)Reusable: $()$(#ff0000)Yes",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)20 DMG/3s",
+        "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Low Profile. 2.5 Blocks, center is 1.5 blocks in front.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)$(#bd951a)Pea-nut Roll/Punt",
+        "$(br)$(#bd951a)Reusable: $()$(#ff0000)No",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)30(Pierce, Roll), 60(Lobbed)",
+        "$(br)$(#bd951a)Projectile Range: $()$(#ff0000)15 Blocks. Roll hitbox is 3 Blocks wide.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Roll if Peanut's HP is above half, Lobbed otherwise."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)$(#bd951a)Small-nut Home Run",
+        "$(br)$(#bd951a)Reusable: $()$(#ff0000)No",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)30(Lobbed)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Bowling if Peanut's HP is above half, Lobbed otherwise."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/reinforce/locococo"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Heroes: $()$(#ff0000)Loco Coco",
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Wall-nut Bowling",
+        "$(br)$(#bd951a)Plants vs. Zombies: Battle for Neighborville: $()$(#ff0000)Roll for Damage"
+      ]
+    }
+  ]
+}

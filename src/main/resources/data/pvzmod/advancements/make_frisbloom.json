@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:frisbloom_seed_packet"
+    },
+    "title": "A brick is tossed away...",
+    "description": "Craft a Frisbloom",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_bellflower",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:frisbloom_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "pvzmod:plants/enchant/magicshroom",
+      "pvzmod:plants/spear/bloomerang"
+    ],
+    "experience": 25
+  }
+}

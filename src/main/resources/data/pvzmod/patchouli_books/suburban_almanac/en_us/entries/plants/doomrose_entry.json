@@ -1,0 +1,79 @@
+{
+  "name": "Doom Rose",
+  "icon": "pvzmod:doomrose_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 501,
+  "advancement": "pvzmod:make_charmshroom",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)12 DMG/2s",
+        "$(br)$(#bd951a)Area: $()$(#ff0000)Med Profile. Target's tile.",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Full Moon. New Moon. When a Zombie dies to it, it drops a Marigold Pile on it's tile, amount depending on it's strength.",
+        "$(br2)$(#bd951a)Marigold doesn't like seeing her sisters being trampled, unfortunately, Doom Rose doesn't care."
+        ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/doomrose.png"
+      ],
+      "title": "☁ Conceal Family",
+      "border": "true",
+      "text": "$(#25228d)Doom Roses flood the field with hypnotizing flowers."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)$(#bd951a)Damage: $()$(#ff0000)12 DMG/2s",
+        "$(br)$(#bd951a)Area: $()$(#ff0000)Med Profile. Target's tile and the tile behind it.",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)New Moon Powered Form. When a Zombie dies to it, it drops a Withered Marigold Pile on it's tile, amount depending on it's strength."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/doomrose_shadow.png"
+      ],
+      "title": "☁ Conceal Family",
+      "border": "true",
+      "text": "$(#25228d)Doom Rose's Shadow Form. Slows down and hits more Zombies."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)$(#bd951a)Damage: $()$(#ff0000)12 DMG/2s",
+        "$(br)$(#bd951a)Area: $()$(#ff0000)Med Profile. Target's tile.",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Full Moon Powered Form. When a Zombie dies to it, it drops a three stack Marigold Pile on it's tile."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/doomrose_moon.png"
+      ],
+      "title": "☁ Conceal Family",
+      "border": "true",
+      "text": "$(#25228d)Doom Rose's Moon Form. Spreads more marigolds."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/conceal/doomrose"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br2)$(#bd951a)Plants vs. Zombies: Garden Warfare 2: $()$(#ff0000)Rose",
+        "$(br2)$(#bd951a)Plants vs. Zombies: Battle For Neighborville: $()$(#ff0000)Doom Rose"
+      ]
+    }
+  ]
+}

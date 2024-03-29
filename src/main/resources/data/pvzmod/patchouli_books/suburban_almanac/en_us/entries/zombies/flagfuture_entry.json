@@ -1,0 +1,45 @@
+{
+  "name": "Flag Future Zombie",
+  "icon": "pvzmod:flagfuture_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 86,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)50 (Rubber)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)60s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Summons x2 Future Bucketheads, x1 Holo-Head, x3 Future Coneheads, and x6 Future Zombies behind them.",
+        "$(br2)$(#bd951a)Sometimes Future Flag Zombie regrets having to be at the bleeding edge of zombie wave advancement technology."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/flagfuture.png"
+      ],
+      "title": "Future Zombie",
+      "border": "true",
+      "text": "$(#25228d)Marks the arrival of a huge future proof \"wave\" of zombies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/peapod_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Flag Future Zombie"
+      ]
+    }
+  ]
+}

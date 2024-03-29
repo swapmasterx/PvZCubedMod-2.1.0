@@ -1,0 +1,53 @@
+{
+  "name": "Flag Summer Zombie",
+  "icon": "pvzmod:flagsummer_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 115,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)60s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Summons x2 Summer Bucketheads, x1 Screendoor, x3 Summer Coneheads, and x6 Summer Zombies behind them.",
+        "$(br2)$(#bd951a)What's better than a flag? A sparkling Flag! Now with 150% increased risk of burning and accidentally causing a revolution."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/flagsummer.png"
+      ],
+      "title": "Night Zombie",
+      "border": "true",
+      "text": "$(#25228d)Flag Summer Zombie marks the arrival of a huge rave of Zombies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/beautyshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Summer Nights Flag Zombie"
+      ]
+    }
+  ]
+}

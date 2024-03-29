@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": {
+    "pvzmod:robocone": true,
+    "pvzmod:zombonivehicle": true,
+    "pvzmod:healstation": true,
+    "pvzmod:speaker": true,
+    "pvzmod:scrapmech": true
+  }
+}

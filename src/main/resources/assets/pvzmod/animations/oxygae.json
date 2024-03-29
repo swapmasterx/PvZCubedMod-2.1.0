@@ -1,0 +1,125 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"oxygae.idle": {
+			"loop": true,
+			"animation_length": 3,
+			"bones": {
+				"body": {
+					"position": {
+						"0.0": {
+							"vector": [0, -7, 0]
+						},
+						"1.5": {
+							"vector": [0, -5, 0],
+							"easing": "easeInSine"
+						},
+						"3.0": {
+							"vector": [0, -7, 0],
+							"easing": "easeInSine"
+						}
+					}
+				},
+				"algae": {
+					"rotation": {
+						"0.4167": {
+							"vector": [0, 0, 0]
+						},
+						"1.7917": {
+							"vector": [0, 12.5, 0],
+							"easing": "easeOutSine"
+						},
+						"3.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutSine"
+						}
+					}
+				},
+				"algae2": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [12.38119, 0.04607, -1.08089],
+							"easing": "easeOutSine"
+						},
+						"2.7083": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutSine"
+						}
+					}
+				},
+				"algae3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0417": {
+							"vector": [15, 0, 0],
+							"easing": "easeOutSine"
+						},
+						"3.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutSine"
+						}
+					}
+				},
+				"tube": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.3333": {
+							"vector": [1, 0.8, 1],
+							"easing": "easeInElastic"
+						},
+						"0.6667": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic"
+						},
+						"1.5": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic"
+						},
+						"1.8333": {
+							"vector": [1, 0.8, 1],
+							"easing": "easeInElastic"
+						},
+						"2.1667": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic"
+						}
+					}
+				},
+				"tube2": {
+					"scale": {
+						"0.75": {
+							"vector": [1, 1, 1]
+						},
+						"1.0833": {
+							"vector": [1, 0.8, 1],
+							"easing": "easeInElastic"
+						},
+						"1.4167": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic"
+						},
+						"2.25": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic"
+						},
+						"2.5833": {
+							"vector": [1, 0.8, 1],
+							"easing": "easeInElastic"
+						},
+						"2.9167": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic"
+						}
+					}
+				}
+			}
+		}
+	}
+}

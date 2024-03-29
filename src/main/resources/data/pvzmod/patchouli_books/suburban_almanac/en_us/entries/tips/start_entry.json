@@ -1,0 +1,105 @@
+{
+  "name": "First Day",
+  "icon": "pvzmod:smallsun",
+  "category": "pvzmod:tutorial_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "The first day on the Zombie apocalypse is really important.",
+        "$(br2)Your objective is to find plants on the surface and punch them (they will glow). When they die, they drop different types of Plant Food. ",
+        "The Plant Foods are important to make different plants, but most importantly you will find Sunflower Seeds around. Punch them to get Petal Plant Food."
+        ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enlighten/sunflowerpvz",
+      "text": [
+        "After finding x2 Petal Plant Food, craft a Sunflower. ",
+        "Sunflowers produce Sun, which is used to craft most plants.",
+        "$(br)After crafting your Sunflowers, find a nice place to call home and plant them on your lawn."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/appease/peashooterpvz",
+      "text": [
+        "When you place your Sunflower you will notice that it will give you 2 Suns already, this is the perfect amount to make a Peashooter, make one."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)You may have already noticed the main threat of this mod by now: the Zombies.",
+        "$(br2)While you can defeat them by yourself, they have lots of health and will easily overwhelm you, so the best solution is to craft Plants. ",
+        "Your first Peashooter will be crucial for that, but be sure to help it by attacking tough zombies and planting more Plants."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/spear/bellflower",
+      "text": [
+        "Bellflowers are weak but cheap and effective, make one or two if you can. ",
+        "They deal slightly less damage than a repeater, but their attacks pierce and have a chance to deal a critical hit. They have really short range."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/bombard/potatomine",
+      "text": [
+        "Potato Mines will ensure the safety of your plants if you have a hole in your defenses,",
+        "as it will be able to instantly kill any Zombie that can spawn at this moment in the game."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/reinforce/wallnut",
+      "text": [
+        "Wall-nuts are handy walls that slow zombies down. Plant them in the way between the zombies and your sun-producers. ",
+        "Zombies will try to attack your sun-producers, but they will stop to eat any plants in their way."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/arma/cabbagepult",
+      "text": [
+        "Cabbage-pults are really useful long range plants that while weaker than a peashooter can ignore shields and shoot over weird terrain."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)When gathering resouces you may notice a cloud of smoke with purple and yellow particles in the middle, that's a Solar Wind!",
+        "$(br)Solar Winds are great to convert resources you might not want into more Petal Plant Food or Sun!",
+        "$(br)Simply throw any type of Plant Food in the middle of the smoke and it will spit out the items!"
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)The Zombies will spawn from Graves. At first the Graves will vanish the moment they spawn a wave of zombies, ",
+        "but later on they will spawn more waves before vanishing. ",
+        "Difficulty influences this. Strong Zombies will not spawn on the first days on Normal and below.",
+        "$(br2)While you wait for night time, we recommend crafting these plants to help you."
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/sunflower_entry",
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/wallnut_entry",
+        "pvzmod:plants/potatomine_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/tanglekelp_entry",
+        "pvzmod:plants/cabbagepult_entry",
+        "pvzmod:plants/bellflower_entry"
+      ],
+      "title": "Recommended Plants:"
+    }
+  ]
+}

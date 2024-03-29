@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": {
+    "pvzmod:defensiveend": true,
+    "pvzmod:gargantuar": true,
+    "pvzmod:mummygargantuar": true,
+    "pvzmod:unicorngargantuar": true,
+    "pvzmod:basketballbin": true,
+    "pvzmod:trashcanbin": true,
+    "pvzmod:hawkercart": true,
+    "pvzmod:zombonivehicle": true,
+    "pvzmod:bobsledvehicle": true,
+    "pvzmod:pumpkincar": true,
+    "pvzmod:speaker": true,
+    "pvzmod:piggy": true,
+    "pvzmod:scrapmech": true
+  }
+}

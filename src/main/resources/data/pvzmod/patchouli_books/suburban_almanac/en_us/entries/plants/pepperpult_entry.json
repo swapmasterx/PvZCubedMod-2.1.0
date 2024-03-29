@@ -1,0 +1,41 @@
+{
+  "name": "Pepper-pult",
+  "icon": "pvzmod:pepperpult_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 60,
+  "advancement": "pvzmod:make_cabbagepult",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)16",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)7 DMG/2.5s, 2.5 DMG (Splash)",
+        "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)2.5 Blocks",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Illuminating. Fire Damage.",
+        "$(br2)$(#bd951a)Some say Pepper-pult is a hot head. Some find his fiery disposition off-putting. But the truth is, he's just very focused and determined."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/pepperpult.png"
+      ],
+      "title": "\uD83D\uDD25 Pepper Family",
+      "border": "true",
+      "text": "$(#25228d)Pepper-pults lob flaming peppers at zombies ."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/pepper/pepperpult"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Pepper-pult"
+      ]
+    }
+  ]
+}

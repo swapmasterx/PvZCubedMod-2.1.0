@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:smallsun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:largesun",
+    "count": 1
+  }
+}

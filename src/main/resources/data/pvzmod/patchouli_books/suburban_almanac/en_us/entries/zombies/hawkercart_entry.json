@@ -1,0 +1,65 @@
+{
+  "name": "Hawker Cart Zombie",
+  "icon": "pvzmod:hawkercart_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 400,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(br)$(#bd951a)(Plant) Hawker Cart Health: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Stiff",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Rolls a Cart around that summons a Zombie Piggy every 7 seconds and summons 2 Piggies when destroyed. The Cart stays if this is defeated. Can take Carts.",
+        "$(br)$(#bd951a)\"The Zombies think I'm hauling my piggies to sell. 'How cruel!' I say. They are my friends. You don't sell friend.\""
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/hawkercart.png"
+      ],
+      "title": "Hard Mausoleum Zombie",
+      "border": "true",
+      "text": "$(#25228d)Pushes a cart with Zombie Piggies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/gravebuster_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/beeshooter_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/electropea_entry",
+        "pvzmod:plants/saucer_entry",
+        "pvzmod:plants/pumpkinwitch_entry",
+        "pvzmod:plants/tulimpeter_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/acidshroom_entry",
+        "pvzmod:plants/retrogatling_entry",
+        "pvzmod:plants/dogwood_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Barrel Roller Zombie",
+        "$(br)$(#bd951a)Plants vs. Zombies Online: $()$(#ff0000)Hawker Cart Zombie"
+      ]
+    }
+  ]
+}

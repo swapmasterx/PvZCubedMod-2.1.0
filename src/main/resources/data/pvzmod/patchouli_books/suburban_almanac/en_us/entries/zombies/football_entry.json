@@ -1,0 +1,69 @@
+{
+  "name": "Football Zombie",
+  "icon": "pvzmod:football_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27, 140(Metal Helmet)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)180(Tackle, Movement/Throw), 4(normal) ",
+        "$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tackles the first Plant or Super-Fan/New Years Imp it sees. Can't tackle if the helmet is destroyed.",
+        "$(br)$(#bd951a)Football Zombie gives 110 percent whenever he's on the field. He's a team player who delivers both offensively and defensively. He has no idea what a football is."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/football.png"
+      ],
+      "title": "Night Zombie",
+      "border": "true",
+      "text": "$(#25228d)Football Zombie will tackle a Plant once."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/potatomine_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/tallnut_entry",
+        "pvzmod:plants/spikerock_entry",
+        "pvzmod:plants/magnetshroom_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/burstshroom_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/springbean_entry",
+        "pvzmod:plants/narcissus_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/charmshroom_entry",
+        "pvzmod:plants/pumpkinwitch_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Football Zombie",
+        "$(br2)$(#bd951a)Plants vs. Zombies: Garden Warfare: $()$(#ff0000)All-Star",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)All-Star Zombie"
+      ]
+    }
+  ]
+}

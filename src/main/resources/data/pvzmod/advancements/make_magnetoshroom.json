@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:magnetoshroom_seed_packet"
+    },
+    "title": "The Power of Magnetism",
+    "description": "Craft a Magneto-shroom",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "pvzmod:make_magnetshroom",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:magnetoshroom_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ],
+    "experience": 300
+  }
+}

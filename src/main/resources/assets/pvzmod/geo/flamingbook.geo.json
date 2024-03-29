@@ -1,0 +1,141 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "door",
+					"pivot": [-0.5, -2, 0],
+					"cubes": [
+						{"origin": [-2.07358, -2.4, -3.18085], "size": [5, 2, 7], "pivot": [1.42642, -0.4, 0.31915], "rotation": [148.00316, -55.31213, -79.89671], "uv": [137, 247]}
+					]
+				},
+				{
+					"name": "bone",
+					"parent": "door",
+					"pivot": [4.5, 1.4, -1],
+					"rotation": [-90, 0, 0]
+				},
+				{
+					"name": "Flames",
+					"parent": "bone",
+					"pivot": [0, 1.4, 0]
+				},
+				{
+					"name": "FlameR",
+					"parent": "Flames",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.56184, 2.42752, -9.25127], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 90], "uv": [138, 212]}
+					]
+				},
+				{
+					"name": "FlameL",
+					"parent": "Flames",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.56184, 0.17752, -9.25127], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 90], "uv": [138, 223]}
+					]
+				},
+				{
+					"name": "FlameTop",
+					"parent": "Flames",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.6, 2.70252, -9.78515], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 0], "uv": [159, 224]}
+					]
+				},
+				{
+					"name": "FlameBtm",
+					"parent": "Flames",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.6, 0.20252, -9.78515], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 0], "uv": [159, 213]}
+					]
+				},
+				{
+					"name": "Flames2",
+					"parent": "bone",
+					"pivot": [0, 1.4, 0]
+				},
+				{
+					"name": "FlameR2",
+					"parent": "Flames2",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.56184, 2.42752, -9.25127], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 90], "uv": [159, 224]}
+					]
+				},
+				{
+					"name": "FlameL2",
+					"parent": "Flames2",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.56184, 0.17752, -9.25127], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 90], "uv": [138, 212]}
+					]
+				},
+				{
+					"name": "FlameTop2",
+					"parent": "Flames2",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.6, 2.70252, -9.78515], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 0], "uv": [159, 213]}
+					]
+				},
+				{
+					"name": "FlameBtm2",
+					"parent": "Flames2",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.6, 0.20252, -9.78515], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 0], "uv": [138, 223]}
+					]
+				},
+				{
+					"name": "Flames3",
+					"parent": "bone",
+					"pivot": [0, 1.4, 0]
+				},
+				{
+					"name": "FlameR3",
+					"parent": "Flames3",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.56184, 2.42752, -9.25127], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 90], "uv": [159, 213]}
+					]
+				},
+				{
+					"name": "FlameL3",
+					"parent": "Flames3",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.56184, 0.17752, -9.25127], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 90], "uv": [138, 223]}
+					]
+				},
+				{
+					"name": "FlameTop3",
+					"parent": "Flames3",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.6, 2.70252, -9.78515], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 0], "uv": [138, 212]}
+					]
+				},
+				{
+					"name": "FlameBtm3",
+					"parent": "Flames3",
+					"pivot": [4.4, 2.4, 12],
+					"cubes": [
+						{"origin": [-2.6, 0.20252, -9.78515], "size": [5, 0, 7], "pivot": [-0.125, 1.45252, -4.78515], "rotation": [-180, 0, 0], "uv": [159, 224]}
+					]
+				}
+			]
+		}
+	]
+}

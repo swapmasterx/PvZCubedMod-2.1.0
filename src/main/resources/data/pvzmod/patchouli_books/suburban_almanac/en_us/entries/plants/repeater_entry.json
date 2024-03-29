@@ -1,0 +1,39 @@
+{
+  "name": "Repeater",
+  "icon": "pvzmod:repeater_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 7,
+  "advancement": "pvzmod:make_peashooter",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)24",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x2 4 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br2)$(#bd951a)Repeater is fierce. He's from the streets. He doesn't take attitude from anybody, Plant or Zombie, and he shoots peas to keep people at a distance. Secretly, though, Repeater yearns for love."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/repeater.png"
+      ],
+      "title": "⭘ Appease Family",
+      "border": "true",
+      "text": "$(#25228d)Repeater fires two peas at a time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/appease/repeaterpvz"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Repeater"
+      ]
+    }
+  ]
+}

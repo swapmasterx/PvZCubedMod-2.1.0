@@ -1,0 +1,45 @@
+{
+  "name": "Future Conehead",
+  "icon": "pvzmod:futurecone_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 87,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27 (Rubber), 37(Plastic Cone)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
+        "$(br2)$(#bd951a)Has tried to calculate the volume of his mathematically perfect cone, but he always ends up dreaming about brain π."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/futurecone.png"
+      ],
+      "title": "Future Zombie",
+      "border": "true",
+      "text": "$(#25228d)His poly-polymer cone gives him twice the toughness of a regular future zombie."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/navybean_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/frisbloom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Future Conehead Zombie"
+      ]
+    }
+  ]
+}

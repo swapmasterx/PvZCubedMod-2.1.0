@@ -1,0 +1,38 @@
+{
+  "name": "Hypno-shroom",
+  "icon": "pvzmod:hypnoshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 12,
+  "advancement": "pvzmod:make_gravebuster",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)1",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Hypnotizes a Zombie that eats it. Hypnotizes a Small Zombie that tries to eat it, but it takes no damage.",
+        "$(br)$(#bd951a)\"Zombies are our friends,\" asserts Hypno-shroom. \"They're badly misunderstood creatures who play a valuable role in our ecology. We can and should do more to bring them round to our way of thinking.\""
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/hypnoshroom.png"
+      ],
+      "title": "⭐ Enchant Family",
+      "border": "true",
+      "text": "$(#25228d)Hypno-shrooms will make a Zombie turn around and fight for you."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enchant/hypnoshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Hypno-shroom"
+      ]
+    }
+  ]
+}

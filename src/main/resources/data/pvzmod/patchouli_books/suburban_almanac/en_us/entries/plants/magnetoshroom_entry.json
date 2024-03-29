@@ -1,0 +1,41 @@
+{
+  "name": "Magneto-shroom",
+  "icon": "pvzmod:magnetoshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "advancement": "pvzmod:make_magnetshroom",
+  "sortnum": 116,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)32 ",
+        "$(#bd951a)Range: $()$(#ff0000)15 Blocks ",
+        "$(#bd951a)Ability Recharge: $()$(#ff0000)5s (Throw), 7.5s (Total) ",
+        "$(#bd951a)Seed Recharge: $()$(#ff0000)10s ",
+        "$(#bd951a)Special: $()$(#ff0000)Nocturnal. Steals one non-obstacle Metal/Electronic object from a Zombie, and up to two 2 blocks near it, then throws them, causing damage based on the object's health (64 dmg w/o health) + half of that dmg as 1.5 block splash.",
+        "$(br)$(#bd951a)I would insert a Marvel reference here, if I knew anything about it."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/magnetoshroom.png"
+      ],
+      "title": "⏳ Contain Family",
+      "border": "true",
+      "text": "$(#25228d)Magneto-shrooms remove metal objects from zombies, then launches them."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/contain/magnetoshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: All Stars: $()$(#ff0000)Magneto-shroom",
+        "$(br)$(#bd951a)Marvel: $()$(#ff0000)Magneto"
+      ]
+    }
+  ]
+}

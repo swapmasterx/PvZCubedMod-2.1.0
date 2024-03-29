@@ -1,0 +1,31 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"goldleaf.idle": {
+			"loop": true
+		},
+		"goldleaf.idle2": {
+			"animation_length": 1,
+			"bones": {
+				"bone": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					},
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.75": {
+							"vector": [1, 0, 4.9],
+							"easing": "easeInBack",
+							"easingArgs": [1]
+						}
+					}
+				}
+			}
+		}
+	}
+}

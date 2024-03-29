@@ -1,0 +1,67 @@
+{
+  "name": "Gargantuar",
+  "icon": "pvzmod:gargantuar_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 23,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)360",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)3 Blocks",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Smashes all types of plants. Throws an Imp with 2s of Invincibility at half health",
+        "$(br2)$(#bd951a)Gargantuar is the embodiment of power, made real. He is a juggernaut of hunger, from which there is no escape. He is fear unleashed. Well, he's fear slightly leashed."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/gargantuar.png"
+      ],
+      "title": "Roof Zombie",
+      "border": "true",
+      "text": "$(#25228d)Gargantuar really is kind of a big deal."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/snowqueenpea_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/missiletoe_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/jumpingbean_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/tulimpeter_entry",
+        "pvzmod:plants/charmshroom_entry",
+        "pvzmod:plants/perfoomshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Gargantuar",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Gargantuar"
+      ]
+    }
+  ]
+}

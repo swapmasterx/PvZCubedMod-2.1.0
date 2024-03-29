@@ -1,0 +1,25 @@
+{
+  "name": "Pepper Family",
+  "icon": "minecraft:fire_charge",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Pepper family is composed of fiery plants",
+        "$(br2)$()$(#bd951a)Most of them are weakened if wet. They deal Fire Damage."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/burstshroom_entry"
+      ],
+      "title": "\uD83D\uDD25 Pepper Plants:"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Heavenly Peach",
+  "icon": "pvzmod:heavenlypeach_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 96,
+  "advancement": "pvzmod:make_coffeebean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Heal: $()$(#ff0000)8 HP/1s",
+        "$(br)$(#bd951a)Heal Radius: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Immune to damage. Heals Plants, Gardens, and Hypnotized Zombies for 10 seconds. Holding the Seed Packet will reveal Plants below 50% HP in a 10 block radius.",
+        "$(br2)$(#bd951a)Her resume says that she was once a peach of Wangmu Niangnian, but became a medic after being demoted to mortal."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/heavenlypeach.png"
+      ],
+      "title": "⭐ Enchant Family",
+      "border": "true",
+      "text": "$(#25228d)Heals plants around it."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enchant/heavenlypeach"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br2)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Heavenly Peach"
+      ]
+    }
+  ]
+}

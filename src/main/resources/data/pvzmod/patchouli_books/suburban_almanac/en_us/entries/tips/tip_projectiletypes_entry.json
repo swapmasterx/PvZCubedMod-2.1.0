@@ -1,0 +1,64 @@
+{
+  "name": "Tip: Projectile types",
+  "icon": "pvzmod:cabbage",
+  "category": "pvzmod:tutorial_category",
+  "sortnum": 14,
+  "advancement": "pvzmod:make_cabbagepult",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "Plants have multiple different projectiles, some with different properties.",
+        "$(br2)The most common type of projectile is the Pea type: they shoot straight and hit one target.",
+        "$(br2)These projectiles are stopped by shields and go over Snorkel Zombies."
+        ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)The second most common type of projectile is the Pierce type: they shoot straight and go through Zombies.",
+        "$(br)These projectiles go through shields and go over Snorkel Zombies. If they are a Spike projectile they can only pierce 3 zombies (Shield included). Covered Zombies reduce the pierce amount by 2.",
+        "$(br)When a Spike projectile goes through a Filament Family Plant it gets 50% stronger, can pierce 1 extra Zombie, and deals Electric damage."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)The third most common type of projectile is the Lobbed type: they shoot in an arc and hit the targeted Zombie regardless of obstructions.",
+        "$(br2)These projectiles ignore shields, hit Snorkel Zombies, and plants that shoot these projectiles have target priority against shield and Snorkel Zombies."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Another type of projectile is the Splash type: any projectile can splash, and they deal damage to every Zombie around the impact area.",
+        "$(br2)The splash hits both the shield and the Zombie behind it, and hits Snorkel Zombies and Flying Zombies."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Another type of projectile is the Elemental type: they complement a projectile by giving it special properties.",
+        "$(br2)Some examples: Ice can slow down zombies on a direct hit; Fire is useless on humid environments; Paper shields are destroyed quickly by both Fire and Water; etc."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Similar to Splash, there's Explosion. They are not a type of projectile, but are another type of damage worth explaining.",
+        "$(br2)Explosions deal damage in an area, hitting every Zombie except for ones behind shields, hitting the shields instead."
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/bellflower_entry",
+        "pvzmod:plants/cabbagepult_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/navybean_entry",
+        "pvzmod:plants/snowqueenpea_entry"
+      ]
+    }
+  ]
+}

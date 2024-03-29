@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_shadow"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:shadowshroom_seed_packet",
+    "count": 1
+  }
+}

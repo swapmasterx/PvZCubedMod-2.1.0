@@ -1,0 +1,30 @@
+{
+  "name": "Enchant Family",
+  "icon": "minecraft:nether_star",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Enchant family is composed of plants that use magic",
+        "$(br2)$()$(#bd951a)They mess with zombies with effects."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/perfoomshroom_entry",
+        "pvzmod:plants/beautyshroom_entry",
+        "pvzmod:plants/charmshroom_entry",
+        "pvzmod:plants/tulimpeter_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/pumpkinwitch_entry",
+        "pvzmod:plants/coffeebean_entry",
+        "pvzmod:plants/heavenlypeach_entry"
+      ],
+      "title": "⭐ Enchant Plants:"
+    }
+  ]
+}

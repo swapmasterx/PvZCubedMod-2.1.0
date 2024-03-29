@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:magicshroom_seed_packet"
+    },
+    "title": "A Royal Flush",
+    "description": "Craft a Magic-shroom",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_frisbloom",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:magicshroom_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "pvzmod:plants/enchant/gambleshroom"
+    ],
+    "experience": 25
+  }
+}

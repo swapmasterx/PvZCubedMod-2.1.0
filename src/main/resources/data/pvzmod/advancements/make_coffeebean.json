@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:coffeebean_seed_packet"
+    },
+    "title": "The Supporting Cast",
+    "description": "Craft a Coffee Bean",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:start_pvz",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:coffeebean_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "pvzmod:plants/enchant/heavenlypeach"
+    ],
+    "experience": 25
+  }
+}

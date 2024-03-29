@@ -1,0 +1,42 @@
+{
+  "name": "Gamble-shroom",
+  "icon": "pvzmod:gambleshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 800,
+  "advancement": "pvzmod:make_magicshroom",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)24",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x6 1 DMG/1.5s (3 Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Magic Hat: $()$(#ff0000)10(Range), 30s(Recharge), 32HP",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Magic-shroom. Magic Hat drops loot instead of a Zombie when destroyed. Zombies drop loot when killed by it.",
+        "$(br)$(#bd951a)Currently owes money to banks, loan sharks, friends, family, and counting..."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/gambleshroom.png"
+      ],
+      "title": "⭐ Enchant Family",
+      "border": "true",
+      "text": "$(#25228d)Gamble-shrooms make money."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enchant/gambleshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Gold Magnet",
+        "$(br)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Magic-shroom"
+      ]
+    }
+  ]
+}

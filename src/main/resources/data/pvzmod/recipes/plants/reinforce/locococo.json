@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:wallnut_seed_packet"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:locococo_seed_packet",
+    "count": 1
+  }
+}

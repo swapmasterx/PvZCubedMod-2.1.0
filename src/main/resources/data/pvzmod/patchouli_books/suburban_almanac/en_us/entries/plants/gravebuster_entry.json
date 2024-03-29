@@ -1,0 +1,40 @@
+{
+  "name": "Grave Buster",
+  "icon": "pvzmod:gravebuster_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 11,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Contact Damage: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)4s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Only on Obstacles. Tall. Eats medium or lower obstacles then vanishes after. Damages Zombies that eat it.",
+        "$(br)$(#bd951a)Despite Grave Buster's fearsome appearance, he wants everyone to know that he loves kittens and spends his off hours volunteering at a local Zombie rehabilitation center."
+        ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/gravebuster.png"
+      ],
+      "title": "⏳ Contain Family",
+      "border": "true",
+      "text": "$(#25228d)Plant Grave Busters on top of graves to remove them. "
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/contain/gravebuster"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Grave Buster",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Grave Buster"
+      ]
+    }
+  ]
+}

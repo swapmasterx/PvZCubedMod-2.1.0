@@ -1,0 +1,48 @@
+{
+  "name": "Pole Vaulting Zombie",
+  "icon": "pvzmod:polevaulting_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Hungry (Pole)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Vaults over the first plant it touches, then loses its pole. Tall Plants block its vault.",
+        "$(br2)$(#bd951a)Some Zombies take it further, aspire more, push themselves beyond the normal into greatness. That's Pole Vaulting Zombie right there. That is so him."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/polevaulting.png"
+      ],
+      "title": "Basic Zombie",
+      "border": "true",
+      "text": "$(#25228d)Pole Vaulting Zombie vaults over your defenses."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/burstshroom_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/tallnut_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/magicshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Pole Vaulting Zombie"
+      ]
+    }
+  ]
+}

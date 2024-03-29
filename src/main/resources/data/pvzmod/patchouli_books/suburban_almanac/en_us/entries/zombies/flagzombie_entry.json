@@ -1,0 +1,54 @@
+{
+  "name": "Flag Zombie",
+  "icon": "pvzmod:flagzombie_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)60s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Summons x2 Bucketheads, x1 Brickhead, x3 Coneheads, and x6 Browncoats behind them.",
+        "$(br2)$(#bd951a)Make no mistake, Flag Zombie loves brains but somewhere down the line he also picked up a fascination with flags."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/flagzombie.png"
+      ],
+      "title": "Basic Zombie",
+      "border": "true",
+      "text": "$(#25228d)Flag Zombie marks the arrival of a huge pile or \"wave\" of Zombies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/chillypepper_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/beautyshroom_entry",
+        "pvzmod:plants/breezeshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Flag Zombie"
+      ]
+    }
+  ]
+}

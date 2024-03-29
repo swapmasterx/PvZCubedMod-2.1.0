@@ -1,0 +1,41 @@
+{
+  "name": "Sunflower",
+  "icon": "pvzmod:sunflower_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Sun: $()$(#ff0000)Normal (Bright Ambient), Small (Dark Ambient)",
+        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)30 seconds (First Time), 3 minutes",
+        "$(br)$(#bd951a)Zombie Sun Radius: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br2)$(#bd951a)Sunflower can't resist bouncing to the beat. Which beat is that? Why, the life-giving jazzy rhythm of the Earth itself, thumping at a frequency only Sunflower can hear."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/sunflower.png"
+      ],
+      "title": "☀ Enlighten Family",
+      "border": "true",
+      "text": "$(#25228d)Sunflowers are essential for you to produce extra sun. Try planting as many as you can!"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enlighten/sunflowerpvz"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Sunflower",
+        "$(br2)$(#bd951a)Plants vs. Zombies: Garden Warfare: $()$(#ff0000)Sunflower",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Sunflower"
+      ]
+    }
+  ]
+}

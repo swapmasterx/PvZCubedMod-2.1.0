@@ -1,0 +1,45 @@
+{
+  "name": "Pool Gravestone",
+  "icon": "pvzmod:poolgrave_spawn",
+  "category": "pvzmod:grave_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)200 (Stone)",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Spawn Condition: $()$(#ff0000)Uncommon.",
+        "$(br)$(#bd951a)Time Chance: $()$(#ff0000)30% Drought.",
+        "$(br)$(#bd951a)Weather Chance: $()$(#ff0000)30% Rain. 12.5% Thunder.",
+        "$(br2)$(#bd951a)Why the weird looks? Never seen a gravestone on an inflatable duck before?"
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/poolgrave.png"
+      ],
+      "title": "Pool Zombie",
+      "border": "true",
+      "text": "$(#25228d)Spawns Pool Zombies."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/browncoat_entry",
+        "pvzmod:zombies/flagzombie_entry",
+        "pvzmod:zombies/conehead_entry",
+        "pvzmod:zombies/buckethead_entry",
+        "pvzmod:zombies/snorkel_entry",
+        "pvzmod:zombies/dolphinrider_entry",
+        "pvzmod:zombies/zomboni_entry",
+        "pvzmod:zombies/bobsled_entry",
+        "pvzmod:zombies/bobsledrider_entry",
+        "pvzmod:zombies/octo_entry"
+      ],
+      "title": "Spawnable Zombies"
+    }
+  ]
+}

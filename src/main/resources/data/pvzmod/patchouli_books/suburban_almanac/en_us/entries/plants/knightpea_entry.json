@@ -1,0 +1,40 @@
+{
+  "name": "Pea of Valiance",
+  "icon": "pvzmod:knightpea_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 498,
+  "advancement": "pvzmod:make_peanut",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)180",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)6 DMG/1.5s (Spike)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire.",
+        "$(br2)$(#bd951a)Will joust for honor, for justice, for honor again--preferably between nine and five. "
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/knightpea.png"
+      ],
+      "title": "✂ Spear Family",
+      "border": "true",
+      "text": "$(#25228d)Pea of Valiance shoots swords, slicing through Zombies."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/spear/knightpea"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Battle for Neighborvile: $()$(#ff0000)Pea of Valiance"
+      ]
+    }
+  ]
+}

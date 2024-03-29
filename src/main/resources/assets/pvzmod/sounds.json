@@ -1,0 +1,327 @@
+{
+  "loot.nugget": {
+    "sounds": [
+      "pvzmod:loot_nugget"
+    ]
+  },
+  "loot.diamond": {
+    "sounds": [
+      "pvzmod:loot_diamond"
+    ]
+  },
+  "loot.gift": {
+    "sounds": [
+      "pvzmod:loot_gift"
+    ]
+  },
+  "pea.hit": {
+    "sounds": [
+      "pvzmod:pea_hit"
+    ]
+  },
+  "flaming.pea.hit": {
+    "sounds": [
+      "pvzmod:flaming_pea_hit"
+    ]
+  },
+  "snowpea.hit": {
+    "sounds": [
+      "pvzmod:snowpea_hit"
+    ]
+  },
+  "chomper.chomp": {
+    "sounds": [
+      "pvzmod:chomper_chomp"
+    ]
+  },
+  "gravebuster.eating": {
+    "sounds": [
+      "pvzmod:gravebuster_eating"
+    ]
+  },
+  "hypnoshroom.hypnotizing": {
+    "sounds": [
+      "pvzmod:hypnotizing"
+    ]
+  },
+  "bucket.hit": {
+    "sounds": [
+      "pvzmod:bucket_hit"
+    ]
+  },
+  "cone.hit": {
+    "sounds": [
+      "pvzmod:cone_hit"
+    ]
+  },
+  "stone.hit": {
+    "sounds": [
+      "pvzmod:stone_hit"
+    ]
+  },
+  "mushroom.shoot": {
+    "sounds": [
+      "pvzmod:mushroom_shoot"
+    ]
+  },
+  "fumeshroom.shoot": {
+    "sounds": [
+      "pvzmod:fumeshroom_shoot"
+    ]
+  },
+  "bloomerang.shoot": {
+    "sounds": [
+      "pvzmod:bloomerang_shoot"
+    ]
+  },
+  "lightning.shoot": {
+    "sounds": [
+      "pvzmod:lightning_shoot"
+    ]
+  },
+  "pea.shoot": {
+    "sounds": [
+      "pvzmod:pea_shoot"
+    ]
+  },
+  "snowpea.shoot": {
+    "sounds": [
+      "pvzmod:snowpea_shoot"
+    ]
+  },
+  "mech.shoot": {
+    "sounds": [
+      "pvzmod:mech_shoot"
+    ]
+  },
+  "mech.windup": {
+    "sounds": [
+      "pvzmod:mech_windup"
+    ]
+  },
+  "bass.play": {
+    "sounds": [
+      "pvzmod:bass_play"
+    ]
+  },
+  "ghostpepper.plant": {
+    "sounds": [
+      "pvzmod:ghostpepper_plant"
+    ]
+  },
+  "magnet.attract": {
+    "sounds": [
+      "pvzmod:magnet_attract"
+    ]
+  },
+  "boomerang.ambient": {
+    "sounds": [
+      "pvzmod:boomerang_ambient"
+    ]
+  },
+  "zpg.ambient": {
+    "sounds": [
+      "pvzmod:zpg_ambient"
+    ]
+  },
+  "magichat.appear": {
+    "sounds": [
+      "pvzmod:magichat_appear"
+    ]
+  },
+  "magichat.zombie": {
+    "sounds": [
+      "pvzmod:magichat_zombie"
+    ]
+  },
+  "cherrybomb.explosion": {
+    "sounds": [
+      "pvzmod:cherrybomb_explosion"
+    ]
+  },
+  "jalapeno.explosion": {
+    "sounds": [
+      "pvzmod:jalapeno_explosion"
+    ]
+  },
+  "potatomine.explosion": {
+    "sounds": [
+      "pvzmod:potatomine_explosion"
+    ]
+  },
+  "doomshroom.explosion": {
+    "sounds": [
+      "pvzmod:doomshroom_explosion"
+    ]
+  },
+  "iceberg.explosion": {
+    "sounds": [
+      "pvzmod:iceberg_explosion"
+    ]
+  },
+  "empeach.explosion": {
+    "sounds": [
+      "pvzmod:empeach_explosion"
+    ]
+  },
+  "poison.splash": {
+    "sounds": [
+      "pvzmod:poison_splash"
+    ]
+  },
+  "mech.alarm": {
+    "sounds": [
+      "pvzmod:mech_alarm"
+    ]
+  },
+  "smoosh.smash": {
+    "sounds": [
+      "pvzmod:smoosh_smash"
+    ]
+  },
+  "smoosh.charge": {
+    "sounds": [
+      "pvzmod:smoosh_charge"
+    ]
+  },
+  "squash.hm": {
+    "sounds": [
+      "pvzmod:squash_hm"
+    ]
+  },
+  "grave.rising": {
+    "sounds": [
+      "pvzmod:grave_rising"
+    ]
+  },
+  "plant.planted": {
+    "sounds": [
+      "pvzmod:plant_planted"
+    ]
+  },
+  "entity.rising": {
+    "sounds": [
+      "pvzmod:entity_rising"
+    ]
+  },
+  "sun.drop": {
+    "sounds": [
+      "pvzmod:sun_drop"
+    ]
+  },
+  "zombie.bite": {
+    "sounds": [
+      "pvzmod:zombie_bite"
+    ]
+  },
+  "pop.limb": {
+    "sounds": [
+      "pvzmod:pop_limb"
+    ]
+  },
+  "pop.head": {
+    "sounds": [
+      "pvzmod:pop_head"
+    ]
+  },
+  "polevaulting.vault": {
+    "sounds": [
+      "pvzmod:polevaulting_vault"
+    ]
+  },
+  "dolphin.jump": {
+    "sounds": [
+      "pvzmod:dolphin_jump"
+    ]
+  },
+  "soldier.jump": {
+    "sounds": [
+      "pvzmod:soldier_jump"
+    ]
+  },
+  "bass.crash": {
+    "sounds": [
+      "pvzmod:bass_crash"
+    ]
+  },
+  "gargantuar.smash": {
+    "sounds": [
+      "pvzmod:gargantuar_smash"
+    ]
+  },
+  "tombraiser.lick": {
+    "sounds": [
+      "pvzmod:tombraiser_lick"
+    ]
+  },
+  "soldier.prep": {
+    "sounds": [
+      "pvzmod:soldier_prep"
+    ]
+  },
+  "soldier.zpg": {
+    "sounds": [
+      "pvzmod:soldier_zpg"
+    ]
+  },
+  "rocketride.jingle": {
+    "sounds": [
+      "pvzmod:rocketride_jingle"
+    ]
+  },
+  "imp.launch": {
+    "sounds": [
+      "pvzmod:imp_launch"
+    ]
+  },
+  "imp.announcer": {
+    "sounds": [
+      "pvzmod:imp_announcer"
+    ]
+  },
+  "imp.announcer.alt": {
+    "sounds": [
+      "pvzmod:imp_announcer_alt"
+    ]
+  },
+  "knight.transform": {
+    "sounds": [
+      "pvzmod:knight_transform"
+    ]
+  },
+  "zombie.moan": {
+    "sounds": [
+      "pvzmod:zombie_moan"
+    ]
+  },
+  "dolphin.water": {
+    "sounds": [
+      "pvzmod:dolphin_water"
+    ]
+  },
+  "gargantuar.moan": {
+    "sounds": [
+      "pvzmod:gargantuar_moan"
+    ]
+  },
+  "imp.moan": {
+    "sounds": [
+      "pvzmod:imp_moan"
+    ]
+  },
+  "newspaper.angry": {
+    "sounds": [
+      "pvzmod:newspaper_angry"
+    ]
+  },
+  "zombie.dancing": {
+    "sounds": [
+      "pvzmod:zombie_dancing"
+    ]
+  },
+  "silence": {
+    "sounds": [
+      "pvzmod:silence"
+    ]
+  }
+}

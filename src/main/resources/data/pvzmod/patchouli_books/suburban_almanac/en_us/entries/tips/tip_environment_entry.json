@@ -1,0 +1,168 @@
+{
+  "name": "Tip: Environmental Modifiers",
+  "icon": "pvzmod:premium_tile",
+  "category": "pvzmod:tutorial_category",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "Environmental Modifiers are mechanics that change the environment and how Plants and Zombies interact with it.",
+        "$(br2)There are many types of Environmental Modifiers, here's a list of all of them:"
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Solar Winds",
+        "$(br2)Solar Winds convert Plant Food that lands on them into Petal Plant Food or Sun",
+        "$(br2)Plant Food, Mushroom PF, and Tough PF convert to 1 Petal PF",
+        "$(br)Air PF and Elec PF convert to 2 Petal PF",
+        "$(br)Cold PF and Blazing PF convert to 3 Petal PF",
+        "$(br)Aquatic PF converts to 1 Large Sun",
+        "$(br)Petal PF converts to 3 Large Suns"
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Crater Tile",
+        "$(br2)Craters prevent non-flying plants from being planted on them.",
+        "$(br2)They can be removed by right clicking them with a Sun."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Scorched Tile",
+        "$(br)They prevent non-flying Plants, Plants not immune to Fire, and Plants that are not icy or watery from being able to be planted on them. ",
+        "Using an Iceberg Lettuce on them will destroy them. Ice or Water attacks that damage the field (e.g. Ice-shroom, Chilly Pepper, etc.) destroy them. ",
+        "Planting icy or watery Plants on top of them instantly destroys them. ",
+        "They last for 1 minute. They spawn an Imp Dragon Zombie every 18 seconds."
+
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Snow Tile",
+        "$(br2)They prevent non-flying Plants and Plants that are not icy or fiery from being able to be planted on them. ",
+        "$(br)Fire attacks that damage the field (e.g. Jalapeno, Cherry Bomb, etc.) destroy them. ",
+        "$(br)Planting Pepper family Plants on top of them instantly destroys them. Pepper Plants emit heat around them that destroys the tiles.",
+        "$(br2)They last for 2 minutes."
+
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Ice Tile",
+        "$(br2)They apply Chill to non-flying Zombies that are close to them. ",
+        "$(br)They are destroyed by fire attacks that damage the field (e.g. Cherry Bomb, Jalapeno, etc.).",
+        "$(br2)They last for 2 minutes."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Water Tile",
+        "$(br)Allows Aquatic Plants to be planted on them, and gives Amphibious Plants their underwater attributes.",
+        "$(br)They apply Wet to non-flying Zombies that are close to them.",
+        "$(br)They are destroyed by fire attacks that damage the field (e.g. Cherry Bomb, Jalapeno, etc.).",
+        "$(br)Planting Pepper family Plants on top of them instantly destroys them. Pepper Plants emit heat around them that destroys the tiles.",
+        "$(br)They last for 20 seconds, unless a Plant is on them."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Oil Tile",
+        "$(br)When a Zombie steps on it, it Stuns them for 5 seconds and slides them forward by about 2 blocks. Unless it's on fire.",
+        "$(br)Covered and Machine Zombies don't slide.",
+        "$(br)Gets set on fire inside the warm radius of a Plant, a fire projectile goes over it, hit by fire splash or some explosions, or when a Zombie on fire is near it.",
+        "$(br)When on fire, it makes a Fire Trail with double the original duration over it."
+
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Gold Tile",
+        "$(br2)Gold Tile produces one Small Sun every 3 minutes if there's a non-flying Plant on top of them. The Zombie Sun Radius is 10 blocks.",
+        "$(br2)They can be removed by right clicking them with a Gold Shovel."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Moonlight Tile",
+        "$(br2)Provides Full Moon power to plants inside it."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Shadow Tile",
+        "$(br2)Provides New Moon power to plants inside it."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Spring Tile",
+        "$(br2)When a Zombie steps on it, it slightly Bounces them back and it vanishes.",
+        "$(br2)They last for a few seconds."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Banana Peel",
+        "$(br)When a Zombie steps on it, it Stuns them for 10 seconds, inflicts damage based on it's weight, and slides them forward by about 3 blocks.",
+        "$(br)Covered Zombies aren't affected by the Stun and don't slide.",
+        "$(br2)The weight depends on the Zombie's size, gear weight, and materials, and won't work on Machines.",
+        "$(br2)They last for 1 minute or until a Zombie steps on it."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Marigold Pile",
+        "$(br2)Can stack up to 3. When a Zombie steps on it, it loses a stack.",
+        "$(br2)When a Zombie steps on it, it will receive a status effect for 10 seconds, if it steps on another Marigold Pile with the effect, it gets hypnotized.",
+        "$(br2)They last for 1 minute or until they lose all stacks."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Withered Marigold Pile",
+        "$(br2)Can stack up to 3. When a Zombie steps on it, it loses a stack.",
+        "$(br2)When a Zombie steps on it, it will receive a status effect that slows and weakens it for 10 seconds.",
+        "$(br2)They last for 1 minute or until they lose all stacks."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Obstacle",
+        "$(br2)Destroys Plants close to it. Takes damage, shielding zombies behind. They are Heavy. Gravebusters eat them."
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/trashcan_entry",
+        "pvzmod:zombies/basketballcarrier_entry",
+        "pvzmod:zombies/torchlight_entry",
+        "pvzmod:plants/iceberglettuce_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/smackadamia_entry",
+        "pvzmod:plants/goldleaf_entry",
+        "pvzmod:plants/bananasaurus_entry",
+        "pvzmod:plants/doomrose_entry"
+      ]
+    }
+  ]
+}

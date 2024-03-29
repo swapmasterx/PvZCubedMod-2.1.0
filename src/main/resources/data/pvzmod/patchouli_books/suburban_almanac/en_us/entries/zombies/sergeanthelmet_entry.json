@@ -1,0 +1,62 @@
+{
+  "name": "Helmet Sergeant Zombie",
+  "icon": "pvzmod:sargeantbucket_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 393,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27, 140(Metal Helmet)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2.5 Blocks",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
+        "$(br2)$(#bd951a)Every Conehead loves him, every Buckethead wants to be him. What they don't know is that this helmet causes neck pain."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/sergeanthelmet.png"
+      ],
+      "title": "Mausoleum Zombie",
+      "border": "true",
+      "text": "$(#25228d)Has a very sturdy iron helmet."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/tanglekelp_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/magnetshroom_entry",
+        "pvzmod:plants/pepperpult_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/electropea_entry",
+        "pvzmod:plants/narcissus_entry",
+        "pvzmod:plants/vampireflower_entry",
+        "pvzmod:plants/pumpkinwitch_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies Online: $()$(#ff0000)Iron Helmet Sergeant"
+      ]
+    }
+  ]
+}

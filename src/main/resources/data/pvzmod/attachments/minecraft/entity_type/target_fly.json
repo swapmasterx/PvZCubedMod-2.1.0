@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": {
+    "pvzmod:defensiveend": true,
+    "pvzmod:gargantuar": true,
+    "pvzmod:mummygargantuar": true,
+    "pvzmod:unicorngargantuar": true,
+    "pvzmod:jetpack": true,
+    "pvzmod:blastronaut": true,
+    "pvzmod:bully": true,
+    "pvzmod:actionhero": true,
+    "pvzmod:basketballcarrier": true,
+    "pvzmod:octo": true,
+    "pvzmod:scrapmech": true
+  }
+}

@@ -1,0 +1,68 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-4, 0, -4], "size": [8, 4, 6], "uv": [0, 0]},
+						{"origin": [-4.5, 1, -5], "size": [9, 4, 2], "uv": [23, 0]},
+						{"origin": [-1.5, 0.2, -4.5], "size": [3, 2, 2], "pivot": [0, 1, -4], "rotation": [10, 0, 0], "uv": [29, 34]},
+						{"origin": [0, 1, 1], "size": [5, 9, 4], "pivot": [3, 4, 2.5], "rotation": [0, 0, 17.5], "uv": [0, 40]},
+						{"origin": [-5, 1, 1], "size": [5, 9, 4], "pivot": [-3, 4, 2.5], "rotation": [-9.99067, -0.43399, -19.96207], "uv": [0, 40]}
+					]
+				},
+				{
+					"name": "algae2",
+					"parent": "body",
+					"pivot": [0, 6.5, 0],
+					"cubes": [
+						{"origin": [-3, 2.97433, -0.39158], "size": [6, 9, 0], "pivot": [0, 3.5, 0], "rotation": [-7.5, 0, 0], "uv": [18, 25]}
+					]
+				},
+				{
+					"name": "algae",
+					"parent": "body",
+					"pivot": [0, 6.5, 0],
+					"cubes": [
+						{"origin": [0.21931, 1.67045, -1.62135], "size": [4, 8, 0], "pivot": [2.90827, 2.1735, -1.07672], "rotation": [-7.81847, 5.29571, 44.75386], "uv": [31, 25]}
+					]
+				},
+				{
+					"name": "algae3",
+					"parent": "body",
+					"pivot": [-5.47375, 5.03138, -1.08223],
+					"cubes": [
+						{"origin": [-4.93408, 2.03512, -1.57818], "size": [4, 8, 0], "pivot": [-2.69448, 2.47901, -1.03354], "rotation": [-8.91411, -3.10081, -29.87424], "uv": [31, 25]}
+					]
+				},
+				{
+					"name": "tube",
+					"parent": "body",
+					"pivot": [3.33043, 1.61252, 1.06681],
+					"cubes": [
+						{"origin": [5.33043, 0.11252, 0.06681], "size": [2, 12, 2], "pivot": [6.33043, 5.61252, 1.06681], "rotation": [-8.61324, 3.86308, 34.82498], "uv": [9, 25]}
+					]
+				},
+				{
+					"name": "tube2",
+					"parent": "body",
+					"pivot": [-5.97721, 5.26517, 0.99909],
+					"cubes": [
+						{"origin": [-3.2943, 0.18697, 0.55544], "size": [2, 12, 2], "pivot": [-2.97721, 1.26517, 0.99909], "rotation": [7.18153, -5.29571, -44.75386], "uv": [0, 25]}
+					]
+				}
+			]
+		}
+	]
+}

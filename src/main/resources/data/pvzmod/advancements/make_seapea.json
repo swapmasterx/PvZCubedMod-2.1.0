@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:seapea_seed_packet"
+    },
+      "title": "Finding Pea",
+    "description": "Craft a Sea Pea",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_dropea",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:seapea_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "pvzmod:plants/appease/seapea"
+    ],
+    "experience": 25
+  }
+}

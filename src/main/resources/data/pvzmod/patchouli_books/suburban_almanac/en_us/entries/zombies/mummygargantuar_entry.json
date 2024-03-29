@@ -1,0 +1,66 @@
+{
+  "name": "Mummified Gargantuar",
+  "icon": "pvzmod:mummygargantuar_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 78,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)420 (Paper)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Smashes all types of plants. Throws a Mummy Imp with 2s of Invincibility at half health. Leaves behind an Undying Pharaoh on death with 3s of Invincibility.",
+        "$(br)$(#bd951a)True Fact: The pyramids were built in an attempt to make Mummified Gargantuar seem small. It didn't work."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/mummygargantuar.png"
+      ],
+      "title": "Ancient Egypt Zombie",
+      "border": "true",
+      "text": "$(#25228d)Massive zombie from a royal line of mummies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/snowqueenpea_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/missiletoe_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/acidshroom_entry",
+        "pvzmod:plants/jumpingbean_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/admiralnavybean_entry",
+        "pvzmod:plants/charmshroom_entry",
+        "pvzmod:plants/perfoomshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Mummified Gargantuar"
+      ]
+    }
+  ]
+}

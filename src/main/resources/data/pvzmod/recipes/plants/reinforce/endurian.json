@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:wallnut_seed_packet"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:endurian_seed_packet",
+    "count": 2
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "name": "Doom-shroom",
+  "icon": "pvzmod:doomshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 15,
+  "advancement": "pvzmod:make_cherrybomb",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)180",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)2s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon. Leaves a crater on the block it exploded for 2 minutes.",
+        "$(br2)$(#bd951a)\"You're lucky I'm on your side,\" says Doom-shroom. \"I could destroy everything you hold dear. It wouldn't be hard.\""
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/doomshroom.png"
+      ],
+      "title": "☄ Bombard Family",
+      "border": "true",
+      "text": "$(#25228d)Doom-shrooms destroy everything in a large area and leave a crater behind."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)$(#bd951a)Health: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)3 Blocks",
+        "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)4 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)2s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon Powered Form. Leaves a crater on the block it exploded for 2 minutes."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/doomshroom_shadow.png"
+      ],
+      "title": "☄ Bombard Family",
+      "border": "true",
+      "text": "$(#25228d)Doom-shroom's Shadow Form. Trades range for sky-high damage"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/bombard/doomshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Doom-shroom"
+      ]
+    }
+  ]
+}

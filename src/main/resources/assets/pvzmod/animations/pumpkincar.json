@@ -1,0 +1,65 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"pumpkincar.idle": {
+			"loop": true
+		},
+		"pumpkincar.walking": {
+			"loop": true,
+			"animation_length": 3,
+			"bones": {
+				"wheelsfront": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"3.0": {
+							"vector": [360, 0, 0]
+						}
+					}
+				},
+				"wheelsback": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"3.0": {
+							"vector": [360, 0, 0]
+						}
+					}
+				},
+				"all": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.375": {
+							"vector": [0, 1.5, 0]
+						},
+						"0.75": {
+							"vector": [0, 0, 0]
+						},
+						"1.125": {
+							"vector": [0, 1.5, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						},
+						"1.875": {
+							"vector": [0, 1.5, 0]
+						},
+						"2.25": {
+							"vector": [0, 0, 0]
+						},
+						"2.625": {
+							"vector": [0, 1.5, 0]
+						},
+						"3.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	}
+}

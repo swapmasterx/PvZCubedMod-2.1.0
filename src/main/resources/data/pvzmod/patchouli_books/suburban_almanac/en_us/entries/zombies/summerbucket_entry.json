@@ -1,0 +1,60 @@
+{
+  "name": "Summer Buckethead",
+  "icon": "pvzmod:summerbucket_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 117,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27 (Paper), 110(Metal Bucket)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Chill.",
+        "$(br2)$(#bd951a)Summer Buckethead is shiny, he loves to be the center of attention, but while he looks happy and cool on the outside, he's empty on the inside. His bucket, his bucket is empty."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/summerbucket.png"
+      ],
+      "title": "Night Zombie",
+      "border": "true",
+      "text": "$(#25228d)His shiny bucket brilliantly protects him from damage."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/narcissus_entry",
+        "pvzmod:plants/potatomine_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/wallnut_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/spikeweed_entry",
+        "pvzmod:plants/lightningreed_entry",
+        "pvzmod:plants/magnetshroom_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/vampireflower_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Summer Nights Buckethead"
+      ]
+    }
+  ]
+}

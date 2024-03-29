@@ -1,0 +1,29 @@
+{
+  "name": "Spear Family",
+  "icon": "minecraft:shears",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Spear family is composed of plants that deal piercing damage",
+        "$(br2)$()$(#bd951a)Hits through multiple zombies, ignoring shields."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/bellflower_entry",
+        "pvzmod:plants/narcissus_entry",
+        "pvzmod:plants/spikeweed_entry",
+        "pvzmod:plants/spikerock_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/bloomerang_entry",
+        "pvzmod:plants/frisbloom_entry",
+        "pvzmod:plants/knightpea_entry"
+      ],
+      "title": "✂ Spear Plants:"
+    }
+  ]
+}

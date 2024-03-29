@@ -1,0 +1,43 @@
+{
+  "name": "Ice-shroom",
+  "icon": "pvzmod:iceshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 14,
+  "advancement": "pvzmod:make_chillypepper",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)1.5s",
+        "$(br)$(#bd951a)Freeze Time: $()$(#ff0000)10s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Freezes all Zombies in range.",
+        "$(br)$(#bd951a)Ice-shroom frowns, not because he's unhappy or because he disapproves, but because of a childhood injury that left his facial nerves paralyzed."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/iceshroom.png"
+      ],
+      "title": "❄ Winter Family",
+      "border": "true",
+      "text": "$(#25228d)Ice-shrooms temporarily immobilize all Zombies in a large area."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/winter/iceshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Ice-shroom"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Pea Pod",
+  "icon": "pvzmod:peapod_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 59,
+  "advancement": "pvzmod:make_peashooter",
+  "pages": [
+    {
+      "type": "text",
+      "text":[
+        "$(#bd951a)Health: $()$(#ff0000)+12 (For every pea)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)+x1 4 DMG/1.5s (For every pea)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 ",
+        "$(#bd951a)Seed Recharge: $()$(#ff0000)3.75s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. The more peas, the more health and damage. Low Profile adjacent bottom peas, the top pea hits medium height and above.",
+        "$(br)$(#bd951a)Having studied Quantum Spatial Mechanics in Clown College, Pea Pod has been amusing families of all ages."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/peapod.png"
+      ],
+      "title": "⭘ Appease Family",
+      "border": "true",
+      "text": "$(#25228d)Pea Pods can be planted in the same space for up to 5 times the destruction."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/appease/peapod"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Threepeater",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Peapod"
+      ]
+    }
+  ]
+}

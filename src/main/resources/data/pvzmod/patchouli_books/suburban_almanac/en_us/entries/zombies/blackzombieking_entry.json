@@ -1,0 +1,65 @@
+{
+  "name": "Black Zombie King",
+  "icon": "pvzmod:blackzombieking_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 857,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)100, 65 (Plastic King Piece) ",
+        "$(#bd951a)Despawn: $()$(#ff0000)2 minutes.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Big. 20%/sec transforms a Heart or Diamond Poker Guard into a Spade or Club one with 2 sec of Invinci. and heals their body.",
+        "$(br)$(#bd951a)He may be an evil tyrant, but he will execute on the spot anyone that doesn't approve his daughter's same-imp marriage with Red Queen Imp. What, you thought it was because it was same-gender?"
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/blackzombieking.png"
+      ],
+      "title": "Fairytale Forest Zombie",
+      "border": "true",
+      "text": "$(#25228d)Turns red Poker Guards into black ones."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/iceberglettuce_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/snowqueenpea_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/spikeweed_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/magnetoshroom_entry",
+        "pvzmod:plants/electropea_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/narcissus_entry",
+        "pvzmod:plants/pumpkinwitch_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Zombie King"
+      ]
+    }
+  ]
+}

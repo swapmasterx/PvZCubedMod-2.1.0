@@ -1,0 +1,40 @@
+{
+  "name": "Spring Princess",
+  "icon": "pvzmod:springprincess_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 101,
+  "advancement": "pvzmod:make_springbean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/4s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Slightly Bounces the damaged Zombie back, then the projectile bounces backwards and creates a Spring Tile when it hits the ground.",
+        "$(br)$(#bd951a)She refused many princes trying to rescue her from her tall tower. Why? She is still waiting for a princess in shining armor."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/springprincess.png"
+      ],
+      "title": "⏳ Contain Family",
+      "border": "true",
+      "text": "$(#25228d)Shoots springs to deal damage to zombies and bounce them back."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/contain/springprincess"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Princess Spring Grass"
+      ]
+    }
+  ]
+}

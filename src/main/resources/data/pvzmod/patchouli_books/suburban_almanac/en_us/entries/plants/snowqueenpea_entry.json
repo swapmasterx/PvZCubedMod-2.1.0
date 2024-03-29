@@ -1,0 +1,43 @@
+{
+  "name": "Snow Queen Pea",
+  "icon": "pvzmod:snowqueenpea_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 46,
+  "advancement": "pvzmod:make_snowpea",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)28 ",
+        "$(#bd951a)Damage: $()$(#ff0000)9 DMG/1.5s, 3 DMG (Splash)",
+        "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks",
+        "$(br)$(#bd951a)Ice Spike DMG: $()$(#ff0000)2 DMG/1.5s (Spike), 4 DMG/1.5s (Spike, Chill/Frozen Target)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots an Ice Spike then shoots a Snow Queen Pea that Chills.",
+        "$(br)$(#bd951a)Snow Queen Pea may be happy with Sunflower, but she still has feelings for Fire Pea..."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/snowqueenpea.png"
+      ],
+      "title": "❄ Winter Family",
+      "border": "true",
+      "text": "$(#25228d)Deals extra damage to frozen targets, then slows down many zombies."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/winter/snowqueenpea"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies Adventures: $()$(#ff0000)Ice Queen Pea",
+        "$(br2)$(#bd951a)Plants vs. Zombies: All Stars: $()$(#ff0000)Frostbolt Shooter"
+      ]
+    }
+  ]
+}

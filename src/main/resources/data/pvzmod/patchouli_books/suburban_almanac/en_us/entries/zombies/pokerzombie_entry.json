@@ -1,0 +1,50 @@
+{
+  "name": "Poker Guard Zombie",
+  "icon": "pvzmod:pokerzombie_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 350,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)(Paper)Health: $()$(#ff0000)65(Heart), 37(Spade/Club), 50(Diamond)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)6(Heart), 12(Spade/Diamond), 18(Club)",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic(Heart/Club/Diamond), Decent(Spade)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Can spawn as any of its 4 forms, Heart, Spade, Club, or Diamond.",
+        "$(br)$(#bd951a)Poker Guard Zombies are assigned their suits based on their trainings. The Queens love organization."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/pokerzombie.png"
+      ],
+      "title": "Fairytale Forest Zombie",
+      "border": "true",
+      "text": "$(#25228d)Regular poker Zombies guarding their Queen."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/navybean_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/lightningreed_entry",
+        "pvzmod:plants/frisbloom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Poker Zombie"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Night Gravestone",
+  "icon": "pvzmod:nightgrave_spawn",
+  "category": "pvzmod:grave_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)170 (Stone)",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Spawn Condition: $()$(#ff0000)Common. Nocturnal.",
+        "$(br)$(#bd951a)Time Chance: $()$(#ff0000)100% Night.",
+        "$(br)$(#bd951a)Weather Chance: $()$(#ff0000)30% Rain. 12.5% Thunder.",
+        "$(br2)$(#bd951a)What could be spookier than a grave? A grave with a bat design! Now with american football players."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/nightgrave.png"
+      ],
+      "title": "Night Zombie",
+      "border": "true",
+      "text": "$(#25228d)Spawns Night Zombies."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/summerbasic_entry",
+        "pvzmod:zombies/flagsummer_entry",
+        "pvzmod:zombies/summercone_entry",
+        "pvzmod:zombies/summerbucket_entry",
+        "pvzmod:zombies/newspaper_entry",
+        "pvzmod:zombies/screendoor_entry",
+        "pvzmod:zombies/football_entry",
+        "pvzmod:zombies/dancingzombie_entry",
+        "pvzmod:zombies/backupdancer_entry",
+        "pvzmod:zombies/berserker_entry",
+        "pvzmod:zombies/sundayedition_entry",
+        "pvzmod:zombies/superfanimp_entry"
+      ],
+      "title": "Spawnable Zombies"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/bass_entry",
+        "pvzmod:zombies/newyearimp_entry",
+        "pvzmod:zombies/defensiveend_entry",
+        "pvzmod:zombies/unicorngargantuar_entry",
+        "pvzmod:zombies/rainbowbassimp_entry"
+      ],
+      "title": "Spawnable Zombies"
+    }
+  ]
+}

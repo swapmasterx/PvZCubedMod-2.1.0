@@ -1,0 +1,40 @@
+{
+  "name": "Peashooter",
+  "icon": "pvzmod:peashooter_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 0,
+  "advancement": "pvzmod:start_pvz",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
+        "$(br2)$(#bd951a)How can a single Plant grow and shoot so many peas so quickly? Peashooter says, \"Hard work, commitment, and a healthy, well-balanced breakfast of sunlight and high-fiber carbon dioxide make it all possible.\""
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/peashooter.png"
+      ],
+      "title": "⭘ Appease Family",
+      "border": "true",
+      "text": "$(#25228d)Peashooters are your first line of defense. They shoot peas at attacking Zombies."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/appease/peashooterpvz"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Peashooter",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Peashooter"
+      ]
+    }
+  ]
+}

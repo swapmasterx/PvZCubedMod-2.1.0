@@ -1,0 +1,497 @@
+package io.github.GrassyDev.pvzmod;
+
+import io.github.GrassyDev.pvzmod.config.PvZConfig;
+import io.github.GrassyDev.pvzmod.registry.ModBlocks;
+import io.github.GrassyDev.pvzmod.registry.ModItems;
+import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.HypnoDamage;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.LightningDamage;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.*;
+import io.github.GrassyDev.pvzmod.registry.world.gen.entity.PvZEntitySpawn;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.GameRules;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import software.bernie.geckolib3.GeckoLib;
+
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
+
+public class PvZCubed implements ModInitializer {
+
+	public static final PvZConfig PVZCONFIG = PvZConfig.createAndLoad();
+	// This logger is used to write text to the console and the log file.
+	public static final Logger LOGGER = LoggerFactory.getLogger("Plants vs. Zombies Cubed");
+
+	// Thanks to Ennui Langeweile for the help with Registry Entry Attachments
+	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_MATERIAL =
+			RegistryEntryAttachment.stringBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "zombie_material")).build();
+
+	// Thanks to Ennui Langeweile for the help with Registry Entry Attachments
+	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_SIZE =
+			RegistryEntryAttachment.stringBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "zombie_size")).build();
+
+	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_WORLD =
+			RegistryEntryAttachment.stringBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "zombie_world")).build();
+
+	public static final RegistryEntryAttachment<EntityType<?>, Boolean> IS_MACHINE =
+			RegistryEntryAttachment.boolBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "is_machine")).build();
+	public static final RegistryEntryAttachment<EntityType<?>, Integer> ZOMBIE_STRENGTH =
+			RegistryEntryAttachment.intBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "zombie_strength")).build();
+	public static final RegistryEntryAttachment<EntityType<?>, Boolean> TARGET_GROUND =
+			RegistryEntryAttachment.boolBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "target_ground")).build();
+	public static final RegistryEntryAttachment<EntityType<?>, Boolean> TARGET_FLY =
+			RegistryEntryAttachment.boolBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "target_fly")).build();
+	public static final RegistryEntryAttachment<EntityType<?>, String> PLANT_LOCATION =
+			RegistryEntryAttachment.stringBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "plant_location")).build();
+	public static final RegistryEntryAttachment<EntityType<?>, String> PLANT_TYPE =
+			RegistryEntryAttachment.stringBuilder(Registry.ENTITY_TYPE, new Identifier("pvzmod", "plant_type")).build();
+
+	public static final DamageSource HYPNO_DAMAGE = new HypnoDamage().setHypnoDamage();
+	public static final DamageSource LIGHTNING_DAMAGE = new LightningDamage().setLightningDamage();
+
+	public static final StatusEffect ICE = new Ice();
+	public static final StatusEffect FROZEN = new Frozen();
+	public static final StatusEffect STUN = new Stun();
+	public static final StatusEffect BOUNCED = new Bounced();
+	public static final StatusEffect DISABLE = new Disable();
+	public static final StatusEffect WARM = new Warm();
+	public static final StatusEffect WET = new Wet();
+	public static final StatusEffect PVZPOISON = new PvZPoison();
+	public static final StatusEffect BARK = new Bark();
+	public static final StatusEffect CHEESE = new Cheese();
+	public static final StatusEffect GENERICSLOW = new GenericSlow();
+	public static final StatusEffect SHADOW = new Shadow();
+	public static final StatusEffect MARIGOLD = new Marigold();
+	public static final StatusEffect ACID = new Acid();
+
+	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_PLANT_SPAWN =
+			GameRuleRegistry.register("pvzdoPlantSpawn", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(true));
+	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_GRAVE_SPAWN =
+			GameRuleRegistry.register("pvzdoGraveSpawn", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(true));
+
+	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_PLANT_DROP =
+			GameRuleRegistry.register("pvzdoPlantDrop", GameRules.Category.DROPS, GameRuleFactory.createBooleanRule(true));
+	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_SUNFLOWER_DROP =
+			GameRuleRegistry.register("pvzdoSunflowerDrop", GameRules.Category.DROPS, GameRuleFactory.createBooleanRule(true));
+
+	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_ZOMBIE_DROP =
+			GameRuleRegistry.register("pvzdoZombieDrop", GameRules.Category.DROPS, GameRuleFactory.createBooleanRule(true));
+
+	public static final GameRules.Key<GameRules.BooleanRule> INFINITE_SEEDS =
+			GameRuleRegistry.register("pvzinfiniteSeeds", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));
+	public static final GameRules.Key<GameRules.BooleanRule> INSTANT_RECHARGE =
+			GameRuleRegistry.register("pvzinstantRecharge", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));
+	/**public static final GameRules.Key<GameRules.BooleanRule> COSTS_SUN =
+			GameRuleRegistry.register("pvzseedCostSun", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));**/
+
+	public static final GameRules.Key<GameRules.BooleanRule> PLANTS_GLOW =
+			GameRuleRegistry.register("pvzplantsGlow", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
+
+	public static final GameRules.Key<GameRules.BooleanRule> SPECIAL_ZOMBIE =
+			GameRuleRegistry.register("pvzspawnSpecialZombies", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));
+
+	public static final String MOD_ID = "pvzmod";
+
+	public static final UUID MAX_REACH_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
+
+	public static EntityAttributeModifier createReachModifier(double amount) {
+		return new EntityAttributeModifier(
+				MAX_REACH_UUID,
+				MOD_ID,
+				amount,
+				EntityAttributeModifier.Operation.ADDITION
+		);
+	}
+
+	public static final ItemGroup PVZPLANTS = FabricItemGroupBuilder.create(
+					new Identifier(MOD_ID, "plants"))
+			.icon(() -> new ItemStack(ModItems.SUN))
+			.appendItems(stacks -> {
+				stacks.add(new ItemStack(ModItems.GARDEN_SPAWN));
+				stacks.add(new ItemStack(ModItems.GARDENINGGLOVE));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_AIR));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_AQUATIC));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_COLD));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_ELEC));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_FIRE));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_FLOWER));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_MUSHROOM));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_SHADOW));
+				stacks.add(new ItemStack(ModItems.PLANTFOOD_TOUGH));
+				stacks.add(new ItemStack(ModItems.SMALLSUN));
+				stacks.add(new ItemStack(ModItems.SUN));
+				stacks.add(new ItemStack(ModItems.LARGESUN));
+				stacks.add(new ItemStack(ModItems.DAVES_SHOVEL));
+				stacks.add(new ItemStack(ModItems.PEASHOOTER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SUNFLOWER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CHERRYBOMB_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.WALLNUT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.POTATOMINE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SNOW_PEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CHOMPER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.REPEATER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PUFFSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SUNSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.FUMESHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GRAVEBUSTER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.HYPNOSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SCAREDYSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ICESHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.DOOMSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.LILYPAD_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SQUASH_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.THREEPEATER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.TANGLEKELP_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.JALAPENO_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SPIKEWEED_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.TORCHWOOD_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.TALLNUT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SEASHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.MAGNETSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CABBAGEPULT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.COFFEEBEAN_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GATLINGPEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.TWINSUNFLOWER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GLOOMSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CATTAIL_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SPIKEROCK_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ICEBERGPULT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BEET_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.FIRE_PEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SHAMROCK_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CHILLYPEPPER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BEESHOOTER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SNOW_QUEENPEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.OXYGAE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BREEZESHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BURSTSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SUPERCHOMPER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BLOOMERANG_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ICEBERGLETTUCE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SPRINGBEAN_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.COCONUTCANNON_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.LIGHTNINGREED_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PEAPOD_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.EMPEACH_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PEPPERPULT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ENDURIAN_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GOLDLEAF_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SHADOWSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.MISSILETOE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ELECTROPEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PEANUT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GHOSTPEPPER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.OLIVEPIT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GLOOMVINE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.HEAVENLYPEACH_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.MAGICSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.LOQUAT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SAUCER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.OILYOLIVE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SPRINGPRINCESS_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.DRIPPHYLLEIA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PUMPKINWITCH_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.TULIMPETER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.NARCISSUS_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.IMPATYENS_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.HAMMERFLOWER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.METEORHAMMER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.DROPEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.FRISBLOOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BEAUTYSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CHARMSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.MAGNETOSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.RETROGATLING_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.CHESTER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ACIDSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.VAMPIREFLOWER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.DANDELIONWEED_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PERFOOMSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SMALLNUT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SMACKADAMIA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.LOCOCOCO_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BUTTONSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BOMBSEEDLING_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ZAPRICOT_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BANANASAURUS_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.WEENIEBEANIE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SMOOSHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.ADMIRALNAVYBEAN_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.NAVYBEAN_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.JUMPINGBEAN_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.BELLFLOWER_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SUNFLOWERSEED_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.KNIGHTPEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.SEAPEA_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.NIGHTCAP_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.DOOMROSE_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.DOGWOOD_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.GAMBLESHROOM_SEED_PACKET));
+				stacks.add(new ItemStack(ModItems.PEA));
+				stacks.add(new ItemStack(ModItems.SNOWPEAPROJ));
+				stacks.add(new ItemStack(ModItems.SPORE));
+				stacks.add(new ItemStack(ModItems.FUME));
+				stacks.add(new ItemStack(ModItems.HYPNO));
+				stacks.add(new ItemStack(ModItems.FIREPEA));
+				stacks.add(new ItemStack(ModItems.ACIDSPORE));
+				stacks.add(new ItemStack(ModItems.SPIKE));
+				stacks.add(new ItemStack(ModItems.CABBAGE));
+				stacks.add(new ItemStack(ModItems.ICEBERG));
+				stacks.add(new ItemStack(ModItems.RAINBOWBULLET));
+				stacks.add(new ItemStack(ModItems.BEESPIKE));
+				stacks.add(new ItemStack(ModItems.POWERBEESPIKE));
+				stacks.add(new ItemStack(ModItems.SNOWQUEENPEAPROJ));
+				stacks.add(new ItemStack(ModItems.BREEZE));
+				stacks.add(new ItemStack(ModItems.BOOMERANG));
+				stacks.add(new ItemStack(ModItems.COCONUT));
+				stacks.add(new ItemStack(ModItems.PEPPER));
+				stacks.add(new ItemStack(ModItems.PLASMAPEA));
+				stacks.add(new ItemStack(ModItems.POWERSPIKE));
+				stacks.add(new ItemStack(ModItems.ELECTRICPEA));
+				stacks.add(new ItemStack(ModItems.SPRINGHAIR));
+				stacks.add(new ItemStack(ModItems.CARDPROJ));
+				stacks.add(new ItemStack(ModItems.PUMPKINPROJ));
+				stacks.add(new ItemStack(ModItems.HYPNOPROJ));
+				stacks.add(new ItemStack(ModItems.BUBBLES));
+				stacks.add(new ItemStack(ModItems.ARMORBUBBLE));
+				stacks.add(new ItemStack(ModItems.DYEITEM));
+				stacks.add(new ItemStack(ModItems.DROP));
+				stacks.add(new ItemStack(ModItems.ICESPIKE));
+				stacks.add(new ItemStack(ModItems.POWERICESPIKE));
+				stacks.add(new ItemStack(ModItems.FRISBEE));
+				stacks.add(new ItemStack(ModItems.SWORDPROJ));
+				stacks.add(new ItemStack(ModItems.POWERSWORDPROJ));
+				stacks.add(new ItemStack(ModItems.PIERCEPEA));
+				stacks.add(new ItemStack(ModItems.FIREPIERCEPEA));
+				stacks.add(new ItemStack(ModItems.ACIDFUME));
+				stacks.add(new ItemStack(ModItems.SMOOSH));
+				stacks.add(new ItemStack(ModItems.SPIT));
+				stacks.add(new ItemStack(ModItems.JINGLE));
+				stacks.add(new ItemStack(ModItems.PIERCESPORE));
+				stacks.add(new ItemStack(ModItems.PIERCESPORESHADOW));
+				stacks.add(new ItemStack(ModItems.BARK));
+				stacks.add(new ItemStack(ModItems.GOLDENCARDPROJ));
+			}).build();
+
+	public static final ItemGroup PVZZOMBIES = FabricItemGroupBuilder.create(
+					new Identifier(MOD_ID, "zombies"))
+			.icon(() -> new ItemStack(ModItems.BRAIN))
+			.appendItems(stacks -> {
+				stacks.add(new ItemStack(ModItems.BRAIN));
+				stacks.add(new ItemStack(ModItems.LOCUSTSWARMEGG));
+				stacks.add(new ItemStack(ModItems.BROWNCOATEGG));
+				stacks.add(new ItemStack(ModItems.FLAGZOMBIEEGG));
+				stacks.add(new ItemStack(ModItems.CONEHEADEGG));
+				stacks.add(new ItemStack(ModItems.POLEVAULTINGEGG));
+				stacks.add(new ItemStack(ModItems.BUCKETHEADEGG));
+				stacks.add(new ItemStack(ModItems.NEWSPAPEREGG));
+				stacks.add(new ItemStack(ModItems.SCREENDOOREGG));
+				stacks.add(new ItemStack(ModItems.FOOTBALLEGG));
+				stacks.add(new ItemStack(ModItems.DANCINGZOMBIEEGG));
+				stacks.add(new ItemStack(ModItems.BACKUPDANCEREGG));
+				stacks.add(new ItemStack(ModItems.SNORKELEGG));
+				stacks.add(new ItemStack(ModItems.DOLPHINRIDEREGG));
+				stacks.add(new ItemStack(ModItems.ZOMBONIEGG));
+				stacks.add(new ItemStack(ModItems.BOBSLEDEGG));
+				stacks.add(new ItemStack(ModItems.GARGANTUAREGG));
+				stacks.add(new ItemStack(ModItems.IMPEGG));
+				stacks.add(new ItemStack(ModItems.TRASHCANEGG));
+				stacks.add(new ItemStack(ModItems.BERSERKEREGG));
+				stacks.add(new ItemStack(ModItems.MUMMYEGG));
+				stacks.add(new ItemStack(ModItems.FLAGMUMMYEGG));
+				stacks.add(new ItemStack(ModItems.MUMMYCONEEGG));
+				stacks.add(new ItemStack(ModItems.MUMMYBUCKETEGG));
+				stacks.add(new ItemStack(ModItems.EXPLOREREGG));
+				stacks.add(new ItemStack(ModItems.TOMBRAISEREGG));
+				stacks.add(new ItemStack(ModItems.UNDYINGEGG));
+				stacks.add(new ItemStack(ModItems.PHARAOHEGG));
+				stacks.add(new ItemStack(ModItems.MUMMYGARGANTUAREGG));
+				stacks.add(new ItemStack(ModItems.MUMMYIMPEGG));
+				stacks.add(new ItemStack(ModItems.TORCHLIGHTEGG));
+				stacks.add(new ItemStack(ModItems.PYRAMIDHEADEGG));
+				stacks.add(new ItemStack(ModItems.FUTUREZOMBIEEGG));
+				stacks.add(new ItemStack(ModItems.FLAGFUTUREEGG));
+				stacks.add(new ItemStack(ModItems.FUTURECONEEGG));
+				stacks.add(new ItemStack(ModItems.FUTUREBUCKETEGG));
+				stacks.add(new ItemStack(ModItems.JETPACKEGG));
+				stacks.add(new ItemStack(ModItems.ROBOCONEEGG));
+				stacks.add(new ItemStack(ModItems.HOLOHEADEGG));
+				stacks.add(new ItemStack(ModItems.BLASTRONAUTEGG));
+				stacks.add(new ItemStack(ModItems.PEASANTEGG));
+				stacks.add(new ItemStack(ModItems.FLAGPEASANTEGG));
+				stacks.add(new ItemStack(ModItems.PEASANTCONEEGG));
+				stacks.add(new ItemStack(ModItems.PEASANTBUCKETEGG));
+				stacks.add(new ItemStack(ModItems.PEASANTKNIGHTEGG));
+				stacks.add(new ItemStack(ModItems.ANNOUNCERIMPEGG));
+				stacks.add(new ItemStack(ModItems.ZOMBIEKINGEGG));
+				stacks.add(new ItemStack(ModItems.IMPDRAGONEGG));
+				stacks.add(new ItemStack(ModItems.OCTOEGG));
+				stacks.add(new ItemStack(ModItems.BRICKHEADEGG));
+				stacks.add(new ItemStack(ModItems.SUNDAYEDITIONEGG));
+				stacks.add(new ItemStack(ModItems.SUPERFANIMPEGG));
+				stacks.add(new ItemStack(ModItems.SUMMERBASICEGG));
+				stacks.add(new ItemStack(ModItems.FLAGSUMMEREGG));
+				stacks.add(new ItemStack(ModItems.SUMMERCONEEGG));
+				stacks.add(new ItemStack(ModItems.SUMMERBUCKETEGG));
+				stacks.add(new ItemStack(ModItems.BASSEGG));
+				stacks.add(new ItemStack(ModItems.PUMPKINZOMBIEEGG));
+				stacks.add(new ItemStack(ModItems.NEWYEARIMPEGG));
+				stacks.add(new ItemStack(ModItems.POKEREGG));
+				stacks.add(new ItemStack(ModItems.FLAGPOKEREGG));
+				stacks.add(new ItemStack(ModItems.POKERCONEEGG));
+				stacks.add(new ItemStack(ModItems.POKERBUCKETEGG));
+				stacks.add(new ItemStack(ModItems.POKERPAWNEGG));
+				stacks.add(new ItemStack(ModItems.POKERKNIGHTEGG));
+				stacks.add(new ItemStack(ModItems.POKERTOWEREGG));
+				stacks.add(new ItemStack(ModItems.POKERBISHOPEGG));
+				stacks.add(new ItemStack(ModItems.SARGEANTEGG));
+				stacks.add(new ItemStack(ModItems.FLAGSARGEANTEGG));
+				stacks.add(new ItemStack(ModItems.SARGEANTCONEEGG));
+				stacks.add(new ItemStack(ModItems.SARGEANTBUCKETEGG));
+				stacks.add(new ItemStack(ModItems.SARGEANTSHIELDEGG));
+				stacks.add(new ItemStack(ModItems.HAWKEREGG));
+				stacks.add(new ItemStack(ModItems.PIGGYEGG));
+				stacks.add(new ItemStack(ModItems.SOLDIEREGG));
+				stacks.add(new ItemStack(ModItems.SCIENTISTEGG));
+				stacks.add(new ItemStack(ModItems.HOVERGOATEGG));
+				stacks.add(new ItemStack(ModItems.ZOMBLOBEGG));
+				stacks.add(new ItemStack(ModItems.DEFENSIVEENDEGG));
+				stacks.add(new ItemStack(ModItems.CURSEDGARGOLITHEGG));
+				stacks.add(new ItemStack(ModItems.IMPTHROWEGG));
+				stacks.add(new ItemStack(ModItems.SCRAPMECHEGG));
+				stacks.add(new ItemStack(ModItems.ACTIONHEROEGG));
+				stacks.add(new ItemStack(ModItems.UNICORNGARGANTUAREGG));
+				stacks.add(new ItemStack(ModItems.BASSIMPEGG));
+				stacks.add(new ItemStack(ModItems.BULLYEGG));
+				stacks.add(new ItemStack(ModItems.BASKETBALLCARRIEREGG));
+				stacks.add(new ItemStack(ModItems.REDANNOUNCERIMPEGG));
+				stacks.add(new ItemStack(ModItems.REDZOMBIEKINGEGG));
+				stacks.add(new ItemStack(ModItems.BLACKANNOUNCERIMPEGG));
+				stacks.add(new ItemStack(ModItems.BLACKZOMBIEKINGEGG));
+				stacks.add(new ItemStack(ModItems.PUMPKINCARRIAGEEGG));
+				stacks.add(new ItemStack(ModItems.CRYSTALSHOEIMPEGG));
+				stacks.add(new ItemStack(ModItems.BOOKBURNEREGG));
+				stacks.add(new ItemStack(ModItems.SCRAPIMPEGG));
+			}).build();
+
+	public static final ItemGroup PVZGRAVES = FabricItemGroupBuilder.create(
+					new Identifier(MOD_ID, "graves"))
+			.icon(() -> new ItemStack(ModItems.ZOMBIEGRAVESPAWN))
+			.appendItems(stacks -> {
+				stacks.add(new ItemStack(ModItems.ZOMBIEGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.EASY));
+				stacks.add(new ItemStack(ModItems.EASYMED));
+				stacks.add(new ItemStack(ModItems.MED));
+				stacks.add(new ItemStack(ModItems.MEDHARD));
+				stacks.add(new ItemStack(ModItems.HARD));
+				stacks.add(new ItemStack(ModItems.SUPERHARD));
+				stacks.add(new ItemStack(ModItems.NIGHTMARE));
+				stacks.add(new ItemStack(ModItems.CRAAAAZY));
+				stacks.add(new ItemStack(ModItems.INFINITE));
+				stacks.add(new ItemStack(ModItems.UNLOCKSPECIAL));
+				stacks.add(new ItemStack(ModItems.UNLOCK));
+				stacks.add(new ItemStack(ModItems.ONEBYONE));
+				stacks.add(new ItemStack(ModItems.HALF));
+				stacks.add(new ItemStack(ModItems.DAY));
+				stacks.add(new ItemStack(ModItems.NIGHT));
+				stacks.add(new ItemStack(ModItems.DROUGHT));
+				stacks.add(new ItemStack(ModItems.BOMB));
+				stacks.add(new ItemStack(ModItems.CLEAR));
+				stacks.add(new ItemStack(ModItems.RAIN));
+				stacks.add(new ItemStack(ModItems.THUNDER));
+				stacks.add(new ItemStack(ModItems.BASICGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.NIGHTGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.POOLGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.ROOFGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.EGYPTGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.FUTUREGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.DARKAGESGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.FAIRYTALEGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.MAUSOLEUMGRAVESPAWN));
+				stacks.add(new ItemStack(ModItems.GARDENCHALLENGE_SPAWN));
+				stacks.add(new ItemStack(ModItems.FERTILIZER));
+			}).build();
+
+	public static final ItemGroup PVZBLOCKS = FabricItemGroupBuilder.create(
+					new Identifier(MOD_ID, "blocks"))
+			.icon(() -> new ItemStack(ModItems.FAIRY_TILE))
+			.appendItems(stacks -> {
+				stacks.add(new ItemStack(ModItems.GRASS_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_GRASS_TILE));
+				stacks.add(new ItemStack(ModItems.NIGHT_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_NIGHT_TILE));
+				stacks.add(new ItemStack(ModItems.ROOF_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_ROOF_TILE));
+				stacks.add(new ItemStack(ModItems.UPGRADE_TILE));
+				stacks.add(new ItemStack(ModItems.PREMIUM_TILE));
+				stacks.add(new ItemStack(ModItems.EGYPT_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_EGYPT_TILE));
+				stacks.add(new ItemStack(ModItems.PIRATE_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_PIRATE_TILE));
+				stacks.add(new ItemStack(ModItems.WEST_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_WEST_TILE));
+				stacks.add(new ItemStack(ModItems.FUTURE_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_FUTURE_TILE));
+				stacks.add(new ItemStack(ModItems.DARKAGES_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_DARKAGES_TILE));
+				stacks.add(new ItemStack(ModItems.SAND_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_SAND_TILE));
+				stacks.add(new ItemStack(ModItems.UNDERWATER_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_UNDERWATER_TILE));
+				stacks.add(new ItemStack(ModItems.FROST_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_FROST_TILE));
+				stacks.add(new ItemStack(ModItems.LOSTCITY_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_LOSTCITY_TILE));
+				stacks.add(new ItemStack(ModItems.SKYCITY_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_SKYCITY_TILE));
+				stacks.add(new ItemStack(ModItems.FAIRY_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_FAIRY_TILE));
+				stacks.add(new ItemStack(ModItems.MAUSOLEUM_TILE));
+				stacks.add(new ItemStack(ModItems.DARK_MAUSOLEUM_TILE));
+				stacks.add(new ItemStack(ModItems.LEGENDARY_TILE));
+			}).build();
+
+	@Override
+	public void onInitialize(ModContainer mod) {
+		LOGGER.info("{} says: Trans Rights are Human Rights!", mod.metadata().name());
+
+		ModItems.registerItems();
+		ModItems.setSeedPacketList();
+		ModItems.setPlantfoodList();
+		ModBlocks.registerBlocks();
+		PvZEntity.setPlantList();
+		GeckoLib.initialize();
+		PvZEntitySpawn.addEntitySpawn();
+		PvZSounds.registerSounds();
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "ice"), ICE);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "frozen"), FROZEN);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "stun"), STUN);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "bounced"), BOUNCED);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "disable"), DISABLE);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "warm"), WARM);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "wet"), WET);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "pvzpoison"), PVZPOISON);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "acid"), ACID);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "bark"), BARK);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "cheese"), CHEESE);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "genericslow"), GENERICSLOW);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "shadow"), SHADOW);
+		Registry.register(Registry.STATUS_EFFECT, new Identifier("pvzmod", "marigold"), MARIGOLD);
+	}
+}

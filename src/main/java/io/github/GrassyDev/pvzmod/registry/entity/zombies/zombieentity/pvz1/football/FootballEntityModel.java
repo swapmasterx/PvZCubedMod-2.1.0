@@ -1,0 +1,66 @@
+package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.football;
+
+import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.FootballVariants;
+import net.minecraft.util.Identifier;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
+
+/*
+ * A renderer is used to provide an entity model, shadow size, and texture.
+ */
+public class FootballEntityModel extends AnimatedGeoModel<FootballEntity> {
+
+    @Override
+	public Identifier getModelResource(FootballEntity object)
+	{
+		return FootballEntityRenderer.LOCATION_MODEL_BY_VARIANT.get(object.getVariant());
+	}
+
+	@Override
+	public Identifier getTextureResource(FootballEntity object)
+	{
+		Identifier identifier;
+		if (object.getVariant().equals(FootballVariants.BERSERKER) || object.getVariant().equals(FootballVariants.BERSERKERHYPNO)){
+			identifier = new Identifier("pvzmod", "textures/entity/football/berserker.png");
+			if (object.armless && object.geardmg){
+				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_dmg1_geardmg1.png");
+			}
+			else if (object.armless && object.gear1less){
+				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_gearless_dmg1.png");
+			}
+			else if (object.gear1less){
+				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_gearless.png");
+			}
+			else if (object.geardmg){
+				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_geardmg1.png");
+			}
+			else if (object.armless){
+				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_dmg1.png");
+			}
+		}
+		else {
+			identifier = new Identifier("pvzmod", "textures/entity/football/football.png");
+			if (object.armless && object.geardmg){
+				identifier = new Identifier("pvzmod", "textures/entity/football/football_dmg1_geardmg1.png");
+			}
+			else if (object.armless && object.gear1less){
+				identifier = new Identifier("pvzmod", "textures/entity/football/football_gearless_dmg1.png");
+			}
+			else if (object.gear1less){
+				identifier = new Identifier("pvzmod", "textures/entity/football/football_gearless.png");
+			}
+			else if (object.geardmg){
+				identifier = new Identifier("pvzmod", "textures/entity/football/football_geardmg1.png");
+			}
+			else if (object.armless){
+				identifier = new Identifier("pvzmod", "textures/entity/football/football_dmg1.png");
+			}
+		}
+		return identifier;
+	}
+
+    @Override
+    public Identifier getAnimationResource(FootballEntity object)
+    {
+        return new Identifier ("pvzmod", "animations/football.json");
+    }
+}

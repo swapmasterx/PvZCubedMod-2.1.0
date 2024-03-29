@@ -1,0 +1,40 @@
+{
+  "name": "Bloomerang",
+  "icon": "pvzmod:bloomerang_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 55,
+  "advancement": "pvzmod:make_frisbloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)26 ",
+        "$(#bd951a)Damage: $()$(#ff0000)x4 2.5 DMG/1.5s (3 Zombie Pierce) ",
+        "$(#bd951a)Range: $()$(#ff0000)10 Blocks ",
+        "$(#bd951a)Seed Time: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots in the middle and in a cone shape. Pierces up to 3 Zombies, then the projectile comes back dealing damage to the Zombies it pierced. Can target Flying Zombies.",
+        "$(br)$(#bd951a)As the first new member to your home defense team, Bloomerang enjoys listening to his Bob Barley albums."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/bloomerang.png"
+      ],
+      "title": "✂ Spear Family",
+      "border": "true",
+      "text": "$(#25228d)Bloomerangs can hit up to 3 targets in three directions!"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/spear/bloomerang"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Bloomerang"
+      ]
+    }
+  ]
+}

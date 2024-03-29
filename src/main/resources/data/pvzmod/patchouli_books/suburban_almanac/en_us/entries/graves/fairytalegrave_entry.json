@@ -1,0 +1,48 @@
+{
+  "name": "Fairytale Forest Gravestone",
+  "icon": "pvzmod:fairytalegrave_spawn",
+  "category": "pvzmod:grave_category",
+  "sortnum": 19,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)360 (Stone)",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Spawn Condition: $()$(#ff0000)Challenge Mode Only",
+        "$(br)$(#bd951a)Time Chance: $()$(#ff0000)50% Night.",
+        "$(br)$(#bd951a)Weather Chance: $()$(#ff0000)20% Rain. 15% Thunder.",
+        "$(br2)$(#bd951a)Embark on a magical journey in the kingdom of Fairytale Forest."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/fairytalegrave.png"
+      ],
+      "title": "Fairytale Forest Zombie",
+      "border": "true",
+      "text": "$(#25228d)Spawns Fairytale Forest Zombies."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/pokerzombie_entry",
+        "pvzmod:zombies/pokerconehead_entry",
+        "pvzmod:zombies/pokerbuckethead_entry",
+        "pvzmod:zombies/pokerpawn_entry",
+        "pvzmod:zombies/pokertower_entry",
+        "pvzmod:zombies/pokerknight_entry",
+        "pvzmod:zombies/pokerbishop_entry",
+        "pvzmod:zombies/redannouncerimp_entry",
+        "pvzmod:zombies/redzombieking_entry",
+        "pvzmod:zombies/blackannouncerimp_entry",
+        "pvzmod:zombies/blackzombieking_entry",
+        "pvzmod:zombies/zomblob_entry"
+      ],
+      "title": "Spawnable Zombies"
+    }
+  ]
+}

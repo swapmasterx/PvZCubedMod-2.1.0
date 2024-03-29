@@ -1,0 +1,40 @@
+{
+  "name": "Puff-shroom",
+  "icon": "pvzmod:puffshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Poisons Zombies. Spawns commonly during the night. Drops Mushroom Plant Food",
+        "$(br2)$(#bd951a)\"Like many fungi, I'd just assumed Zombies were fairy tales or movie monsters. This whole experience has been a huge eye-opener for me.\""
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/puffshroom.png"
+      ],
+      "title": "\uD83E\uDDEA Ailment Family",
+      "border": "true",
+      "text": "$(#25228d)Puff-shrooms are cheap, but can only fire a short distance."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/ailment/puffshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Puff-shroom",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Fume-shroom"
+      ]
+    }
+  ]
+}

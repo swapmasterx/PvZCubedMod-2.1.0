@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "headwear",
+					"pivot": [-0.15, 3, -1],
+					"rotation": [2.53323, -0.21533, -2.519],
+					"cubes": [
+						{"origin": [-4.77347, 3.51115, -5.36688], "size": [0, 5, 4], "pivot": [-4.87347, 6.81115, -3.36688], "rotation": [173.68483, 0.67695, 165.53169], "uv": [72, -4]},
+						{"origin": [3, 3.9, -7.8], "size": [0, 5, 4], "pivot": [2.5, 6.5, -5.5], "rotation": [90, 72.5, 90], "uv": [72, -4]},
+						{"origin": [-4.5, 4, -5.5], "size": [9, 3, 9], "pivot": [0, -5, -1], "rotation": [0, 90, 0], "uv": [0, 97]},
+						{"origin": [-1, -5, -5.7], "size": [2, 7, 9.3], "pivot": [0, -5, -1], "rotation": [0, 90, 0], "uv": [70, 10]},
+						{"origin": [-5, 2, -6], "size": [10, 2, 10], "pivot": [0, -5, -1], "rotation": [0, 90, 0], "uv": [0, 71]},
+						{"origin": [-4, 7, -5], "size": [8, 1, 8], "pivot": [0, -5, -1], "rotation": [0, 90, 0], "uv": [0, 131]}
+					]
+				}
+			]
+		}
+	]
+}

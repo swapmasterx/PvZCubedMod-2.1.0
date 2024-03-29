@@ -1,0 +1,52 @@
+{
+  "name": "Sergeant Flag Zombie",
+  "icon": "pvzmod:flagsargeant_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 391,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)75",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2.5 Blocks",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)60s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Summons x2 Helmet Sergeants, x1 Shield Sergeant, x3 Bowl Sergeants, and x6 Sergeants behind them.",
+        "$(br2)$(#bd951a)He's ever loyal, as he keeps hoisting the flag of a bygone era. Or he just likes the design."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/sergeantflag.png"
+      ],
+      "title": "Mausoleum Zombie",
+      "border": "true",
+      "text": "$(#25228d)Marks the arrival of a huge war."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/chillypepper_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/beautyshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies Online: $()$(#ff0000)Flag Sergeant Zombie"
+      ]
+    }
+  ]
+}

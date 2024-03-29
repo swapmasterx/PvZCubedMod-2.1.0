@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:cattail_seed_packet"
+    },
+    "title": "Meow! That's right!",
+    "description": "Craft a Cattail",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "pvzmod:make_navybean",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:cattail_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

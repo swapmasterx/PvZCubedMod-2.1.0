@@ -1,0 +1,50 @@
+{
+  "name": "Tomb Raiser",
+  "icon": "pvzmod:tombraiser_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 74,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)75 (Paper)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Creeper",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)15%/sec chance to throw a Bone on a random block, spawning an Egypt Tombstone, inside a 10x10 area when 15 Blocks near a Plant.",
+        "$(br)$(#bd951a)He dreams about playing fetch, running for the brains. He loves burying himself in the yard, and is not yet indoor trained. He's still looking for his tail."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/tombraiser.png"
+      ],
+      "title": "Hard Ancient Egypt Zombie",
+      "border": "true",
+      "text": "$(#25228d)Throws out bones to create tombstones."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cabbagepult_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/iceberglettuce_entry",
+        "pvzmod:plants/admiralnavybean_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/gravebuster_entry",
+        "pvzmod:plants/doomshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Tomb Raiser Zombie"
+      ]
+    }
+  ]
+}

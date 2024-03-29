@@ -1,0 +1,54 @@
+{
+  "name": "Octo Zombie",
+  "icon": "pvzmod:octo_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 110,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)91 ",
+        "$(#bd951a)Damage: $()$(#ff0000)12 (if target can't be covered, 5%/second) ",
+        "$(#bd951a)Range: $()$(#ff0000)25 Blocks (From Garden, Lobbed) ",
+        "$(#bd951a)Melee Damage: $()$(#ff0000)8 ",
+        "$(#bd951a)Speed: $()$(#ff0000)Stiff ",
+        "$(#bd951a)Special: $()$(#ff0000)Throws 65HP Octopus Obstacle with 3s of Invincibility at the nearest non-flying Plant, covering and disabling them.",
+        "$(br)$(#bd951a)It started innocently enough. One day, Octo Zombie decided to get a pet octopus. But he got another and another... and another..."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/octo.png"
+      ],
+      "title": "Hard Pool Zombie",
+      "border": "true",
+      "text": "$(#25228d)Throws octopi at your plants to bind them up."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/admiralnavybean_entry",
+        "pvzmod:plants/bananasaurus_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/dandelionweed_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/retrogatling_entry",
+        "pvzmod:plants/smackadamia_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Octo Zombie"
+      ]
+    }
+  ]
+}

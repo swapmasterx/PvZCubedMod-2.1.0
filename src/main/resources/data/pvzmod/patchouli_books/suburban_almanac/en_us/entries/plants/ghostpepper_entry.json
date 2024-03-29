@@ -1,0 +1,80 @@
+{
+  "name": "Ghost Pepper",
+  "icon": "pvzmod:ghostpepper_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 92,
+  "advancement": "pvzmod:make_spikeweed",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)12 DMG/1s $(#bd951a)Area: $()$(#ff0000)Low Profile, 2 Blocks in front and behind, 3 wide. ",
+        "$(#bd951a)Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)30s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Immune to damage. Zombies ignore. Full Moon. New Moon. Deals damage directly to Zombies, can't hurt Obstacles. Dies after attacking for 8 seconds total.",
+        "$(br)$(#bd951a)It may look like she is wearing a white sheet, but this is how ghosts actually look like."
+        ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/ghostpepper.png"
+      ],
+      "title": "☁ Conceal Family",
+      "border": "true",
+      "text": "$(#25228d)Ghost Peppers haunt zombies that pass by."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)$(#bd951a)Damage: $()$(#ff0000)12 DMG/1s",
+        "$(br)$(#bd951a)Damage Area: $()$(#ff0000)Low Profile. 2 Blocks in front and behind, 5 wide. ",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)2 Blocks ",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Immune to damage. Zombies ignore. New Moon Powered Form. Deals damage directly to Zombies, can't hurt Obstacles. Dies after attacking for 8 seconds total."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/ghostpepper_shadow.png"
+      ],
+      "title": "☁ Conceal Family",
+      "border": "true",
+      "text": "$(#25228d)Ghost Pepper's Shadow Form. Hits more Zombies"
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)$(#bd951a)Damage: $()$(#ff0000)12 DMG/1s",
+        "$(br)$(#bd951a)Damage Area: $()$(#ff0000)Low Profile. 2 Blocks in front and behind, 3 wide. ",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)2 Blocks ",
+        "$(br)$(#bd951a)Blast: $()$(#ff0000)90 DMG",
+        "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Immune to damage. Zombies ignore. Full Moon Powered Form. Deals damage directly to Zombies, can't hurt Obstacles. Dies after attacking for 8 seconds total, exploding in the process."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/ghostpepper_moon.png"
+      ],
+      "title": "☁ Conceal Family",
+      "border": "true",
+      "text": "$(#25228d)Ghost Pepper's Moon Form. Explodes when expiring."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/conceal/ghostpepper"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Ghost Pepper",
+        "$(br2)$(#bd951a)Ringu: $()$(#ff0000)Onryo",
+        "$(br2)$(#bd951a)Corpse Bride: $()$(#ff0000)Emily"
+      ]
+    }
+  ]
+}

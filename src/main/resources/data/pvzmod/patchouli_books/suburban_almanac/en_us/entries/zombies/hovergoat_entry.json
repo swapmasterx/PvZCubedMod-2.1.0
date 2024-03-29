@@ -1,0 +1,52 @@
+{
+  "name": "Hover Goat-3000",
+  "icon": "pvzmod:hovergoat_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 503,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)75",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Buff Range: $()$(#ff0000)6x6",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent, Basic (Buffing)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Hovering (Electronic). Buffs the damage of the Zombies around it by x2.",
+        "$(br)$(#bd951a)As the legend goes, Hover Goat-3000 came from the future, but he was too radical and needed to be contained. Now he is released and out to show everyone what cool looks like!"
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/hovergoat.png"
+      ],
+      "title": "Future Zombie",
+      "border": "true",
+      "text": "$(#25228d)Hovers around avoiding low Plants and buffing Zombies."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/smackadamia_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/burstshroom_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/bloomerang_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/lightningreed_entry",
+        "pvzmod:plants/breezeshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Hover Goat-3000"
+      ]
+    }
+  ]
+}

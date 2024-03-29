@@ -1,0 +1,64 @@
+{
+  "name": "Zomblob",
+  "icon": "pvzmod:zomblob_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 600,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health (Plant): $()$(#ff0000)32 (Small), 64(Medium), 128(Big)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry(Small), Basic(Medium), Stiff(Big)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Varied Size. Immune to Poison. Splits into 2 Medium Zomblobs if it's Big and dies, or 2 Small Zomblobs if it's Medium and dies.",
+        "$(br2)$(#bd951a)This is why you shouldn't drink primordial soup."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/zomblob.png"
+      ],
+      "title": "Fairytale Forest Zombie",
+      "border": "true",
+      "text": "$(#25228d)Zomblobs split into multiple smaller versions of themselves."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/chillypepper_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/charmshroom_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/tulimpeter_entry",
+        "pvzmod:plants/spikerock_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/acidshroom_entry",
+        "pvzmod:plants/smackadamia_entry",
+        "pvzmod:plants/bananasaurus_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Heroes: $()$(#ff0000)Zom-Blob",
+        "$(br)$(#bd951a)Plants vs. Zombies 3 (Old Version, Discontinued): $()$(#ff0000)Zom-Blob, Zom-Blot, Zom-Booger"
+      ]
+    }
+  ]
+}

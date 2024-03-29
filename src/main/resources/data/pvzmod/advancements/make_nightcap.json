@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:nightcap_seed_packet"
+    },
+    "title": "On the spore of the moment.",
+    "description": "Craft a Night Cap",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "pvzmod:make_fumeshroom",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:nightcap_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

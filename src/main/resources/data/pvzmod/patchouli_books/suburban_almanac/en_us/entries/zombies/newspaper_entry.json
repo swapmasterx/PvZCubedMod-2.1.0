@@ -1,0 +1,69 @@
+{
+  "name": "Newspaper Zombie",
+  "icon": "pvzmod:newspaper_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27",
+        "$(br)$(#bd951a)(Paper) Newspaper Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4, 8 (Angry)",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Speedy (Angry)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Becomes angry when the Newspaper is destroyed and gets 2 seconds of Invincibility.",
+        "$(br2)$(#bd951a)Newspaper Zombie was *this* close to finishing his Sudoku puzzle. No wonder he's freaking out. "
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/newspaper.png"
+      ],
+      "title": "Night Zombie",
+      "border": "true",
+      "text": "$(#25228d)Newspaper protects Zombie, who is then enraged when it is destroyed."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/cabbagepult_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/narcissus_entry",
+        "pvzmod:plants/spikeweed_entry",
+        "pvzmod:plants/dropea_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/springbean_entry",
+        "pvzmod:plants/burstshroom_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/frisbloom_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/admiralnavybean_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Newspaper Zombie",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Newspaper Zombie"
+      ]
+    }
+  ]
+}

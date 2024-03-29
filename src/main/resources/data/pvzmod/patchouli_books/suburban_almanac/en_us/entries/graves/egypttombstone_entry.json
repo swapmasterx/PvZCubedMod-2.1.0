@@ -1,0 +1,39 @@
+{
+  "name": "Egypt Tombstone",
+  "icon": "pvzmod:egyptgrave_spawn",
+  "category": "pvzmod:grave_category",
+  "sortnum": 100,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)90 (Stone)",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)4s (Initial), 3-12s",
+        "$(br)$(#bd951a)Zombies: $()$(#ff0000)Mummy Buckethead(Rare), Mummy Conehead(Uncommon), Mummy Zombie(Common), Mummy Imp(Common)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Ancient Egypt Tiles Ambush. Spawns a Zombie at a time. 6 spawns.",
+        "$(br2)$(#bd951a)Ancient graves spawned by a mummified furry."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/egypttombstone.png"
+      ],
+      "title": "Hard Ancient Egypt Zombie",
+      "border": "true",
+      "text": "$(#25228d)Spawns Ancient Egypt Zombies."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/mummy_entry",
+        "pvzmod:zombies/mummycone_entry",
+        "pvzmod:zombies/mummybucket_entry",
+        "pvzmod:zombies/mummyimp_entry"
+      ],
+      "title": "Spawnable Zombies"
+    }
+  ]
+}

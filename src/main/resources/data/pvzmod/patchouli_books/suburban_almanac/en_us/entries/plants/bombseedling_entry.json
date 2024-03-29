@@ -1,0 +1,41 @@
+{
+  "name": "Bomb Seedling",
+  "icon": "pvzmod:bombseedling_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 312,
+  "advancement": "pvzmod:make_potatomine",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)32",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Transforms into a random Plant after exploding.",
+        "$(br2)$(#bd951a)It's the tiny seed of a... nobody actually knows."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/bombseedling.png"
+      ],
+      "title": "☄ Bombard Family",
+      "border": "true",
+      "text": "$(#25228d)Explodes nearby Zombies and transforms into a random Plant."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/bombard/bombseedling"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Heroes: $()$(#ff0000)Seedling"
+      ]
+    }
+  ]
+}

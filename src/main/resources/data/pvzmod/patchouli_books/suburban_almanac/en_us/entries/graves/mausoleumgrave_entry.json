@@ -1,0 +1,43 @@
+{
+  "name": "Mausoleum Gravestone",
+  "icon": "pvzmod:mausoleumgrave_spawn",
+  "category": "pvzmod:grave_category",
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)300 (Stone)",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Spawn Condition: $()$(#ff0000)Rare. Nocturnal.",
+        "$(br)$(#bd951a)Time Chance: $()$(#ff0000)100% Night.",
+        "$(br)$(#bd951a)Weather Chance: $()$(#ff0000)30% Thunder.",
+        "$(br2)$(#bd951a)Does not include book burnings."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/mausoleumgrave.png"
+      ],
+      "title": "Mausoleum Zombie",
+      "border": "true",
+      "text": "$(#25228d)Spawns Mausoleum Zombies."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/sergeant_entry",
+        "pvzmod:zombies/flagsergeant_entry",
+        "pvzmod:zombies/sergeantbowl_entry",
+        "pvzmod:zombies/sergeanthelmet_entry",
+        "pvzmod:zombies/sergeantshield_entry",
+        "pvzmod:zombies/hawkercart_entry",
+        "pvzmod:zombies/zombiepiggy_entry",
+        "pvzmod:zombies/bookburner_entry"
+      ],
+      "title": "Spawnable Zombies"
+    }
+  ]
+}

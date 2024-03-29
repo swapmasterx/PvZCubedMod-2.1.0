@@ -1,0 +1,27 @@
+{
+  "name": "Appease Family",
+  "icon": "pvzmod:pea",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Appease family is composed of peashooters and plants that shoot standard projectiles.",
+        "$(br2)$()$(#bd951a)The most basic family whose main trait is shooting projectiles that go straight."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/shamrock_entry"
+      ],
+      "title": "⭘ Appease Plants:"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Pumpkin Carriage",
+  "icon": "pvzmod:pumpkincarriage_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 858,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)210 (Plant) ",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Covered. Big. Leaves behind a Crystal Shoe Imp on death with 3s of Invincibility.",
+        "$(br2)$(#bd951a)This carriage was a decent way to get to the party, but a day later and it's smelling already."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/pumpkincarriage.png"
+      ],
+      "title": "Fairytale Forest Zombie",
+      "border": "true",
+      "text": "$(#25228d)Pumpkin Carriages deliver a Crystal Shoe Imp to the party."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/spikerock_entry",
+        "pvzmod:plants/springprincess_entry"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Beet",
+  "icon": "pvzmod:beet_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 41,
+  "advancement": "pvzmod:start_pvz",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)12 DMG/1.5s",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
+        "$(br2)$(#bd951a)Beet’s a brawler, a tough root from the streets who won’t back down no matter how many zombies line up to take a crack at him. If anything, that makes him even more into it."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/beet.png"
+      ],
+      "title": "\uD83D\uDDE1 Enforce Family",
+      "border": "true",
+      "text": "$(#25228d)Headbutts zombies into submission"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enforce/beet"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies Adventures: $()$(#ff0000)Beet"
+      ]
+    }
+  ]
+}

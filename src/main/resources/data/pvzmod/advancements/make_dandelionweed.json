@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:dandelionweed_seed_packet"
+    },
+    "title": "Armaggandelion",
+    "description": "Craft a Dandelion Weed",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_bellflower",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:dandelionweed_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ],
+    "experience": 25
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "pvzmod:plantfood_shadow"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:doomrose_seed_packet",
+    "count": 1
+  }
+}

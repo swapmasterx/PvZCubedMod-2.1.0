@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:navybean_seed_packet"
+    },
+    {
+      "item": "pvzmod:plantfood_aquatic"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:admiralnavybean_seed_packet",
+    "count": 1
+  }
+}

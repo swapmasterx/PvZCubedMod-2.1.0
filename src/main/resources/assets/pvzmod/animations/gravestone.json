@@ -1,0 +1,243 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"gravestone.idle": {
+			"loop": true,
+			"animation_length": 4.04167,
+			"bones": {
+				"grass": {
+					"rotation": {
+						"0.0": {
+							"vector": [-10, 5, 0]
+						},
+						"0.0417": {
+							"vector": [-10, 5, 0],
+							"easing": "easeInSine"
+						},
+						"2.0": {
+							"vector": [10, 0, 0],
+							"easing": "easeOutSine"
+						},
+						"4.0": {
+							"vector": [-10, 5, 0],
+							"easing": "easeInSine"
+						}
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					},
+					"scale": {
+						"0.0": {
+							"vector": [1, 1.1042, 1]
+						},
+						"0.0417": {
+							"vector": [1, 1.1042, 1],
+							"easing": "easeInSine"
+						},
+						"2.0": {
+							"vector": [1, 1.0022, 1],
+							"easing": "easeOutSine"
+						},
+						"4.0": {
+							"vector": [1, 1.1042, 1],
+							"easing": "easeInSine"
+						}
+					}
+				},
+				"bin": {
+					"scale": {
+						"vector": [0.75, 0.75, 0.75]
+					}
+				}
+			}
+		},
+		"gravestone.idle2": {
+			"loop": true,
+			"animation_length": 4.04167,
+			"bones": {
+				"grass": {
+					"rotation": {
+						"0.0": {
+							"vector": [-10, 5, 0]
+						},
+						"0.0417": {
+							"vector": [-10, 5, 0],
+							"easing": "easeInSine"
+						},
+						"2.0": {
+							"vector": [10, 0, 0],
+							"easing": "easeOutSine"
+						},
+						"4.0": {
+							"vector": [-10, 5, 0],
+							"easing": "easeInSine"
+						}
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					},
+					"scale": {
+						"0.0": {
+							"vector": [1, 1.1042, 1]
+						},
+						"0.0417": {
+							"vector": [1, 1.1042, 1],
+							"easing": "easeInSine"
+						},
+						"2.0": {
+							"vector": [1, 1.0022, 1],
+							"easing": "easeOutSine"
+						},
+						"4.0": {
+							"vector": [1, 1.1042, 1],
+							"easing": "easeInSine"
+						}
+					}
+				},
+				"grave": {
+					"rotation": {
+						"vector": [-5, 0, 0]
+					},
+					"position": {
+						"vector": [0, -3, 0]
+					}
+				}
+			}
+		},
+		"obstacle.eating": {
+			"loop": true,
+			"bones": {
+				"gravebuster": {
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"healstation.idle": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"fountain": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, -360, 0]
+						},
+						"2.0": {
+							"vector": [0, -720, 0]
+						}
+					}
+				},
+				"satelite": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, -12.5],
+							"easing": "easeInElastic"
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutElastic"
+						}
+					}
+				},
+				"satelite2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.7917": {
+							"vector": [0, -180, 20],
+							"easing": "easeInElastic"
+						},
+						"1.75": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutElastic"
+						}
+					}
+				},
+				"healstation": {
+					"scale": {
+						"vector": [0.75, 0.75, 0.75]
+					}
+				}
+			}
+		},
+		"healstation.disabled": {
+			"loop": true,
+			"bones": {
+				"fountain": {
+					"rotation": {
+						"vector": [0, 12.5, -10]
+					},
+					"position": {
+						"vector": [0, -1, 0]
+					}
+				},
+				"satelite": {
+					"rotation": {
+						"vector": [14.45937, 32.11708, 56.86748]
+					},
+					"position": {
+						"vector": [-1, -0.4, 0]
+					}
+				},
+				"satelite2": {
+					"rotation": {
+						"vector": [0, 0, 97.5]
+					}
+				},
+				"healstation": {
+					"scale": {
+						"vector": [0.75, 0.75, 0.75]
+					}
+				}
+			}
+		},
+		"speaker.idle": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"boom": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.25": {
+							"vector": [1.1, 1.1, 1.1],
+							"easing": "easeOutElastic",
+							"easingArgs": [2]
+						},
+						"0.5": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic",
+							"easingArgs": [2]
+						}
+					}
+				},
+				"gravebuster": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.25": {
+							"vector": [1.025, 1.025, 1.025],
+							"easing": "easeOutElastic",
+							"easingArgs": [2]
+						},
+						"0.5": {
+							"vector": [1, 1, 1],
+							"easing": "easeInElastic",
+							"easingArgs": [2]
+						}
+					}
+				}
+			}
+		}
+	}
+}

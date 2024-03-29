@@ -1,0 +1,52 @@
+{
+  "name": "Basketball Carrier Zombie",
+  "icon": "pvzmod:basketballcarrier_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 801,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)110 ",
+        "$(#bd951a)Metal Basket Health: $()$(#ff0000)120 ",
+        "$(#bd951a)Damage: $()$(#ff0000)4 (15%/second) ",
+        "$(#bd951a)Range: $()$(#ff0000)15 Blocks (From Garden, Lobbed) ",
+        "$(#bd951a)Melee Damage: $()$(#ff0000)8 ",
+        "$(#bd951a)Speed: $()$(#ff0000)Decent, Stiff (Pushing)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Stun. Pushes a Basket around. Throws balls at the furthest Plant if pushing a Basket. The Basket stays if this is defeated. Can take Baskets.",
+        "$(br)$(#bd951a)\"Imp boys can't jump\" is all he heard in his past life. But thanks to Zomboss, he CAN jump!"
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/basketballcarrier.png"
+      ],
+      "title": "Roof Zombie",
+      "border": "true",
+      "text": "$(#25228d)A Zombie that pushes a basket around and throws balls from it."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cattail_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/iceberpult_entry",
+        "pvzmod:plants/spikerock_entry",
+        "pvzmod:plants/gravebuster_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Troglobite",
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Octo Zombie"
+      ]
+    }
+  ]
+}

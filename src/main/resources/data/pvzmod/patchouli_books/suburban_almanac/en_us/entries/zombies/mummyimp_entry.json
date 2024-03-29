@@ -1,0 +1,48 @@
+{
+  "name": "Mummy Imp",
+  "icon": "pvzmod:mummyimp_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 79,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20 (Paper)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Flighty",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Small.",
+        "$(br2)$(#bd951a)Imp Mummy prefers to laze around the tomb, hop up on the urns, and stratch at the sarcophagi. The sound of him coughing up a hairball is one you will never forget."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/mummyimp.png"
+      ],
+      "title": "Ancient Egypt Zombie",
+      "border": "true",
+      "text": "$(#25228d)Thrown over most of your defenses, then slinks onward."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/dogwood_entry",
+        "pvzmod:plants/lightningreed_entry",
+        "pvzmod:plants/hypnoshroom_entry",
+        "pvzmod:plants/springbean_entry",
+        "pvzmod:plants/navybean_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Mummy Imp"
+      ]
+    }
+  ]
+}

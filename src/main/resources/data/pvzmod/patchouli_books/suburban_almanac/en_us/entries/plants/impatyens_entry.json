@@ -1,0 +1,65 @@
+{
+  "name": "Impatyens",
+  "icon": "pvzmod:impatyens_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 108,
+  "advancement": "pvzmod:make_narcissus",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)18 ",
+        "$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s, 4 DMG (Splash) ",
+        "$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks ",
+        "$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)17.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Multiple forms that depends on the family of the Plant it's currently facing. Turn page for details.",
+        "$(br)$(#bd951a)She always wanted to be a famous makeup artist, posting selfies dyed all sorts of different colors, but doesn't know that everyone prefers her in her natural color."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/impatyens.png"
+      ],
+      "title": "⏳ Contain Family",
+      "border": "true",
+      "text": "$(#25228d)Impatyens are versatile Plants that change their strengths based on nearby Plants."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Contain: $()$(#ff0000)Wets Zombies. Slows Zombies down for 0.5s.",
+        "$(br)$(#bd951a)Appease: $()$(#ff0000)Wets Zombies. +2 Damage.",
+        "$(br)$(#bd951a)Spear: $()$(#ff0000)Wets Zombies. No Splash. 3 Pierce.",
+        "$(br)$(#bd951a)Conceal: $()$(#ff0000)Wets Zombies. No Splash. -2 Damage. Infinite Pierce.",
+        "$(br)$(#bd951a)Enforce: $()$(#ff0000)Wets Zombies. No Splash. +6 Damage. 7 Blocks Range.",
+        "$(br)$(#bd951a)Enchant: $()$(#ff0000)Magic Damage.",
+        "$(br)$(#bd951a)Ailment: $()$(#ff0000)Poisons Zombies.",
+        "$(br)$(#bd951a)Bombard: $()$(#ff0000)Burns Zombies. +2 Splash Damage."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Reinforce: $()$(#ff0000)Wets Zombies. 0.5s Stun to Zombie directly damaged.",
+        "$(br)$(#bd951a)Enlighten: $()$(#ff0000)Wets Zombies. -2 Damage. +2 Splash Damage. Can damage Stealthing Zombies.",
+        "$(br)$(#bd951a)Winter: $()$(#ff0000)Chills Zombies.",
+        "$(br)$(#bd951a)Pepper: $()$(#ff0000)Burns Zombies. +2 Damage.",
+        "$(br)$(#bd951a)Filament: $()$(#ff0000)Electrocutes Zombies (5 Radius, 3 Chains, 4 DMG). No Splash.",
+        "$(br)$(#bd951a)Arma: $()$(#ff0000)Lobbed. Wets Zombies. +2 Damage."
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/contain/impatyens"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Impatiens Shooter"
+      ]
+    }
+  ]
+}

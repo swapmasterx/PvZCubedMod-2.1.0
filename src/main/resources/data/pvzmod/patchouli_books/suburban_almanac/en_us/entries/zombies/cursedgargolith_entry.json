@@ -1,0 +1,64 @@
+{
+  "name": "Cursed Gargolith",
+  "icon": "pvzmod:cursedgargolith_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 619,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)260",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Rare Ambush. Smashes all types of plants. Spawns as a 360 HP Stone Gargolith Obst. that when destroyed spawns a 65 HP Stone Ancient Imp Tablet Obst. with 10s of Invinci. that when destroyed (not by Gravebuster) spawns this.",
+        "$(br)$(#bd951a)The lost temples of Hollow Earth were inviting. Until they started to move."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/cursedgargolith.png"
+      ],
+      "title": "Hard Ancient Egypt Zombie",
+      "border": "true",
+      "text": "$(#25228d)Cursed Gargolith sticks around absorbing damage."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/gravebuster_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/snowqueenpea_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/electropea_entry",
+        "pvzmod:plants/bloomerang_entry"
+      ]
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/seapea_entry",
+        "pvzmod:plants/retrogatling_entry",
+        "pvzmod:plants/admiralnavybean_entry",
+        "pvzmod:plants/jumpingbean_entry",
+        "pvzmod:plants/smooshroom_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Heroes: $()$(#ff0000)Cursed Gargolith"
+      ]
+    }
+  ]
+}

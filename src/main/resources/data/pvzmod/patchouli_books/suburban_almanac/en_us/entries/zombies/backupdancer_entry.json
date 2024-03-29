@@ -1,0 +1,47 @@
+{
+  "name": "Backup Dancer",
+  "icon": "pvzmod:backupdancer_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27, 37(Metal Medallion)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Stiff",
+        "$(br2)$(#bd951a)Backup Dancer Zombie is highly experienced in the backup arts, having spent time as a backup singer, a backup flyswatter, and a backup for Dr. Zomboss's personal computer."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/backupdancer.png"
+      ],
+      "title": "Night Zombie",
+      "border": "true",
+      "text": "$(#25228d)These Zombies appear in sets of four whenever Dancing Zombie rocks out."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/spikeweed_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/frisbloom_entry",
+        "pvzmod:plants/lightningreed_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Backup Dancer Zombie",
+        "$(br2)$(#bd951a)Plants vs. Zombies Adventures: $()$(#ff0000)DJ Zom-B",
+        "$(br2)$(#bd951a)Plants vs. Zombies 3 (Old Version, Discontinued): $()$(#ff0000)Backup Dancer"
+      ]
+    }
+  ]
+}

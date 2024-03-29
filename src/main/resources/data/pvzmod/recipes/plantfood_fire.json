@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:oilyolive_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:plantfood_fire",
+    "count": 1
+  }
+}

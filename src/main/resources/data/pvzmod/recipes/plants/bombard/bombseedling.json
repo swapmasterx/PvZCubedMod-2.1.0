@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "pvzmod:plantfood_fire"
+    },
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:bombseedling_seed_packet",
+    "count": 1
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "Scrap Mech",
+  "icon": "pvzmod:scrapmech_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 700,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)290 (Electronic) ",
+        "$(#bd951a)Damage: $()$(#ff0000)32 (20%/second) ",
+        "$(#bd951a)Range: $()$(#ff0000)7 Blocks ",
+        "$(#bd951a)Melee Damage: $()$(#ff0000)360 ",
+        "$(#bd951a)Melee Range: $()$(#ff0000)3 Blocks ",
+        "$(#bd951a)Speed: $()$(#ff0000)Basic",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Covered. Fire Projectile Damage that hits any Plant. Smashes all types of Plants. Spawns a Scrap Imp with 1.5s Stealth on death.",
+        "$(br)$(#bd951a)Scrap Mech is top of the line in junk technology. Featuring: his massive automatic overheat laser, and oh boy, it overheats."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/scrapmech.png"
+      ],
+      "title": "Hard Future Zombie",
+      "border": "true",
+      "text": "$(#25228d)Scrap Mech stomps and burns your defense."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/spikerock_entry",
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/admiralnavybean_entry",
+        "pvzmod:plants/acidshroom_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/smooshroom_entry",
+        "pvzmod:plants/empeach_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Battle for Neighborville: $()$(#ff0000)Z-Mech"
+      ]
+    }
+  ]
+}

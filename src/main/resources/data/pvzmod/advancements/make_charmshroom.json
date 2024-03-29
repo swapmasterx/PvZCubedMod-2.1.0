@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:charmshroom_seed_packet"
+    },
+    "title": "Charming Maiden",
+    "description": "Craft a Charm-shroom",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_beautyshroom",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:charmshroom_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "pvzmod:plants/enchant/pumpkinwitch",
+      "pvzmod:plants/enchant/doomrose"
+    ],
+    "experience": 25
+  }
+}

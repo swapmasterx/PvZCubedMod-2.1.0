@@ -1,0 +1,28 @@
+{
+  "name": "Winter Family",
+  "icon": "minecraft:snowball",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Winter family is composed of cold plants",
+        "$(br2)$()$(#bd951a)Inflicts either Chill or Freeze."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/snowqueenpea_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/iceberglettuce_entry",
+        "pvzmod:plants/missiletoe_entry"
+      ],
+      "title": "❄ Winter Plants:"
+    }
+  ]
+}

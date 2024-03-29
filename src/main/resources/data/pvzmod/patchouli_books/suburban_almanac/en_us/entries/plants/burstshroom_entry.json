@@ -1,0 +1,41 @@
+{
+  "name": "Burst-shroom",
+  "icon": "pvzmod:burstshroom_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 49,
+  "advancement": "pvzmod:make_springbean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)24 ",
+        "$(#bd951a)Damage: $()$(#ff0000)60 DMG (Area) ",
+        "$(#bd951a)Damage Radius: $()$(#ff0000)Med Profile. 3 Blocks ",
+        "$(#bd951a)Exhaustion Time: $()$(#ff0000)15s ",
+        "$(#bd951a)Seed Time: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Immune to Fire. Illuminating if it can attack. Fire Damage. Bounces every non-flying Zombie away from it, then gets Exhausted.",
+        "$(br)$(#bd951a)Burst-shroom's bounciness can be a pain. Sure, it keeps Zombies away, but friends as well, if they weren't afraid of its flames in the first place."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/burstshroom.png"
+      ],
+      "title": "\uD83D\uDD25 Pepper Family",
+      "border": "true",
+      "text": "$(#25228d)Burst-shrooms bump away all Zombies that get too close."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/pepper/burstshroom"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Social Edition: $()$(#ff0000)Fire-shroom"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Missile Toe",
+  "icon": "pvzmod:missiletoe_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 89,
+  "advancement": "pvzmod:make_iceshroom",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)16",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)120 (Near), 60 (Far)",
+        "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)3.5 Blocks, 1.5 (Near), 2.5 (Far",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
+        "$(br)$(#bd951a)Recharge Time: $()$(#ff0000)14s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Interactive. Has to recharge between shots. Creates Ice Tiles in the damage area.",
+        "$(br2)$(#bd951a)While she is called Missile Toe, Missile Toe has no toes."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/missiletoe.png"
+      ],
+      "title": "❄ Winter Family",
+      "border": "true",
+      "text": "$(#25228d)Missile Toes launch cold blasts that damage, chill and slow zombies."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/winter/missiletoe"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Missile Toe"
+      ]
+    }
+  ]
+}

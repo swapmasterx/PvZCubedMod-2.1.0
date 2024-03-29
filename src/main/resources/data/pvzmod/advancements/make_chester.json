@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:chester_seed_packet"
+    },
+    "title": "A Cheesy Joke",
+    "description": "Craft a Cheetah Chomper",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "pvzmod:make_chomper",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:chester_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

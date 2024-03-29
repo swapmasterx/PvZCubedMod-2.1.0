@@ -1,0 +1,39 @@
+{
+  "name": "Oxygae",
+  "icon": "pvzmod:oxygae_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 47,
+  "advancement": "pvzmod:make_navybean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)8, 28(Bubble)",
+        "$(br)$(#bd951a)Bubble Recharge: $()$(#ff0000)30s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Aquatic. Summons 8 Bubbles around it or heals them. Bubbles allow non-underground plants to be planted on water and protects them from damage.",
+        "$(br2)$(#bd951a)Do not make the mistake of mispronouncing his name, it brings many childhood traumas."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/oxygae.png"
+      ],
+      "title": "⛨ Reinforce Family",
+      "border": "true",
+      "text": "$(#25228d)Lets you Plant on water and protects plants."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/reinforce/oxygae"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Endless Edition: $()$(#ff0000)Oxygen Algae"
+      ]
+    }
+  ]
+}

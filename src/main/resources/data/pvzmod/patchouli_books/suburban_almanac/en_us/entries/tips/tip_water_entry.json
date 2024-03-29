@@ -1,0 +1,42 @@
+{
+  "name": "Tip: Water",
+  "icon": "minecraft:water_bucket",
+  "category": "pvzmod:tutorial_category",
+  "sortnum": 13,
+  "advancement": "pvzmod:make_navybean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "This mod's mechanics change depending on whether the Plants and/or Zombies are on normal blocks or water.",
+        "$(br2)For a Plant to be planted on water it either needs the Amphibious/Aquatic trait, or to be planted on top of a Lily Pad.",
+        "$(br2)Some plants work differently depending on whether they are on land or water."
+        ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)When Zombies enter water, they will start swimming. When a Zombie is swimming, they can't use movement-based abilities (like Tackle)",
+        "$(br2)Chill slows down swimming zombies, while a Freeze kills the Zombie if it's swimming and it's not a Gargantuar. Zombies on water are immune to fire damage and will prevent fire splash."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)If the body of water is only one block deep (including the block of water itself), the zombies will go through it, entering swimming mode, ",
+        "but if it's deeper, the zombies will more likely go around it, keep this in mind when using water."
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/lilypad_entry",
+        "pvzmod:plants/tanglekelp_entry",
+        "pvzmod:plants/navybean_entry",
+        "pvzmod:plants/admiralnavybean_entry",
+        "pvzmod:zombies/duckytube_entry",
+        "pvzmod:zombies/snorkel_entry"
+      ]
+    }
+  ]
+}

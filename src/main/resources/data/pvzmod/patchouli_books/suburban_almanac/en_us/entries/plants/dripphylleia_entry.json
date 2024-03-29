@@ -1,0 +1,37 @@
+{
+  "name": "Dripphylleia",
+  "icon": "pvzmod:dripphylleia_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 102,
+  "advancement": "pvzmod:make_springbean",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Creates Water Tiles in a 3x3 area around it.",
+        "$(br2)$(#bd951a)As a member of the fire brigade, Dripphylleia has extreme enthusiasm for extinguishing fire, down to the smallest flame, and always carries ice water for cooling down very hot objects."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/dripphylleia.png"
+      ],
+      "title": "⏳ Contain Family",
+      "border": "true",
+      "text": "$(#25228d)Allows Aquatic Plants to be planted on land."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/contain/drip"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Dripping Diphylleia"
+      ]
+    }
+  ]
+}

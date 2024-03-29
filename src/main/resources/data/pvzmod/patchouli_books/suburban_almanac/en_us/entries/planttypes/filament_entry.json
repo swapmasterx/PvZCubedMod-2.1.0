@@ -1,0 +1,25 @@
+{
+  "name": "Filament Family",
+  "icon": "minecraft:lightning_rod",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Filament family is composed of electric plants",
+        "$(br2)$()$(#bd951a)They deal Electric Damage. When Spike-like Projectiles touch them the projectiles get 50% stronger, can pierce an extra Zombie, and deal Electric damage."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/lightningreed_entry",
+        "pvzmod:plants/zapricot_entry",
+        "pvzmod:plants/empeach_entry",
+        "pvzmod:plants/electropea_entry"
+      ],
+      "title": "⚡ Fila Plants:"
+    }
+  ]
+}

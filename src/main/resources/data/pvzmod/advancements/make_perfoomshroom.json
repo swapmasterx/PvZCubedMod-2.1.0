@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:perfoomshroom_seed_packet"
+    },
+    "title": "Shroom Queen",
+    "description": "Craft a Perfoom-shroom",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "pvzmod:make_beautyshroom",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:perfoomshroom_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Gatling Pea",
+  "icon": "pvzmod:gatlingpea_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 33,
+  "advancement": "pvzmod:make_repeater",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x4 4 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)20 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br2)$(#bd951a)His parents were concerned when he announced his intention to work on customer service. \"But honey, it's so dangerous!\" they said in unison. Gatling Pea refused to budge. \"Life is dangerous,\" he replied, eyes glinting with steely conviction."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/gatlingpea.png"
+      ],
+      "title": "⭘ Appease Family",
+      "border": "true",
+      "text": "$(#25228d)Gatling Peas shoot four peas at a time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/appease/gatlingpea"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Gatling Pea"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Olive Pit",
+  "icon": "pvzmod:olivepit_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 93,
+  "advancement": "pvzmod:make_gravebuster",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)Insta-kill",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)0 Blocks",
+        "$(br)$(#bd951a)Digest Time: $()$(#ff0000)12.5s, 0s (Small Zombies)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Low Profile. Swallows a Zombie as long as they are not Big or bigger, but has to digest it afterwards. Randomly spills Oil Tiles in a 3x3 area when not digesting; spills 3 after swallowing.",
+        "$(br)$(#bd951a)He ponders a lot, he is deep."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/olivepit.png"
+      ],
+      "title": "⏳ Contain Family",
+      "border": "true",
+      "text": "$(#25228d)Olive Pits drill into the ground and wait to consume Zombies that walk over them."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/contain/olivepit"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Olive Pit"
+      ]
+    }
+  ]
+}

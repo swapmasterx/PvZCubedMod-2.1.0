@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:springbean_seed_packet"
+    },
+    "title": "Spring has sprung",
+    "description": "Craft a Spring Bean",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_gravebuster",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:springbean_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "pvzmod:plants/contain/jumpingbean",
+      "pvzmod:plants/contain/burstshroom",
+      "pvzmod:plants/contain/springprincess"
+    ],
+    "experience": 25
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "name": "Tip: Effects",
+  "icon": "pvzmod:firepea",
+  "category": "pvzmod:tutorial_category",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "Plants have multiple different properties, one of them is the damage Effect.",
+        "$(br2)Effects are diverse, doing continuous damage, slowing down Zombies, dealing more damage to specific types, etc.",
+        "$(br2)Here's a list of all of the different effects:"
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Chill",
+        "$(br2)Chill slows down Zombies for a total of 4 seconds, then they are immune to Chill for 4 seconds.",
+        "$(br)Damage done by zombies is halved.",
+        "$(br)Moves based on animation like Gargantuar's smash are slowed down by half.",
+        "$(br2)Machine and Cloth can't be Chilled.",
+        "$(br)Deals half the damage against Crystal and Cloth."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Frozen",
+        "$(br2)Frozen completely stops Zombies in their tracks.",
+        "$(br2)Frozen Zombies can't attack.",
+        "$(br)Frozen Zombies can't do their abilities.",
+        "$(br)Frozen instantly kills zombies that swim and fly, and aren't Gargantuars.",
+        "$(br)Deals half the damage against Crystal.",
+        "$(br)Machine, Cloth, Stone, and Crystal can't be Frozen."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Fire",
+        "$(br)Sets Zombies on fire, unless they are wet. Wet and Zombies immune to Fire prevent Fire Splash or don't take damage from it, halving direct damage as well. ",
+        "Zombies on fire take 1 DMG/sec if they are not being attacked. ",
+        "Zombies get Warm, which prevents Chill from being applied. ",
+        "Thaws Chilled or Frozen Zombies. ",
+        "Uncloaks Stealthing Zombies. ",
+        "$(br)Deals double against Paper, Plant and Cloth, half Rubber and Crystal."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Water",
+        "$(br2)Wet Zombies, extinguishing and preventing Fire for a short time.",
+        "$(br2)Deals 4 DMG/sec to Electronic Zombies.",
+        "$(br2)Deals double the damage against Paper and Stone, and half against Plant and Crystal."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Wind",
+        "$(br2)Knocks back Flying/Hovering Zombies that don't have protection.",
+        "$(br2)Instantly kills Small Cloth Zombies.",
+        "$(br2)Deals double the damage against Paper and Cloth, and half against Stone and Crystal."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "Electricity",
+        "$(br2)Chains damage between Zombies, the chain damage is the base damage. Chain's range is by the Electric Radius, that is based on the location of the hit Zombie. ",
+        "$(br2)Electricity chains by the number of Electric Chains. Metallic, Electronic, and Crystal doesn't count towards the number. Plastic/Plant cost 2 Chains, Rubber zeroes."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Electricity chains can hit Stealthing Zombies.",
+        "$(br2)Deals double the damage against Wet targets, half against Electronic and Crystal, and 0 against Rubber."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Stun",
+        "$(br2)Stun completely stops Zombies in their tracks for 0.5 seconds base, unless specified otherwise.",
+        "$(br2)Stunned Zombies can't attack.",
+        "$(br2)Stunned Zombies can't do their abilities.",
+        "$(br2)Covered and Machine Zombies can't be Stunned."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Poison",
+        "$(br2)Deals continuous direct damage to the Zombie, ignoring armor.",
+        "$(br2)Deals 1.5 DMG/0.5sec.",
+        "$(br2)Can only be applied to non-covered Flesh or Plant Zombies."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Acid",
+        "$(br2)Deals continuous damage to Zombies.",
+        "$(br2)Deals 8 DMG/0.5sec.",
+        "$(br2)Can only be applied to Metal, Electronic, Plant, Paper, and Cloth."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Bounce",
+        "$(br2)Knocks Zombies back. Small Zombies instantly die."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Hypno",
+        "$(br2)Transforms the Zombie into a Hypnotized version of itself.",
+        "$(br2)Most of the time they have their abilities, save a few exceptions.",
+        "$(br2)Covered Zombies are immune to Hypnosis, Machines themselves can't be hypnotized, but the Zombie controlling them can."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Magic",
+        "$(br2)Deals double the damage against Crystal and Zombies without headgear and aren't Covered.",
+        "$(br2)Hits Stealthing Zombies."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Heavy",
+        "$(br2)Deals double the damage against Metal, Electronic, Stone, and Crystal.",
+        "$(br2)Deals half the damage against Rubber, Paper and Cloth."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Sound",
+        "$(br2)Has a 25% chance to make the the projectile or other means of attack \"critical\", which increases the damage by 50%.",
+        "$(br2)Hits Stealthing Zombies."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br2)Invincibility",
+        "$(br2)Can't take damage, but can die to swallowing.",
+        "$(br2)Immune to most effects, except Hypnotizing, Bounce, and Doom Rose's Marigold effect.",
+        "$(br2)Disabled Machines can't be Invincible."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(br)Stealth",
+        "$(br)Makes the Zombie invulnerable to most projectiles and prevents it from being targeted by most plants.",
+        "$(br)They are not immune to splash, explosions, electric chains, melee, etc.",
+        "$(br)They can still be targeted by \"close-range\" Plants, Instant-Use Plants, and Magic or Sound damaging Plants.",
+        "$(br)A Zombie is uncloaked if it's on fire, gets 6 blocks near an Illuminating Plant, or starts eating a plant."
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/navybean_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/scaredyshroom_entry",
+        "pvzmod:plants/seashroom_entry",
+        "pvzmod:plants/zapricot_entry",
+        "pvzmod:plants/hypnoshroom_entry"
+      ]
+    }
+  ]
+}

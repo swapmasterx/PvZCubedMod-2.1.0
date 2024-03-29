@@ -1,0 +1,41 @@
+{
+  "name": "Meteor Hammer",
+  "icon": "pvzmod:meteorhammer_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 110,
+  "advancement": "pvzmod:make_beet",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)24 ",
+        "$(#bd951a)Damage: $()$(#ff0000)10 DMG/2s (+1.5 DMG/0.5s of Charge) ",
+        "$(#bd951a)Damage Radius: $()$(#ff0000)2.5 Blocks, center is 1.5 blocks in front.",
+        "$(#bd951a)Range: $()$(#ff0000)3 Blocks, 4-7 Blocks(Charge) ",
+        "$(#bd951a)Seed Time: $()$(#ff0000)15s ",
+        "$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Charges when a Zombie is in range, increasing damage for one strike.",
+        "$(br)$(#bd951a)Used to be hammer rivals with Hammer Flower, but then one day, \"I reject my hammer, FlowFlow!\" Since then, he became Meteor Hammer."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/meteorhammer.png"
+      ],
+      "title": "\uD83D\uDDE1 Enforce Family",
+      "border": "true",
+      "text": "$(#25228d)Meteor Hammers charge a powerful attack when not attacking."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enforce/meteorhammer"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies 2 (Chinese version): $()$(#ff0000)Byttneria Meteor Hammer"
+      ]
+    }
+  ]
+}

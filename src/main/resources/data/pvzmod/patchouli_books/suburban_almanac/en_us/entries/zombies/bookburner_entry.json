@@ -1,0 +1,55 @@
+{
+  "name": "Book Burning Zombie",
+  "icon": "pvzmod:bookburner_egg",
+  "category": "pvzmod:zombie_category",
+  "sortnum": 902,
+  "advancement": "pvzmod:make_challenge",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)27",
+        "$(br)$(#bd951a)Paper Burning Books Health: $()$(#ff0000)65",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)16 (15%/second), 8 (if Immune)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)Insta-Kill (if Books are burning), 4",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Throws burning books at the closest Plant if carrying a Book pile.",
+        "$(br2)$(#bd951a)Don't blame me. Qin Shin Zomboss' orders."
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/bookburner.png"
+      ],
+      "title": "Hard Mausoleum Zombie",
+      "border": "true",
+      "text": "$(#25228d)Throws burning books to make your Plants history and then erase history."
+    },
+    {
+      "type": "relations",
+      "title": "Recommended Plants",
+      "entries": [
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/iceberpult_entry",
+        "pvzmod:plants/spikeweed_entry",
+        "pvzmod:plants/ghostpepper_entry",
+        "pvzmod:plants/torchwood_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/navybean_entry"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies Online: $()$(#ff0000)Sergeant Zombie"
+      ]
+    }
+  ]
+}

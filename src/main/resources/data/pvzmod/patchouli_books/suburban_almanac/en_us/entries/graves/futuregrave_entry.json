@@ -1,0 +1,44 @@
+{
+  "name": "Futuristic Gravestone",
+  "icon": "pvzmod:futuregrave_spawn",
+  "category": "pvzmod:grave_category",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)240 (Stone)",
+        "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Spawn Condition: $()$(#ff0000)Common. Unlocked at 1.6 Local Difficulty.",
+        "$(br)$(#bd951a)Time Chance: $()$(#ff0000)25% Sun Bombs, 30% Night.",
+        "$(br2)$(#bd951a)This grave is futuristic! It even contains a mini fridge for the dead! Future!"
+      ]
+    },
+    {
+      "type": "image",
+
+      "images": [
+        "pvzmod:textures/gui/entries/futuregrave.png"
+      ],
+      "title": "Future Zombie",
+      "border": "true",
+      "text": "$(#25228d)Spawns Future Zombies."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:zombies/futurezombie_entry",
+        "pvzmod:zombies/futurecone_entry",
+        "pvzmod:zombies/futurebucket_entry",
+        "pvzmod:zombies/jetpack_entry",
+        "pvzmod:zombies/blastronaut_entry",
+        "pvzmod:zombies/robocone_entry",
+        "pvzmod:zombies/holohead_entry",
+        "pvzmod:zombies/scrapmech_entry",
+        "pvzmod:zombies/scrapimp_entry",
+        "pvzmod:zombies/knightpea_entry"
+      ],
+      "title": "Spawnable Zombies"
+    }
+  ]
+}

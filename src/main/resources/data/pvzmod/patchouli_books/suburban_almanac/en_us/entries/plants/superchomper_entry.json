@@ -1,0 +1,42 @@
+{
+  "name": "Super Chomper",
+  "icon": "pvzmod:superchomper_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 50,
+  "advancement": "pvzmod:make_chomper",
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)64 ",
+        "$(#bd951a)Damage: $()$(#ff0000)Insta-kill ",
+        "$(#bd951a)Range: $()$(#ff0000)2 Blocks(Activate), 6 Blocks(Suction)",
+        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)30s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. When a Zombie gets close, sucks and swallows any Zombie in range. Chews after sucking for 2s.",
+        "$(br)$(#bd951a)Super Chomper wins any eating contest he enters. Only one problem: It's because he ends up eating the competition too. He sucks."
+      ]
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/superchomper.png"
+      ],
+      "title": "\uD83D\uDDE1 Enforce Family",
+      "border": "true",
+      "text": "$(#25228d)Super Chompers suck everything in front of them."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pvzmod:plants/enforce/superchomper"
+    },
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: Social Edition: $()$(#ff0000)Chomper",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Chomper"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Enforce Family",
+  "icon": "minecraft:diamond_sword",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)The Enforce family is composed of plants with limited range",
+        "$(br2)$()$(#bd951a)They are plants that specialize in short range."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/tanglekelp_entry",
+        "pvzmod:plants/weeniebeanie_entry",
+        "pvzmod:plants/dandelionweed_entry",
+        "pvzmod:plants/bananasaurus_entry",
+        "pvzmod:plants/beet_entry",
+        "pvzmod:plants/smooshroom_entry",
+        "pvzmod:plants/hammerflower_entry",
+        "pvzmod:plants/meteorhammer_entry",
+        "pvzmod:plants/chester_entry",
+        "pvzmod:plants/superchomper_entry"
+      ],
+      "title": "\uD83D\uDDE1 Enforce Plants:"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/navybean_entry",
+        "pvzmod:plants/admiralnavybean_entry"
+      ],
+      "title": "\uD83D\uDDE1 Enforce Plants:"
+    }
+  ]
+}

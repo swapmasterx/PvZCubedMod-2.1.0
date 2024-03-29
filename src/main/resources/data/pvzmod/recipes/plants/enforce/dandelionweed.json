@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pvzmod:bellflower_seed_packet"
+    },
+    {
+      "item": "pvzmod:plantfood_air"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:smallsun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:dandelionweed_seed_packet",
+    "count": 1
+  }
+}
