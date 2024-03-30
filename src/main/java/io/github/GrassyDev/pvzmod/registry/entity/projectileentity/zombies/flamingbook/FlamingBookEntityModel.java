@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.flamingbook;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FlamingBookEntityModel extends AnimatedGeoModel<FlamingBookEntity> {
+public class FlamingBookEntityModel extends GeoModel<FlamingBookEntity> {
 
     @Override
     public Identifier getModelResource(FlamingBookEntity object)

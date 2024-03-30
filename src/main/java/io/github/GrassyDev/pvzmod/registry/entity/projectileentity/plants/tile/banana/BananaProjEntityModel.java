@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.tile.banana;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BananaProjEntityModel extends AnimatedGeoModel<BananaProjEntity> {
+public class BananaProjEntityModel extends GeoModel<BananaProjEntity> {
 
     @Override
     public Identifier getModelResource(BananaProjEntity object)

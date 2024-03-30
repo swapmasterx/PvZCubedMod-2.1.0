@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.farfuture.empeach;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class EMPeachEntityModel extends AnimatedGeoModel<EMPeachEntity> {
+public class EMPeachEntityModel extends GeoModel<EMPeachEntity> {
 
     @Override
     public Identifier getModelResource(EMPeachEntity object)

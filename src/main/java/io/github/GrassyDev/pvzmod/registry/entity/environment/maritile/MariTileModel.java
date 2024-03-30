@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.maritile;
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.plants.PeapodCountVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MariTileModel extends AnimatedGeoModel<MariTile> {
+public class MariTileModel extends GeoModel<MariTile> {
 
     @Override
     public Identifier getModelResource(MariTile object)

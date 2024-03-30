@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.pirateseas.coconutcannon;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CoconutCannonEntityModel extends AnimatedGeoModel<CoconutCannonEntity> {
+public class CoconutCannonEntityModel extends GeoModel<CoconutCannonEntity> {
 
     @Override
     public Identifier getModelResource(CoconutCannonEntity object)

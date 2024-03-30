@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.octo
 
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingOctoEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingOctoEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingOctoEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingOctoEntityModel());

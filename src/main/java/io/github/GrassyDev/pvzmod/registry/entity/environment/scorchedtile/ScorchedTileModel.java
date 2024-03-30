@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.scorchedtile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ScorchedTileModel extends AnimatedGeoModel<ScorchedTile> {
+public class ScorchedTileModel extends GeoModel<ScorchedTile> {
 
     @Override
     public Identifier getModelResource(ScorchedTile object)

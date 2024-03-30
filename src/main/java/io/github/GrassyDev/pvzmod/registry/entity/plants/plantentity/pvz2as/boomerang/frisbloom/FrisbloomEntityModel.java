@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.boomerang.frisbloom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FrisbloomEntityModel extends AnimatedGeoModel<FrisbloomEntity> {
+public class FrisbloomEntityModel extends GeoModel<FrisbloomEntity> {
 
     @Override
     public Identifier getModelResource(FrisbloomEntity object)

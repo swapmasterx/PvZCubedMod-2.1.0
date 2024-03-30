@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.dropea;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingDropEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingDropEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingDropEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingDropEntityModel());

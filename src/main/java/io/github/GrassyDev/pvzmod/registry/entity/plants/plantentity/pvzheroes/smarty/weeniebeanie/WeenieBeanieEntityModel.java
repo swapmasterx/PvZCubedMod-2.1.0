@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.smarty.weeniebeanie;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WeenieBeanieEntityModel extends AnimatedGeoModel<WeenieBeanieEntity> {
+public class WeenieBeanieEntityModel extends GeoModel<WeenieBeanieEntity> {
 
     @Override
     public Identifier getModelResource(WeenieBeanieEntity object)

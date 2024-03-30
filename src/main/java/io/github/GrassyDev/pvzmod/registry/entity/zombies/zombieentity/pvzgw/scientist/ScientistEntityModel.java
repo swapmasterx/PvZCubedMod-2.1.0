@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzgw.scientist;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ScientistEntityModel extends AnimatedGeoModel<ScientistEntity> {
+public class ScientistEntityModel extends GeoModel<ScientistEntity> {
 
     @Override
     public Identifier getModelResource(ScientistEntity object)

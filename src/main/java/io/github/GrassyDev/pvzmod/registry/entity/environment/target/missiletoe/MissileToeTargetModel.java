@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.target.missiletoe;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MissileToeTargetModel extends AnimatedGeoModel<MissileToeTarget> {
+public class MissileToeTargetModel extends GeoModel<MissileToeTarget> {
 
     @Override
     public Identifier getModelResource(MissileToeTarget object)

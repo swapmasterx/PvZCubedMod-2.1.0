@@ -38,30 +38,30 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Iterator;
 import java.util.UUID;
 
-public class FlamingBookEntity extends PvZProjectileEntity implements IAnimatable {
+public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimatable {
 
 	private String controllerName = "projectilecontroller";
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	private LivingEntity target;
 
 	@Override
-	public void registerControllers(AnimationData animationData) {
+	public void registerControllers(AnimatableManager AnimatableManager) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
-		animationData.addAnimationController(controller);
+		AnimatableManager.addAnimationController(controller);
 	}
 
 	protected void initDataTracker() {
@@ -80,12 +80,12 @@ public class FlamingBookEntity extends PvZProjectileEntity implements IAnimatabl
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-		event.getController().setAnimation(new AnimationBuilder().loop("book.idle"));
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+		event.getController().setAnimation(new RawAnimation().loop("book.idle"));
 		return PlayState.CONTINUE;
 	}
 

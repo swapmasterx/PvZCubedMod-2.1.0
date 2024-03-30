@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShadowFullTileModel extends AnimatedGeoModel<ShadowFullTile> {
+public class ShadowFullTileModel extends GeoModel<ShadowFullTile> {
 
     @Override
     public Identifier getModelResource(ShadowFullTile object)

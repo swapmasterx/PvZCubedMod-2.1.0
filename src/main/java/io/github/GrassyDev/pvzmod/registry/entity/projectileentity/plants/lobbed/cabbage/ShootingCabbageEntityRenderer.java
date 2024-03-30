@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbe
 
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingCabbageEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingCabbageEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingCabbageEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingCabbageEntityModel());

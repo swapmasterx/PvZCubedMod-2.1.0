@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.cherrybomb;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CherrybombEntityModel extends AnimatedGeoModel<CherrybombEntity> {
+public class CherrybombEntityModel extends GeoModel<CherrybombEntity> {
 
     @Override
     public Identifier getModelResource(CherrybombEntity object)

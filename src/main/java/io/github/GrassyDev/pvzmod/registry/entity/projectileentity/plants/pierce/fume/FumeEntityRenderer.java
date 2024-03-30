@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.fume;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class FumeEntityRenderer extends GeoProjectilesRenderer {
+public class FumeEntityRenderer extends GeoEntityRenderer {
 
 	public FumeEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new FumeEntityModel());

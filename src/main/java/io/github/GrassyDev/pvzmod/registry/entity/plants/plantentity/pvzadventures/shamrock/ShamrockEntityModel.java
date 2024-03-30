@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventures.shamrock;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShamrockEntityModel extends AnimatedGeoModel<ShamrockEntity> {
+public class ShamrockEntityModel extends GeoModel<ShamrockEntity> {
 
     @Override
     public Identifier getModelResource(ShamrockEntity object)

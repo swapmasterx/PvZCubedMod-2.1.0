@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.soci
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SuperChomperEntityModel extends AnimatedGeoModel<SuperChomperEntity> {
+public class SuperChomperEntityModel extends GeoModel<SuperChomperEntity> {
 
     @Override
     public Identifier getModelResource(SuperChomperEntity object)

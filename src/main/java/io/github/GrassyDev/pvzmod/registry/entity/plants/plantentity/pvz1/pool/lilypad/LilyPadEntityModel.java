@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class LilyPadEntityModel extends AnimatedGeoModel<LilyPadEntity> {
+public class LilyPadEntityModel extends GeoModel<LilyPadEntity> {
 
     @Override
     public Identifier getModelResource(LilyPadEntity object)

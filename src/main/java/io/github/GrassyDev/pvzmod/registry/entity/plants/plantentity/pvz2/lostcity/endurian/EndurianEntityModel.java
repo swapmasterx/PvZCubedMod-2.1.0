@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.lostcity.endurian;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class EndurianEntityModel extends AnimatedGeoModel<EndurianEntity> {
+public class EndurianEntityModel extends GeoModel<EndurianEntity> {
 
     @Override
     public Identifier getModelResource(EndurianEntity object)

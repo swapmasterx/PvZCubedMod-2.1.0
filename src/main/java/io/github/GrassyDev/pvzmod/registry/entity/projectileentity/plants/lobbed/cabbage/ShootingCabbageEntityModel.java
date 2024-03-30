@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingCabbageEntityModel extends AnimatedGeoModel<ShootingCabbageEntity> {
+public class ShootingCabbageEntityModel extends GeoModel<ShootingCabbageEntity> {
 
     @Override
     public Identifier getModelResource(ShootingCabbageEntity object)

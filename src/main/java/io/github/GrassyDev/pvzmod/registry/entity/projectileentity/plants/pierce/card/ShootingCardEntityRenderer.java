@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.card;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingCardEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingCardEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingCardEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingCardEntityModel());

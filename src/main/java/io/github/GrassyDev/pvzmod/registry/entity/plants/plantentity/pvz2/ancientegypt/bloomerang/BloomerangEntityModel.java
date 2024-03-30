@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.ancientegypt.bloomerang;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BloomerangEntityModel extends AnimatedGeoModel<BloomerangEntity> {
+public class BloomerangEntityModel extends GeoModel<BloomerangEntity> {
 
     @Override
     public Identifier getModelResource(BloomerangEntity object)

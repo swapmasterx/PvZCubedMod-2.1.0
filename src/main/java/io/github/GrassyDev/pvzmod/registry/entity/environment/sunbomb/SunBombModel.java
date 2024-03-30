@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.sunbomb;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SunBombModel extends AnimatedGeoModel<SunBombEntity> {
+public class SunBombModel extends GeoModel<SunBombEntity> {
 
     @Override
     public Identifier getModelResource(SunBombEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skycity.loquat;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class LoquatEntityModel extends AnimatedGeoModel<LoquatEntity> {
+public class LoquatEntityModel extends GeoModel<LoquatEntity> {
 
     @Override
     public Identifier getModelResource(LoquatEntity object)

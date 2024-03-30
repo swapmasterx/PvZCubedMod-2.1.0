@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.retrogatling;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RetroGatlingEntityModel extends AnimatedGeoModel<RetroGatlingEntity> {
+public class RetroGatlingEntityModel extends GeoModel<RetroGatlingEntity> {
 
     @Override
     public Identifier getModelResource(RetroGatlingEntity object)

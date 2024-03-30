@@ -31,19 +31,19 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class RockObstacleEntity extends ZombieObstacleEntity implements IAnimatable {
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnimatable {
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "shieldcontroller";
 
     public RockObstacleEntity(EntityType<? extends RockObstacleEntity> entityType, World world) {
@@ -159,26 +159,26 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements IAnimata
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getType().equals(PvZEntity.GARGOLITHOBSTACLE)){
-			event.getController().setAnimation(new AnimationBuilder().loop("gargantuar.gargolith"));
+			event.getController().setAnimation(new RawAnimation().loop("gargantuar.gargolith"));
 		}
 		else if (beingEaten){
-			event.getController().setAnimation(new AnimationBuilder().loop("obstacle.eating"));
+			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
 		}
 		else {
-			event.getController().setAnimation(new AnimationBuilder().loop("gravestone.idle"));
+			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
 		}
         return PlayState.CONTINUE;
     }

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventures.beet;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BeetEntityModel extends AnimatedGeoModel<BeetEntity> {
+public class BeetEntityModel extends GeoModel<BeetEntity> {
 
     @Override
     public Identifier getModelResource(BeetEntity object)

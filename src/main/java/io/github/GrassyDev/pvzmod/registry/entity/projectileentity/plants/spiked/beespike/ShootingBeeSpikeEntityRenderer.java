@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spiked.beespike;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingBeeSpikeEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingBeeSpikeEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingBeeSpikeEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingBeeSpikeEntityModel());

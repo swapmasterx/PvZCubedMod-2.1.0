@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.pha
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.PharaohVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PharaohEntityModel extends AnimatedGeoModel<PharaohEntity> {
+public class PharaohEntityModel extends GeoModel<PharaohEntity> {
 
     @Override
     public Identifier getModelResource(PharaohEntity object)

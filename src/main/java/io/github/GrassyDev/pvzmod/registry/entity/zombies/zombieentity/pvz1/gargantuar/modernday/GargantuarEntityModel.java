@@ -2,12 +2,12 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gar
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.GargantuarVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class GargantuarEntityModel extends AnimatedGeoModel<GargantuarEntity> {
+public class GargantuarEntityModel extends GeoModel<GargantuarEntity> {
 
     @Override
     public Identifier getModelResource(GargantuarEntity object)

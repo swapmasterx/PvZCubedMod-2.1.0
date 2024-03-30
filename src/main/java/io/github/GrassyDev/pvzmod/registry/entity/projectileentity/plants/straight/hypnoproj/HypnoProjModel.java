@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.hypnoproj;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class HypnoProjModel extends AnimatedGeoModel<HypnoProjEntity> {
+public class HypnoProjModel extends GeoModel<HypnoProjEntity> {
 
     @Override
     public Identifier getModelResource(HypnoProjEntity object)

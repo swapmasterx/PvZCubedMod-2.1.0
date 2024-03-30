@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.oc.bully.basic;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BullyEntityModel extends AnimatedGeoModel<BullyEntity> {
+public class BullyEntityModel extends GeoModel<BullyEntity> {
 
     @Override
     public Identifier getModelResource(BullyEntity object)

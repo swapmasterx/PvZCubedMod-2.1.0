@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.impatyens;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ImpatyensEntityModel extends AnimatedGeoModel<ImpatyensEntity> {
+public class ImpatyensEntityModel extends GeoModel<ImpatyensEntity> {
 
     @Override
     public Identifier getModelResource(ImpatyensEntity object)

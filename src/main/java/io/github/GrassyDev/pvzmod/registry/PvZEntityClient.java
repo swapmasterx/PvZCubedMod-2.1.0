@@ -261,9 +261,10 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.stonehelme
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
-
+import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 
 @Environment(EnvType.CLIENT)
 public class PvZEntityClient implements ClientModInitializer {

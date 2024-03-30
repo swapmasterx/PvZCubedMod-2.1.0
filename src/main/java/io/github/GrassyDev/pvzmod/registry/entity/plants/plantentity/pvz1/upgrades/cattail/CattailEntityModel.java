@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.cattail;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CattailEntityModel extends AnimatedGeoModel<CattailEntity> {
+public class CattailEntityModel extends GeoModel<CattailEntity> {
 
     @Override
     public Identifier getModelResource(CattailEntity object)

@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.exp
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.ExplorerVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ExplorerEntityModel extends AnimatedGeoModel<ExplorerEntity> {
+public class ExplorerEntityModel extends GeoModel<ExplorerEntity> {
 
     @Override
     public Identifier getModelResource(ExplorerEntity object)

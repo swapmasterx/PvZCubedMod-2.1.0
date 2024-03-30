@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.spore;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SporeEntityModel extends AnimatedGeoModel<SporeEntity> {
+public class SporeEntityModel extends GeoModel<SporeEntity> {
 
     @Override
     public Identifier getModelResource(SporeEntity object)

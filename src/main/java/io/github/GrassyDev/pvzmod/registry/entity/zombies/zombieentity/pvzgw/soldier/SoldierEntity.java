@@ -45,7 +45,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -54,24 +54,24 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class SoldierEntity extends PvZombieEntity implements IAnimatable {
+public class SoldierEntity extends PvZombieEntity implements GeoAnimatable {
 
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	public boolean firstAttack;
 	public boolean inLaunchAnimation;
 
@@ -240,24 +240,24 @@ public class SoldierEntity extends PvZombieEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().loop("soldier.zpg.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("soldier.zpg.ducky"));
 			}
 			else {
-				event.getController().setAnimation(new AnimationBuilder().loop("headwear.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("headwear.ducky"));
 			}
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
@@ -267,10 +267,10 @@ public class SoldierEntity extends PvZombieEntity implements IAnimatable {
 			}
 		} else {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().loop("soldier.zpg"));
+				event.getController().setAnimation(new RawAnimation().loop("soldier.zpg"));
 			}
 			else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-				event.getController().setAnimation(new AnimationBuilder().loop("headwear.walking"));
+				event.getController().setAnimation(new RawAnimation().loop("headwear.walking"));
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
 				} else if (this.isIced) {
@@ -279,7 +279,7 @@ public class SoldierEntity extends PvZombieEntity implements IAnimatable {
 					event.getController().setAnimationSpeed(1);
 				}
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("headwear.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("headwear.idle"));
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
 				} else if (this.isIced) {

@@ -35,7 +35,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
@@ -45,14 +45,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.util.Objects;
@@ -61,7 +61,7 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 ;
 
-public class LilyPadEntity extends PlantEntity implements IAnimatable {
+public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_HAT =
 			DataTracker.registerData(LilyPadEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -70,7 +70,7 @@ public class LilyPadEntity extends PlantEntity implements IAnimatable {
 
 	private int amphibiousRaycastDelay;
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 
 	public LilyPadEntity(EntityType<? extends LilyPadEntity> entityType, World world) {
@@ -176,38 +176,38 @@ public class LilyPadEntity extends PlantEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getHat().equals(LilypadHats.LILY)){
 			if (this.onWaterTile) {
-				event.getController().setAnimation(new AnimationBuilder().loop("lilypad.onground.lily2"));
+				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground.lily2"));
 			}
 			else if (this.dryLand) {
-				event.getController().setAnimation(new AnimationBuilder().loop("lilypad.onground.lily"));
+				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground.lily"));
 			}
 			else {
-				event.getController().setAnimation(new AnimationBuilder().loop("lilypad.idle.lily"));
+				event.getController().setAnimation(new RawAnimation().loop("lilypad.idle.lily"));
 			}
 		}
 		else {
 			if (this.onWaterTile) {
-				event.getController().setAnimation(new AnimationBuilder().loop("lilypad.onground2"));
+				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground2"));
 			}
 			else if (this.dryLand) {
-				event.getController().setAnimation(new AnimationBuilder().loop("lilypad.onground"));
+				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground"));
 			}
 			else {
-				event.getController().setAnimation(new AnimationBuilder().loop("lilypad.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("lilypad.idle"));
 			}
 		}
         return PlayState.CONTINUE;

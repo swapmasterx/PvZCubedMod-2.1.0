@@ -28,22 +28,22 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 
-public class SunBombEntity extends PathAwareEntity implements IAnimatable {
+public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	private String controllerName = "sunbombcontroller";
 
     public SunBombEntity(EntityType<? extends SunBombEntity> entityType, World world) {
@@ -80,18 +80,18 @@ public class SunBombEntity extends PathAwareEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-		event.getController().setAnimation(new AnimationBuilder().loop("sunbomb"));
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+		event.getController().setAnimation(new RawAnimation().loop("sunbomb"));
         return PlayState.CONTINUE;
     }
 

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.gravestones.darkagesgrave;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class DarkAgesGraveModel extends AnimatedGeoModel<DarkAgesGraveEntity> {
+public class DarkAgesGraveModel extends GeoModel<DarkAgesGraveEntity> {
 
     @Override
     public Identifier getModelResource(DarkAgesGraveEntity object)

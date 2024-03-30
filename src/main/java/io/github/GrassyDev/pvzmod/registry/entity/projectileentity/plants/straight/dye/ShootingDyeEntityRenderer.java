@@ -6,11 +6,11 @@ import io.github.GrassyDev.pvzmod.registry.entity.variants.plants.DyeVariants;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 import java.util.Map;
 
-public class ShootingDyeEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingDyeEntityRenderer extends GeoEntityRenderer {
 
 	public static final Map<DyeVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(DyeVariants.class), (map) -> {

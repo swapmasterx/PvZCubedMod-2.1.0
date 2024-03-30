@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.magicshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MagichatEntityModel extends AnimatedGeoModel<MagichatEntity> {
+public class MagichatEntityModel extends GeoModel<MagichatEntity> {
 
     @Override
     public Identifier getModelResource(MagichatEntity object)

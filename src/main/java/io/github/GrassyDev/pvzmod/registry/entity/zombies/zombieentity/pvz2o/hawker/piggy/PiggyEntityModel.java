@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2o.hawker.piggy;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PiggyEntityModel extends AnimatedGeoModel<PiggyEntity> {
+public class PiggyEntityModel extends GeoModel<PiggyEntity> {
 
     @Override
     public Identifier getModelResource(PiggyEntity object)

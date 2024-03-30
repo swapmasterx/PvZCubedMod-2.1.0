@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.hypnoproj;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class HypnoProjRenderer extends GeoProjectilesRenderer {
+public class HypnoProjRenderer extends GeoEntityRenderer {
 
 	public HypnoProjRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new HypnoProjModel());

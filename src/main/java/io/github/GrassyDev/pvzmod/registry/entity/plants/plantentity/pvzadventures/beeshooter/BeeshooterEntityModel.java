@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventures.beeshooter;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BeeshooterEntityModel extends AnimatedGeoModel<BeeshooterEntity> {
+public class BeeshooterEntityModel extends GeoModel<BeeshooterEntity> {
 
     @Override
     public Identifier getModelResource(BeeshooterEntity object)

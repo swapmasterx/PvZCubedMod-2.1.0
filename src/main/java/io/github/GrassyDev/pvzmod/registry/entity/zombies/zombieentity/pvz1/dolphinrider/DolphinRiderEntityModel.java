@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.dolphinrider;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class DolphinRiderEntityModel extends AnimatedGeoModel<DolphinRiderEntity> {
+public class DolphinRiderEntityModel extends GeoModel<DolphinRiderEntity> {
 
     @Override
     public Identifier getModelResource(DolphinRiderEntity object)

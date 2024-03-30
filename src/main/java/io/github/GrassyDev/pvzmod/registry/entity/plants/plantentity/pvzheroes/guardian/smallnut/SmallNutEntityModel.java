@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.smallnut;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SmallNutEntityModel extends AnimatedGeoModel<SmallNutEntity> {
+public class SmallNutEntityModel extends GeoModel<SmallNutEntity> {
 
     @Override
     public Identifier getModelResource(SmallNutEntity object)

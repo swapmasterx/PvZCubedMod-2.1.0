@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spiked.spike;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingPowerSpikeEntityModel extends AnimatedGeoModel<ShootingPowerSpikeEntity> {
+public class ShootingPowerSpikeEntityModel extends GeoModel<ShootingPowerSpikeEntity> {
 
     @Override
     public Identifier getModelResource(ShootingPowerSpikeEntity object)

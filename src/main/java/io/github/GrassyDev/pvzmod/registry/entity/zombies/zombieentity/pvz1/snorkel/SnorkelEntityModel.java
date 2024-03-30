@@ -1,12 +1,12 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class SnorkelEntityModel extends AnimatedGeoModel<SnorkelEntity> {
+public class SnorkelEntityModel extends GeoModel<SnorkelEntity> {
 
     @Override
     public Identifier getModelResource(SnorkelEntity object)

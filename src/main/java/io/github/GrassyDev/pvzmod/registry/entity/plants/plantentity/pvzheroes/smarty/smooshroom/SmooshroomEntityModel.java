@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.smarty.smooshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SmooshroomEntityModel extends AnimatedGeoModel<SmooshroomEntity> {
+public class SmooshroomEntityModel extends GeoModel<SmooshroomEntity> {
 
     @Override
     public Identifier getModelResource(SmooshroomEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.jalapeno;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FireTrailEntityModel extends AnimatedGeoModel<FireTrailEntity> {
+public class FireTrailEntityModel extends GeoModel<FireTrailEntity> {
 
     @Override
     public Identifier getModelResource(FireTrailEntity object)

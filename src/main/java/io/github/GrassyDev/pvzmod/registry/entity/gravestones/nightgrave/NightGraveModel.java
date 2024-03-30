@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.gravestones.nightgrave;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class NightGraveModel extends AnimatedGeoModel<NightGraveEntity> {
+public class NightGraveModel extends GeoModel<NightGraveEntity> {
 
     @Override
     public Identifier getModelResource(NightGraveEntity object)

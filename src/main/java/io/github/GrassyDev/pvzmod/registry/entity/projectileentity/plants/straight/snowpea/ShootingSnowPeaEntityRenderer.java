@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.snowpea;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingSnowPeaEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingSnowPeaEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingSnowPeaEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingSnowPeaEntityModel());

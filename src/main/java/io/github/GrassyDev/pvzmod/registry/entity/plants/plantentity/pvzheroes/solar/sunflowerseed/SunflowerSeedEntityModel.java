@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.solar.sunflowerseed;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SunflowerSeedEntityModel extends AnimatedGeoModel<SunflowerSeedEntity> {
+public class SunflowerSeedEntityModel extends GeoModel<SunflowerSeedEntity> {
 
     @Override
     public Identifier getModelResource(SunflowerSeedEntity object)

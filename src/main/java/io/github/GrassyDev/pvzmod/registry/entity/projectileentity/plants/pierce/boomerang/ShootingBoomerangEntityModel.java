@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.boomerang;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingBoomerangEntityModel extends AnimatedGeoModel<ShootingBoomerangEntity> {
+public class ShootingBoomerangEntityModel extends GeoModel<ShootingBoomerangEntity> {
 
     @Override
     public Identifier getModelResource(ShootingBoomerangEntity object)

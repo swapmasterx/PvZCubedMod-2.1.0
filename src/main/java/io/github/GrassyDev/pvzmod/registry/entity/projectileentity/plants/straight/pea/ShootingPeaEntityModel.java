@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.pea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingPeaEntityModel extends AnimatedGeoModel<ShootingPeaEntity> {
+public class ShootingPeaEntityModel extends GeoModel<ShootingPeaEntity> {
 
     @Override
     public Identifier getModelResource(ShootingPeaEntity object)

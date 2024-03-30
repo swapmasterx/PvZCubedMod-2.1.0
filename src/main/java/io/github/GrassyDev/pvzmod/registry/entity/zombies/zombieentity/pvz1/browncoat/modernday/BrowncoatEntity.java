@@ -50,31 +50,31 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.nio.charset.StandardCharsets;
@@ -82,9 +82,9 @@ import java.util.UUID;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class BrowncoatEntity extends PvZombieEntity implements IAnimatable {
+public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "walkingcontroller";
 	public static final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.ISO_8859_1));
 
@@ -488,18 +488,18 @@ public class BrowncoatEntity extends PvZombieEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	protected  <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	protected  <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		ZombieShieldEntity zombieShieldEntity = null;
 		for (Entity entity : this.getPassengerList()){
 			if (entity instanceof ZombieShieldEntity) {
@@ -508,7 +508,7 @@ public class BrowncoatEntity extends PvZombieEntity implements IAnimatable {
 		}
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().loop("screendoor.ducky.throw"));
+				event.getController().setAnimation(new RawAnimation().loop("screendoor.ducky.throw"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				}
@@ -517,15 +517,15 @@ public class BrowncoatEntity extends PvZombieEntity implements IAnimatable {
 				}
 			}
 			else if (zombieShieldEntity != null){
-				event.getController().setAnimation(new AnimationBuilder().loop("screendoor.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("screendoor.ducky"));
 			}
 			else if (this.getVariant().equals(BrowncoatVariants.SCREENDOOR) || this.getVariant().equals(BrowncoatVariants.SCREENDOORHYPNO) ||
 					this.getVariant().equals(BrowncoatVariants.BOOKBURN) || this.getVariant().equals(BrowncoatVariants.BOOKBURNHYPNO) ||
 					this.getVariant().equals(BrowncoatVariants.TRASHCAN) || this.getVariant().equals(BrowncoatVariants.TRASHCANHYPNO) ) {
-				event.getController().setAnimation(new AnimationBuilder().loop("screendoor.ducky2"));
+				event.getController().setAnimation(new RawAnimation().loop("screendoor.ducky2"));
 			}
 			else {
-				event.getController().setAnimation(new AnimationBuilder().loop("headwear.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("headwear.ducky"));
 			}
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
@@ -535,7 +535,7 @@ public class BrowncoatEntity extends PvZombieEntity implements IAnimatable {
 			}
 		} else {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().loop("screendoor.throw"));
+				event.getController().setAnimation(new RawAnimation().loop("screendoor.throw"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -544,17 +544,17 @@ public class BrowncoatEntity extends PvZombieEntity implements IAnimatable {
 			}
 			else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if (zombieShieldEntity != null){
-					event.getController().setAnimation(new AnimationBuilder().loop("screendoor.walking"));
+					event.getController().setAnimation(new RawAnimation().loop("screendoor.walking"));
 				}
 				else {
-					event.getController().setAnimation(new AnimationBuilder().loop("headwear.walking"));
+					event.getController().setAnimation(new RawAnimation().loop("headwear.walking"));
 				}
 			} else {
 				if (zombieShieldEntity != null){
-					event.getController().setAnimation(new AnimationBuilder().loop("screendoor.idle"));
+					event.getController().setAnimation(new RawAnimation().loop("screendoor.idle"));
 				}
 				else {
-					event.getController().setAnimation(new AnimationBuilder().loop("headwear.idle"));
+					event.getController().setAnimation(new RawAnimation().loop("headwear.idle"));
 				}
 			}
 			if (this.isFrozen || this.isStunned) {

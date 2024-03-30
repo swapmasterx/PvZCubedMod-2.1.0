@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.springtile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SpringTileModel extends AnimatedGeoModel<SpringTile> {
+public class SpringTileModel extends GeoModel<SpringTile> {
 
     @Override
     public Identifier getModelResource(SpringTile object)

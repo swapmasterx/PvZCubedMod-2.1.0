@@ -39,14 +39,14 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.EnumSet;
@@ -55,14 +55,14 @@ import java.util.UUID;
 import static io.github.GrassyDev.pvzmod.PvZCubed.MOD_ID;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class PeapodEntity extends PlantEntity implements RangedAttackMob, IAnimatable {
+public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAnimatable {
 	private String controllerName = "peacontroller";
 
 
 
 	public boolean isFiring;
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public static final	UUID MAX_HEALTH_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
 
@@ -157,55 +157,55 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, IAnima
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getCount().equals(PeapodCountVariants.ONE)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("peapod.shoot"));
+				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("peapod.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("peapod.idle"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.TWO)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("peapod.shoot2"));
+				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot2"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("peapod.idle2"));
+				event.getController().setAnimation(new RawAnimation().loop("peapod.idle2"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.THREE)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("peapod.shoot3"));
+				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot3"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("peapod.idle3"));
+				event.getController().setAnimation(new RawAnimation().loop("peapod.idle3"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.FOUR)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("peapod.shoot4"));
+				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot4"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("peapod.idle4"));
+				event.getController().setAnimation(new RawAnimation().loop("peapod.idle4"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.FIVE)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("peapod.shoot5"));
+				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot5"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("peapod.idle5"));
+				event.getController().setAnimation(new RawAnimation().loop("peapod.idle5"));
 			}
 		}
 		else {
-			event.getController().setAnimation(new AnimationBuilder().loop("peapod.idle"));
+			event.getController().setAnimation(new RawAnimation().loop("peapod.idle"));
 		}
 		return PlayState.CONTINUE;
 	}

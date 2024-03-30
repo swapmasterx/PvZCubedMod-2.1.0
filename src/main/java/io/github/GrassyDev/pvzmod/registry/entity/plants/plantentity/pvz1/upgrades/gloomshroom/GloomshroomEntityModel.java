@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgra
 
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.fumeshroom.FumeshroomEntityRenderer;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GloomshroomEntityModel extends AnimatedGeoModel<GloomshroomEntity> {
+public class GloomshroomEntityModel extends GeoModel<GloomshroomEntity> {
 
     @Override
     public Identifier getModelResource(GloomshroomEntity object)

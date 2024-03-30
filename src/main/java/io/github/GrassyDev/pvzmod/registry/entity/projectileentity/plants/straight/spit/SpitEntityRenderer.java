@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.spit;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class SpitEntityRenderer extends GeoProjectilesRenderer {
+public class SpitEntityRenderer extends GeoEntityRenderer {
 
 	public SpitEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new SpitEntityModel());

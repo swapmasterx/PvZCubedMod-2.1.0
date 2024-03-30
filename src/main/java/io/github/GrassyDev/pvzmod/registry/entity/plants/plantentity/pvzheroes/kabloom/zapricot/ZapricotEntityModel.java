@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.zapricot;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ZapricotEntityModel extends AnimatedGeoModel<ZapricotEntity> {
+public class ZapricotEntityModel extends GeoModel<ZapricotEntity> {
 
     @Override
     public Identifier getModelResource(ZapricotEntity object)

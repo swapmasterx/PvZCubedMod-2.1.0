@@ -45,31 +45,31 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.nio.charset.StandardCharsets;
@@ -79,10 +79,10 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 import static io.github.GrassyDev.pvzmod.registry.PvZSounds.DOLPHINJUMPEVENT;
 import static io.github.GrassyDev.pvzmod.registry.PvZSounds.DOLPHINWATEREVENT;
 
-public class DolphinRiderEntity extends PvZombieEntity implements IAnimatable {
+public class DolphinRiderEntity extends PvZombieEntity implements GeoAnimatable {
 
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	public boolean firstAttack;
 
 	public boolean speedSwitch;
@@ -189,24 +189,24 @@ public class DolphinRiderEntity extends PvZombieEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn() || this.removeDolphin) {
 			if (this.getDolphinStage()) {
-				event.getController().setAnimation(new AnimationBuilder().loop("dolphinrider.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("dolphinrider.ducky"));
 			}
 			else {
-				event.getController().setAnimation(new AnimationBuilder().loop("dolphinrider.ducky2"));
+				event.getController().setAnimation(new RawAnimation().loop("dolphinrider.ducky2"));
 			}
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
@@ -217,15 +217,15 @@ public class DolphinRiderEntity extends PvZombieEntity implements IAnimatable {
 		}else {
 			if (this.getDolphinStage()) {
 				if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new AnimationBuilder().loop("dolphinrider.walking"));
+					event.getController().setAnimation(new RawAnimation().loop("dolphinrider.walking"));
 				} else {
-					event.getController().setAnimation(new AnimationBuilder().loop("dolphinrider.idle"));
+					event.getController().setAnimation(new RawAnimation().loop("dolphinrider.idle"));
 				}
 			} else {
 				if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new AnimationBuilder().loop("dolphinrider.walking2"));
+					event.getController().setAnimation(new RawAnimation().loop("dolphinrider.walking2"));
 				} else {
-					event.getController().setAnimation(new AnimationBuilder().loop("dolphinrider.idle2"));
+					event.getController().setAnimation(new RawAnimation().loop("dolphinrider.idle2"));
 				}
 			}
 			if (this.isFrozen || this.isStunned) {

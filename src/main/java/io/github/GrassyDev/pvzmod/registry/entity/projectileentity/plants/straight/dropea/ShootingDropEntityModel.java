@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.dropea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingDropEntityModel extends AnimatedGeoModel<ShootingDropEntity> {
+public class ShootingDropEntityModel extends GeoModel<ShootingDropEntity> {
 
     @Override
     public Identifier getModelResource(ShootingDropEntity object)

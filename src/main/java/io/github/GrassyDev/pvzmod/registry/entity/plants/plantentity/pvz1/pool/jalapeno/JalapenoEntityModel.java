@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.jalapeno;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class JalapenoEntityModel extends AnimatedGeoModel<JalapenoEntity> {
+public class JalapenoEntityModel extends GeoModel<JalapenoEntity> {
 
     @Override
     public Identifier getModelResource(JalapenoEntity object)

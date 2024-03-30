@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.torchwood;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class TorchwoodEntityModel extends AnimatedGeoModel<TorchwoodEntity> {
+public class TorchwoodEntityModel extends GeoModel<TorchwoodEntity> {
 
     @Override
     public Identifier getModelResource(TorchwoodEntity object)

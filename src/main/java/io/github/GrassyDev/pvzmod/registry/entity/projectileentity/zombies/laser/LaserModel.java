@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.laser;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class LaserModel extends AnimatedGeoModel<LaserEntity> {
+public class LaserModel extends GeoModel<LaserEntity> {
 
     @Override
     public Identifier getModelResource(LaserEntity object)

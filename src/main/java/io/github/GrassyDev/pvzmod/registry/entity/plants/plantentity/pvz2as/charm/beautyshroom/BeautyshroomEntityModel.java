@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.charm.beautyshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BeautyshroomEntityModel extends AnimatedGeoModel<BeautyshroomEntity> {
+public class BeautyshroomEntityModel extends GeoModel<BeautyshroomEntity> {
 
     @Override
     public Identifier getModelResource(BeautyshroomEntity object)

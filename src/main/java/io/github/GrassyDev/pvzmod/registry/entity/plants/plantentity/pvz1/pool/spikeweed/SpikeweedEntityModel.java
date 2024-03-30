@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.spikeweed;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SpikeweedEntityModel extends AnimatedGeoModel<SpikeweedEntity> {
+public class SpikeweedEntityModel extends GeoModel<SpikeweedEntity> {
 
     @Override
     public Identifier getModelResource(SpikeweedEntity object)

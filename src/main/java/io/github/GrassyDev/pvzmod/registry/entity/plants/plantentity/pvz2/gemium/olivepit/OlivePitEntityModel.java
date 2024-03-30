@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemium.olivepit;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class OlivePitEntityModel extends AnimatedGeoModel<OlivePitEntity> {
+public class OlivePitEntityModel extends GeoModel<OlivePitEntity> {
 
     @Override
     public Identifier getModelResource(OlivePitEntity object)

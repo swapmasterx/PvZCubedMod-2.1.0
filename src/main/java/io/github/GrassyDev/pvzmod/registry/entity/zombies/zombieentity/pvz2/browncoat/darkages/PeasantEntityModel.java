@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.browncoat.darkages;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PeasantEntityModel extends AnimatedGeoModel<PeasantEntity> {
+public class PeasantEntityModel extends GeoModel<PeasantEntity> {
 
     @Override
     public Identifier getModelResource(PeasantEntity object)

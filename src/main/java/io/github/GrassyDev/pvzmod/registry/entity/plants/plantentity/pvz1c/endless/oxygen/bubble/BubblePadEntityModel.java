@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BubblePadEntityModel extends AnimatedGeoModel<BubblePadEntity> {
+public class BubblePadEntityModel extends GeoModel<BubblePadEntity> {
 
     @Override
     public Identifier getModelResource(BubblePadEntity object)

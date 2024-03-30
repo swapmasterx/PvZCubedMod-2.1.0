@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.pott
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class AcidshroomEntityModel extends AnimatedGeoModel<AcidshroomEntity> {
+public class AcidshroomEntityModel extends GeoModel<AcidshroomEntity> {
 
     @Override
     public Identifier getModelResource(AcidshroomEntity object)

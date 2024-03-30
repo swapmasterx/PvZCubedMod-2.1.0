@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class OilTileModel extends AnimatedGeoModel<OilTile> {
+public class OilTileModel extends GeoModel<OilTile> {
 
     @Override
     public Identifier getModelResource(OilTile object)

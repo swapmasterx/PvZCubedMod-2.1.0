@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.robocone;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RoboConeEntityModel extends AnimatedGeoModel<RoboConeEntity> {
+public class RoboConeEntityModel extends GeoModel<RoboConeEntity> {
 
     @Override
     public Identifier getModelResource(RoboConeEntity object)

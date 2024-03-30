@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.goldtile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GoldTileModel extends AnimatedGeoModel<GoldTile> {
+public class GoldTileModel extends GeoModel<GoldTile> {
 
     @Override
     public Identifier getModelResource(GoldTile object)

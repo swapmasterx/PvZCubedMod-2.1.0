@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.flagzombie.future;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FlagFutureEntityModel extends AnimatedGeoModel<FlagFutureEntity> {
+public class FlagFutureEntityModel extends GeoModel<FlagFutureEntity> {
 
 	@Override
 	public Identifier getModelResource(FlagFutureEntity object)

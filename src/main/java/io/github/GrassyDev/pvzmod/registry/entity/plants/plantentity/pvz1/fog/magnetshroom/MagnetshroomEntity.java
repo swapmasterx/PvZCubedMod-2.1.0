@@ -29,25 +29,25 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import net.minecraft.world.biome.BiomeKeys;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.util.ArrayList;
@@ -57,9 +57,9 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class MagnetshroomEntity extends PlantEntity implements IAnimatable, RangedAttackMob {
+public class MagnetshroomEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	private String controllerName = "fumecontroller";
 
@@ -100,28 +100,28 @@ public class MagnetshroomEntity extends PlantEntity implements IAnimatable, Rang
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.attractTicks > 0) {
-			event.getController().setAnimation(new AnimationBuilder().playOnce("magnetshroom.pull"));
+			event.getController().setAnimation(new RawAnimation().playOnce("magnetshroom.pull"));
 		}
 		else if (this.magnetized) {
-			event.getController().setAnimation(new AnimationBuilder().loop("magnetshroom.idle2"));
+			event.getController().setAnimation(new RawAnimation().loop("magnetshroom.idle2"));
 		}
 		else if (this.getIsAsleep()) {
-			event.getController().setAnimation(new AnimationBuilder().loop("magnetshroom.asleep"));
+			event.getController().setAnimation(new RawAnimation().loop("magnetshroom.asleep"));
 		} else {
-			event.getController().setAnimation(new AnimationBuilder().loop("magnetshroom.idle"));
+			event.getController().setAnimation(new RawAnimation().loop("magnetshroom.idle"));
 		}
 		return PlayState.CONTINUE;
 	}

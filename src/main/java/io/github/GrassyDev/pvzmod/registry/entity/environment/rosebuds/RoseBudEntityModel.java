@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.rosebuds;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RoseBudEntityModel extends AnimatedGeoModel<RoseBudTile> {
+public class RoseBudEntityModel extends GeoModel<RoseBudTile> {
 
     @Override
     public Identifier getModelResource(RoseBudTile object)

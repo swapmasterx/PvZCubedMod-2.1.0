@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skycity.saucer;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SaucerEntityModel extends AnimatedGeoModel<SaucerEntity> {
+public class SaucerEntityModel extends GeoModel<SaucerEntity> {
 
     @Override
     public Identifier getModelResource(SaucerEntity object)

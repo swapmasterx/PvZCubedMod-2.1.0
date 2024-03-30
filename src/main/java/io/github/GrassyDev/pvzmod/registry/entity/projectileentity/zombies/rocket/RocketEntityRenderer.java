@@ -3,9 +3,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.rock
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.entity.Entity;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class RocketEntityRenderer extends GeoProjectilesRenderer {
+public class RocketEntityRenderer extends GeoEntityRenderer {
 
 	public RocketEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new RocketEntityModel());

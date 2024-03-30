@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.oc.bully.basketballcarrier;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BasketballCarrierEntityModel extends AnimatedGeoModel<BasketballCarrierEntity> {
+public class BasketballCarrierEntityModel extends GeoModel<BasketballCarrierEntity> {
 
     @Override
     public Identifier getModelResource(BasketballCarrierEntity object)

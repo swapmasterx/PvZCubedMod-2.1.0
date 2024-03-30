@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemium.peanut;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PeanutEntityModel extends AnimatedGeoModel<PeanutEntity> {
+public class PeanutEntityModel extends GeoModel<PeanutEntity> {
 
     @Override
     public Identifier getModelResource(PeanutEntity object)

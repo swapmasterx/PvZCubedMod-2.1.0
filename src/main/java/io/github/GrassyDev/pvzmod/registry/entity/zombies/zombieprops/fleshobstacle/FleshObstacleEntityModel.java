@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.fleshobstacle;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FleshObstacleEntityModel extends AnimatedGeoModel<FleshObstacleEntity> {
+public class FleshObstacleEntityModel extends GeoModel<FleshObstacleEntity> {
 
     @Override
     public Identifier getModelResource(FleshObstacleEntity object)

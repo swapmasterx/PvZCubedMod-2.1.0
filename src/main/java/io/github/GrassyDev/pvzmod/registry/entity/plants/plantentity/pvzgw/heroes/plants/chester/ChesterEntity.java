@@ -38,34 +38,34 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class ChesterEntity extends PlantEntity implements IAnimatable, RangedAttackMob {
+public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(ChesterEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     private int attackTicksLeft;
     public boolean notEating;
@@ -187,37 +187,37 @@ public class ChesterEntity extends PlantEntity implements IAnimatable, RangedAtt
 	/** /~*~//~*GECKOLIB ANIMATION~//~*~// **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getTypeCount();
 		if (this.isFiringGoop){
-			event.getController().setAnimation(new AnimationBuilder().playOnce("chomper.goop"));
+			event.getController().setAnimation(new RawAnimation().playOnce("chomper.goop"));
 		}
 		else if (this.notEating) {
-			event.getController().setAnimation(new AnimationBuilder().playOnce("chomper.chomp2"));
+			event.getController().setAnimation(new RawAnimation().playOnce("chomper.chomp2"));
 		}
 		else if (this.isFiring){
-			event.getController().setAnimation(new AnimationBuilder().playOnce("chomper.chomp4"));
+			event.getController().setAnimation(new RawAnimation().playOnce("chomper.chomp4"));
 		}
 		else if (i > 0 && this.eatingShield) {
-			event.getController().setAnimation(new AnimationBuilder().loop("chomper.chew2"));
+			event.getController().setAnimation(new RawAnimation().loop("chomper.chew2"));
 		}
 		else if (i > 0) {
-			event.getController().setAnimation(new AnimationBuilder().loop("chomper.chew"));
+			event.getController().setAnimation(new RawAnimation().loop("chomper.chew"));
 		}
 		else {
-			event.getController().setAnimation(new AnimationBuilder().loop("chomper.idle"));
+			event.getController().setAnimation(new RawAnimation().loop("chomper.idle"));
 		}
         return PlayState.CONTINUE;
     }

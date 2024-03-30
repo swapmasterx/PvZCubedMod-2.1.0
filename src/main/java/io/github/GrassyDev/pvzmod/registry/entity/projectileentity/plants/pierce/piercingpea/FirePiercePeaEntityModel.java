@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.piercingpea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FirePiercePeaEntityModel extends AnimatedGeoModel<FirePiercePeaEntity> {
+public class FirePiercePeaEntityModel extends GeoModel<FirePiercePeaEntity> {
 
     @Override
     public Identifier getModelResource(FirePiercePeaEntity object)

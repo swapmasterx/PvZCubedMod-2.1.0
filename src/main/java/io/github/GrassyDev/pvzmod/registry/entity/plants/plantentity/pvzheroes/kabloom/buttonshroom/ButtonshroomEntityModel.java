@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.buttonshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ButtonshroomEntityModel extends AnimatedGeoModel<ButtonshroomEntity> {
+public class ButtonshroomEntityModel extends GeoModel<ButtonshroomEntity> {
 
     @Override
     public Identifier getModelResource(ButtonshroomEntity object)

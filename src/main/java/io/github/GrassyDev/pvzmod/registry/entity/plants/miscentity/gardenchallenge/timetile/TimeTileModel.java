@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchall
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.challenge.ChallengeTime;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class TimeTileModel extends AnimatedGeoModel<TimeTile> {
+public class TimeTileModel extends GeoModel<TimeTile> {
 
     @Override
     public Identifier getModelResource(TimeTile object)

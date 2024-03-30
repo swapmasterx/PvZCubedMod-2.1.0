@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.repeater;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RepeaterEntityModel extends AnimatedGeoModel<RepeaterEntity> {
+public class RepeaterEntityModel extends GeoModel<RepeaterEntity> {
 
     @Override
     public Identifier getModelResource(RepeaterEntity object)

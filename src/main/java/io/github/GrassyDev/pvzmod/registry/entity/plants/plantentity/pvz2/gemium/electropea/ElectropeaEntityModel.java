@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemium.electropea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ElectropeaEntityModel extends AnimatedGeoModel<ElectropeaEntity> {
+public class ElectropeaEntityModel extends GeoModel<ElectropeaEntity> {
 
     @Override
     public Identifier getModelResource(ElectropeaEntity object)

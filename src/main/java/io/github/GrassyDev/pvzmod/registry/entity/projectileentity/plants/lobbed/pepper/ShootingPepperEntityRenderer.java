@@ -3,9 +3,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbe
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingPepperEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingPepperEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingPepperEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingPepperEntityModel());

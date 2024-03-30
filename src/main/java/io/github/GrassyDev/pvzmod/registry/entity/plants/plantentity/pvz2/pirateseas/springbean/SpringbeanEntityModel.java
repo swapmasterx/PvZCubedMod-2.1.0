@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.pirateseas.springbean;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SpringbeanEntityModel extends AnimatedGeoModel<SpringbeanEntity> {
+public class SpringbeanEntityModel extends GeoModel<SpringbeanEntity> {
 
     @Override
     public Identifier getModelResource(SpringbeanEntity object)

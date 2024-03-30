@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.rifttile;
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.graves.RiftVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RiftTileModel extends AnimatedGeoModel<RiftTile> {
+public class RiftTileModel extends GeoModel<RiftTile> {
 
     @Override
     public Identifier getModelResource(RiftTile object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.bark;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BarkModel extends AnimatedGeoModel<BarkEntity> {
+public class BarkModel extends GeoModel<BarkEntity> {
 
     @Override
     public Identifier getModelResource(BarkEntity object)

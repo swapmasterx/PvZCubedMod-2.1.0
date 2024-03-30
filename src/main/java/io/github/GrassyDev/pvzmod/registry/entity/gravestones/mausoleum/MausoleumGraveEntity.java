@@ -36,21 +36,21 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.util.Objects;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class MausoleumGraveEntity extends GraveEntity implements IAnimatable {
+public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 
 	private String controllerName = "walkingcontroller";
 
@@ -60,7 +60,7 @@ public class MausoleumGraveEntity extends GraveEntity implements IAnimatable {
 
 	double tiltchance = this.random.nextDouble();
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 
     public MausoleumGraveEntity(EntityType<MausoleumGraveEntity> entityType, World world) {
@@ -83,26 +83,26 @@ public class MausoleumGraveEntity extends GraveEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new AnimationBuilder().loop("obstacle.eating"));
+			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
 		}
 		else if (tiltchance <= 0.5) {
-			event.getController().setAnimation(new AnimationBuilder().loop("gravestone.idle"));
+			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
 		}
 		else {
-			event.getController().setAnimation(new AnimationBuilder().loop("gravestone.idle2"));
+			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
 		}
         return PlayState.CONTINUE;
     }

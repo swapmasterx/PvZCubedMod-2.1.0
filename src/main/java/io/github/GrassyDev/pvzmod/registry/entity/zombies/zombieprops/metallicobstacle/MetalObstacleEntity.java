@@ -1,6 +1,5 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.metallicobstacle;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -28,24 +27,24 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.util.ArrayList;
@@ -54,8 +53,8 @@ import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class MetalObstacleEntity extends ZombieObstacleEntity implements IAnimatable {
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoAnimatable {
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "shieldcontroller";
 
     public MetalObstacleEntity(EntityType<? extends MetalObstacleEntity> entityType, World world) {
@@ -154,31 +153,31 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements IAnimat
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten || (this.getType().equals(PvZEntity.TRASHCANBIN) && (this.hasVehicle() || (this.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHealth() <= 0)))){
-			event.getController().setAnimation(new AnimationBuilder().loop("obstacle.eating"));
+			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
 		}
 		else if (this.getType().equals(PvZEntity.HEALSTATION)){
 			if (this.hasStatusEffect(DISABLE)){
-				event.getController().setAnimation(new AnimationBuilder().loop("healstation.disabled"));
+				event.getController().setAnimation(new RawAnimation().loop("healstation.disabled"));
 			}
 			else {
-				event.getController().setAnimation(new AnimationBuilder().loop("healstation.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("healstation.idle"));
 			}
 		}
 		else {
-			event.getController().setAnimation(new AnimationBuilder().loop("gravestone.idle"));
+			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -188,7 +187,6 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements IAnimat
 
 	public static DefaultAttributeContainer.Builder createBasketBallBinObstacleAttributes() {
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -197,7 +195,6 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements IAnimat
 
 	public static DefaultAttributeContainer.Builder createTrashCanBinObstacleAttributes() {
 		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -206,7 +203,6 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements IAnimat
 
 	public static DefaultAttributeContainer.Builder createHealStationAttributes() {
 		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)

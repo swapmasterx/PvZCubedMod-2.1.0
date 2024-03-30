@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.frostbitecaves.pepperpult;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PepperpultEntityModel extends AnimatedGeoModel<PepperpultEntity> {
+public class PepperpultEntityModel extends GeoModel<PepperpultEntity> {
 
     @Override
     public Identifier getModelResource(PepperpultEntity object)

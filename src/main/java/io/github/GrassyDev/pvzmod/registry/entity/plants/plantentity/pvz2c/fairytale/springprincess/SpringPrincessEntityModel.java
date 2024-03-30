@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.fairytale.springprincess;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SpringPrincessEntityModel extends AnimatedGeoModel<SpringPrincessEntity> {
+public class SpringPrincessEntityModel extends GeoModel<SpringPrincessEntity> {
 
     @Override
     public Identifier getModelResource(SpringPrincessEntity object)

@@ -23,10 +23,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +56,9 @@ public class MummyEntity extends BrowncoatEntity {
 		}
 	}
 
-	protected  <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	protected  <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new AnimationBuilder().loop("headwear.ducky"));
+			event.getController().setAnimation(new RawAnimation().loop("headwear.ducky"));
 			if (this.getVariant().equals(BrowncoatVariants.TOMB) || this.getVariant().equals(BrowncoatVariants.TOMBHYPNO)){
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.375);
@@ -75,7 +75,7 @@ public class MummyEntity extends BrowncoatEntity {
 			}
 		} else {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().loop("tombraiser.lick"));
+				event.getController().setAnimation(new RawAnimation().loop("tombraiser.lick"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -83,7 +83,7 @@ public class MummyEntity extends BrowncoatEntity {
 				}
 			}
 			else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-				event.getController().setAnimation(new AnimationBuilder().loop("headwear.walking"));
+				event.getController().setAnimation(new RawAnimation().loop("headwear.walking"));
 				if (this.getVariant().equals(BrowncoatVariants.TOMB) || this.getVariant().equals(BrowncoatVariants.TOMBHYPNO)){
 					if (this.isIced) {
 						event.getController().setAnimationSpeed(0.375);
@@ -99,7 +99,7 @@ public class MummyEntity extends BrowncoatEntity {
 					}
 				}
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("headwear.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("headwear.idle"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {

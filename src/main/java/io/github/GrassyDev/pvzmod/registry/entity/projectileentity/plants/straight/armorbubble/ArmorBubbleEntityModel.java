@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.armorbubble;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ArmorBubbleEntityModel extends AnimatedGeoModel<ArmorBubbleEntity> {
+public class ArmorBubbleEntityModel extends GeoModel<ArmorBubbleEntity> {
 
     @Override
     public Identifier getModelResource(ArmorBubbleEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.cheesetile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CheeseTileModel extends AnimatedGeoModel<CheeseTile> {
+public class CheeseTileModel extends GeoModel<CheeseTile> {
 
     @Override
     public Identifier getModelResource(CheeseTile object)

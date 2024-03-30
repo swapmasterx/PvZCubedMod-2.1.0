@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.heian.dripphylleia;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class DripphylleiaEntityModel extends AnimatedGeoModel<DripphylleiaEntity> {
+public class DripphylleiaEntityModel extends GeoModel<DripphylleiaEntity> {
 
     @Override
     public Identifier getModelResource(DripphylleiaEntity object)

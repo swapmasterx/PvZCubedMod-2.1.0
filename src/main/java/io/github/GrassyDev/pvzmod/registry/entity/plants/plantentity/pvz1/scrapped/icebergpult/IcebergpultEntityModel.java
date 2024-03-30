@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.scrapped.icebergpult;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class IcebergpultEntityModel extends AnimatedGeoModel<IcebergpultEntity> {
+public class IcebergpultEntityModel extends GeoModel<IcebergpultEntity> {
 
     @Override
     public Identifier getModelResource(IcebergpultEntity object)

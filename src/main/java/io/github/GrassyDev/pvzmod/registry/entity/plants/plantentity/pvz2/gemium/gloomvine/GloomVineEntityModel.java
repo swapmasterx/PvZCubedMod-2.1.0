@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemiu
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GloomVineEntityModel extends AnimatedGeoModel<GloomVineEntity> {
+public class GloomVineEntityModel extends GeoModel<GloomVineEntity> {
 
     @Override
     public Identifier getModelResource(GloomVineEntity object)

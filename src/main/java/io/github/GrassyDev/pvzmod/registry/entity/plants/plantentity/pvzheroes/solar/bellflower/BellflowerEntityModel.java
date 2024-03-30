@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.solar.bellflower;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BellflowerEntityModel extends AnimatedGeoModel<BellflowerEntity> {
+public class BellflowerEntityModel extends GeoModel<BellflowerEntity> {
 
     @Override
     public Identifier getModelResource(BellflowerEntity object)

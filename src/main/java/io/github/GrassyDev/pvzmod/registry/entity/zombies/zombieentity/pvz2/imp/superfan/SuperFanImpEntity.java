@@ -27,7 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -35,24 +35,24 @@ import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import java.util.Iterator;
@@ -60,7 +60,7 @@ import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
+public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 	public SuperFanImpEntity(EntityType<? extends ImpEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -72,7 +72,7 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 	private int fuseTime = 30;
 	private int explosionRadius = 1;
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	private String controllerName = "superfancontroller";
 
 	protected void initDataTracker() {
@@ -202,24 +202,24 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getFireStage()){
 			if (this.isInsideWaterOrBubbleColumn()) {
-				event.getController().setAnimation(new AnimationBuilder().loop("imp.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("imp.ducky"));
 			} else {
 				if (!this.isOnGround()) {
-					event.getController().setAnimation(new AnimationBuilder().loop("imp.ball"));
+					event.getController().setAnimation(new RawAnimation().loop("imp.ball"));
 					if (this.hasVehicle()){
 						event.getController().setAnimationSpeed(0);
 					}
@@ -231,7 +231,7 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 						event.getController().setAnimationSpeed(1);
 					}
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new AnimationBuilder().loop("imp.run"));
+					event.getController().setAnimation(new RawAnimation().loop("imp.run"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
@@ -241,7 +241,7 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 						event.getController().setAnimationSpeed(1.5);
 					}
 				} else {
-					event.getController().setAnimation(new AnimationBuilder().loop("imp.idle"));
+					event.getController().setAnimation(new RawAnimation().loop("imp.idle"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
@@ -255,10 +255,10 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 		}
 		else {
 			if (this.isInsideWaterOrBubbleColumn()) {
-				event.getController().setAnimation(new AnimationBuilder().loop("imp.ducky.gearless"));
+				event.getController().setAnimation(new RawAnimation().loop("imp.ducky.gearless"));
 			} else {
 				if (!this.isOnGround()) {
-					event.getController().setAnimation(new AnimationBuilder().loop("imp.ball.gearless"));
+					event.getController().setAnimation(new RawAnimation().loop("imp.ball.gearless"));
 					if (this.hasVehicle()){
 						event.getController().setAnimationSpeed(0);
 					}
@@ -270,7 +270,7 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 						event.getController().setAnimationSpeed(1);
 					}
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new AnimationBuilder().loop("imp.run.gearless"));
+					event.getController().setAnimation(new RawAnimation().loop("imp.run.gearless"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
@@ -280,7 +280,7 @@ public class SuperFanImpEntity extends ImpEntity implements IAnimatable {
 						event.getController().setAnimationSpeed(1.5);
 					}
 				} else {
-					event.getController().setAnimation(new AnimationBuilder().loop("imp.idle.gearless"));
+					event.getController().setAnimation(new RawAnimation().loop("imp.idle.gearless"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);

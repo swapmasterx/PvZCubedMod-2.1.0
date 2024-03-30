@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.hero
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class VampireFlowerEntityModel extends AnimatedGeoModel<VampireFlowerEntity> {
+public class VampireFlowerEntityModel extends GeoModel<VampireFlowerEntity> {
 
     @Override
     public Identifier getModelResource(VampireFlowerEntity object)

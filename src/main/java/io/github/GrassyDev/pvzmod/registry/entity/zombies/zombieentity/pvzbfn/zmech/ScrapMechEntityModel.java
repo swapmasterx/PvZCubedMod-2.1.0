@@ -1,12 +1,12 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.zmech;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class ScrapMechEntityModel extends AnimatedGeoModel<ScrapMechEntity> {
+public class ScrapMechEntityModel extends GeoModel<ScrapMechEntity> {
 
     @Override
     public Identifier getModelResource(ScrapMechEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.coffeebean;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CoffeeBeanEntityModel extends AnimatedGeoModel<CoffeeBeanEntity> {
+public class CoffeeBeanEntityModel extends GeoModel<CoffeeBeanEntity> {
 
     @Override
     public Identifier getModelResource(CoffeeBeanEntity object)

@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.ShadowSporeVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PierceSporeEntityModel extends AnimatedGeoModel<PierceSporeEntity> {
+public class PierceSporeEntityModel extends GeoModel<PierceSporeEntity> {
 
     @Override
     public Identifier getModelResource(PierceSporeEntity object)

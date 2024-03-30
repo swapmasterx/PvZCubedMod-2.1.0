@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.wildwest.peapod;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PeapodEntityModel extends AnimatedGeoModel<PeapodEntity> {
+public class PeapodEntityModel extends GeoModel<PeapodEntity> {
 
     @Override
     public Identifier getModelResource(PeapodEntity object)

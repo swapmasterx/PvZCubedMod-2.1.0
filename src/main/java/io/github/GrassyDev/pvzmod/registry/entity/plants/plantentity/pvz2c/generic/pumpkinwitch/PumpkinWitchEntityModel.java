@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.pumpkinwitch;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PumpkinWitchEntityModel extends AnimatedGeoModel<PumpkinWitchEntity> {
+public class PumpkinWitchEntityModel extends GeoModel<PumpkinWitchEntity> {
 
     @Override
     public Identifier getModelResource(PumpkinWitchEntity object)

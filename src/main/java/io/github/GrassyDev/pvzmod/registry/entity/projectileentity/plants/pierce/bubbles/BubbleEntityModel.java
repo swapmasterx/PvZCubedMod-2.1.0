@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.bubbles;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BubbleEntityModel extends AnimatedGeoModel<BubbleEntity> {
+public class BubbleEntityModel extends GeoModel<BubbleEntity> {
 
     @Override
     public Identifier getModelResource(BubbleEntity object)

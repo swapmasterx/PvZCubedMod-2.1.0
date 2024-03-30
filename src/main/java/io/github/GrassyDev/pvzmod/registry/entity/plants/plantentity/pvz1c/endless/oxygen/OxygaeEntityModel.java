@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class OxygaeEntityModel extends AnimatedGeoModel<OxygaeEntity> {
+public class OxygaeEntityModel extends GeoModel<OxygaeEntity> {
 
     @Override
     public Identifier getModelResource(OxygaeEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.spikerock;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SpikerockEntityModel extends AnimatedGeoModel<SpikerockEntity> {
+public class SpikerockEntityModel extends GeoModel<SpikerockEntity> {
 
     @Override
     public Identifier getModelResource(SpikerockEntity object)

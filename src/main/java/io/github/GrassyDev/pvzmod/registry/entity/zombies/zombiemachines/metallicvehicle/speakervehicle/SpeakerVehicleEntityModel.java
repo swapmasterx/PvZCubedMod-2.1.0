@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.metallicvehicle.speakervehicle;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SpeakerVehicleEntityModel extends AnimatedGeoModel<SpeakerVehicleEntity> {
+public class SpeakerVehicleEntityModel extends GeoModel<SpeakerVehicleEntity> {
 
     @Override
     public Identifier getModelResource(SpeakerVehicleEntity object)

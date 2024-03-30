@@ -1,0 +1,56 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "io.github.GrassyDev",
+		"id": "pvzmod",
+		"version": "${version}",
+		"metadata": {
+			"name": "Plants vs. Zombies Cubed",
+			"description": "Adds characters from the PvZ franchise",
+			"license": "MIT",
+			"contributors": {
+				"Grassy": "Original Creator",
+				"IncredibleDonk": "Current Maintainer"
+			},
+			"contact": {
+				"homepage": "https://github.com/GrassyDev/PvZCubed",
+				"issues": "https://github.com/GrassyDev/PvZCubed/issues",
+				"sources": "https://github.com/GrassyDev/PvZCubed"
+			},
+			"icon": "assets/pvzmod/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"init": [
+				"io.github.GrassyDev.pvzmod.PvZCubed",
+				"io.github.GrassyDev.pvzmod.registry.PvZEntity"
+			],
+			"client_init": [
+				"io.github.GrassyDev.pvzmod.registry.PvZEntityClient"
+			]
+		},
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.24.0-"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": ">=7.5.0+0.91.0-"
+			},
+			{
+				"id": "geckolib",
+				"versions": ">=4.4.4"
+			},
+			{
+				"id": "patchouli",
+				"versions": ">=1.20.1-84"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.20.1"
+			}
+		]
+	},
+	"mixin": "pvzmod.mixins.json"
+}

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.papershield;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class NewspaperShieldEntityModel extends AnimatedGeoModel<NewspaperShieldEntity> {
+public class NewspaperShieldEntityModel extends GeoModel<NewspaperShieldEntity> {
 
     @Override
     public Identifier getModelResource(NewspaperShieldEntity object)

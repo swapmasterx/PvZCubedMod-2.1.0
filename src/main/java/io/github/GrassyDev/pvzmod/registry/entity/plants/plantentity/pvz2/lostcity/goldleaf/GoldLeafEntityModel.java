@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.lostcity.goldleaf;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GoldLeafEntityModel extends AnimatedGeoModel<GoldLeafEntity> {
+public class GoldLeafEntityModel extends GeoModel<GoldLeafEntity> {
 
     @Override
     public Identifier getModelResource(GoldLeafEntity object)

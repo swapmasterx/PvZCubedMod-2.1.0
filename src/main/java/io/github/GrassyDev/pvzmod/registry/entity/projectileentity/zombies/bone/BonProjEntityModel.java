@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.bone;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BonProjEntityModel extends AnimatedGeoModel<BoneProjEntity> {
+public class BonProjEntityModel extends GeoModel<BoneProjEntity> {
 
     @Override
     public Identifier getModelResource(BoneProjEntity object)

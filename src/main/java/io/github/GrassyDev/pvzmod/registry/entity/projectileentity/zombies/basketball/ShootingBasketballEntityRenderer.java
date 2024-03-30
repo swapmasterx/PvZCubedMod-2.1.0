@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.bask
 
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingBasketballEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingBasketballEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingBasketballEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingBasketballEntityModel());

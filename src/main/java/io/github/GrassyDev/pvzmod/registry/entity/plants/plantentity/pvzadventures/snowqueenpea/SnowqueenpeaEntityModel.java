@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventures.snowqueenpea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SnowqueenpeaEntityModel extends AnimatedGeoModel<SnowqueenpeaEntity> {
+public class SnowqueenpeaEntityModel extends GeoModel<SnowqueenpeaEntity> {
 
     @Override
     public Identifier getModelResource(SnowqueenpeaEntity object)

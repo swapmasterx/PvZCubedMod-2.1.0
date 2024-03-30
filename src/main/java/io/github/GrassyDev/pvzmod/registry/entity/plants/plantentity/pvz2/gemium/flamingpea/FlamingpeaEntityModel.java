@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemium.flamingpea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FlamingpeaEntityModel extends AnimatedGeoModel<FlamingpeaEntity> {
+public class FlamingpeaEntityModel extends GeoModel<FlamingpeaEntity> {
 
     @Override
     public Identifier getModelResource(FlamingpeaEntity object)

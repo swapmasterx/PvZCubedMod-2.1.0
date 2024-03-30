@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.tallnut;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class TallnutEntityModel extends AnimatedGeoModel<TallnutEntity> {
+public class TallnutEntityModel extends GeoModel<TallnutEntity> {
 
     @Override
     public Identifier getModelResource(TallnutEntity object)

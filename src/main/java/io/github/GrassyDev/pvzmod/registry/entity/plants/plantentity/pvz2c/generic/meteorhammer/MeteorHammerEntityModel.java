@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.meteorhammer;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MeteorHammerEntityModel extends AnimatedGeoModel<MeteorHammerEntity> {
+public class MeteorHammerEntityModel extends GeoModel<MeteorHammerEntity> {
 
     @Override
     public Identifier getModelResource(MeteorHammerEntity object)

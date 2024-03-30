@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.crystalhelmet;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CrystalHelmetEntityModel extends AnimatedGeoModel<CrystalHelmetEntity> {
+public class CrystalHelmetEntityModel extends GeoModel<CrystalHelmetEntity> {
 
 	@Override
 	public Identifier getModelResource(CrystalHelmetEntity object)

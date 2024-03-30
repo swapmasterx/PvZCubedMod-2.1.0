@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.fume;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FumeEntityModel extends AnimatedGeoModel<FumeEntity> {
+public class FumeEntityModel extends GeoModel<FumeEntity> {
 
     @Override
     public Identifier getModelResource(FumeEntity object)

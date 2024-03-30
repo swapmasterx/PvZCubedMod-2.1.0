@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.sunshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SunshroomEntityModel extends AnimatedGeoModel<SunshroomEntity> {
+public class SunshroomEntityModel extends GeoModel<SunshroomEntity> {
 
     @Override
     public Identifier getModelResource(SunshroomEntity object)

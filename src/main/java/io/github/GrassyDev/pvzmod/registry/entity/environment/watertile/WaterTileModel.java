@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.watertile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WaterTileModel extends AnimatedGeoModel<WaterTile> {
+public class WaterTileModel extends GeoModel<WaterTile> {
 
     @Override
     public Identifier getModelResource(WaterTile object)

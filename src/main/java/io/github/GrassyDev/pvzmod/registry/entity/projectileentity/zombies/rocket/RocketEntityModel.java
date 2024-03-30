@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.rocket;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RocketEntityModel extends AnimatedGeoModel<RocketEntity> {
+public class RocketEntityModel extends GeoModel<RocketEntity> {
 
     @Override
     public Identifier getModelResource(RocketEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.jingle;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class JingleEntityModel extends AnimatedGeoModel<JingleEntity> {
+public class JingleEntityModel extends GeoModel<JingleEntity> {
 
     @Override
     public Identifier getModelResource(JingleEntity object)

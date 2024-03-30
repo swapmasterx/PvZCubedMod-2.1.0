@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.heroes.knightpea;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class KnightPeaEntityModel extends AnimatedGeoModel<KnightPeaEntity> {
+public class KnightPeaEntityModel extends GeoModel<KnightPeaEntity> {
 
     @Override
     public Identifier getModelResource(KnightPeaEntity object)

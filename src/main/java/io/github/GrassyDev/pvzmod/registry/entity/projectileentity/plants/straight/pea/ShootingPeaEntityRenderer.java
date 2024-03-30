@@ -6,11 +6,11 @@ import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.ShootingP
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 import java.util.Map;
 
-public class ShootingPeaEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingPeaEntityRenderer extends GeoEntityRenderer<ShootingPeaEntity> {
 
 	public static final Map<ShootingPeaVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ShootingPeaVariants.class), (map) -> {

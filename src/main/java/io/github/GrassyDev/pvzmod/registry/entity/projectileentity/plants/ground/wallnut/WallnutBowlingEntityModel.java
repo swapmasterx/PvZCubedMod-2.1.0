@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.groun
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.ShootingPeaVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WallnutBowlingEntityModel extends AnimatedGeoModel<WallnutBowlingEntity> {
+public class WallnutBowlingEntityModel extends GeoModel<WallnutBowlingEntity> {
 
     @Override
     public Identifier getModelResource(WallnutBowlingEntity object)

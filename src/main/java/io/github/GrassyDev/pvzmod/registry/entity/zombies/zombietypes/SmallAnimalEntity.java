@@ -9,27 +9,27 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 
-public abstract class SmallAnimalEntity extends PvZombieEntity implements IAnimatable {
+public abstract class SmallAnimalEntity extends PvZombieEntity implements GeoAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "walkingcontroller";
 
     public SmallAnimalEntity(EntityType<? extends SmallAnimalEntity> entityType, World world) {
@@ -62,14 +62,14 @@ public abstract class SmallAnimalEntity extends PvZombieEntity implements IAnima
 				this.setStealthTag(Stealth.FALSE);
 			}
 		}
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.IMP.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()).expand(0.25));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.IMP.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()).expand(0.25));
 		List<PlantEntity> list1 = new ArrayList<>();
 		for (LivingEntity livingEntity : list){
 			if (livingEntity instanceof PlantEntity plantEntity && (PLANT_LOCATION.get(plantEntity.getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(plantEntity.getType()).orElse("normal").equals("flying"))){
 				list1.add(plantEntity);
 			}
 		}
-		if (!list1.isEmpty() && !this.hasStatusEffect(PvZCubed.BOUNCED) && !this.onGround && !this.isInsideWaterOrBubbleColumn()){
+		if (!list1.isEmpty() && !this.hasStatusEffect(PvZCubed.BOUNCED) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
 			this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 			this.setTarget(list1.get(0));

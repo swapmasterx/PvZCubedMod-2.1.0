@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.jingle;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class JingleEntityRenderer extends GeoProjectilesRenderer {
+public class JingleEntityRenderer extends GeoEntityRenderer {
 
 	public JingleEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new JingleEntityModel());

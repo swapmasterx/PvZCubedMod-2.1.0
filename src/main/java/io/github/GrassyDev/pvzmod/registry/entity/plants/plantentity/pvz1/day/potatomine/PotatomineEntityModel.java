@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.potatomine;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PotatomineEntityModel extends AnimatedGeoModel<PotatomineEntity> {
+public class PotatomineEntityModel extends GeoModel<PotatomineEntity> {
 
     @Override
     public Identifier getModelResource(PotatomineEntity object)

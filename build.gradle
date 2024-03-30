@@ -1,32 +1,37 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
 	id 'maven-publish'
+	alias libs.plugins.quilt.loom
 }
 
+archivesBaseName = project.archives_base_name
 version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
 repositories {
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+	maven {
+		name 'Quilt'
+		url 'https://maven.quiltmc.org/repository/release'
+	}
 	maven { url 'https://maven.blamejared.com' }
 	maven {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
 	}
 	maven { url 'https://maven.wispforest.io' }
-	maven {
-		url "https://maven.jamieswhiteshirt.com/libs-release"
-		content {
-			includeGroup "com.jamieswhiteshirt"
-		}
-	}
+
 }
 dependencies {
 	minecraft libs.minecraft
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation libs.quilt.loader
 
+	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings}:intermediary-v2"
+
+	modImplementation "org.quiltmc:qsl:6.1.2+1.20.1"
+
+	modImplementation "org.quiltmc.qsl:core:6.1.2+1.20.1"
+
+	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:7.5.0+0.91.0-1.20.1"
 
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.1:4.4.4'
 
@@ -34,7 +39,6 @@ dependencies {
 	modImplementation "io.wispforest:owo-lib:0.11.2+1.20"
 	annotationProcessor modImplementation("io.wispforest:owo-lib:0.11.2+1.20")
 }
-
 processResources {
 	inputs.property "version", version
 
@@ -42,7 +46,6 @@ processResources {
 		expand "version": version
 	}
 }
-
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 17
 }
@@ -56,7 +59,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${archivesBaseName}" }
+		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }
 

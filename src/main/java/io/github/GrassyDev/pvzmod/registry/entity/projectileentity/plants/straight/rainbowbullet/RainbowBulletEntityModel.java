@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.strai
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RainbowBulletEntityModel extends AnimatedGeoModel<RainbowBulletEntity> {
+public class RainbowBulletEntityModel extends GeoModel<RainbowBulletEntity> {
 
     @Override
     public Identifier getModelResource(RainbowBulletEntity object)

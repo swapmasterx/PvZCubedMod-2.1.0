@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.gravestones.futuregrave;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FutureGraveModel extends AnimatedGeoModel<FutureGraveEntity> {
+public class FutureGraveModel extends GeoModel<FutureGraveEntity> {
 
     @Override
     public Identifier getModelResource(FutureGraveEntity object)

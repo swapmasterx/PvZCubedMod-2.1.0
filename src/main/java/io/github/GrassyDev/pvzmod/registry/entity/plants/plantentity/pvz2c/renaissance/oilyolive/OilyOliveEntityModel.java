@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.renaissance.oilyolive;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class OilyOliveEntityModel extends AnimatedGeoModel<OilyOliveEntity> {
+public class OilyOliveEntityModel extends GeoModel<OilyOliveEntity> {
 
     @Override
     public Identifier getModelResource(OilyOliveEntity object)

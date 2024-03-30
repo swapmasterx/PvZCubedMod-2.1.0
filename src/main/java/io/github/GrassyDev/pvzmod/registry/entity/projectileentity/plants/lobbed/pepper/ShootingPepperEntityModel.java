@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.pepper;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingPepperEntityModel extends AnimatedGeoModel<ShootingPepperEntity> {
+public class ShootingPepperEntityModel extends GeoModel<ShootingPepperEntity> {
 
     @Override
     public Identifier getModelResource(ShootingPepperEntity object)

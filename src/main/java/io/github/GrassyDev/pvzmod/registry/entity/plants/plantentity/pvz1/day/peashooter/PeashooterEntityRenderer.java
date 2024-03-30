@@ -1,12 +1,12 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.peashooter;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class PeashooterEntityRenderer extends GeoEntityRenderer {
+public class PeashooterEntityRenderer extends GeoEntityRenderer<PeashooterEntity> {
 
     public PeashooterEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new PeashooterEntityModel());

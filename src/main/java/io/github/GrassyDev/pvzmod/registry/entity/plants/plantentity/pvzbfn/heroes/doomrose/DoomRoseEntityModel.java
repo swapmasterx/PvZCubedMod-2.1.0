@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.heroes.doomrose;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class DoomRoseEntityModel extends AnimatedGeoModel<DoomRoseEntity> {
+public class DoomRoseEntityModel extends GeoModel<DoomRoseEntity> {
 
     @Override
     public Identifier getModelResource(DoomRoseEntity object)

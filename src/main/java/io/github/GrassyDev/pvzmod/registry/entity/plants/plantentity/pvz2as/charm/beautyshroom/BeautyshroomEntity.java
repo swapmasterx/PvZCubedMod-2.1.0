@@ -34,14 +34,14 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Iterator;
 import java.util.List;
@@ -50,9 +50,9 @@ import java.util.Optional;
 import static io.github.GrassyDev.pvzmod.PvZCubed.DISABLE;
 import static io.github.GrassyDev.pvzmod.PvZCubed.FROZEN;
 
-public class BeautyshroomEntity extends PlantEntity implements IAnimatable {
+public class BeautyshroomEntity extends PlantEntity implements GeoAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private static final TrackedData<Integer> FUSE_SPEED;
     private static final TrackedData<Boolean> CHARGED;
     private static final TrackedData<Boolean> IGNITED;
@@ -122,26 +122,26 @@ public class BeautyshroomEntity extends PlantEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getFuseSpeed();
         if (this.getIsAsleep()){
-            event.getController().setAnimation(new AnimationBuilder().loop("beautyshroom.idle.asleep"));
+            event.getController().setAnimation(new RawAnimation().loop("beautyshroom.idle.asleep"));
         }
         else if (i > 0) {
-            event.getController().setAnimation(new AnimationBuilder().playOnce("beautyshroom.explosion"));
+            event.getController().setAnimation(new RawAnimation().playOnce("beautyshroom.explosion"));
         } else {
-            event.getController().setAnimation(new AnimationBuilder().loop("beautyshroom.idle"));
+            event.getController().setAnimation(new RawAnimation().loop("beautyshroom.idle"));
         }
         return PlayState.CONTINUE;
     }

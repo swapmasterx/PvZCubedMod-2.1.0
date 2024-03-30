@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.fog.magnetshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MagnetshroomEntityModel extends AnimatedGeoModel<MagnetshroomEntity> {
+public class MagnetshroomEntityModel extends GeoModel<MagnetshroomEntity> {
 
     @Override
     public Identifier getModelResource(MagnetshroomEntity object)

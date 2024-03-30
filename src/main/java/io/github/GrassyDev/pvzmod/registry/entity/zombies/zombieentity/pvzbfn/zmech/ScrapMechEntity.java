@@ -46,7 +46,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -55,14 +55,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Iterator;
 import java.util.List;
@@ -70,7 +70,7 @@ import java.util.List;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class ScrapMechEntity extends MachinePvZombieEntity implements IAnimatable {
+public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimatable {
 	private String controllerName = "walkingcontroller";
 
 
@@ -83,7 +83,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements IAnimatabl
 	private boolean isDisabled = false;
 	private int disableTicks = 60;
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	protected ImpEntity impEntity;
 
 	public ScrapMechEntity(EntityType<? extends ScrapMechEntity> entityType, World world) {
@@ -162,18 +162,18 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements IAnimatabl
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFrozen || this.isStunned) {
 			event.getController().setAnimationSpeed(0);
 		} else if (this.isIced) {
@@ -183,38 +183,38 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements IAnimatabl
 		}
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inDyingAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.ducky.explode"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.explode"));
 				event.getController().setAnimationSpeed(1);
 			} else if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.ducky.shoot"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.shoot"));
 			} else if (inAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.ducky.smash"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.smash"));
 			} else if (this.isDisabled && this.disableTicks > 0) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.ducky.stun"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.stun"));
 				event.getController().setAnimationSpeed(1);
 			} else if (this.isDisabled) {
-				event.getController().setAnimation(new AnimationBuilder().loop("scrapmech.ducky.stun.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("scrapmech.ducky.stun.idle"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("scrapmech.ducky"));
+				event.getController().setAnimation(new RawAnimation().loop("scrapmech.ducky"));
 			}
 		}
 		else {
 			if (inDyingAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.explode"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.explode"));
 				event.getController().setAnimationSpeed(1);
 			} else if (inLaunchAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.shoot"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.shoot"));
 			} else if (inAnimation) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.smash"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.smash"));
 			} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-				event.getController().setAnimation(new AnimationBuilder().loop("scrapmech.walk"));
+				event.getController().setAnimation(new RawAnimation().loop("scrapmech.walk"));
 			} else if (this.isDisabled && this.disableTicks > 0) {
-				event.getController().setAnimation(new AnimationBuilder().playOnce("scrapmech.stun"));
+				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.stun"));
 				event.getController().setAnimationSpeed(1);
 			} else if (this.isDisabled) {
-				event.getController().setAnimation(new AnimationBuilder().loop("scrapmech.stun.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("scrapmech.stun.idle"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("scrapmech.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("scrapmech.idle"));
 			}
 		}
         return PlayState.CONTINUE;

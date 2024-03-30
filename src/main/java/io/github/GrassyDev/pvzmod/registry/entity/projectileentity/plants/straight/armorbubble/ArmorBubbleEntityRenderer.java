@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.armorbubble;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ArmorBubbleEntityRenderer extends GeoProjectilesRenderer {
+public class ArmorBubbleEntityRenderer extends GeoEntityRenderer {
 
 	public ArmorBubbleEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ArmorBubbleEntityModel());

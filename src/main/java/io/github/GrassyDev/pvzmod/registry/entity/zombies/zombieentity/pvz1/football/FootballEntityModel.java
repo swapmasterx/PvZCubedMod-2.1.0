@@ -2,12 +2,12 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.foo
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.FootballVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class FootballEntityModel extends AnimatedGeoModel<FootballEntity> {
+public class FootballEntityModel extends GeoModel<FootballEntity> {
 
     @Override
 	public Identifier getModelResource(FootballEntity object)

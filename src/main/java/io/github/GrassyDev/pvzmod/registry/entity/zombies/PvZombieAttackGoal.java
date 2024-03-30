@@ -1,6 +1,5 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -14,12 +13,6 @@ public class PvZombieAttackGoal extends MeleeAttackGoal {
       super(pvzombie, speed, pauseWhenMobIdle);
       this.pvzombie = pvzombie;
    }
-
-   @Override
-	protected double getSquaredMaxAttackDistance(LivingEntity entity) {
-	   float f = (float) pvzombie.getAttributeBaseValue(ReachEntityAttributes.ATTACK_RANGE);
-	   return f * f;
-	}
 
    public void start() {
       super.start();

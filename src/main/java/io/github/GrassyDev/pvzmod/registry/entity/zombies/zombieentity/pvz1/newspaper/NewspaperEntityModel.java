@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.new
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.NewspaperVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class NewspaperEntityModel extends AnimatedGeoModel<NewspaperEntity> {
+public class NewspaperEntityModel extends GeoModel<NewspaperEntity> {
 
     @Override
     public Identifier getModelResource(NewspaperEntity object)

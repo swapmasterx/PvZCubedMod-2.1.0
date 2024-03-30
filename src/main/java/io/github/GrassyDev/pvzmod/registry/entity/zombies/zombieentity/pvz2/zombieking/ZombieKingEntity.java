@@ -40,38 +40,38 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.FROZEN;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class ZombieKingEntity extends PvZombieEntity implements IAnimatable {
+public class ZombieKingEntity extends PvZombieEntity implements GeoAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "walkingcontroller";
 
 	public int spawningTicks;
@@ -206,34 +206,34 @@ public class ZombieKingEntity extends PvZombieEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data) {
+	public void registerControllers(AnimatableManager data) {
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
 		data.addAnimationController(controller);
 	}
 
 	@Override
-	public AnimationFactory getFactory() {
+	public AnimatableInstanceCache getFactory() {
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (this.startSpawn) {
-				event.getController().setAnimation(new AnimationBuilder().loop("zombieking.fallingwater"));
+				event.getController().setAnimation(new RawAnimation().loop("zombieking.fallingwater"));
 			} else if (this.convertIs) {
-				event.getController().setAnimation(new AnimationBuilder().loop("zombieking.crowningwater"));
+				event.getController().setAnimation(new RawAnimation().loop("zombieking.crowningwater"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("zombieking.idlewater"));
+				event.getController().setAnimation(new RawAnimation().loop("zombieking.idlewater"));
 			}
 		}
 		else {
 			if (this.startSpawn) {
-				event.getController().setAnimation(new AnimationBuilder().loop("zombieking.falling"));
+				event.getController().setAnimation(new RawAnimation().loop("zombieking.falling"));
 			} else if (this.convertIs) {
-				event.getController().setAnimation(new AnimationBuilder().loop("zombieking.crowning"));
+				event.getController().setAnimation(new RawAnimation().loop("zombieking.crowning"));
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("zombieking.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("zombieking.idle"));
 			}
 		}
 		if (this.isFrozen || this.isStunned) {

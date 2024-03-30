@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GardenChallengeEntityModel extends AnimatedGeoModel<GardenChallengeEntity> {
+public class GardenChallengeEntityModel extends GeoModel<GardenChallengeEntity> {
 
     @Override
     public Identifier getModelResource(GardenChallengeEntity object)

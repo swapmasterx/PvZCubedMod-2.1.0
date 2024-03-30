@@ -45,7 +45,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -55,25 +55,25 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class FlagPokerEntity extends SummonerEntity implements IAnimatable {
+public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 
 	private String controllerName = "walkingcontroller";
 
     private boolean isAggro;
 
-	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 
     public FlagPokerEntity(EntityType<? extends FlagPokerEntity> entityType, World world) {
@@ -143,7 +143,7 @@ public class FlagPokerEntity extends SummonerEntity implements IAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimationData data)
+	public void registerControllers(AnimatableManager data)
 	{
 		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
 
@@ -151,14 +151,14 @@ public class FlagPokerEntity extends SummonerEntity implements IAnimatable {
 	}
 
 	@Override
-	public AnimationFactory getFactory()
+	public AnimatableInstanceCache getFactory()
 	{
 		return this.factory;
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new AnimationBuilder().loop("flagzombie.ducky"));
+			event.getController().setAnimation(new RawAnimation().loop("flagzombie.ducky"));
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
 			}
@@ -167,7 +167,7 @@ public class FlagPokerEntity extends SummonerEntity implements IAnimatable {
 			}
 		}else {
 			if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new AnimationBuilder().loop("flagzombie.walking"));
+					event.getController().setAnimation(new RawAnimation().loop("flagzombie.walking"));
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
 					}
@@ -178,7 +178,7 @@ public class FlagPokerEntity extends SummonerEntity implements IAnimatable {
 						event.getController().setAnimationSpeed(1.4);
 					}
 			} else {
-				event.getController().setAnimation(new AnimationBuilder().loop("flagzombie.idle"));
+				event.getController().setAnimation(new RawAnimation().loop("flagzombie.idle"));
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
 				} else if (this.isIced) {

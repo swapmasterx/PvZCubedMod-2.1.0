@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.rockobsta
 
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RockObstacleEntityModel extends AnimatedGeoModel<RockObstacleEntity> {
+public class RockObstacleEntityModel extends GeoModel<RockObstacleEntity> {
 
     @Override
     public Identifier getModelResource(RockObstacleEntity object)

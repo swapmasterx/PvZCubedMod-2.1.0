@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.metall
 
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MetalVehicleEntityModel extends AnimatedGeoModel<MetalVehicleEntity> {
+public class MetalVehicleEntityModel extends GeoModel<MetalVehicleEntity> {
 
 	@Override
 	public Identifier getModelResource(MetalVehicleEntity object)

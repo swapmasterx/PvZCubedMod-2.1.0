@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.breezeshroom;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BreezeshroomEntityModel extends AnimatedGeoModel<BreezeshroomEntity> {
+public class BreezeshroomEntityModel extends GeoModel<BreezeshroomEntity> {
 
     @Override
     public Identifier getModelResource(BreezeshroomEntity object)

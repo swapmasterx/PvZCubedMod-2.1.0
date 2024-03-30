@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchall
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.challenge.ChallengeWeather;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WeatherTileModel extends AnimatedGeoModel<WeatherTile> {
+public class WeatherTileModel extends GeoModel<WeatherTile> {
 
     @Override
     public Identifier getModelResource(WeatherTile object)

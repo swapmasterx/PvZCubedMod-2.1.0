@@ -36,7 +36,7 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -46,7 +46,7 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -1367,7 +1367,7 @@ public abstract class PlantEntity extends GolemEntity {
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public abstract static class VineEntity extends PlantEntity implements IAnimatable {
+	public abstract static class VineEntity extends PlantEntity implements GeoAnimatable {
 
 		public VineEntity(EntityType<? extends VineEntity> entityType, World world) {
 			super(entityType, world);

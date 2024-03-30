@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.coconut;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CoconutEntityModel extends AnimatedGeoModel<CoconutEntity> {
+public class CoconutEntityModel extends GeoModel<CoconutEntity> {
 
     @Override
     public Identifier getModelResource(CoconutEntity object)

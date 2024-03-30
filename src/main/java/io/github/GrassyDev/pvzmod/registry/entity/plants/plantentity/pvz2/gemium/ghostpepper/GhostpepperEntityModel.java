@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemium.ghostpepper;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GhostpepperEntityModel extends AnimatedGeoModel<GhostpepperEntity> {
+public class GhostpepperEntityModel extends GeoModel<GhostpepperEntity> {
 
     @Override
     public Identifier getModelResource(GhostpepperEntity object)

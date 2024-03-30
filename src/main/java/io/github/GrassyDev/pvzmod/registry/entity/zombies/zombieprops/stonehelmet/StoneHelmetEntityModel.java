@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.stonehelmet;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class StoneHelmetEntityModel extends AnimatedGeoModel<StoneHelmetEntity> {
+public class StoneHelmetEntityModel extends GeoModel<StoneHelmetEntity> {
 
 	@Override
 	public Identifier getModelResource(StoneHelmetEntity object)

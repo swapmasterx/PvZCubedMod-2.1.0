@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbe
 
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class SmooshProjEntityRenderer extends GeoProjectilesRenderer {
+public class SmooshProjEntityRenderer extends GeoEntityRenderer {
 
 	public SmooshProjEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new SmooshProjEntityModel());

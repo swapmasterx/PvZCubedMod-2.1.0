@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.plantobstacle;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class WoodObstacleEntityModel extends AnimatedGeoModel<WoodObstacleEntity> {
+public class WoodObstacleEntityModel extends GeoModel<WoodObstacleEntity> {
 
     @Override
     public Identifier getModelResource(WoodObstacleEntity object)

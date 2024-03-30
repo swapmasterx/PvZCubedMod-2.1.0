@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.soundwave;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SoundwaveModel extends AnimatedGeoModel<SoundwaveEntity> {
+public class SoundwaveModel extends GeoModel<SoundwaveEntity> {
 
     @Override
     public Identifier getModelResource(SoundwaveEntity object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.smarty.admiralnavybean;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class AdmiralNavyBeanEntityModel extends AnimatedGeoModel<AdmiralNavyBeanEntity> {
+public class AdmiralNavyBeanEntityModel extends GeoModel<AdmiralNavyBeanEntity> {
 
     @Override
     public Identifier getModelResource(AdmiralNavyBeanEntity object)

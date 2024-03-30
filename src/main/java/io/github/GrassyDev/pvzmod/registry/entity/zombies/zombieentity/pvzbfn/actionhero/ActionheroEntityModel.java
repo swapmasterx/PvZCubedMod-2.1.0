@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.actionhero;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ActionheroEntityModel extends AnimatedGeoModel<ActionheroEntity> {
+public class ActionheroEntityModel extends GeoModel<ActionheroEntity> {
 
     @Override
     public Identifier getModelResource(ActionheroEntity object)

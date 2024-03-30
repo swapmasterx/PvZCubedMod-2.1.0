@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.locococo;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class LocoCocoEntityModel extends AnimatedGeoModel<LocoCocoEntity> {
+public class LocoCocoEntityModel extends GeoModel<LocoCocoEntity> {
 
     @Override
     public Identifier getModelResource(LocoCocoEntity object)

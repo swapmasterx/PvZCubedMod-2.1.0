@@ -7,11 +7,11 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 import java.util.Map;
 
-public class MetalHelmetProjEntityRenderer extends GeoProjectilesRenderer {
+public class MetalHelmetProjEntityRenderer extends GeoEntityRenderer {
 
 	public static final Map<MetalHelmetVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(MetalHelmetVariants.class), (map) -> {

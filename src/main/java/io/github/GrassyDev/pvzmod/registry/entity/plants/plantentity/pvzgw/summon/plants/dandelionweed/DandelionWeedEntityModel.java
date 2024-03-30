@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.summon.plants.dandelionweed;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class DandelionWeedEntityModel extends AnimatedGeoModel<DandelionWeedEntity> {
+public class DandelionWeedEntityModel extends GeoModel<DandelionWeedEntity> {
 
     @Override
     public Identifier getModelResource(DandelionWeedEntity object)

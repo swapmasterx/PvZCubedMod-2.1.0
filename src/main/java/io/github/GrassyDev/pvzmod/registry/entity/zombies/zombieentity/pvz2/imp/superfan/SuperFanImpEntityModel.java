@@ -2,12 +2,12 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.imp
 
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.ImpVariants;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class SuperFanImpEntityModel extends AnimatedGeoModel<SuperFanImpEntity> {
+public class SuperFanImpEntityModel extends GeoModel<SuperFanImpEntity> {
 
     @Override
     public Identifier getModelResource(SuperFanImpEntity object)

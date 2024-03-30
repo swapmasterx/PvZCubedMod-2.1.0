@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.snowtile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SnowTileModel extends AnimatedGeoModel<SnowTile> {
+public class SnowTileModel extends GeoModel<SnowTile> {
 
     @Override
     public Identifier getModelResource(SnowTile object)

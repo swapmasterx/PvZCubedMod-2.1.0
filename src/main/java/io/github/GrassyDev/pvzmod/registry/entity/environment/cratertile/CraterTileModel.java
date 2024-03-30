@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.cratertile;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CraterTileModel extends AnimatedGeoModel<CraterTile> {
+public class CraterTileModel extends GeoModel<CraterTile> {
 
     @Override
     public Identifier getModelResource(CraterTile object)

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.cabbagepult;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class CabbagepultEntityModel extends AnimatedGeoModel<CabbagepultEntity> {
+public class CabbagepultEntityModel extends GeoModel<CabbagepultEntity> {
 
     @Override
     public Identifier getModelResource(CabbagepultEntity object)

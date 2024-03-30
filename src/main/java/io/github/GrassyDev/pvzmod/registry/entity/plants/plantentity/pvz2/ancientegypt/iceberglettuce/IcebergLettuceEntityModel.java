@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.ancientegypt.iceberglettuce;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class IcebergLettuceEntityModel extends AnimatedGeoModel<IcebergLettuceEntity> {
+public class IcebergLettuceEntityModel extends GeoModel<IcebergLettuceEntity> {
 
     @Override
     public Identifier getModelResource(IcebergLettuceEntity object)

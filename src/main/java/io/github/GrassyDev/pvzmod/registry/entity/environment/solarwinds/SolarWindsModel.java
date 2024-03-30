@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.solarwinds;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SolarWindsModel extends AnimatedGeoModel<SolarWinds> {
+public class SolarWindsModel extends GeoModel<SolarWinds> {
 
     @Override
     public Identifier getModelResource(SolarWinds object)

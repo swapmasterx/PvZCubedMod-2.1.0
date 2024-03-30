@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.card;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingCardEntityModel extends AnimatedGeoModel<ShootingCardEntity> {
+public class ShootingCardEntityModel extends GeoModel<ShootingCardEntity> {
 
     @Override
     public Identifier getModelResource(ShootingCardEntity object)

@@ -2,9 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spike
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
-import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingIceSpikeEntityRenderer extends GeoProjectilesRenderer {
+public class ShootingIceSpikeEntityRenderer extends GeoEntityRenderer {
 
 	public ShootingIceSpikeEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingIcespikeEntityModel());

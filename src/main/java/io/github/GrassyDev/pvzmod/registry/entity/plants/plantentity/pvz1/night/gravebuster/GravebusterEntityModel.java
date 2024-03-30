@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.gravebuster;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GravebusterEntityModel extends AnimatedGeoModel<GravebusterEntity> {
+public class GravebusterEntityModel extends GeoModel<GravebusterEntity> {
 
     @Override
     public Identifier getModelResource(GravebusterEntity object)
