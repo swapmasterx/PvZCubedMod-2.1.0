@@ -64,8 +64,6 @@ public class PvZCubed implements ModInitializer {
 	public static final RegistryEntryAttachment<EntityType<?>, String> PLANT_TYPE =
 			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "plant_type")).build();
 
-	public static final DamageSource HYPNO_DAMAGE = new HypnoDamage().setHypnoDamage();
-	public static final DamageSource LIGHTNING_DAMAGE = new LightningDamage().setLightningDamage();
 
 	public static final StatusEffect ICE = new Ice();
 	public static final StatusEffect FROZEN = new Frozen();

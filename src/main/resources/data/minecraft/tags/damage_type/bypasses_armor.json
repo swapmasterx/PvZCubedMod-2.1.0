@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "pvzmod:electricdamage",
+    "pvzmod:hypnodamage"
+  ]
+}
