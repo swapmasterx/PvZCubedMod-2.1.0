@@ -1,6 +1,5 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.oc.pumpkincar;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
@@ -33,7 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -45,6 +44,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -55,6 +55,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import java.util.List;
@@ -193,8 +194,7 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoAnimatab
 	}
 
 	public static DefaultAttributeContainer.Builder createPumpkinCarAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -223,7 +223,7 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoAnimatab
 	@Override
 	public void onDeath(DamageSource source) {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
+			BlockPos blockPos = this.getBlockPos().add((int) this.getX(), 0, (int) this.getZ());
 			ImpEntity zombie = (ImpEntity) PvZEntity.CINDERELLAIMP.create(getWorld());
 			zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 			zombie.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

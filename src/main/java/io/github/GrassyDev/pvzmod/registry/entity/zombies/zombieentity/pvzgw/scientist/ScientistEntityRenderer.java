@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzgw.scientist;
 
-import net.minecraft.client.render.VertexConsumer;
+
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -16,7 +16,8 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import software.bernie.geckolib3.geo.render.built.GeoModel;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 /*

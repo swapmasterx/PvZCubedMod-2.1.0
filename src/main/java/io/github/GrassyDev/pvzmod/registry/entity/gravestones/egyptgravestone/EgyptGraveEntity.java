@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.gravestones.egyptgravestone;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -51,6 +51,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -61,6 +62,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import java.util.Objects;
@@ -224,8 +226,8 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createEgyptGraveAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.egyptGraveH());
@@ -251,18 +253,18 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!world.getBlockState(pos).getMaterial().isLiquid() &&
+					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
 					world.toServerWorld().getTime() > 48000  &&
 					pos.getY() > 50 &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!world.getBlockState(pos).getMaterial().isLiquid() &&
+					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
 					world.toServerWorld().getTime() > 48000 &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}

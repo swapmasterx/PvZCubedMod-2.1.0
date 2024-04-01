@@ -48,6 +48,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -58,6 +59,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import java.util.Objects;
@@ -253,20 +255,20 @@ public class RoofGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!world.getBlockState(pos).isAir() &&
+					!getWorld().getBlockState(pos).isAir() &&
 					world.toServerWorld().getTime() > 48000 &&
 					pos.getY() > 50 &&
 					getWorld().getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!world.getBlockState(pos).isAir() &&
+					!getWorld().getBlockState(pos).isAir() &&
 					world.toServerWorld().getTime() > 42000 &&
 					getWorld().getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}

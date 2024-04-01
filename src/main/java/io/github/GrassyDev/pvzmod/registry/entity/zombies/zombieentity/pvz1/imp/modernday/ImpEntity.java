@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.imp.modernday;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
@@ -44,7 +45,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -62,6 +63,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -226,7 +228,7 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createCrsytalShoeProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			CrystalHelmetEntity propentity = new CrystalHelmetEntity(PvZEntity.CRYSTALSHOEGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -257,7 +259,7 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 		impListHypno.add(PvZEntity.CINDERELLAIMPHYPNO);
 		EntityType<?> impEntity = impList.get(random.range(0, impList.size() - 1));
 		EntityType<?> impEntityHypno = impListHypno.get(random.range(0, impList.size() - 1));
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			GeneralPvZombieEntity imp = null;
 			if (this.getHypno()){
 				imp = (GeneralPvZombieEntity) impEntityHypno.create(getWorld());
@@ -452,17 +454,17 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 			if (this.getHypno()) {
 				if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 15);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this, this), 15);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 15);
+						livingEntity.damage(getDamageSources().explosion(this, this), 15);
 					}
 				}
 			} else {
 				if (livingEntity instanceof PlantEntity || (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null && livingEntity instanceof GeneralPvZombieEntity) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 15);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this, this), 15);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 15);
+						livingEntity.damage(getDamageSources().explosion(this, this), 15);
 					}
 				}
 			}
@@ -522,7 +524,7 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 				list1.add(plantEntity);
 			}
 		}
-		if (!list1.isEmpty() && !this.hasStatusEffect(PvZCubed.BOUNCED) && !this.onGround && !this.isInsideWaterOrBubbleColumn()){
+		if (!list1.isEmpty() && !this.hasStatusEffect(PvZCubed.BOUNCED) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
 			this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 			this.setTarget(list1.get(0));
@@ -651,8 +653,8 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createImpAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.26D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -660,8 +662,8 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
     }
 
 	public static DefaultAttributeContainer.Builder createScrapImpAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.26D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -669,8 +671,8 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createImpThrowAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -678,8 +680,8 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createImpDragonAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -687,8 +689,8 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createBassImpAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -696,8 +698,8 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createCinderellaImpAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -830,7 +832,7 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 				livingEntity = (LivingEntity)source.getAttacker();
 			}
 
-			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
+			if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
 				ImpEntity hypnotizedZombie = (ImpEntity) hypnoType.create(getWorld());
@@ -876,23 +878,25 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 		}
 	}
 
-	public boolean onKilledOther(ServerWorld serverWorld, LivingEntity livingEntity) {
-		super.onKilledOther(serverWorld, livingEntity);
-		boolean bl = super.onKilledOther(serverWorld, livingEntity);
-		if ((serverWorld.getDifficulty() == Difficulty.NORMAL || serverWorld.getDifficulty() == Difficulty.HARD) && livingEntity instanceof VillagerEntity) {
-			if (serverWorld.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
+	public boolean killedEntity(ServerWorld world, LivingEntity entity) {
+		boolean bl = super.killedEntity(world, entity);
+		if ((world.getDifficulty() == Difficulty.NORMAL || world.getDifficulty() == Difficulty.HARD) && entity instanceof VillagerEntity villagerEntity) {
+			if (world.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return bl;
 			}
 
-			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
-			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
-			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
-			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
-			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
-			zombieVillagerEntity.setXp(villagerEntity.getExperience());
-			if (!this.isSilent()) {
-				serverWorld.syncWorldEvent((PlayerEntity) null, 1026, this.getBlockPos(), 0);
+			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
+			if (zombieVillagerEntity != null) {
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
+				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
+				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				zombieVillagerEntity.setXp(villagerEntity.getExperience());
+				if (!this.isSilent()) {
+					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);
+				}
+
+				bl = false;
 			}
 		}
 

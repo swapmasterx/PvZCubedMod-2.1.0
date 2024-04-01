@@ -1,10 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.browncoat.modernday;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
@@ -50,7 +50,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -65,6 +65,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -75,6 +76,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import java.nio.charset.StandardCharsets;
@@ -329,7 +331,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createConeheadProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			PlasticHelmetEntity propentity = new PlasticHelmetEntity(PvZEntity.CONEHEADGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -338,7 +340,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createPokerPawnProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			PlasticHelmetEntity propentity = new PlasticHelmetEntity(PvZEntity.POKERPAWNGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -347,7 +349,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createPokerKnightProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			PlasticHelmetEntity propentity = new PlasticHelmetEntity(PvZEntity.POKERKNIGHTGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -356,7 +358,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createPokerTowerProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			PlasticHelmetEntity propentity = new PlasticHelmetEntity(PvZEntity.POKERTOWERGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -365,7 +367,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createPokerBishopProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			PlasticHelmetEntity propentity = new PlasticHelmetEntity(PvZEntity.POKERBISHOPGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -374,7 +376,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createBucketProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.BUCKETGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -383,7 +385,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createHelmetProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.HELMETGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -392,7 +394,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public ZombiePropEntity createKnightProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.KNIGHTGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -404,7 +406,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createBrickProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			StoneHelmetEntity propentity = new StoneHelmetEntity(PvZEntity.BRICKGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -413,7 +415,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createHoloProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			CrystalHelmetEntity propentity = new CrystalHelmetEntity(PvZEntity.HOLOGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -422,7 +424,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createPyramidProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			StoneHelmetEntity propentity = new StoneHelmetEntity(PvZEntity.PYRAMIDGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -431,7 +433,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createTowerProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			StoneHelmetEntity propentity = new StoneHelmetEntity(PvZEntity.TOWERGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -440,7 +442,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createBowlProp() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			StoneHelmetEntity propentity = new StoneHelmetEntity(PvZEntity.BOWLGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -450,7 +452,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 
 	public void createShield() {
 		MetalShieldEntity metalShieldEntity = new MetalShieldEntity(PvZEntity.SCREENDOORSHIELD, this.getWorld());
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld()instanceof ServerWorld serverWorld) {
 			metalShieldEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 		}
 		metalShieldEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -458,7 +460,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createPaperShield(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			NewspaperShieldEntity newspaperShieldEntity = new NewspaperShieldEntity(PvZEntity.BOOKSHIELD, this.getWorld());
 			newspaperShieldEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
 			newspaperShieldEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -467,7 +469,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createSergeantShield() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalShieldEntity metalShieldEntity = new MetalShieldEntity(PvZEntity.SERGEANTSHIELDGEAR, this.getWorld());
 			metalShieldEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			metalShieldEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -476,7 +478,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createObstacle() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalObstacleEntity metalObstacleEntity = new MetalObstacleEntity(PvZEntity.TRASHCANBIN, this.getWorld());
 			metalObstacleEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			metalObstacleEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -758,28 +760,28 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 
 		EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
 		if (this instanceof MummyEntity) {
-			if (pyramidPropEntity == null &&this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
+			if (pyramidPropEntity == null &&this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
 					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
 					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
 					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 			} else if (pyramidPropEntity != null) {
-				if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+				if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
 					assert maxSpeedAttribute != null;
 					maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.03));
 				}
 			}
 		}
 		else if (this instanceof SargeantEntity && !this.getVariant().equals(BrowncoatVariants.BOOKBURN) && !this.getVariant().equals(BrowncoatVariants.BOOKBURNHYPNO)) {
-			if (sergeantShieldEntity == null && this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
+			if (sergeantShieldEntity == null && this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
 					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
 					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
 					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 			} else if (sergeantShieldEntity != null)  {
-				if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+				if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
 					assert maxSpeedAttribute != null;
 					maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.03));
 				}
@@ -787,14 +789,14 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 		}
 		else {
 			if (zombieObstacleEntity.isEmpty() &&
-					this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
+					this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
 					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
 					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
 					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 			} else if (zombieObstacleEntity.isPresent())  {
-				if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+				if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
 					assert maxSpeedAttribute != null;
 					maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.03));
 				}
@@ -803,7 +805,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	@Override
-	public void updatePassengerPosition(Entity passenger) {
+	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (this.hasPassenger(passenger) && passenger instanceof ZombieObstacleEntity) {
 			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
 			float f = 0.9F;
@@ -891,8 +893,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createBrowncoatAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -900,8 +901,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
     }
 
 	public static DefaultAttributeContainer.Builder createSummerAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -1045,7 +1045,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
                 livingEntity = (LivingEntity)source.getAttacker();
             }
 
-            if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
+            if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this.getHypno())) {
 				checkHypno();
                 this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
                 BrowncoatEntity hypnotizedZombie = (BrowncoatEntity) hypnoType.create(getWorld());
@@ -1079,23 +1079,25 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
         }
     }
 
-	public boolean onKilledOther(ServerWorld serverWorld, LivingEntity livingEntity) {
-		super.onKilledOther(serverWorld, livingEntity);
-		boolean bl = super.onKilledOther(serverWorld, livingEntity);
-		if ((serverWorld.getDifficulty() == Difficulty.NORMAL || serverWorld.getDifficulty() == Difficulty.HARD) && livingEntity instanceof VillagerEntity) {
-			if (serverWorld.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
+	public boolean killedEntity(ServerWorld world, LivingEntity entity) {
+		boolean bl = super.killedEntity(world, entity);
+		if ((world.getDifficulty() == Difficulty.NORMAL || world.getDifficulty() == Difficulty.HARD) && entity instanceof VillagerEntity villagerEntity) {
+			if (world.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return bl;
 			}
 
-			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
-			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
-			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
-			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
-			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
-			zombieVillagerEntity.setXp(villagerEntity.getExperience());
-			if (!this.isSilent()) {
-				serverWorld.syncWorldEvent((PlayerEntity) null, 1026, this.getBlockPos(), 0);
+			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
+			if (zombieVillagerEntity != null) {
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
+				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
+				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				zombieVillagerEntity.setXp(villagerEntity.getExperience());
+				if (!this.isSilent()) {
+					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);
+				}
+
+				bl = false;
 			}
 		}
 

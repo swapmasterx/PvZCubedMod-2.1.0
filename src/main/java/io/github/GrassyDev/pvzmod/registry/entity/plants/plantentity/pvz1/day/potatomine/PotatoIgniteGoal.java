@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.p
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import net.minecraft.entity.attribute.EntityAttributes;
 
 public class PotatoIgniteGoal extends Goal {

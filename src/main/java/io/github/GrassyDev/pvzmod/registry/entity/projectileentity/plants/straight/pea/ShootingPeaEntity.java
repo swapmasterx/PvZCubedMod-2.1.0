@@ -47,6 +47,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Iterator;
 import java.util.List;
@@ -186,7 +187,7 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoAnimata
 				shootingFlamingPeaEntity.canHitFlying = this.canHitFlying;
 				shootingFlamingPeaEntity.lowProfile = this.lowProf;
 				shootingFlamingPeaEntity.damageMultiplier = damageMultiplier;
-				world.spawnEntity(shootingFlamingPeaEntity);
+				getWorld().spawnEntity(shootingFlamingPeaEntity);
 				this.remove(RemovalReason.DISCARDED);
 			}
 		}
@@ -255,10 +256,10 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoAnimata
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.strai
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
@@ -43,6 +44,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 
@@ -192,13 +194,13 @@ public class HypnoProjEntity extends PvZProjectileEntity implements GeoAnimatabl
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 				}
 				if (random <= 0.1) {
-					entity.damage(PvZCubed.HYPNO_DAMAGE, 0f);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

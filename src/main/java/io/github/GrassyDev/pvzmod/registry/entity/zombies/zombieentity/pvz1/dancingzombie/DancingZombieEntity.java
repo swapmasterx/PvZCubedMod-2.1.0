@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -28,7 +29,7 @@ import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -51,7 +52,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -65,6 +66,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -75,6 +77,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import java.nio.charset.StandardCharsets;
@@ -295,14 +298,14 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
 			}
 		}
 		EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-		if (this.dancing && this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
+		if (this.dancing && this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
 				!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
 				!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
 				!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
 			assert maxSpeedAttribute != null;
 			maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 		} else if (!this.dancing) {
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.addPersistentModifier(createSpeedModifier(0.11));
 			}
@@ -357,8 +360,8 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
 	}
 
 	public static DefaultAttributeContainer.Builder createDancingZombieAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.10D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -408,7 +411,7 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
 				livingEntity = (LivingEntity)source.getAttacker();
 			}
 
-			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
+			if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this.getHypno())) {
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
 				DancingZombieEntity hypnotizedZombie = (DancingZombieEntity) PvZEntity.DANCINGZOMBIEHYPNO.create(getWorld());
 				hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
@@ -441,23 +444,25 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
 		}
 	}
 
-	public boolean onKilledOther(ServerWorld serverWorld, LivingEntity livingEntity) {
-		super.onKilledOther(serverWorld, livingEntity);
-		boolean bl = super.onKilledOther(serverWorld, livingEntity);
-		if ((serverWorld.getDifficulty() == Difficulty.NORMAL || serverWorld.getDifficulty() == Difficulty.HARD) && livingEntity instanceof VillagerEntity) {
-			if (serverWorld.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
+	public boolean killedEntity(ServerWorld world, LivingEntity entity) {
+		boolean bl = super.killedEntity(world, entity);
+		if ((world.getDifficulty() == Difficulty.NORMAL || world.getDifficulty() == Difficulty.HARD) && entity instanceof VillagerEntity villagerEntity) {
+			if (world.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return bl;
 			}
 
-			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
-			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
-			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
-			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
-			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
-			zombieVillagerEntity.setXp(villagerEntity.getExperience());
-			if (!this.isSilent()) {
-				serverWorld.syncWorldEvent((PlayerEntity) null, 1026, this.getBlockPos(), 0);
+			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
+			if (zombieVillagerEntity != null) {
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
+				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
+				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				zombieVillagerEntity.setXp(villagerEntity.getExperience());
+				if (!this.isSilent()) {
+					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);
+				}
+
+				bl = false;
 			}
 		}
 
@@ -572,7 +577,7 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
 
             for(int b = 0; b < 1; ++b) { // 1 backup
                 BlockPos blockPos = DancingZombieEntity.this.getBlockPos().add(-1, 0, 0);
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
 					blockPos = DancingZombieEntity.this.getBlockPos();
 				}
                 BackupDancerEntity backupDancerEntity = (BackupDancerEntity) backup.create(DancingZombieEntity.this.getWorld());
@@ -588,7 +593,7 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
             }
             for(int p = 0; p < 1; ++p) { // 1 backup
                 BlockPos blockPos = DancingZombieEntity.this.getBlockPos().add(0, 0, +1);
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
 					blockPos = DancingZombieEntity.this.getBlockPos();
 				}
                 BackupDancerEntity backupDancerEntity = (BackupDancerEntity)backup.create(DancingZombieEntity.this.getWorld());
@@ -604,7 +609,7 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
             }
             for(int d = 0; d < 1; ++d) { // 1 backup
                 BlockPos blockPos = DancingZombieEntity.this.getBlockPos().add(+1, 0, 0);
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
 					blockPos = DancingZombieEntity.this.getBlockPos();
 				}
                 BackupDancerEntity backupDancerEntity = (BackupDancerEntity)backup.create(DancingZombieEntity.this.getWorld());
@@ -620,7 +625,7 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
             }
             for(int t = 0; t < 1; ++t) { // 1 backup
                 BlockPos blockPos = DancingZombieEntity.this.getBlockPos().add(0, 0, -1);
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
 					blockPos = DancingZombieEntity.this.getBlockPos();
 				}
                 BackupDancerEntity backupDancerEntity = (BackupDancerEntity)backup.create(DancingZombieEntity.this.getWorld());

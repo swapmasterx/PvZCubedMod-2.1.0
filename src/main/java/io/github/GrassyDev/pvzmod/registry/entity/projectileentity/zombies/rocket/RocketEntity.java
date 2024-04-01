@@ -46,6 +46,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Iterator;
 import java.util.List;
@@ -227,10 +228,10 @@ public class RocketEntity extends PvZProjectileEntity implements GeoAnimatable {
 									!(livingEntity instanceof ZombieShieldEntity) &&
 									livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 								float damageSplash2 = damageSplash - livingEntity.getHealth();
-								livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash2);
+								livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash2);
 							} else {
-								livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
+								livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
 							}
 							if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 								livingEntity.setOnFireFor(4);
@@ -258,7 +259,7 @@ public class RocketEntity extends PvZProjectileEntity implements GeoAnimatable {
 			} else {
 				if (!getWorld().isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
 					float damageSplash = PVZCONFIG.nestedProjDMG.rocketDMG() * damageMultiplier;
-					livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 				}

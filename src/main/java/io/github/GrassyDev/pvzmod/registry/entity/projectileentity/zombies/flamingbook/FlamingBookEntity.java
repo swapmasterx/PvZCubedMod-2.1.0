@@ -46,6 +46,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Iterator;
 import java.util.UUID;
@@ -58,10 +59,18 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 	private LivingEntity target;
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
+	}
 
-		AnimatableManager.addAnimationController(controller);
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	protected void initDataTracker() {
@@ -77,11 +86,6 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.dataTracker.set(DATA_ID_TYPE_COUNT, nbt.getBoolean("Fire"));
-	}
-
-	@Override
-	public AnimatableInstanceCache getFactory() {
-		return this.factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -279,10 +283,10 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 							}
 							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
 								((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
@@ -340,10 +344,10 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 							}
 							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
 								((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);

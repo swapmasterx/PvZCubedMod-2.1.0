@@ -45,6 +45,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Iterator;
 import java.util.UUID;
@@ -180,10 +181,10 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
@@ -210,10 +211,10 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity1 && !(generalPvZombieEntity1.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity1.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity1.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
@@ -221,7 +222,7 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 				if (entity instanceof LilyPadEntity && entity.hasPassengers()) {
 
 				} else if (!getWorld().isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying")) && !(entity.getVehicle() instanceof BubblePadEntity)) {
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 					break;

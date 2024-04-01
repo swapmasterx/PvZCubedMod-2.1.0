@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gargantuar.modernday;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
@@ -50,7 +51,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -69,6 +70,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Iterator;
 import java.util.List;
@@ -488,7 +490,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 			if (this.getHypno()){
 				impEntity.setHypno(IsHypno.TRUE);
 			}
-			impEntity.initialize((ServerWorldAccess) world, getWorld().getLocalDifficulty(impEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+			impEntity.initialize((ServerWorldAccess) getWorld(), getWorld().getLocalDifficulty(impEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 			impEntity.setRainbowTag(Rainbow.TRUE);
 			impEntity.rainbowTicks = 40;
 			if (impEntity instanceof SuperFanImpEntity){
@@ -561,7 +563,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 			}
 		}
 		if (deathTicks == 1){
-			onDeath(DamageSource.GENERIC);
+			onDeath(PvZDamageTypes.of(getWorld(), PvZDamageTypes.SELF_TERMINATE_DAMAGE));
 		}
 		super.tick();
 		if (this.getVariant().equals(GargantuarVariants.GARGOLITH) && this.getAttacking() == null && !(this.getHypno())){
@@ -638,7 +640,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 					this.playSound(PvZSounds.GARGANTUARSMASHEVENT, 1F, 1.0F);
 				} else if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-					world.sendEntityStatus(this, (byte) 107);
+					getWorld().sendEntityStatus(this, (byte) 107);
 					this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 				}
 				if (getTarget() != null) {
@@ -709,7 +711,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	@Override
-	public void updatePassengerPosition(Entity passenger) {
+	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (passenger instanceof PlayerEntity){
 			passenger.setPosition(this.getX(), this.getY() + 3.25, this.getZ());
 		}
@@ -719,7 +721,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.DEFENSIVEENDGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -736,8 +738,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createGargantuarAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -745,8 +747,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
     }
 
 	public static DefaultAttributeContainer.Builder createMummyGargantuarAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -754,8 +756,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createDefensiveendAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -763,8 +765,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createUnicornGargantuarAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -772,8 +774,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createGargolithAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -817,7 +819,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 					type = PvZEntity.UNDYINGPHARAOHHYPNO;
 				}
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
-					BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
+					BlockPos blockPos = this.getBlockPos().add((int) this.getX(), 0, (int) this.getZ());
 					PharaohEntity zombie = (PharaohEntity) type.create(getWorld());
 					zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 					zombie.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -866,7 +868,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 				livingEntity = (LivingEntity)source.getAttacker();
 			}
 
-			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
+			if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
 				GargantuarEntity hypnotizedZombie = (GargantuarEntity) hypnoType.create(getWorld());

@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2c.browncoat.fairytale;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.BrowncoatVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.PokerVariants;
@@ -30,6 +30,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -40,6 +41,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.AnimationState;
@@ -64,53 +66,53 @@ public class PokerEntity extends BrowncoatEntity {
 	@Override
 	public void tick() {
 		if (resetAttribute){
-			if (this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, POKER_SPEED_UUID)) {
+			if (this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, POKER_SPEED_UUID)) {
 				EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
 				maxSpeedAttribute.removeModifier(POKER_SPEED_UUID);
 			}
-			if (this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
+			if (this.getAttributes().hasModifier(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
 				EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 				maxHealthAttribute.removeModifier(POKER_HEALTH_UUID);
 			}
-			if (this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
+			if (this.getAttributes().hasModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
 				EntityAttributeInstance maxAttackAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
 				maxAttackAttribute.removeModifier(POKER_ATTACK_UUID);
 			}
 			resetAttribute = false;
 		}
 		if (this.getPoker().equals(PokerVariants.SPADE)){
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, POKER_SPEED_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, POKER_SPEED_UUID)) {
 				EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
 				maxSpeedAttribute.addPersistentModifier(createSpeedModifier(0.04));
 			}
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
 				EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 				maxHealthAttribute.addPersistentModifier(createHealthModifier( PVZCONFIG.nestedZombieHealth.pokerspadeH() - PVZCONFIG.nestedZombieHealth.pokerheartH()));
 				this.setHealth(this.getMaxHealth());
 			}
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
 				EntityAttributeInstance maxAttackAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
 				maxAttackAttribute.addPersistentModifier(createAttackModifier( 6));
 			}
 		}
 		if (this.getPoker().equals(PokerVariants.DIAMOND)){
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
 				EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 				maxHealthAttribute.addPersistentModifier(createHealthModifier( PVZCONFIG.nestedZombieHealth.pokerdiamondH() - PVZCONFIG.nestedZombieHealth.pokerheartH()));
 				this.setHealth(this.getMaxHealth());
 			}
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
 				EntityAttributeInstance maxAttackAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
 				maxAttackAttribute.addPersistentModifier(createAttackModifier( 6));
 			}
 		}
 		if (this.getPoker().equals(PokerVariants.CLUB)){
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MAX_HEALTH, POKER_HEALTH_UUID)) {
 				EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 				maxHealthAttribute.addPersistentModifier(createHealthModifier( PVZCONFIG.nestedZombieHealth.pokerclubH() - PVZCONFIG.nestedZombieHealth.pokerheartH()));
 				this.setHealth(this.getMaxHealth());
 			}
-			if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
+			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, POKER_ATTACK_UUID)) {
 				EntityAttributeInstance maxAttackAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
 				maxAttackAttribute.addPersistentModifier(createAttackModifier( 12));
 			}
@@ -124,12 +126,12 @@ public class PokerEntity extends BrowncoatEntity {
 		if (!this.getWorld().isClient()) {
 			if (this.getVariant().equals(BrowncoatVariants.POKERPAWN) || this.getVariant().equals(BrowncoatVariants.POKERPAWNHYPNO)) {
 				if (pawnTicks <= 0) {
-					if (this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
+					if (this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
 						assert maxSpeedAttribute != null;
 						maxSpeedAttribute.removeModifier(TEMP_SPEED_UUID);
 					}
 				} else {
-					if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
+					if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
 						assert maxSpeedAttribute != null;
 						maxSpeedAttribute.addPersistentModifier(createTempSpeedModifier(0.04));
 					}
@@ -146,7 +148,7 @@ public class PokerEntity extends BrowncoatEntity {
 					flyDelay = 10;
 					this.setFlying(Flying.TRUE);
 				}
-				if ((this.onGround || isInsideWaterOrBubbleColumn()) && flyDelay <= 0){
+				if ((this.isOnGround() || isInsideWaterOrBubbleColumn()) && flyDelay <= 0){
 					this.setFlying(Flying.FALSE);
 				}
 			}
@@ -160,20 +162,20 @@ public class PokerEntity extends BrowncoatEntity {
 					}
 				}
 				if (stop) {
-					if (this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
+					if (this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
 						assert maxSpeedAttribute != null;
 						maxSpeedAttribute.removeModifier(TEMP_SPEED_UUID);
 					}
-					if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID2)) {
+					if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID2)) {
 						assert maxSpeedAttribute != null;
 						maxSpeedAttribute.addPersistentModifier(createTempSpeed2Modifier(-0.02));
 					}
 				} else {
-					if (this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID2)) {
+					if (this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID2)) {
 						assert maxSpeedAttribute != null;
 						maxSpeedAttribute.removeModifier(TEMP_SPEED_UUID2);
 					}
-					if (!this.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
+					if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, TEMP_SPEED_UUID)) {
 						assert maxSpeedAttribute != null;
 						maxSpeedAttribute.addPersistentModifier(createTempSpeedModifier(0.04));
 					}
@@ -320,8 +322,8 @@ public class PokerEntity extends BrowncoatEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createPokerHeartAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -329,8 +331,8 @@ public class PokerEntity extends BrowncoatEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createPokerSpadeAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -338,8 +340,8 @@ public class PokerEntity extends BrowncoatEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createPokerClubAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 18.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -347,8 +349,8 @@ public class PokerEntity extends BrowncoatEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createPokerDiamondAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)

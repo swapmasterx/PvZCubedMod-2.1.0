@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.imp.superfan;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
@@ -27,7 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -43,6 +43,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -53,6 +54,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import java.util.Iterator;
@@ -363,17 +365,17 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 			if (this.getHypno()) {
 				if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 30);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this, this), 30);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 30);
+						livingEntity.damage(getDamageSources().explosion(this, this), 30);
 					}
 				}
 			} else {
 				if (livingEntity instanceof PlantEntity || (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null && livingEntity instanceof GeneralPvZombieEntity) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 30);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this, this), 30);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 30);
+						livingEntity.damage(getDamageSources().explosion(this, this), 30);
 					}
 				}
 			}
@@ -413,7 +415,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 
 	private boolean isBeingRainedOn() {
 		BlockPos blockPos = this.getBlockPos();
-		return this.getWorld().hasRain(blockPos) || this.getWorld().hasRain(new BlockPos((double)blockPos.getX(), this.getBoundingBox().maxY, (double)blockPos.getZ()));
+		return this.getWorld().hasRain(blockPos) || this.getWorld().hasRain(new BlockPos((int) blockPos.getX(), (int) this.getBoundingBox().maxY, (int) blockPos.getZ()));
 	}
 	private float getAttackDamage(){
 		return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
@@ -493,8 +495,8 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createSuperFanImpAttributes() {
-		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.26D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)

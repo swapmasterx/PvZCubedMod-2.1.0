@@ -12,8 +12,9 @@ public class PvZDamageTypes {
 
     public static final RegistryKey<DamageType> HYPNO_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "hypnodamage"));
     public static final RegistryKey<DamageType> ELECTRIC_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "electricdamage"));
+	public static final RegistryKey<DamageType> SELF_TERMINATE_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "selfdeathdamage"));
 
     public static DamageSource of(World world, RegistryKey<DamageType> key) {
-        return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(key));
+        return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).getHolderOrThrow(key));
     }
 }

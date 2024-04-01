@@ -41,6 +41,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 
@@ -62,20 +63,22 @@ public class SporeEntity extends PvZProjectileEntity implements GeoAnimatable {
 	private int tickPosCheck;
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
-		return PlayState.CONTINUE;
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
+		return PlayState.CONTINUE;
 	}
 
     public SporeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
@@ -197,10 +200,10 @@ public class SporeEntity extends PvZProjectileEntity implements GeoAnimatable {
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 				}
 				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 6)));
 				this.getWorld().sendEntityStatus(this, (byte) 3);

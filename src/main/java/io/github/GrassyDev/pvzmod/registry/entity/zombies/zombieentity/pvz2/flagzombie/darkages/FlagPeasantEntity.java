@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.flagzombie.darkages;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
@@ -45,7 +46,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -62,6 +63,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -72,6 +74,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
@@ -154,18 +157,19 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
-	@Override
-	public void registerControllers(AnimatableManager data)
-	{
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+		@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory()
-	{
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -314,8 +318,8 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createFlagPeasantAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -370,7 +374,7 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 				livingEntity = (LivingEntity)source.getAttacker();
 			}
 
-			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
+			if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
 				FlagPeasantEntity hypnotizedZombie = (FlagPeasantEntity) hypnoType.create(getWorld());
@@ -404,23 +408,25 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 		}
 	}
 
-	public boolean onKilledOther(ServerWorld serverWorld, LivingEntity livingEntity) {
-		super.onKilledOther(serverWorld, livingEntity);
-		boolean bl = super.onKilledOther(serverWorld, livingEntity);
-		if ((serverWorld.getDifficulty() == Difficulty.NORMAL || serverWorld.getDifficulty() == Difficulty.HARD) && livingEntity instanceof VillagerEntity) {
-			if (serverWorld.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
+	public boolean killedEntity(ServerWorld world, LivingEntity entity) {
+		boolean bl = super.killedEntity(world, entity);
+		if ((world.getDifficulty() == Difficulty.NORMAL || world.getDifficulty() == Difficulty.HARD) && entity instanceof VillagerEntity villagerEntity) {
+			if (world.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return bl;
 			}
 
-			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
-			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
-			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
-			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
-			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
-			zombieVillagerEntity.setXp(villagerEntity.getExperience());
-			if (!this.isSilent()) {
-				serverWorld.syncWorldEvent((PlayerEntity) null, 1026, this.getBlockPos(), 0);
+			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
+			if (zombieVillagerEntity != null) {
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
+				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
+				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				zombieVillagerEntity.setXp(villagerEntity.getExperience());
+				if (!this.isSilent()) {
+					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);
+				}
+
+				bl = false;
 			}
 		}
 
@@ -537,12 +543,12 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPeasantEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !world.getBlockState(blockPos2).isOf(Blocks.AIR) && !world.getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
+				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				PeasantEntity screendoorEntity = (PeasantEntity) screen.create(FlagPeasantEntity.this.getWorld());
 				screendoorEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
@@ -557,12 +563,12 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPeasantEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !world.getBlockState(blockPos2).isOf(Blocks.AIR) && !world.getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
+				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				PeasantEntity coneheadEntity = (PeasantEntity) cone.create(FlagPeasantEntity.this.getWorld());
                 coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
@@ -577,12 +583,12 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPeasantEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !world.getBlockState(blockPos2).isOf(Blocks.AIR) && !world.getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
+				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				PeasantEntity bucketheadEntity = (PeasantEntity) bucket.create(FlagPeasantEntity.this.getWorld());
                 bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
@@ -597,18 +603,18 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPeasantEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPeasantEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
-				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !world.getBlockState(blockPos2).isOf(Blocks.AIR) && !world.getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
+				BlockPos blockPos2 = FlagPeasantEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
+				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPeasantEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPeasantEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPeasantEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPeasantEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				PeasantEntity browncoatEntity = (PeasantEntity) coat.create(FlagPeasantEntity.this.getWorld());
                 browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
                 browncoatEntity.initialize(serverWorld, FlagPeasantEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
                 browncoatEntity.setOwner(FlagPeasantEntity.this);
-				((ServerWorld) world).spawnEntityAndPassengers(browncoatEntity);
+				((ServerWorld) getWorld()).spawnEntityAndPassengers(browncoatEntity);
             }
 			FlagPeasantEntity.this.addCount();
         }

@@ -42,6 +42,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Iterator;
 import java.util.UUID;
@@ -180,7 +181,7 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 				if (entity != this && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune())
 						&& !(PLANT_LOCATION.get(entity.getType()).orElse("normal").equals("flying"))) {
 					if (!this.isHypno) {
-						if (world instanceof ServerWorld serverWorld && (entity instanceof PlantEntity) && !(entity.hasPassengers()) && !(entity instanceof GardenEntity) && !(entity instanceof GardenChallengeEntity)) {
+						if (getWorld() instanceof ServerWorld serverWorld && (entity instanceof PlantEntity) && !(entity.hasPassengers()) && !(entity instanceof GardenEntity) && !(entity instanceof GardenChallengeEntity)) {
 							FleshObstacleEntity fleshObstacleEntity = new FleshObstacleEntity(PvZEntity.OCTOOBST, this.getWorld());
 							fleshObstacleEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), 0.0F);
 							fleshObstacleEntity.setRainbowTag(GeneralPvZombieEntity.Rainbow.TRUE);
@@ -210,10 +211,10 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 							}
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);
@@ -239,10 +240,10 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 							}
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);
