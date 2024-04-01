@@ -40,7 +40,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -112,33 +112,36 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
-			event.getController().setAnimation(new RawAnimation().loop("nightcap.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("nightcap.asleep"));
 		}
 		else if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("nightcap.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("nightcap.shoot"));
 		}
 		else if (this.animationScare <= 0 && this.isAfraid){
-			event.getController().setAnimation(new RawAnimation().loop("nightcap.hiding"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("nightcap.hiding"));
 		}
 		else if (this.isAfraid){
-			event.getController().setAnimation(new RawAnimation().playOnce("nightcap.hide"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("nightcap.hide"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("nightcap.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("nightcap.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -234,10 +237,10 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					}
 					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 6)));
 					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 60, 1)));
@@ -255,7 +258,7 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 	public void tick() {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowTile> tileCheck = world.getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
 			if (tileCheck.isEmpty()) {
 				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
 					if (serverWorld.isNight()) {
@@ -272,11 +275,11 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -302,7 +305,7 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.NIGHTCAP_SEED_PACKET);
 				}
@@ -355,7 +358,7 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SHAMROCK_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -375,7 +378,7 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createNightcapAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -470,8 +473,8 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -481,27 +484,27 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			if ((!this.plantEntity.canSee(livingEntity)) &&
 					this.animationTicks >= 0) {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 				this.plantEntity.setTarget((LivingEntity) null);
 			}
 			else {
 				if (!this.plantEntity.getIsAsleep() && !this.plantEntity.isAfraid) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 					++this.animationTicks;
 					++this.beamTicks;
 					if (this.beamTicks >= 0 && this.animationTicks >= -8){
 						if (!(this.plantEntity.checkForZombies().isEmpty())){
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 104);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 104);
 						}
 						else {
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 						}
 					}
 					if (this.plantEntity.checkForZombies().isEmpty())  {
 						if (this.beamTicks >= 0 && this.animationTicks >= -8) {
 							if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
-								PierceSporeEntity proj = new PierceSporeEntity(PvZEntity.PIERCESPORE, this.plantEntity.world);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
+								PierceSporeEntity proj = new PierceSporeEntity(PvZEntity.PIERCESPORE, this.plantEntity.getWorld());
 								double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 225) ? 50 : 5;
 								Vec3d targetPos = livingEntity.getPos();
 								double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -525,15 +528,15 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 								}
 								if (livingEntity != null && livingEntity.isAlive()) {
 									this.beamTicks = -13;
-									this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+									this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 									this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-									this.plantEntity.world.spawnEntity(proj);
+									this.plantEntity.getWorld().spawnEntity(proj);
 								}
 							}
 						}
 						else if (this.animationTicks >= 0)
 						{
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 							this.beamTicks = -8;
 							this.animationTicks = -16;
 						}

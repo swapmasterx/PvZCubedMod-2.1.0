@@ -48,20 +48,22 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoAnimatable {
 
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("fume.idle"));
-		return PlayState.CONTINUE;
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("fume.idle"));
+		return PlayState.CONTINUE;
 	}
 
     public BubbleEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
@@ -142,7 +144,7 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoAnimatable {
 					break;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity != null && !(zombiePropEntity instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -168,10 +170,10 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoAnimatable {
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

@@ -53,20 +53,23 @@ public class PiercePeaEntity extends PvZProjectileEntity implements GeoAnimatabl
 
 	public LivingEntity torchwoodMemory;
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("spit.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("spit.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -116,7 +119,7 @@ public class PiercePeaEntity extends PvZProjectileEntity implements GeoAnimatabl
 
 		if (!this.getWorld().isClient && checkTorchwood(this.getPos()) != null) {
 			if (checkTorchwood(this.getPos()) != torchwoodMemory && !checkTorchwood(this.getPos()).isWet()) {
-				FirePiercePeaEntity shootingFlamingPeaEntity = (FirePiercePeaEntity) PvZEntity.FIREPIERCEPEA.create(world);
+				FirePiercePeaEntity shootingFlamingPeaEntity = (FirePiercePeaEntity) PvZEntity.FIREPIERCEPEA.create(getWorld());
 				shootingFlamingPeaEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
 				shootingFlamingPeaEntity.setVelocity(this.getVelocity());
 				shootingFlamingPeaEntity.age = this.age;
@@ -135,7 +138,7 @@ public class PiercePeaEntity extends PvZProjectileEntity implements GeoAnimatabl
     }
 
 	public TorchwoodEntity checkTorchwood(Vec3d pos) {
-		List<TorchwoodEntity> list = world.getNonSpectatingEntities(TorchwoodEntity.class, PvZEntity.PIERCEPEA.getDimensions().getBoxAt(pos));
+		List<TorchwoodEntity> list = getWorld().getNonSpectatingEntities(TorchwoodEntity.class, PvZEntity.PIERCEPEA.getDimensions().getBoxAt(pos));
 		if (!list.isEmpty()){
 			return list.get(0);
 		}
@@ -178,7 +181,7 @@ public class PiercePeaEntity extends PvZProjectileEntity implements GeoAnimatabl
 					break;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity != null && !(zombiePropEntity instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -200,10 +203,10 @@ public class PiercePeaEntity extends PvZProjectileEntity implements GeoAnimatabl
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

@@ -48,21 +48,24 @@ public class BarkEntity extends PvZProjectileEntity implements GeoAnimatable {
 
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
-	}
-
-	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
-		return PlayState.CONTINUE;
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
+		return PlayState.CONTINUE;
+	}
+
 
     public BarkEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -133,7 +136,7 @@ public class BarkEntity extends PvZProjectileEntity implements GeoAnimatable {
 					break;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity != null && !(zombiePropEntity instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -150,11 +153,11 @@ public class BarkEntity extends PvZProjectileEntity implements GeoAnimatable {
 					Vec3d vec3d = new Vec3d(-1.25, 0, 0.0).rotateY(-entity.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					entity.setYaw(entity.getYaw() * -1);
 					if (entity.hasVehicle()){
-						entity.getVehicle().damage(DamageSource.thrownProjectile(this, this.getOwner()), Integer.MAX_VALUE);
+						entity.getVehicle().damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), Integer.MAX_VALUE);
 						entity.getVehicle().setYaw(entity.getVehicle().getYaw() * -1);
 						entity.getVehicle().addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 					}
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), Integer.MAX_VALUE);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), Integer.MAX_VALUE);
 					entity.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 				}
 				entityStore.add((LivingEntity) entity);

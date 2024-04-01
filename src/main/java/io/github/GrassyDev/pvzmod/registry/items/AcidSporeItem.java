@@ -51,7 +51,7 @@ public class AcidSporeItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
 
-        if (!world.isClient) {
+        if (!getWorld().isClient) {
             AcidSporeEntity proj = new AcidSporeEntity(PvZEntity.ACIDSPORE, world);
 			proj.sporeAge = 20;
             proj.setPos(user.getX(), user.getY() + 1f, user.getZ());

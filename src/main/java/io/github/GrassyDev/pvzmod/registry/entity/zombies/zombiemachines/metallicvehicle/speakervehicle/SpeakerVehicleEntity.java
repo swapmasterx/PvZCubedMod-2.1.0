@@ -128,7 +128,7 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoAnim
 
 	public void tick() {
 		super.tick();
-		List<GravebusterEntity> list = world.getNonSpectatingEntities(GravebusterEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		List<GravebusterEntity> list = getWorld().getNonSpectatingEntities(GravebusterEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 		this.beingEaten = !list.isEmpty();
 		if (age <= 60) {
 			this.setVelocity(0, -0.0125, 0);
@@ -150,10 +150,10 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoAnim
 						this.CollidesWithPlant(0f, 0f) instanceof OlivePitEntity)) {
 					if (this.CollidesWithPlant(0f, 0f) instanceof SpikerockEntity) {
 						if (this.getType().equals(PvZEntity.TRASHCANBIN) && !this.hasVehicle()) {
-							this.CollidesWithPlant(0f, 0f).damage(DamageSource.thrownProjectile(this, this), 90);
+							this.CollidesWithPlant(0f, 0f).damage(getDamageSources().mobProjectile(this, this), 90);
 							this.kill();
 						} else if (!(this.getType().equals(PvZEntity.TRASHCANBIN))) {
-							this.CollidesWithPlant(0f, 0f).damage(DamageSource.thrownProjectile(this, this), 90);
+							this.CollidesWithPlant(0f, 0f).damage(getDamageSources().mobProjectile(this, this), 90);
 							this.kill();
 						}
 					} else if (this.CollidesWithPlant(0f, 0f) instanceof SpikeweedEntity) {
@@ -216,25 +216,28 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoAnim
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
 		else if (this.isStunned || this.isFrozen) {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("speaker.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("speaker.idle"));
 		}
 		if (this.isIced) {
 			event.getController().setAnimationSpeed(0.5);

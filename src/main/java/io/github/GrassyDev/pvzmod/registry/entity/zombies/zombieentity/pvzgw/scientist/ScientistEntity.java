@@ -139,20 +139,23 @@ public class ScientistEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new RawAnimation().loop("headwear.ducky"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.ducky"));
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.625);
 			}
@@ -161,9 +164,9 @@ public class ScientistEntity extends PvZombieEntity implements GeoAnimatable {
 			}
 		} else {
 			if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-				event.getController().setAnimation(new RawAnimation().loop("headwear.walking"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.walking"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("headwear.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.idle"));
 			}
 			if (this.isFrozen || this.isStunned) {
 				event.getController().setAnimationSpeed(0);
@@ -336,9 +339,9 @@ public class ScientistEntity extends PvZombieEntity implements GeoAnimatable {
             if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
                 this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-                ScientistEntity hypnotizedZombie = (ScientistEntity) hypnoType.create(world);
+                ScientistEntity hypnotizedZombie = (ScientistEntity) hypnoType.create(getWorld());
                 hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-                hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+                hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
                 hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
                 if (this.hasCustomName()) {
@@ -373,7 +376,7 @@ public class ScientistEntity extends PvZombieEntity implements GeoAnimatable {
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
@@ -393,9 +396,9 @@ public class ScientistEntity extends PvZombieEntity implements GeoAnimatable {
 				!(source.getSource() instanceof ChomperEntity) &&
 				!(source.getSource() instanceof ChesterEntity) &&
 				!(source.getSource() instanceof OlivePitEntity)) {
-			MetalObstacleEntity healStation = (MetalObstacleEntity) PvZEntity.HEALSTATION.create(world);
+			MetalObstacleEntity healStation = (MetalObstacleEntity) PvZEntity.HEALSTATION.create(getWorld());
 			healStation.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-			healStation.initialize(serverWorld, world.getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			healStation.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 			healStation.setOwner(this);
 			healStation.setRainbowTag(Rainbow.TRUE);
 			healStation.rainbowTicks = 40;

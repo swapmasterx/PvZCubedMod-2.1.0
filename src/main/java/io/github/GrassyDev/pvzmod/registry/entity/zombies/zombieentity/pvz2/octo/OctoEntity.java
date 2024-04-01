@@ -119,21 +119,24 @@ public class OctoEntity extends BullyEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().loop("bully.duckythrow"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.duckythrow"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				}
@@ -142,7 +145,7 @@ public class OctoEntity extends BullyEntity implements GeoAnimatable {
 				}
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("bully.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.ducky"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				}
@@ -152,7 +155,7 @@ public class OctoEntity extends BullyEntity implements GeoAnimatable {
 			}
 		} else {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().loop("octo.throw"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("octo.throw"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -161,14 +164,14 @@ public class OctoEntity extends BullyEntity implements GeoAnimatable {
 			}
 			else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if (inLaunchAnimation) {
-					event.getController().setAnimation(new RawAnimation().loop("octo.throw"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("octo.throw"));
 					if (this.isIced) {
 						event.getController().setAnimationSpeed(0.5);
 					} else {
 						event.getController().setAnimationSpeed(1);
 					}
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("bully.walk"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.walk"));
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
 					} else if (this.isIced) {
@@ -178,7 +181,7 @@ public class OctoEntity extends BullyEntity implements GeoAnimatable {
 					}
 				}
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("bully.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.idle"));
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
 				} else if (this.isIced) {
@@ -218,7 +221,7 @@ public class OctoEntity extends BullyEntity implements GeoAnimatable {
 	//Launch Basket
 	public void tryLaunch(Entity target) {
 		ShootingOctoEntity octo = new ShootingOctoEntity(PvZEntity.OCTOPROJ, this.getWorld());
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
 		double targetDist = 0;
 		octo.damageMultiplier = this.damageMultiplier;
 		for (LivingEntity livingEntity : list){

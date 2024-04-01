@@ -206,34 +206,37 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (this.startSpawn) {
-				event.getController().setAnimation(new RawAnimation().loop("zombieking.fallingwater"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zombieking.fallingwater"));
 			} else if (this.convertIs) {
-				event.getController().setAnimation(new RawAnimation().loop("zombieking.crowningwater"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zombieking.crowningwater"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("zombieking.idlewater"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zombieking.idlewater"));
 			}
 		}
 		else {
 			if (this.startSpawn) {
-				event.getController().setAnimation(new RawAnimation().loop("zombieking.falling"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zombieking.falling"));
 			} else if (this.convertIs) {
-				event.getController().setAnimation(new RawAnimation().loop("zombieking.crowning"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zombieking.crowning"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("zombieking.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zombieking.idle"));
 			}
 		}
 		if (this.isFrozen || this.isStunned) {
@@ -319,10 +322,10 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoAnimatable {
 			ServerWorld serverWorld = (ServerWorld) this.getWorld();
 			PeasantEntity knightEntity;
 			if (this.getType().equals(PvZEntity.ZOMBIEKINGHYPNO)){
-				knightEntity = (PeasantEntity) PvZEntity.PEASANTKNIGHTHYPNO.create(world);
+				knightEntity = (PeasantEntity) PvZEntity.PEASANTKNIGHTHYPNO.create(getWorld());
 			}
 			else {
-				knightEntity = (PeasantEntity) PvZEntity.PEASANTKNIGHT.create(world);
+				knightEntity = (PeasantEntity) PvZEntity.PEASANTKNIGHT.create(getWorld());
 			}
 			knightEntity.refreshPositionAndAngles(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), livingEntity.getYaw(), livingEntity.getPitch());
 			knightEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(knightEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
@@ -528,9 +531,9 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoAnimatable {
             if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
                 this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-                ZombieKingEntity hypnotizedZombie = (ZombieKingEntity) PvZEntity.ZOMBIEKINGHYPNO.create(world);
+                ZombieKingEntity hypnotizedZombie = (ZombieKingEntity) PvZEntity.ZOMBIEKINGHYPNO.create(getWorld());
                 hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-                hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+                hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
                 hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
                 if (this.hasCustomName()) {
@@ -565,7 +568,7 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoAnimatable {
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

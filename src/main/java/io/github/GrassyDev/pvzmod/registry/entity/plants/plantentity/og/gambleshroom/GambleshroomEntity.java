@@ -24,6 +24,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
@@ -32,7 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -148,30 +149,33 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
-			event.getController().setAnimation(new RawAnimation().loop("magicshroom.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("magicshroom.asleep"));
 		}
 		else if (this.isHatFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("magicshroom.hat"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("magicshroom.hat"));
 		}
 		else if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("magicshroom.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("magicshroom.shoot"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("magicshroom.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("magicshroom.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -223,16 +227,15 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 
 	private int hatTicks = 600;
 
-
 	public void tick() {
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -252,7 +255,7 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.GAMBLESHROOM_SEED_PACKET);
 				}
@@ -284,7 +287,7 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.GAMBLESHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -304,7 +307,7 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createGambleshroomAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -402,9 +405,9 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 118);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 118);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -414,7 +417,7 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			if ((!this.plantEntity.canSee(livingEntity)) &&
 					this.animationTicks >= 0) {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 				this.plantEntity.setTarget((LivingEntity) null);
 			}
 			else {
@@ -430,34 +433,34 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 					}
 					Vec3d vec3d3 = Vec3d.ofCenter(livingEntity.getBlockPos());
 					Vec3d blockpos = new Vec3d(vec3d3.x + vec3d2.x, vec3d3.y + vec3d2.y, vec3d3.z + vec3d2.z);
-					List<PlantEntity> list = this.plantEntity.world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.GAMBLEHAT.getDimensions().getBoxAt(blockpos.getX(), blockpos.getY(), blockpos.getZ()));
+					List<PlantEntity> list = this.plantEntity.getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.GAMBLEHAT.getDimensions().getBoxAt(blockpos.getX(), blockpos.getY(), blockpos.getZ()));
 					if (this.shootingHat && list.isEmpty()) {
-						this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 117);
+						this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 117);
 						if (this.beamTicks >= 0 && this.animationTicks >= -5) {
 							if (livingEntity != null && livingEntity.isAlive()) {
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
-								GamblehatEntity hat = (GamblehatEntity) PvZEntity.GAMBLEHAT.create(this.plantEntity.world);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
+								GamblehatEntity hat = (GamblehatEntity) PvZEntity.GAMBLEHAT.create(this.plantEntity.getWorld());
 								hat.refreshPositionAndAngles(blockpos.getX(), livingEntity.getY(), blockpos.getZ(), 0, 0);
-								if (this.plantEntity.world instanceof ServerWorld serverWorld && list.isEmpty()) {
-									hat.initialize(serverWorld, this.plantEntity.world.getLocalDifficulty(livingEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+								if (this.plantEntity.getWorld() instanceof ServerWorld serverWorld && list.isEmpty()) {
+									hat.initialize(serverWorld, this.plantEntity.getWorld().getLocalDifficulty(livingEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 									serverWorld.spawnEntityAndPassengers(hat);
 									this.plantEntity.setHat(MagicHat.FALSE);
-									this.plantEntity.world.spawnEntity(hat);
+									this.plantEntity.getWorld().spawnEntity(hat);
 								}
 								this.beamTicks = -13;
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							}
 						} else if (this.animationTicks >= 0) {
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 118);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 118);
 							this.beamTicks = -7;
 							this.animationTicks = -16;
 						}
 					} else {
-						this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+						this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 						if (this.beamTicks >= 0 && this.animationTicks <= -7 && cardsShot <= 3) {
 							if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-								ShootingCardEntity proj = new ShootingCardEntity(PvZEntity.CARDPROJ, this.plantEntity.world);
+								ShootingCardEntity proj = new ShootingCardEntity(PvZEntity.CARDPROJ, this.plantEntity.getWorld());
 								double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 								Vec3d targetPos = livingEntity.getPos();
 								double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -477,14 +480,14 @@ public class GambleshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 								if (livingEntity != null && livingEntity.isAlive()) {
 									this.beamTicks = -1;
 									this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.125F, 1);
-									this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-									this.plantEntity.world.spawnEntity(proj);
+									this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+									this.plantEntity.getWorld().spawnEntity(proj);
 								}
 							}
 						} else if (this.animationTicks >= 0) {
 							this.cardsShot = 0;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 118);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 118);
 							this.beamTicks = -7;
 							this.animationTicks = -16;
 						}

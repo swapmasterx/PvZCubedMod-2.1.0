@@ -176,21 +176,24 @@ public class HawkerZombieEntity extends PvZombieEntity implements GeoAnimatable 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Entity entity = this.getFirstPassenger();
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new RawAnimation().loop("hawker.ducky"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.ducky"));
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
 			}
@@ -200,17 +203,17 @@ public class HawkerZombieEntity extends PvZombieEntity implements GeoAnimatable 
 		} else {
 			if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if (this.hasPassenger(entity) && entity instanceof ZombieShieldEntity){
-					event.getController().setAnimation(new RawAnimation().loop("hawker.walk"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.walk"));
 				}
 				else {
-					event.getController().setAnimation(new RawAnimation().loop("hawker.walk2"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.walk2"));
 				}
 			} else {
 				if (this.hasPassenger(entity) && entity instanceof ZombieShieldEntity){
-					event.getController().setAnimation(new RawAnimation().loop("hawker.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.idle"));
 				}
 				else {
-					event.getController().setAnimation(new RawAnimation().loop("hawker.idle2"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.idle2"));
 				}
 			}
 			if (this.isFrozen || this.isStunned) {
@@ -438,9 +441,9 @@ public class HawkerZombieEntity extends PvZombieEntity implements GeoAnimatable 
 			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-				BullyEntity hypnotizedZombie = (BullyEntity) hypnoType.create(world);
+				BullyEntity hypnotizedZombie = (BullyEntity) hypnoType.create(getWorld());
 				hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+				hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 				hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
 				if (this.hasCustomName()) {
@@ -475,7 +478,7 @@ public class HawkerZombieEntity extends PvZombieEntity implements GeoAnimatable 
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

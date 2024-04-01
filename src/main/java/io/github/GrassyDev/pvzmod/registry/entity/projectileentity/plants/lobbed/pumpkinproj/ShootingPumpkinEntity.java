@@ -54,19 +54,23 @@ public class ShootingPumpkinEntity extends PvZProjectileEntity implements GeoAni
 	private LivingEntity target;
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("cabbage.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("cabbage.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -169,15 +173,15 @@ public class ShootingPumpkinEntity extends PvZProjectileEntity implements GeoAni
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity1 && (generalPvZombieEntity1.isCovered())) &&
 					!(entity instanceof ZombiePropEntity) && ZOMBIE_SIZE.get(entity.getType()).orElse("medium").equals("medium")) {
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
 					this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-					PumpkinZombieEntity hypnotizedZombie = (PumpkinZombieEntity) PvZEntity.PUMPKINZOMBIEHYPNO.create(world);
+					PumpkinZombieEntity hypnotizedZombie = (PumpkinZombieEntity) PvZEntity.PUMPKINZOMBIEHYPNO.create(getWorld());
 					hypnotizedZombie.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
-					hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+					hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 					if (entity.hasCustomName()) {
 						hypnotizedZombie.setCustomName(entity.getCustomName());
 						hypnotizedZombie.setCustomNameVisible(entity.isCustomNameVisible());

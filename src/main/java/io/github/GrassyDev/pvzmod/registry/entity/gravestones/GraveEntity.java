@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -12,6 +13,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.variants.graves.GraveDifficult
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -23,9 +25,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
@@ -426,7 +429,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (!this.isAiDisabled() || source.isOutOfWorld()) {
+		if (!this.isAiDisabled() || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
 			super.applyDamage(source, amount);
 		}
 	}
@@ -452,7 +455,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 	}
 
 	public static List<LivingEntity> checkGarden(Vec3d pos, ServerWorldAccess world) {
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(50));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(50));
 		List<LivingEntity> list1 = new ArrayList<>();
 		for (LivingEntity livingEntity : list){
 			if (livingEntity instanceof GardenEntity || livingEntity instanceof GardenChallengeEntity){
@@ -486,7 +489,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 		if (this.isHalf()){
 			halfModifier = 2;
 		}
-		List<GravebusterEntity> list = world.getNonSpectatingEntities(GravebusterEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		List<GravebusterEntity> list = getWorld().getNonSpectatingEntities(GravebusterEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 		this.beingEaten = !list.isEmpty();
 		if (!this.isChallengeGrave() &&
 				!this.isHalf() &&
@@ -591,12 +594,12 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 	}
 
 	public static boolean checkVillager(Vec3d pos, ServerWorldAccess world) {
-		List<VillagerEntity> list = world.getNonSpectatingEntities(VillagerEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(30));
+		List<VillagerEntity> list = getWorld().getNonSpectatingEntities(VillagerEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(30));
 		return !list.isEmpty();
 	}
 
 	public static boolean checkPlant(Vec3d pos, ServerWorldAccess world) {
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(15));
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(15));
 		return !list.isEmpty();
 	}
 }

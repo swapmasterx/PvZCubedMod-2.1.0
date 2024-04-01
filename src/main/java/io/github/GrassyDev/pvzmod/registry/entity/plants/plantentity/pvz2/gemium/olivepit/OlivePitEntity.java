@@ -149,29 +149,33 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.getTypeCount();
 		if (!this.getOlivePit()) {
-			event.getController().setAnimation(new RawAnimation().playOnce("olivepit.burrow"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("olivepit.burrow"));
 		}
 		else if (this.attacking) {
-			event.getController().setAnimation(new RawAnimation().playOnce("olivepit.swallow"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("olivepit.swallow"));
 		}
 		else if (i > 0) {
-			event.getController().setAnimation(new RawAnimation().loop("olivepit.idle2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("olivepit.idle2"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("olivepit.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("olivepit.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -235,13 +239,13 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 							generalPvZombieEntity1.swallowed = true;
 						}
 						generalPvZombieEntity.swallowed = true;
-						livingEntity.damage(DamageSource.mob(this), damage);
-						generalPvZombieEntity.damage(DamageSource.mob(this), Integer.MAX_VALUE);
+						livingEntity.damage(getDamageSources().mobAttack(this), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobAttack(this), Integer.MAX_VALUE);
 					} else {
 						if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity1){
 							generalPvZombieEntity1.swallowed = true;
 						}
-						livingEntity.damage(DamageSource.mob(this), damage);
+						livingEntity.damage(getDamageSources().mobAttack(this), damage);
 					}
 					if (!PvZCubed.ZOMBIE_SIZE.get(livingEntity.getType()).orElse("flesh").equals("small")){
 						this.setCount(800);
@@ -317,7 +321,7 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.OLIVEPIT_SEED_PACKET);
 				}
@@ -356,13 +360,13 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 
 	public void createOilTile(BlockPos blockPos){
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			List<TileEntity> tileCheck = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()).expand(-0.5f, -0.5f, -0.5f));
+			List<TileEntity> tileCheck = getWorld().getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()).expand(-0.5f, -0.5f, -0.5f));
 			tileCheck.removeIf(tile -> tile instanceof MissileToeTarget);
 			tileCheck.removeIf(tile -> tile instanceof BananaTile);
 			if (tileCheck.isEmpty()) {
-				OilTile tile = (OilTile) PvZEntity.OILTILE.create(world);
+				OilTile tile = (OilTile) PvZEntity.OILTILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				tile.setPersistent();
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);
@@ -385,7 +389,7 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.OLIVEPIT_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -397,10 +401,10 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
 				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				SpikerockEntity upgradeEntity = (SpikerockEntity) PvZEntity.SPIKEROCK.create(world);
+				SpikerockEntity upgradeEntity = (SpikerockEntity) PvZEntity.SPIKEROCK.create(getWorld());
 				upgradeEntity.setTarget(this.getTarget());
 				upgradeEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				upgradeEntity.initialize(serverWorld, world.getLocalDifficulty(upgradeEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				upgradeEntity.initialize(serverWorld, getWorld().getLocalDifficulty(upgradeEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				upgradeEntity.setAiDisabled(this.isAiDisabled());
 				if (this.hasCustomName()) {
 					upgradeEntity.setCustomName(this.getCustomName());
@@ -415,11 +419,11 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 				;
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.SPIKEROCK_SEED_PACKET, GatlingpeaSeeds.cooldown);
 				}
 			}
@@ -432,7 +436,7 @@ public class OlivePitEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createOlivePitAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 8D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);

@@ -111,6 +111,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
+<<<<<<< Updated upstream
 			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
 		}
 		else if (tiltchance <= 0.5) {
@@ -118,6 +119,16 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 		}
 		else {
 			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
+=======
+
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
+		}
+		else if (tiltchance <= 0.5) {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
+		}
+		else {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
+>>>>>>> Stashed changes
 		}
         return PlayState.CONTINUE;
     }

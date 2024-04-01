@@ -106,32 +106,35 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.dryLand) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("narcissus.shoot"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("narcissus.shoot"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("narcissus.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("narcissus.idle"));
 			}
 		}
 		else {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("narcissus.shoot2"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("narcissus.shoot2"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("narcissus.idle2"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("narcissus.idle2"));
 			}
 		}
 		return PlayState.CONTINUE;
@@ -185,7 +188,7 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -193,7 +196,7 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 					this.dryLand = false;
 					onWater = true;
 				}
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.NARCISSUS_SEED_PACKET);
 				}
@@ -211,7 +214,7 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.NARCISSUS_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -231,7 +234,7 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createNarcissusAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -320,7 +323,7 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity) null);
 		}
 
@@ -331,7 +334,7 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 			if ((!this.plantEntity.canSee(livingEntity) && this.animationTicks >= 0)){
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -4) {
@@ -348,14 +351,14 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						ArmorBubbleEntity proj = new ArmorBubbleEntity(PvZEntity.ARMORBUBBLE, this.plantEntity.world);
+						ArmorBubbleEntity proj = new ArmorBubbleEntity(PvZEntity.ARMORBUBBLE, this.plantEntity.getWorld());
 						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -2;
 							this.plantEntity.playSound(PvZSounds.FUMESHROOMSHOOTEVENT, 0.25F, 1.5F);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 					double time = 1;
@@ -369,18 +372,18 @@ public class NarcissusEntity extends PlantEntity implements GeoAnimatable, Range
 					double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-					BubbleEntity proj = new BubbleEntity(PvZEntity.BUBBLE, this.plantEntity.world);
+					BubbleEntity proj = new BubbleEntity(PvZEntity.BUBBLE, this.plantEntity.getWorld());
 					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.85F, 0F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (livingEntity != null && livingEntity.isAlive()) {
 						this.beamTicks = -2;
 						this.plantEntity.playSound(PvZSounds.FUMESHROOMSHOOTEVENT, 0.25F, 1.5F);
-						this.plantEntity.world.spawnEntity(proj);
+						this.plantEntity.getWorld().spawnEntity(proj);
 					}
 				}
 				if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -8;
 					this.animationTicks = -21;
 				}

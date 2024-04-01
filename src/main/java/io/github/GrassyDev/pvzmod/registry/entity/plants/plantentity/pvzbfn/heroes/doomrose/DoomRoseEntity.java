@@ -95,26 +95,29 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.attackTicksLeft;
 		if (this.isFiring && !this.charge) {
-			event.getController().setAnimation(new RawAnimation().playOnce("doomrose.start"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("doomrose.start"));
 		}  else if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().loop("doomrose.thump"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("doomrose.thump"));
 		} else if (i <= 0) {
-			event.getController().setAnimation(new RawAnimation().loop("doomrose.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("doomrose.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -155,8 +158,8 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 		super.tick();
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowFullTile> fullCheck = world.getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			List<ShadowTile> tileCheck = world.getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
 			if (fullCheck.isEmpty() && tileCheck.isEmpty()) {
 				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
 					if (serverWorld.isNight()) {
@@ -185,7 +188,7 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.DOOMROSE_SEED_PACKET);
 				}
@@ -218,7 +221,7 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.DOOMROSE_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -240,7 +243,7 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 	 **/
 
 	public static DefaultAttributeContainer.Builder createDoomRoseAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -364,9 +367,9 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 			}
 			if (this.charge && this.animationTicks == -40 && this.getTarget() != null) {
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
-					RoseBudTile tile = (RoseBudTile) PvZEntity.ROSEBUDS.create(world);
+					RoseBudTile tile = (RoseBudTile) PvZEntity.ROSEBUDS.create(getWorld());
 					tile.refreshPositionAndAngles(this.getTarget().getBlockPos().getX(), this.getTarget().getBlockPos().getY(), this.getTarget().getBlockPos().getZ(), 0, 0);
-					tile.initialize(serverWorld, world.getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+					tile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 					tile.setPersistent();
 					tile.setHeadYaw(0);
 					tile.setTarget(this.getTarget());
@@ -380,9 +383,9 @@ public class DoomRoseEntity extends PlantEntity implements GeoAnimatable, Ranged
 					serverWorld.spawnEntityAndPassengers(tile);
 					if (this.getShadowPowered()){
 						Vec3d vec3d2 = new Vec3d((double) -1, 0.0, 0).rotateY(-this.getTarget().getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						RoseBudTile tile2 = (RoseBudTile) PvZEntity.ROSEBUDS.create(world);
+						RoseBudTile tile2 = (RoseBudTile) PvZEntity.ROSEBUDS.create(getWorld());
 						tile2.refreshPositionAndAngles(this.getTarget().getBlockPos().getX() + vec3d2.x, this.getTarget().getBlockPos().getY(), this.getTarget().getBlockPos().getZ() + vec3d2.z, 0, 0);
-						tile2.initialize(serverWorld, world.getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+						tile2.initialize(serverWorld, getWorld().getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 						tile2.setPersistent();
 						tile2.setHeadYaw(0);
 						tile2.setShadowPowered(TileEntity.Shadow.TRUE);

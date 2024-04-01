@@ -81,29 +81,28 @@ public class FairyTaleGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
-        else if (tiltchance <= 0.5) {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
-        }
-        else {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
-        }
-        return PlayState.CONTINUE;
-    }
+		else if (tiltchance <= 0.5) {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
+		}
+		else {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
+		}
+		return PlayState.CONTINUE;
+	}
 
 
 	/** /~*~//~*AI*~//~*~/ **/
@@ -219,6 +218,14 @@ public class FairyTaleGraveEntity extends GraveEntity implements GeoAnimatable {
 		return SoundEvents.BLOCK_BASALT_HIT;
 	}
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
+>>>>>>> Stashed changes
 
 	/** /~*~//~*GOALS*~//~*~/ **/
 
@@ -253,7 +260,7 @@ public class FairyTaleGraveEntity extends GraveEntity implements GeoAnimatable {
 			this.startTime = FairyTaleGraveEntity.this.age + this.startTimeDelay();
 			SoundEvent soundEvent = this.getSoundPrepare();
 			if (soundEvent != null) {
-				FairyTaleGraveEntity.this.playSound(soundEvent, 1.0F, 1.0F);
+				FairyTaleGraveEntity.this.playSound(soundEvent, 0.9F, 1.0F);
 			}
 
 			FairyTaleGraveEntity.this.setSpell(this.getSpell());
@@ -263,8 +270,8 @@ public class FairyTaleGraveEntity extends GraveEntity implements GeoAnimatable {
 			--this.spellCooldown;
 			if (this.spellCooldown == 0) {
 				this.castSpell();
-				FairyTaleGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 70, 1)));
-				FairyTaleGraveEntity.this.playSound(FairyTaleGraveEntity.this.getCastSpellSound(), 1.0F, 1.0F);
+				FairyTaleGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 100, 1)));
+				FairyTaleGraveEntity.this.playSound(FairyTaleGraveEntity.this.getCastSpellSound(), 0.9F, 1.0F);
 			}
 
 		}

@@ -85,7 +85,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("book.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("book.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -239,7 +239,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 			if (entity instanceof LivingEntity livingEntity) {
 				if (entity != this && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune())) {
 					if (!this.isHypno) {
-						if (!world.isClient &&
+						if (!getWorld().isClient &&
 								((entity instanceof Monster monster &&
 										(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 										!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
@@ -279,10 +279,10 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 							} else {
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 							}
 							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
 								((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
@@ -303,7 +303,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 							this.remove(RemovalReason.DISCARDED);
 						}
 					} else {
-						if (!world.isClient && entity instanceof Monster monster &&
+						if (!getWorld().isClient && entity instanceof Monster monster &&
 								!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 								!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity))) {
 							String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
@@ -340,10 +340,10 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoAnimata
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 							} else {
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 							}
 							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
 								((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);

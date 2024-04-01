@@ -69,23 +69,26 @@ public class BeetEntity extends PlantEntity implements GeoAnimatable, RangedAtta
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("beet.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("beet.attack"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("beet.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("beet.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -128,7 +131,7 @@ public class BeetEntity extends PlantEntity implements GeoAnimatable, RangedAtta
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.BEET_SEED_PACKET);
 				}
@@ -162,7 +165,7 @@ public class BeetEntity extends PlantEntity implements GeoAnimatable, RangedAtta
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.BEET_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -184,7 +187,7 @@ public class BeetEntity extends PlantEntity implements GeoAnimatable, RangedAtta
 	 **/
 
 	public static DefaultAttributeContainer.Builder createBeetAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -270,7 +273,7 @@ public class BeetEntity extends PlantEntity implements GeoAnimatable, RangedAtta
 		if (passenger != null){
 			damaged = passenger;
 		}
-		boolean bl = damaged.damage(DamageSource.mob(this), this.getAttackDamage());
+		boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
 		if (bl) {
 			this.applyDamageEffects(this, target);
 		}

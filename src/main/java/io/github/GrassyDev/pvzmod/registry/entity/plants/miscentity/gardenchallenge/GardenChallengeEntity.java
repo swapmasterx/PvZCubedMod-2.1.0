@@ -509,19 +509,22 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("garden.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("garden.idle"));
         return PlayState.CONTINUE;
     }
 
@@ -545,7 +548,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 		if (this.age > 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				this.kill();
 			}
 		}
@@ -661,23 +664,23 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 		super.tick();
 		this.checkEntities();
 		if (currentWeather == null){
-			WeatherTile weatherTile = (WeatherTile) PvZEntity.WEATHERTILE.create(world);
+			WeatherTile weatherTile = (WeatherTile) PvZEntity.WEATHERTILE.create(getWorld());
 			weatherTile.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 			weatherTile.setPersistent();
 			weatherTile.setHeadYaw(0);
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				weatherTile.initialize(serverWorld, world.getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				weatherTile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				serverWorld.spawnEntityAndPassengers(weatherTile);
 			}
 			weatherTile.setWeatherType(ChallengeWeather.CLOUD);
 		}
 		if (currentTime == null){
-			TimeTile timeTile = (TimeTile) PvZEntity.TIMETILE.create(world);
+			TimeTile timeTile = (TimeTile) PvZEntity.TIMETILE.create(getWorld());
 			timeTile.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 			timeTile.setPersistent();
 			timeTile.setHeadYaw(0);
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				timeTile.initialize(serverWorld, world.getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				timeTile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				serverWorld.spawnEntityAndPassengers(timeTile);
 			}
 			timeTile.setTimeType(ChallengeTime.DAY);
@@ -1091,7 +1094,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 		}
 		else if (this.getWaveCount() > maxWaves && this.getTier().equals(ChallengeTiers.EIGHT)){
 			this.setTier(ChallengeTiers.NINE);
-			this.damage(DamageSource.mob(this), Integer.MAX_VALUE);
+			this.damage(getDamageSources().mobAttack(this), Integer.MAX_VALUE);
 		}
 		if (!this.getWaveInProgress()){
 			setMinnight(0);
@@ -1541,7 +1544,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 			if (currentTime != null && this.getWorld() instanceof ServerWorld serverWorld){
 				if ((currentTime.getTime().equals(ChallengeTime.FULLMOON) || currentTime.getTime().equals(ChallengeTime.NEWMOON) || currentTime.getTime().equals(ChallengeTime.HALFMOON)) &&
 						serverWorld.isDay()){
-					long l = serverWorld.getLevelProperties().getTimeOfDay() + 24000L;
+					long l = getWorld().getTimeOfDay() + 24000L;
 					serverWorld.setTimeOfDay((l - l % 24000L) + 18000L);
 					if (this.getWorld().getMoonPhase() == 1) {
 						currentTime.setTimeType(ChallengeTime.NEWMOON);
@@ -1554,7 +1557,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 				}
 				if ((currentTime.getTime().equals(ChallengeTime.DAY) || currentTime.getTime().equals(ChallengeTime.DROUGHT) || currentTime.getTime().equals(ChallengeTime.BOMB)) &&
 						serverWorld.isNight()){
-					long l = serverWorld.getLevelProperties().getTimeOfDay() + 24000L;
+					long l = getWorld().getTimeOfDay() + 24000L;
 					serverWorld.setTimeOfDay(l - l % 24000L);
 				}
 			}
@@ -2751,7 +2754,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoAnimatable,
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createGardenAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 90.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

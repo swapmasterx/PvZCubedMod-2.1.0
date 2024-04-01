@@ -102,7 +102,7 @@ public class PvZEntitySpawn {
 		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BUTTONSHROOM, PVZCONFIG.nestedSpawns.nestedPlantSpawns.buttonshroomSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.buttonshroomSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.buttonshroomSPmax());
 		SpawnRestriction.register(PvZEntity.BUTTONSHROOM, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ButtonshroomEntity::canButtonshroomSpawn);
 
-		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.SOLARWINDS, PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSPmax());
+		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.CREATURE, PvZEntity.SOLARWINDS, PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSPmax());
 		SpawnRestriction.register(PvZEntity.SOLARWINDS, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SolarWinds::canSolarWindsSpawn);
 
 

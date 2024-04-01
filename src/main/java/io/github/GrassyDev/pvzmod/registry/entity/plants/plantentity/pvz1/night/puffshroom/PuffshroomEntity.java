@@ -32,7 +32,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -149,24 +149,27 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
-			event.getController().setAnimation(new RawAnimation().loop("puffshroom.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("puffshroom.asleep"));
 		} else if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("puffshroom.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("puffshroom.shoot"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("puffshroom.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("puffshroom.idle"));
 		}
 		return PlayState.CONTINUE;
     }
@@ -206,11 +209,11 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -225,7 +228,7 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.PUFFSHROOM_SEED_PACKET);
 				}
@@ -264,7 +267,7 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 
 
 	public static DefaultAttributeContainer.Builder createPuffshroomAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -339,14 +342,14 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 					pos.getY() > 50 &&
 					(!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && world.getAmbientDarkness() >= 2 ||
 					world.getLightLevel(LightType.SKY, pos) < 2 ||
-					(world.getBiome(blockPos).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants()));
+					(world.getBiome(blockPos).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants()));
 		}
 		else {
 			return (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&
 					!checkPlant(Vec3d.ofCenter(pos), world, type) &&
 					(!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && world.getAmbientDarkness() >= 2 ||
 					world.getLightLevel(LightType.SKY, pos) < 2 ||
-					(world.getBiome(blockPos).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants()));
+					(world.getBiome(blockPos).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants()));
 		}
 	}
 
@@ -381,7 +384,7 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -392,12 +395,12 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 			if ((!this.plantEntity.canSee(livingEntity) && this.animationTicks >= 0) || this.plantEntity.getIsAsleep()){
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -7) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						SporeEntity proj = new SporeEntity(PvZEntity.SPORE, this.plantEntity.world);
+						SporeEntity proj = new SporeEntity(PvZEntity.SPORE, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -415,15 +418,15 @@ public class PuffshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -7;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.MUSHROOMSHOOTEVENT, 0.3F, 1);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 				}
 				else if (this.animationTicks >= 0)
 				{
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

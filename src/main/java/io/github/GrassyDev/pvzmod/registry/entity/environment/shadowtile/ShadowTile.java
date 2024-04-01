@@ -31,32 +31,41 @@ public class ShadowTile extends TileEntity {
 
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
+	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("tile.anim"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.anim"));
 		return PlayState.CONTINUE;
 	}
 
-	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
-	}
 
 	@Override
 	public void tick() {
 		super.tick();
 		if (this.age > 1 && !this.getWorld().isClient()){
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<GloomVineEntity> gloom = world.getNonSpectatingEntities(GloomVineEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<GloomVineEntity> gloom = getWorld().getNonSpectatingEntities(GloomVineEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
 			if (gloom.isEmpty()){
 				this.discard();
 			}
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+>>>>>>> Stashed changes
 }

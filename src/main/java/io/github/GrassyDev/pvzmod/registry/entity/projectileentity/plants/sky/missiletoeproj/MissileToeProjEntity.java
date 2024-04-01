@@ -64,19 +64,22 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoAnim
 	private LivingEntity target;
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -179,17 +182,17 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoAnim
 
 				entity = (Entity) var9.next();
 			}while (entity == this);
-			if (!world.isClient && entity instanceof MissileToeTarget missileToeTarget) {
+			if (!getWorld().isClient && entity instanceof MissileToeTarget missileToeTarget) {
 				for (int x = -1; x <= 1; ++x) {
 					for (int z = -1; z <= 1; ++z) {
-						createIceTile(new BlockPos(entity.getBlockPos().getX() + x, entity.getY(), entity.getBlockPos().getZ() + z));
+						createIceTile(new BlockPos(entity.getBlockPos().getX() + x, (int) entity.getY(), entity.getBlockPos().getZ() + z));
 					}
 				}
 				this.playSound(PvZSounds.SNOWPEAHITEVENT, 0.2f, 1f);
-				createIceTile(new BlockPos(entity.getBlockPos().getX() + 2, entity.getY(), entity.getBlockPos().getZ()));
-				createIceTile(new BlockPos(entity.getBlockPos().getX(), entity.getY(), entity.getBlockPos().getZ() + 2));
-				createIceTile(new BlockPos(entity.getBlockPos().getX() - 2, entity.getY(), entity.getBlockPos().getZ()));
-				createIceTile(new BlockPos(entity.getBlockPos().getX(), entity.getY(), entity.getBlockPos().getZ() - 2));
+				createIceTile(new BlockPos(entity.getBlockPos().getX() + 2, (int) entity.getY(), entity.getBlockPos().getZ()));
+				createIceTile(new BlockPos(entity.getBlockPos().getX(), (int) entity.getY(), entity.getBlockPos().getZ() + 2));
+				createIceTile(new BlockPos(entity.getBlockPos().getX() - 2, (int) entity.getY(), entity.getBlockPos().getZ()));
+				createIceTile(new BlockPos(entity.getBlockPos().getX(), (int) entity.getY(), entity.getBlockPos().getZ() - 2));
 				missileToeTarget.discard();
 				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
 				boolean hasZombie = false;
@@ -247,10 +250,10 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoAnim
 											!(livingEntity instanceof ZombieShieldEntity) &&
 											livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 										float damage2 = damage - livingEntity.getHealth();
-										livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-										generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+										livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+										generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 									} else {
-										livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+										livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 									}
 									if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
 										livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
@@ -272,14 +275,14 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoAnim
 
 	public void createIceTile(BlockPos blockPos){
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			List<TileEntity> tileCheck = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()).expand(-0.5f, -0.5f, -0.5f));
+			List<TileEntity> tileCheck = getWorld().getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()).expand(-0.5f, -0.5f, -0.5f));
 			tileCheck.removeIf(tile -> tile instanceof MissileToeTarget);
 			tileCheck.removeIf(tile -> tile instanceof ScorchedTile);
 			tileCheck.removeIf(tile -> tile instanceof BananaTile);
 			if (tileCheck.isEmpty()) {
-				IceTile tile = (IceTile) PvZEntity.ICETILE.create(world);
+				IceTile tile = (IceTile) PvZEntity.ICETILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				tile.setPersistent();
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);

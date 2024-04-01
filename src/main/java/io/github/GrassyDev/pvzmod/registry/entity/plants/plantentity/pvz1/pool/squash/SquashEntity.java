@@ -99,24 +99,27 @@ public class SquashEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION~//~*~// **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (inAnimation && !stopAnimation){
-			event.getController().setAnimation(new RawAnimation().playOnce("squash.smash"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("squash.smash"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("squash.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("squash.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -157,7 +160,7 @@ public class SquashEntity extends PlantEntity implements GeoAnimatable {
 					}
 				}
 				if (livingEntity.getY() < (this.getY() + 1.5) && livingEntity.getY() > (this.getY() - 1.5)) {
-					if (!world.isClient &&
+					if (!getWorld().isClient &&
 							!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 							!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying())) {
@@ -181,17 +184,17 @@ public class SquashEntity extends PlantEntity implements GeoAnimatable {
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 							float damage2 = damage - livingEntity.getHealth();
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 							checkList.add(livingEntity);
 							checkList.add(generalPvZombieEntity);
 						} else {
 							if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity) {
-								livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+								livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 								checkList.add(livingEntity);
 								checkList.add(generalPvZombieEntity);
 							} else {
-								livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+								livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 								checkList.add(livingEntity);
 							}
 						}
@@ -216,7 +219,7 @@ public class SquashEntity extends PlantEntity implements GeoAnimatable {
 			if (this.animationTicksLeft <= 0 && !this.getWorld().isClient()) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead) {
 						this.dropItem(ModItems.SQUASH_SEED_PACKET);
 					}
@@ -296,7 +299,7 @@ public class SquashEntity extends PlantEntity implements GeoAnimatable {
 			this.splashDamage();
 		}
 		else if (this.animationTicksLeft == 9 && this.isInsideWaterOrBubbleColumn()) {
-			world.sendEntityStatus(this, (byte) 107);
+			getWorld().sendEntityStatus(this, (byte) 107);
 			this.attackLock = true;
 			this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 			this.splashDamage();
@@ -346,7 +349,7 @@ public class SquashEntity extends PlantEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createSquashAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

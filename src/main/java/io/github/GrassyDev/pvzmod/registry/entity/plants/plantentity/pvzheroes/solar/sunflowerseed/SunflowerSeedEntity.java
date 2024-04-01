@@ -164,23 +164,26 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("small.sunflower.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("small.sunflower.attack"));
 		}
 		else{
-			event.getController().setAnimation(new RawAnimation().loop("small.sunflower"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("small.sunflower"));
 		}
 		return PlayState.CONTINUE;
     }
@@ -227,7 +230,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 					}
 				}
 				if (livingEntity.getY() < (this.getY() + 1.5) && livingEntity.getY() > (this.getY() - 1.5)) {
-					if (!world.isClient &&
+					if (!getWorld().isClient &&
 							!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 							!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying())) {
@@ -245,10 +248,10 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						} else {
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						}
 					}
 				}
@@ -277,7 +280,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.BELLFLOWER_SEED_PACKET);
 				}
@@ -327,7 +330,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 
 
 	public static DefaultAttributeContainer.Builder createSunflowerSeedAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -434,7 +437,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 
 		public void stop() {
 			this.sunflowerSeedEntity.produceSun = false;
-			this.sunflowerSeedEntity.world.sendEntityStatus(this.sunflowerSeedEntity, (byte) 110);
+			this.sunflowerSeedEntity.getWorld().sendEntityStatus(this.sunflowerSeedEntity, (byte) 110);
 			this.sunflowerSeedEntity.setTarget((LivingEntity)null);
 		}
 
@@ -446,23 +449,23 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoAnimatable, R
 					this.animationTicks >= 0) {
 				this.sunflowerSeedEntity.setTarget((LivingEntity) null);
 			} else {
-				this.sunflowerSeedEntity.world.sendEntityStatus(this.sunflowerSeedEntity, (byte) 111);
+				this.sunflowerSeedEntity.getWorld().sendEntityStatus(this.sunflowerSeedEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -5) {
 					if (!this.sunflowerSeedEntity.isInsideWaterOrBubbleColumn()) {
 						this.beamTicks = -6;
-						this.sunflowerSeedEntity.world.sendEntityStatus(this.sunflowerSeedEntity, (byte) 111);
+						this.sunflowerSeedEntity.getWorld().sendEntityStatus(this.sunflowerSeedEntity, (byte) 111);
 						this.sunflowerSeedEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 						this.sunflowerSeedEntity.splashDamage();
-						this.sunflowerSeedEntity.world.sendEntityStatus(this.sunflowerSeedEntity, (byte) 106);
+						this.sunflowerSeedEntity.getWorld().sendEntityStatus(this.sunflowerSeedEntity, (byte) 106);
 						this.sunflowerSeedEntity.produceSun = true;
 					}
 				}
 				else if (this.animationTicks >= 0)
 				{
 					this.sunflowerSeedEntity.produceSun = false;
-					this.sunflowerSeedEntity.world.sendEntityStatus(this.sunflowerSeedEntity, (byte) 110);
+					this.sunflowerSeedEntity.getWorld().sendEntityStatus(this.sunflowerSeedEntity, (byte) 110);
 					this.beamTicks = -6;
 					this.animationTicks = -11;
 				}

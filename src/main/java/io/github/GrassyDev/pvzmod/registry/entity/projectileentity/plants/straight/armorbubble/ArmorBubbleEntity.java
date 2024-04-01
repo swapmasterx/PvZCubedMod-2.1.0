@@ -56,20 +56,23 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoAnimata
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -155,7 +158,7 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoAnimata
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -179,7 +182,7 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoAnimata
 				if (entity instanceof ZombiePropEntity && !(entity instanceof ZombieShieldEntity)) {
 					entity.kill();
 				} else {
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 				}
 				if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM)) {
 					((LivingEntity) entity).removeStatusEffect(PvZCubed.WARM);

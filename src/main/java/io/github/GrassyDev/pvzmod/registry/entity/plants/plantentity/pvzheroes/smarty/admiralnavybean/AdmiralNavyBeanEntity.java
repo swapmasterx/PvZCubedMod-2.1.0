@@ -120,15 +120,18 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
@@ -136,20 +139,20 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 		int i = this.attackTicksLeft;
 		if (this.dryLand) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().loop("navybean.shootadmiral"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("navybean.shootadmiral"));
 			} else if (i <= 0) {
-				event.getController().setAnimation(new RawAnimation().loop("navybean.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("navybean.idle"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().playOnce("navybean.hit"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("navybean.hit"));
 			}
 		}
 		else {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().loop("navybean.shoot2admiral"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("navybean.shoot2admiral"));
 			} else if (i <= 0) {
-				event.getController().setAnimation(new RawAnimation().loop("navybean.idle2"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("navybean.idle2"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().playOnce("navybean.hit2"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("navybean.hit2"));
 			}
 		}
 		return PlayState.CONTINUE;
@@ -191,7 +194,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 		if (i <= 0) {
 			this.attackTicksLeft = 20;
 			this.getWorld().sendEntityStatus(this, (byte) 106);
-			boolean bl = damaged.damage(DamageSource.mob(this), this.getAttackDamage());
+			boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
 			if (bl) {
 				this.applyDamageEffects(this, target);
 			}
@@ -248,7 +251,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -256,7 +259,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 					this.dryLand = false;
 					onWater = true;
 				}
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.ADMIRALNAVYBEAN_SEED_PACKET);
 				}
@@ -306,7 +309,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.ADMIRALNAVYBEAN_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -328,7 +331,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 	 **/
 
 	public static DefaultAttributeContainer.Builder createAdmiralNavyBeanAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -434,7 +437,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			if (plantEntity.getTarget() != null){
 				this.plantEntity.attack(plantEntity.getTarget(), 0);
 			}
@@ -448,12 +451,12 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -5) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						SpitEntity proj = new SpitEntity(PvZEntity.SPIT, this.plantEntity.world);
+						SpitEntity proj = new SpitEntity(PvZEntity.SPIT, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -471,13 +474,13 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoAnimatable,
 						proj.damageMultiplier = plantEntity.damageMultiplier;
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -3;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 				} else if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

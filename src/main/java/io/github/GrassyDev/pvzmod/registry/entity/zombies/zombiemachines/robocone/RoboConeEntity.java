@@ -122,36 +122,39 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoAnimatab
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (this.isDisabled && this.disableTicks > 0) {
-				event.getController().setAnimation(new RawAnimation().playOnce("robocone.ducky.stun"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("robocone.ducky.stun"));
 			} else if (this.isDisabled) {
-				event.getController().setAnimation(new RawAnimation().loop("robocone.ducky.stunidle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.ducky.stunidle"));
 			}
 		}
 		else if (this.isDisabled && this.disableTicks > 0) {
-			event.getController().setAnimation(new RawAnimation().playOnce("robocone.stun"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("robocone.stun"));
 		} else if (this.isDisabled) {
-			event.getController().setAnimation(new RawAnimation().loop("robocone.stunidle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.stunidle"));
 		}
 		else {
 			if (this.isInsideWaterOrBubbleColumn()) {
 				if (this.zombieeating) {
-					event.getController().setAnimation(new RawAnimation().loop("robocone.ducky.eating"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.ducky.eating"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("robocone.ducky"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.ducky"));
 				}
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
@@ -160,11 +163,11 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoAnimatab
 				}
 			} else {
 				if (this.zombieeating) {
-					event.getController().setAnimation(new RawAnimation().loop("robocone.eating"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.eating"));
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("robocone.walk"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.walk"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("robocone.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("robocone.idle"));
 				}
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
@@ -330,9 +333,9 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoAnimatab
 		}
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
-			FutureZombieEntity zombie = (FutureZombieEntity) type.create(world);
+			FutureZombieEntity zombie = (FutureZombieEntity) type.create(getWorld());
 			zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-			zombie.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			zombie.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 			zombie.setOwner(this);
 			zombie.setRainbowTag(Rainbow.TRUE);
 			zombie.rainbowTicks = 60;
@@ -350,7 +353,7 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoAnimatab
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

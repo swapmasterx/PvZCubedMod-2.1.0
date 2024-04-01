@@ -59,4 +59,9 @@ public class WeatherTile extends TileEntity {
 	public void setWeatherType(ChallengeWeather variant) {
 		this.dataTracker.set(TYPE, variant.getId() & 255);
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
 }

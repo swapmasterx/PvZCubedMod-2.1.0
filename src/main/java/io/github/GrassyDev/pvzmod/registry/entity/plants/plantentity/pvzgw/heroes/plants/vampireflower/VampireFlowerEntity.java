@@ -115,28 +115,31 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*GECKOLIB ANIMATION~//~*~// **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.notEating) {
-			event.getController().setAnimation(new RawAnimation().loop("sunflower.bite2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("sunflower.bite2"));
 		}
 		else if (this.isFiring){
-			event.getController().setAnimation(new RawAnimation().playOnce("sunflower.bite"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("sunflower.bite"));
 		}
 		else if (holding) {
-			event.getController().setAnimation(new RawAnimation().loop("sunflower.sucking"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("sunflower.sucking"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("sunflower.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("sunflower.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -183,7 +186,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 				((LivingEntity) damaged).addStatusEffect(new StatusEffectInstance(STUN, 100 , 1));
 			}
 		}
-		boolean bl = damaged.damage(DamageSource.mob(this), damage);
+		boolean bl = damaged.damage(getDamageSources().mobAttack(this), damage);
 		if (bl) {
 			this.applyDamageEffects(this, target);
 		}
@@ -221,7 +224,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.VAMPIREFLOWER_SEED_PACKET);
 				}
@@ -244,7 +247,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 				this.getWorld().sendEntityStatus(this, (byte) 107);
 				holding = true;
 				if (--damageTicks <= 0) {
-					heldEntity.damage(DamageSource.mob(this), 12);
+					heldEntity.damage(getDamageSources().mobAttack(this), 12);
 					heldEntity.addStatusEffect(new StatusEffectInstance(STUN, 100 , 1));
 					heldEntity.dropItem(ModItems.SMALLSUN, 0);
 					damageTicks = 20;
@@ -267,7 +270,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)){
 			dropItem(ModItems.VAMPIREFLOWER_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -287,7 +290,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 	/** //~*~//~ATTRIBUTES~//~*~// **/
 
 	public static DefaultAttributeContainer.Builder createVampireFlowerAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

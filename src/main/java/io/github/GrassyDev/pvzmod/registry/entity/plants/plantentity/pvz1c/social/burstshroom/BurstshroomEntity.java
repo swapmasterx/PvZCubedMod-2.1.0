@@ -30,7 +30,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -83,29 +83,32 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
-			event.getController().setAnimation(new RawAnimation().loop("burstshroom.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("burstshroom.asleep"));
 		}
 		else if (this.getIsAltFire()){
-			event.getController().setAnimation(new RawAnimation().loop("burstshroom.exhausted"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("burstshroom.exhausted"));
 		}
 		else if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("burstshroom.explode"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("burstshroom.explode"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("burstshroom.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("burstshroom.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -158,11 +161,11 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -185,7 +188,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.BURSTSHROOM_SEED_PACKET);
 				}
@@ -218,7 +221,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.BURSTSHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -240,7 +243,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 	 **/
 
 	public static DefaultAttributeContainer.Builder createBurstshroomAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -354,7 +357,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 					}
 				}
 				if (livingEntity.getY() < (this.getY() + 1.5) && livingEntity.getY() > (this.getY() - 1.5)) {
-					if (!world.isClient &&
+					if (!getWorld().isClient &&
 							!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 							!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 							!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying())) {
@@ -388,10 +391,10 @@ public class BurstshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						} else {
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						}
 						if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
 							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));

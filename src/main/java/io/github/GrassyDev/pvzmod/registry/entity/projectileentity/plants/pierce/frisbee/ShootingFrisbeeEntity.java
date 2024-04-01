@@ -110,19 +110,22 @@ public class ShootingFrisbeeEntity extends PvZProjectileEntity implements GeoAni
 	//
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("boomerang.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("boomerang.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -226,7 +229,7 @@ public class ShootingFrisbeeEntity extends PvZProjectileEntity implements GeoAni
 			if (entityStoreVehicle.contains(entity) && zombiePropEntity == null && !entityStore.contains(entity)) {
 				entityStore.add(entity);
 			}
-			if (!world.isClient && this.getReturning()) {
+			if (!getWorld().isClient && this.getReturning()) {
 				if (entityStore.contains(entity) && this.retuningStart) {
 					float damage = PVZCONFIG.nestedProjDMG.frisbeeDMG() * damageMultiplier;
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
@@ -242,10 +245,10 @@ public class ShootingFrisbeeEntity extends PvZProjectileEntity implements GeoAni
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					entityStore.remove(entity);
 					entityStoreVehicle.remove(entity);
@@ -254,7 +257,7 @@ public class ShootingFrisbeeEntity extends PvZProjectileEntity implements GeoAni
 					}
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity != null && !(zombiePropEntity instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -277,10 +280,10 @@ public class ShootingFrisbeeEntity extends PvZProjectileEntity implements GeoAni
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
 					entityStore.add(entity.getVehicle());
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 				} else {
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					entityStore.add(entity);
 					if (!(entity instanceof ZombieShieldEntity)) {
 						entityStoreVehicle.add(entity.getVehicle());

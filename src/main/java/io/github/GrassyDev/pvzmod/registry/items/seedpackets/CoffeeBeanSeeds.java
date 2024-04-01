@@ -105,19 +105,19 @@ public class CoffeeBeanSeeds extends SeedItem implements FabricItem {
 		List<CoffeeBeanEntity> list = null;
 		if (world instanceof ServerWorld serverWorld && entity instanceof PlantEntity plantEntity1 && plantEntity1.nocturnal && !plantEntity1.getCofee()) {
 			CoffeeBeanEntity plantEntity = PvZEntity.COFFEEBEAN.create(serverWorld, stack.getNbt(), (Text) null, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			list = world.getNonSpectatingEntities(CoffeeBeanEntity.class, PvZEntity.COFFEEBEAN.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = getWorld().getNonSpectatingEntities(CoffeeBeanEntity.class, PvZEntity.COFFEEBEAN.getDimensions().getBoxAt(plantEntity.getPos()));
 			if (list.isEmpty()) {
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
-				plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				world.spawnEntity(plantEntity);
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 				if (!user.getAbilities().creativeMode) {
-					if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+					if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 						stack.decrement(1);
 					}
-					if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+					if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 						user.getItemCooldownManager().set(this, cooldown);
 					}
 				}

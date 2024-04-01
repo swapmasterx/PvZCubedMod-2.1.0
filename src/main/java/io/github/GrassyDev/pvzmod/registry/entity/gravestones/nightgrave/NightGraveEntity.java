@@ -89,26 +89,29 @@ public class NightGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
 		else if (tiltchance <= 0.5) {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
 		}
         return PlayState.CONTINUE;
     }
@@ -291,7 +294,7 @@ public class NightGraveEntity extends GraveEntity implements GeoAnimatable {
 			this.startTime = NightGraveEntity.this.age + this.startTimeDelay();
 			SoundEvent soundEvent = this.getSoundPrepare();
 			if (soundEvent != null) {
-				NightGraveEntity.this.playSound(soundEvent, 1.0F, 1.0F);
+				NightGraveEntity.this.playSound(soundEvent, 0.9F, 1.0F);
 			}
 
 			NightGraveEntity.this.setSpell(this.getSpell());
@@ -301,8 +304,8 @@ public class NightGraveEntity extends GraveEntity implements GeoAnimatable {
 			--this.spellCooldown;
 			if (this.spellCooldown == 0) {
 				this.castSpell();
-				NightGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 70, 1)));
-				NightGraveEntity.this.playSound(NightGraveEntity.this.getCastSpellSound(), 1.0F, 1.0F);
+				NightGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 100, 1)));
+				NightGraveEntity.this.playSound(NightGraveEntity.this.getCastSpellSound(), 0.9F, 1.0F);
 			}
 
 		}

@@ -92,7 +92,7 @@ public class MissileToeTargetItem extends SeedItem implements FabricItem {
 					if (!world.isSpaceEmpty(tileEntity, tileEntity.getBoundingBox())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
-						if (!world.isClient) {
+						if (!getWorld().isClient) {
 							float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 							tileEntity.refreshPositionAndAngles(tileEntity.getX(), tileEntity.getY(), tileEntity.getZ(), f, 0.0F);
 							if (targetID != 0) {

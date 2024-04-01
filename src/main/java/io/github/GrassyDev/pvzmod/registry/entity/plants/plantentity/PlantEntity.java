@@ -383,7 +383,7 @@ public abstract class PlantEntity extends GolemEntity {
 	public boolean noBiggie;
 
 	protected void targetZombies(Vec3d pos, int yDiff, boolean canHitSnorkel, boolean canHitFlying, boolean canHitStealth){
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
 		int zombieStrength = 0;
 		int prioritizedStrength = 0;
 		Vec3d prevZombiePosition = Vec3d.ZERO;
@@ -944,7 +944,7 @@ public abstract class PlantEntity extends GolemEntity {
 			this.setFireTicks(0);
 		}
 
-		List<WaterTile> waterTiles = world.getNonSpectatingEntities(WaterTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		List<WaterTile> waterTiles = getWorld().getNonSpectatingEntities(WaterTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 		for (WaterTile waterTile : waterTiles) {
 			this.onWaterTile = true;
 		}
@@ -970,14 +970,14 @@ public abstract class PlantEntity extends GolemEntity {
 		}
 		if (PLANT_TYPE.get(this.getType()).orElse("appease").equals("pepper") && !this.isWet()){
 			if (--heatTicks <= 0) {
-				List<TileEntity> list = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(1.5));
+				List<TileEntity> list = getWorld().getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(1.5));
 				for (TileEntity tileEntity : list) {
 					if (tileEntity instanceof SnowTile) {
 						tileEntity.discard();
 					}
 					boolean waterTile = false;
 					if (tileEntity instanceof WaterTile waterTile2) {
-						List<LivingEntity> list2 = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(waterTile2.getX(), waterTile2.getY(), waterTile2.getZ()));
+						List<LivingEntity> list2 = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(waterTile2.getX(), waterTile2.getY(), waterTile2.getZ()));
 						for (LivingEntity livingEntity : list2){
 							if (livingEntity.squaredDistanceTo(waterTile2) <= 0.5 && livingEntity != waterTile2){
 								waterTile = true;
@@ -1250,7 +1250,7 @@ public abstract class PlantEntity extends GolemEntity {
 		}
 		if (setGear != null && !(this.magnetshroom && setGear.isHeavy)) {
 			playSound(PvZSounds.MAGNETATTRACTEVENT);
-			MetalHelmetProjEntity helmetProjEntity = (MetalHelmetProjEntity) PvZEntity.METALHELMETPROJ.create(world);
+			MetalHelmetProjEntity helmetProjEntity = (MetalHelmetProjEntity) PvZEntity.METALHELMETPROJ.create(getWorld());
 			helmetProjEntity.setOwner(this);
 			if (this.getType().equals(PvZEntity.MAGNETOSHROOM)) {
 				helmetProjEntity.setMaxAge(150);
@@ -1274,7 +1274,7 @@ public abstract class PlantEntity extends GolemEntity {
 		}
 		if (magnetoshroom) {
 			if (setGear2 != null) {
-				MetalHelmetProjEntity helmetProjEntity = (MetalHelmetProjEntity) PvZEntity.METALHELMETPROJ.create(world);
+				MetalHelmetProjEntity helmetProjEntity = (MetalHelmetProjEntity) PvZEntity.METALHELMETPROJ.create(getWorld());
 				helmetProjEntity.setOwner(this);
 				if (this.getType().equals(PvZEntity.MAGNETOSHROOM)) {
 					helmetProjEntity.setMaxAge(150);
@@ -1297,7 +1297,7 @@ public abstract class PlantEntity extends GolemEntity {
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(helmetProjEntity);
 			}
 			if (setGear3 != null) {
-				MetalHelmetProjEntity helmetProjEntity = (MetalHelmetProjEntity) PvZEntity.METALHELMETPROJ.create(world);
+				MetalHelmetProjEntity helmetProjEntity = (MetalHelmetProjEntity) PvZEntity.METALHELMETPROJ.create(getWorld());
 				helmetProjEntity.setOwner(this);
 				if (this.getType().equals(PvZEntity.MAGNETOSHROOM)) {
 					helmetProjEntity.setMaxAge(150);
@@ -1332,7 +1332,7 @@ public abstract class PlantEntity extends GolemEntity {
 	}
 
 	public static boolean checkPlant(Vec3d pos, ServerWorldAccess world, EntityType<?> type) {
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
 		List<PlantEntity> list1 = new ArrayList<>();
 		for (PlantEntity plantEntity : list){
 			if (plantEntity.getType() != type){

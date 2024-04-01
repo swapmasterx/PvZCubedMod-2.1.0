@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -154,7 +155,7 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 			this.cachedSparkTarget = null;
 		}
 
-		super.onTrackedDataSet(data);
+		super.onTrackedDataUpdate(data);
 	}
 
 	static {
@@ -257,23 +258,26 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().loop("zapricot.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("zapricot.shoot"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("zapricot.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("zapricot.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -314,7 +318,7 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.ZAPRICOT_SEED_PACKET);
 				}
@@ -482,12 +486,12 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
-					damaged.damage(PvZCubed.LIGHTNING_DAMAGE, 2);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 2);
 				}
 				else {
-					damaged.damage(PvZCubed.LIGHTNING_DAMAGE, 1);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 1);
 				}
-				damaged.damage(DamageSource.thrownProjectile(this, this), 0);
+				damaged.damage(getDamageSources().mobProjectile(this, this), 0);
 				setSparkTarget(damaged.getId());
 				this.getWorld().sendEntityStatus(this, (byte) 121);
 				if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -532,7 +536,7 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 	 **/
 
 	public static DefaultAttributeContainer.Builder createZapricotAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -897,7 +901,7 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 		return ((float)this.beamTicks + tickDelta) / (float)this.getWarmupTime();
 	}
 
-	static class FireBeamGoal extends Goal {
+	class FireBeamGoal extends Goal {
 		private final ZapricotEntity plantEntity;
 		private int beamTicks;
 		private int animationTicks;
@@ -934,8 +938,8 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 			this.plantEntity.setElectricBeamTargetId3(0);
 			this.plantEntity.setElectricBeamTargetId4(0);
 			this.plantEntity.setSparkTarget(0);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			if (plantEntity.getTarget() != null){
 				this.plantEntity.attack(plantEntity.getTarget(), 0);
 			}
@@ -949,7 +953,7 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -7) {
@@ -988,8 +992,8 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 							if ("rubber".equals(zombieMaterial)){
 								damage = 0;
 							}
-							damaged.damage(PvZCubed.LIGHTNING_DAMAGE, damage);
-							damaged.damage(DamageSource.thrownProjectile(this.plantEntity, this.plantEntity), 0);
+							damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), damage);
+							damaged.damage(getDamageSources().mobProjectile(this.plantEntity, this.plantEntity), 0);
 							this.plantEntity.lightningCounter = 3;
 							if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
 								this.plantEntity.lightningCounter = 2;
@@ -1014,7 +1018,7 @@ public class ZapricotEntity extends PlantEntity implements GeoAnimatable, Ranged
 					this.plantEntity.setElectricBeamTargetId4(0);
 				}
 				else if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

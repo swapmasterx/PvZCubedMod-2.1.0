@@ -125,10 +125,10 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoAnim
 			if (this.CollidesWithPlant(0f, 0f) != null) {
 				if (this.CollidesWithPlant(0f, 0f) instanceof SpikerockEntity) {
 					if (this.getType().equals(PvZEntity.TRASHCANBIN) && !this.hasVehicle()) {
-						this.CollidesWithPlant(0f, 0f).damage(DamageSource.thrownProjectile(this, this), 90);
+						this.CollidesWithPlant(0f, 0f).damage(getDamageSources().mobProjectile(this, this), 90);
 						this.kill();
 					} else if (!(this.getType().equals(PvZEntity.TRASHCANBIN))) {
-						this.CollidesWithPlant(0f, 0f).damage(DamageSource.thrownProjectile(this, this), 90);
+						this.CollidesWithPlant(0f, 0f).damage(getDamageSources().mobProjectile(this, this), 90);
 						this.kill();
 					}
 				} else if (this.CollidesWithPlant(0f, 0f) instanceof SpikeweedEntity) {
@@ -153,31 +153,34 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoAnim
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten || (this.getType().equals(PvZEntity.TRASHCANBIN) && (this.hasVehicle() || (this.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHealth() <= 0)))){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
 		else if (this.getType().equals(PvZEntity.HEALSTATION)){
 			if (this.hasStatusEffect(DISABLE)){
-				event.getController().setAnimation(new RawAnimation().loop("healstation.disabled"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("healstation.disabled"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("healstation.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("healstation.idle"));
 			}
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
 		}
         return PlayState.CONTINUE;
     }

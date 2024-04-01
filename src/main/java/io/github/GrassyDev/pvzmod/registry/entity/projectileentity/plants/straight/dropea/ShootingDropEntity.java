@@ -58,20 +58,23 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoAnimat
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -140,12 +143,12 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoAnimat
 
 		if (checkTorchwood(this.getPos()) != null) {
 			if (!checkTorchwood(this.getPos()).isWet()) {
-				ShootingPeaEntity shootingPeaEntity = (ShootingPeaEntity) PvZEntity.PEA.create(world);
+				ShootingPeaEntity shootingPeaEntity = (ShootingPeaEntity) PvZEntity.PEA.create(getWorld());
 				shootingPeaEntity.torchwoodMemory = checkTorchwood(this.getPos());
 				shootingPeaEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
 				shootingPeaEntity.setVelocity(this.getVelocity());
 				shootingPeaEntity.setOwner(this.getOwner());
-				world.spawnEntity(shootingPeaEntity);
+				getWorld().spawnEntity(shootingPeaEntity);
 				shootingPeaEntity.age = this.age;
 				shootingPeaEntity.damageMultiplier = damageMultiplier;
 				this.remove(RemovalReason.DISCARDED);
@@ -159,7 +162,7 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoAnimat
 	}
 
 	public TorchwoodEntity checkTorchwood(Vec3d pos) {
-		List<TorchwoodEntity> list = world.getNonSpectatingEntities(TorchwoodEntity.class, PvZEntity.PEA.getDimensions().getBoxAt(pos));
+		List<TorchwoodEntity> list = getWorld().getNonSpectatingEntities(TorchwoodEntity.class, PvZEntity.PEA.getDimensions().getBoxAt(pos));
 		if (!list.isEmpty()){
 			return list.get(0);
 		}
@@ -193,7 +196,7 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoAnimat
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -221,10 +224,10 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoAnimat
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 				} else {
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
@@ -278,10 +281,10 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoAnimat
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage4 = damage3 - livingEntity.getHealth();
-											livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage3);
-											generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage4);
+											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
+											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage4);
 										} else {
-											livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage3);
+											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
 										}
 										livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
 										livingEntity.extinguish();

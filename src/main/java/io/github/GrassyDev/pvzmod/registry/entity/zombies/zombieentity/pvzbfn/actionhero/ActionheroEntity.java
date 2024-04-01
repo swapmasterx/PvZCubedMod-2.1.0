@@ -143,28 +143,31 @@ public class ActionheroEntity extends BullyEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		Entity entity = this.getFirstPassenger();
 		if (this.riding){
-			event.getController().setAnimation(new RawAnimation().loop("bully.rocketride"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.rocketride"));
 		}
 		else if (this.isInsideWaterOrBubbleColumn()) {
 			if (this.getPoleStage()) {
-				event.getController().setAnimation(new RawAnimation().loop("bully.ducky.run"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.ducky.run"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("bully.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.ducky"));
 			}
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
@@ -175,13 +178,13 @@ public class ActionheroEntity extends BullyEntity implements GeoAnimatable {
 		} else {
 			if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if (this.getPoleStage()){
-					event.getController().setAnimation(new RawAnimation().loop("bully.run"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.run"));
 				}
 				else {
-					event.getController().setAnimation(new RawAnimation().loop("bully.walk"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.walk"));
 				}
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("bully.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bully.idle"));
 			}
 			if (this.isFrozen || this.isStunned) {
 				event.getController().setAnimationSpeed(0);

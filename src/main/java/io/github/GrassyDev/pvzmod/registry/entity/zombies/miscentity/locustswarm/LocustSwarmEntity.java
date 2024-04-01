@@ -85,15 +85,18 @@ public class LocustSwarmEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -178,7 +181,7 @@ public class LocustSwarmEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createLocustSwarmAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -236,7 +239,7 @@ public class LocustSwarmEntity extends PvZombieEntity implements GeoAnimatable {
 		if (attacker instanceof PlayerEntity) {
 			PlayerEntity playerEntity = (PlayerEntity) attacker;
 			this.clearStatusEffects();
-			return this.damage(DamageSource.player(playerEntity), 9999.0F);
+			return this.damage(getDamageSources().playerAttack(playerEntity), 9999.0F);
 		} else {
 			return false;
 		}

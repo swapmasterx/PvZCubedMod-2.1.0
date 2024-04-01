@@ -77,23 +77,26 @@ public class KnightPeaEntity extends PlantEntity implements GeoAnimatable, Range
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("peashooter.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("peashooter.shoot"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("peashooter.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("peashooter.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -130,7 +133,7 @@ public class KnightPeaEntity extends PlantEntity implements GeoAnimatable, Range
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.KNIGHTPEA_SEED_PACKET);
 				}
@@ -158,7 +161,7 @@ public class KnightPeaEntity extends PlantEntity implements GeoAnimatable, Range
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.KNIGHTPEA_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -178,7 +181,7 @@ public class KnightPeaEntity extends PlantEntity implements GeoAnimatable, Range
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createKnightPeashooterAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 180.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -236,18 +239,18 @@ public class KnightPeaEntity extends PlantEntity implements GeoAnimatable, Range
 
 	/** /~*~//~*SPAWNING*~//~*~/ **/
 
-	public static boolean canPeashooterSpawn(EntityType<? extends KnightPeaEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
+	public boolean canPeashooterSpawn(EntityType<? extends KnightPeaEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
 		BlockPos blockPos = pos.down();
 		return checkVillager(Vec3d.ofCenter(pos), world) && !checkPeashooter(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
 	}
 
-	public static boolean checkVillager(Vec3d pos, ServerWorldAccess world) {
-		List<VillagerEntity> list = world.getNonSpectatingEntities(VillagerEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
+	public boolean checkVillager(Vec3d pos, ServerWorldAccess world) {
+		List<VillagerEntity> list = getWorld().getNonSpectatingEntities(VillagerEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
 		return !list.isEmpty();
 	}
 
-	public static boolean checkPeashooter(Vec3d pos, ServerWorldAccess world) {
-		List<KnightPeaEntity> list = world.getNonSpectatingEntities(KnightPeaEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
+	public boolean checkPeashooter(Vec3d pos, ServerWorldAccess world) {
+		List<KnightPeaEntity> list = getWorld().getNonSpectatingEntities(KnightPeaEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
 		return !list.isEmpty();
 	}
 

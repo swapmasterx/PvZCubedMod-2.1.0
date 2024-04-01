@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.jingle.JingleEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.hypnoproj.HypnoProjEntity;
@@ -27,10 +28,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -133,28 +136,31 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
 			if (this.getVariant().equals(TulipVariants.HEAL)){
-				event.getController().setAnimation(new RawAnimation().playOnce("tulimpeter.shoot2"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("tulimpeter.shoot2"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().playOnce("tulimpeter.shoot"));}
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("tulimpeter.shoot"));}
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("tulimpeter.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("tulimpeter.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -246,7 +252,7 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.TULIMPETER_SEED_PACKET);
 				}
@@ -271,7 +277,7 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.TULIMPETER_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -291,7 +297,7 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createTulimpeterAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -386,8 +392,8 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -397,11 +403,11 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			if ((!this.plantEntity.canSee(livingEntity)) &&
 					this.animationTicks >= 0) {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 				this.plantEntity.setTarget((LivingEntity) null);
 			}
 			else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				if (this.animationTicks == -16) {
 					if (!this.plantEntity.checkForZombiesHEAL().isEmpty()) {
 						this.plantEntity.setVariant(TulipVariants.HEAL);
@@ -417,8 +423,8 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 				if (this.beamTicks >= 0 && this.animationTicks >= -7) {
 					if (this.plantEntity.getVariant().equals(TulipVariants.DEFAULT)) {
 						if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
-							JingleEntity proj = new JingleEntity(PvZEntity.JINGLE, this.plantEntity.world);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
+							JingleEntity proj = new JingleEntity(PvZEntity.JINGLE, this.plantEntity.getWorld());
 							double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 225) ? 50 : 5;
 							Vec3d targetPos = livingEntity.getPos();
 							double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -441,16 +447,16 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 							proj.damageMultiplier = plantEntity.damageMultiplier;
 							if (livingEntity != null && livingEntity.isAlive()) {
 								this.beamTicks = -13;
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-								this.plantEntity.playSound(SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, 0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
-								this.plantEntity.world.spawnEntity(proj);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+								this.plantEntity.playSound(SoundEvent.createVariableRangeEvent(Identifier.tryParse("block.note_block.flute")),  0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
+								this.plantEntity.getWorld().spawnEntity(proj);
 							}
 						}
 					}
 					else if (this.plantEntity.getVariant().equals(TulipVariants.HYPNO)) {
 						if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
-							HypnoProjEntity proj = new HypnoProjEntity(PvZEntity.HYPNOPROJ, this.plantEntity.world);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
+							HypnoProjEntity proj = new HypnoProjEntity(PvZEntity.HYPNOPROJ, this.plantEntity.getWorld());
 							double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 225) ? 50 : 5;
 							Vec3d targetPos = livingEntity.getPos();
 							double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -468,24 +474,24 @@ public class TulimpeterEntity extends PlantEntity implements GeoAnimatable, Rang
 							proj.damageMultiplier = plantEntity.damageMultiplier;
 							if (livingEntity != null && livingEntity.isAlive()) {
 								this.beamTicks = -13;
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-								this.plantEntity.playSound(SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, 0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
-								this.plantEntity.world.spawnEntity(proj);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+								this.plantEntity.playSound(SoundEvent.createVariableRangeEvent(Identifier.tryParse("block.note_block.flute")), 0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
+								this.plantEntity.getWorld().spawnEntity(proj);
 							}
 						}
 					}
 					else if (this.plantEntity.getVariant().equals(TulipVariants.HEAL)){
-						this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+						this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 						for (PlantEntity plantEntity1 : this.plantEntity.healPlants()){
 							plantEntity1.heal(2);
 						}
 						this.beamTicks = -13;
-						this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-						this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 116);
-						this.plantEntity.playSound(SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, 0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
+						this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+						this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 116);
+						this.plantEntity.playSound(SoundEvent.createVariableRangeEvent(Identifier.tryParse("block.note_block.flute")), 0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
 					}
 				} else if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

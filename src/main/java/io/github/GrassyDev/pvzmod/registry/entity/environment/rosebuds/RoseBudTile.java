@@ -40,18 +40,17 @@ public class RoseBudTile extends TileEntity {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("doomrose.hands"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("doomrose.hands"));
 		return PlayState.CONTINUE;
 	}
 
@@ -141,4 +140,12 @@ public class RoseBudTile extends TileEntity {
 			tickDamage = 15;
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+>>>>>>> Stashed changes
 }

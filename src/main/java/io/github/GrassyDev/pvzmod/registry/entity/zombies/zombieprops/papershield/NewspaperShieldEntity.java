@@ -203,9 +203,9 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoAnim
 								}
 							}
 						}
-						plantEntity.damage(DamageSource.mob(this), Integer.MAX_VALUE);
+						plantEntity.damage(getDamageSources().mobAttack(this), Integer.MAX_VALUE);
 						if (vehicle != null) {
-							vehicle.damage(DamageSource.mob(this), Integer.MAX_VALUE);
+							vehicle.damage(getDamageSources().mobAttack(this), Integer.MAX_VALUE);
 						}
 						if (this.CollidesWithPlant(0.1f, 0f) instanceof GardenChallengeEntity){
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -245,15 +245,18 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoAnim
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

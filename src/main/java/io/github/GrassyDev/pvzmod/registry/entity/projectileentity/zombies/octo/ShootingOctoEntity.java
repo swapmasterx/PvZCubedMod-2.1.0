@@ -55,20 +55,23 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 
 	private LivingEntity target;
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("cabbage.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("cabbage.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -186,7 +189,7 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);
 						}
-						else if (!world.isClient &&
+						else if (!getWorld().isClient &&
 								(entity instanceof Monster monster &&
 										(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 										!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
@@ -207,16 +210,16 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 							} else {
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 							}
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);
 						}
 					} else {
-						if (!world.isClient &&
+						if (!getWorld().isClient &&
 								(entity instanceof Monster monster &&
 										!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 										!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
@@ -236,10 +239,10 @@ public class ShootingOctoEntity extends PvZProjectileEntity implements GeoAnimat
 									!(entity instanceof ZombieShieldEntity) &&
 									entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 								float damage2 = damage - ((LivingEntity) entity).getHealth();
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-								generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 							} else {
-								entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 							}
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);

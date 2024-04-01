@@ -100,7 +100,7 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 					if (this.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno()){
 						type = PvZEntity.PIGGYHYPNO;
 					}
-					List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(15));
+					List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(15));
 					if (!list.isEmpty()) {
 						PiggyEntity piggyEntity = (PiggyEntity) type.create(this.getWorld());
 						piggyEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -124,7 +124,7 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 		}
 		if (this.CollidesWithPlant(0f, 0f) != null){
 			if (this.CollidesWithPlant(0f, 0f) instanceof SpikerockEntity) {
-				this.CollidesWithPlant(0f, 0f).damage(DamageSource.thrownProjectile(this, this), 90);
+				this.CollidesWithPlant(0f, 0f).damage(getDamageSources().mobProjectile(this, this), 90);
 				this.kill();
 			}
 			else if (this.CollidesWithPlant(0f, 0f) instanceof SpikeweedEntity) {
@@ -140,23 +140,26 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten || this.hasVehicle()){
-			event.getController().setAnimation(new RawAnimation().loop("hawker.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.eating"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("hawker.obstacle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("hawker.obstacle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -225,9 +228,9 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 				if (!world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR)) {
 					vec3d = new Vec3d((double) 0, 0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				}
-				PiggyEntity piggy = (PiggyEntity) type.create(world);
+				PiggyEntity piggy = (PiggyEntity) type.create(getWorld());
 				piggy.refreshPositionAndAngles(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z, 0, 0);
-				piggy.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				piggy.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				piggy.setYaw(this.getYaw());
 				piggy.setOwner(this);
 				serverWorld.spawnEntityAndPassengers(piggy);

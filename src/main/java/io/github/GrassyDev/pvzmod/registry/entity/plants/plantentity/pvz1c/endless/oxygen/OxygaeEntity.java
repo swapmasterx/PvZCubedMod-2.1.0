@@ -12,7 +12,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endle
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -28,7 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.HitResult;
@@ -51,6 +50,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.List;
 import java.util.Objects;
 
+import static io.github.GrassyDev.pvzmod.PvZCubed.ICE;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 ;
@@ -139,19 +139,22 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("oxygae.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("oxygae.idle"));
         return PlayState.CONTINUE;
     }
 
@@ -188,7 +191,7 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -197,7 +200,7 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 					this.dryLand = false;
 					onWater = true;
 				}
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 						this.dropItem(ModItems.OXYGAE_SEED_PACKET);
 					}
@@ -239,9 +242,9 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 				}
 			}
 			if (bl) {
-				BubblePadEntity bubble = (BubblePadEntity) PvZEntity.BUBBLEPAD.create(world);
+				BubblePadEntity bubble = (BubblePadEntity) PvZEntity.BUBBLEPAD.create(getWorld());
 				bubble.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				bubble.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				bubble.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				bubble.setPersistent();
 				bubble.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(bubble);
@@ -262,7 +265,7 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.OXYGAE_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -281,7 +284,7 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createOxygaeAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 8D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
@@ -360,9 +363,9 @@ public class OxygaeEntity extends PlantEntity implements GeoAnimatable {
 	}
 
 	public static boolean canLilyPadSpawn(EntityType<? extends OxygaeEntity> entityType, WorldAccess worldAccess, SpawnReason reason, BlockPos pos, RandomGenerator random) {
-		BlockPos blockPos2 = pos.add(0, 0.5, 0);
-		return ((worldAccess.getBlockState(pos.down()).getMaterial().isLiquid() && !worldAccess.getBlockState(blockPos2).getMaterial().isLiquid() && !worldAccess.getBlockState(pos.down()).getMaterial().equals(Material.LAVA)) ||
-				worldAccess.getBlockState(pos.down()).getMaterial().equals(Material.ICE)) &&
-				Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
+		BlockPos blockPos2 = pos.add(0, 0, 0);
+		return ((worldAccess.getFluidState(pos.down()).isSource() && !worldAccess.getFluidState(blockPos2).isSource() && !worldAccess.getFluidState(pos.down()).isOf(Fluids.LAVA)) ||
+			worldAccess.getBlockState(pos.down()).getBlock().equals(ICE)) &&
+			Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
 	}
 }

@@ -27,6 +27,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -120,23 +121,26 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.getFuseSpeed();
 		if (i > 0) {
-			event.getController().setAnimation(new RawAnimation().playOnce("jalapeno.explosion"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("jalapeno.explosion"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("jalapeno.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("jalapeno.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -177,12 +181,12 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 		Vec3d vec3d2 = new Vec3d((double) 0, 0.0, boxOffset).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(1, 4, 1).offset(vec3d2).offset(0, -1.5, 0));
 		Vec3d vec3d3 = this.getBoundingBox().offset(vec3d2).getCenter();
-		IceTile iceTile = (IceTile) PvZEntity.ICETILE.create(world);
+		IceTile iceTile = (IceTile) PvZEntity.ICETILE.create(getWorld());
 		iceTile.refreshPositionAndAngles(vec3d3.getX(), this.getY(), vec3d3.getZ(), 0, 0);
 		iceTile.setHeadYaw(0);
 		List<IceTile> listFlames = this.getWorld().getNonSpectatingEntities(IceTile.class, iceTile.getBoundingBox());
 		if (listFlames.isEmpty()) {
-			world.spawnEntity(iceTile);
+			getWorld().spawnEntity(iceTile);
 		}
 		Iterator var9 = list.iterator();
 		while (true) {
@@ -224,20 +228,20 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					checkList.add(livingEntity);
 					checkList.add(generalPvZombieEntity);
 				} else if (zombiePropEntity2 instanceof ZombieShieldEntity) {
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add(livingEntity);
 				} else {
 					if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}
 				}
@@ -269,7 +273,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (this.getTarget() == null || source.getAttacker() instanceof PlayerEntity || source.isOutOfWorld()) {
+		if (this.getTarget() == null || source.getAttacker() instanceof PlayerEntity || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
 			super.applyDamage(source, amount);
 		}
 	}
@@ -289,7 +293,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.CHILLYPEPPER_SEED_PACKET);
 				}
@@ -353,7 +357,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder creatChillyPepperAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -411,7 +415,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoAnimatable {
 		if (attacker instanceof PlayerEntity) {
 			PlayerEntity playerEntity = (PlayerEntity) attacker;
 			this.clearStatusEffects();
-			return this.damage(DamageSource.player(playerEntity), 9999.0F);
+			return this.damage(getDamageSources().playerAttack(playerEntity), 9999.0F);
 		} else {
 			return false;
 		}

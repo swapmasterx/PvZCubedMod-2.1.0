@@ -55,21 +55,19 @@ public class SpringTile extends TileEntity {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
-	}
-
-	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (tickDown){
-			event.getController().setAnimation(new RawAnimation().loop("spring.tile"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("spring.tile"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("springprincess.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("springprincess.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -130,4 +128,12 @@ public class SpringTile extends TileEntity {
 		BlockPos blockPos = this.getBlockPos();
 		this.damageEntity();
 	}
+<<<<<<< Updated upstream
+=======
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+>>>>>>> Stashed changes
 }

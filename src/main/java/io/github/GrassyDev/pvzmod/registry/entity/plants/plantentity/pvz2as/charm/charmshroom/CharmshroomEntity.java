@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowFullTile;
@@ -34,7 +35,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -90,7 +91,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 			this.cachedBeamTarget = null;
 		}
 
-		super.onTrackedDataSet(data);
+		super.onTrackedDataUpdate(data);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {
@@ -141,23 +142,26 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         if (this.getIsAsleep()) {
-            event.getController().setAnimation(new RawAnimation().loop("charmshroom.idle.asleep"));
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("charmshroom.idle.asleep"));
         }
         else {
-            event.getController().setAnimation(new RawAnimation().loop("charmshroom.idle"));
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("charmshroom.idle"));
         }
         return PlayState.CONTINUE;
     }
@@ -191,7 +195,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 	public void tick() {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowFullTile> fullCheck = world.getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
 			if (fullCheck.isEmpty()) {
 				if (this.getWorld().getMoonSize() > 0.9 && this.getWorld().isSkyVisible(this.getBlockPos())) {
 					if (serverWorld.isNight()) {
@@ -218,11 +222,11 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -237,7 +241,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.CHARMSHROOM_SEED_PACKET);
 				}
@@ -290,7 +294,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.CHARMSHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -310,7 +314,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createCharmshroomAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -415,7 +419,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
 		return ((float)this.beamTicks + tickDelta) / (float)this.getWarmupTime();
 	}
 
-    static class FireBeamGoal extends Goal {
+    class FireBeamGoal extends Goal {
         private final CharmshroomEntity plantEntity;
         private int beamTicks;
 
@@ -460,7 +464,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoAnimatable, Ran
                 } else if (this.beamTicks >= this.plantEntity.getWarmupTime()) {
 					if (livingEntity != null && livingEntity.isAlive()) {
 						if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.isCovered()) {
-							livingEntity.damage(PvZCubed.HYPNO_DAMAGE, 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0);
 						}
 						this.plantEntity.setTarget((LivingEntity) null);
 						if (ZOMBIE_SIZE.get(livingEntity.getType()).orElse("medium").equals("gargantuar") && !this.plantEntity.getMoonPowered()){

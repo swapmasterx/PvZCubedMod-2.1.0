@@ -141,22 +141,25 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("peashooter.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("peashooter.shoot"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("peashooter.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("peashooter.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -195,7 +198,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.SNOW_PEA_SEED_PACKET);
 				}
@@ -220,7 +223,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SNOW_PEA_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -232,10 +235,10 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
 				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				SnowqueenpeaEntity snowqueenpeaEntity = (SnowqueenpeaEntity) PvZEntity.SNOWQUEENPEA.create(world);
+				SnowqueenpeaEntity snowqueenpeaEntity = (SnowqueenpeaEntity) PvZEntity.SNOWQUEENPEA.create(getWorld());
 				snowqueenpeaEntity.setTarget(this.getTarget());
 				snowqueenpeaEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				snowqueenpeaEntity.initialize(serverWorld, world.getLocalDifficulty(snowqueenpeaEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				snowqueenpeaEntity.initialize(serverWorld, getWorld().getLocalDifficulty(snowqueenpeaEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				snowqueenpeaEntity.setAiDisabled(this.isAiDisabled());
 				snowqueenpeaEntity.setPersistent();
 				if (this.hasCustomName()) {
@@ -267,10 +270,10 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.SNOW_QUEENPEA_SEED_PACKET, TwinSunflowerSeeds.cooldown);
 				}
 			}
@@ -312,7 +315,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createSnowpeaAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -407,7 +410,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity) null);
 		}
 
@@ -418,12 +421,12 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 			if (!this.plantEntity.canSee(livingEntity)) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -7) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						ShootingSnowPeaEntity proj = new ShootingSnowPeaEntity(PvZEntity.SNOWPEAPROJ, this.plantEntity.world);
+						ShootingSnowPeaEntity proj = new ShootingSnowPeaEntity(PvZEntity.SNOWPEAPROJ, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -441,14 +444,14 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 						proj.damageMultiplier = plantEntity.damageMultiplier;
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -7;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.SNOWPEASHOOTEVENT, 1F, 1);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 				}
 				if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

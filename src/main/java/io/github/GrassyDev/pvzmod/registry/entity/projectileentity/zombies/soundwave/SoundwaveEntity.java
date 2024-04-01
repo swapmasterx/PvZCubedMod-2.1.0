@@ -75,20 +75,23 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 		setUuid(uuid);
 	}
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -158,7 +161,7 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 			}
 			float damage = PVZCONFIG.nestedProjDMG.soundwaveDMG() * damageMultiplier;
 			if (this.getOwner() instanceof GeneralPvZombieEntity owner && owner.getHypno()){
-				if (!world.isClient && entity instanceof Monster monster &&
+				if (!getWorld().isClient && entity instanceof Monster monster &&
 						!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 						!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -177,10 +180,10 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 					}
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
@@ -188,7 +191,7 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 				}
 			}
 			else {
-				if (!world.isClient && entity instanceof Monster monster &&
+				if (!getWorld().isClient && entity instanceof Monster monster &&
 						(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 						!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 						!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -207,18 +210,18 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoAnimatabl
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity1 && !(generalPvZombieEntity1.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity1.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						generalPvZombieEntity1.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 					}
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 				}
 				if (entity instanceof LilyPadEntity && entity.hasPassengers()) {
 
-				} else if (!world.isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying")) && !(entity.getVehicle() instanceof BubblePadEntity)) {
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+				} else if (!getWorld().isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying")) && !(entity.getVehicle() instanceof BubblePadEntity)) {
+					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 					break;

@@ -158,7 +158,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new RawAnimation().loop("flagzombie.ducky"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("flagzombie.ducky"));
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
 			}
@@ -167,7 +167,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 			}
 		}else {
 			if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("flagzombie.walking"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("flagzombie.walking"));
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
 					}
@@ -178,7 +178,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 						event.getController().setAnimationSpeed(1.4);
 					}
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("flagzombie.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("flagzombie.idle"));
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
 				} else if (this.isIced) {
@@ -357,9 +357,9 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-				FlagPokerEntity hypnotizedZombie = (FlagPokerEntity) hypnoType.create(world);
+				FlagPokerEntity hypnotizedZombie = (FlagPokerEntity) hypnoType.create(getWorld());
 				hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+				hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 				hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
 				if (this.hasCustomName()) {
@@ -398,7 +398,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

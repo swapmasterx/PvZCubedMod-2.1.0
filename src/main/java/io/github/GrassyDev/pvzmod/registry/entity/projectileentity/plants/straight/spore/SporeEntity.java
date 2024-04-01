@@ -69,7 +69,7 @@ public class SporeEntity extends PvZProjectileEntity implements GeoAnimatable {
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -177,7 +177,7 @@ public class SporeEntity extends PvZProjectileEntity implements GeoAnimatable {
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -197,10 +197,10 @@ public class SporeEntity extends PvZProjectileEntity implements GeoAnimatable {
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 				} else {
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 				}
 				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 6)));
 				this.getWorld().sendEntityStatus(this, (byte) 3);

@@ -88,26 +88,29 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("jumpingbean.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("jumpingbean.attack"));
 		}
 		else if (this.getIsAsleep()){
-			event.getController().setAnimation(new RawAnimation().loop("jumpingbean.tired"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("jumpingbean.tired"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("jumpingbean.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("jumpingbean.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -163,7 +166,7 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.JUMPINGBEAN_SEED_PACKET);
 				}
@@ -187,7 +190,7 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.JUMPINGBEAN_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -207,7 +210,7 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createJumpingBeanAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 22.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -300,7 +303,7 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 			if (bounced){
 				this.plantEntity.setIsAsleep(IsAsleep.TRUE);
 			}
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -312,13 +315,13 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				this.plantEntity.isFiring = true;
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -7) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						GroundBounceEntity proj = new GroundBounceEntity(PvZEntity.GROUNDBOUNCE, this.plantEntity.world);
+						GroundBounceEntity proj = new GroundBounceEntity(PvZEntity.GROUNDBOUNCE, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -335,9 +338,9 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -7;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.POLEVAULTEVENT, 0.1F, 0.75f);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 						this.bounced = true;
 					}
@@ -345,7 +348,7 @@ public class JumpingBeanEntity extends PlantEntity implements GeoAnimatable, Ran
 				else if (this.animationTicks >= 0)
 				{
 					this.plantEntity.isFiring = false;
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.plantEntity.setIsAsleep(IsAsleep.TRUE);
 				}
 				super.tick();

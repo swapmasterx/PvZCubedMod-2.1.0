@@ -266,15 +266,18 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -287,45 +290,45 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 		}
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inDyingAnimation){
-				event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.ducky.death"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.ducky.death"));
 			}
 			else if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.ducky.throw"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.ducky.throw"));
 			} else if (this.getImpStage()) {
 				if (inAnimation) {
-					event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.ducky.smash"));
+					event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.ducky.smash"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("gargantuar.ducky"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.ducky"));
 				}
 			} else {
 				if (inAnimation) {
-					event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.ducky.smash2"));
+					event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.ducky.smash2"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("gargantuar.ducky2"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.ducky2"));
 				}
 			}
 		} else {
 			if (inDyingAnimation){
-				event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.death"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.death"));
 				event.getController().setAnimationSpeed(1);
 			}
 			else if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.throw"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.throw"));
 			} else if (this.getImpStage()) {
 				if (inAnimation) {
-					event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.smash"));
+					event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.smash"));
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("gargantuar.walk"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.walk"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("gargantuar.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.idle"));
 				}
 			} else {
 				if (inAnimation) {
-					event.getController().setAnimation(new RawAnimation().playOnce("gargantuar.smash2"));
+					event.getController().setAnimation(RawAnimation.begin().thenPlay("gargantuar.smash2"));
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("gargantuar.walk2"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.walk2"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("gargantuar.idle2"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.idle2"));
 				}
 			}
 		}
@@ -399,18 +402,18 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 					this.firstAttack = false;
 				} else if (this.animationTicksLeft == 40 * animationMultiplier) {
 					if (target.hasVehicle()){
-						target.getVehicle().damage(DamageSource.mob(this), 360);
+						target.getVehicle().damage(getDamageSources().mobAttack(this), 360);
 					}
 					if (target instanceof SpikerockEntity && this.squaredDistanceTo(target) < 16D) {
 						bl = true;
 					}
 					else if (this.squaredDistanceTo(target) < 16D) {
-						target.damage(DamageSource.mob(this), 360);
+						target.damage(getDamageSources().mobAttack(this), 360);
 						return true;
 					}
 				}
 				if (bl) {
-					target.damage(DamageSource.mob(this), 90);
+					target.damage(getDamageSources().mobAttack(this), 90);
 					this.applyDamageEffects(this, target);
 					return true;
 				}
@@ -485,7 +488,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 			if (this.getHypno()){
 				impEntity.setHypno(IsHypno.TRUE);
 			}
-			impEntity.initialize((ServerWorldAccess) world, world.getLocalDifficulty(impEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+			impEntity.initialize((ServerWorldAccess) world, getWorld().getLocalDifficulty(impEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 			impEntity.setRainbowTag(Rainbow.TRUE);
 			impEntity.rainbowTicks = 40;
 			if (impEntity instanceof SuperFanImpEntity){
@@ -815,9 +818,9 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 				}
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
 					BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
-					PharaohEntity zombie = (PharaohEntity) type.create(world);
+					PharaohEntity zombie = (PharaohEntity) type.create(getWorld());
 					zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-					zombie.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+					zombie.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 					zombie.setOwner(this);
 					zombie.setRainbowTag(Rainbow.TRUE);
 					zombie.rainbowTicks = 60;
@@ -866,9 +869,9 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-				GargantuarEntity hypnotizedZombie = (GargantuarEntity) hypnoType.create(world);
+				GargantuarEntity hypnotizedZombie = (GargantuarEntity) hypnoType.create(getWorld());
 				hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+				hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 				hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
 				if (this.hasCustomName()) {

@@ -162,15 +162,18 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -183,38 +186,38 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 		}
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inDyingAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.explode"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.ducky.explode"));
 				event.getController().setAnimationSpeed(1);
 			} else if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.shoot"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.ducky.shoot"));
 			} else if (inAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.smash"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.ducky.smash"));
 			} else if (this.isDisabled && this.disableTicks > 0) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.ducky.stun"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.ducky.stun"));
 				event.getController().setAnimationSpeed(1);
 			} else if (this.isDisabled) {
-				event.getController().setAnimation(new RawAnimation().loop("scrapmech.ducky.stun.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("scrapmech.ducky.stun.idle"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("scrapmech.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("scrapmech.ducky"));
 			}
 		}
 		else {
 			if (inDyingAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.explode"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.explode"));
 				event.getController().setAnimationSpeed(1);
 			} else if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.shoot"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.shoot"));
 			} else if (inAnimation) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.smash"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.smash"));
 			} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-				event.getController().setAnimation(new RawAnimation().loop("scrapmech.walk"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("scrapmech.walk"));
 			} else if (this.isDisabled && this.disableTicks > 0) {
-				event.getController().setAnimation(new RawAnimation().playOnce("scrapmech.stun"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("scrapmech.stun"));
 				event.getController().setAnimationSpeed(1);
 			} else if (this.isDisabled) {
-				event.getController().setAnimation(new RawAnimation().loop("scrapmech.stun.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("scrapmech.stun.idle"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("scrapmech.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("scrapmech.idle"));
 			}
 		}
         return PlayState.CONTINUE;
@@ -277,18 +280,18 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 					this.firstAttack = false;
 				} else if (this.animationTicksLeft == 40 * animationMultiplier) {
 					if (target.hasVehicle()){
-						target.getVehicle().damage(DamageSource.mob(this), 360);
+						target.getVehicle().damage(getDamageSources().mobAttack(this), 360);
 					}
 					if (target instanceof SpikerockEntity && this.squaredDistanceTo(target) < 16D) {
 						bl = true;
 					}
 					else if (this.squaredDistanceTo(target) < 16D) {
-						target.damage(DamageSource.mob(this), 360);
+						target.damage(getDamageSources().mobAttack(this), 360);
 						return true;
 					}
 				}
 				if (bl) {
-					target.damage(DamageSource.mob(this), 90);
+					target.damage(getDamageSources().mobAttack(this), 90);
 					this.applyDamageEffects(this, target);
 					return true;
 				}
@@ -300,7 +303,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 	//Launch Basket
 	public void tryShoot(Entity target) {
 		LaserEntity proj = new LaserEntity(PvZEntity.LASER, this.getWorld());
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
 		double targetDist = 0;
 		proj.damageMultiplier = this.damageMultiplier;
 		for (LivingEntity livingEntity : list){
@@ -644,9 +647,9 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 			}
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
 				BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
-				ImpEntity imp = (ImpEntity) type.create(world);
+				ImpEntity imp = (ImpEntity) type.create(getWorld());
 				imp.refreshPositionAndAngles(this.getX(), this.getY() + 2, this.getZ(), 0, 0);
-				imp.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				imp.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				imp.setOwner(this);
 				imp.setVelocity(0, 1, 0);
 				this.playSound(PvZSounds.IMPLAUNCHEVENT, 1F, 1);

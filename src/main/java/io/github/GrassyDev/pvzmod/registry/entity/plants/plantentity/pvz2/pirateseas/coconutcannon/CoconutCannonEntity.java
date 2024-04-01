@@ -96,26 +96,29 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("coconutcannon.fire"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("coconutcannon.fire"));
 		}
 		else if (!this.recharged){
-			event.getController().setAnimation(new RawAnimation().loop("coconutcannon.recharge"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("coconutcannon.recharge"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("coconutcannon.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("coconutcannon.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -148,20 +151,20 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 
 		if (this.age > 1) {
 			BlockPos blockPos2 = this.getBlockPos();
-			BlockPos blockPos3 = this.getBlockPos().add(-0.5, 0, 0);
-			BlockPos blockPos4 = this.getBlockPos().add(0, 0, -0.5);
-			BlockPos blockPos5 = this.getBlockPos().add(0.5, 0, 0);
-			BlockPos blockPos6 = this.getBlockPos().add(-0.5, 0, -0.5);
+			BlockPos blockPos3 = this.getBlockPos().add(-0, 0, 0);
+			BlockPos blockPos4 = this.getBlockPos().add(0, 0, -0);
+			BlockPos blockPos5 = this.getBlockPos().add(0, 0, 0);
+			BlockPos blockPos6 = this.getBlockPos().add(-0, 0, -0);
 			BlockState blockState = this.getLandingBlockState();
-			BlockState blockState3 = this.getWorld().getBlockState(this.getSteppingPosition().add(-0.5, 0, 0));
-			BlockState blockState4 = this.getWorld().getBlockState(this.getSteppingPosition().add(0, 0, -0.5));
-			BlockState blockState5 = this.getWorld().getBlockState(this.getSteppingPosition().add(0.5, 0, 0));
-			BlockState blockState6 = this.getWorld().getBlockState(this.getSteppingPosition().add(-0.5, 0, -0.5));
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this) ||
-					!blockState3.hasSolidTopSurface(world, blockPos3, this) ||
-					!blockState4.hasSolidTopSurface(world, blockPos4, this) ||
-					!blockState6.hasSolidTopSurface(world, blockPos4, this) ||
-					!blockState5.hasSolidTopSurface(world, blockPos5, this)) && !this.hasVehicle()) {
+			BlockState blockState3 = this.getWorld().getBlockState(this.getSteppingPosition().add(-0, 0, 0));
+			BlockState blockState4 = this.getWorld().getBlockState(this.getSteppingPosition().add(0, 0, -0));
+			BlockState blockState5 = this.getWorld().getBlockState(this.getSteppingPosition().add(0, 0, 0));
+			BlockState blockState6 = this.getWorld().getBlockState(this.getSteppingPosition().add(-0, 0, -0));
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this) ||
+					!blockState3.hasSolidTopSurface(getWorld(), blockPos3, this) ||
+					!blockState4.hasSolidTopSurface(getWorld(), blockPos4, this) ||
+					!blockState6.hasSolidTopSurface(getWorld(), blockPos4, this) ||
+					!blockState5.hasSolidTopSurface(getWorld(), blockPos5, this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.COCONUTCANNON_SEED_PACKET);
 				}
@@ -222,7 +225,7 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.COCONUTCANNON_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -244,7 +247,7 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createCoconutCannonAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 36.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -334,8 +337,8 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 87);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 87);
 			if (this.plantEntity.rechargeTime <= 0 && this.plantEntity.attacked) {
 				this.plantEntity.attacked = false;
 				this.plantEntity.rechargeTime = 300;
@@ -354,14 +357,14 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 					this.animationTicks >= 0)) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else if (this.plantEntity.startShooting) {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				if (this.plantEntity.rechargeTime <= 0){
 					++this.beamTicks;
 					++this.animationTicks;
 				}
 				if (this.beamTicks >= 0 && this.plantEntity.rechargeTime <= 0) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						CoconutEntity proj = new CoconutEntity(PvZEntity.COCONUTPROJ, this.plantEntity.world);
+						CoconutEntity proj = new CoconutEntity(PvZEntity.COCONUTPROJ, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 75 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -379,9 +382,9 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -30;
 							this.plantEntity.attacked = true;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 				}
@@ -390,8 +393,8 @@ public class CoconutCannonEntity extends PlantEntity implements GeoAnimatable, R
 					this.plantEntity.rechargeTime = 300;
 				}
 				else if (this.plantEntity.rechargeTime > 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 87);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 87);
 					this.beamTicks = -9;
 					this.animationTicks = -26;
 					this.plantEntity.startShooting = false;

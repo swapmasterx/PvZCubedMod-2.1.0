@@ -65,20 +65,23 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoAnimatab
 	public float ownerYaw;
 
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("cabbage.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("cabbage.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -205,10 +208,10 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoAnimatab
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 					}
 					LivingEntity livingEntity = (LivingEntity) entity;
 					if (entity.hasVehicle()){
@@ -229,11 +232,11 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoAnimatab
 
 	public void createSpringTile(BlockPos blockPos){
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			List<TileEntity> tileCheck = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()).expand(-0.5f, 0, -0.5f));
+			List<TileEntity> tileCheck = getWorld().getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()).expand(-0.5f, 0, -0.5f));
 			if (tileCheck.isEmpty()) {
-				SpringTile tile = (SpringTile) PvZEntity.SPRINGTILE.create(world);
+				SpringTile tile = (SpringTile) PvZEntity.SPRINGTILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				tile.setPersistent();
 				serverWorld.spawnEntityAndPassengers(tile);
 			}

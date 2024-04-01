@@ -488,15 +488,18 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	protected  <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -508,7 +511,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 		}
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().loop("screendoor.ducky.throw"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("screendoor.ducky.throw"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				}
@@ -517,15 +520,15 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 				}
 			}
 			else if (zombieShieldEntity != null){
-				event.getController().setAnimation(new RawAnimation().loop("screendoor.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("screendoor.ducky"));
 			}
 			else if (this.getVariant().equals(BrowncoatVariants.SCREENDOOR) || this.getVariant().equals(BrowncoatVariants.SCREENDOORHYPNO) ||
 					this.getVariant().equals(BrowncoatVariants.BOOKBURN) || this.getVariant().equals(BrowncoatVariants.BOOKBURNHYPNO) ||
 					this.getVariant().equals(BrowncoatVariants.TRASHCAN) || this.getVariant().equals(BrowncoatVariants.TRASHCANHYPNO) ) {
-				event.getController().setAnimation(new RawAnimation().loop("screendoor.ducky2"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("screendoor.ducky2"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("headwear.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.ducky"));
 			}
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);
@@ -535,7 +538,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 			}
 		} else {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().loop("screendoor.throw"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("screendoor.throw"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -544,17 +547,17 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 			}
 			else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if (zombieShieldEntity != null){
-					event.getController().setAnimation(new RawAnimation().loop("screendoor.walking"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("screendoor.walking"));
 				}
 				else {
-					event.getController().setAnimation(new RawAnimation().loop("headwear.walking"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.walking"));
 				}
 			} else {
 				if (zombieShieldEntity != null){
-					event.getController().setAnimation(new RawAnimation().loop("screendoor.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("screendoor.idle"));
 				}
 				else {
-					event.getController().setAnimation(new RawAnimation().loop("headwear.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.idle"));
 				}
 			}
 			if (this.isFrozen || this.isStunned) {
@@ -1045,9 +1048,9 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
             if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
                 this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-                BrowncoatEntity hypnotizedZombie = (BrowncoatEntity) hypnoType.create(world);
+                BrowncoatEntity hypnotizedZombie = (BrowncoatEntity) hypnoType.create(getWorld());
                 hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-                hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+                hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
                 hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
                 if (this.hasCustomName()) {
@@ -1086,7 +1089,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

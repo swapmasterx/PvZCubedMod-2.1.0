@@ -157,7 +157,7 @@ public class SargeantEntity extends BrowncoatEntity {
 	//Launch Basket
 	public void tryLaunch(Entity target) {
 		FlamingBookEntity flamingBookEntity = new FlamingBookEntity(PvZEntity.FLAMINGBOOK, this.getWorld());
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
 		double targetDist = 0;
 		flamingBookEntity.damageMultiplier = this.damageMultiplier;
 		for (LivingEntity livingEntity : list){

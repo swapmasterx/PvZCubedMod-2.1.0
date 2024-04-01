@@ -120,12 +120,12 @@ public class HeavenlyPeachSeeds extends SeedItem implements FabricItem {
 					if (!world.isSpaceEmpty(aquaticEntity, aquaticEntity.getBoundingBox())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
-						if (!world.isClient) {
-							List<HeavenlyPeachEntity> list = world.getNonSpectatingEntities(HeavenlyPeachEntity.class, PvZEntity.HEAVENLYPEACH.getDimensions().getBoxAt(aquaticEntity.getPos()));
+						if (!getWorld().isClient) {
+							List<HeavenlyPeachEntity> list = getWorld().getNonSpectatingEntities(HeavenlyPeachEntity.class, PvZEntity.HEAVENLYPEACH.getDimensions().getBoxAt(aquaticEntity.getPos()));
 							if (list.isEmpty()){
 								float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
-								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+								aquaticEntity.initialize(serverWorld, getWorld().getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 								((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 								RandomGenerator randomGenerator = aquaticEntity.getRandom();
 								BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -143,10 +143,10 @@ public class HeavenlyPeachSeeds extends SeedItem implements FabricItem {
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 								}
 								if (!user.getAbilities().creativeMode) {
-									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 										itemStack.decrement(1);
 									};
-									if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+									if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 										user.getItemCooldownManager().set(this, cooldown);
 									}
 								}

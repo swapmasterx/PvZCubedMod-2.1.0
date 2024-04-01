@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -149,7 +150,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 			this.cachedSparkTarget = null;
 		}
 
-		super.onTrackedDataSet(data);
+		super.onTrackedDataUpdate(data);
 	}
 
 	static {
@@ -167,19 +168,22 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 	public LivingEntity torchwoodMemory;
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable > PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -355,20 +359,20 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 		}
 		if (!this.getWorld().isClient && checkTorchwood(this.getPos()) != null) {
 			if (checkTorchwood(this.getPos()) != torchwoodMemory && !checkTorchwood(this.getPos()).isWet()) {
-				ShootingPlasmaPeaEntity plasmaPeaEntity = (ShootingPlasmaPeaEntity) PvZEntity.PLASMAPEA.create(world);
+				ShootingPlasmaPeaEntity plasmaPeaEntity = (ShootingPlasmaPeaEntity) PvZEntity.PLASMAPEA.create(getWorld());
 				plasmaPeaEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
 				plasmaPeaEntity.setVelocity(this.getVelocity());
 				plasmaPeaEntity.age = this.age;
 				plasmaPeaEntity.setOwner(this.getOwner());
 				plasmaPeaEntity.damageMultiplier = damageMultiplier;
-				world.spawnEntity(plasmaPeaEntity);
+				getWorld().spawnEntity(plasmaPeaEntity);
 				this.remove(RemovalReason.DISCARDED);
 			}
 		}
     }
 
 	public TorchwoodEntity checkTorchwood(Vec3d pos) {
-		List<TorchwoodEntity> list = world.getNonSpectatingEntities(TorchwoodEntity.class, PvZEntity.PEA.getDimensions().getBoxAt(pos));
+		List<TorchwoodEntity> list = getWorld().getNonSpectatingEntities(TorchwoodEntity.class, PvZEntity.PEA.getDimensions().getBoxAt(pos));
 		if (!list.isEmpty()){
 			return list.get(0);
 		}
@@ -418,12 +422,12 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
-					damaged.damage(PvZCubed.LIGHTNING_DAMAGE, damage * 2);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage * 2);
 				}
 				else {
-					damaged.damage(PvZCubed.LIGHTNING_DAMAGE, damage);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 				}
-				damaged.damage(DamageSource.thrownProjectile(this, this), 0);
+				damaged.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
 				setSparkTarget(damaged.getId());
 				this.getWorld().sendEntityStatus(this, (byte) 121);
 				if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -489,7 +493,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 					break;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity != null && !(zombiePropEntity instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -522,10 +526,10 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 						}
 						this.lightning((LivingEntity) entity);
 						this.lightningCounter = 3;
-						entity.damage(PvZCubed.LIGHTNING_DAMAGE, damage);
-						generalPvZombieEntity.damage(PvZCubed.LIGHTNING_DAMAGE, damage2);
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), 0);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), 0);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE),damage);
+						generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
 					} else {
 						this.lightningCounter = 3;
 						if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -536,8 +540,8 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 						}
 						this.lightning((LivingEntity) entity);
 						this.lightningCounter = 3;
-						entity.damage(PvZCubed.LIGHTNING_DAMAGE, damage);
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), 0);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

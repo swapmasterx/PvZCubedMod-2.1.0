@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.lostc
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.goldtile.GoldTile;
@@ -73,24 +74,27 @@ public class GoldLeafEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.turningTicks;
 		if (i <= 0) {
-			event.getController().setAnimation(new RawAnimation().loop("goldleaf.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("goldleaf.idle"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("goldleaf.idle2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("goldleaf.idle2"));
 		}
         return PlayState.CONTINUE;
     }
@@ -111,9 +115,9 @@ public class GoldLeafEntity extends PlantEntity implements GeoAnimatable {
 
 	public void createGoldTile(BlockPos blockPos){
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			GoldTile tile = (GoldTile) PvZEntity.GOLDTILE.create(world);
+			GoldTile tile = (GoldTile) PvZEntity.GOLDTILE.create(getWorld());
 			tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-			tile.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 			tile.setPersistent();
 			tile.setHeadYaw(0);
 			serverWorld.spawnEntityAndPassengers(tile);
@@ -131,7 +135,7 @@ public class GoldLeafEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.GOLDLEAF_SEED_PACKET);
 				}
@@ -166,7 +170,7 @@ public class GoldLeafEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createGoldLeafAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -221,7 +225,7 @@ public class GoldLeafEntity extends PlantEntity implements GeoAnimatable {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (this.turningTicks < 0 || source.getAttacker() instanceof PlayerEntity || source.isOutOfWorld()) {
+		if (this.turningTicks < 0 || source.getAttacker() instanceof PlayerEntity || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
 			super.applyDamage(source, amount);
 		}
 	}

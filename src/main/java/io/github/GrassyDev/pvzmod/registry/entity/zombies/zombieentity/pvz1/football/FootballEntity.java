@@ -229,21 +229,24 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		ZombiePropEntity zombiePropEntity = (ZombiePropEntity) this.getFirstPassenger();
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new RawAnimation().loop("football.ducky"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("football.ducky"));
 			if (this.isFrozen || this.isStunned) {
 				event.getController().setAnimationSpeed(0);
 			}
@@ -256,7 +259,7 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 		}else {
 			if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if (!this.getTackleStage()) {
-					event.getController().setAnimation(new RawAnimation().loop("football.running"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("football.running"));
 					if (this.getType().equals(PvZEntity.BERSERKER) || this.getType().equals(PvZEntity.BERSERKERHYPNO)){
 						if (this.isFrozen || this.isStunned) {
 							event.getController().setAnimationSpeed(0);
@@ -280,7 +283,7 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 						}
 					}
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("football.tackle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("football.tackle"));
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
 					}
@@ -292,7 +295,7 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 					}
 				}
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("football.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("football.idle"));
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
 				}
@@ -374,7 +377,7 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 							if (target instanceof TallnutEntity || target instanceof GargantuarEntity) {
 								f = 45;
 							}
-							boolean bl = target.damage(DamageSource.mob(this), f);
+							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
 							if (bl) {
 								this.applyDamageEffects(this, target);
 							}
@@ -389,14 +392,14 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 						if (i <= 0) {
 							this.attackTicksLeft = 20;
 							float f = this.getAttackDamage();
-							boolean bl = target.damage(DamageSource.mob(this), f);
+							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
 							if (bl && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 								target.playSound(PvZSounds.ZOMBIEBITEEVENT, 0.75f, 1f);
 								this.setStealthTag(Stealth.FALSE);
 								this.applyDamageEffects(this, target);
 							}
 							if (target instanceof HypnoshroomEntity hypnoshroomEntity && !hypnoshroomEntity.getIsAsleep()){
-								hypnoshroomEntity.damage(DamageSource.mob(this), hypnoshroomEntity.getMaxHealth() * 5);
+								hypnoshroomEntity.damage(getDamageSources().mobAttack(this), hypnoshroomEntity.getMaxHealth() * 5);
 								this.damage(HYPNO_DAMAGE, 0);
 							}
 							return bl;
@@ -601,9 +604,9 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-				FootballEntity hypnotizedZombie = (FootballEntity) hypnoType.create(world);
+				FootballEntity hypnotizedZombie = (FootballEntity) hypnoType.create(getWorld());
 				hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+				hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 				hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
 				if (this.hasCustomName()) {
@@ -639,7 +642,7 @@ public class FootballEntity extends PvZombieEntity implements GeoAnimatable {
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

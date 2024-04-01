@@ -104,26 +104,29 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("missiletoe.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("missiletoe.shoot"));
 		}
 		else if (!this.recharged){
-			event.getController().setAnimation(new RawAnimation().loop("missiletoe.building"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("missiletoe.building"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("missiletoe.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("missiletoe.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -164,7 +167,7 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.MISSILETOE_SEED_PACKET);
 				}
@@ -224,7 +227,7 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.MISSILETOE_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -245,7 +248,7 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createMissileToeAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -335,9 +338,9 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.isFiring = false;
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 87);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 87);
 			if (this.plantEntity.rechargeTime <= 0 && this.plantEntity.attacked) {
 				this.plantEntity.attacked = false;
 				this.plantEntity.rechargeTime = 280;
@@ -353,7 +356,7 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 				this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			}
 			if (this.plantEntity.startShooting) {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				this.plantEntity.isFiring = true;
 				if (this.plantEntity.rechargeTime <= 0){
 					++this.beamTicks;
@@ -361,7 +364,7 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 				}
 				if (this.beamTicks >= 0 && this.plantEntity.rechargeTime <= 0) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						List<MissileToeTarget> targetList = this.plantEntity.world.getNonSpectatingEntities(MissileToeTarget.class, this.plantEntity.getBoundingBox().expand(30));
+						List<MissileToeTarget> targetList = this.plantEntity.getWorld().getNonSpectatingEntities(MissileToeTarget.class, this.plantEntity.getBoundingBox().expand(30));
 						for (MissileToeTarget missileToeTarget : targetList) {
 							if (missileToeTarget.getTargetID() == this.plantEntity.getId()) {
 								missileToeTarget.canShoot = true;
@@ -369,7 +372,7 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 						}
 						this.beamTicks = -30;
 						this.plantEntity.attacked = true;
-						this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+						this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 						this.plantEntity.isFiring = true;
 						this.plantEntity.playSound(PvZSounds.SNOWPEASHOOTEVENT, 4F, 1);
 					}
@@ -379,9 +382,9 @@ public class MissileToeEntity extends PlantEntity implements GeoAnimatable, Rang
 					this.plantEntity.rechargeTime = 280;
 				}
 				else if (this.plantEntity.rechargeTime > 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.plantEntity.isFiring = false;
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 87);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 87);
 					this.beamTicks = -8;
 					this.animationTicks = -20;
 					this.plantEntity.startShooting = false;

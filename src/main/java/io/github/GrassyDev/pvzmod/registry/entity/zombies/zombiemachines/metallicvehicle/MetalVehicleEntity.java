@@ -174,18 +174,18 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 			for (float x = 0; x <= 1; ++x) {
 				if (this.CollidesWithPlant(x, 0f) != null && !this.getPassengerList().contains(this.CollidesWithPlant(x, 0f)) && this.isAlive()) {
 					if (this.CollidesWithPlant(x, 0f) instanceof SpikerockEntity) {
-						this.CollidesWithPlant(x, 0f).damage(DamageSource.mob(this), 90);
+						this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobAttack(this), 90);
 						toDie = true;
 					} else if (this.CollidesWithPlant(x, 0f) instanceof SpikeweedEntity) {
-						this.CollidesWithPlant(x, 0f).damage(DamageSource.mob(this), 360);
+						this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobAttack(this), 360);
 						toDie = true;
 					} else if (this.CollidesWithPlant(x, 0f) != null) {
-						this.CollidesWithPlant(x, 0f).damage(DamageSource.mob(this), 360);
+						this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobAttack(this), 360);
 					}
 				}
 			}
 			Vec3d vec3d = new Vec3d((double) 1.25, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-			List<PvZProjectileEntity> list = world.getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
+			List<PvZProjectileEntity> list = getWorld().getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
 			for (PvZProjectileEntity projectileEntity : list) {
 				projectileEntity.moreEntities.add(this);
 				projectileEntity.hitEntities();
@@ -225,7 +225,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 			if (isSliding()) {
 				for (float z = -1; z <= 1; ++z) {
 					Vec3d vec3d = new Vec3d(0.0, 0.0, z + 0.25).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					List<PvZProjectileEntity> list = world.getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
+					List<PvZProjectileEntity> list = getWorld().getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
 					for (PvZProjectileEntity projectileEntity : list) {
 						projectileEntity.moreEntities.add(this);
 						projectileEntity.hitEntities();
@@ -234,18 +234,18 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 				for (float z = -1; z <= 1; ++z) {
 					if (this.CollidesWithPlant(0f, z) != null && !this.getPassengerList().contains(this.CollidesWithPlant(0f, z)) && this.isAlive()) {
 						if (this.CollidesWithPlant(0f, z) instanceof SpikerockEntity) {
-							this.CollidesWithPlant(0f, z).damage(DamageSource.mob(this), 90);
+							this.CollidesWithPlant(0f, z).damage(getDamageSources().mobAttack(this), 90);
 							toDie = true;
 						} else if (this.CollidesWithPlant(0f, z) instanceof SpikeweedEntity) {
-							this.CollidesWithPlant(0f, z).damage(DamageSource.mob(this), 360);
+							this.CollidesWithPlant(0f, z).damage(getDamageSources().mobAttack(this), 360);
 							toDie = true;
 						} else if (this.CollidesWithPlant(0f, z) instanceof TallnutEntity) {
-							this.CollidesWithPlant(0f, z).damage(DamageSource.mob(this), 90);
+							this.CollidesWithPlant(0f, z).damage(getDamageSources().mobAttack(this), 90);
 							toDie = true;
 							Vec3d vec3d = new Vec3d((double)-0.5, 0.0, 0.0f).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 							this.setVelocity(vec3d);
 						} else if (this.CollidesWithPlant(0f, z) != null) {
-							this.CollidesWithPlant(0f, z).damage(DamageSource.mob(this), 360);
+							this.CollidesWithPlant(0f, z).damage(getDamageSources().mobAttack(this), 360);
 						}
 					}
 				}
@@ -253,7 +253,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 			else {
 				for (float x = -1; x <= 1; ++x) {
 					Vec3d vec3d = new Vec3d((double) x + 0.25, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					List<PvZProjectileEntity> list = world.getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
+					List<PvZProjectileEntity> list = getWorld().getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
 					for (PvZProjectileEntity projectileEntity : list) {
 						projectileEntity.moreEntities.add(this);
 						projectileEntity.hitEntities();
@@ -262,22 +262,22 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 				for (float x = 0; x <= 1; ++x) {
 					if (this.CollidesWithPlant(x, 0f) != null && !this.getPassengerList().contains(this.CollidesWithPlant(x, 0f)) && this.isAlive()) {
 						if (this.CollidesWithPlant(x, 0f) instanceof SpikerockEntity) {
-							this.CollidesWithPlant(x, 0f).damage(DamageSource.mob(this), 90);
+							this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobAttack(this), 90);
 							toDie = true;
 						} else if (this.CollidesWithPlant(x, 0f) instanceof SpikeweedEntity) {
-							this.CollidesWithPlant(x, 0f).damage(DamageSource.mob(this), 360);
+							this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobAttack(this), 360);
 							toDie = true;
 						} else if (this.CollidesWithPlant(x, 0f) != null) {
-							this.CollidesWithPlant(x, 0f).damage(DamageSource.mob(this), 360);
+							this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobAttack(this), 360);
 						}
 					}
 				}
 			}
 			Vec3d checkright = new Vec3d((double) 0.0, 0.0, +1).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 			Vec3d checkleft = new Vec3d((double) 0.0, 0.0, -1).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-			List<TileEntity> list = world.getNonSpectatingEntities(TileEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
-			List<TileEntity> list2 = world.getNonSpectatingEntities(TileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + checkleft.x, this.getY(), this.getZ() + checkleft.z));
-			List<TileEntity> list3 = world.getNonSpectatingEntities(TileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + checkright.x, this.getY(), this.getZ() + checkright.z));
+			List<TileEntity> list = getWorld().getNonSpectatingEntities(TileEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+			List<TileEntity> list2 = getWorld().getNonSpectatingEntities(TileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + checkleft.x, this.getY(), this.getZ() + checkleft.z));
+			List<TileEntity> list3 = getWorld().getNonSpectatingEntities(TileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + checkright.x, this.getY(), this.getZ() + checkright.z));
 			list.addAll(list2);
 			list.addAll(list3);
 			for (TileEntity tileEntity : list) {
@@ -379,21 +379,24 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getType().equals(PvZEntity.ZOMBONIVEHICLE)) {
 			if (this.isInsideWaterOrBubbleColumn()) {
-				event.getController().setAnimation(new RawAnimation().loop("zomboni.walking"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("zomboni.walking"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -401,9 +404,9 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 				}
 			} else {
 				if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("zomboni.walking"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("zomboni.walking"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("zomboni.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("zomboni.idle"));
 				}
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
@@ -416,10 +419,10 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 		}
 		else {
 			if (isSliding()){
-				event.getController().setAnimation(new RawAnimation().loop("bobsled.fast"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bobsled.fast"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("bobsled.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("bobsled.idle"));
 			}
 			if (this.isIced) {
 				event.getController().setAnimationSpeed(0.5);

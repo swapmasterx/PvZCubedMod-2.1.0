@@ -51,19 +51,23 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoAnimat
 
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("peashot.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("peashot.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -103,7 +107,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoAnimat
 		int m = MathHelper.floor(this.getPos().y - (double)0.25);
 		int n = MathHelper.floor(this.getPos().z);
 		BlockPos blockPos2 = new BlockPos(l, m, n);
-		if (!this.getWorld().getBlockState(blockPos2).isAir() && !this.getWorld().getBlockState(blockPos2).getMaterial().isLiquid()) {
+		if (!this.getWorld().getFluidState(blockPos2).isSource() && !this.getWorld().getFluidState(blockPos2).isSource()) {
 			this.setVelocity(this.getVelocity().getX(), 0, this.getVelocity().getZ());
 			this.canBounce = true;
 			this.airTicks = 10;
@@ -162,7 +166,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoAnimat
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -209,7 +213,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoAnimat
 					}
 				}
 				if (livingEntity.getY() < (this.getY() + 1.5) && livingEntity.getY() > (this.getY() - 1.5)) {
-					if (!world.isClient &&
+					if (!getWorld().isClient &&
 							!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 							!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) {
@@ -227,10 +231,10 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoAnimat
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 						} else {
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 						}
 					}
 				}

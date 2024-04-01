@@ -29,6 +29,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -140,23 +141,26 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getFuseSpeed();
         if (i > 0) {
-            event.getController().setAnimation(new RawAnimation().playOnce("cherrybomb.explode"));
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("cherrybomb.explode"));
         } else {
-            event.getController().setAnimation(new RawAnimation().loop("cherrybomb.idle"));
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("cherrybomb.idle"));
         }
         return PlayState.CONTINUE;
     }
@@ -239,29 +243,29 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					checkList.add(livingEntity);
 					checkList.add(generalPvZombieEntity);
 				} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 					checkList.add(zombieShieldEntity);
 				} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add(livingEntity);
 					checkList.add(zombieShieldEntity);
 				} else {
 					if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}  else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}
 				}
@@ -318,7 +322,7 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (this.getTarget() == null  || source.isOutOfWorld()) {
+		if (this.getTarget() == null  || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
 			super.applyDamage(source, amount);
 		}
 	}
@@ -337,7 +341,7 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.CHERRYBOMB_SEED_PACKET);
 				}
@@ -399,7 +403,7 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createCherrybombAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -457,7 +461,7 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 		if (attacker instanceof PlayerEntity) {
 			PlayerEntity playerEntity = (PlayerEntity) attacker;
 			this.clearStatusEffects();
-			return this.damage(DamageSource.player(playerEntity), 9999.0F);
+			return this.damage(getDamageSources().playerAttack(playerEntity), 9999.0F);
 		} else {
 			return false;
 		}

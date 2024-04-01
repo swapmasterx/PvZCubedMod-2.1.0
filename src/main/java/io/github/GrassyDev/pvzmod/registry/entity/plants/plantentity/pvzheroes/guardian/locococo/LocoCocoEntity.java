@@ -90,24 +90,27 @@ public class LocoCocoEntity extends PlantEntity implements GeoAnimatable, Ranged
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.attackTicksLeft;
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("locococo.slap"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("locococo.slap"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("locococo.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("locococo.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -151,7 +154,7 @@ public class LocoCocoEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.LOCOCOCO_SEED_PACKET);
 				}
@@ -184,7 +187,7 @@ public class LocoCocoEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.LOCOCOCO_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -206,7 +209,7 @@ public class LocoCocoEntity extends PlantEntity implements GeoAnimatable, Ranged
 	 **/
 
 	public static DefaultAttributeContainer.Builder createLocoCocoAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 42.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

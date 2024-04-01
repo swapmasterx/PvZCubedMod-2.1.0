@@ -134,9 +134,9 @@ public class GraveBusterSeeds extends SeedItem implements FabricItem {
             Box box = PvZEntity.GRAVEBUSTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			List<LivingEntity> list = new ArrayList<>();
 			List<LivingEntity> list2 = new ArrayList<>();
-			list.addAll(world.getNonSpectatingEntities(GraveEntity.class, box.expand(0)));
-			list.addAll(world.getNonSpectatingEntities(ZombieObstacleEntity.class, box.expand(0)));
-			list.addAll(world.getNonSpectatingEntities(SpeakerVehicleEntity.class, box.expand(0)));
+			list.addAll(getWorld().getNonSpectatingEntities(GraveEntity.class, box.expand(0)));
+			list.addAll(getWorld().getNonSpectatingEntities(ZombieObstacleEntity.class, box.expand(0)));
+			list.addAll(getWorld().getNonSpectatingEntities(SpeakerVehicleEntity.class, box.expand(0)));
 			for (LivingEntity livingEntity : list){
 				if (livingEntity instanceof GraveEntity graveEntity && graveEntity.isChallengeGrave()){
 					list2.clear();
@@ -157,7 +157,7 @@ public class GraveBusterSeeds extends SeedItem implements FabricItem {
 
                     float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
                     plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
-					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+					plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
                     world.spawnEntity(plantEntity);
 				RandomGenerator randomGenerator = plantEntity.getRandom();
 				BlockState blockState = plantEntity.getLandingBlockState();
@@ -175,10 +175,10 @@ public class GraveBusterSeeds extends SeedItem implements FabricItem {
 
 			PlayerEntity user = context.getPlayer();
 			if (!user.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
 			}

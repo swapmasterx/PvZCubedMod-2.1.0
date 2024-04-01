@@ -78,27 +78,25 @@ public class GoldTile extends TileEntity {
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
-	@Override
-	public AnimatableInstanceCache getFactory() {
-		return this.factory;
-	}
-
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (powered){
-			event.getController().setAnimation(new RawAnimation().loop("tile.active"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.active"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("tile.anim"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.anim"));
 		}
 		return PlayState.CONTINUE;
 	}
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return this.factory;
+	}
 
 	/** /~*~//~*TICKING*~//~*~/ **/
 
@@ -196,4 +194,13 @@ public class GoldTile extends TileEntity {
 			return super.interactMob(player, hand);
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+>>>>>>> Stashed changes
 }

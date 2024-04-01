@@ -83,20 +83,23 @@ public class MagichatEntity extends PlantEntity implements GeoAnimatable, Ranged
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("magicshroom.magichat"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("magicshroom.magichat"));
         return PlayState.CONTINUE;
     }
 
@@ -124,7 +127,7 @@ public class MagichatEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (this.age > 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				this.kill();
 			}
 		}
@@ -162,7 +165,7 @@ public class MagichatEntity extends PlantEntity implements GeoAnimatable, Ranged
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createMagicHatAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -232,24 +235,24 @@ public class MagichatEntity extends PlantEntity implements GeoAnimatable, Ranged
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			if (random <= 0.33) {
 				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
-				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BROWNCOATHYPNO.create(world);
+				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BROWNCOATHYPNO.create(getWorld());
 				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
-				zombie.initialize(serverWorld, world.getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
 			}
 			else if (random <= 0.66) {
 				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
-				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.CONEHEADHYPNO.create(world);
+				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.CONEHEADHYPNO.create(getWorld());
 				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
-				zombie.initialize(serverWorld, world.getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				zombie.createConeheadProp();
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
 			}
 			else {
 				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
-				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BUCKETHEADHYPNO.create(world);
+				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BUCKETHEADHYPNO.create(getWorld());
 				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
-				zombie.initialize(serverWorld, world.getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				zombie.createConeheadProp();
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
 			}

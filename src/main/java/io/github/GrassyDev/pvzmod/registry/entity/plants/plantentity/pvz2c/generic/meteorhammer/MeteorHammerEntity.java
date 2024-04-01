@@ -83,26 +83,29 @@ public class MeteorHammerEntity extends PlantEntity implements GeoAnimatable, Ra
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("meteorhammer.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("meteorhammer.attack"));
 		}
 		else if (this.charging) {
-			event.getController().setAnimation(new RawAnimation().loop("meteorhammer.charge"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("meteorhammer.charge"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("meteorhammer.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("meteorhammer.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -149,7 +152,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.METEORHAMMER_SEED_PACKET);
 				}
@@ -206,7 +209,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.METEORHAMMER_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -228,7 +231,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoAnimatable, Ra
 	 **/
 
 	public static DefaultAttributeContainer.Builder createMeteorHammerAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -332,7 +335,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoAnimatable, Ra
 					}
 				}
 				if (livingEntity.getY() < (this.getY() + 1.5) && livingEntity.getY() > (this.getY() - 1.5)) {
-					if (!world.isClient &&
+					if (!getWorld().isClient &&
 							!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 							!(livingEntity instanceof SnorkelEntity snorkelEntity && snorkelEntity.isInvisibleSnorkel()) &&
@@ -357,10 +360,10 @@ public class MeteorHammerEntity extends PlantEntity implements GeoAnimatable, Ra
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damageBase - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damageBase);
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damageBase);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						} else {
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damageBase);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damageBase);
 						}
 					}
 				}

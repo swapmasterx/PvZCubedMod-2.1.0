@@ -146,28 +146,31 @@ public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, Ra
 	/** /~*~//~*GECKOLIB ANIMATION~//~*~// **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getTypeCount();
 		if (this.isFiring){
-			event.getController().setAnimation(new RawAnimation().playOnce("superchomper.chomp"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("superchomper.chomp"));
 		}
 		else if (i > 0) {
-			event.getController().setAnimation(new RawAnimation().loop("chomper.chew"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("chomper.chew"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("chomper.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("chomper.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -212,7 +215,7 @@ public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.SUPERCHOMPER_SEED_PACKET);
 				}
@@ -247,7 +250,7 @@ public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)){
 			dropItem(ModItems.SUPERCHOMPER_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -267,7 +270,7 @@ public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, Ra
 	/** //~*~//~ATTRIBUTES~//~*~// **/
 
 	public static DefaultAttributeContainer.Builder createSuperChomperAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 64.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -390,19 +393,19 @@ public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, Ra
 					if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity){
 						generalPvZombieEntity.swallowed = true;
 					}
-					livingEntity.damage(DamageSource.mob(this), Float.MAX_VALUE);
+					livingEntity.damage(getDamageSources().mobAttack(this), Float.MAX_VALUE);
 					if (livingEntity.hasVehicle()){
 						if (livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity){
 							generalPvZombieEntity.swallowed = true;
 						}
-						livingEntity.getVehicle().damage(DamageSource.mob(this), Float.MAX_VALUE);
+						livingEntity.getVehicle().damage(getDamageSources().mobAttack(this), Float.MAX_VALUE);
 					}
 					if (livingEntity.hasPassengers()){
 						for (Entity entity : livingEntity.getPassengerList()){
 							if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity){
 								generalPvZombieEntity.swallowed = true;
 							}
-							entity.damage(DamageSource.mob(this), Float.MAX_VALUE);
+							entity.damage(getDamageSources().mobAttack(this), Float.MAX_VALUE);
 						}
 					}
 					ateZombie = true;

@@ -103,23 +103,26 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("dandelionweed.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("dandelionweed.attack"));
 		}
 		else{
-			event.getController().setAnimation(new RawAnimation().loop("dandelionweed.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("dandelionweed.idle"));
 		}
 		return PlayState.CONTINUE;
     }
@@ -165,7 +168,7 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 						zombiePropEntity3 = zpe;
 					}
 				}
-				if (!world.isClient &&
+				if (!getWorld().isClient &&
 						!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 						!(livingEntity instanceof SnorkelEntity snorkelEntity && snorkelEntity.isInvisibleSnorkel())) {
@@ -183,10 +186,10 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					}
 				}
 			}
@@ -214,7 +217,7 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.DANDELIONWEED_SEED_PACKET);
 				}
@@ -239,7 +242,7 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.DANDELIONWEED_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -260,7 +263,7 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 
 
 	public static DefaultAttributeContainer.Builder createDandelionWeedAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 14.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -355,7 +358,7 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 		}
 
 		public void stop() {
-			this.dandelionWeedEntity.world.sendEntityStatus(this.dandelionWeedEntity, (byte) 110);
+			this.dandelionWeedEntity.getWorld().sendEntityStatus(this.dandelionWeedEntity, (byte) 110);
 			this.dandelionWeedEntity.setTarget((LivingEntity)null);
 		}
 
@@ -367,21 +370,21 @@ public class DandelionWeedEntity extends PlantEntity implements GeoAnimatable, R
 					this.animationTicks >= 0) {
 				this.dandelionWeedEntity.setTarget((LivingEntity) null);
 			} else {
-				this.dandelionWeedEntity.world.sendEntityStatus(this.dandelionWeedEntity, (byte) 111);
+				this.dandelionWeedEntity.getWorld().sendEntityStatus(this.dandelionWeedEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -5) {
 					if (!this.dandelionWeedEntity.isInsideWaterOrBubbleColumn()) {
 						this.beamTicks = -6;
-						this.dandelionWeedEntity.world.sendEntityStatus(this.dandelionWeedEntity, (byte) 111);
+						this.dandelionWeedEntity.getWorld().sendEntityStatus(this.dandelionWeedEntity, (byte) 111);
 						this.dandelionWeedEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 						this.dandelionWeedEntity.splashDamage();
-						this.dandelionWeedEntity.world.sendEntityStatus(this.dandelionWeedEntity, (byte) 106);
+						this.dandelionWeedEntity.getWorld().sendEntityStatus(this.dandelionWeedEntity, (byte) 106);
 					}
 				}
 				else if (this.animationTicks >= 0)
 				{
-					this.dandelionWeedEntity.world.sendEntityStatus(this.dandelionWeedEntity, (byte) 110);
+					this.dandelionWeedEntity.getWorld().sendEntityStatus(this.dandelionWeedEntity, (byte) 110);
 					this.beamTicks = -6;
 					this.animationTicks = -11;
 				}

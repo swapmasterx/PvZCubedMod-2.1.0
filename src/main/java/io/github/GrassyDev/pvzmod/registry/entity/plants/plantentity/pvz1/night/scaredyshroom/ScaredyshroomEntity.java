@@ -33,7 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -138,33 +138,36 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
-			event.getController().setAnimation(new RawAnimation().loop("scaredyshroom.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("scaredyshroom.asleep"));
 		}
 		else if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("scaredyshroom.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("scaredyshroom.attack"));
 		}
 		else if (this.animationScare <= 0 && this.isAfraid){
-			event.getController().setAnimation(new RawAnimation().loop("scaredyshroom.afraid"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("scaredyshroom.afraid"));
 		}
 		else if (this.isAfraid){
-			event.getController().setAnimation(new RawAnimation().playOnce("scaredyshroom.hiding"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("scaredyshroom.hiding"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("scaredyshroom.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("scaredyshroom.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -222,11 +225,11 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -248,7 +251,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.SCAREDYSHROOM_SEED_PACKET);
 				}
@@ -276,7 +279,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SCAREDYSHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -323,7 +326,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createScaredyshroomAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -418,8 +421,8 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -429,19 +432,19 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			if ((!this.plantEntity.canSee(livingEntity)) &&
 					this.animationTicks >= 0) {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 				this.plantEntity.setTarget((LivingEntity) null);
 			}
 			else {
 				if (!this.plantEntity.getIsAsleep() && !this.plantEntity.isAfraid) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 					++this.animationTicks;
 					++this.beamTicks;
 					if (this.plantEntity.checkForZombies().isEmpty())  {
 						if (this.beamTicks >= 0 && this.animationTicks >= -7) {
 							if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 14);
-								SporeEntity proj = new SporeEntity(PvZEntity.SPORE, this.plantEntity.world);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
+								SporeEntity proj = new SporeEntity(PvZEntity.SPORE, this.plantEntity.getWorld());
 								double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 225) ? 50 : 5;
 								Vec3d targetPos = livingEntity.getPos();
 								double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -460,15 +463,15 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoAnimatable, R
 								proj.damageMultiplier = plantEntity.damageMultiplier;
 								if (livingEntity != null && livingEntity.isAlive()) {
 									this.beamTicks = -13;
-									this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+									this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 									this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-									this.plantEntity.world.spawnEntity(proj);
+									this.plantEntity.getWorld().spawnEntity(proj);
 								}
 							}
 						}
 						else if (this.animationTicks >= 0)
 						{
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 							this.beamTicks = -7;
 							this.animationTicks = -16;
 						}

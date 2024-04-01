@@ -100,26 +100,29 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoAnimat
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
         else if (tiltchance <= 0.5) {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
         }
         else {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
         }
         return PlayState.CONTINUE;
     }
@@ -148,7 +151,7 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoAnimat
 		if (this.age > 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				this.discard();
 			}
 		}

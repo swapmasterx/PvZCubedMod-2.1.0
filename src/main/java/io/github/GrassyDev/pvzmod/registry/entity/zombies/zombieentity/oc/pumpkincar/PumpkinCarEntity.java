@@ -78,22 +78,25 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoAnimatab
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	protected  <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-			event.getController().setAnimation(new RawAnimation().loop("pumpkincar.walking"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("pumpkincar.walking"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("pumpkincar.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("pumpkincar.idle"));
 		}
 		if (this.isFrozen || this.isStunned) {
 			event.getController().setAnimationSpeed(0);
@@ -146,14 +149,14 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoAnimatab
 		super.tick();
 		for (float x = -1; x <= 1; ++x) {
 			Vec3d vec3d = new Vec3d((double) x , 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-			List<PvZProjectileEntity> list = world.getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
+			List<PvZProjectileEntity> list = getWorld().getNonSpectatingEntities(PvZProjectileEntity.class, entityBox.getDimensions().getBoxAt(this.getX() + vec3d.x, this.getY(), this.getZ() + vec3d.z));
 			for (PvZProjectileEntity projectileEntity : list) {
 				projectileEntity.moreEntities.add(this);
 				projectileEntity.hitEntities();
 			}
 			if (this.CollidesWithPlant(x, 0f) != null) {
 				if (this.CollidesWithPlant(x, 0f) instanceof SpikerockEntity) {
-					this.CollidesWithPlant(x, 0f).damage(DamageSource.thrownProjectile(this, this), 90);
+					this.CollidesWithPlant(x, 0f).damage(getDamageSources().mobProjectile(this, this), 90);
 					this.kill();
 				} else if (this.CollidesWithPlant(x, 0f) instanceof SpikeweedEntity) {
 					this.CollidesWithPlant(x, 0f).kill();
@@ -221,9 +224,9 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoAnimatab
 	public void onDeath(DamageSource source) {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
-			ImpEntity zombie = (ImpEntity) PvZEntity.CINDERELLAIMP.create(world);
+			ImpEntity zombie = (ImpEntity) PvZEntity.CINDERELLAIMP.create(getWorld());
 			zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-			zombie.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			zombie.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 			zombie.setOwner(this);
 			zombie.setRainbowTag(Rainbow.TRUE);
 			zombie.rainbowTicks = 60;

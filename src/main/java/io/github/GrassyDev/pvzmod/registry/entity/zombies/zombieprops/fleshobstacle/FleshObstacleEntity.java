@@ -78,7 +78,7 @@ public class FleshObstacleEntity extends ZombieObstacleEntity implements GeoAnim
 
 	public void tick() {
 		super.tick();
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 		List<PlantEntity> list2 =new ArrayList<>();
 		for (PlantEntity plantEntity : list){
 			if (!plantEntity.hasPassengers()){
@@ -103,19 +103,22 @@ public class FleshObstacleEntity extends ZombieObstacleEntity implements GeoAnim
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
         return PlayState.CONTINUE;
     }
 
@@ -164,7 +167,7 @@ public class FleshObstacleEntity extends ZombieObstacleEntity implements GeoAnim
 
 	@Override
 	public void onDeath(DamageSource source) {
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, entityBox.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 		for (PlantEntity plantEntity : list) {
 			if (!plantEntity.hasPassengers()) {
 				plantEntity.setImmune(PlantEntity.Immune.FALSE);

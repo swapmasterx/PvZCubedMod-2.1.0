@@ -140,15 +140,15 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 				double d = 0;
 				double e = this.random.nextDouble() / 2 * this.random.range(0, 1);
 				double f = 0;
-				this.world.addParticle(ParticleTypes.SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SCULK_SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SCULK_SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
 			}
 			for(int i = 0; i < 4; ++i) {
 				RandomGenerator randomGenerator = this.getRandom();
 				double e = this.random.nextDouble() / 6 * (this.random.range(0, 1));
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow,
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow,
 						this.getY() + (this.random.range(-1, 1)),
 						this.getZ()  + (double)MathHelper.nextBetween(randomGenerator,
 								-0.5F, 0.5F), 0, e, 0);
@@ -164,15 +164,15 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 				double d = 0;
 				double e = this.random.nextDouble() / 2 * this.random.range(0, 1);
 				double f = 0;
-				this.world.addParticle(ParticleTypes.SOUL, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SCULK_SOUL, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SCULK_SOUL, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getFZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
 			}
 			for(int i = 0; i < 4; ++i) {
 				RandomGenerator randomGenerator = this.getRandom();
 				double e = this.random.nextDouble() / 6 * (this.random.range(0, 1));
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow,
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getFX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow,
 						this.getY() + (this.random.range(-1, 1)),
 						this.getFZ()  + (double)MathHelper.nextBetween(randomGenerator,
 								-0.5F, 0.5F), 0, e, 0);
@@ -188,15 +188,15 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 				double d = 0;
 				double e = this.random.nextDouble() / 2 * this.random.range(0, 1);
 				double f = 0;
-				this.world.addParticle(ParticleTypes.SOUL, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SCULK_SOUL, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SCULK_SOUL, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, this.getY() + (this.random.range(-1, 1)), this.getBZ() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow, d, e, f);
 			}
 			for(int i = 0; i < 4; ++i) {
 				RandomGenerator randomGenerator = this.getRandom();
 				double e = this.random.nextDouble() / 6 * (this.random.range(0, 1));
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow,
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getBX() + (double) MathHelper.nextBetween(randomGenerator, -0.5F, 0.5F) * shadow,
 						this.getY() + (this.random.range(-1, 1)),
 						this.getBZ()  + (double)MathHelper.nextBetween(randomGenerator,
 								-0.5F, 0.5F), 0, e, 0);
@@ -209,15 +209,15 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 				double d = 0;
 				double e = this.random.nextDouble() / 2 * this.random.range(0, 1);
 				double f = 0;
-				this.world.addParticle(ParticleTypes.SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
-				this.world.addParticle(ParticleTypes.SCULK_SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SCULK_SOUL, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), this.getY() + (this.random.range(-1, 1)), this.getZ() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F), d, e, f);
 			}
 			for(int i = 0; i < 6; ++i) {
 				RandomGenerator randomGenerator = this.getRandom();
 				double e = this.random.nextDouble() / 6 * (this.random.range(0, 1));
-				this.world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F),
+				this.getWorld().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -3F, 3F),
 						this.getY() + (this.random.range(-1, 1)),
 						this.getZ()  + (double)MathHelper.nextBetween(randomGenerator,
 								-0.5F, 0.5F), 0, e, 0);
@@ -289,28 +289,32 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.exploding) {
-			event.getController().setAnimation(new RawAnimation().playAndHold("ghostpepper.explode"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlayAndHold("ghostpepper.explode"));
 		}
 		else if (this.attacking && this.transTick > 0){
-			event.getController().setAnimation(new RawAnimation().loop("ghostpepper.transform"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("ghostpepper.transform"));
 		}
 		else if (this.attacking){
-			event.getController().setAnimation(new RawAnimation().loop("ghostpepper.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("ghostpepper.attack"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("ghostpepper.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("ghostpepper.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -318,11 +322,11 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*AI*~//~*~/ **/
 
 	protected boolean attacking = false;
-	List<LivingEntity> checkList = this.world.getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().shrink(0.5, 0, 0));
+	List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().shrink(0.5, 0, 0));
 
 	private void raycastExplode(float boxOffset, float zOffset) {
 		Vec3d vec3d2 = new Vec3d((double) boxOffset, 0.0, zOffset).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-		List<LivingEntity> list = this.world.getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(1, 4, 1).offset(vec3d2).offset(0, -1.5, 0));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(1, 4, 1).offset(vec3d2).offset(0, -1.5, 0));
 		Vec3d vec3d3 = this.getBoundingBox().offset(vec3d2).getCenter();
 		if (boxOffset < 0){
 			this.setBX((int) vec3d3.getX());
@@ -363,7 +367,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 				}
 				if (!checkList.contains(livingEntity)) {
 					this.playSound(PvZSounds.PEAHITEVENT, 1, 1);
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add(livingEntity);
 				}
 			}
@@ -372,7 +376,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 
 	private void raycastExplode2() {
 		Vec3d vec3d = this.getPos();
-		List<LivingEntity> list = this.world.getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -420,29 +424,29 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					checkList.add(livingEntity);
 					checkList.add(generalPvZombieEntity);
 				} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 					checkList.add(zombieShieldEntity);
 				} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add(livingEntity);
 					checkList.add(zombieShieldEntity);
 				} else {
 					if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}  else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}
 				}
@@ -479,19 +483,19 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 	private boolean exploding = false;
 
 	public void tick() {
-		if (this.world instanceof ServerWorld serverWorld) {
+		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowFullTile> fullCheck = world.getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			List<ShadowTile> tileCheck = world.getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
 			if (fullCheck.isEmpty() && tileCheck.isEmpty()) {
-				if (this.getWorld().getMoonSize() < 0.1 && this.world.isSkyVisible(this.getBlockPos())) {
+				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
 					if (serverWorld.isNight()) {
 						this.setShadowPowered(Shadow.TRUE);
 					}
 				} else {
 					this.setShadowPowered(Shadow.FALSE);
 				}
-				if (this.getWorld().getMoonSize() > 0.9 && this.world.isSkyVisible(this.getBlockPos())) {
+				if (this.getWorld().getMoonSize() > 0.9 && this.getWorld().isSkyVisible(this.getBlockPos())) {
 					if (serverWorld.isNight()) {
 						this.setMoonPowered(Moon.TRUE);
 					}
@@ -510,7 +514,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 		if (this.getLiftime() <= 0){
 			if (this.getMoonPowered()){
 				this.exploding = true;
-				this.world.sendEntityStatus(this, (byte) 109);
+				this.getWorld().sendEntityStatus(this, (byte) 109);
 				if (--explodeTick <= 0){
 					this.checkList.clear();
 					this.raycastExplode2();
@@ -524,7 +528,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 		}
 		BlockPos blockPos = this.getBlockPos();
 		this.targetZombies(this.getPos(), 5, true, false, true);
-		if (!this.world.isClient()) {
+		if (!this.getWorld().isClient()) {
 			this.attacking = this.getTarget() != null && this.squaredDistanceTo(this.getTarget()) <= 9;
 		}
 		if (this.getTarget() != null){
@@ -533,11 +537,11 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 		if (transTick == 0){
 			this.playSound(PvZSounds.GHOSTPEPPERPLANTEVENT, 1F, 1F);
 		}
-		if (this.attacking && !this.world.isClient()){
+		if (this.attacking && !this.getWorld().isClient()){
 			this.removeLife();
-			this.world.sendEntityStatus(this, (byte) 103);
+			this.getWorld().sendEntityStatus(this, (byte) 103);
 			--this.transTick;
-			this.world.sendEntityStatus(this, (byte) 101);
+			this.getWorld().sendEntityStatus(this, (byte) 101);
 			if (--tickDamage <= 0){
 				this.checkList.clear();
 				if (this.getShadowPowered()) {
@@ -545,25 +549,25 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 						this.raycastExplode(u, -1);
 						this.raycastExplode(u, 1);
 						this.raycastExplode(u, 0);
-						this.world.sendEntityStatus(this, (byte) 106);
-						this.world.sendEntityStatus(this, (byte) 107);
-						this.world.sendEntityStatus(this, (byte) 108);
+						this.getWorld().sendEntityStatus(this, (byte) 106);
+						this.getWorld().sendEntityStatus(this, (byte) 107);
+						this.getWorld().sendEntityStatus(this, (byte) 108);
 					}
 				}
 				else {
 					for (int u = -2; u <= 2; ++u) {
 						this.raycastExplode(u, 0);
-						this.world.sendEntityStatus(this, (byte) 106);
-						this.world.sendEntityStatus(this, (byte) 107);
-						this.world.sendEntityStatus(this, (byte) 108);
+						this.getWorld().sendEntityStatus(this, (byte) 106);
+						this.getWorld().sendEntityStatus(this, (byte) 107);
+						this.getWorld().sendEntityStatus(this, (byte) 108);
 					}
 				}
 				tickDamage = 20;
 			}
 		}
-		else if (!this.world.isClient()) {
-			this.world.sendEntityStatus(this, (byte) 104);
-			this.world.sendEntityStatus(this, (byte) 102);
+		else if (!this.getWorld().isClient()) {
+			this.getWorld().sendEntityStatus(this, (byte) 104);
+			this.getWorld().sendEntityStatus(this, (byte) 102);
 			transTick = 12;
 		}
 		if (--amphibiousRaycastDelay <= 0 && age > 5) {
@@ -575,10 +579,10 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -0.5, 0));
 				onWater = fluidState.getFluid() == Fluids.WATER;
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
-					if (!this.world.isClient && this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
+					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 						this.dropItem(ModItems.GHOSTPEPPER_SEED_PACKET);
 					}
 					this.discard();
@@ -589,7 +593,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 
 	public void tickMovement() {
 		super.tickMovement();
-		if (!this.world.isClient && this.isAlive() && this.isInsideWaterOrBubbleColumn() && this.deathTime == 0) {
+		if (!this.getWorld().isClient && this.isAlive() && this.isInsideWaterOrBubbleColumn() && this.deathTime == 0) {
 			this.discard();
 		}
 	}
@@ -607,7 +611,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createGhostPepperAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 1D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

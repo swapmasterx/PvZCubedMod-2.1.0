@@ -95,15 +95,18 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
@@ -111,13 +114,13 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 		int i = this.attackTicksLeft;
 		LivingEntity livingEntity = this.getTarget();
 		if (i <= 0){
-			event.getController().setAnimation(new RawAnimation().loop("smackadamia.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("smackadamia.idle"));
 		}
 		else if (this.isTargetFlying) {
-			event.getController().setAnimation(new RawAnimation().playOnce("smackadamia.smack2"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("smackadamia.smack2"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().playOnce("smackadamia.smack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("smackadamia.smack"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -146,7 +149,7 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 			if (i <= 0) {
 				this.attackTicksLeft = 20;
 				this.getWorld().sendEntityStatus(this, (byte) 106);
-				boolean bl = damaged.damage(DamageSource.mob(this), this.getAttackDamage());
+				boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
 				if (bl) {
 					this.applyDamageEffects(this, target);
 				}
@@ -210,9 +213,9 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				onWater = fluidState.getFluid() == Fluids.WATER;
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 						this.dropItem(ModItems.SMACKADAMIA_SEED_PACKET);
 					}
@@ -237,10 +240,10 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 	protected void mobTick() {
 		super.mobTick();
 		if (this.getTarget() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.isFlying() || generalPvZombieEntity.isHovering() || ZOMBIE_SIZE.get(generalPvZombieEntity.getType()).orElse("medium").equals("gargantuar") || ZOMBIE_SIZE.get(generalPvZombieEntity.getType()).orElse("medium").equals("big")|| ZOMBIE_SIZE.get(generalPvZombieEntity.getType()).orElse("medium").equals("tall"))){
-			world.sendEntityStatus(this, (byte) 108);
+			getWorld().sendEntityStatus(this, (byte) 108);
 		}
 		else {
-			world.sendEntityStatus(this, (byte) 109);
+			getWorld().sendEntityStatus(this, (byte) 109);
 		}
 	}
 
@@ -253,7 +256,7 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SMACKADAMIA_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -275,7 +278,7 @@ public class SmackadamiaEntity extends PlantEntity implements GeoAnimatable {
 	 **/
 
 	public static DefaultAttributeContainer.Builder createSmackadamiaAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 65.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

@@ -29,6 +29,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -123,23 +124,26 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.getFuseSpeed();
 		if (i > 0) {
-			event.getController().setAnimation(new RawAnimation().playOnce("jalapeno.explosion"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("jalapeno.explosion"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("jalapeno.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("jalapeno.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -184,7 +188,7 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 		fireTrailEntity.updatePositionAndAngles(vec3d3.getX(), this.getBlockY() + 1, vec3d3.getZ(), this.bodyYaw, 0.0F);
 		List<FireTrailEntity> listFlames = this.getWorld().getNonSpectatingEntities(FireTrailEntity.class, fireTrailEntity.getBoundingBox());
 		if (listFlames.isEmpty()) {
-			world.spawnEntity(fireTrailEntity);
+			getWorld().spawnEntity(fireTrailEntity);
 		}
 		if (!fireTrailEntity.isWet()) {
 			Iterator var9 = list.iterator();
@@ -236,20 +240,20 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (zombiePropEntity2 instanceof ZombieShieldEntity) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					} else {
 						if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity) {
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 							checkList.add(livingEntity);
 						} else if ((zombiePropEntity2 == null)
 								&& !checkList.contains(livingEntity)) {
-							livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 							checkList.add(livingEntity);
 						}
 					}
@@ -286,7 +290,7 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (this.getTarget() == null || source.getAttacker() instanceof PlayerEntity || source.isOutOfWorld() || this.isWet()) {
+		if (this.getTarget() == null || source.getAttacker() instanceof PlayerEntity || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) this.isWet(); {
 			super.applyDamage(source, amount);
 		}
 	}
@@ -308,7 +312,7 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.JALAPENO_SEED_PACKET);
 				}
@@ -379,7 +383,7 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createJalapenoAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -437,7 +441,7 @@ public class JalapenoEntity extends PlantEntity implements GeoAnimatable {
 		if (attacker instanceof PlayerEntity) {
 			PlayerEntity playerEntity = (PlayerEntity) attacker;
 			this.clearStatusEffects();
-			return this.damage(DamageSource.player(playerEntity), 9999.0F);
+			return this.damage(getDamageSources().playerAttack(playerEntity), 9999.0F);
 		} else {
 			return false;
 		}

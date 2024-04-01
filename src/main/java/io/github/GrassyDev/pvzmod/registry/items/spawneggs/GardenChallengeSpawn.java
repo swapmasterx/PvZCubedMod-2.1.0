@@ -78,9 +78,9 @@ public class GardenChallengeSpawn extends SeedItem {
 		Box box = PvZEntity.GARDENCHALLENGE.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
 			GardenChallengeEntity gardenEntity = (GardenChallengeEntity) PvZEntity.GARDENCHALLENGE.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
-			List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.GARDENCHALLENGE.getDimensions().getBoxAt(gardenEntity.getPos()));
+			List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.GARDENCHALLENGE.getDimensions().getBoxAt(gardenEntity.getPos()));
 			if (list.isEmpty()) {
-				List<GardenChallengeEntity> list2 = world.getNonSpectatingEntities(GardenChallengeEntity.class, PvZEntity.GARDENCHALLENGE.getDimensions().getBoxAt(gardenEntity.getPos()).expand(50, 20, 50));
+				List<GardenChallengeEntity> list2 = getWorld().getNonSpectatingEntities(GardenChallengeEntity.class, PvZEntity.GARDENCHALLENGE.getDimensions().getBoxAt(gardenEntity.getPos()).expand(50, 20, 50));
 				if (list2.isEmpty()) {
 
 					gardenEntity.refreshPositionAndAngles(gardenEntity.getX(), gardenEntity.getY(), gardenEntity.getZ(), 0, 0.0F);
@@ -94,7 +94,7 @@ public class GardenChallengeSpawn extends SeedItem {
 
 					PlayerEntity user = context.getPlayer();
 					if (!user.getAbilities().creativeMode) {
-						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 							itemStack.decrement(1);
 						}
 					}

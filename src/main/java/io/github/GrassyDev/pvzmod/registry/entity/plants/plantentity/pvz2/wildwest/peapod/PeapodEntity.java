@@ -157,55 +157,58 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getCount().equals(PeapodCountVariants.ONE)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("peapod.shoot"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("peapod.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("peapod.idle"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.TWO)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot2"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("peapod.shoot2"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("peapod.idle2"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("peapod.idle2"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.THREE)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot3"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("peapod.shoot3"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("peapod.idle3"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("peapod.idle3"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.FOUR)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot4"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("peapod.shoot4"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("peapod.idle4"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("peapod.idle4"));
 			}
 		}
 		else if (this.getCount().equals(PeapodCountVariants.FIVE)) {
 			if (this.isFiring) {
-				event.getController().setAnimation(new RawAnimation().playOnce("peapod.shoot5"));
+				event.getController().setAnimation(RawAnimation.begin().thenPlay("peapod.shoot5"));
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("peapod.idle5"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("peapod.idle5"));
 			}
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("peapod.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("peapod.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -243,7 +246,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.PEAPOD_SEED_PACKET);
 				}
@@ -269,7 +272,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.PEAPOD_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -286,10 +289,10 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 			maxHealthAttribute.addPersistentModifier(createHealthModifier(health + 12));
 			heal(12);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.PEAPOD_SEED_PACKET, PeaPodSeeds.cooldown);
 				}
 			}
@@ -334,7 +337,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 	}
 
 	public static DefaultAttributeContainer.Builder createPeapodAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -429,7 +432,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity) null);
 		}
 
@@ -441,7 +444,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -9) {
@@ -452,7 +455,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 						Vec3d predictedPos = new Vec3d(predictedPosX, targetPos.getY(), predictedPosZ);
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 						// Bottom Pea
-						ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.world);
+						ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.getWorld());
 						double d = this.plantEntity.squaredDistanceTo(predictedPos);
 						float df = (float)d;
 						double e = predictedPos.getX() - this.plantEntity.getX();
@@ -467,11 +470,11 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -16;
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 						if (plantEntity.getCount().getId() >= 1) {
 							// Right Pea
-							ShootingPeaEntity proj3 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.world);
+							ShootingPeaEntity proj3 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.getWorld());
 							Vec3d vec3d3 = new Vec3d((double) 0.0, 0.0, 0.8).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 							double d3 = this.plantEntity.squaredDistanceTo(predictedPos);
 							float df3 = (float) d3;
@@ -488,14 +491,14 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 								if (this.plantEntity.getVariant().equals(PeapodVariants.PLURAL)){
 									proj3.setVariant(ShootingPeaVariants.BLACK);
 								}
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 								this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-								this.plantEntity.world.spawnEntity(proj3);
+								this.plantEntity.getWorld().spawnEntity(proj3);
 							}
 						}
 						if (plantEntity.getCount().getId() >= 2) {
 							// Left Pea
-							ShootingPeaEntity proj2 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.world);
+							ShootingPeaEntity proj2 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.getWorld());
 							Vec3d vec3d2 = new Vec3d((double) 0.0, 0.0, -0.8).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 							double d2 = this.plantEntity.squaredDistanceTo(predictedPos);
 							float df2 = (float) d2;
@@ -513,12 +516,12 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 									proj2.setVariant(ShootingPeaVariants.PURPLE);
 								}
 								this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-								this.plantEntity.world.spawnEntity(proj2);
+								this.plantEntity.getWorld().spawnEntity(proj2);
 							}
 						}
 						if (plantEntity.getCount().getId() >= 3) {
 							// Middle Pea
-							ShootingPeaEntity proj4 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.world);
+							ShootingPeaEntity proj4 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.getWorld());
 							double d4 = this.plantEntity.squaredDistanceTo(predictedPos);
 							float df4 = (float) d4;
 							double e4 = predictedPos.getX() - this.plantEntity.getX();
@@ -534,12 +537,12 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 									proj4.setVariant(ShootingPeaVariants.BLUE);
 								}
 								this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-								this.plantEntity.world.spawnEntity(proj4);
+								this.plantEntity.getWorld().spawnEntity(proj4);
 							}
 						}
 						if (plantEntity.getCount().getId() >= 4) {
 							// Top Pea
-							ShootingPeaEntity proj5 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.world);
+							ShootingPeaEntity proj5 = new ShootingPeaEntity(PvZEntity.PEA, this.plantEntity.getWorld());
 							double d5 = this.plantEntity.squaredDistanceTo(predictedPos);
 							float df5 = (float) d5;
 							double e5 = predictedPos.getX() - this.plantEntity.getX();
@@ -556,13 +559,13 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 									proj5.setVariant(ShootingPeaVariants.CYAN);
 								}
 								this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-								this.plantEntity.world.spawnEntity(proj5);
+								this.plantEntity.getWorld().spawnEntity(proj5);
 							}
 						}
 					}
 				}
 				else if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

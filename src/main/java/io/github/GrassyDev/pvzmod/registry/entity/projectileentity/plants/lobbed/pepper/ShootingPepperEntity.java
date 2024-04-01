@@ -62,19 +62,22 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoAnim
 	private LivingEntity target;
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("cabbage.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("cabbage.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -183,7 +186,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoAnim
 				}
 
 				entity = (Entity) var9.next();
-			} while (entity == this.getOwner());
+			} while (entity == this.getPrimaryPassenger());
 			ZombiePropEntity zombiePropEntity2 = null;
 			ZombiePropEntity zombiePropEntity3 = null;
 			for (Entity entity1 : entity.getPassengerList()) {
@@ -194,7 +197,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoAnim
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity2 instanceof ZombiePropEntity && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -234,10 +237,10 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoAnim
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					hit = true;
 					if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
@@ -304,12 +307,12 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoAnim
 													!(livingEntity instanceof ZombieShieldEntity) &&
 													livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 												float damageSplash2 = damageSplash - livingEntity.getHealth();
-												livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
-												generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash2);
+												livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+												generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash2);
 											} else if (livingEntity instanceof ZombiePropEntity zombiePropEntity) {
-												livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
+												livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
 											} else {
-												livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
+												livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
 											}
 											if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !entity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 												livingEntity.removeStatusEffect(PvZCubed.FROZEN);

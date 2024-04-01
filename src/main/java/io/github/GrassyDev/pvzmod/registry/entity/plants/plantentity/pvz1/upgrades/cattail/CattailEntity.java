@@ -95,24 +95,27 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.attackTicksLeft;
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().loop("cattail.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("cattail.attack"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("cattail.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("cattail.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -170,7 +173,7 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -179,7 +182,7 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 					this.dryLand = false;
 					onWater = true;
 				}
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.CATTAIL_SEED_PACKET);
 				}
@@ -210,7 +213,7 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.CATTAIL_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -232,7 +235,7 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 	 **/
 
 	public static DefaultAttributeContainer.Builder createCattailAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -338,7 +341,7 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			if (plantEntity.getTarget() != null){
 				this.plantEntity.attack(plantEntity.getTarget(), 0);
 			}
@@ -352,12 +355,12 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -7) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						ShootingSpikeEntity proj = new ShootingSpikeEntity(PvZEntity.SPIKEPROJ, this.plantEntity.world);
+						ShootingSpikeEntity proj = new ShootingSpikeEntity(PvZEntity.SPIKEPROJ, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 225) ? 50 : 5;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -377,13 +380,13 @@ public class CattailEntity extends PlantEntity implements GeoAnimatable, RangedA
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -2;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 				} else if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 				}

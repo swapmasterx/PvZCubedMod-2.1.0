@@ -260,10 +260,10 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 		if (world instanceof ServerWorld serverWorld) {
 			GeneralPvZombieEntity imp = null;
 			if (this.getHypno()){
-				imp = (GeneralPvZombieEntity) impEntityHypno.create(world);
+				imp = (GeneralPvZombieEntity) impEntityHypno.create(getWorld());
 			}
 			else {
-				imp = (GeneralPvZombieEntity) impEntity.create(world);
+				imp = (GeneralPvZombieEntity) impEntity.create(getWorld());
 			}
 			if (imp != null){
 				imp.setFlying(Flying.TRUE);
@@ -279,28 +279,31 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
 			if ((this.getVariant().equals(ImpVariants.THROWER) || this.getVariant().equals(ImpVariants.THROWERHYPNO)) && this.hasPassengers()) {
-				event.getController().setAnimation(new RawAnimation().loop("impthrow.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("impthrow.ducky"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("imp.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.ducky"));
 			}
 		}else {
 			if (!this.isOnGround()) {
-				event.getController().setAnimation(new RawAnimation().loop("imp.ball"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.ball"));
 				if (this.hasVehicle()){
 					event.getController().setAnimationSpeed(0);
 				}
@@ -323,9 +326,9 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 				}
 			} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
 				if ((this.getVariant().equals(ImpVariants.THROWER) || this.getVariant().equals(ImpVariants.THROWERHYPNO)) && this.hasPassengers()) {
-					event.getController().setAnimation(new RawAnimation().loop("impthrow.run"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("impthrow.run"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("imp.run"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.run"));
 				}
 				if (this.getVariant().equals(ImpVariants.IMPDRAGON) || this.getVariant().equals(ImpVariants.IMPDRAGONHYPNO)) {
 					if (this.isFrozen || this.isStunned) {
@@ -346,9 +349,9 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 				}
 			} else {
 				if ((this.getVariant().equals(ImpVariants.THROWER) || this.getVariant().equals(ImpVariants.THROWERHYPNO)) && this.hasPassengers()) {
-					event.getController().setAnimation(new RawAnimation().loop("impthrow.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("impthrow.idle"));
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("imp.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.idle"));
 				}
 				if (this.isFrozen || this.isStunned) {
 					event.getController().setAnimationSpeed(0);
@@ -512,7 +515,7 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 				}
 			}
 		}
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.IMP.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()).expand(0.25));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.IMP.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()).expand(0.25));
 		List<PlantEntity> list1 = new ArrayList<>();
 		for (LivingEntity livingEntity : list){
 			if (livingEntity instanceof PlantEntity plantEntity && (PLANT_LOCATION.get(plantEntity.getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(plantEntity.getType()).orElse("normal").equals("flying"))){
@@ -830,9 +833,9 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 			if (this.getRecentDamageSource() == PvZCubed.HYPNO_DAMAGE && !(this.getHypno())) {
 				checkHypno();
 				this.playSound(PvZSounds.HYPNOTIZINGEVENT, 1.5F, 1.0F);
-				ImpEntity hypnotizedZombie = (ImpEntity) hypnoType.create(world);
+				ImpEntity hypnotizedZombie = (ImpEntity) hypnoType.create(getWorld());
 				hypnotizedZombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				hypnotizedZombie.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+				hypnotizedZombie.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 				hypnotizedZombie.setAiDisabled(this.isAiDisabled());
 				hypnotizedZombie.setHealth(this.getHealth());
 				ImpEntity hypnoPassenger = null;
@@ -847,9 +850,9 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 					}
 					else if (entity1 instanceof GeneralPvZombieEntity zombie){
 						checkPassanger();
-						hypnoPassenger = (ImpEntity) hypnoType2.create(world);
+						hypnoPassenger = (ImpEntity) hypnoType2.create(getWorld());
 						hypnoPassenger.refreshPositionAndAngles(zombie.getX(), zombie.getY(), zombie.getZ(), zombie.getYaw(), zombie.getPitch());
-						hypnoPassenger.initialize(serverWorld, world.getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
+						hypnoPassenger.initialize(serverWorld, getWorld().getLocalDifficulty(hypnotizedZombie.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData)null, (NbtCompound) null);
 						hypnoPassenger.setAiDisabled(zombie.isAiDisabled());
 						hypnoPassenger.setHealth(zombie.getHealth());
 						zombie.remove(RemovalReason.DISCARDED);
@@ -883,7 +886,7 @@ public class ImpEntity extends PvZombieEntity implements GeoAnimatable {
 
 			VillagerEntity villagerEntity = (VillagerEntity) livingEntity;
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity) villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-			zombieVillagerEntity.initialize(serverWorld, serverWorld.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
+			zombieVillagerEntity.initialize(serverWorld, servergetWorld().getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, new ZombieEntity.ZombieData(false, true), (NbtCompound) null);
 			zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 			zombieVillagerEntity.setGossipData((NbtElement) villagerEntity.getGossip().serialize(NbtOps.INSTANCE).getValue());
 			zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());

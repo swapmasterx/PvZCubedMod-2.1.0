@@ -92,23 +92,26 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("bloomerang.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("bloomerang.shoot"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("bloomerang.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("bloomerang.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -146,7 +149,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.FRISBLOOM_SEED_PACKET);
 				}
@@ -171,7 +174,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.FRISBLOOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -183,10 +186,10 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
 				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				BloomerangEntity plantEntity = (BloomerangEntity) PvZEntity.BLOOMERANG.create(world);
+				BloomerangEntity plantEntity = (BloomerangEntity) PvZEntity.BLOOMERANG.create(getWorld());
 				plantEntity.setTarget(this.getTarget());
 				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				plantEntity.setAiDisabled(this.isAiDisabled());
 				if (this.hasCustomName()) {
 					plantEntity.setCustomName(this.getCustomName());
@@ -201,11 +204,11 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 				;
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.BLOOMERANG_SEED_PACKET, BloomerangSeeds.cooldown);
 				}
 			}
@@ -224,7 +227,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createFrisbloomAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -310,7 +313,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -325,12 +328,12 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						ShootingFrisbeeEntity proj = new ShootingFrisbeeEntity(PvZEntity.FRISBEEPROJ, this.plantEntity.world);
+						ShootingFrisbeeEntity proj = new ShootingFrisbeeEntity(PvZEntity.FRISBEEPROJ, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -348,14 +351,14 @@ public class FrisbloomEntity extends PlantEntity implements GeoAnimatable, Range
 						proj.damageMultiplier = plantEntity.damageMultiplier;
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -10;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 					}
 				}
 				else if (this.animationTicks >= 0)
 				{
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -10;
 					this.animationTicks = -16;
 				}

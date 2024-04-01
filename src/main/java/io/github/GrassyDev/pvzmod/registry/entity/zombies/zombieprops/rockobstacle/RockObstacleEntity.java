@@ -159,26 +159,29 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getType().equals(PvZEntity.GARGOLITHOBSTACLE)){
-			event.getController().setAnimation(new RawAnimation().loop("gargantuar.gargolith"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gargantuar.gargolith"));
 		}
 		else if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -245,9 +248,9 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 		if (this.getType().equals(PvZEntity.GARGOLITHOBSTACLE)) {
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
 				BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
-				RockObstacleEntity rockObstacle = (RockObstacleEntity) PvZEntity.IMPTABLETOBSTACLE.create(world);
+				RockObstacleEntity rockObstacle = (RockObstacleEntity) PvZEntity.IMPTABLETOBSTACLE.create(getWorld());
 				rockObstacle.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-				rockObstacle.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				rockObstacle.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				rockObstacle.setOwner(this);
 				rockObstacle.setRainbowTag(Rainbow.TRUE);
 				rockObstacle.rainbowTicks = 200;
@@ -257,9 +260,9 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 		if (this.getType().equals(PvZEntity.IMPTABLETOBSTACLE) && !(source.getSource() instanceof GravebusterEntity)) {
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
 				BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
-				GargantuarEntity gargantuar = (GargantuarEntity) PvZEntity.CURSEDGARGOLITH.create(world);
+				GargantuarEntity gargantuar = (GargantuarEntity) PvZEntity.CURSEDGARGOLITH.create(getWorld());
 				gargantuar.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-				gargantuar.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				gargantuar.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				gargantuar.setOwner(this);
 				serverWorld.spawnEntityAndPassengers(gargantuar);
 			}

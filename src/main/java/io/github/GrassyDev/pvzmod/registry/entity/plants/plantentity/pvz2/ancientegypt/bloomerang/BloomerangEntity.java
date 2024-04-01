@@ -75,23 +75,26 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("bloomerang.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("bloomerang.shoot"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("bloomerang.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("bloomerang.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -129,7 +132,7 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.BLOOMERANG_SEED_PACKET);
 				}
@@ -154,7 +157,7 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.BLOOMERANG_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -174,7 +177,7 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createBloomerangAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 26.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -263,7 +266,7 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
 
@@ -278,12 +281,12 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && projCount < 2) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						ShootingBoomerangEntity proj = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.world);
+						ShootingBoomerangEntity proj = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -301,11 +304,11 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -2;
 							++projCount;
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-							this.plantEntity.world.spawnEntity(proj);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().spawnEntity(proj);
 						}
 						// Right Pea
-						ShootingBoomerangEntity proj3 = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.world);
+						ShootingBoomerangEntity proj3 = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.getWorld());
 						Vec3d vec3d2 = new Vec3d((double) 0.0, 0.0, 0.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						Vec3d vec3d4 = new Vec3d((double) 10, 0.0, 1.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						double d3 = this.plantEntity.squaredDistanceTo(predictedPos);
@@ -319,11 +322,11 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 						proj3.setOwner(this.plantEntity);
 						proj3.right = true;
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-							this.plantEntity.world.spawnEntity(proj3);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().spawnEntity(proj3);
 						}
 						// Left Pea
-						ShootingBoomerangEntity proj2 = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.world);
+						ShootingBoomerangEntity proj2 = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.getWorld());
 						Vec3d vec3d5 = new Vec3d((double) 0.0, 0.0, -0.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						Vec3d vec3d6 = new Vec3d((double) 10.0, 0.0, -1.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						double d2 = this.plantEntity.squaredDistanceTo(predictedPos);
@@ -337,14 +340,14 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 						proj2.setOwner(this.plantEntity);
 						proj2.left = true;
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-							this.plantEntity.world.spawnEntity(proj2);
+							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+							this.plantEntity.getWorld().spawnEntity(proj2);
 						}
 					}
 				}
 				else if (this.animationTicks >= 0)
 				{
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.projCount = 0;
 					this.animationTicks = -16;

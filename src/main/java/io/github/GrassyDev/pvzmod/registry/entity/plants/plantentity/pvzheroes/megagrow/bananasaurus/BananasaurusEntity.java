@@ -111,28 +111,31 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		int i = this.attackTicksLeft;
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().loop("bananasaurus.burp"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("bananasaurus.burp"));
 			event.getController().setAnimationSpeed(1);
 		} else if (i <= 0) {
-			event.getController().setAnimation(new RawAnimation().loop("bananasaurus.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("bananasaurus.idle"));
 			event.getController().setAnimationSpeed(1);
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("bananasaurus.bite"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("bananasaurus.bite"));
 			event.getController().setAnimationSpeed(1 / this.meleeSpeed);
 		}
 		return PlayState.CONTINUE;
@@ -166,7 +169,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 			damaged = passenger;
 		}
 		if (i <= 0) {
-			boolean bl = damaged.damage(DamageSource.mob(this), this.getAttackDamage());
+			boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
 			if (bl) {
 				this.applyDamageEffects(this, target);
 			}
@@ -223,7 +226,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.BANANASAURUS_SEED_PACKET);
 				}
@@ -293,7 +296,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.BANANASAURUS_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -315,7 +318,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 	 **/
 
 	public static DefaultAttributeContainer.Builder createBananasaurusAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 64.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -421,7 +424,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 		}
 
 		public void stop() {
-			this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.bananaCount = 0;
 			if (plantEntity.getTarget() != null){
 				this.plantEntity.attack(plantEntity.getTarget(), 0);
@@ -437,7 +440,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
-				this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.beamTicks >= 0 && this.animationTicks <= -5) {
@@ -450,20 +453,20 @@ public class BananasaurusEntity extends PlantEntity implements GeoAnimatable, Ra
 							double xr = (double) MathHelper.nextBetween(randomGenerator, 0F, 30F);
 							double zr = (double) MathHelper.nextBetween(randomGenerator, -5f, 5f);
 							Vec3d vec3d2 = new Vec3d((double) xr, 0.0, zr).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-							BananaProjEntity proj = new BananaProjEntity(PvZEntity.BANANAPROJ, this.plantEntity.world);
+							BananaProjEntity proj = new BananaProjEntity(PvZEntity.BANANAPROJ, this.plantEntity.getWorld());
 							float h = MathHelper.sqrt(MathHelper.sqrt(100)) * 0.5F;
 							proj.setVelocity(vec3d2.x, -3.9200000762939453 + 28 / (h * 2.2), vec3d2.z, 0.5F, 0F);
 							proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 							proj.setOwner(this.plantEntity);
 							if (livingEntity != null && livingEntity.isAlive()) {
 								this.beamTicks = -7;
-								this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
-								this.plantEntity.world.spawnEntity(proj);
+								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
+								this.plantEntity.getWorld().spawnEntity(proj);
 							}
 						}
 					}
 				} else if (this.animationTicks >= 0) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 110);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -7;
 					this.animationTicks = -16;
 					this.plantEntity.bananaCount = 0;

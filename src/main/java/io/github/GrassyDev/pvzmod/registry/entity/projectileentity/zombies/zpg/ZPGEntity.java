@@ -64,20 +64,23 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoAnimatable {
 
 	public int maxAge = 60;
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable > PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("spike.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("spike.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -176,7 +179,7 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoAnimatable {
 				}
 			}
 			float damage = PVZCONFIG.nestedProjDMG.zpgDMG() * damageMultiplier;
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					(monster instanceof GeneralPvZombieEntity zombie && zombie.getHypno()) &&
 					!(zombiePropEntity2 instanceof ZombiePropEntity && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -216,10 +219,10 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoAnimatable {
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
 				} else {
-					entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 				}
 				hit = true;
 				if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) &&
@@ -286,10 +289,10 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoAnimatable {
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 											float damageSplash2 = damageSplash - livingEntity.getHealth();
-											livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
-											generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash2);
+											livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
+											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash2);
 										} else {
-											livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
+											livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
 										}
 										if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 											livingEntity.setOnFireFor(4);
@@ -330,9 +333,9 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoAnimatable {
 					this.remove(RemovalReason.DISCARDED);
 				}
 			}
-			if (!world.isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && (plantEntity2.getLowProfile() || PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying"))) && !(entity.getVehicle() instanceof BubblePadEntity)) {
+			if (!getWorld().isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && (plantEntity2.getLowProfile() || PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying"))) && !(entity.getVehicle() instanceof BubblePadEntity)) {
 				entity.playSound(PvZSounds.CHERRYBOMBEXPLOSIONEVENT, 0.2F, 1F);
-				entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+				entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
 				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
@@ -349,10 +352,10 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoAnimatable {
 						} while (livingEntity == this.getOwner());
 					} while (entity.squaredDistanceTo(livingEntity) > 3);
 
-					if (!world.isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
+					if (!getWorld().isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
 						if (livingEntity != entity) {
 							float damageSplash = PVZCONFIG.nestedProjDMG.zpgDMG() * damageMultiplier;
-							livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
 						}
 						this.getWorld().sendEntityStatus(this, (byte) 3);
 						this.remove(RemovalReason.DISCARDED);

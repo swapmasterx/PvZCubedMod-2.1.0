@@ -63,19 +63,22 @@ public class ShootingIcespikeEntity extends PvZProjectileEntity implements GeoAn
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("spike.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("spike.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -143,20 +146,20 @@ public class ShootingIcespikeEntity extends PvZProjectileEntity implements GeoAn
 		}
 
 		if (!this.getWorld().isClient && checkFilamint(this.getPos()) != null) {
-			ShootingPowerIcespikeEntity powerSpike = (ShootingPowerIcespikeEntity) PvZEntity.POWERICESPIKE.create(world);
+			ShootingPowerIcespikeEntity powerSpike = (ShootingPowerIcespikeEntity) PvZEntity.POWERICESPIKE.create(getWorld());
 			powerSpike.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
 			powerSpike.setVelocity(this.getVelocity());
 			powerSpike.age = this.age;
 			powerSpike.setOwner(this.getOwner());
 			powerSpike.damageCounter = this.damageCounter;
 			powerSpike.damageMultiplier = this.damageMultiplier;
-			world.spawnEntity(powerSpike);
+			getWorld().spawnEntity(powerSpike);
 			this.remove(RemovalReason.DISCARDED);
 		}
 	}
 
 	public PlantEntity checkFilamint(Vec3d pos) {
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.SPIKEPROJ.getDimensions().getBoxAt(pos).expand(1.25));
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.SPIKEPROJ.getDimensions().getBoxAt(pos).expand(1.25));
 		PlantEntity entity = null;
 		if (!list.isEmpty()){
 			for (PlantEntity plantEntity : list) {
@@ -208,7 +211,7 @@ public class ShootingIcespikeEntity extends PvZProjectileEntity implements GeoAn
 					break;
 				}
 			}
-			if (!world.isClient && entity instanceof Monster monster &&
+			if (!getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity != null && !(zombiePropEntity instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -240,10 +243,10 @@ public class ShootingIcespikeEntity extends PvZProjectileEntity implements GeoAn
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

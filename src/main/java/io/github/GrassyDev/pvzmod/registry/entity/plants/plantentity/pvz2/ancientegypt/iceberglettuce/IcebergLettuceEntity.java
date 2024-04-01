@@ -196,23 +196,26 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getFuseSpeed();
         if (i > 0) {
-            event.getController().setAnimation(new RawAnimation().playOnce("small.seedling.bomb"));
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("small.seedling.bomb"));
         } else {
-            event.getController().setAnimation(new RawAnimation().loop("small.idle"));
+            event.getController().setAnimation(RawAnimation.begin().thenLoop("small.idle"));
         }
         return PlayState.CONTINUE;
     }
@@ -302,29 +305,29 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoAnimatable {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					checkList.add(livingEntity);
 					checkList.add(generalPvZombieEntity);
 				} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 					checkList.add(zombieShieldEntity);
 				} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add(livingEntity);
 					checkList.add(zombieShieldEntity);
 				} else {
 					if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					} else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}
 				}
@@ -380,7 +383,7 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.ICEBERGLETTUCE_SEED_PACKET);
 				}
@@ -442,7 +445,7 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createIcebergLettuceAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -500,7 +503,7 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoAnimatable {
 		if (attacker instanceof PlayerEntity) {
 			PlayerEntity playerEntity = (PlayerEntity) attacker;
 			this.clearStatusEffects();
-			return this.damage(DamageSource.player(playerEntity), 9999.0F);
+			return this.damage(getDamageSources().playerAttack(playerEntity), 9999.0F);
 		}
 		else {
 			this.getWorld().sendEntityStatus(this, (byte) 106);
@@ -525,7 +528,7 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoAnimatable {
 	public void onDeath(DamageSource source) {
 		LivingEntity attacker = (LivingEntity) source.getAttacker();
 		if (attacker instanceof GargantuarEntity && attacker.isAlive()){
-			attacker.damage(DamageSource.thrownProjectile(this, this), 4);
+			attacker.damage(getDamageSources().mobProjectile(this, this), 4);
 			attacker.removeStatusEffect(PvZCubed.FROZEN);
 			attacker.removeStatusEffect(PvZCubed.ICE);
 			if (attacker.hasStatusEffect(PvZCubed.WARM) || attacker.isOnFire()) {

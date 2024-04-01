@@ -100,30 +100,28 @@ public class BasicGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
-		}
-        else if (tiltchance <= 0.5) {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
-        }
-        else {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
-        }
-        return PlayState.CONTINUE;
-    }
 
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
+		}
+		else if (tiltchance <= 0.5) {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
+		}
+		else {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
+		}
+		return PlayState.CONTINUE;
+	}
 
 	/** /~*~//~*AI*~//~*~/ **/
 
@@ -263,6 +261,14 @@ public class BasicGraveEntity extends GraveEntity implements GeoAnimatable {
 		}
 	}
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
+>>>>>>> Stashed changes
 
 	/** /~*~//~*GOALS*~//~*~/ **/
 
@@ -297,7 +303,7 @@ public class BasicGraveEntity extends GraveEntity implements GeoAnimatable {
 			this.startTime = BasicGraveEntity.this.age + this.startTimeDelay();
 			SoundEvent soundEvent = this.getSoundPrepare();
 			if (soundEvent != null) {
-				BasicGraveEntity.this.playSound(soundEvent, 1.0F, 1.0F);
+				BasicGraveEntity.this.playSound(soundEvent, 0.9F, 1.0F);
 			}
 
 			BasicGraveEntity.this.setSpell(this.getSpell());
@@ -307,8 +313,8 @@ public class BasicGraveEntity extends GraveEntity implements GeoAnimatable {
 			--this.spellCooldown;
 			if (this.spellCooldown == 0) {
 				this.castSpell();
-				BasicGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 70, 1)));
-				BasicGraveEntity.this.playSound(BasicGraveEntity.this.getCastSpellSound(), 1.0F, 1.0F);
+				BasicGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 100, 1)));
+				BasicGraveEntity.this.playSound(BasicGraveEntity.this.getCastSpellSound(), 0.9F, 1.0F);
 			}
 
 		}

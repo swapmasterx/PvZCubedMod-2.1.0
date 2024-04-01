@@ -101,33 +101,36 @@ public class SpringbeanEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
-			event.getController().setAnimation(new RawAnimation().playOnce("springbean.spring.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("springbean.spring.attack"));
 		}
 		else if (this.getIsAsleep()){
-			event.getController().setAnimation(new RawAnimation().loop("springbean.idle.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("springbean.idle.asleep"));
 		}
 		else if (this.animationScare > 0 && this.isAfraid){
-			event.getController().setAnimation(new RawAnimation().playOnce("springbean.prepare"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("springbean.prepare"));
 		}
 		else if (this.isAfraid){
-			event.getController().setAnimation(new RawAnimation().loop("springbean.spring.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("springbean.spring.idle"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("springbean.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("springbean.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -287,7 +290,7 @@ public class SpringbeanEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.SPRINGBEAN_SEED_PACKET);
 				}
@@ -311,7 +314,7 @@ public class SpringbeanEntity extends PlantEntity implements GeoAnimatable, Rang
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SPRINGBEAN_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -331,7 +334,7 @@ public class SpringbeanEntity extends PlantEntity implements GeoAnimatable, Rang
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createSpringBeanAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 22.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

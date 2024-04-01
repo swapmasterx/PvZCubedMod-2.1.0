@@ -58,7 +58,7 @@ public class MummyEntity extends BrowncoatEntity {
 
 	protected  <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {
-			event.getController().setAnimation(new RawAnimation().loop("headwear.ducky"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.ducky"));
 			if (this.getVariant().equals(BrowncoatVariants.TOMB) || this.getVariant().equals(BrowncoatVariants.TOMBHYPNO)){
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.375);
@@ -75,7 +75,7 @@ public class MummyEntity extends BrowncoatEntity {
 			}
 		} else {
 			if (inLaunchAnimation) {
-				event.getController().setAnimation(new RawAnimation().loop("tombraiser.lick"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("tombraiser.lick"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -83,7 +83,7 @@ public class MummyEntity extends BrowncoatEntity {
 				}
 			}
 			else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-				event.getController().setAnimation(new RawAnimation().loop("headwear.walking"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.walking"));
 				if (this.getVariant().equals(BrowncoatVariants.TOMB) || this.getVariant().equals(BrowncoatVariants.TOMBHYPNO)){
 					if (this.isIced) {
 						event.getController().setAnimationSpeed(0.375);
@@ -99,7 +99,7 @@ public class MummyEntity extends BrowncoatEntity {
 					}
 				}
 			} else {
-				event.getController().setAnimation(new RawAnimation().loop("headwear.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("headwear.idle"));
 				if (this.isIced) {
 					event.getController().setAnimationSpeed(0.5);
 				} else {
@@ -168,7 +168,7 @@ public class MummyEntity extends BrowncoatEntity {
 	//Launch Basket
 	public void tryLaunch(Vec3d location) {
 		BoneProjEntity boneProj = new BoneProjEntity(PvZEntity.BONEPROJ, this.getWorld());
-		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
+		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
 		if (launchAnimation == 10 * animationMultiplier && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			double d = this.squaredDistanceTo(location);
 			float df = (float) d;

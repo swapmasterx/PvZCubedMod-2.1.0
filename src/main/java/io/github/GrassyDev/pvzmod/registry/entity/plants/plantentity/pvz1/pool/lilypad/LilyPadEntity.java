@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import net.minecraft.fluid.*;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -14,7 +15,6 @@ import io.github.GrassyDev.pvzmod.registry.items.seedpackets.CattailSeeds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -26,8 +26,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -35,7 +33,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
@@ -57,6 +55,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Objects;
 
+import static io.github.GrassyDev.pvzmod.PvZCubed.ICE;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 ;
@@ -176,38 +175,41 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getHat().equals(LilypadHats.LILY)){
 			if (this.onWaterTile) {
-				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground.lily2"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("lilypad.onground.lily2"));
 			}
 			else if (this.dryLand) {
-				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground.lily"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("lilypad.onground.lily"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("lilypad.idle.lily"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("lilypad.idle.lily"));
 			}
 		}
 		else {
 			if (this.onWaterTile) {
-				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground2"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("lilypad.onground2"));
 			}
 			else if (this.dryLand) {
-				event.getController().setAnimation(new RawAnimation().loop("lilypad.onground"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("lilypad.onground"));
 			}
 			else {
-				event.getController().setAnimation(new RawAnimation().loop("lilypad.idle"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("lilypad.idle"));
 			}
 		}
         return PlayState.CONTINUE;
@@ -248,7 +250,7 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -256,7 +258,7 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 					this.dryLand = false;
 					onWater = true;
 				}
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.LILYPAD_SEED_PACKET);
 				}
@@ -291,10 +293,10 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 			this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH);
 			if ((this.getWorld() instanceof ServerWorld)) {
 				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				CattailEntity plantEntity = (CattailEntity) PvZEntity.CATTAIL.create(world);
+				CattailEntity plantEntity = (CattailEntity) PvZEntity.CATTAIL.create(getWorld());
 				plantEntity.setTarget(this.getTarget());
 				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				plantEntity.setAiDisabled(this.isAiDisabled());
 				plantEntity.setPersistent();
 				if (this.hasCustomName()) {
@@ -308,11 +310,11 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 				;
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.CATTAIL_SEED_PACKET, CattailSeeds.cooldown);
 				}
 			}
@@ -344,7 +346,7 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createLilyPadAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 8D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
@@ -423,9 +425,9 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 	}
 
 	public static boolean canLilyPadSpawn(EntityType<? extends LilyPadEntity> entityType, WorldAccess worldAccess, SpawnReason reason, BlockPos pos, RandomGenerator random) {
-		BlockPos blockPos2 = pos.add(0, 0.5, 0);
-		return ((worldAccess.getBlockState(pos.down()).getMaterial().isLiquid() && !worldAccess.getBlockState(blockPos2).getMaterial().isLiquid() && !worldAccess.getBlockState(pos.down()).getMaterial().equals(Material.LAVA)) ||
-				worldAccess.getBlockState(pos.down()).getMaterial().equals(Material.ICE)) &&
+		BlockPos blockPos2 = pos.add(0, 0, 0);
+		return ((worldAccess.getFluidState(pos.down()).isSource() && !worldAccess.getFluidState(blockPos2).isSource() && !worldAccess.getFluidState(pos.down()).isOf(Fluids.LAVA)) ||
+				worldAccess.getBlockState(pos.down()).getBlock().equals(ICE)) &&
 				Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
 	}
 }

@@ -202,24 +202,27 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getFireStage()){
 			if (this.isInsideWaterOrBubbleColumn()) {
-				event.getController().setAnimation(new RawAnimation().loop("imp.ducky"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.ducky"));
 			} else {
 				if (!this.isOnGround()) {
-					event.getController().setAnimation(new RawAnimation().loop("imp.ball"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.ball"));
 					if (this.hasVehicle()){
 						event.getController().setAnimationSpeed(0);
 					}
@@ -231,7 +234,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 						event.getController().setAnimationSpeed(1);
 					}
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("imp.run"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.run"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
@@ -241,7 +244,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 						event.getController().setAnimationSpeed(1.5);
 					}
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("imp.idle"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.idle"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
@@ -255,10 +258,10 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 		}
 		else {
 			if (this.isInsideWaterOrBubbleColumn()) {
-				event.getController().setAnimation(new RawAnimation().loop("imp.ducky.gearless"));
+				event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.ducky.gearless"));
 			} else {
 				if (!this.isOnGround()) {
-					event.getController().setAnimation(new RawAnimation().loop("imp.ball.gearless"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.ball.gearless"));
 					if (this.hasVehicle()){
 						event.getController().setAnimationSpeed(0);
 					}
@@ -270,7 +273,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 						event.getController().setAnimationSpeed(1);
 					}
 				} else if (!(event.getLimbSwingAmount() > -0.01F && event.getLimbSwingAmount() < 0.01F)) {
-					event.getController().setAnimation(new RawAnimation().loop("imp.run.gearless"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.run.gearless"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);
@@ -280,7 +283,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoAnimatable {
 						event.getController().setAnimationSpeed(1.5);
 					}
 				} else {
-					event.getController().setAnimation(new RawAnimation().loop("imp.idle.gearless"));
+					event.getController().setAnimation(RawAnimation.begin().thenLoop("imp.idle.gearless"));
 
 					if (this.isFrozen || this.isStunned) {
 						event.getController().setAnimationSpeed(0);

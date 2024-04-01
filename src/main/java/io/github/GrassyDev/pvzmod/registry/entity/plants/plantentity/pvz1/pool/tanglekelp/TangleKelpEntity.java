@@ -4,6 +4,8 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import net.minecraft.entity.damage.DamageType;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -133,26 +135,29 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.dryLand) {
-			event.getController().setAnimation(new RawAnimation().loop("tanglekelp.onground"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("tanglekelp.onground"));
 		}
 		else if (inAnimation && !stopAnimation) {
-			event.getController().setAnimation(new RawAnimation().loop("tanglekelp.attack"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("tanglekelp.attack"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("tanglekelp.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("tanglekelp.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -200,7 +205,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 				this.animationTicksLeft = 65;
 				if (!attackLock){
 					this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH);
-					world.sendEntityStatus(this, (byte) 100);
+					getWorld().sendEntityStatus(this, (byte) 100);
 				}
 				this.firstAttack = false;
 			}
@@ -263,7 +268,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -272,7 +277,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 					this.dryLand = false;
 					onWater = true;
 				}
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.TANGLEKELP_SEED_PACKET);
 				}
@@ -293,19 +298,19 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 				livingEntity.setVelocity(Vec3d.ZERO);
 			}
 			if (this.animationTicksLeft == 22){
-				world.sendEntityStatus(this, (byte) 107);
+				getWorld().sendEntityStatus(this, (byte) 107);
 				this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 			}
 			if (this.animationTicksLeft == 6) {
 				this.attackLock = true;
-				world.sendEntityStatus(this, (byte) 107);
+				getWorld().sendEntityStatus(this, (byte) 107);
 				this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 				if (getTarget() != null) {
 					this.firstAttack = true;
 				}
 
 				float damage = 9999f;
-				boolean bl2 = livingEntity.damage(DamageSource.mob(this), damage);
+				boolean bl2 = livingEntity.damage(getDamageSources().mobAttack(this), damage);
 				if (bl2) {
 					this.applyDamageEffects(this, livingEntity);
 				}
@@ -329,7 +334,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (this.getTarget() == null || source.getAttacker() instanceof PlayerEntity || source.isOutOfWorld()) {
+		if (this.getTarget() == null || source.getAttacker() instanceof PlayerEntity || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
 			super.applyDamage(source, amount);
 		}
 	}
@@ -356,7 +361,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createTangleKelpAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

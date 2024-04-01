@@ -104,7 +104,7 @@ public abstract class SeedItem extends Item {
 				Vec3d vec3d = new Vec3d(10, 0.0, 0).rotateY(-entity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				HitResult hitResult = world.raycast(new RaycastContext(entity.getPos(), entity.getPos().add(vec3d), RaycastContext.ShapeType.VISUAL, RaycastContext.FluidHandling.NONE, entity));
 				if (hitResult.getType().equals(HitResult.Type.MISS)) {
-					List<Entity> itemEntities = world.getNonSpectatingEntities(Entity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ()).expand(10));
+					List<Entity> itemEntities = getWorld().getNonSpectatingEntities(Entity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ()).expand(10));
 					for (Entity entity1 : itemEntities) {
 						if (player.getInventory().getEmptySlot() == -1) {
 							break;

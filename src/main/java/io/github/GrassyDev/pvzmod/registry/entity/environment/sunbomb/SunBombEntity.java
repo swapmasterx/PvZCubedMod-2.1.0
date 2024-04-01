@@ -80,20 +80,17 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
-	}
-
-	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
-
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
+	}
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("sunbomb"));
-        return PlayState.CONTINUE;
-    }
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("sunbomb"));
+		return PlayState.CONTINUE;
+	}
 
 	/** /~*~//~*AI*~//~*~/ **/
 
@@ -290,4 +287,13 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 		this.discard();
 		super.onDeath(source);
 	}
+<<<<<<< Updated upstream
+=======
+
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+>>>>>>> Stashed changes
 }

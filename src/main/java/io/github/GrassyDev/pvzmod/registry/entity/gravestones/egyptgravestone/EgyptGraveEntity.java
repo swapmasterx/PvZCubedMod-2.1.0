@@ -99,29 +99,28 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
-        else if (tiltchance <= 0.5) {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
-        }
-        else {
-            event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
-        }
-        return PlayState.CONTINUE;
-    }
+		else if (tiltchance <= 0.5) {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
+		}
+		else {
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
+		}
+		return PlayState.CONTINUE;
+	}
 
 
 	/** /~*~//~*AI*~//~*~/ **/
@@ -269,6 +268,14 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 		}
 	}
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
+>>>>>>> Stashed changes
 
 	/** /~*~//~*GOALS*~//~*~/ **/
 
@@ -303,7 +310,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 			this.startTime = EgyptGraveEntity.this.age + this.startTimeDelay();
 			SoundEvent soundEvent = this.getSoundPrepare();
 			if (soundEvent != null) {
-				EgyptGraveEntity.this.playSound(soundEvent, 1.0F, 1.0F);
+				EgyptGraveEntity.this.playSound(soundEvent, 0.9F, 1.0F);
 			}
 
 			EgyptGraveEntity.this.setSpell(this.getSpell());
@@ -313,8 +320,8 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 			--this.spellCooldown;
 			if (this.spellCooldown == 0) {
 				this.castSpell();
-				EgyptGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 70, 1)));
-				EgyptGraveEntity.this.playSound(EgyptGraveEntity.this.getCastSpellSound(), 1.0F, 1.0F);
+				EgyptGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 100, 1)));
+				EgyptGraveEntity.this.playSound(EgyptGraveEntity.this.getCastSpellSound(), 0.9F, 1.0F);
 			}
 
 		}

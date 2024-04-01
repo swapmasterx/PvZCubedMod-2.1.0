@@ -39,7 +39,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -112,31 +112,34 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring){
-			event.getController().setAnimation(new RawAnimation().playOnce("magnetshroom.shoot"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("magnetshroom.shoot"));
 		}
 		else if (this.attractTicks > 0) {
-			event.getController().setAnimation(new RawAnimation().playOnce("magnetshroom.pull"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("magnetshroom.pull"));
 		}
 		else if (this.magnetized) {
-			event.getController().setAnimation(new RawAnimation().loop("magnetshroom.idle2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("magnetshroom.idle2"));
 		}
 		else if (this.getIsAsleep()) {
-			event.getController().setAnimation(new RawAnimation().loop("magnetshroom.asleep"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("magnetshroom.asleep"));
 		} else {
-			event.getController().setAnimation(new RawAnimation().loop("magnetshroom.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("magnetshroom.idle"));
 		}
 		return PlayState.CONTINUE;
 	}
@@ -176,11 +179,11 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
-					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS)))) {
+					this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS)))) {
 				this.setIsAsleep(IsAsleep.FALSE);
 			} else if (this.getWorld().getAmbientDarkness() < 2 &&
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2 &&
-					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(BiomeKeys.MUSHROOM_FIELDS))) {
+					!this.getWorld().getBiome(this.getBlockPos()).getKey().equals(Optional.ofNullable(Biomes.MUSHROOM_FIELDS))) {
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
@@ -209,7 +212,7 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.MAGNETOSHROOM_SEED_PACKET);
 				}
@@ -270,7 +273,7 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.MAGNETOSHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -290,7 +293,7 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createMagnetoshroomAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
@@ -401,17 +404,17 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
 				if (this.plantEntity.magnetized && this.plantEntity.canShoot && this.plantEntity.untarget >= 0){
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 113);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 113);
 				}
 				else if (!this.plantEntity.magnetized) {
-					this.plantEntity.world.sendEntityStatus(this.plantEntity, (byte) 111);
+					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				}
 				++this.beamTicks;
 				++this.animationTicks;
 				if (this.plantEntity.magnetized && this.plantEntity.canShoot){
 					if (this.beamTicks >= 0 && this.animationTicks <= -7) {
 						if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-							List<Entity> helmets = this.plantEntity.world.getNonSpectatingEntities(Entity.class, this.plantEntity.getBoundingBox().stretch(0, 0, 0));
+							List<Entity> helmets = this.plantEntity.getWorld().getNonSpectatingEntities(Entity.class, this.plantEntity.getBoundingBox().stretch(0, 0, 0));
 							MetalHelmetProjEntity helmetProj = null;
 							MetalHelmetProjEntity helmetProj2 = null;
 							MetalHelmetProjEntity helmetProj3 = null;

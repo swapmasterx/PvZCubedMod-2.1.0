@@ -1,6 +1,5 @@
 package io.github.GrassyDev.pvzmod.registry.entity.gravestones.darkagesgrave;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -85,29 +84,28 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
-
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
+
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
 		else if (tiltchance <= 0.5) {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
 		}
-        return PlayState.CONTINUE;
-    }
+		return PlayState.CONTINUE;
+	}
+
 
 
 	/** /~*~//~*AI*~//~*~/ **/
@@ -127,13 +125,13 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 	public void tick() {
 		super.tick();
 		this.setTarget(this.getWorld().getClosestPlayer(this.getX(), this.getY(), this.getZ(), 100, true));
-		LocalDifficulty localDifficulty = world.getLocalDifficulty(this.getBlockPos());
+		LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.getBlockPos());
 		double difficulty = 0;
 		if (this.getVariant().equals(GraveDifficulty.NONE)){
 			difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -162,10 +160,10 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 		else if (this.getVariant().equals(GraveDifficulty.CRAAAZY)){
 			difficulty = 5;
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
 		else if (this.spawnCounter == 2 && difficulty <= 1.509 + difficultymodifier){
@@ -212,8 +210,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createDarkAgesGraveAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.darkAgesGraveH());
@@ -266,6 +263,15 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
         return PvZSounds.ENTITYRISINGEVENT;
     }
 
+<<<<<<< Updated upstream
+=======
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
+>>>>>>> Stashed changes
 	protected abstract class CastSpellGoal extends Goal {
 		protected int spellCooldown;
 		protected int startTime;
@@ -297,7 +303,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 			this.startTime = DarkAgesGraveEntity.this.age + this.startTimeDelay();
 			SoundEvent soundEvent = this.getSoundPrepare();
 			if (soundEvent != null) {
-				DarkAgesGraveEntity.this.playSound(soundEvent, 1.0F, 1.0F);
+				DarkAgesGraveEntity.this.playSound(soundEvent, 0.9F, 1.0F);
 			}
 
 			DarkAgesGraveEntity.this.setSpell(this.getSpell());
@@ -307,8 +313,8 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 			--this.spellCooldown;
 			if (this.spellCooldown == 0) {
 				this.castSpell();
-				DarkAgesGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 70, 1)));
-				DarkAgesGraveEntity.this.playSound(DarkAgesGraveEntity.this.getCastSpellSound(), 1.0F, 1.0F);
+				DarkAgesGraveEntity.this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 100, 1)));
+				DarkAgesGraveEntity.this.playSound(DarkAgesGraveEntity.this.getCastSpellSound(), 0.9F, 1.0F);
 			}
 
 		}

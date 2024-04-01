@@ -60,20 +60,23 @@ public class RocketEntity extends PvZProjectileEntity implements GeoAnimatable {
 
 	public int maxAge = 60;
 
-	@Override
-	public void registerControllers(AnimatableManager AnimatableManager) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		AnimatableManager.addAnimationController(controller);
+@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable > PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("spike.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("spike.idle"));
 		return PlayState.CONTINUE;
 	}
 
@@ -224,10 +227,10 @@ public class RocketEntity extends PvZProjectileEntity implements GeoAnimatable {
 									!(livingEntity instanceof ZombieShieldEntity) &&
 									livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 								float damageSplash2 = damageSplash - livingEntity.getHealth();
-								livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
-								generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash2);
+								livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash2);
 							} else {
-								livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
+								livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
 							}
 							if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 								livingEntity.setOnFireFor(4);
@@ -253,9 +256,9 @@ public class RocketEntity extends PvZProjectileEntity implements GeoAnimatable {
 					this.remove(RemovalReason.DISCARDED);
 				}
 			} else {
-				if (!world.isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
+				if (!getWorld().isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
 					float damageSplash = PVZCONFIG.nestedProjDMG.rocketDMG() * damageMultiplier;
-					livingEntity.damage(DamageSource.thrownProjectile(this, this.getOwner()), damageSplash);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damageSplash);
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 				}

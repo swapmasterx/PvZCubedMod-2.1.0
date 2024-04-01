@@ -56,18 +56,22 @@ public class FireTrailEntity extends PathAwareEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("firetrail.idle"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("firetrail.idle"));
 		event.getController().setAnimationSpeed(1.25);
         return PlayState.CONTINUE;
     }
@@ -121,10 +125,10 @@ public class FireTrailEntity extends PathAwareEntity implements GeoAnimatable {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					}
 					if (!(livingEntity instanceof ZombieShieldEntity)) {
 						livingEntity.removeStatusEffect(PvZCubed.FROZEN);
@@ -170,7 +174,7 @@ public class FireTrailEntity extends PathAwareEntity implements GeoAnimatable {
 		if (this.isInsideWall()){
 			this.setPosition(this.getX(), this.getY() + 1, this.getZ());
 		}
-		if (!this.onGround){
+		if (!this.isOnGround()){
 			this.setPosition(this.getX(), this.getY() - 1, this.getZ());
 		}
 		if (this.getTarget() != null){
@@ -195,7 +199,7 @@ public class FireTrailEntity extends PathAwareEntity implements GeoAnimatable {
 			this.discard();
 		}
 		if (!this.getWorld().isClient()) {
-			List<GeneralPvZombieEntity> list = world.getNonSpectatingEntities(GeneralPvZombieEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(5));
+			List<GeneralPvZombieEntity> list = getWorld().getNonSpectatingEntities(GeneralPvZombieEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(5));
 			for (GeneralPvZombieEntity generalPvZombieEntity : list) {
 				if (generalPvZombieEntity.squaredDistanceTo(this) < 36) {
 					generalPvZombieEntity.setStealthTag(GeneralPvZombieEntity.Stealth.FALSE);
@@ -203,7 +207,7 @@ public class FireTrailEntity extends PathAwareEntity implements GeoAnimatable {
 			}
 		}
 		if (--heatTicks <= 0) {
-			List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(1.5));
+			List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(1.5));
 			for (LivingEntity tileEntity : list) {
 				if (tileEntity instanceof SnowTile) {
 					tileEntity.discard();
@@ -233,7 +237,7 @@ public class FireTrailEntity extends PathAwareEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createFireTrailAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);

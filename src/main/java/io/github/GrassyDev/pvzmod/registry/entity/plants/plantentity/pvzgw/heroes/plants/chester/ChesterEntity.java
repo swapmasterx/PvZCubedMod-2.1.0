@@ -187,37 +187,40 @@ public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedA
 	/** /~*~//~*GECKOLIB ANIMATION~//~*~// **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getTypeCount();
 		if (this.isFiringGoop){
-			event.getController().setAnimation(new RawAnimation().playOnce("chomper.goop"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("chomper.goop"));
 		}
 		else if (this.notEating) {
-			event.getController().setAnimation(new RawAnimation().playOnce("chomper.chomp2"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("chomper.chomp2"));
 		}
 		else if (this.isFiring){
-			event.getController().setAnimation(new RawAnimation().playOnce("chomper.chomp4"));
+			event.getController().setAnimation(RawAnimation.begin().thenPlay("chomper.chomp4"));
 		}
 		else if (i > 0 && this.eatingShield) {
-			event.getController().setAnimation(new RawAnimation().loop("chomper.chew2"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("chomper.chew2"));
 		}
 		else if (i > 0) {
-			event.getController().setAnimation(new RawAnimation().loop("chomper.chew"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("chomper.chew"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("chomper.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("chomper.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -289,7 +292,7 @@ public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedA
 				generalPvZombieEntity.swallowed = true;
 			}
 		}
-		boolean bl = damaged.damage(DamageSource.mob(this), damage);
+		boolean bl = damaged.damage(getDamageSources().mobAttack(this), damage);
 		if (bl) {
 			this.applyDamageEffects(this, target);
 		}
@@ -329,7 +332,7 @@ public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedA
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.CHESTER_SEED_PACKET);
 				}
@@ -364,7 +367,7 @@ public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedA
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)){
 			dropItem(ModItems.CHESTER_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -384,7 +387,7 @@ public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedA
 	/** //~*~//~ATTRIBUTES~//~*~// **/
 
 	public static DefaultAttributeContainer.Builder createChesterAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

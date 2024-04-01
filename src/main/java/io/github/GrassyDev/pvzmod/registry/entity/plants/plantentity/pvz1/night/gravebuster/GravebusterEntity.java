@@ -72,23 +72,26 @@ public class GravebusterEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.attackTicksLeft > 0) {
-			event.getController().setAnimation(new RawAnimation().loop("gravebuster.eating"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravebuster.eating"));
 		}
 		else {
-			event.getController().setAnimation(new RawAnimation().loop("gravebuster.idle"));
+			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravebuster.idle"));
 		}
         return PlayState.CONTINUE;
     }
@@ -111,18 +114,18 @@ public class GravebusterEntity extends PlantEntity implements GeoAnimatable {
 		if (i > 0) {
 			float f = 1;
 			target.dismountVehicle();
-			boolean bl = target.damage(DamageSource.mob(this), f);
+			boolean bl = target.damage(getDamageSources().mobAttack(this), f);
 			if (bl) {
 				this.applyDamageEffects(this, target);
 			}
 		}
 		if (i <= 1) {
 			float f = this.getAttackDamage();
-			boolean bl = target.damage(DamageSource.mob(this), f);if (bl) {
+			boolean bl = target.damage(getDamageSources().mobAttack(this), f);if (bl) {
 				this.applyDamageEffects(this, target);
 			}
 			this.used = true;
-			target.damage(DamageSource.mob(this), Integer.MAX_VALUE);
+			target.damage(getDamageSources().mobAttack(this), Integer.MAX_VALUE);
 			this.remove(RemovalReason.DISCARDED);
 			return bl;
 		} else {
@@ -139,9 +142,9 @@ public class GravebusterEntity extends PlantEntity implements GeoAnimatable {
 		BlockPos blockPos = this.getBlockPos();
 		Box box = PvZEntity.GRAVEBUSTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ());
 		List<LivingEntity> list = new ArrayList<>();
-		list.addAll(world.getNonSpectatingEntities(GraveEntity.class, box.expand(0)));
-		list.addAll(world.getNonSpectatingEntities(ZombieObstacleEntity.class, box.expand(0)));
-		list.addAll(world.getNonSpectatingEntities(SpeakerVehicleEntity.class, box.expand(0)));
+		list.addAll(getWorld().getNonSpectatingEntities(GraveEntity.class, box.expand(0)));
+		list.addAll(getWorld().getNonSpectatingEntities(ZombieObstacleEntity.class, box.expand(0)));
+		list.addAll(getWorld().getNonSpectatingEntities(SpeakerVehicleEntity.class, box.expand(0)));
 		List<LivingEntity> list2 = list;
 		if (list2.isEmpty() && this.age > 10){
 			this.discard();
@@ -162,7 +165,7 @@ public class GravebusterEntity extends PlantEntity implements GeoAnimatable {
 		if (tickDelay <= 1) {
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
-			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(world, this.getBlockPos(), this)) && !this.hasVehicle()) {
+			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.GRAVEBUSTER_SEED_PACKET);
 				}
@@ -207,7 +210,7 @@ public class GravebusterEntity extends PlantEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createGravebusterAttributes() {
-		return MobEntity.createMobAttributes()
+		return MobEntity.createAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)

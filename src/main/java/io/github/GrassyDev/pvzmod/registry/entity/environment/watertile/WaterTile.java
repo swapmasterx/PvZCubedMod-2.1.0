@@ -36,19 +36,17 @@ public class WaterTile extends TileEntity {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		event.getController().setAnimation(new RawAnimation().loop("tile.anim"));
+		event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.anim"));
 		return PlayState.CONTINUE;
 	}
-
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	private void damageEntity() {
@@ -85,4 +83,12 @@ public class WaterTile extends TileEntity {
 		}
 		this.damageEntity();
 	}
+<<<<<<< Updated upstream
+=======
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+>>>>>>> Stashed changes
 }
