@@ -1332,7 +1332,7 @@ public abstract class PlantEntity extends GolemEntity {
 	}
 
 	public static boolean checkPlant(Vec3d pos, ServerWorldAccess world, EntityType<?> type) {
-		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
+		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(pos).expand(20));
 		List<PlantEntity> list1 = new ArrayList<>();
 		for (PlantEntity plantEntity : list){
 			if (plantEntity.getType() != type){

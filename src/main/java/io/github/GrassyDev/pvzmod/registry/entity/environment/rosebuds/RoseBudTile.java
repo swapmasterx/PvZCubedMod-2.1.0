@@ -38,10 +38,12 @@ public class RoseBudTile extends TileEntity {
 	}
 
 
-	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	/**
+	 * /~*~//~*GECKOLIB ANIMATION*~//~*~/
+	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
@@ -82,8 +84,7 @@ public class RoseBudTile extends TileEntity {
 			for (Entity entity1 : livingEntity.getPassengerList()) {
 				if (entity1 instanceof ZombiePropEntity zpe && zombiePropEntity2 == null) {
 					zombiePropEntity2 = zpe;
-				}
-				else if (entity1 instanceof ZombiePropEntity zpe) {
+				} else if (entity1 instanceof ZombiePropEntity zpe) {
 					zombiePropEntity3 = zpe;
 				}
 				if (entity1 instanceof ZombiePropEntity zpe && !(zpe instanceof ZombieShieldEntity)) {
@@ -98,12 +99,12 @@ public class RoseBudTile extends TileEntity {
 				damage = damage * 2;
 			}
 			if ((livingEntity instanceof Monster &&
-					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
-							&& (generalPvZombieEntity.getHypno())) &&
-					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity1 &&
-							generalPvZombieEntity1.isFlying())) && !livingEntity.isInsideWaterOrBubbleColumn() && !(livingEntity instanceof ZombieShieldEntity && !(livingEntity instanceof ZombieObstacleEntity))) {
+				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
+					&& (generalPvZombieEntity.getHypno())) &&
+				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity1 &&
+					generalPvZombieEntity1.isFlying())) && !livingEntity.isInsideWaterOrBubbleColumn() && !(livingEntity instanceof ZombieShieldEntity && !(livingEntity instanceof ZombieObstacleEntity))) {
 				if (zombiePropEntity2 == null ||
-						zombiePropEntity2 instanceof ZombieShieldEntity) {
+					zombiePropEntity2 instanceof ZombieShieldEntity) {
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
 						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
@@ -113,40 +114,38 @@ public class RoseBudTile extends TileEntity {
 					};
 					livingEntity.playSound(sound, 0.1F, (float) (0.5F + Math.random()));
 					if (damage > livingEntity.getHealth() &&
-							!(livingEntity instanceof ZombieShieldEntity) &&
-							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
+						!(livingEntity instanceof ZombieShieldEntity) &&
+						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-						generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					}
 				}
 			}
 		}
 	}
+
 	private int tickDamage = 15;
 
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.getTarget() != null){
+		if (this.getTarget() != null) {
 			this.setPosition(this.getTarget().getPos());
 		}
-		if (this.age >= 40){
+		if (this.age >= 40) {
 			this.discard();
 		}
-		if (--tickDamage <= 0){
+		if (--tickDamage <= 0) {
 			this.damageEntity();
 			tickDamage = 15;
 		}
 	}
-<<<<<<< Updated upstream
-=======
 
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
->>>>>>> Stashed changes
 }

@@ -29,4 +29,9 @@ public class SnowTile extends TileEntity {
 			this.discard();
 		}
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
 }

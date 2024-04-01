@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gargantuar.modernday.GargantuarEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityGroup;
@@ -87,7 +88,7 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 		if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this instanceof ZombieShieldEntity) &&
 		vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())){
 			this.setHypno(IsHypno.TRUE);
-			vehicle.damage(PvZCubed.HYPNO_DAMAGE, 0);
+			vehicle.damage(PvZDamageTypes.of(getWorld(),PvZDamageTypes.HYPNO_DAMAGE), 0);
 		}
 		if (vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isStealth()){
 			this.setStealthTag(Stealth.TRUE);

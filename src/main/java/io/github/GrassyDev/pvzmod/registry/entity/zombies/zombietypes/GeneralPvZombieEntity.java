@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.maritile.MariTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.rosebuds.RoseBudTile;
@@ -504,10 +505,6 @@ public class GeneralPvZombieEntity extends HostileEntity {
 
 	public EntityType<? extends HostileEntity> entityBox = PvZEntity.BROWNCOAT;
 
-	@Override
-	public boolean canBeRiddenInWater() {
-		return true;
-	}
 
 	public boolean isPushable() {
 		return false;
@@ -913,7 +910,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 
 
 	public boolean damage(DamageSource source, float amount) {
-		if ((!this.canHypno() || this.isCovered()) && source.equals(HYPNO_DAMAGE)) {
+		if ((!this.canHypno() || this.isCovered()) && source.isType(PvZDamageTypes.HYPNO_DAMAGE)) {
 			return false;
 		}
 		else {
@@ -1428,7 +1425,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 						if (!ZOMBIE_SIZE.get(this.getType()).orElse("medium").equals("small")) {
 							hypnoshroomEntity.damage(getDamageSources().mobAttack(this), hypnoshroomEntity.getMaxHealth() * 5);
 						}
-						this.damage(HYPNO_DAMAGE, 0);
+						this.damage(PvZDamageTypes.of(getWorld(),PvZDamageTypes.HYPNO_DAMAGE), 0);
 					}
 					float damage = 12;
 					if (target instanceof EndurianEntity) {
@@ -1473,7 +1470,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 						if (!ZOMBIE_SIZE.get(this.getType()).orElse("medium").equals("small")) {
 							hypnoshroomEntity.damage(getDamageSources().mobAttack(this), hypnoshroomEntity.getMaxHealth() * 5);
 						}
-						this.damage(HYPNO_DAMAGE, 0);
+						this.damage(PvZDamageTypes.of(getWorld(),PvZDamageTypes.HYPNO_DAMAGE), 0);
 					}
 					float damage = 12;
 					if (target instanceof EndurianEntity) {

@@ -100,28 +100,22 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 
 	@Override
-	public void registerControllers(AnimatableManager data) {
-		AnimationController controller = new AnimationController(this, controllerName, 0, this::predicate);
-
-		data.addAnimationController(controller);
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
 	@Override
-	public AnimatableInstanceCache getFactory() {
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (beingEaten){
-<<<<<<< Updated upstream
-			event.getController().setAnimation(new RawAnimation().loop("obstacle.eating"));
-		}
-		else if (tiltchance <= 0.5) {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle"));
-		}
-		else {
-			event.getController().setAnimation(new RawAnimation().loop("gravestone.idle2"));
-=======
 
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
@@ -130,10 +124,9 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 		}
 		else {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("gravestone.idle2"));
->>>>>>> Stashed changes
 		}
-        return PlayState.CONTINUE;
-    }
+		return PlayState.CONTINUE;
+	}
 
 
 	/** /~*~//~*AI*~//~*~/ **/
@@ -153,13 +146,13 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 	public void tick() {
 		super.tick();
 		this.setTarget(this.getWorld().getClosestPlayer(this.getX(), this.getY(), this.getZ(), 100, true));
-		LocalDifficulty localDifficulty = world.getLocalDifficulty(this.getBlockPos());
+		LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.getBlockPos());
 		double difficulty = 0;
 		if (this.getVariant().equals(GraveDifficulty.NONE)){
 			difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -188,10 +181,10 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 		else if (this.getVariant().equals(GraveDifficulty.CRAAAZY)){
 			difficulty = 5;
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
 		else if (this.spawnCounter == 2 && difficulty <= 1.509 + difficultymodifier){
@@ -264,18 +257,18 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 8000 &&
 					pos.getY() > 50 &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 8000 &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
@@ -381,13 +374,13 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 
         protected void castSpell() {
 			ServerWorld serverWorld = (ServerWorld) PoolGraveEntity.this.getWorld();
-			LocalDifficulty localDifficulty = world.getLocalDifficulty(this.poolGraveEntity.getBlockPos());
+			LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.poolGraveEntity.getBlockPos());
 			double difficulty = 0;
 			if (this.poolGraveEntity.getVariant().equals(GraveDifficulty.NONE)) {
 				difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1) {
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)) {
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)) {
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -439,7 +432,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 					zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 					zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 				}
-				BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+				BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 				BrowncoatEntity browncoatEntity = (BrowncoatEntity)PvZEntity.BROWNCOAT.create(PoolGraveEntity.this.getWorld());
 				browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 				browncoatEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -457,7 +450,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 						zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					BrowncoatEntity coneheadEntity = (BrowncoatEntity) PvZEntity.CONEHEAD.create(PoolGraveEntity.this.getWorld());
 					coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					coneheadEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -474,7 +467,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 						zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					BrowncoatEntity browncoatEntity = (BrowncoatEntity)PvZEntity.BROWNCOAT.create(PoolGraveEntity.this.getWorld());
 					browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					browncoatEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -494,7 +487,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 							zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						SnorkelEntity snorkel = (SnorkelEntity) PvZEntity.SNORKEL.create(PoolGraveEntity.this.getWorld());
 						snorkel.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						snorkel.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -511,7 +504,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 							zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						BrowncoatEntity coneheadEntity = (BrowncoatEntity) PvZEntity.CONEHEAD.create(PoolGraveEntity.this.getWorld());
 						coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						coneheadEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -531,7 +524,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 								zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							BrowncoatEntity coneheadEntity = (BrowncoatEntity) PvZEntity.CONEHEAD.create(PoolGraveEntity.this.getWorld());
 							coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							coneheadEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -548,7 +541,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 								zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							SnorkelEntity snorkel = (SnorkelEntity) PvZEntity.SNORKEL.create(PoolGraveEntity.this.getWorld());
 							snorkel.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							snorkel.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -570,7 +563,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 							zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						BrowncoatEntity bucketheadEntity = (BrowncoatEntity) PvZEntity.BUCKETHEAD.create(PoolGraveEntity.this.getWorld());
 						bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						bucketheadEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -587,7 +580,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 							zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						BrowncoatEntity browncoatEntity = (BrowncoatEntity) PvZEntity.BROWNCOAT.create(PoolGraveEntity.this.getWorld());
 						browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						browncoatEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -609,7 +602,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 								zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							SnorkelEntity snorkel = (SnorkelEntity) PvZEntity.SNORKEL.create(PoolGraveEntity.this.getWorld());
 							snorkel.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							snorkel.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -626,7 +619,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 								zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							BrowncoatEntity buckethead = (BrowncoatEntity) PvZEntity.BUCKETHEAD.create(PoolGraveEntity.this.getWorld());
 							buckethead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							buckethead.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -659,7 +652,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 								} else {
 									flagType = PvZEntity.FLAGZOMBIE;
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								FlagzombieEntity flagzombieEntity = (FlagzombieEntity) flagType.create(PoolGraveEntity.this.getWorld());
 								flagzombieEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								flagzombieEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -683,7 +676,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								DolphinRiderEntity dolphinRiderEntity = (DolphinRiderEntity) PvZEntity.DOLPHINRIDER.create(PoolGraveEntity.this.getWorld());
 								dolphinRiderEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								dolphinRiderEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -700,7 +693,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								BrowncoatEntity browncoatEntity = (BrowncoatEntity) PvZEntity.CONEHEAD.create(PoolGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -724,7 +717,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MetalVehicleEntity zomboni = (MetalVehicleEntity) PvZEntity.ZOMBONIVEHICLE.create(PoolGraveEntity.this.getWorld());
 								zomboni.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								zomboni.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -741,7 +734,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								DolphinRiderEntity dolphinRiderEntity = (DolphinRiderEntity) PvZEntity.DOLPHINRIDER.create(PoolGraveEntity.this.getWorld());
 								dolphinRiderEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								dolphinRiderEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -765,7 +758,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MetalVehicleEntity bobsled = (MetalVehicleEntity) PvZEntity.BOBSLEDVEHICLE.create(PoolGraveEntity.this.getWorld());
 								bobsled.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								bobsled.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -782,7 +775,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SnorkelEntity snorkel = (SnorkelEntity) PvZEntity.SNORKEL.create(PoolGraveEntity.this.getWorld());
 								snorkel.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								snorkel.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -806,7 +799,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								DolphinRiderEntity dolphinRiderEntity = (DolphinRiderEntity) PvZEntity.DOLPHINRIDER.create(PoolGraveEntity.this.getWorld());
 								dolphinRiderEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								dolphinRiderEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -823,7 +816,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								BrowncoatEntity browncoatEntity = (BrowncoatEntity) PvZEntity.CONEHEAD.create(PoolGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -847,7 +840,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MetalVehicleEntity zomboni = (MetalVehicleEntity) PvZEntity.ZOMBONIVEHICLE.create(PoolGraveEntity.this.getWorld());
 								zomboni.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								zomboni.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -864,7 +857,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								DolphinRiderEntity dolphinRiderEntity = (DolphinRiderEntity) PvZEntity.DOLPHINRIDER.create(PoolGraveEntity.this.getWorld());
 								dolphinRiderEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								dolphinRiderEntity.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -888,7 +881,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MetalVehicleEntity bobsled = (MetalVehicleEntity) PvZEntity.BOBSLEDVEHICLE.create(PoolGraveEntity.this.getWorld());
 								bobsled.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								bobsled.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -905,7 +898,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SnorkelEntity snorkel = (SnorkelEntity) PvZEntity.SNORKEL.create(PoolGraveEntity.this.getWorld());
 								snorkel.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								snorkel.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -929,7 +922,7 @@ public class PoolGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = PoolGraveEntity.this.random.range(-3, 3);
 									zombiePos = PoolGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = PoolGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								OctoEntity octo = (OctoEntity) PvZEntity.OCTO.create(PoolGraveEntity.this.getWorld());
 								octo.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								octo.initialize(serverWorld, PoolGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);

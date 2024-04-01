@@ -129,12 +129,9 @@ public class SpringTile extends TileEntity {
 		BlockPos blockPos = this.getBlockPos();
 		this.damageEntity();
 	}
-<<<<<<< Updated upstream
-=======
-
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
->>>>>>> Stashed changes
+
 }

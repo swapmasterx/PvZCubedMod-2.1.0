@@ -59,4 +59,9 @@ public class IceTile extends TileEntity {
 		}
 		this.damageEntity();
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
 }

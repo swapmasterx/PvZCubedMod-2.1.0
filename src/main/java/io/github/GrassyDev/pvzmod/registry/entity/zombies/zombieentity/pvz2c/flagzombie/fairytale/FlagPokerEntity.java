@@ -540,12 +540,12 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPokerEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
+				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
 				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				BrowncoatEntity screendoorEntity = (BrowncoatEntity) screen.create(FlagPokerEntity.this.getWorld());
 				screendoorEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
@@ -560,12 +560,12 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPokerEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
+				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
 				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				BrowncoatEntity coneheadEntity = (BrowncoatEntity) cone.create(FlagPokerEntity.this.getWorld());
                 coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
@@ -580,12 +580,12 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPokerEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				Vec3d vec3d2 = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
+				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
 				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
 				BrowncoatEntity bucketheadEntity = (BrowncoatEntity) bucket.create(FlagPokerEntity.this.getWorld());
                 bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
@@ -600,17 +600,17 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 				RandomGenerator randomGenerator = FlagPokerEntity.this.getRandom();
 				float random = MathHelper.nextBetween(randomGenerator, -4, 4);
 				Vec3d vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 0.0, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());Vec3d vec3d2 = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add(vec3d2.getX(), 1, vec3d2.getZ());
+                BlockPos blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());Vec3d vec3d2 = new Vec3d((double)-2 - FlagPokerEntity.this.random.nextInt(10), 1, random).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+				BlockPos blockPos2 = FlagPokerEntity.this.getBlockPos().add((int) vec3d2.getX(), 1, (int) vec3d2.getZ());
 				if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos2).isOf(Blocks.CAVE_AIR)){
 					vec3d = new Vec3d((double)-2 - FlagPokerEntity.this.random.range(0, 1), 0.0, 0.0).rotateY(-FlagPokerEntity.this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					blockPos = FlagPokerEntity.this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+					blockPos = FlagPokerEntity.this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 				}
                 BrowncoatEntity browncoatEntity = (BrowncoatEntity) coat.create(FlagPokerEntity.this.getWorld());
                 browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
                 browncoatEntity.initialize(serverWorld, FlagPokerEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
                 browncoatEntity.setOwner(FlagPokerEntity.this);
-				((ServerWorld) world).spawnEntityAndPassengers(browncoatEntity);
+				((ServerWorld) getWorld()).spawnEntityAndPassengers(browncoatEntity);
             }
 			FlagPokerEntity.this.addCount();
         }

@@ -11,7 +11,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.l
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -45,7 +44,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.Objects;
 
-;
+;import static io.github.GrassyDev.pvzmod.PvZCubed.ICE;
 
 public class BubblePadEntity extends PlantEntity.VineEntity implements GeoAnimatable {
     private String controllerName = "wallcontroller";
@@ -164,7 +163,7 @@ public class BubblePadEntity extends PlantEntity.VineEntity implements GeoAnimat
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = world.getFluidState(this.getBlockPos().add(0, -0.5, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;
@@ -279,9 +278,9 @@ public class BubblePadEntity extends PlantEntity.VineEntity implements GeoAnimat
 	}
 
 	public static boolean canLilyPadSpawn(EntityType<? extends BubblePadEntity> entityType, WorldAccess worldAccess, SpawnReason reason, BlockPos pos, RandomGenerator random) {
-		BlockPos blockPos2 = pos.add(0, 0.5, 0);
-		return ((worldAccess.getBlockState(pos.down()).getMaterial().isLiquid() && !worldAccess.getBlockState(blockPos2).getMaterial().isLiquid() && !worldAccess.getBlockState(pos.down()).getMaterial().equals(Material.LAVA)) ||
-				worldAccess.getBlockState(pos.down()).getMaterial().equals(Material.ICE)) &&
-				Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
+		BlockPos blockPos2 = pos.add(0, 0, 0);
+		return ((worldAccess.getFluidState(pos.down()).isSource() && !worldAccess.getFluidState(blockPos2).isSource() && !worldAccess.getFluidState(pos.down()).isOf(Fluids.LAVA)) ||
+			worldAccess.getBlockState(pos.down()).getBlock().equals(ICE)) &&
+			Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
 	}
 }

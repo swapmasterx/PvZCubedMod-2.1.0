@@ -125,13 +125,13 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 	public void tick() {
 		super.tick();
 		this.setTarget(this.getWorld().getClosestPlayer(this.getX(), this.getY(), this.getZ(), 100, true));
-		LocalDifficulty localDifficulty = world.getLocalDifficulty(this.getBlockPos());
+		LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.getBlockPos());
 		double difficulty = 0;
 		if (this.getVariant().equals(GraveDifficulty.NONE)){
 			difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -160,10 +160,10 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 		else if (this.getVariant().equals(GraveDifficulty.CRAAAZY)){
 			difficulty = 5;
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
 		else if (this.spawnCounter == 2 && difficulty <= 1.509 + difficultymodifier){
@@ -237,22 +237,22 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 144000  &&
 					pos.getY() > 50 &&
 					(world.getAmbientDarkness() >= 2 ||
 							world.getLightLevel(LightType.SKY, pos) < 2) &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 144000 &&
 					(world.getAmbientDarkness() >= 2 ||
 							world.getLightLevel(LightType.SKY, pos) < 2) &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
@@ -264,14 +264,11 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
         return PvZSounds.ENTITYRISINGEVENT;
     }
 
-<<<<<<< Updated upstream
-=======
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
 
->>>>>>> Stashed changes
 	protected abstract class CastSpellGoal extends Goal {
 		protected int spellCooldown;
 		protected int startTime;
@@ -370,13 +367,13 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
         protected void castSpell() {
 			graveWeight = 0;
             ServerWorld serverWorld = (ServerWorld) MausoleumGraveEntity.this.getWorld();
-			LocalDifficulty localDifficulty = world.getLocalDifficulty(this.mausoleumGraveEntity.getBlockPos());
+			LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.mausoleumGraveEntity.getBlockPos());
 			double difficulty = 0;
 			if (this.mausoleumGraveEntity.getVariant().equals(GraveDifficulty.NONE)){
 				difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -438,7 +435,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 					zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 					zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 				}
-				BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+				BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 				SargeantEntity SargeantEntity = (SargeantEntity)PvZEntity.SARGEANT.create(MausoleumGraveEntity.this.getWorld());
 				SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 				SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -456,7 +453,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 						zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					SargeantEntity coneheadEntity = (SargeantEntity) PvZEntity.SARGEANTBOWL.create(MausoleumGraveEntity.this.getWorld());
 					coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					coneheadEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -473,7 +470,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 						zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					SargeantEntity SargeantEntity = (SargeantEntity)PvZEntity.SARGEANT.create(MausoleumGraveEntity.this.getWorld());
 					SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -493,7 +490,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 							zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						SargeantEntity bucketheadEntity = (SargeantEntity) PvZEntity.SARGEANTHELMET.create(MausoleumGraveEntity.this.getWorld());
 						bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						bucketheadEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -510,7 +507,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 							zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						SargeantEntity coneheadEntity = (SargeantEntity) PvZEntity.SARGEANTBOWL.create(MausoleumGraveEntity.this.getWorld());
 						coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						coneheadEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -530,7 +527,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 								zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							SargeantEntity coneheadEntity = (SargeantEntity) PvZEntity.SARGEANTBOWL.create(MausoleumGraveEntity.this.getWorld());
 							coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							coneheadEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -547,7 +544,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 								zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							SargeantEntity SargeantEntity = (SargeantEntity)PvZEntity.SARGEANT.create(MausoleumGraveEntity.this.getWorld());
 							SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -569,7 +566,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 							zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						SargeantEntity bucketheadEntity = (SargeantEntity) PvZEntity.SARGEANTHELMET.create(MausoleumGraveEntity.this.getWorld());
 						bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						bucketheadEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -586,7 +583,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 							zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						SargeantEntity SargeantEntity = (SargeantEntity) PvZEntity.SARGEANT.create(MausoleumGraveEntity.this.getWorld());
 						SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -608,7 +605,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 								zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							SargeantEntity brickhead = (SargeantEntity) PvZEntity.SARGEANTSHIELD.create(MausoleumGraveEntity.this.getWorld());
 							brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							brickhead.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -632,7 +629,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								FlagSargeantEntity flagzombieEntity = (FlagSargeantEntity) PvZEntity.FLAGSARGEANT.create(MausoleumGraveEntity.this.getWorld());
 								flagzombieEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								flagzombieEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -656,7 +653,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity bookburner = (SargeantEntity) PvZEntity.BOOKBURNER.create(MausoleumGraveEntity.this.getWorld());
 								bookburner.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								bookburner.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -673,7 +670,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity SargeantEntity = (SargeantEntity) PvZEntity.SARGEANT.create(MausoleumGraveEntity.this.getWorld());
 								SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -697,7 +694,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity brickhead = (SargeantEntity) PvZEntity.SARGEANTSHIELD.create(MausoleumGraveEntity.this.getWorld());
 								brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								brickhead.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -714,7 +711,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity SargeantEntity = (SargeantEntity) PvZEntity.SARGEANT.create(MausoleumGraveEntity.this.getWorld());
 								SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -731,7 +728,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity SargeantEntity = (SargeantEntity) PvZEntity.SARGEANTBOWL.create(MausoleumGraveEntity.this.getWorld());
 								SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -748,7 +745,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity SargeantEntity = (SargeantEntity) PvZEntity.SARGEANTHELMET.create(MausoleumGraveEntity.this.getWorld());
 								SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -771,7 +768,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 								zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							SargeantEntity bookburner = (SargeantEntity) PvZEntity.BOOKBURNER.create(MausoleumGraveEntity.this.getWorld());
 							bookburner.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							bookburner.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -794,7 +791,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity brickhead = (SargeantEntity) PvZEntity.SARGEANTSHIELD.create(MausoleumGraveEntity.this.getWorld());
 								brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								brickhead.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -811,7 +808,7 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = MausoleumGraveEntity.this.random.range(-3, 3);
 									zombiePos = MausoleumGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = MausoleumGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								SargeantEntity SargeantEntity = (SargeantEntity) PvZEntity.SARGEANTHELMET.create(MausoleumGraveEntity.this.getWorld());
 								SargeantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								SargeantEntity.initialize(serverWorld, MausoleumGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);

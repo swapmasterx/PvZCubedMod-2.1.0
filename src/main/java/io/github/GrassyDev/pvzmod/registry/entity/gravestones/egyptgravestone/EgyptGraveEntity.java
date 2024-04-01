@@ -142,13 +142,13 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 	public void tick() {
 		super.tick();
 		this.setTarget(this.getWorld().getClosestPlayer(this.getX(), this.getY(), this.getZ(), 100, true));
-		LocalDifficulty localDifficulty = world.getLocalDifficulty(this.getBlockPos());
+		LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.getBlockPos());
 		double difficulty = 0;
 		if (this.getVariant().equals(GraveDifficulty.NONE)){
 			difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -177,10 +177,10 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 		else if (this.getVariant().equals(GraveDifficulty.CRAAAZY)){
 			difficulty = 5;
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
-		if (this.spawnCounter == 1 && world.getTime() < 24000) {
+		if (this.spawnCounter == 1 && getWorld().getTime() < 24000) {
 			this.kill();
 		}
 		else if (this.spawnCounter == 2 && difficulty <= 1.509 + difficultymodifier){
@@ -253,31 +253,27 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 48000  &&
 					pos.getY() > 50 &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 48000 &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 	}
 
-<<<<<<< Updated upstream
-=======
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
-
->>>>>>> Stashed changes
 
 	/** /~*~//~*GOALS*~//~*~/ **/
 
@@ -379,13 +375,13 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
         protected void castSpell() {
 			graveWeight = 0;
             ServerWorld serverWorld = (ServerWorld) EgyptGraveEntity.this.getWorld();
-			LocalDifficulty localDifficulty = world.getLocalDifficulty(this.egyptGraveEntity.getBlockPos());
+			LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.egyptGraveEntity.getBlockPos());
 			double difficulty = 0;
 			if (this.egyptGraveEntity.getVariant().equals(GraveDifficulty.NONE)){
 				difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -450,7 +446,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 					zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 					zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 				}
-				BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+				BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 				MummyEntity browncoatEntity = (MummyEntity)PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 				browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 				browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -468,7 +464,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 						zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					MummyEntity coneheadEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 					coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					coneheadEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -485,7 +481,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 						zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					MummyEntity browncoatEntity = (MummyEntity)PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 					browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -505,7 +501,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 							zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						MummyEntity bucketheadEntity = (MummyEntity) PvZEntity.MUMMYBUCKET.create(EgyptGraveEntity.this.getWorld());
 						bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						bucketheadEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -522,7 +518,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 							zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						MummyEntity coneheadEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 						coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						coneheadEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -542,7 +538,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 								zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							MummyEntity coneheadEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 							coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							coneheadEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -559,7 +555,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 								zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							MummyEntity browncoatEntity = (MummyEntity)PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 							browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -581,7 +577,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 							zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						MummyEntity bucketheadEntity = (MummyEntity) PvZEntity.MUMMYBUCKET.create(EgyptGraveEntity.this.getWorld());
 						bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						bucketheadEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -598,7 +594,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 							zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 						browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -620,7 +616,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 								zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							MummyEntity brickhead = (MummyEntity) PvZEntity.PYRAMIDHEAD.create(EgyptGraveEntity.this.getWorld());
 							brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							brickhead.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -644,7 +640,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								FlagMummyEntity flagzombieEntity = (FlagMummyEntity) PvZEntity.FLAGMUMMY.create(EgyptGraveEntity.this.getWorld());
 								flagzombieEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								flagzombieEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -668,7 +664,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								ExplorerEntity explorerEntity = (ExplorerEntity) PvZEntity.EXPLORER.create(EgyptGraveEntity.this.getWorld());
 								explorerEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								explorerEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -685,7 +681,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -709,7 +705,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PharaohEntity pharaoh = (PharaohEntity) PvZEntity.PHARAOH.create(EgyptGraveEntity.this.getWorld());
 								pharaoh.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								pharaoh.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -726,7 +722,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -750,7 +746,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity brickhead = (MummyEntity) PvZEntity.PYRAMIDHEAD.create(EgyptGraveEntity.this.getWorld());
 								brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								brickhead.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -767,7 +763,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -784,7 +780,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -801,7 +797,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYBUCKET.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -825,7 +821,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								ImpEntity imp = (ImpEntity) PvZEntity.MUMMYIMP.create(EgyptGraveEntity.this.getWorld());
 								imp.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								imp.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -842,7 +838,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								BrowncoatEntity browncoatEntity = (BrowncoatEntity) PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -866,7 +862,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PharaohEntity pharaoh = (PharaohEntity) PvZEntity.PHARAOH.create(EgyptGraveEntity.this.getWorld());
 								pharaoh.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								pharaoh.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -883,7 +879,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMY.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -906,7 +902,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 								zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							ExplorerEntity explorerEntity = (ExplorerEntity) PvZEntity.EXPLORER.create(EgyptGraveEntity.this.getWorld());
 							explorerEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							explorerEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -929,7 +925,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity brickhead = (MummyEntity) PvZEntity.PYRAMIDHEAD.create(EgyptGraveEntity.this.getWorld());
 								brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								brickhead.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -946,7 +942,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYBUCKET.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -970,7 +966,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								GargantuarEntity mummyGarg = (GargantuarEntity) PvZEntity.MUMMYGARGANTUAR.create(EgyptGraveEntity.this.getWorld());
 								mummyGarg.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								mummyGarg.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -987,7 +983,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								ImpEntity imp = (ImpEntity) PvZEntity.MUMMYIMP.create(EgyptGraveEntity.this.getWorld());
 								imp.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								imp.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1006,7 +1002,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 										zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 										zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 									}
-									BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+									BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 									GargantuarEntity mummyGarg = (GargantuarEntity) PvZEntity.MUMMYGARGANTUAR.create(EgyptGraveEntity.this.getWorld());
 									mummyGarg.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 									mummyGarg.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1031,7 +1027,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PharaohEntity undying = (PharaohEntity) PvZEntity.UNDYINGPHARAOH.create(EgyptGraveEntity.this.getWorld());
 								undying.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								undying.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1048,7 +1044,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1065,7 +1061,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYBUCKET.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1089,7 +1085,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								ExplorerEntity torchlight = (ExplorerEntity) PvZEntity.TORCHLIGHT.create(EgyptGraveEntity.this.getWorld());
 								torchlight.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								torchlight.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1106,7 +1102,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1123,7 +1119,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYBUCKET.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1147,7 +1143,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity tombraiser = (MummyEntity) PvZEntity.TOMBRAISER.create(EgyptGraveEntity.this.getWorld());
 								tombraiser.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								tombraiser.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1164,7 +1160,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1188,7 +1184,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								ExplorerEntity torchlight = (ExplorerEntity) PvZEntity.TORCHLIGHT.create(EgyptGraveEntity.this.getWorld());
 								torchlight.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								torchlight.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1205,7 +1201,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1229,7 +1225,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity tombraiser = (MummyEntity) PvZEntity.TOMBRAISER.create(EgyptGraveEntity.this.getWorld());
 								tombraiser.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								tombraiser.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -1246,7 +1242,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = EgyptGraveEntity.this.random.range(-3, 3);
 									zombiePos = EgyptGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = EgyptGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								MummyEntity browncoatEntity = (MummyEntity) PvZEntity.MUMMYCONE.create(EgyptGraveEntity.this.getWorld());
 								browncoatEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								browncoatEntity.initialize(serverWorld, EgyptGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);

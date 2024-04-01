@@ -31,9 +31,11 @@ public class ShadowTile extends TileEntity {
 	private String controllerName = "firetrailcontroller";
 
 
-	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	/**
+	 * /~*~//~*GECKOLIB ANIMATION*~//~*~/
+	 **/
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
@@ -52,21 +54,17 @@ public class ShadowTile extends TileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.age > 1 && !this.getWorld().isClient()){
+		if (this.age > 1 && !this.getWorld().isClient()) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
 			List<GloomVineEntity> gloom = getWorld().getNonSpectatingEntities(GloomVineEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			if (gloom.isEmpty()){
+			if (gloom.isEmpty()) {
 				this.discard();
 			}
 		}
 	}
-<<<<<<< Updated upstream
-=======
-
 
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
->>>>>>> Stashed changes
 }

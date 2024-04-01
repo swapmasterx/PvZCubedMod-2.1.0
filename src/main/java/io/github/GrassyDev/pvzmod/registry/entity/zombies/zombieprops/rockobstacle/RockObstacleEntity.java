@@ -125,7 +125,7 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 	}
 
 	public void spawnEgypt(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			double random = Math.random();
 			if (random <= 0.10){
 				MummyEntity zombie = new MummyEntity(PvZEntity.MUMMYBUCKET, this.getWorld());
@@ -248,7 +248,7 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 	public void onDeath(DamageSource source) {
 		if (this.getType().equals(PvZEntity.GARGOLITHOBSTACLE)) {
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
+				BlockPos blockPos = this.getBlockPos().add((int) this.getX(), 0, (int) this.getZ());
 				RockObstacleEntity rockObstacle = (RockObstacleEntity) PvZEntity.IMPTABLETOBSTACLE.create(getWorld());
 				rockObstacle.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 				rockObstacle.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -260,7 +260,7 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoAnima
 		}
 		if (this.getType().equals(PvZEntity.IMPTABLETOBSTACLE) && !(source.getSource() instanceof GravebusterEntity)) {
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
+				BlockPos blockPos = this.getBlockPos().add((int) this.getX(), 0, (int) this.getZ());
 				GargantuarEntity gargantuar = (GargantuarEntity) PvZEntity.CURSEDGARGOLITH.create(getWorld());
 				gargantuar.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 				gargantuar.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

@@ -1,5 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.sunbomb;
 
+import blue.endless.jankson.annotation.Nullable;
 import io.github.GrassyDev.pvzmod.registry.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.icetile.IceTile;
@@ -38,37 +39,36 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
-import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 
 public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	private String controllerName = "sunbombcontroller";
 
-    public SunBombEntity(EntityType<? extends SunBombEntity> entityType, World world) {
-        super(entityType, world);
+	public SunBombEntity(EntityType<? extends SunBombEntity> entityType, World world) {
+		super(entityType, world);
 
-    }
+	}
 
 	static {
 	}
 
 	@Environment(EnvType.CLIENT)
 	public void handleStatus(byte status) {
-		if (status != 2 && status != 60){
+		if (status != 2 && status != 60) {
 			super.handleStatus(status);
 		}
 		RandomGenerator randomGenerator = this.getRandom();
 		if (status == 106) {
-			for(int i = 0; i < 128; ++i) {
+			for (int i = 0; i < 128; ++i) {
 				double d = this.random.nextDouble() / 2 * this.random.range(-1, 1);
 				double e = this.random.nextDouble() / 2 * this.random.range(0, 1);
 				double f = this.random.nextDouble() / 2 * this.random.range(-1, 1);
 				this.getWorld().addParticle(ParticleTypes.DRAGON_BREATH, this.getX() + (this.random.range(-1, 1)), this.getY() + (this.random.range(-1, 1)), this.getZ() + (this.random.range(-1, 1)), d, e, f);
 			}
-			for(int i = 0; i < 12; ++i) {
+			for (int i = 0; i < 12; ++i) {
 				double d = this.random.nextDouble() / 2 * this.random.range(-1, 1);
 				double e = this.random.nextDouble() / 2 * this.random.range(0, 1);
 				double f = this.random.nextDouble() / 2 * this.random.range(-1, 1);
@@ -78,35 +78,42 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 	}
 
 
-	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	/**
+	 * /~*~//~*GECKOLIB ANIMATION*~//~*~/
+	 **/
 
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
+
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("sunbomb"));
 		return PlayState.CONTINUE;
 	}
 
-	/** /~*~//~*AI*~//~*~/ **/
+	/**
+	 * /~*~//~*AI*~//~*~/
+	 **/
 
 	protected void initGoals() {
 	}
 
 
-	/** /~*~//~*TICKING*~//~*~/ **/
-
+	/**
+	 * /~*~//~*TICKING*~//~*~/
+	 **/
 
 
 	public void tick() {
 		this.clearStatusEffects();
 		this.setVelocity(0, -0.008, 0);
-		if (this.age >= 1200){
+		if (this.age >= 1200) {
 			this.discard();
 		}
 		super.tick();
@@ -119,12 +126,13 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 	}
 
 	public void tickMovement() {
-        super.tickMovement();
+		super.tickMovement();
 		if (!this.getWorld().isClient && this.isAlive() && this.isInsideWaterOrBubbleColumn() && this.deathTime == 0) {
 			this.clearStatusEffects();
 			this.discard();
 		}
-    }
+	}
+
 	List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().shrink(0.5, 0, 0));
 
 	private void raycastExplode() {
@@ -146,7 +154,7 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 				livingEntity.discard();
 			}
 			float damage = 90;
-			if (livingEntity instanceof OilTile oilTile){
+			if (livingEntity instanceof OilTile oilTile) {
 				oilTile.makeFireTrail(oilTile.getBlockPos());
 			}
 			ZombiePropEntity zombiePropEntity4 = null;
@@ -163,10 +171,10 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 				}
 			}
 			if ((((livingEntity instanceof Monster || livingEntity instanceof PlantEntity) &&
-					zombiePropEntity4 == null &&
-					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity2 && checkList.contains(generalPvZombieEntity2.getOwner())) &&
-					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
-							&& (generalPvZombieEntity.getHypno()))) && checkList != null && !checkList.contains(livingEntity))) {
+				zombiePropEntity4 == null &&
+				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity2 && checkList.contains(generalPvZombieEntity2.getOwner())) &&
+				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
+					&& (generalPvZombieEntity.getHypno()))) && checkList != null && !checkList.contains(livingEntity))) {
 				ZombiePropEntity zombiePropEntity2 = null;
 				for (Entity entity1 : livingEntity.getPassengerList()) {
 					if (entity1 instanceof ZombiePropEntity zpe && zombiePropEntity2 == null) {
@@ -174,32 +182,32 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 					}
 				}
 				if (damage > livingEntity.getHealth() &&
-						!(livingEntity instanceof ZombieShieldEntity) &&
-						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
+					!(livingEntity instanceof ZombieShieldEntity) &&
+					livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
-					generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
+					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					checkList.add(livingEntity);
 					checkList.add(generalPvZombieEntity);
 				} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 					checkList.add(zombieShieldEntity);
 				} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-					zombieShieldEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					zombieShieldEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					checkList.add(livingEntity);
 					checkList.add(zombieShieldEntity);
 				} else {
 					if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
-					}  else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+					} else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 						checkList.add(livingEntity);
 					}
 				}
@@ -208,7 +216,9 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 	}
 
 
-	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
+	/**
+	 * /~*~//~*ATTRIBUTES*~//~*~/
+	 **/
 
 	@Override
 	public boolean canBeLeashedBy(PlayerEntity player) {
@@ -221,11 +231,11 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 	}
 
 	public static DefaultAttributeContainer.Builder createSunBombAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 0.1D)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
-    }
+		return MobEntity.createAttributes()
+			.add(EntityAttributes.GENERIC_MAX_HEALTH, 0.1D)
+			.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
+			.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
+	}
 
 	protected boolean canClimb() {
 		return false;
@@ -241,7 +251,7 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 
 	@Nullable
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return null	;
+		return null;
 	}
 
 	@Nullable
@@ -270,7 +280,9 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 		this.bodyYaw = 0.0F;
 	}
 
-	/** /~*~//~*DAMAGE HANDLER*~//~*~/ **/
+	/**
+	 * /~*~//~*DAMAGE HANDLER*~//~*~/
+	 **/
 
 	@Override
 	public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
@@ -288,13 +300,9 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 		this.discard();
 		super.onDeath(source);
 	}
-<<<<<<< Updated upstream
-=======
-
 
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
->>>>>>> Stashed changes
 }

@@ -109,4 +109,9 @@ public class MissileToeTarget extends TileEntity {
 			}
 		}
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
 }

@@ -83,7 +83,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoAnim
 
 		if (status == 115) {
 			Vec3d vec3d2 = new Vec3d((double) 1, 0.0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-			Vec3d particlePos = Vec3d.ofCenter(this.getBlockPos().add(vec3d2.getX(), 0, vec3d2.getZ()));
+			Vec3d particlePos = Vec3d.ofCenter(this.getBlockPos().add((int) vec3d2.getX(), 0, (int) vec3d2.getZ()));
 			RandomGenerator randomGenerator = this.getRandom();
 			for(int i = 0; i < 32; ++i) {
 				double d = this.random.nextDouble() / 10 * this.random.range(-1, 1);
@@ -168,7 +168,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoAnim
 
 	private boolean isBeingRainedOn() {
 		BlockPos blockPos = this.getBlockPos();
-		return this.getWorld().hasRain(blockPos) || this.getWorld().hasRain(new BlockPos((double)blockPos.getX(), this.getBoundingBox().maxY, (double)blockPos.getZ()));
+		return this.getWorld().hasRain(blockPos) || this.getWorld().hasRain(new BlockPos((int) blockPos.getX(), (int) this.getBoundingBox().maxY, (int) blockPos.getZ()));
 	}
 
 	public void tick() {

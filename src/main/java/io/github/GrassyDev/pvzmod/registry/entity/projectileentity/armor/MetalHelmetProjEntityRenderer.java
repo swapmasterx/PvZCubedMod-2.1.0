@@ -3,15 +3,20 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.armor;
 import com.google.common.collect.Maps;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.MetalHelmetVariants;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.object.Color;
+import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 import java.util.Map;
 
-public class MetalHelmetProjEntityRenderer extends GeoEntityRenderer {
+public class MetalHelmetProjEntityRenderer extends GeoEntityRenderer<MetalHelmetProjEntity>{
 
 	public static final Map<MetalHelmetVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(MetalHelmetVariants.class), (map) -> {
@@ -149,16 +154,17 @@ public class MetalHelmetProjEntityRenderer extends GeoEntityRenderer {
 		super(ctx, new MetalHelmetProjEntityModel());
 		this.shadowRadius = 0.3F; //change 0.7 to the desired shadow size.
 	}
+//Fix width at later date
+//	@Override
+//	public float getWidthScale(Entity animatable) {
+//		return ((MetalHelmetProjEntity) animatable).magnetized && !((MetalHelmetProjEntity) animatable).keepSize ?
+//				(float) ((MetalHelmetProjEntity) animatable).reverseAge / ((MetalHelmetProjEntity) animatable).getMaxAge() : 1;
+//	}
+//
+//	@Override
+//	public float getHeightScale(Entity animatable) {
+//		return ((MetalHelmetProjEntity) animatable).magnetized && !((MetalHelmetProjEntity) animatable).keepSize ?
+//				(float) ((MetalHelmetProjEntity) animatable).reverseAge / ((MetalHelmetProjEntity) animatable).getMaxAge() : 1;
+//	}
 
-	@Override
-	public float getWidthScale(Entity animatable) {
-		return ((MetalHelmetProjEntity) animatable).magnetized && !((MetalHelmetProjEntity) animatable).keepSize ?
-				(float) ((MetalHelmetProjEntity) animatable).reverseAge / ((MetalHelmetProjEntity) animatable).getMaxAge() : 1;
-	}
-
-	@Override
-	public float getHeightScale(Entity animatable) {
-		return ((MetalHelmetProjEntity) animatable).magnetized && !((MetalHelmetProjEntity) animatable).keepSize ?
-				(float) ((MetalHelmetProjEntity) animatable).reverseAge / ((MetalHelmetProjEntity) animatable).getMaxAge() : 1;
-	}
 }

@@ -194,8 +194,8 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 			}
 			if (age >= 150 && !this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(DISABLE)){
 				Vec3d vec3d2 = new Vec3d((double) -1, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				BlockPos blockPos = new BlockPos(Vec3d.ofCenter(new Vec3i(this.getX() + vec3d2.x, this.getY() + vec3d2.y, this.getZ() + vec3d2.z)));
-				if (world.getBlockState(blockPos).isOf(Blocks.AIR) || world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
+				BlockPos blockPos = new BlockPos(Vec3i.ZERO.add ((int) (this.getX() + vec3d2.x), (int) (this.getY() + vec3d2.y), (int) (this.getZ() + vec3d2.z)));
+				if (getWorld().getBlockState(blockPos).isOf(Blocks.AIR) || getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
 					this.createSnowTile(blockPos);
 				}
 			}
@@ -450,7 +450,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 	}
 
 	public void createZomboniPassenger() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			ZomboniEntity zomboniEntity = new ZomboniEntity(PvZEntity.ZOMBONI, this.getWorld());
 			zomboniEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			zomboniEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -459,7 +459,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoAnimat
 	}
 
 	public void createBobsledPassenger() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			BobsledRiderEntity bobsledEntity = new BobsledRiderEntity(PvZEntity.BOBSLED, this.getWorld());
 			bobsledEntity.setPersonality(BobsledPersonalityVariants.LEADER);
 			bobsledEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);

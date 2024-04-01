@@ -334,7 +334,7 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoAnimatab
 			type = PvZEntity.FUTURECONEHYPNO;
 		}
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
+			BlockPos blockPos = this.getBlockPos().add((int) this.getX(), 0, (int) this.getZ());
 			FutureZombieEntity zombie = (FutureZombieEntity) type.create(getWorld());
 			zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
 			zombie.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

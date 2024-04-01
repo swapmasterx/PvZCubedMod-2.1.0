@@ -102,15 +102,15 @@ public class OilTile extends TileEntity {
 					damage = 0;
 					if (zombiePropEntity2 == null ||
 							zombiePropEntity2 instanceof ZombieShieldEntity) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					} else {
 						if (damage > zombiePropEntity2.getHealth() &&
 								livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - zombiePropEntity2.getHealth();
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
-							zombiePropEntity2.damage(DamageSource.thrownProjectile(this, this), damage);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+							zombiePropEntity2.damage(getDamageSources().mobProjectile(this, this), damage);
 						} else {
-							zombiePropEntity2.damage(DamageSource.thrownProjectile(this, this), damage);
+							zombiePropEntity2.damage(getDamageSources().mobProjectile(this, this), damage);
 						}
 					}
 				}
@@ -144,16 +144,16 @@ public class OilTile extends TileEntity {
 	public void makeFireTrail(BlockPos blockPos){
 		boolean bl = true;
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			List<Entity> tileCheck = world.getNonSpectatingEntities(Entity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
+			List<Entity> tileCheck = getWorld().getNonSpectatingEntities(Entity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
 			for (Entity tile : tileCheck){
 				if (tile instanceof FireTrailEntity && tile.squaredDistanceTo(Vec3d.ofCenter(blockPos)) <= 0.5f) {
 					bl = false;
 				}
 			}
 			if (bl) {
-				FireTrailEntity tile = (FireTrailEntity) PvZEntity.FIRETRAIL.create(world);
+				FireTrailEntity tile = (FireTrailEntity) PvZEntity.FIRETRAIL.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY() + 0.5f, blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, world.getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);
 				tile.ageMax = 300;
@@ -183,5 +183,10 @@ public class OilTile extends TileEntity {
 		BlockPos blockPos = this.getBlockPos();
 		this.damageEntity();
 		this.setOnFire();
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 }

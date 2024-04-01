@@ -492,7 +492,7 @@ public class ZomblobEntity extends PvZombieEntity implements GeoAnimatable {
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
 					for (int x = -1; x <= 1; x += 2) {
 						Vec3d vec3d = new Vec3d((double) 0, 0, x).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						BlockPos blockPos = this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+						BlockPos blockPos = this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 						if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)) {
 							vec3d = new Vec3d((double) 0, 0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						}
@@ -513,7 +513,7 @@ public class ZomblobEntity extends PvZombieEntity implements GeoAnimatable {
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
 					for (int x = -1; x <= 1; x += 2) {
 						Vec3d vec3d = new Vec3d((double) 0, 0, x).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						BlockPos blockPos = this.getBlockPos().add(vec3d.getX(), 0, vec3d.getZ());
+						BlockPos blockPos = this.getBlockPos().add((int) vec3d.getX(), 0, (int) vec3d.getZ());
 						if (!getWorld().getBlockState(blockPos).isOf(Blocks.AIR) && !getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)) {
 							vec3d = new Vec3d((double) 0, 0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						}

@@ -174,7 +174,7 @@ public class PumpkinZombieEntity extends PvZombieEntity implements GeoAnimatable
 	}
 
 	public void createPumpkinProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			PlantHelmetEntity propentity = new PlantHelmetEntity(PvZEntity.PUMPKINGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -356,17 +356,17 @@ public class PumpkinZombieEntity extends PvZombieEntity implements GeoAnimatable
 			if (this.getHypno()) {
 				if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 30);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this,this), 30);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 30);
+						livingEntity.damage(getDamageSources().explosion(this,this), 30);
 					}
 				}
 			} else {
 				if (livingEntity instanceof PlantEntity || (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null && livingEntity instanceof GeneralPvZombieEntity) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 30);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this, this), 30);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 30);
+						livingEntity.damage(getDamageSources().explosion(this, this), 30);
 					}
 				}
 			}

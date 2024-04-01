@@ -237,22 +237,22 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 60000  &&
 					pos.getY() > 50 &&
 					(world.getAmbientDarkness() >= 2 ||
 							world.getLightLevel(LightType.SKY, pos) < 2) &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).getMaterial().isLiquid() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 60000 &&
 					(world.getAmbientDarkness() >= 2 ||
 							world.getLightLevel(LightType.SKY, pos) < 2) &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
@@ -264,15 +264,12 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
         return PvZSounds.ENTITYRISINGEVENT;
     }
 
-<<<<<<< Updated upstream
-=======
 
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
 
->>>>>>> Stashed changes
 	protected abstract class CastSpellGoal extends Goal {
 		protected int spellCooldown;
 		protected int startTime;
@@ -371,13 +368,13 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
         protected void castSpell() {
 			graveWeight = 0;
             ServerWorld serverWorld = (ServerWorld) DarkAgesGraveEntity.this.getWorld();
-			LocalDifficulty localDifficulty = world.getLocalDifficulty(this.darkAgesGraveEntity.getBlockPos());
+			LocalDifficulty localDifficulty = getWorld().getLocalDifficulty(this.darkAgesGraveEntity.getBlockPos());
 			double difficulty = 0;
 			if (this.darkAgesGraveEntity.getVariant().equals(GraveDifficulty.NONE)){
 				difficulty = localDifficulty.getLocalDifficulty();
 				if (difficulty >= 2.1){
 					difficulty = 2.1;
-					if (world.getDifficulty().equals(Difficulty.HARD)){
+					if (getWorld().getDifficulty().equals(Difficulty.HARD)){
 						difficulty = difficulty + difficultymodifier;
 					}
 				}
@@ -439,7 +436,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 					zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 					zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 				}
-				BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+				BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 				PeasantEntity PeasantEntity = (PeasantEntity)PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 				PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 				PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -457,7 +454,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 						zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					PeasantEntity coneheadEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
 					coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					coneheadEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -474,7 +471,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 						zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 						zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 					}
-					BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+					BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 					PeasantEntity PeasantEntity = (PeasantEntity)PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 					PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 					PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -494,7 +491,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 							zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						PeasantEntity bucketheadEntity = (PeasantEntity) PvZEntity.PEASANTBUCKET.create(DarkAgesGraveEntity.this.getWorld());
 						bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						bucketheadEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -511,7 +508,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 							zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						PeasantEntity coneheadEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
 						coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						coneheadEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -531,7 +528,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 								zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							PeasantEntity coneheadEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
 							coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							coneheadEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -548,7 +545,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 								zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							PeasantEntity PeasantEntity = (PeasantEntity)PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 							PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -570,7 +567,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 							zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						PeasantEntity PeasantEntity = (PeasantEntity)PvZEntity.PEASANTKNIGHT.create(DarkAgesGraveEntity.this.getWorld());
 						PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData)null, (NbtCompound)null);
@@ -587,7 +584,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 							zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 							zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 						}
-						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+						BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 						PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 						PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 						PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -609,7 +606,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 								zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							PeasantEntity coneheadEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
 							coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							coneheadEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -630,7 +627,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 								zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							PeasantEntity brickhead = (PeasantEntity) PvZEntity.PEASANTKNIGHT.create(DarkAgesGraveEntity.this.getWorld());
 							brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							brickhead.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -655,7 +652,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
 								double random = Math.random();
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								FlagPeasantEntity flagzombieEntity = (FlagPeasantEntity) PvZEntity.FLAGPEASANT.create(DarkAgesGraveEntity.this.getWorld());
 								flagzombieEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								flagzombieEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -679,7 +676,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								ImpEntity impdragon = (ImpEntity) PvZEntity.IMPDRAGON.create(DarkAgesGraveEntity.this.getWorld());
 								impdragon.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								impdragon.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -696,7 +693,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -720,7 +717,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								AnnouncerImpEntity announcerImpEntity = (AnnouncerImpEntity) PvZEntity.ANNOUNCERIMP.create(DarkAgesGraveEntity.this.getWorld());
 								announcerImpEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								announcerImpEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -737,7 +734,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -761,7 +758,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity brickhead = (PeasantEntity) PvZEntity.PEASANTKNIGHT.create(DarkAgesGraveEntity.this.getWorld());
 								brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								brickhead.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -778,7 +775,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -795,7 +792,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -812,7 +809,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANTBUCKET.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -836,7 +833,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								AnnouncerImpEntity announcerImpEntity = (AnnouncerImpEntity) PvZEntity.ANNOUNCERIMP.create(DarkAgesGraveEntity.this.getWorld());
 								announcerImpEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								announcerImpEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -853,7 +850,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANT.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -876,7 +873,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 								zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 							}
-							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+							BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 							ImpEntity impdragon = (ImpEntity) PvZEntity.IMPDRAGON.create(DarkAgesGraveEntity.this.getWorld());
 							impdragon.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 							impdragon.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -899,7 +896,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity brickhead = (PeasantEntity) PvZEntity.PEASANTKNIGHT.create(DarkAgesGraveEntity.this.getWorld());
 								brickhead.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								brickhead.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -916,7 +913,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANTBUCKET.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -940,7 +937,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PumpkinZombieEntity pumpkinZombie = (PumpkinZombieEntity) PvZEntity.PUMPKINZOMBIE.create(DarkAgesGraveEntity.this.getWorld());
 								pumpkinZombie.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								pumpkinZombie.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -957,7 +954,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -974,7 +971,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANTBUCKET.create(DarkAgesGraveEntity.this.getWorld());
 								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -998,7 +995,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 									zombiePosZ = DarkAgesGraveEntity.this.random.range(-3, 3);
 									zombiePos = DarkAgesGraveEntity.this.random.range(-3, 3);
 								}
-								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0.1, zombiePosZ);
+								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PumpkinZombieEntity pumpkinZombie = (PumpkinZombieEntity) PvZEntity.PUMPKINZOMBIE.create(DarkAgesGraveEntity.this.getWorld());
 								pumpkinZombie.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								pumpkinZombie.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);

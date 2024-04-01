@@ -34,7 +34,7 @@ public class CraterTile extends TileEntity {
 			this.discard();
 		}
 		if (this.age > 5) {
-			List<TileEntity> list = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+			List<TileEntity> list = getWorld().getNonSpectatingEntities(TileEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 			for (TileEntity tileEntity : list) {
 				if (tileEntity != this) {
 					tileEntity.discard();
@@ -55,5 +55,10 @@ public class CraterTile extends TileEntity {
 			return ActionResult.SUCCESS;
 		}
 		return super.interactMob(player, hand);
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 }

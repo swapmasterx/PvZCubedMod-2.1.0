@@ -34,7 +34,9 @@ public class WaterTile extends TileEntity {
 	private String controllerName = "firetrailcontroller";
 
 
-	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	/**
+	 * /~*~//~*GECKOLIB ANIMATION*~//~*~/
+	 **/
 
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -45,8 +47,9 @@ public class WaterTile extends TileEntity {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.anim"));
 		return PlayState.CONTINUE;
 	}
+
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
@@ -66,10 +69,10 @@ public class WaterTile extends TileEntity {
 			} while (this.squaredDistanceTo(livingEntity) > 1);
 
 			if ((livingEntity instanceof Monster &&
-					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity &&
-							generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) &&
-					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
-							&& (generalPvZombieEntity.getHypno()))) {
+				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity &&
+					generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) &&
+				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
+					&& (generalPvZombieEntity.getHypno()))) {
 				livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 120, 1)));
 			}
 		}
@@ -78,18 +81,16 @@ public class WaterTile extends TileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
-		if (this.age >= 400 && list.isEmpty()){
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		if (this.age >= 400 && list.isEmpty()) {
 			this.discard();
 		}
 		this.damageEntity();
 	}
-<<<<<<< Updated upstream
-=======
 
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
->>>>>>> Stashed changes
+
 }

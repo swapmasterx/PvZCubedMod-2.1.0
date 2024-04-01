@@ -457,7 +457,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 	}
 
 	public static List<LivingEntity> checkGarden(Vec3d pos, ServerWorldAccess world) {
-		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(50));
+		List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(50));
 		List<LivingEntity> list1 = new ArrayList<>();
 		for (LivingEntity livingEntity : list){
 			if (livingEntity instanceof GardenEntity || livingEntity instanceof GardenChallengeEntity){
@@ -596,12 +596,12 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 	}
 
 	public static boolean checkVillager(Vec3d pos, ServerWorldAccess world) {
-		List<VillagerEntity> list = getWorld().getNonSpectatingEntities(VillagerEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(30));
+		List<VillagerEntity> list = world.getNonSpectatingEntities(VillagerEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(30));
 		return !list.isEmpty();
 	}
 
 	public static boolean checkPlant(Vec3d pos, ServerWorldAccess world) {
-		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(15));
+		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(pos).expand(15));
 		return !list.isEmpty();
 	}
 }

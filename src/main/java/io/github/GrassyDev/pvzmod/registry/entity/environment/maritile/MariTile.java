@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.maritile;
 
 import blue.endless.jankson.annotation.Nullable;
 import io.github.GrassyDev.pvzmod.PvZCubed;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.plants.PeapodCountVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -131,7 +132,7 @@ public class MariTile extends TileEntity {
 					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 200, 1)));
 				}
 				else if (livingEntity.hasStatusEffect(PvZCubed.MARIGOLD)){
-					livingEntity.damage(PvZCubed.HYPNO_DAMAGE, 0f);
+					livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 				}
 				else {
 					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.MARIGOLD, 200, 1)));
@@ -143,7 +144,7 @@ public class MariTile extends TileEntity {
 							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 200, 1)));
 						}
 						else if (livingEntity1.hasStatusEffect(PvZCubed.MARIGOLD)) {
-							livingEntity1.damage(PvZCubed.HYPNO_DAMAGE, 0f);
+							livingEntity1.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 						}
 						else {
 							livingEntity1.addStatusEffect((new StatusEffectInstance(PvZCubed.MARIGOLD, 200, 1)));
@@ -156,7 +157,7 @@ public class MariTile extends TileEntity {
 						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 200, 1)));
 					}
 					else if (((LivingEntity) livingEntity.getVehicle()).hasStatusEffect(PvZCubed.MARIGOLD)){
-						livingEntity.getVehicle().damage(PvZCubed.HYPNO_DAMAGE, 0f);
+						livingEntity.getVehicle().damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 					}
 					else {
 						((LivingEntity) livingEntity.getVehicle()).addStatusEffect((new StatusEffectInstance(PvZCubed.MARIGOLD, 200, 1)));
@@ -197,5 +198,10 @@ public class MariTile extends TileEntity {
 		if (!this.getWorld().isClient()) {
 			this.damageEntity();
 		}
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 }

@@ -111,6 +111,11 @@ public class GamblehatEntity extends PlantEntity implements GeoAnimatable, Range
 		return this.factory;
 	}
 
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("magicshroom.magichat"));

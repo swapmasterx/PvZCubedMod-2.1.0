@@ -393,17 +393,17 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 			if (this.getHypno()) {
 				if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 30);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this,this), 30);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 30);
+						livingEntity.damage(getDamageSources().explosion(this,this), 30);
 					}
 				}
 			} else {
 				if (livingEntity instanceof PlantEntity || (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno())) {
 					if (livingEntity.getFirstPassenger() != null && livingEntity instanceof GeneralPvZombieEntity) {
-						livingEntity.getFirstPassenger().damage(DamageSource.explosion(this), 30);
+						livingEntity.getFirstPassenger().damage(getDamageSources().explosion(this,this), 30);
 					} else {
-						livingEntity.damage(DamageSource.explosion(this), 30);
+						livingEntity.damage(getDamageSources().explosion(this,this), 30);
 					}
 				}
 			}
@@ -451,7 +451,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 			this.spawnEffectsCloud();
 		}
 		if (deathTicks == 1){
-			onDeath(DamageSource.GENERIC);
+			onDeath(PvZDamageTypes.of(getWorld(), PvZDamageTypes.SELF_TERMINATE_DAMAGE));
 		}
 		super.tick();
 		if (this.getAttacking() == null && !(this.getHypno())){
@@ -528,7 +528,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 					this.playSound(PvZSounds.GARGANTUARSMASHEVENT, 1F, 1.0F);
 				} else if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-					world.sendEntityStatus(this, (byte) 107);
+					getWorld().sendEntityStatus(this, (byte) 107);
 					this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 				}
 				if (getTarget() != null) {
@@ -589,7 +589,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 	}
 
 	public void createProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.DEFENSIVEENDGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -647,7 +647,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoAnimata
 				type = PvZEntity.SCRAPIMPHYPNO;
 			}
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				BlockPos blockPos = this.getBlockPos().add(this.getX(), 0, this.getZ());
+				BlockPos blockPos = this.getBlockPos().add((int) this.getX(), 0, (int) this.getZ());
 				ImpEntity imp = (ImpEntity) type.create(getWorld());
 				imp.refreshPositionAndAngles(this.getX(), this.getY() + 2, this.getZ(), 0, 0);
 				imp.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

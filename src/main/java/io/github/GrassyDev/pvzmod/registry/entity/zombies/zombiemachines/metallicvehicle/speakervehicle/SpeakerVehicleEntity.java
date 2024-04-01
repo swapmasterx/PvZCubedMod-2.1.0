@@ -202,7 +202,7 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoAnim
 				this.getWorld().spawnEntity(proj);
 			}
 		}
-		if (this.onGround) {
+		if (this.isOnGround()) {
 			this.setFlying(Flying.FALSE);
 		} else {
 			this.setFlying(Flying.TRUE);
@@ -258,7 +258,7 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoAnim
 	}
 
 	public void createBassPassenger() {
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			BassZombieEntity zombie2 = new BassZombieEntity(PvZEntity.BASS, this.getWorld());
 			zombie2.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			zombie2.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);

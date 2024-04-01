@@ -26,10 +26,12 @@ public class ShadowFullTile extends TileEntity {
 	private String controllerName = "firetrailcontroller";
 
 
-	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	/**
+	 * /~*~//~*GECKOLIB ANIMATION*~//~*~/
+	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
@@ -37,6 +39,12 @@ public class ShadowFullTile extends TileEntity {
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
+	}
+
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.anim"));
 		return PlayState.CONTINUE;
@@ -46,13 +54,4 @@ public class ShadowFullTile extends TileEntity {
 	public void tick() {
 		super.tick();
 	}
-<<<<<<< Updated upstream
-=======
-
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
->>>>>>> Stashed changes
 }

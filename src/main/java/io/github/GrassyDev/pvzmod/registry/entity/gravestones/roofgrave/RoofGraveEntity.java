@@ -255,20 +255,20 @@ public class RoofGraveEntity extends GraveEntity implements GeoAnimatable {
 		float cavespawn = random.nextFloat();
 		if (cavespawn <= 0.66) {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).isAir() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 48000 &&
 					pos.getY() > 50 &&
-					getWorld().getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					world.getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
-					!getWorld().getBlockState(pos).isAir() &&
+					!world.getFluidState(pos).isSource() &&
 					world.toServerWorld().getTime() > 42000 &&
-					getWorld().getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
-					!getWorld().getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+					world.getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
 					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}

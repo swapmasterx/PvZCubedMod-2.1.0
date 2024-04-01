@@ -127,15 +127,15 @@ public class BananaTile extends TileEntity {
 					}
 					if (zombiePropEntity2 == null ||
 							zombiePropEntity2 instanceof ZombieShieldEntity) {
-						livingEntity.damage(DamageSource.thrownProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
 					} else {
 						if (damage > zombiePropEntity2.getHealth() &&
 								livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - zombiePropEntity2.getHealth();
-							generalPvZombieEntity.damage(DamageSource.thrownProjectile(this, this), damage2);
-							zombiePropEntity2.damage(DamageSource.thrownProjectile(this, this), damage);
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+							zombiePropEntity2.damage(getDamageSources().mobProjectile(this, this), damage);
 						} else {
-							zombiePropEntity2.damage(DamageSource.thrownProjectile(this, this), damage);
+							zombiePropEntity2.damage(getDamageSources().mobProjectile(this, this), damage);
 						}
 					}
 				}
@@ -160,5 +160,10 @@ public class BananaTile extends TileEntity {
 		}
 		BlockPos blockPos = this.getBlockPos();
 		this.damageEntity();
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 }

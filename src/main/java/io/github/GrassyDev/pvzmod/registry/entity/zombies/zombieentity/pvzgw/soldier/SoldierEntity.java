@@ -229,7 +229,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createSoldierProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.SOLDIERGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -355,7 +355,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoAnimatable {
 
 	@Override
 	public void setYaw(float yaw) {
-		if (this.onGround) {
+		if (this.isOnGround()) {
 			super.setYaw(yaw);
 		}
 	}
@@ -404,7 +404,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoAnimatable {
 				}
 			}
 			for (float x = 0; x <= 1; ++x) {
-				if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("flying")) && !this.onGround && !this.isInsideWaterOrBubbleColumn()) {
+				if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("flying")) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()) {
 					Vec3d vec3d = new Vec3d(-0.175, -0.3, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 				}
@@ -413,7 +413,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoAnimatable {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (this.onGround || this.isInsideWaterOrBubbleColumn())){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (this.isOnGround() || this.isInsideWaterOrBubbleColumn())){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));

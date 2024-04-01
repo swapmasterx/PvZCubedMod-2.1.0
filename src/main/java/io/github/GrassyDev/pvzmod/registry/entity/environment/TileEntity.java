@@ -212,7 +212,7 @@ public abstract class TileEntity extends PathAwareEntity implements GeoAnimatabl
 	}
 
 	public static DefaultAttributeContainer.Builder createTileAttributes() {
-        return MobEntity.createMobAttributes()
+        return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);

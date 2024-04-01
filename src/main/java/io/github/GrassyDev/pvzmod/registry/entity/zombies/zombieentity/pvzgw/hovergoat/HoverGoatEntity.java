@@ -36,6 +36,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.registry.tag.FluidTags;
@@ -137,7 +138,7 @@ public class HoverGoatEntity extends PvZombieEntity implements GeoAnimatable {
 	}
 
 	public void createBlastronautProp(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			MetalHelmetEntity propentity = new MetalHelmetEntity(PvZEntity.BLASTRONAUTGEAR, this.getWorld());
 			propentity.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			propentity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.bodyYaw, 0.0F);
@@ -240,7 +241,7 @@ public class HoverGoatEntity extends PvZombieEntity implements GeoAnimatable {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (source != DamageSource.HOT_FLOOR){
+		if (source.isTypeIn(DamageTypeTags.IS_FIRE)){
 			super.applyDamage(source, amount);
 		}
 	}
@@ -269,7 +270,7 @@ public class HoverGoatEntity extends PvZombieEntity implements GeoAnimatable {
 		if (target != null){
 			this.lookAtEntity(target, 360, 360);
 			Vec3d lastPos = this.getPos();
-			if (!this.world.isClient()){
+			if (!this.getWorld().isClient()){
 				if (list.isEmpty()){
 					if (!resetSpeed){
 						this.setVelocity(Vec3d.ZERO);

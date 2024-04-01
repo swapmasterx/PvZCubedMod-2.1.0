@@ -69,7 +69,7 @@ public class GoldTile extends TileEntity {
 	public void writeCustomDataToNbt(NbtCompound tag) {
 		super.writeCustomDataToNbt(tag);
 		//Variant//
-		tag.putShort("Fuse", (short)this.sunProducingTime);
+		tag.putShort("Fuse", (short) this.sunProducingTime);
 	}
 
 	static {
@@ -77,20 +77,21 @@ public class GoldTile extends TileEntity {
 	}
 
 
-	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+	/**
+	 * /~*~//~*GECKOLIB ANIMATION*~//~*~/
+	 **/
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
-		if (powered){
+		if (powered) {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.active"));
-		}
-		else {
+		} else {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("tile.anim"));
 		}
 		return PlayState.CONTINUE;
 	}
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
@@ -99,7 +100,9 @@ public class GoldTile extends TileEntity {
 		return this.factory;
 	}
 
-	/** /~*~//~*TICKING*~//~*~/ **/
+	/**
+	 * /~*~//~*TICKING*~//~*~/
+	 **/
 
 	private int currentFuseTime;
 
@@ -108,15 +111,15 @@ public class GoldTile extends TileEntity {
 	}
 
 	public int getFuseSpeed() {
-		return (Integer)this.dataTracker.get(SUN_SPEED);
+		return (Integer) this.dataTracker.get(SUN_SPEED);
 	}
 
 	public void tick() {
 		super.tick();
-		List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
+		List<PlantEntity> list = getWorld().getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getX(), this.getY(), this.getZ()));
 		this.powered = false;
 		for (PlantEntity plantEntity : list) {
-			if (!PLANT_LOCATION.get(plantEntity.getType()).orElse("normal").equals("flying")){
+			if (!PLANT_LOCATION.get(plantEntity.getType()).orElse("normal").equals("flying")) {
 				powered = true;
 			}
 		}
@@ -132,7 +135,7 @@ public class GoldTile extends TileEntity {
 			}
 
 			if (this.currentFuseTime >= this.sunProducingTime) {
-				if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn()){
+				if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn()) {
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					this.dropItem(ModItems.SMALLSUN);
 					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.goldtileSec() * 20);
@@ -181,7 +184,9 @@ public class GoldTile extends TileEntity {
 	}
 
 
-	/** /~*~//~*INTERACTION*~//~*~/ **/
+	/**
+	 * /~*~//~*INTERACTION*~//~*~/
+	 **/
 
 
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -190,18 +195,14 @@ public class GoldTile extends TileEntity {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			this.remove(RemovalReason.DISCARDED);
 			return ActionResult.SUCCESS;
-		}
-		else {
+		} else {
 			return super.interactMob(player, hand);
 		}
 	}
-<<<<<<< Updated upstream
-=======
 
 
 	@Override
 	public double getTick(Object object) {
 		return 0;
 	}
->>>>>>> Stashed changes
 }

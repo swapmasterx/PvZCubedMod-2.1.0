@@ -74,7 +74,7 @@ public class RiftTile extends TileEntity {
 	}
 
 	public void createBass(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			SpeakerVehicleEntity zombie = new SpeakerVehicleEntity(PvZEntity.SPEAKER, this.getWorld());
 			zombie.refreshPositionAndAngles(this.getX(), this.getY() + 3, this.getZ(), this.getYaw(), 0.0F);
 			serverWorld.spawnEntityAndPassengers(zombie);
@@ -87,7 +87,7 @@ public class RiftTile extends TileEntity {
 	}
 
 	public void createGargolith(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			RockObstacleEntity zombie = new RockObstacleEntity(PvZEntity.GARGOLITHOBSTACLE, this.getWorld());
 			zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
 			zombie.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
@@ -96,7 +96,7 @@ public class RiftTile extends TileEntity {
 	}
 
 	public void createBrowncoat(){
-		if (world instanceof ServerWorld serverWorld) {
+		if (getWorld() instanceof ServerWorld serverWorld) {
 			BrowncoatEntity zombie = new BrowncoatEntity(PvZEntity.BROWNCOAT, this.getWorld());
 			zombie.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 			zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
@@ -160,5 +160,10 @@ public class RiftTile extends TileEntity {
 	public void addCount(){
 		int count = getTypeCount();
 		this.dataTracker.set(SPAWNTIME, count + 1);
+	}
+
+	@Override
+	public double getTick(Object object) {
+		return 0;
 	}
 }
