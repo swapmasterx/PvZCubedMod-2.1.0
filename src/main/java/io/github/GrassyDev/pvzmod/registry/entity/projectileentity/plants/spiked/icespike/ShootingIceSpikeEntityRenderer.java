@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingIceSpikeEntityRenderer extends GeoEntityRenderer {
+public class ShootingIceSpikeEntityRenderer extends GeoEntityRenderer<ShootingIcespikeEntity>{
 
 	public ShootingIceSpikeEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingIcespikeEntityModel());

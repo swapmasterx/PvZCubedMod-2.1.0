@@ -51,7 +51,7 @@ public abstract class SeedItem extends Item {
 				if (player.isSneaking()){
 					for (int x = 0; x < player.getInventory().size() -1; ++x){
 						for (int u = 0; u < player.getInventory().size() -1; ++u){
-							if (player.getInventory().getStack(u).isItemEqual(ModItems.SUN.getDefaultStack())){
+							if (player.getInventory().getStack(u).isOf(ModItems.SUN)){
 								if (player.getInventory().getStack(u).getCount() <= player.getInventory().getStack(u).getMaxCount() - 2){
 									largeSunSlot = u;
 								}
@@ -70,7 +70,7 @@ public abstract class SeedItem extends Item {
 								}
 							}
 						}
-						if (player.getInventory().getStack(x).isItemEqual(ModItems.SMALLSUN.getDefaultStack()) && (player.getInventory().getEmptySlot() != -1 || largeSunSlot != -1)){
+						if (player.getInventory().getStack(x).isOf(ModItems.SMALLSUN) && (player.getInventory().getEmptySlot() != -1 || largeSunSlot != -1)){
 							if (player.getInventory().getStack(x).getCount() >=2){
 								player.getInventory().removeStack(x, 2);
 								player.getInventory().insertStack(ModItems.SUN.getDefaultStack());
@@ -89,7 +89,7 @@ public abstract class SeedItem extends Item {
 								firstSmallSun = x;
 							}
 						}
-						if (player.getInventory().getStack(x).isItemEqual(ModItems.LARGESUN.getDefaultStack()) && (player.getInventory().getEmptySlot() != -1 || largeSunSlot != -1)){
+						if (player.getInventory().getStack(x).isOf(ModItems.LARGESUN) && (player.getInventory().getEmptySlot() != -1 || largeSunSlot != -1)){
 							player.getInventory().removeStack(x, 1);
 							player.getInventory().insertStack(ModItems.SUN.getDefaultStack());
 							player.getInventory().insertStack(ModItems.SUN.getDefaultStack());
@@ -101,25 +101,25 @@ public abstract class SeedItem extends Item {
 				nbtCompound.putFloat("Cooldown", 0);
 				player.getItemCooldownManager().set(stack.getItem(), 0);
 			}
-			if (player.getStackInHand(player.getActiveHand()).isItemEqual(stack) && player.getInventory().getEmptySlot() != -1 && PVZCONFIG.nestedSeeds.attractSun()) {
-				Vec3d vec3d = new Vec3d(10, 0.0, 0).rotateY(-entity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				HitResult hitResult = world.raycast(new RaycastContext(entity.getPos(), entity.getPos().add(vec3d), RaycastContext.ShapeType.VISUAL, RaycastContext.FluidHandling.NONE, entity));
-				if (hitResult.getType().equals(HitResult.Type.MISS)) {
-					List<Entity> itemEntities = getWorld().getNonSpectatingEntities(Entity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ()).expand(10));
-					for (Entity entity1 : itemEntities) {
-						if (player.getInventory().getEmptySlot() == -1) {
-							break;
-						}
-						if (entity1 instanceof ItemEntity item && (item.getStack().isItemEqual(ModItems.SUN.getDefaultStack()) ||
-								item.getStack().isItemEqual(ModItems.SMALLSUN.getDefaultStack()) ||
-								item.getStack().isItemEqual(ModItems.LARGESUN.getDefaultStack()))) {
-							player.getInventory().insertStack(item.getStack());
-							item.discard();
-							player.playSound(PvZSounds.SUNDROPEVENT, 0.5f, 1f);
-						}
-					}
-				}
-			}
+//			if (player.getStackInHand(player.getActiveHand()).isOf(get)) && player.getInventory().getEmptySlot() != -1 && PVZCONFIG.nestedSeeds.attractSun()) {
+//				Vec3d vec3d = new Vec3d(10, 0.0, 0).rotateY(-entity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+//				HitResult hitResult = world.raycast(new RaycastContext(entity.getPos(), entity.getPos().add(vec3d), RaycastContext.ShapeType.VISUAL, RaycastContext.FluidHandling.NONE, entity));
+//				if (hitResult.getType().equals(HitResult.Type.MISS)) {
+//					List<Entity> itemEntities = world.getNonSpectatingEntities(Entity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ()).expand(10));
+//					for (Entity entity1 : itemEntities) {
+//						if (player.getInventory().getEmptySlot() == -1) {
+//							break;
+//						}
+//						if (entity1 instanceof ItemEntity item && (item.getStack().isOf(ModItems.SUN) ||
+//								item.getStack().isOf(ModItems.SMALLSUN) ||
+//								item.getStack().isOf(ModItems.LARGESUN))) {
+//							player.getInventory().insertStack(item.getStack());
+//							item.discard();
+//							player.playSound(PvZSounds.SUNDROPEVENT, 0.5f, 1f);
+//						}
+//					}
+//				}
+//			}
 		}
 	}
 

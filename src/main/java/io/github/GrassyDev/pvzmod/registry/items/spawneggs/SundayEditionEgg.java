@@ -70,7 +70,7 @@ public class SundayEditionEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.SUNDAYEDITION.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    NewspaperEntity newspaperEntity = (NewspaperEntity) PvZEntity.SUNDAYEDITION.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    NewspaperEntity newspaperEntity = (NewspaperEntity) PvZEntity.SUNDAYEDITION.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (newspaperEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -82,7 +82,7 @@ public class SundayEditionEgg extends SeedItem {
                     world.playSound((PlayerEntity) null, newspaperEntity.getX(), newspaperEntity.getY(), newspaperEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

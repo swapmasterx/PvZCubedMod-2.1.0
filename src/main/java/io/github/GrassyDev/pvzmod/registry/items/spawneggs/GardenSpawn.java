@@ -77,7 +77,7 @@ public class GardenSpawn extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 		Box box = PvZEntity.GARDEN.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    GardenEntity gardenEntity = (GardenEntity) PvZEntity.GARDEN.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    GardenEntity gardenEntity = (GardenEntity) PvZEntity.GARDEN.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (gardenEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -88,7 +88,7 @@ public class GardenSpawn extends SeedItem {
 			gardenEntity.setPersistent();
                     world.playSound((PlayerEntity) null, gardenEntity.getX(), gardenEntity.getY(), gardenEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

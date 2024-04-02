@@ -190,7 +190,7 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoAnimatab
 					zombiePropEntity3 = zpe;
 				}
 			}
-			if (!noDMG && !world.isClient && entity instanceof Monster monster &&
+			if (!noDMG && !getWorld().isClient && entity instanceof Monster monster &&
 					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
 					!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
@@ -209,10 +209,10 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoAnimatab
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					LivingEntity livingEntity = (LivingEntity) entity;
 					if (entity.hasVehicle()){

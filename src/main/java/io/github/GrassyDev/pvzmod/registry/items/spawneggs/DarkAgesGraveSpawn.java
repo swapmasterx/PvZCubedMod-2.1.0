@@ -77,7 +77,7 @@ public class DarkAgesGraveSpawn extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 		Box box = PvZEntity.DARKAGESGRAVESTONE.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    DarkAgesGraveEntity darkAgesGraveEntity = (DarkAgesGraveEntity) PvZEntity.DARKAGESGRAVESTONE.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    DarkAgesGraveEntity darkAgesGraveEntity = (DarkAgesGraveEntity) PvZEntity.DARKAGESGRAVESTONE.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (darkAgesGraveEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -88,7 +88,7 @@ public class DarkAgesGraveSpawn extends SeedItem {
 					darkAgesGraveEntity.setPersistent();
                     world.playSound((PlayerEntity) null, darkAgesGraveEntity.getX(), darkAgesGraveEntity.getY(), darkAgesGraveEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

@@ -70,7 +70,7 @@ public class ActionheroEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.ACTIONHERO.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    ActionheroEntity zombieEntity = (ActionheroEntity) PvZEntity.ACTIONHERO.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    ActionheroEntity zombieEntity = (ActionheroEntity) PvZEntity.ACTIONHERO.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (zombieEntity == null) {
                         return ActionResult.FAIL;
                     }

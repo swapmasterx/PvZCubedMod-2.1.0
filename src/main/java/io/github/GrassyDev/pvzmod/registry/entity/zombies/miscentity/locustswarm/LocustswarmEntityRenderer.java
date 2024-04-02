@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.miscentity.locustswar
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class LocustswarmEntityRenderer extends GeoEntityRenderer {
+public class LocustswarmEntityRenderer extends GeoEntityRenderer<LocustSwarmEntity> {
 
 	public LocustswarmEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new LocustswarmEntityModel());

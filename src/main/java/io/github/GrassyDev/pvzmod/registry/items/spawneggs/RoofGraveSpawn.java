@@ -77,7 +77,7 @@ public class RoofGraveSpawn extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.ROOFGRAVESTONE.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    RoofGraveEntity graveEntity = (RoofGraveEntity) PvZEntity.ROOFGRAVESTONE.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    RoofGraveEntity graveEntity = (RoofGraveEntity) PvZEntity.ROOFGRAVESTONE.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (graveEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -89,7 +89,7 @@ public class RoofGraveSpawn extends SeedItem {
                     world.playSound((PlayerEntity) null, graveEntity.getX(), graveEntity.getY(), graveEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

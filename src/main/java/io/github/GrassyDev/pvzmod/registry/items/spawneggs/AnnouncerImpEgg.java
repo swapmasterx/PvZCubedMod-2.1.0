@@ -72,7 +72,7 @@ public class AnnouncerImpEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.ANNOUNCERIMP.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    AnnouncerImpEntity impEntity = (AnnouncerImpEntity) PvZEntity.ANNOUNCERIMP.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    AnnouncerImpEntity impEntity = (AnnouncerImpEntity) PvZEntity.ANNOUNCERIMP.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (impEntity == null) {
                         return ActionResult.FAIL;
                     }

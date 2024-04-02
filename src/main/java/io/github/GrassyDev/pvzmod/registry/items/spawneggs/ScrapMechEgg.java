@@ -70,7 +70,7 @@ public class ScrapMechEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.SCRAPMECH.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    ScrapMechEntity mechEntity = (ScrapMechEntity) PvZEntity.SCRAPMECH.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    ScrapMechEntity mechEntity = (ScrapMechEntity) PvZEntity.SCRAPMECH.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (mechEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -82,7 +82,7 @@ public class ScrapMechEgg extends SeedItem {
                     world.playSound((PlayerEntity) null, mechEntity.getX(), mechEntity.getY(), mechEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

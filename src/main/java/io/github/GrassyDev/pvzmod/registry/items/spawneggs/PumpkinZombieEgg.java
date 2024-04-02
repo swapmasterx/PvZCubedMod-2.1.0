@@ -74,7 +74,7 @@ public class PumpkinZombieEgg extends SeedItem {
 		if (world.isSpaceEmpty((Entity)null, box) && world.getOtherEntities((Entity) null, box).isEmpty()) {
 			if (world instanceof ServerWorld) {
 				ServerWorld serverWorld = (ServerWorld) world;
-				PumpkinZombieEntity zombieEntity = (PumpkinZombieEntity) PvZEntity.PUMPKINZOMBIE.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+				PumpkinZombieEntity zombieEntity = (PumpkinZombieEntity) PvZEntity.PUMPKINZOMBIE.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 				if (zombieEntity == null) {
 					return ActionResult.FAIL;
 				}
@@ -86,7 +86,7 @@ public class PumpkinZombieEgg extends SeedItem {
 				world.playSound((PlayerEntity) null, zombieEntity.getX(), zombieEntity.getY(), zombieEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 			}
 
-			if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+			if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
 			return ActionResult.success(world.isClient);

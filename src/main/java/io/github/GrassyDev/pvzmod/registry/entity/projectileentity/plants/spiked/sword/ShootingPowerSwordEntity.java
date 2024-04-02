@@ -184,10 +184,10 @@ public class ShootingPowerSwordEntity extends PvZProjectileEntity implements Geo
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					entityStore.add(entity);
 				}

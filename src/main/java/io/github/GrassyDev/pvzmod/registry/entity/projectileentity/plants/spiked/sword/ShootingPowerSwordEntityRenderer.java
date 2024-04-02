@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingPowerSwordEntityRenderer extends GeoEntityRenderer {
+public class ShootingPowerSwordEntityRenderer extends GeoEntityRenderer <ShootingPowerSwordEntity>{
 
 	public ShootingPowerSwordEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingPowerSwordEntityModel());

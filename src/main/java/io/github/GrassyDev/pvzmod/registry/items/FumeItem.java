@@ -53,7 +53,7 @@ public class FumeItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
 
-        if (!getWorld().isClient) {
+        if (!world.isClient) {
             FumeEntity proj = new FumeEntity(PvZEntity.FUME, world);
             proj.setPos(user.getX(), user.getY() + 1f, user.getZ());
             proj.setOwner(user);

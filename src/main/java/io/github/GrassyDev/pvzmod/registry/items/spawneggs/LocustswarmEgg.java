@@ -91,7 +91,7 @@ public class LocustswarmEgg extends SeedItem {
 			if (world.isSpaceEmpty((Entity)null, box) && (world.getOtherEntities((Entity) null, box)).isEmpty()) {
 				if (world instanceof ServerWorld) {
 					ServerWorld serverWorld = (ServerWorld) world;
-					LocustSwarmEntity zombieEntity = (LocustSwarmEntity) PvZEntity.LOCUSTSWARM.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+					LocustSwarmEntity zombieEntity = (LocustSwarmEntity) PvZEntity.LOCUSTSWARM.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 					if (zombieEntity == null) {
 						return ActionResult.FAIL;
 					}

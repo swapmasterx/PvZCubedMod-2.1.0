@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class RainbowBulletEntityRenderer extends GeoEntityRenderer {
+public class RainbowBulletEntityRenderer extends GeoEntityRenderer<RainbowBulletEntity> {
 
 	public RainbowBulletEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new RainbowBulletEntityModel());

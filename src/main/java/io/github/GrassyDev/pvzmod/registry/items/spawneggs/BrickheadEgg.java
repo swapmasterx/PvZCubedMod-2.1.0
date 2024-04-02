@@ -72,7 +72,7 @@ public class BrickheadEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.BRICKHEAD.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-					BrowncoatEntity brickheadEntity = (BrowncoatEntity) PvZEntity.BRICKHEAD.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+					BrowncoatEntity brickheadEntity = (BrowncoatEntity) PvZEntity.BRICKHEAD.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (brickheadEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -84,7 +84,7 @@ public class BrickheadEgg extends SeedItem {
                     world.playSound((PlayerEntity) null, brickheadEntity.getX(), brickheadEntity.getY(), brickheadEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

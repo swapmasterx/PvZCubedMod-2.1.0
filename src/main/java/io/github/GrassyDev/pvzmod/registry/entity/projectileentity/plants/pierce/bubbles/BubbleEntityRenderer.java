@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class BubbleEntityRenderer extends GeoEntityRenderer {
+public class BubbleEntityRenderer extends GeoEntityRenderer<BubbleEntity> {
 
 	public BubbleEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new BubbleEntityModel());

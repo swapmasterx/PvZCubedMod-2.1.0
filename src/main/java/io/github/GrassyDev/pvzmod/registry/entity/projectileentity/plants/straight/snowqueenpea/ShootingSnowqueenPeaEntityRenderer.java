@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.strai
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingSnowqueenPeaEntityRenderer extends GeoEntityRenderer {
+public class ShootingSnowqueenPeaEntityRenderer extends GeoEntityRenderer <ShootingSnowqueenPeaEntity>{
 
 	public ShootingSnowqueenPeaEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingSnowqueenPeaEntityModel());

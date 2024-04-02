@@ -77,7 +77,7 @@ public class BasicGraveSpawn extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 		Box box = PvZEntity.BASICGRAVESTONE.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    BasicGraveEntity basicGraveEntity = (BasicGraveEntity) PvZEntity.BASICGRAVESTONE.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    BasicGraveEntity basicGraveEntity = (BasicGraveEntity) PvZEntity.BASICGRAVESTONE.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (basicGraveEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -88,7 +88,7 @@ public class BasicGraveSpawn extends SeedItem {
 					basicGraveEntity.setPersistent();
                     world.playSound((PlayerEntity) null, basicGraveEntity.getX(), basicGraveEntity.getY(), basicGraveEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

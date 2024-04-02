@@ -77,7 +77,7 @@ public class NightGraveSpawn extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.NIGHTGRAVESTONE.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    NightGraveEntity nightGraveEntity = (NightGraveEntity) PvZEntity.NIGHTGRAVESTONE.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    NightGraveEntity nightGraveEntity = (NightGraveEntity) PvZEntity.NIGHTGRAVESTONE.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (nightGraveEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -89,7 +89,7 @@ public class NightGraveSpawn extends SeedItem {
                     world.playSound((PlayerEntity) null, nightGraveEntity.getX(), nightGraveEntity.getY(), nightGraveEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

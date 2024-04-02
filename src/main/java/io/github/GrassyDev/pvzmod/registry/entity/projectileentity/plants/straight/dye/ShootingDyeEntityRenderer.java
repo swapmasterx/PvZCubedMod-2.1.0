@@ -10,7 +10,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 import java.util.Map;
 
-public class ShootingDyeEntityRenderer extends GeoEntityRenderer {
+public class ShootingDyeEntityRenderer extends GeoEntityRenderer<ShootingDyeEntity> {
 
 	public static final Map<DyeVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(DyeVariants.class), (map) -> {

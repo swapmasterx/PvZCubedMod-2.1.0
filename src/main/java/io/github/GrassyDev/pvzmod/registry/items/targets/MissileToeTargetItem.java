@@ -94,7 +94,7 @@ public class MissileToeTargetItem extends SeedItem implements FabricItem {
 					if (!world.isSpaceEmpty(tileEntity, tileEntity.getBoundingBox())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
-						if (!getWorld().isClient) {
+						if (!world.isClient) {
 							float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 							tileEntity.refreshPositionAndAngles(tileEntity.getX(), tileEntity.getY(), tileEntity.getZ(), f, 0.0F);
 							if (targetID != 0) {
@@ -124,7 +124,7 @@ public class MissileToeTargetItem extends SeedItem implements FabricItem {
 		World world = user.getWorld();
 		BlockPos blockPos = entity.getBlockPos();
 		if (world instanceof ServerWorld serverWorld) {
-			MissileToeTarget targetTile = PvZEntity.MISSILETOETARGET.create(serverWorld, stack.getNbt(), (Text) null, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+			MissileToeTarget targetTile = PvZEntity.MISSILETOETARGET.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
 			float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 			targetTile.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			if (targetID != 0){

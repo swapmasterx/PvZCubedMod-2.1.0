@@ -70,7 +70,7 @@ public class SummerConeEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.SUMMERCONEHEAD.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    BrowncoatEntity browncoatEntity = (BrowncoatEntity) PvZEntity.SUMMERCONEHEAD.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    BrowncoatEntity browncoatEntity = (BrowncoatEntity) PvZEntity.SUMMERCONEHEAD.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (browncoatEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -81,7 +81,7 @@ public class SummerConeEgg extends SeedItem {
 					browncoatEntity.setPersistent();
                     world.playSound((PlayerEntity) null, browncoatEntity.getX(), browncoatEntity.getY(), browncoatEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class BarkRenderer extends GeoEntityRenderer {
+public class BarkRenderer extends GeoEntityRenderer<BarkEntity> {
 
 	public BarkRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new BarkModel());

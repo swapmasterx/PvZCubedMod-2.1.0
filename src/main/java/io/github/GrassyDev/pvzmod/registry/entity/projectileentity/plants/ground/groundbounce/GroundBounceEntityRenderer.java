@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.groun
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class GroundBounceEntityRenderer extends GeoEntityRenderer {
+public class GroundBounceEntityRenderer extends GeoEntityRenderer<GroundBounceEntity> {
 
 	public GroundBounceEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new GroundBounceEntityModel());

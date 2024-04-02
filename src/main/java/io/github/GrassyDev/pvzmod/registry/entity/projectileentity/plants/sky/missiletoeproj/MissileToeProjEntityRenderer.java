@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class MissileToeProjEntityRenderer extends GeoEntityRenderer {
+public class MissileToeProjEntityRenderer extends GeoEntityRenderer<MissileToeProjEntity> {
 
 	public MissileToeProjEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new MissileToeProjEntityModel());

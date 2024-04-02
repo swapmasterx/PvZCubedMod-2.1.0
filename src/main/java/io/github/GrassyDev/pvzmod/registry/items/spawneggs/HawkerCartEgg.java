@@ -70,7 +70,7 @@ public class HawkerCartEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.HAWKERPUSHER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    HawkerZombieEntity animalEntity = (HawkerZombieEntity) PvZEntity.HAWKERPUSHER.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    HawkerZombieEntity animalEntity = (HawkerZombieEntity) PvZEntity.HAWKERPUSHER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (animalEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -81,7 +81,7 @@ public class HawkerCartEgg extends SeedItem {
 					animalEntity.setPersistent();
                     world.playSound((PlayerEntity) null, animalEntity.getX(), animalEntity.getY(), animalEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

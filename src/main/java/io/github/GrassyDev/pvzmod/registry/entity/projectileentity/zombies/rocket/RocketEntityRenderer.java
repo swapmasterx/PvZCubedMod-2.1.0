@@ -5,7 +5,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.entity.Entity;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class RocketEntityRenderer extends GeoEntityRenderer {
+public class RocketEntityRenderer extends GeoEntityRenderer<RocketEntity> {
 
 	public RocketEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new RocketEntityModel());
@@ -13,7 +13,7 @@ public class RocketEntityRenderer extends GeoEntityRenderer {
 	}
 
 	@Override
-	public boolean shouldRender(Entity entity, Frustum frustum, double x, double y, double z) {
+	public boolean shouldRender(RocketEntity entity, Frustum frustum, double x, double y, double z) {
 		if (entity.age >= 7) {
 			return super.shouldRender(entity, frustum, x, y, z);
 		}

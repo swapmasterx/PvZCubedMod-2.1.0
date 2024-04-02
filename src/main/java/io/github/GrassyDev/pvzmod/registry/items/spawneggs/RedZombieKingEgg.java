@@ -70,7 +70,7 @@ public class RedZombieKingEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.REDZOMBIEKING.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    ZombieKingEntity zombieKingEntity = (ZombieKingEntity) PvZEntity.REDZOMBIEKING.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    ZombieKingEntity zombieKingEntity = (ZombieKingEntity) PvZEntity.REDZOMBIEKING.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (zombieKingEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -82,7 +82,7 @@ public class RedZombieKingEgg extends SeedItem {
 					zombieKingEntity.setPersistent();
                     world.playSound((PlayerEntity) null, zombieKingEntity.getX(), zombieKingEntity.getY(), zombieKingEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS) || !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS) || !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

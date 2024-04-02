@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingPowerBeeSpikeEntityRenderer extends GeoEntityRenderer {
+public class ShootingPowerBeeSpikeEntityRenderer extends GeoEntityRenderer <ShootingPowerBeeSpikeEntity>{
 
 	public ShootingPowerBeeSpikeEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingPowerBeeSpikeEntityModel());

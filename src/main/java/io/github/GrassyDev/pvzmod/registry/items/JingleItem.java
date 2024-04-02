@@ -53,7 +53,7 @@ public class JingleItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.NEUTRAL, 10F, 1F); // plays a globalSoundEvent
 
-        if (!getWorld().isClient) {
+        if (!world.isClient) {
             JingleEntity proj = new JingleEntity(PvZEntity.JINGLE, world);
 			double random = Math.random();
 			if (random <= 0.25) {

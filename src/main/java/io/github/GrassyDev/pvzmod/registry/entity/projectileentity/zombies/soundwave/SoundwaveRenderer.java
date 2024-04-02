@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.soun
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class SoundwaveRenderer extends GeoEntityRenderer {
+public class SoundwaveRenderer extends GeoEntityRenderer<SoundwaveEntity> {
 
 	public SoundwaveRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new SoundwaveModel());

@@ -73,7 +73,7 @@ public class BassEgg extends SeedItem {
         Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
         Box box = PvZEntity.SPEAKER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY() + 3, vec3d.getZ());
              if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-                    SpeakerVehicleEntity vehicleEntity = (SpeakerVehicleEntity) PvZEntity.SPEAKER.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    SpeakerVehicleEntity vehicleEntity = (SpeakerVehicleEntity) PvZEntity.SPEAKER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (vehicleEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -85,7 +85,7 @@ public class BassEgg extends SeedItem {
                     world.playSound((PlayerEntity) null, vehicleEntity.getX(), vehicleEntity.getY(), vehicleEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

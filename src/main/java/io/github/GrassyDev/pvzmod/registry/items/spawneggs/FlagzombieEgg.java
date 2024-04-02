@@ -84,7 +84,7 @@ public class FlagzombieEgg extends SeedItem {
 				 else {
 					 flagType = PvZEntity.FLAGZOMBIE;
 				 }
-                    FlagzombieEntity flagzombieEntity = (FlagzombieEntity) flagType.create(serverWorld, itemStack.getNbt(), (Text) null, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+                    FlagzombieEntity flagzombieEntity = (FlagzombieEntity) flagType.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
                     if (flagzombieEntity == null) {
                         return ActionResult.FAIL;
                     }
@@ -96,7 +96,7 @@ public class FlagzombieEgg extends SeedItem {
                     world.playSound((PlayerEntity) null, flagzombieEntity.getX(), flagzombieEntity.getY(), flagzombieEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

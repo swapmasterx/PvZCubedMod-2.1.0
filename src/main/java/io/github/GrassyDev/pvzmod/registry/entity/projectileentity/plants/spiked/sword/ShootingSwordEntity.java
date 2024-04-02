@@ -131,7 +131,7 @@ public class ShootingSwordEntity extends PvZProjectileEntity implements GeoAnima
 			powerSpike.setOwner(this.getOwner());
 			powerSpike.damageCounter = this.damageCounter;
 			powerSpike.damageMultiplier = this.damageMultiplier;
-			world.spawnEntity(powerSpike);
+			getWorld().spawnEntity(powerSpike);
 			this.remove(RemovalReason.DISCARDED);
 		}
 	}
@@ -214,10 +214,10 @@ public class ShootingSwordEntity extends PvZProjectileEntity implements GeoAnima
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getOwner()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

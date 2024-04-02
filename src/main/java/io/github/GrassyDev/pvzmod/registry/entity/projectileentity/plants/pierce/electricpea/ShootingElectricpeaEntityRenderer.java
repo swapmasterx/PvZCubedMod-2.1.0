@@ -4,7 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingElectricpeaEntityRenderer extends GeoEntityRenderer {
+public class ShootingElectricpeaEntityRenderer extends GeoEntityRenderer<ShootingElectricPeaEntity> {
 
 	public ShootingElectricpeaEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingElectricPeaEntityModel());

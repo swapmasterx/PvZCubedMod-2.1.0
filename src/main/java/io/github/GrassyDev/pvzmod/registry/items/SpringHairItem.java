@@ -54,7 +54,7 @@ public class SpringHairItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent
 
-        if (!getWorld().isClient) {
+        if (!world.isClient) {
 			Vec3d vec3d2 = new Vec3d((double) 1, 0.0, 0).rotateY(-user.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
             SpringProjEntity proj = new SpringProjEntity(PvZEntity.SPRINGPROJ, world);
 			proj.setVelocity(vec3d2.getX(), vec3d2.getY(), vec3d2.getZ(), 0.33F, 0F);

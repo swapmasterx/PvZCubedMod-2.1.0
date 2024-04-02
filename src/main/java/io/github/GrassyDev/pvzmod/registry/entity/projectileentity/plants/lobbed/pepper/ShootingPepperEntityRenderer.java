@@ -5,7 +5,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class ShootingPepperEntityRenderer extends GeoEntityRenderer {
+public class ShootingPepperEntityRenderer extends GeoEntityRenderer<ShootingPepperEntity> {
 
 	public ShootingPepperEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new ShootingPepperEntityModel());

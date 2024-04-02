@@ -122,12 +122,12 @@ public class HeavenlyPeachSeeds extends SeedItem implements FabricItem {
 					if (!world.isSpaceEmpty(aquaticEntity, aquaticEntity.getBoundingBox())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
-						if (!getWorld().isClient) {
-							List<HeavenlyPeachEntity> list = getWorld().getNonSpectatingEntities(HeavenlyPeachEntity.class, PvZEntity.HEAVENLYPEACH.getDimensions().getBoxAt(aquaticEntity.getPos()));
+						if (!world.isClient) {
+							List<HeavenlyPeachEntity> list = world.getNonSpectatingEntities(HeavenlyPeachEntity.class, PvZEntity.HEAVENLYPEACH.getDimensions().getBoxAt(aquaticEntity.getPos()));
 							if (list.isEmpty()){
 								float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
-								aquaticEntity.initialize(serverWorld, getWorld().getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 								((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 								RandomGenerator randomGenerator = aquaticEntity.getRandom();
 								BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -135,20 +135,20 @@ public class HeavenlyPeachSeeds extends SeedItem implements FabricItem {
 									double dg = aquaticEntity.getX() + (double) MathHelper.nextBetween(randomGenerator, -0.4F, 0.4F);
 									double eg = aquaticEntity.getY() + 0.3;
 									double fg = aquaticEntity.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.4F, 0.4F);
-									aquaticEntity.world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState), dg, eg, fg, 0.0, 0.0, 0.0);
+									aquaticEntity.getWorld().addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState), dg, eg, fg, 0.0, 0.0, 0.0);
 								}
 								world.emitGameEvent(user, GameEvent.ENTITY_PLACE, hitResult.getPos());
-								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, -0.25, 0));
+								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
 								if (fluidState.getFluid() == Fluids.WATER) {
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 0.25f, 0.8F);
 								} else {
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 								}
 								if (!user.getAbilities().creativeMode) {
-									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 										itemStack.decrement(1);
 									};
-									if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+									if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
 										user.getItemCooldownManager().set(this, cooldown);
 									}
 								}

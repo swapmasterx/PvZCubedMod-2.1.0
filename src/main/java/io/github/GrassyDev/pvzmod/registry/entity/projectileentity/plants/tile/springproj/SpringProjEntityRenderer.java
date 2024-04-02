@@ -4,7 +4,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.tile.
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class SpringProjEntityRenderer extends GeoEntityRenderer {
+public class SpringProjEntityRenderer extends GeoEntityRenderer<SpringProjEntity> {
 
 	public SpringProjEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new SpringProjEntityModel());
