@@ -61,7 +61,7 @@ public class PlantKillingShovel extends ShovelItem {
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		if (entity instanceof PlantEntity && !(entity instanceof GardenChallengeEntity)) {
-			entity.damage(DamageSource.player(user), Float.MAX_VALUE);
+			entity.damage(PvZDamageTypes.of(entity.getWorld(), PvZDamageTypes.CRAZYDAVEDAMAGE), Float.MAX_VALUE);
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}
