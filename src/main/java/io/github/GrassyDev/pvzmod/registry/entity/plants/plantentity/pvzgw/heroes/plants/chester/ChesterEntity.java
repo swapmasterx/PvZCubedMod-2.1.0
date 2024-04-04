@@ -36,6 +36,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -50,7 +51,7 @@ import org.jetbrains.annotations.Nullable;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class ChesterEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(ChesterEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -184,11 +185,6 @@ public class ChesterEntity extends PlantEntity implements GeoAnimatable, RangedA
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 

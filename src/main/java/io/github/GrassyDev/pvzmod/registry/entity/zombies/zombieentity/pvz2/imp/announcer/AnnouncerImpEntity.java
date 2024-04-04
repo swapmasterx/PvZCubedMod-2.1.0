@@ -54,6 +54,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -70,7 +71,7 @@ import org.jetbrains.annotations.Nullable;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class AnnouncerImpEntity extends SummonerEntity implements GeoAnimatable {
+public class AnnouncerImpEntity extends SummonerEntity implements GeoEntity {
 
 	private String controllerName = "walkingcontroller";
 
@@ -187,11 +188,6 @@ public class AnnouncerImpEntity extends SummonerEntity implements GeoAnimatable 
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

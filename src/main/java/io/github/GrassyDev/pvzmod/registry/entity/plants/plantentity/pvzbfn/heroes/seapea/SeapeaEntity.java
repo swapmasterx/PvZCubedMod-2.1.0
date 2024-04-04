@@ -26,6 +26,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -37,7 +38,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class SeapeaEntity extends PlantEntity implements RangedAttackMob, GeoAnimatable {
+public class SeapeaEntity extends PlantEntity implements RangedAttackMob, GeoEntity {
 	private String controllerName = "peacontroller";
 
 
@@ -78,11 +79,6 @@ public class SeapeaEntity extends PlantEntity implements RangedAttackMob, GeoAni
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

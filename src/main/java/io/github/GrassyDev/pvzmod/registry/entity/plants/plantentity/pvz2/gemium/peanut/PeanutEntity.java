@@ -31,6 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -48,7 +49,7 @@ import java.util.stream.Stream;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class PeanutEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class PeanutEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
     private String controllerName = "wallcontroller";
 
 	private boolean isFiring;
@@ -135,11 +136,6 @@ public class PeanutEntity extends PlantEntity implements GeoAnimatable, RangedAt
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -429,7 +425,7 @@ public class PeanutEntity extends PlantEntity implements GeoAnimatable, RangedAt
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 				ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
 				proj.updatePosition(this.getX(), this.getY() + 0.33D, this.getZ());
 				proj.setOwner(this);
 				proj.lowProf = true;

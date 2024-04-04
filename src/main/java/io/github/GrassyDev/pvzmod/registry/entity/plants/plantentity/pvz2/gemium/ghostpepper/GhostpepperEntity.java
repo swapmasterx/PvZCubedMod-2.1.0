@@ -46,6 +46,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -58,7 +59,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Iterator;
 import java.util.List;
 
-public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
+public class GhostpepperEntity extends PlantEntity implements GeoEntity {
 
 	private int amphibiousRaycastDelay;
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -298,10 +299,6 @@ public class GhostpepperEntity extends PlantEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.exploding) {

@@ -42,6 +42,7 @@ import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -55,7 +56,7 @@ import java.util.*;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class NightcapEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -119,11 +120,6 @@ public class NightcapEntity extends PlantEntity implements GeoAnimatable, Ranged
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 

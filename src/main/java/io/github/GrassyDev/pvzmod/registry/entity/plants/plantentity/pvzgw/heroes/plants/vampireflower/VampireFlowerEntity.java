@@ -35,6 +35,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -46,7 +47,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class VampireFlowerEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(VampireFlowerEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -124,10 +125,6 @@ public class VampireFlowerEntity extends PlantEntity implements GeoAnimatable, R
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.notEating) {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("sunflower.bite2"));

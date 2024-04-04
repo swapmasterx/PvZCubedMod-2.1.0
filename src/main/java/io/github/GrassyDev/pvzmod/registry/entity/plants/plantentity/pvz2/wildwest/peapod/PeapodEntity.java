@@ -39,6 +39,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -55,7 +56,7 @@ import java.util.UUID;
 import static io.github.GrassyDev.pvzmod.PvZCubed.MOD_ID;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAnimatable {
+public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEntity {
 	private String controllerName = "peacontroller";
 
 
@@ -164,11 +165,6 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -549,7 +545,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoAni
 							double f5 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 							double g5 = predictedPos.getZ() - this.plantEntity.getZ();
 							float h5 = MathHelper.sqrt(MathHelper.sqrt(df5)) * 0.5F;
-							proj5.setVelocity(e5 * (double) h5, f5 * (double) h5, g5 * (double) h5, 0.33F, 0F);
+							proj5.setVelocity(e5 * (double) h5, f5 * (double) h5, g5 * (double) h5, 0.5F, 0F);
 							proj5.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 1.25D, this.plantEntity.getZ());
 							proj5.setOwner(this.plantEntity);
 							proj5.canHitFlying = true;

@@ -27,6 +27,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -40,7 +41,7 @@ import java.util.EnumSet;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class BloomerangEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class BloomerangEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
     private String controllerName = "bloomcontroller";
 
@@ -82,11 +83,6 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -335,7 +331,7 @@ public class BloomerangEntity extends PlantEntity implements GeoAnimatable, Rang
 						double f2 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g2 = predictedPos.getZ() - this.plantEntity.getZ();
 						float h2 = MathHelper.sqrt(MathHelper.sqrt(df2)) * 0.5F;
-						proj2.setVelocity(e2 * (double) h + vec3d6.x, f2 * (double) h2, g2 * (double) h + vec3d6.z, 0.33F, 0);
+						proj2.setVelocity(e2 * (double) h + vec3d6.x, f2 * (double) h2, g2 * (double) h + vec3d6.z, 0.5F, 0);
 						proj2.updatePosition(this.plantEntity.getX() + vec3d5.x, this.plantEntity.getY() + 0.5, this.plantEntity.getZ() + vec3d5.z);
 						proj2.setOwner(this.plantEntity);
 						proj2.left = true;

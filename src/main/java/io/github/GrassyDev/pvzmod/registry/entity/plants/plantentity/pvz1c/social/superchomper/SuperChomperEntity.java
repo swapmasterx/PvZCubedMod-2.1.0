@@ -39,6 +39,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -53,7 +54,7 @@ import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class SuperChomperEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -153,11 +154,6 @@ public class SuperChomperEntity extends PlantEntity implements GeoAnimatable, Ra
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 

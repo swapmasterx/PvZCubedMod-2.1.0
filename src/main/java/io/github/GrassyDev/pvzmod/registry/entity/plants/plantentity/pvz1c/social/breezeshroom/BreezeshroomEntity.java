@@ -27,6 +27,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -45,7 +46,7 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class BreezeshroomEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class BreezeshroomEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -86,11 +87,6 @@ public class BreezeshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -322,7 +318,7 @@ public class BreezeshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					BreezeEntity proj = new BreezeEntity(PvZEntity.BREEZE, this.plantEntity.getWorld());
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.85F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.10F, 0F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (livingEntity != null && livingEntity.isAlive()) {

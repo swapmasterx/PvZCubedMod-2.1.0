@@ -26,6 +26,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -42,7 +43,7 @@ import java.util.EnumSet;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class RetroGatlingEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class RetroGatlingEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
     private String controllerName = "peacontroller";
 
@@ -180,7 +181,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoAnimatable, Ra
 
 	public static DefaultAttributeContainer.Builder createRetroGatlingAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);
@@ -291,7 +292,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoAnimatable, Ra
 				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
-				if (this.beamTicks >= 0 && this.animationTicks <= -6 && numShots <= 2) {
+				if (this.beamTicks >= 0 && this.animationTicks <= -6 && numShots <= 1) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 						PiercePeaEntity proj = new PiercePeaEntity(PvZEntity.PIERCEPEA, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
@@ -305,7 +306,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoAnimatable, Ra
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.6F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {

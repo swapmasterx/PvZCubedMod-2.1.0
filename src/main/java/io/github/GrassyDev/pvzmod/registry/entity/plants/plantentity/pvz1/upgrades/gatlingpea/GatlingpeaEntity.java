@@ -26,6 +26,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -42,7 +43,7 @@ import java.util.EnumSet;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class GatlingpeaEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class GatlingpeaEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
     private String controllerName = "peacontroller";
 
@@ -84,11 +85,6 @@ public class GatlingpeaEntity extends PlantEntity implements GeoAnimatable, Rang
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -180,10 +176,10 @@ public class GatlingpeaEntity extends PlantEntity implements GeoAnimatable, Rang
 
 	public static DefaultAttributeContainer.Builder createGatlingpeaAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 90.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);
 	}
 
 	protected boolean canClimb() {
@@ -304,7 +300,7 @@ public class GatlingpeaEntity extends PlantEntity implements GeoAnimatable, Rang
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 						proj.maxAge = 90;
-						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
@@ -329,7 +325,7 @@ public class GatlingpeaEntity extends PlantEntity implements GeoAnimatable, Rang
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					proj.maxAge = 90;
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (livingEntity != null && livingEntity.isAlive()) {

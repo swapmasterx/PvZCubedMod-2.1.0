@@ -430,7 +430,7 @@ public class FumeshroomEntity extends PlantEntity implements GeoEntity, RangedAt
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					FumeEntity proj = new FumeEntity(PvZEntity.FUME, this.plantEntity.getWorld());
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.00F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.10F, 0F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (this.plantEntity.getVariant().equals(FumeshroomVariants.GAY)) {

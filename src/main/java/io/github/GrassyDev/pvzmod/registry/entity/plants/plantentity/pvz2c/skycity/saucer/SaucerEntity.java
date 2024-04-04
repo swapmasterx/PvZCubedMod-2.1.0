@@ -32,6 +32,7 @@ import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -47,7 +48,7 @@ import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class SaucerEntity extends PlantEntity implements GeoAnimatable {
+public class SaucerEntity extends PlantEntity implements GeoEntity {
 
 
 	private int amphibiousRaycastDelay;
@@ -128,11 +129,6 @@ public class SaucerEntity extends PlantEntity implements GeoAnimatable {
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 

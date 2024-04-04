@@ -25,6 +25,7 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -40,7 +41,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import java.util.Iterator;
 import java.util.UUID;
 
-public class BoneProjEntity extends PvZProjectileEntity implements GeoAnimatable {
+public class BoneProjEntity extends PvZProjectileEntity implements GeoEntity {
 
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -55,10 +56,6 @@ public class BoneProjEntity extends PvZProjectileEntity implements GeoAnimatable
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("cabbage.idle"));

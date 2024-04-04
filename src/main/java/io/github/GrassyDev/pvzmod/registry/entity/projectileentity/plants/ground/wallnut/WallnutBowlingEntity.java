@@ -33,6 +33,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -45,7 +46,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Iterator;
 import java.util.UUID;
 
-public class WallnutBowlingEntity extends PvZProjectileEntity implements GeoAnimatable {
+public class WallnutBowlingEntity extends PvZProjectileEntity implements GeoEntity {
 
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -93,12 +94,6 @@ public class WallnutBowlingEntity extends PvZProjectileEntity implements GeoAnim
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
 	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
-
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("wallnut.bowling"));

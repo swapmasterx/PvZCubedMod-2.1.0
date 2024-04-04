@@ -28,6 +28,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -39,7 +40,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class DogwoodEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class DogwoodEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -78,11 +79,6 @@ public class DogwoodEntity extends PlantEntity implements GeoAnimatable, RangedA
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -298,7 +294,7 @@ public class DogwoodEntity extends PlantEntity implements GeoAnimatable, RangedA
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 				BarkEntity proj = new BarkEntity(PvZEntity.BARK, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.85F, 0F);
+				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.5F, 0F);
 				proj.updatePosition(this.getX(), this.getY() + 0.5D, this.getZ());
 				proj.setOwner(this);
 				this.beamTicks = -30;

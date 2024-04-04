@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -29,7 +30,7 @@ import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 
-public abstract class SmallAnimalEntity extends PvZombieEntity implements GeoAnimatable {
+public abstract class SmallAnimalEntity extends PvZombieEntity implements GeoEntity {
 
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "walkingcontroller";

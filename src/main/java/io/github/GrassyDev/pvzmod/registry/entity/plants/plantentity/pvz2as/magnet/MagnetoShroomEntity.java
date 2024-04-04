@@ -28,6 +28,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -48,7 +49,7 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class MagnetoShroomEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -109,11 +110,6 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -479,7 +475,7 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoAnimatable, R
 								double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 								double g = predictedPos.getZ() - this.plantEntity.getZ();
 								float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-								helmetProj3.setVelocity(e * (double) h + vec3d4.x, f * (double) h, g * (double) h + vec3d4.z, 0.66F, 0F);
+								helmetProj3.setVelocity(e * (double) h + vec3d4.x, f * (double) h, g * (double) h + vec3d4.z, 1.00F, 0F);
 								helmetProj3.setOwner(this.plantEntity);
 								helmetProj3.setMaxAge(helmetProj3.age + 58);
 								if (livingEntity != null && livingEntity.isAlive()) {

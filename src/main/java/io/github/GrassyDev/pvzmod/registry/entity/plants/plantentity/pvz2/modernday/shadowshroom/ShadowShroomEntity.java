@@ -42,6 +42,7 @@ import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -58,7 +59,7 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class ShadowShroomEntity extends PlantEntity implements GeoAnimatable {
+public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private static final TrackedData<Integer> FUSE_SPEED;

@@ -56,6 +56,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -73,7 +74,7 @@ import java.util.UUID;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable {
+public class DancingZombieEntity extends SummonerEntity implements GeoEntity {
 
     private boolean isAggro;
     private boolean dancing;
@@ -171,10 +172,6 @@ public class DancingZombieEntity extends SummonerEntity implements GeoAnimatable
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {

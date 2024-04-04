@@ -55,6 +55,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -68,7 +69,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
+public class FlagPokerEntity extends SummonerEntity implements GeoEntity {
 
 	private String controllerName = "walkingcontroller";
 
@@ -153,10 +154,6 @@ public class FlagPokerEntity extends SummonerEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isInsideWaterOrBubbleColumn()) {

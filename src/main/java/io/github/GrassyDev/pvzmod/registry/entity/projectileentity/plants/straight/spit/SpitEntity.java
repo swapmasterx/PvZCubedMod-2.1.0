@@ -31,6 +31,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -46,7 +47,7 @@ import java.util.UUID;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class SpitEntity extends PvZProjectileEntity implements GeoAnimatable {
+public class SpitEntity extends PvZProjectileEntity implements GeoEntity {
 
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -69,7 +70,7 @@ public class SpitEntity extends PvZProjectileEntity implements GeoAnimatable {
 		setUuid(uuid);
 	}
 
-@Override
+	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
@@ -79,10 +80,6 @@ public class SpitEntity extends PvZProjectileEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		event.getController().setAnimation(RawAnimation.begin().thenLoop("spit.idle"));
