@@ -2,9 +2,6 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.ancie
 
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import net.minecraft.entity.LivingEntity;
-import io.github.GrassyDev.pvzmod.registry.PvZSounds;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.entity.ai.goal.Goal;
 
 public class IcebergIgniteGoal extends Goal {

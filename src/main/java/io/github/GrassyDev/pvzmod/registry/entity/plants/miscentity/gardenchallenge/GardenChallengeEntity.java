@@ -1,10 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.registry.ModBlocks;
-import io.github.GrassyDev.pvzmod.registry.ModItems;
+import io.github.GrassyDev.pvzmod.block.ModBlocks;
+import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
-import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.rifttile.RiftTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.sunbomb.SunBombEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.watertile.WaterTile;
@@ -71,7 +71,6 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.*;
 

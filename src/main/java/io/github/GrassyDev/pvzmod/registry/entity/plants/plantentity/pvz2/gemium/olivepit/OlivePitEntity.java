@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemium.olivepit;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.registry.ModItems;
+import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
-import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.bananatile.BananaTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
@@ -15,7 +15,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endle
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieShieldEntity;
-import io.github.GrassyDev.pvzmod.registry.items.seedpackets.GatlingpeaSeeds;
+import io.github.GrassyDev.pvzmod.items.seedpackets.GatlingpeaSeeds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -54,7 +54,6 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,9 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.registry.ModItems;
+import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
-import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.maritile.MariTile;
@@ -61,7 +61,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
-import static io.github.GrassyDev.pvzmod.registry.PvZSounds.*;
+import static io.github.GrassyDev.pvzmod.sound.PvZSounds.*;
 
 public class GeneralPvZombieEntity extends HostileEntity {
 	public GeneralPvZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {

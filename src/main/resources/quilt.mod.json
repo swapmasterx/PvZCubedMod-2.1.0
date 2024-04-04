@@ -22,8 +22,7 @@
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
 			"init": [
-				"io.github.GrassyDev.pvzmod.PvZCubed",
-				"io.github.GrassyDev.pvzmod.registry.PvZEntity"
+				"io.github.GrassyDev.pvzmod.PvZCubed"
 			],
 			"client_init": [
 				"io.github.GrassyDev.pvzmod.registry.PvZEntityClient"

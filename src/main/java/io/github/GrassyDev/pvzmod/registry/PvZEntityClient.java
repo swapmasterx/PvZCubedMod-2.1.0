@@ -266,7 +266,7 @@ import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 
-@Environment(EnvType.CLIENT)
+//@Environment(EnvType.CLIENT)
 public class PvZEntityClient implements ClientModInitializer {
 
 	@Override

@@ -1,20 +1,16 @@
 package io.github.GrassyDev.pvzmod;
 
-import io.github.GrassyDev.pvzmod.config.PvZConfigModel;
-import io.github.GrassyDev.pvzmod.registry.ModBlocks;
-import io.github.GrassyDev.pvzmod.registry.ModItems;
+import io.github.GrassyDev.pvzmod.config.PvZConfig;
+import io.github.GrassyDev.pvzmod.block.ModBlocks;
+import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
-import io.github.GrassyDev.pvzmod.registry.PvZSounds;
+import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.*;
 import io.github.GrassyDev.pvzmod.registry.world.gen.entity.PvZEntitySpawn;
-import net.fabricmc.api.ModInitializer;
-import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -25,6 +21,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registry;
 import net.minecraft.world.GameRules;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
@@ -34,7 +32,7 @@ import java.util.UUID;
 
 public class PvZCubed implements ModInitializer {
 
-	public static final PvZConfigModel PVZCONFIG = PvZConfigModel.createAndLoad();
+	public static final PvZConfig PVZCONFIG = PvZConfig.createAndLoad();
 	// This logger is used to write text to the console and the log file.
 	public static final Logger LOGGER = LoggerFactory.getLogger("Plants vs. Zombies Cubed");
 
@@ -106,17 +104,6 @@ public class PvZCubed implements ModInitializer {
 
 	public static final String MOD_ID = "pvzmod";
 
-	public static final UUID MAX_REACH_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
-
-	public static EntityAttributeModifier createReachModifier(double amount) {
-		return new EntityAttributeModifier(
-				MAX_REACH_UUID,
-				MOD_ID,
-				amount,
-				EntityAttributeModifier.Operation.ADDITION
-		);
-	}
-
 
 	public static final RegistryKey<ItemGroup> PVZPLANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "plants"));
 
@@ -127,7 +114,7 @@ public class PvZCubed implements ModInitializer {
 	public static final RegistryKey<ItemGroup> PVZBLOCKS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "blocks"));
 
 	@Override
-	public void onInitialize() {
+	public void onInitialize(ModContainer mod) {
 		LOGGER.info("{} says: Trans Rights are Human Rights! The Zombies... are coming...");
 
 		ModItems.registerItems();

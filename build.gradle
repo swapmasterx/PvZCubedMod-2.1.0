@@ -2,7 +2,6 @@ plugins {
 	id 'maven-publish'
 	alias libs.plugins.quilt.loom
 }
-
 archivesBaseName = project.archives_base_name
 version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group

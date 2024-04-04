@@ -258,7 +258,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.plantobsta
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.plastichelmet.PlasticHelmetEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.rockobstacle.RockObstacleEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.stonehelmet.StoneHelmetEntity;
-import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -266,8 +265,9 @@ import net.minecraft.entity.attribute.DefaultAttributeRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
-import net.fabricmc.loader.api.ModContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -2890,7 +2890,7 @@ public class PvZEntity implements ModInitializer {
 	);
 
 	@Override
-	public void onInitialize() {
+	public void onInitialize(ModContainer mod) {
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.GARDEN, GardenEntity.createGardenAttributes().build());
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.GARDENCHALLENGE, GardenChallengeEntity.createGardenAttributes().build());
 
@@ -3555,5 +3555,6 @@ public class PvZEntity implements ModInitializer {
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.MAUSOLEUMGRAVESTONE, MausoleumGraveEntity.createMausoleumGraveAttributes().build());
 
 
-    }
+
+	}
 }
