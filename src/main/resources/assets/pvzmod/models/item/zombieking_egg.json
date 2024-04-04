@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/zombieking_egg"
+    "layer0": "pvzmod:item/zombieking_egg"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/admiralnavybean_seed_packet"
+    "layer0": "pvzmod:item/admiralnavybean_seed_packet"
   }
 }

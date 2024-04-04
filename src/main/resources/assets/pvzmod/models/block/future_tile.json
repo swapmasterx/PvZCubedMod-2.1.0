@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/future_tile",
-		"particle": "pvzmod:blocks/future_tile"
+		"0": "pvzmod:block/future_tile",
+		"particle": "pvzmod:block/future_tile"
 	},
 	"display": {
 		"gui": {

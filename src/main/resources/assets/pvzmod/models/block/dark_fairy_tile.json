@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/fairy_tile_dark",
-		"particle": "pvzmod:blocks/fairy_tile_dark"
+		"0": "pvzmod:block/fairy_tile_dark",
+		"particle": "pvzmod:block/fairy_tile_dark"
 	},
 	"display": {
 		"gui": {

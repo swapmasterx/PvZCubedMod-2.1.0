@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/underwater_tile",
-		"particle": "pvzmod:blocks/underwater_tile"
+		"0": "pvzmod:block/underwater_tile",
+		"particle": "pvzmod:block/underwater_tile"
 	},
 	"display": {
 		"gui": {

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/egypt_tile",
-		"particle": "pvzmod:blocks/egypt_tile"
+		"0": "pvzmod:block/egypt_tile",
+		"particle": "pvzmod:block/egypt_tile"
 	},
 	"display": {
 		"gui": {

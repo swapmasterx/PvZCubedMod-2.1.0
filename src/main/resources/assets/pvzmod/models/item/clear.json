@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/clear"
+    "layer0": "pvzmod:item/clear"
   }
 }

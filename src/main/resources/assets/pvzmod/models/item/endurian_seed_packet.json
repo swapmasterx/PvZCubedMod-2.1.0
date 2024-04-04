@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/endurian_seed_packet"
+    "layer0": "pvzmod:item/endurian_seed_packet"
   }
 }

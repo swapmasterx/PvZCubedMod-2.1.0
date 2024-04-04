@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/roof_tile",
-		"particle": "pvzmod:blocks/roof_tile"
+		"0": "pvzmod:block/roof_tile",
+		"particle": "pvzmod:block/roof_tile"
 	},
 	"display": {
 		"gui": {

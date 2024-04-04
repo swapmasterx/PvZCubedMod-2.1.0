@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/pirate_tile",
-		"particle": "pvzmod:blocks/pirate_tile"
+		"0": "pvzmod:block/pirate_tile",
+		"particle": "pvzmod:block/pirate_tile"
 	},
 	"display": {
 		"gui": {

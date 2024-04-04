@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/scaredyshroom_seed_packet"
+    "layer0": "pvzmod:item/scaredyshroom_seed_packet"
   }
 }

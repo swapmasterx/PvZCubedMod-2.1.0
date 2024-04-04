@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/smooshroom_seed_packet"
+    "layer0": "pvzmod:item/smooshroom_seed_packet"
   }
 }

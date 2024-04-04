@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/torchwood_seed_packet"
+    "layer0": "pvzmod:item/torchwood_seed_packet"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/superhard"
+    "layer0": "pvzmod:item/superhard"
   }
 }

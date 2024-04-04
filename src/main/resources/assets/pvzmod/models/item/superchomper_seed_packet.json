@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/superchomper_seed_packet"
+    "layer0": "pvzmod:item/superchomper_seed_packet"
   }
 }

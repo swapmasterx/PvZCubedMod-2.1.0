@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/premium_tile",
-		"particle": "pvzmod:blocks/premium_tile"
+		"0": "pvzmod:block/premium_tile",
+		"particle": "pvzmod:block/premium_tile"
 	},
 	"display": {
 		"gui": {

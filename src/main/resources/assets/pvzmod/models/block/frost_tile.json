@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/frost_tile",
-		"particle": "pvzmod:blocks/frost_tile"
+		"0": "pvzmod:block/frost_tile",
+		"particle": "pvzmod:block/frost_tile"
 	},
 	"display": {
 		"gui": {

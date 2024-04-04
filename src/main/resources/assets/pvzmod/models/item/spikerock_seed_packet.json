@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/spikerock_seed_packet"
+    "layer0": "pvzmod:item/spikerock_seed_packet"
   }
 }

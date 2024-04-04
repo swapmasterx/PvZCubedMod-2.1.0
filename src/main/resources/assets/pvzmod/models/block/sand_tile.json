@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/sand_tile",
-		"particle": "pvzmod:blocks/sand_tile"
+		"0": "pvzmod:block/sand_tile",
+		"particle": "pvzmod:block/sand_tile"
 	},
 	"display": {
 		"gui": {

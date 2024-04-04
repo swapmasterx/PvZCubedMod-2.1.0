@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/charmshroom_seed_packet"
+    "layer0": "pvzmod:item/charmshroom_seed_packet"
   }
 }

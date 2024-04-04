@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/upgrade_tile",
-		"particle": "pvzmod:blocks/upgrade_tile"
+		"0": "pvzmod:block/upgrade_tile",
+		"particle": "pvzmod:block/upgrade_tile"
 	},
 	"display": {
 		"gui": {

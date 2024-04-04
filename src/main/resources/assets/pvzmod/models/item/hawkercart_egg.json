@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pvzmod:items/hawkercart_egg"
+    "layer0": "pvzmod:item/hawkercart_egg"
   }
 }

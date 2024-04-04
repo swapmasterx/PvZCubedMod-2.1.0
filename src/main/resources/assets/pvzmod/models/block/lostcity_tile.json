@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/lostcity_tile",
-		"particle": "pvzmod:blocks/lostcity_tile"
+		"0": "pvzmod:block/lostcity_tile",
+		"particle": "pvzmod:block/lostcity_tile"
 	},
 	"display": {
 		"gui": {

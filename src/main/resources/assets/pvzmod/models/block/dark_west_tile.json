@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "pvzmod:blocks/west_tile_dark",
-		"particle": "pvzmod:blocks/west_tile_dark"
+		"0": "pvzmod:block/west_tile_dark",
+		"particle": "pvzmod:block/west_tile_dark"
 	},
 	"display": {
 		"gui": {

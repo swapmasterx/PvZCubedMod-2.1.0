@@ -6,6 +6,14 @@ archivesBaseName = project.archives_base_name
 version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
+loom {
+	mods {
+		"pvzmod" {
+			sourceSet sourceSets.main
+		}
+	}
+}
+
 repositories {
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven {
@@ -20,15 +28,17 @@ repositories {
 	maven { url 'https://maven.wispforest.io' }
 
 }
+
+project.configurations.configureEach {
+	exclude(group: "net.fabricmc", module: "fabric-loader")
+	exclude(group: "net.fabricmc.fabric-api")
+}
+
 dependencies {
 	minecraft libs.minecraft
 	modImplementation libs.quilt.loader
 
 	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings}:intermediary-v2"
-
-	modImplementation "org.quiltmc:qsl:6.1.2+1.20.1"
-
-	modImplementation "org.quiltmc.qsl:core:6.1.2+1.20.1"
 
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:7.5.0+0.91.0-1.20.1"
 
