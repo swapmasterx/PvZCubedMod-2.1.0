@@ -38,6 +38,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -49,7 +50,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class FairyTaleGraveEntity extends GraveEntity implements GeoAnimatable {
+public class FairyTaleGraveEntity extends GraveEntity implements GeoEntity {
 
 	private String controllerName = "walkingcontroller";
 
@@ -216,11 +217,6 @@ public class FairyTaleGraveEntity extends GraveEntity implements GeoAnimatable {
 
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.BLOCK_BASALT_HIT;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 

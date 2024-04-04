@@ -37,6 +37,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -48,7 +49,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.*;
 
-public class ChomperEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(ChomperEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -165,11 +166,6 @@ public class ChomperEntity extends PlantEntity implements GeoAnimatable, RangedA
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 

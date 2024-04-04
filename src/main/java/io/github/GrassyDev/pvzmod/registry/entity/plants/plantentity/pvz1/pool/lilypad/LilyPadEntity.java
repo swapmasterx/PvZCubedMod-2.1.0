@@ -41,6 +41,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -58,7 +59,7 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 ;
 
-public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
+public class LilyPadEntity extends PlantEntity implements GeoEntity {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_HAT =
 			DataTracker.registerData(LilyPadEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -182,10 +183,6 @@ public class LilyPadEntity extends PlantEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getHat().equals(LilypadHats.LILY)){

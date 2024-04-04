@@ -1,4 +1,6 @@
 {
+  "sentient_plant": "sentient plant life",
+
   "gamerule.pvzdoPlantSpawn": "[PVZ] Plants Spawn",
   "gamerule.pvzdoGraveSpawn": "[PVZ] Graves Spawn",
   "gamerule.pvzdoPlantDrop": "[PVZ] Plants Drop Loot",

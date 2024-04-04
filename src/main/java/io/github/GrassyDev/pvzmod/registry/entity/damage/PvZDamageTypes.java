@@ -13,6 +13,7 @@ public class PvZDamageTypes {
     public static final RegistryKey<DamageType> HYPNO_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "hypnodamage"));
     public static final RegistryKey<DamageType> ELECTRIC_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "electricdamage"));
 	public static final RegistryKey<DamageType> SELF_TERMINATE_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "selfdeathdamage"));
+	public static final RegistryKey<DamageType> GENERIC_ANTI_IFRAME = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "generic_no_iframe"));
 
 	public static final RegistryKey<DamageType> CRAZYDAVEDAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "davesshovel"));
 

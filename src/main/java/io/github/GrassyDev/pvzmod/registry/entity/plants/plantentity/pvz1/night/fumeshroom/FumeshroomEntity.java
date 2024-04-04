@@ -38,6 +38,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -53,7 +54,7 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class FumeshroomEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class FumeshroomEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -135,10 +136,6 @@ public class FumeshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
@@ -313,7 +310,7 @@ public class FumeshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 
 	public static DefaultAttributeContainer.Builder createFumeshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 6D);
@@ -433,7 +430,7 @@ public class FumeshroomEntity extends PlantEntity implements GeoAnimatable, Rang
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					FumeEntity proj = new FumeEntity(PvZEntity.FUME, this.plantEntity.getWorld());
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.85F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.00F, 0F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (this.plantEntity.getVariant().equals(FumeshroomVariants.GAY)) {

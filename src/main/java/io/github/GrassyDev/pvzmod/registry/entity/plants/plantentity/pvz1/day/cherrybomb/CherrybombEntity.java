@@ -39,6 +39,7 @@ import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -51,7 +52,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Iterator;
 import java.util.List;
 
-public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
+public class CherrybombEntity extends PlantEntity implements GeoEntity {
 
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private static final TrackedData<Integer> FUSE_SPEED;
@@ -150,10 +151,6 @@ public class CherrybombEntity extends PlantEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getFuseSpeed();

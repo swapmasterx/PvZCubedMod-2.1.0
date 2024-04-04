@@ -39,6 +39,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -55,7 +56,7 @@ import java.util.EnumSet;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class SnowpeaEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(SnowpeaEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -140,10 +141,6 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
@@ -428,7 +425,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoAnimatable, RangedA
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						proj.damageMultiplier = plantEntity.damageMultiplier;

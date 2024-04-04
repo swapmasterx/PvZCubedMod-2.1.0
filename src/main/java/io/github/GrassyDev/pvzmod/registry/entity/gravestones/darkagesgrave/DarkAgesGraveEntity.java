@@ -38,6 +38,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -51,7 +52,7 @@ import java.util.Objects;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
+public class DarkAgesGraveEntity extends GraveEntity implements GeoEntity {
 
 	private String controllerName = "walkingcontroller";
 
@@ -264,10 +265,6 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
     }
 
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	protected abstract class CastSpellGoal extends Goal {
 		protected int spellCooldown;
@@ -793,7 +790,8 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								}
 								BlockPos blockPos = DarkAgesGraveEntity.this.getBlockPos().add(zombiePos, 0, zombiePosZ);
 								PeasantEntity PeasantEntity = (PeasantEntity) PvZEntity.PEASANTCONE.create(DarkAgesGraveEntity.this.getWorld());
-								PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+                                assert PeasantEntity != null;
+                                PeasantEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
 								PeasantEntity.initialize(serverWorld, DarkAgesGraveEntity.this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
 								PeasantEntity.setOwner(DarkAgesGraveEntity.this);
 								PeasantEntity.defenseMultiplier = DarkAgesGraveEntity.this.defenseMultiplier;
@@ -816,7 +814,7 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoAnimatable {
 								PeasantEntity.defenseMultiplier = DarkAgesGraveEntity.this.defenseMultiplier;
 				serverWorld.spawnEntityAndPassengers(PeasantEntity);
 							}
-							extraGraveWeight += 1.75;
+							extraGraveWeight += 1.75F;
 						}
 					}
 				}

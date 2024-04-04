@@ -32,12 +32,14 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -54,7 +56,7 @@ import java.util.UUID;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 import static io.github.GrassyDev.pvzmod.PvZCubed.ZOMBIE_SIZE;
 
-public class ShootingPeaEntity extends PvZProjectileEntity implements GeoAnimatable {
+public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity {
 
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -109,11 +111,6 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoAnimata
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
@@ -254,10 +251,10 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoAnimata
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

@@ -32,6 +32,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -49,7 +50,7 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class SeashroomEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class SeashroomEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -103,10 +104,6 @@ public class SeashroomEntity extends PlantEntity implements GeoAnimatable, Range
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.getIsAsleep()) {
@@ -240,7 +237,7 @@ public class SeashroomEntity extends PlantEntity implements GeoAnimatable, Range
 
 	public static DefaultAttributeContainer.Builder createSeashroomAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 6D);
@@ -363,7 +360,7 @@ public class SeashroomEntity extends PlantEntity implements GeoAnimatable, Range
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 						proj.sporeAge = 20;
-						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.33F, 0F);
+						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.7F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.25D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {

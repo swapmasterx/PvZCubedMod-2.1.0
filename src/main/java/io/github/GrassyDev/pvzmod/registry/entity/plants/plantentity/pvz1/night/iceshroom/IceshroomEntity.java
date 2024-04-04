@@ -31,6 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -48,7 +49,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-public class IceshroomEntity extends PlantEntity implements GeoAnimatable {
+public class IceshroomEntity extends PlantEntity implements GeoEntity {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private static final TrackedData<Integer> FUSE_SPEED;
@@ -147,11 +148,6 @@ public class IceshroomEntity extends PlantEntity implements GeoAnimatable {
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

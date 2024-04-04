@@ -36,6 +36,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -50,7 +51,7 @@ import java.util.Objects;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
+public class MausoleumGraveEntity extends GraveEntity implements GeoEntity {
 
 	private String controllerName = "walkingcontroller";
 
@@ -263,10 +264,6 @@ public class MausoleumGraveEntity extends GraveEntity implements GeoAnimatable {
         return PvZSounds.ENTITYRISINGEVENT;
     }
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	protected abstract class CastSpellGoal extends Goal {
 		protected int spellCooldown;

@@ -22,6 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -34,7 +35,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import org.jetbrains.annotations.Nullable;
 
 
-public class GamblehatEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class GamblehatEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -90,10 +91,6 @@ public class GamblehatEntity extends PlantEntity implements GeoAnimatable, Range
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

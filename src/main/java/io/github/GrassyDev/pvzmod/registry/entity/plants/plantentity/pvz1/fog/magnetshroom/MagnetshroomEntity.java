@@ -28,6 +28,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -47,7 +48,7 @@ import java.util.Optional;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class MagnetshroomEntity extends PlantEntity implements GeoAnimatable, RangedAttackMob {
+public class MagnetshroomEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -97,11 +98,6 @@ public class MagnetshroomEntity extends PlantEntity implements GeoAnimatable, Ra
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {

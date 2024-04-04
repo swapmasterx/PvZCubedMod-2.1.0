@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.config.PvZConfig;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.peashooter.PeashooterEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.*;
 import io.github.GrassyDev.pvzmod.registry.world.gen.entity.PvZEntitySpawn;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.DefaultAttributeRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -122,8 +124,11 @@ public class PvZCubed implements ModInitializer {
 		ModItems.setPlantfoodList();
 		ModBlocks.registerBlocks();
 		PvZEntity.setPlantList();
+		PvZEntity.Entities();
 		GeckoLib.initialize();
 		PvZEntitySpawn.addEntitySpawn();
+		//Entity Initialization
+
 
 		PvZSounds.registerSounds();
 		Registry.register(Registries.ITEM_GROUP, PVZPLANTS, FabricItemGroup.builder()

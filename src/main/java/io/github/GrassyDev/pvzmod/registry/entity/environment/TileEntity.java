@@ -21,6 +21,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -32,7 +33,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 
 
-public abstract class TileEntity extends PathAwareEntity implements GeoAnimatable {
+public abstract class TileEntity extends PathAwareEntity implements GeoEntity {
 
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	private String controllerName = "firetrailcontroller";

@@ -3,6 +3,7 @@
   "values": [
     "pvzmod:electricdamage",
     "pvzmod:hypnodamage",
-    "pvzmod:selfdeathdamage"
+    "pvzmod:selfdeathdamage",
+    "pvzmod:generic_no_iframe"
   ]
 }

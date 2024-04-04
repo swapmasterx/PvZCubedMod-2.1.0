@@ -794,28 +794,28 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoAnimatable {
 		}
 	}
 
-	@Override
-	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		if (this.hasPassenger(passenger) && passenger instanceof ZombieObstacleEntity) {
-			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
-			float f = 0.9F;
-
-			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
-			passenger.setBodyYaw(this.bodyYaw);
-		}
-		else if (this.hasPassenger(passenger) && passenger instanceof ZombieShieldEntity) {
-			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
-			float f = 0.6F;
-
-			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
-			passenger.setBodyYaw(this.bodyYaw);
-		}
-		else {
-			super.updatePassengerPosition(passenger);
-		}
-	}
+//	@Override
+//	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
+//		if (this.hasPassenger(passenger) && passenger instanceof ZombieObstacleEntity) {
+//			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
+//			float f = 0.9F;
+//
+//			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+//			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
+//			passenger.setBodyYaw(this.bodyYaw);
+//		}
+//		else if (this.hasPassenger(passenger) && passenger instanceof ZombieShieldEntity) {
+//			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
+//			float f = 0.6F;
+//
+//			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+//			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
+//			passenger.setBodyYaw(this.bodyYaw);
+//		}
+//		else {
+//			super.updatePassengerPosition(passenger);
+//		}
+//	}
 
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 

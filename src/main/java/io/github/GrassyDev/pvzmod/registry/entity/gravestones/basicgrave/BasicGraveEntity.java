@@ -44,6 +44,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -60,7 +61,7 @@ import java.util.Objects;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class BasicGraveEntity extends GraveEntity implements GeoAnimatable {
+public class BasicGraveEntity extends GraveEntity implements GeoEntity {
 
 	private String controllerName = "walkingcontroller";
 
@@ -253,11 +254,6 @@ public class BasicGraveEntity extends GraveEntity implements GeoAnimatable {
 		}
 	}
 
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 
 	/** /~*~//~*GOALS*~//~*~/ **/

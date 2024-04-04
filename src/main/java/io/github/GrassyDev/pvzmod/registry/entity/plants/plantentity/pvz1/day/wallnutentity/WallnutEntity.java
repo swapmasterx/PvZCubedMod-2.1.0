@@ -31,6 +31,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -48,7 +49,7 @@ import java.util.stream.Stream;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class WallnutEntity extends PlantEntity implements GeoAnimatable {
+public class WallnutEntity extends PlantEntity implements GeoEntity {
     private String controllerName = "wallcontroller";
 
 
@@ -79,7 +80,7 @@ public class WallnutEntity extends PlantEntity implements GeoAnimatable {
 		MEDIUM(0.5F),
 		HIGH(0.25F);
 
-		private static final List<WallnutEntity.Crack> VALUES = (List) Stream.of(values()).sorted(Comparator.comparingDouble((crack) -> {
+		private static final List<WallnutEntity.Crack> VALUES = Stream.of(values()).sorted(Comparator.comparingDouble((crack) -> {
 			return (double)crack.maxHealthFraction;
 		})).collect(ImmutableList.toImmutableList());
 		private final float maxHealthFraction;
@@ -133,10 +134,6 @@ public class WallnutEntity extends PlantEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         if (this.getCrack().equals(Crack.NONE)){

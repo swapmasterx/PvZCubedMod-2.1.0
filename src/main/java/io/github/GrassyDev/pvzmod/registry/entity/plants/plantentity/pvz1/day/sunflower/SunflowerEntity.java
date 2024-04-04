@@ -38,6 +38,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -53,7 +54,7 @@ import java.util.List;
 import static io.github.GrassyDev.pvzmod.PvZCubed.DISABLE;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class SunflowerEntity extends PlantEntity implements GeoAnimatable {
+public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(SunflowerEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -143,10 +144,6 @@ public class SunflowerEntity extends PlantEntity implements GeoAnimatable {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         event.getController().setAnimation(RawAnimation.begin().thenLoop("sunflower.idle"));

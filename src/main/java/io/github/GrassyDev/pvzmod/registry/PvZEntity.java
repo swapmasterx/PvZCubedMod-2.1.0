@@ -272,129 +272,62 @@ import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PvZEntity implements ModInitializer {
+import static io.github.GrassyDev.pvzmod.PvZCubed.MOD_ID;
 
-    public static final String ModID = "pvzmod"; // This is just so we can refer to our ModID easier.
+public class PvZEntity{
+
+	public static final String ModID = "pvzmod"; // This is just so we can refer to our ModID easier.
+
+
 
 	// REMEMBER TO REGISTER NEW PLANTS HERE TOO
+
+	//List for bomb seedling
 	public static void setPlantList(){
 		PLANT_LIST.add(PvZEntity.PEASHOOTER);
 		PLANT_LIST.add(PvZEntity.SUNFLOWER);
-		PLANT_LIST.add(PvZEntity.CHERRYBOMB);
-		PLANT_LIST.add(PvZEntity.WALLNUT);
-		PLANT_LIST.add(PvZEntity.POTATOMINE);
 		PLANT_LIST.add(PvZEntity.SNOWPEA);
 		PLANT_LIST.add(PvZEntity.CHOMPER);
 		PLANT_LIST.add(PvZEntity.REPEATER);
-		PLANT_LIST.add(PvZEntity.PUFFSHROOM);
 		PLANT_LIST.add(PvZEntity.SUNSHROOM);
 		PLANT_LIST.add(PvZEntity.FUMESHROOM);
-		PLANT_LIST.add(PvZEntity.GRAVEBUSTER);
-		PLANT_LIST.add(PvZEntity.HYPNOSHROOM);
 		PLANT_LIST.add(PvZEntity.SCAREDYSHROOM);
-		PLANT_LIST.add(PvZEntity.ICESHROOM);
-		PLANT_LIST.add(PvZEntity.DOOMSHROOM);
-		PLANT_LIST.add(PvZEntity.LILYPAD);
 		PLANT_LIST.add(PvZEntity.SQUASH);
-		PLANT_LIST.add(PvZEntity.THREEPEATER);
-		PLANT_LIST.add(PvZEntity.TANGLE_KELP);
-		PLANT_LIST.add(PvZEntity.JALAPENO);
-		PLANT_LIST.add(PvZEntity.SPIKEWEED);
-		PLANT_LIST.add(PvZEntity.TORCHWOOD);
-		PLANT_LIST.add(PvZEntity.TALLNUT);
 		PLANT_LIST.add(PvZEntity.SEASHROOM);
 		PLANT_LIST.add(PvZEntity.MAGNETSHROOM);
 		PLANT_LIST.add(PvZEntity.CABBAGEPULT);
-		PLANT_LIST.add(PvZEntity.GATLINGPEA);
-		PLANT_LIST.add(PvZEntity.TWINSUNFLOWER);
-		PLANT_LIST.add(PvZEntity.GLOOMSHROOM);
-		PLANT_LIST.add(PvZEntity.CATTAIL);
-		PLANT_LIST.add(PvZEntity.SPIKEROCK);
-		PLANT_LIST.add(PvZEntity.ICEBERGPULT);
 		PLANT_LIST.add(PvZEntity.BEET);
 		PLANT_LIST.add(PvZEntity.SHAMROCK);
-		PLANT_LIST.add(PvZEntity.CHILLYPEPPER);
-		PLANT_LIST.add(PvZEntity.BEESHOOTER);
-		PLANT_LIST.add(PvZEntity.SNOWQUEENPEA);
-		PLANT_LIST.add(PvZEntity.OXYGAE);
-		PLANT_LIST.add(PvZEntity.BREEZESHROOM);
-		PLANT_LIST.add(PvZEntity.BURSTSHROOM);
-		PLANT_LIST.add(PvZEntity.SUPERCHOMPER);
-		PLANT_LIST.add(PvZEntity.BLOOMERANG);
-		PLANT_LIST.add(PvZEntity.ICEBERGLETTUCE);
-		PLANT_LIST.add(PvZEntity.GOLDLEAF);
-		PLANT_LIST.add(PvZEntity.ENDURIAN);
-		PLANT_LIST.add(PvZEntity.SHADOWSHROOM);
-		PLANT_LIST.add(PvZEntity.MISSILETOE);
-		PLANT_LIST.add(PvZEntity.ELECTROPEA);
-		PLANT_LIST.add(PvZEntity.PEANUT);
-		PLANT_LIST.add(PvZEntity.GHOSTPEPPER);
-		PLANT_LIST.add(PvZEntity.OLIVEPIT);
-		PLANT_LIST.add(PvZEntity.HEAVENLYPEACH);
-		PLANT_LIST.add(PvZEntity.MAGICSHROOM);
-		PLANT_LIST.add(PvZEntity.LOQUAT);
-		PLANT_LIST.add(PvZEntity.SAUCER);
-		PLANT_LIST.add(PvZEntity.OILYOLIVE);
-		PLANT_LIST.add(PvZEntity.SPRINGPRINCESS);
-		PLANT_LIST.add(PvZEntity.DRIPPHYLLEIA);
-		PLANT_LIST.add(PvZEntity.PUMPKINWITCH);
-		PLANT_LIST.add(PvZEntity.TULIMPETER);
-		PLANT_LIST.add(PvZEntity.NARCISSUS);
-		PLANT_LIST.add(PvZEntity.IMPATYENS);
-		PLANT_LIST.add(PvZEntity.HAMMERFLOWER);
-		PLANT_LIST.add(PvZEntity.METEORHAMMER);
-		PLANT_LIST.add(PvZEntity.DROPEA);
 		PLANT_LIST.add(PvZEntity.FRISBLOOM);
-		PLANT_LIST.add(PvZEntity.BEAUTYSHROOM);
-		PLANT_LIST.add(PvZEntity.CHARMSHROOM);
-		PLANT_LIST.add(PvZEntity.MAGNETOSHROOM);
-		PLANT_LIST.add(PvZEntity.CHESTER);
 		PLANT_LIST.add(PvZEntity.VAMPIREFLOWER);
-		PLANT_LIST.add(PvZEntity.RETROGATLING);
-		PLANT_LIST.add(PvZEntity.ACIDSHROOM);
 		PLANT_LIST.add(PvZEntity.DANDELIONWEED);
-		PLANT_LIST.add(PvZEntity.PERFOOMSHROOM);
 		PLANT_LIST.add(PvZEntity.SMALLNUT);
 		PLANT_LIST.add(PvZEntity.SMACKADAMIA);
-		PLANT_LIST.add(PvZEntity.LOCOCOCO);
-		PLANT_LIST.add(PvZEntity.BUTTONSHROOM);
 		PLANT_LIST.add(PvZEntity.BOMBSEEDLING);
-		PLANT_LIST.add(PvZEntity.ZAPRICOT);
-		PLANT_LIST.add(PvZEntity.BANANASAURUS);
-		PLANT_LIST.add(PvZEntity.WEENIEBEANIE);
-		PLANT_LIST.add(PvZEntity.SMOOSHROOM);
-		PLANT_LIST.add(PvZEntity.ADMIRALNAVYBEAN);
-		PLANT_LIST.add(PvZEntity.NAVYBEAN);
-		PLANT_LIST.add(PvZEntity.JUMPINGBEAN);
-		PLANT_LIST.add(PvZEntity.BELLFLOWER);
-		PLANT_LIST.add(PvZEntity.SUNFLOWERSEED);
-		PLANT_LIST.add(PvZEntity.KNIGHTPEA);
-		PLANT_LIST.add(PvZEntity.SEAPEA);
-		PLANT_LIST.add(PvZEntity.NIGHTCAP);
-		PLANT_LIST.add(PvZEntity.DOOMROSE);
 		PLANT_LIST.add(PvZEntity.DOGWOOD);
-		PLANT_LIST.add(PvZEntity.GAMBLESHROOM);
 	}
 
 	public static List<EntityType<?>> PLANT_LIST = new ArrayList<>();
 
-	public static final EntityType<GardenEntity> GARDEN = Registry.register(
-			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "garden"),
-			QuiltEntityTypeBuilder.<GardenEntity>create(SpawnGroup.CREATURE, GardenEntity::new).setDimensions(EntityDimensions.fixed(1f, 1.0f)).build()
+	public static final EntityType<GardenEntity> GARDEN = Registry.register(Registries.ENTITY_TYPE,
+		new Identifier(ModID, "garden"),
+		QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, GardenEntity::new).setDimensions(EntityDimensions.fixed(1f, 1.0f)).build()
+	);
+
+	public static final EntityType<PeashooterEntity> PEASHOOTER = Registry.register(Registries.ENTITY_TYPE,
+		new Identifier(MOD_ID, "peashooter"),
+		QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, PeashooterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
+	);
+	public static final EntityType<PuffshroomEntity> PUFFSHROOM = Registry.register(Registries.ENTITY_TYPE,
+		new Identifier(ModID, "puffshroom"),
+		QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, PuffshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<GardenChallengeEntity> GARDENCHALLENGE = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "gardenchallenge"),
-			QuiltEntityTypeBuilder.<GardenChallengeEntity>create(SpawnGroup.CREATURE, GardenChallengeEntity::new).setDimensions(EntityDimensions.fixed(3f, 5f)).build()
+			QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, GardenChallengeEntity::new).setDimensions(EntityDimensions.fixed(3f, 5f)).build()
 	);
-
-    public static final EntityType<PeashooterEntity> PEASHOOTER = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ModID, "peashooter"),
-            QuiltEntityTypeBuilder.<PeashooterEntity>create(SpawnGroup.CREATURE, PeashooterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
-    );
 
 	public static final EntityType<CoffeeBeanEntity> COFFEEBEAN = Registry.register(
 			Registries.ENTITY_TYPE,
@@ -456,11 +389,7 @@ public class PvZEntity implements ModInitializer {
             QuiltEntityTypeBuilder.<RepeaterEntity>create(SpawnGroup.CREATURE, RepeaterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
-    public static final EntityType<PuffshroomEntity> PUFFSHROOM = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier(ModID, "puffshroom"),
-            QuiltEntityTypeBuilder.<PuffshroomEntity>create(SpawnGroup.CREATURE, PuffshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
-    );
+
 
     public static final EntityType<SunshroomEntity> SUNSHROOM = Registry.register(
             Registries.ENTITY_TYPE,
@@ -2889,8 +2818,7 @@ public class PvZEntity implements ModInitializer {
 			QuiltEntityTypeBuilder.<MausoleumGraveEntity>create(SpawnGroup.MONSTER, MausoleumGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
-	@Override
-	public void onInitialize(ModContainer mod) {
+	public static void Entities() {
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.GARDEN, GardenEntity.createGardenAttributes().build());
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.GARDENCHALLENGE, GardenChallengeEntity.createGardenAttributes().build());
 

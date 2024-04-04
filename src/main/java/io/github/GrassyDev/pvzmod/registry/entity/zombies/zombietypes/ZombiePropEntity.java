@@ -85,10 +85,12 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 		else if (vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.isHovering()){
 			this.setHover(Hover.FALSE);
 		}
-		if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this instanceof ZombieShieldEntity) &&
-		vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())){
-			this.setHypno(IsHypno.TRUE);
-			vehicle.damage(PvZDamageTypes.of(getWorld(),PvZDamageTypes.HYPNO_DAMAGE), 0);
+		if (this.getRecentDamageSource() != null){
+			if (this.getRecentDamageSource().isType(PvZDamageTypes.HYPNO_DAMAGE) && !(this instanceof ZombieShieldEntity) &&
+			vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
+				this.setHypno(IsHypno.TRUE);
+				vehicle.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0);
+			}
 		}
 		if (vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isStealth()){
 			this.setStealthTag(Stealth.TRUE);

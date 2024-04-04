@@ -709,15 +709,15 @@ public class GargantuarEntity extends PvZombieEntity implements GeoAnimatable {
 		return 0;
 	}
 
-	@Override
-	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		if (passenger instanceof PlayerEntity){
-			passenger.setPosition(this.getX(), this.getY() + 3.25, this.getZ());
-		}
-		else {
-			super.updatePassengerPosition(passenger);
-		}
-	}
+//	@Override
+//	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
+//		if (passenger instanceof PlayerEntity){
+//			passenger.setPosition(this.getX(), this.getY() + 3.25, this.getZ());
+//		}
+//		else {
+//			super.updatePassengerPosition(passenger);
+//		}
+//	}
 
 	public void createProp(){
 		if (getWorld() instanceof ServerWorld serverWorld) {
