@@ -151,11 +151,11 @@ public class BarkEntity extends PvZProjectileEntity implements GeoEntity {
 					Vec3d vec3d = new Vec3d(-1.25, 0, 0.0).rotateY(-entity.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					entity.setYaw(entity.getYaw() * -1);
 					if (entity.hasVehicle()){
-						entity.getVehicle().damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), Integer.MAX_VALUE);
+						entity.getVehicle().damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), Integer.MAX_VALUE);
 						entity.getVehicle().setYaw(entity.getVehicle().getYaw() * -1);
 						entity.getVehicle().addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 					}
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), Integer.MAX_VALUE);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), Integer.MAX_VALUE);
 					entity.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 				}
 				entityStore.add((LivingEntity) entity);

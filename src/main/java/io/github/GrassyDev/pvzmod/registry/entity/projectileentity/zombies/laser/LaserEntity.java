@@ -191,10 +191,10 @@ public class LaserEntity extends PvZProjectileEntity implements GeoEntity {
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					}
 					if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) &&
 							!(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) &&
@@ -237,10 +237,10 @@ public class LaserEntity extends PvZProjectileEntity implements GeoEntity {
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity3 && !(generalPvZombieEntity3.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-						generalPvZombieEntity3.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						generalPvZombieEntity3.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					}
 					if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) &&
 							!generalPvZombieEntity.canBurn() &&
@@ -258,7 +258,7 @@ public class LaserEntity extends PvZProjectileEntity implements GeoEntity {
 				else if (entity instanceof LilyPadEntity && entity.hasPassengers()) {
 
 				} else if (!getWorld().isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && !(entity instanceof PlantEntity plantEntity1 && plantEntity1.getFireImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity.getVehicle() instanceof PlantEntity.VineEntity)) {
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 					break;

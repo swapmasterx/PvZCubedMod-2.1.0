@@ -49,7 +49,7 @@ public class HeavenlyPeachEntity extends PlantEntity implements GeoEntity {
         super(entityType, world);
 
 		this.setNoGravity(true);
-		this.setImmune(Immune.TRUE);
+		this.setImmune(Immune.FALSE);
     }
 
 	public HeavenlyPeachEntity(World world, double x, double y, double z) {
@@ -240,7 +240,7 @@ public class HeavenlyPeachEntity extends PlantEntity implements GeoEntity {
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
 		if (source.getAttacker() instanceof PlayerEntity || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
-			super.applyDamage(source, amount);
+			super.applyDamage(source, 999);
 		}
 	}
 

@@ -245,10 +245,10 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

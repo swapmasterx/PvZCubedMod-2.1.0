@@ -222,10 +222,10 @@ public class RocketEntity extends PvZProjectileEntity implements GeoEntity {
 									!(livingEntity instanceof ZombieShieldEntity) &&
 									livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 								float damageSplash2 = damageSplash - livingEntity.getHealth();
-								livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash2);
+								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash2);
 							} else {
-								livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
 							}
 							if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 								livingEntity.setOnFireFor(4);
@@ -253,7 +253,7 @@ public class RocketEntity extends PvZProjectileEntity implements GeoEntity {
 			} else {
 				if (!getWorld().isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
 					float damageSplash = PVZCONFIG.nestedProjDMG.rocketDMG() * damageMultiplier;
-					livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+					livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 				}

@@ -448,7 +448,7 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 				else {
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 				}
-				damaged.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
+				damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 				setSparkTarget(damaged.getId());
 				this.getWorld().sendEntityStatus(this, (byte) 121);
 				if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -629,13 +629,13 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 								this.lightningCounter = 3;
 								entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 								generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage2);
-								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
+								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 								this.enemiesHit = 123;
 								entityStore.add((LivingEntity) entity);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 								entityStore.add((LivingEntity) entity);
 							}
 						} else {
@@ -649,11 +649,11 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 								this.lightning((LivingEntity) entity);
 								this.lightningCounter = 3;
 								entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
-								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), 0);
+								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 								this.enemiesHit = 123;
 								entityStore.add((LivingEntity) entity);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 								entityStore.add((LivingEntity) entity);
 							}
 						}
@@ -759,10 +759,10 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 														!(livingEntity instanceof ZombieShieldEntity) &&
 														livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 													float damage4 = damage3 - livingEntity.getHealth();
-													livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
-													generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage4);
+													livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+													generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage4);
 												} else {
-													livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
+													livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
 												}
 											}
 										}
@@ -820,10 +820,10 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					}
 					hit = true;
 					Vec3d vec3d = this.getPos();
@@ -866,10 +866,10 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage2 = damage3 - livingEntity.getHealth();
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
-											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 										} else {
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
 										}
 									}
 								}

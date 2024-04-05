@@ -219,10 +219,10 @@ public class ShootingSnowqueenPeaEntity extends PvZProjectileEntity implements G
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 				}
 				hit = true;
 				if (!(entity instanceof ZombieShieldEntity)) {
@@ -275,10 +275,10 @@ public class ShootingSnowqueenPeaEntity extends PvZProjectileEntity implements G
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage2 = damage3 - livingEntity.getHealth();
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
-											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 										} else {
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage3);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
 										}
 										if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
 											livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));

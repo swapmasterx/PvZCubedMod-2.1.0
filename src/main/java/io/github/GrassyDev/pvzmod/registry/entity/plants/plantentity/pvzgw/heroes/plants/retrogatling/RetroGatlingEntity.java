@@ -87,10 +87,6 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
 
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
 		if (this.isFiring) {
@@ -292,7 +288,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 				++this.beamTicks;
 				++this.animationTicks;
-				if (this.beamTicks >= 0 && this.animationTicks <= -6 && numShots <= 1) {
+				if (this.beamTicks >= 0 && this.animationTicks <= -3 && numShots <= 0) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 						PiercePeaEntity proj = new PiercePeaEntity(PvZEntity.PIERCEPEA, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
@@ -321,7 +317,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 				else if (this.animationTicks >= 0) {
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 					this.beamTicks = -6;
-					this.animationTicks = -16;
+					this.animationTicks = -10;
 					this.numShots = 0;
 				}
 				super.tick();

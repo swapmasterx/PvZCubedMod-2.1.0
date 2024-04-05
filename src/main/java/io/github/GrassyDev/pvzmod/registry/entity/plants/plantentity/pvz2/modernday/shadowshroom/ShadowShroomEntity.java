@@ -200,11 +200,6 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 		return this.factory;
 	}
 
-	@Override
-	public double getTick(Object object) {
-		return 0;
-	}
-
 	private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
         int i = this.getFuseSpeed();
 		if (this.getIsAsleep()){

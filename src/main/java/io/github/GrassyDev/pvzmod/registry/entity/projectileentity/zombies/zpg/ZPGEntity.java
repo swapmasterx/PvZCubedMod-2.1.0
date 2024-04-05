@@ -214,10 +214,10 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 				}
 				hit = true;
 				if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) &&
@@ -284,10 +284,10 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) {
 											float damageSplash2 = damageSplash - livingEntity.getHealth();
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
-											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash2);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
+											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash2);
 										} else {
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
 										}
 										if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 											livingEntity.setOnFireFor(4);
@@ -330,7 +330,7 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 			}
 			if (!getWorld().isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && (plantEntity2.getLowProfile() || PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying"))) && !(entity.getVehicle() instanceof BubblePadEntity)) {
 				entity.playSound(PvZSounds.CHERRYBOMBEXPLOSIONEVENT, 0.2F, 1F);
-				entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+				entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
@@ -350,7 +350,7 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 					if (!getWorld().isClient && (livingEntity instanceof GolemEntity || livingEntity instanceof VillagerEntity || livingEntity instanceof PlayerEntity)) {
 						if (livingEntity != entity) {
 							float damageSplash = PVZCONFIG.nestedProjDMG.zpgDMG() * damageMultiplier;
-							livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+							livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
 						}
 						this.getWorld().sendEntityStatus(this, (byte) 3);
 						this.remove(RemovalReason.DISCARDED);

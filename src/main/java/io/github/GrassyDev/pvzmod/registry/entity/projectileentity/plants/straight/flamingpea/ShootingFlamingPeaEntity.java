@@ -228,10 +228,10 @@ public class ShootingFlamingPeaEntity extends PvZProjectileEntity implements Geo
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 				}
 				hit = true;
 				if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) &&
@@ -262,7 +262,7 @@ public class ShootingFlamingPeaEntity extends PvZProjectileEntity implements Geo
 								}
 
 								livingEntity = (LivingEntity) var10.next();
-							} while (livingEntity == this.getPrimaryPassenger());
+							} while (livingEntity == (LivingEntity) this.getOwner());
 						} while (entity.squaredDistanceTo(livingEntity) > 2.25);
 						if (livingEntity instanceof OilTile oilTile) {
 							oilTile.makeFireTrail(oilTile.getBlockPos());
@@ -298,10 +298,10 @@ public class ShootingFlamingPeaEntity extends PvZProjectileEntity implements Geo
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damageSplash2 = damageSplash - livingEntity.getHealth();
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
-											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash2);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
+											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash2);
 										} else {
-											livingEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damageSplash);
+											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
 										}
 										if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 											livingEntity.setOnFireFor(4);

@@ -181,7 +181,7 @@ public class SeashroomEntity extends PlantEntity implements GeoEntity, RangedAtt
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 1, 0));
 				if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
 					this.dryLand = true;
 					onWater = false;

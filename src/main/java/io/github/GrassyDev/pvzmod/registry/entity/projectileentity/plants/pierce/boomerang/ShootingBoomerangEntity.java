@@ -136,8 +136,8 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 	public boolean right = false;
     public void tick() {
 		if (age <= 1){
-			if (this.getPrimaryPassenger() != null) {
-				this.ownerYaw = this.getPrimaryPassenger().getHeadYaw();
+			if ((LivingEntity) this.getOwner() != null) {
+				this.ownerYaw = this.getOwner().getHeadYaw();
 			}
 			this.playSound(PvZSounds.BOOMERANGAMBIENTEVENT, 0.0125f, 1f);
 		}
@@ -246,10 +246,10 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					}
 					entityStore.remove(entity);
 					entityStoreVehicle.remove(entity);
@@ -281,17 +281,17 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
 					entityStore.add(entity.getVehicle());
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage2);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, this.getPrimaryPassenger()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 					entityStore.add(entity);
 					if (!(entity instanceof ZombieShieldEntity)) {
 						entityStoreVehicle.add(entity.getVehicle());
 					}
 				}
 			}
-			if (this.getReturning() && entity == this.getPrimaryPassenger()){
+			if (this.getReturning() && entity == this.getOwner()){
 				this.remove(RemovalReason.DISCARDED);
 			}
 		}
