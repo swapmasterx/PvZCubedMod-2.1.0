@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.strai
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.torchwood.TorchwoodEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
@@ -251,10 +252,13 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity 
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage*0.5));
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
-				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+				}
+				else {
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage*0.5));
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.soci
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -388,10 +389,12 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
 							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						} else {
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
 						}
 						if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
 							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));

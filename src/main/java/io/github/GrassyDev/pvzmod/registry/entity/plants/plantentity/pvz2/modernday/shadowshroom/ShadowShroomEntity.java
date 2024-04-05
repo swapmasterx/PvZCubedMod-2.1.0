@@ -262,7 +262,7 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 					} while (livingEntity == this);
 				} while (this.squaredDistanceTo(livingEntity) > 4);
 
-				float damage = 0;
+				float damage = 1;
 				ZombiePropEntity zombiePropEntity4 = null;
 				if (livingEntity.hasVehicle()) {
 					for (Entity entity1 : livingEntity.getVehicle().getPassengerList()) {

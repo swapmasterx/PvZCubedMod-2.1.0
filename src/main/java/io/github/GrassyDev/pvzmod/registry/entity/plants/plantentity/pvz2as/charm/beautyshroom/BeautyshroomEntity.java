@@ -247,8 +247,8 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 						(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+					livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), damage);
+					generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), damage2);
 					if (random <= 0.166) {
 						if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity1 && !generalPvZombieEntity1.isCovered()) {
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0);

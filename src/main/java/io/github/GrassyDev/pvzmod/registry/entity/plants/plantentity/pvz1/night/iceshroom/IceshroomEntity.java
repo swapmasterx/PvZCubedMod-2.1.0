@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
@@ -252,8 +253,8 @@ public class IceshroomEntity extends PlantEntity implements GeoEntity {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - livingEntity.getHealth();
-					livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+					livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
 					checkList.add(livingEntity);
 					checkList.add(generalPvZombieEntity);
 				} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {

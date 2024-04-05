@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -180,17 +181,17 @@ public class SquashEntity extends PlantEntity implements GeoEntity {
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 							float damage2 = damage - livingEntity.getHealth();
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+							generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
 							checkList.add(livingEntity);
 							checkList.add(generalPvZombieEntity);
 						} else {
 							if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity) {
-								livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+								livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 								checkList.add(livingEntity);
 								checkList.add(generalPvZombieEntity);
 							} else {
-								livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+								livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 								checkList.add(livingEntity);
 							}
 						}

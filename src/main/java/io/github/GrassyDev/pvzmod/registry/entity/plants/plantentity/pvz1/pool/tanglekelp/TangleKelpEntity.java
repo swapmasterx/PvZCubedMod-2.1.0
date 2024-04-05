@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
@@ -295,7 +296,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoEntity {
 				}
 
 				float damage = 9999f;
-				boolean bl2 = livingEntity.damage(getDamageSources().mobAttack(this), damage);
+				boolean bl2 = livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				if (bl2) {
 					this.applyDamageEffects(this, livingEntity);
 				}

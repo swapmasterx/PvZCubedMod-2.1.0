@@ -735,11 +735,11 @@ public class PvZEntity{
 			QuiltEntityTypeBuilder.<GloomVineEntity>create(SpawnGroup.CREATURE, GloomVineEntity::new).setDimensions(EntityDimensions.fixed(1f, 0.5f)).build()
 	);
 
-//	public static final EntityType<HeavenlyPeachEntity> HEAVENLYPEACH = Registry.register(
-//			Registries.ENTITY_TYPE,
-//			new Identifier(ModID, "heavenlypeach"),
-//			QuiltEntityTypeBuilder.<HeavenlyPeachEntity>create(SpawnGroup.CREATURE, HeavenlyPeachEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.4f)).build()
-//	);
+	public static final EntityType<HeavenlyPeachEntity> HEAVENLYPEACH = Registry.register(
+			Registries.ENTITY_TYPE,
+			new Identifier(ModID, "heavenlypeach"),
+			QuiltEntityTypeBuilder.<HeavenlyPeachEntity>create(SpawnGroup.CREATURE, HeavenlyPeachEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.4f)).build()
+	);
 
 	public static final EntityType<MagicshroomEntity> MAGICSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,

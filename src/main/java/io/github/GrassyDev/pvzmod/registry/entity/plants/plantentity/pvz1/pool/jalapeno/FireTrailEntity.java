@@ -122,10 +122,10 @@ public class FireTrailEntity extends PathAwareEntity implements GeoEntity {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
 					} else {
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					if (!(livingEntity instanceof ZombieShieldEntity)) {
 						livingEntity.removeStatusEffect(PvZCubed.FROZEN);

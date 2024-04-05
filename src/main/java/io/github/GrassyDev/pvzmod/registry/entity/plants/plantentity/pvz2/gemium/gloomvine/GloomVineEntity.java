@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemiu
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowFullTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowTile;
@@ -195,10 +196,12 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+							generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
 						} else {
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
 						}
 					}
 				}

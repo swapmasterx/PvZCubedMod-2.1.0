@@ -136,7 +136,7 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 	public boolean right = false;
     public void tick() {
 		if (age <= 1){
-			if ((LivingEntity) this.getOwner() != null) {
+			if (this.getOwner() != null) {
 				this.ownerYaw = this.getOwner().getHeadYaw();
 			}
 			this.playSound(PvZSounds.BOOMERANGAMBIENTEVENT, 0.0125f, 1f);
