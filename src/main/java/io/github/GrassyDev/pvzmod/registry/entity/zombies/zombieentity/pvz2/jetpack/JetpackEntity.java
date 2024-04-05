@@ -238,9 +238,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (source.isTypeIn(DamageTypeTags.IS_FIRE)){
-			super.applyDamage(source, amount);
-		}
+		super.applyDamage(source, amount);
 	}
 
 	public void tick() {
@@ -248,7 +246,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 			this.kill();
 		}
 		LivingEntity target = this.getTarget();
-		this.setNoGravity(true);
+		this.setNoGravity(false);
 		if (target instanceof PlayerEntity player && player.getAbilities().creativeMode){
 			this.setTarget(null);
 		}
@@ -260,7 +258,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 1.8);
 				}
 				else {
-					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 1.6);
+					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 1.5);
 				}
 			}
 			this.setFlying(Flying.TRUE);

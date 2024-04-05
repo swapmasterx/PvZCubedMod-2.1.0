@@ -150,7 +150,7 @@ public class MetalHelmetProjEntity extends PvZProjectileEntity implements GeoEnt
 	}
 
     public MetalHelmetProjEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
-        super(entityType, world);
+		super(entityType, world);
 		this.setNoGravity(true);
 		this.canHitFlying = false;
     }

@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.hero
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -183,7 +184,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoEntity, Range
 				((LivingEntity) damaged).addStatusEffect(new StatusEffectInstance(STUN, 100 , 1));
 			}
 		}
-		boolean bl = damaged.damage(getDamageSources().mobAttack(this), damage);
+		boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 		if (bl) {
 			this.applyDamageEffects(this, target);
 		}
@@ -244,7 +245,8 @@ public class VampireFlowerEntity extends PlantEntity implements GeoEntity, Range
 				this.getWorld().sendEntityStatus(this, (byte) 107);
 				holding = true;
 				if (--damageTicks <= 0) {
-					heldEntity.damage(getDamageSources().mobAttack(this), 12);
+					heldEntity.damage(getDamageSources().mobAttack(this), 0);
+					heldEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 12);
 					heldEntity.addStatusEffect(new StatusEffectInstance(STUN, 100 , 1));
 					heldEntity.dropItem(ModItems.SMALLSUN, 0);
 					damageTicks = 20;

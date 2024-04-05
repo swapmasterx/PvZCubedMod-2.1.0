@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventu
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
@@ -269,7 +270,8 @@ public class BeetEntity extends PlantEntity implements GeoEntity, RangedAttackMo
 		if (passenger != null){
 			damaged = passenger;
 		}
-		boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
+		boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
+
 		if (bl) {
 			this.applyDamageEffects(this, target);
 		}

@@ -1859,7 +1859,7 @@ public class PvZEntity{
 
 	public static final EntityType<MetalHelmetProjEntity> METALHELMETPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "metalhelmetproj"),
+			new Identifier(MOD_ID, "armor"),
 			QuiltEntityTypeBuilder.<MetalHelmetProjEntity>create(SpawnGroup.MONSTER, MetalHelmetProjEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 

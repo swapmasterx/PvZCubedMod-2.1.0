@@ -987,7 +987,7 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 							if ("rubber".equals(zombieMaterial)){
 								damage = 0;
 							}
-							damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), damage);
+							damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 							damaged.damage(getDamageSources().mobProjectile(this.plantEntity, this.plantEntity), 0);
 							this.plantEntity.lightningCounter = 3;
 							if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -155,7 +156,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoEntity, Ranged
 			damaged = passenger;
 		}
 		if (i <= 0) {
-			boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
+			boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
 			if (bl) {
 				this.applyDamageEffects(this, target);
 			}

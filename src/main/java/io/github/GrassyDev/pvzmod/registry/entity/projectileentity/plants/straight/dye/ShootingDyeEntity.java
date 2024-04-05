@@ -634,7 +634,8 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 								this.enemiesHit = 123;
 								entityStore.add((LivingEntity) entity);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+								entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage*0.5));
 								generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 								entityStore.add((LivingEntity) entity);
 							}
@@ -653,7 +654,8 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 								this.enemiesHit = 123;
 								entityStore.add((LivingEntity) entity);
 							} else {
-								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+								entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage*0.5));
 								entityStore.add((LivingEntity) entity);
 							}
 						}
@@ -759,10 +761,12 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 														!(livingEntity instanceof ZombieShieldEntity) &&
 														livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 													float damage4 = damage3 - livingEntity.getHealth();
-													livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+													entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage3*0.5));
+													entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage3*0.5));
 													generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage4);
 												} else {
-													livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+													entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage3*0.5));
+													entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage3*0.5));
 												}
 											}
 										}
@@ -820,10 +824,12 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage*0.5));
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage*0.5));
 					}
 					hit = true;
 					Vec3d vec3d = this.getPos();
@@ -866,10 +872,12 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage2 = damage3 - livingEntity.getHealth();
-											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage3*0.5));
+											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage3*0.5));
 											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 										} else {
-											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage3*0.5));
+											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damage3*0.5));
 										}
 									}
 								}

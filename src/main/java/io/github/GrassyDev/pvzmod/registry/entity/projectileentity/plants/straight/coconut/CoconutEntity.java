@@ -1,5 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.coconut;
 
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
@@ -154,10 +155,12 @@ public class CoconutEntity extends PvZProjectileEntity implements GeoEntity {
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 				}
 				hit = true;
 				this.getWorld().sendEntityStatus(this, (byte) 3);
@@ -206,10 +209,12 @@ public class CoconutEntity extends PvZProjectileEntity implements GeoEntity {
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage2 = damage3 - livingEntity.getHealth();
-											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage3);
+											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 										} else {
-											livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage3);
+											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage3);
+											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 										}
 									}
 								}

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -145,7 +146,7 @@ public class SmackadamiaEntity extends PlantEntity implements GeoEntity {
 			if (i <= 0) {
 				this.attackTicksLeft = 20;
 				this.getWorld().sendEntityStatus(this, (byte) 106);
-				boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
+				boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
 				if (bl) {
 					this.applyDamageEffects(this, target);
 				}

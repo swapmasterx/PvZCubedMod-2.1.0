@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.rosebuds;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -116,10 +117,12 @@ public class RoseBudTile extends TileEntity {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 					}
 				}
 			}
@@ -141,10 +144,5 @@ public class RoseBudTile extends TileEntity {
 			this.damageEntity();
 			tickDamage = 15;
 		}
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return 0;
 	}
 }

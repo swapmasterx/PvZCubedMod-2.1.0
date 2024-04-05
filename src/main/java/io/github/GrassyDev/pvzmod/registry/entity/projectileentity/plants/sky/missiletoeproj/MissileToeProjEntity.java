@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.sky.m
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.bananatile.BananaTile;
@@ -243,10 +244,12 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 											!(livingEntity instanceof ZombieShieldEntity) &&
 											livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 										float damage2 = damage - livingEntity.getHealth();
-										livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+										entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+										entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 										generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 									} else {
-										livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+										entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+										entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 									}
 									if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
 										livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));

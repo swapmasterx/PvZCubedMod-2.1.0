@@ -156,7 +156,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoEntity, Ran
 
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
-		if (target.squaredDistanceTo(this) <= 25) {
+		if (target.squaredDistanceTo(this) <= 20) {
 			this.isBurst = true;
 			this.smack(target);
 		}
@@ -230,7 +230,7 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoEntity, Ran
 		this.targetZombies(this.getPos(), 2, false, false, !checkForZombiesMelee().isEmpty());
 		if (--amphibiousRaycastDelay <= 0 && age > 5) {
 			amphibiousRaycastDelay = 20;
-			HitResult hitResult = amphibiousRaycast(0.25);
+			HitResult hitResult = amphibiousRaycast(1);
 			if (hitResult.getType() == HitResult.Type.MISS && !this.hasVehicle()) {
 				kill();
 			}

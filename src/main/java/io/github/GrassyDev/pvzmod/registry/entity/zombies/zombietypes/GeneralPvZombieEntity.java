@@ -903,7 +903,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 	}
 
 	private float getMovementSpeed(float slipperiness) {
-		return this.isOnGround() ? this.getMovementSpeed() * (0.21600002F / (slipperiness * slipperiness * slipperiness)) : this.flyDistance;
+		return this.isOnGround() ? this.getMovementSpeed() * (0.21600002F / (slipperiness * slipperiness * slipperiness)) : this.getAirSpeed();
 	}
 
 	/** /~*~//~*DAMAGE HANDLER*~//~*~/ **/

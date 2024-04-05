@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.strai
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
@@ -175,7 +176,8 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 				if (entity instanceof ZombiePropEntity && !(entity instanceof ZombieShieldEntity)) {
 					entity.kill();
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 				}
 				if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM)) {
 					((LivingEntity) entity).removeStatusEffect(PvZCubed.WARM);
