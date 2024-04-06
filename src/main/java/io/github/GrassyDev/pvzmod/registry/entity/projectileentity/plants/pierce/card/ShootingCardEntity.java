@@ -286,12 +286,12 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno()) && !generalPvZombieEntity.isFlying()) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
-					} else {
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					} else {
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					entityStore.remove(entity);
 					entityStoreVehicle.remove(entity);
@@ -338,12 +338,12 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
 					entityStore.add(entity.getVehicle());
-					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					entityStore.add(entity);
 					if (!(entity instanceof ZombieShieldEntity)) {
 						entityStoreVehicle.add(entity.getVehicle());

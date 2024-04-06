@@ -123,7 +123,7 @@ public class TangleKelpSeeds extends SeedItem implements FabricItem {
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 								aquaticEntity.originalVec3d = aquaticEntity.getPos();
 								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 1, 0));
-								if (fluidState.getFluid() == Fluids.WATER) {
+//								if (fluidState.getFluid() == Fluids.WATER) {
 									((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 									RandomGenerator randomGenerator = aquaticEntity.getRandom();
 									BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -146,10 +146,10 @@ public class TangleKelpSeeds extends SeedItem implements FabricItem {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
 								}
-							}
-							else {
-								return TypedActionResult.pass(itemStack);
-							}
+//							}
+//							else {
+//								return TypedActionResult.pass(itemStack);
+//							}
 						}
 
 						user.incrementStat(Stats.USED.getOrCreateStat(this));

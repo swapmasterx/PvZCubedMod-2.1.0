@@ -82,7 +82,7 @@ public class EndurianEntity extends PlantEntity implements GeoEntity {
 		MEDIUM(0.5F),
 		HIGH(0.25F);
 
-		private static final List<EndurianEntity.Crack> VALUES = (List) Stream.of(values()).sorted(Comparator.comparingDouble((crack) -> {
+		private static final List<Crack> VALUES = Stream.of(values()).sorted(Comparator.comparingDouble((crack) -> {
 			return (double)crack.maxHealthFraction;
 		})).collect(ImmutableList.toImmutableList());
 		private final float maxHealthFraction;
@@ -92,7 +92,7 @@ public class EndurianEntity extends PlantEntity implements GeoEntity {
 		}
 
 		public static EndurianEntity.Crack from(float healthFraction) {
-			Iterator var1 = VALUES.iterator();
+			Iterator<Crack> var1 = VALUES.iterator();
 
 			EndurianEntity.Crack crack;
 			do {

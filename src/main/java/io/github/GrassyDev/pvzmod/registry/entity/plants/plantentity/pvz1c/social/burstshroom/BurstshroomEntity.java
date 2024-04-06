@@ -389,12 +389,12 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						} else {
-							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
 						if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
 							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));

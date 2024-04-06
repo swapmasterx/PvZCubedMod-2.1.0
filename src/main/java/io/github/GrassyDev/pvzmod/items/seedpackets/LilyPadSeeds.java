@@ -120,6 +120,7 @@ public class LilyPadSeeds extends SeedItem implements FabricItem {
 								float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
 								((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 								RandomGenerator randomGenerator = aquaticEntity.getRandom();
 								BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -131,7 +132,6 @@ public class LilyPadSeeds extends SeedItem implements FabricItem {
 								}
 								aquaticEntity.setPuffshroomPermanency(LilyPadEntity.PuffPermanency.PERMANENT);
 								world.emitGameEvent(user, GameEvent.ENTITY_PLACE, hitResult.getPos());
-								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
 								if (fluidState.getFluid() == Fluids.WATER) {
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 0.25f, 0.8F);
 								} else {
@@ -183,7 +183,7 @@ public class LilyPadSeeds extends SeedItem implements FabricItem {
 				plantEntity.setPuffshroomPermanency(LilyPadEntity.PuffPermanency.PERMANENT);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				world.spawnEntity(plantEntity);
-				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
+				world.playSound( null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 				if (!user.getAbilities().creativeMode) {
 					if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
@@ -194,10 +194,12 @@ public class LilyPadSeeds extends SeedItem implements FabricItem {
 					}
 				}
 				return ActionResult.success(world.isClient);
-			} else {
+			}
+			else {
 				return ActionResult.FAIL;
 			}
-		} else {
+		}
+		else {
 			return ActionResult.PASS;
 		}
 	}

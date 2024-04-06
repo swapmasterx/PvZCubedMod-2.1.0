@@ -202,14 +202,14 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 		}
 		if (--amphibiousRaycastDelay <= 0 && age > 5) {
 			amphibiousRaycastDelay = 20;
-			HitResult hitResult = amphibiousRaycast(0.25);
+			HitResult hitResult = amphibiousRaycast(1);
 			if (hitResult.getType() == HitResult.Type.MISS && !this.hasVehicle()) {
 				kill();
 			}
 			if (this.age > 1) {
 				BlockPos blockPos2 = this.getBlockPos();
 				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, 0, 0));
+				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -1, 0));
 				onWater = fluidState.getFluid() == Fluids.WATER;
 				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){

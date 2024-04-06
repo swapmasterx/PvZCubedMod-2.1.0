@@ -2,6 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.
 
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.block.BlockState;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -14,8 +17,10 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -38,10 +43,10 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 	private String controllerName = "nutcontroller";
 
 	protected int turningTicks = 25;
-
+	private int amphibiousRaycastDelay;
     public CoffeeBeanEntity(EntityType<? extends CoffeeBeanEntity> entityType, World world) {
         super(entityType, world);
-
+		amphibiousRaycastDelay = 1;
 		this.setNoGravity(true);
 		this.setImmune(Immune.TRUE);
     }
@@ -81,7 +86,8 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 		BlockPos blockPos = this.getBlockPos();
 		if (this.hasVehicle()) {
 			super.setPosition(x, y, z);
-		} else {
+		}
+		else {
 			super.setPosition((double)MathHelper.floor(x) + 0.5, (double)MathHelper.floor(y + 0.5), (double)MathHelper.floor(z) + 0.5);
 		}
 	}
@@ -92,6 +98,7 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 
 	public void tick() {
 		super.tick();
+		BlockPos blockPos = this.getBlockPos();
 		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox());
 		if (--turningTicks <=0 ){
 			for (LivingEntity livingEntity : list){
@@ -99,9 +106,34 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 					plantEntity.setCoffee(Coffee.TRUE);
 				}
 			}
-			this.discard();
+			if (--amphibiousRaycastDelay <= 0 && age > 5) {
+				amphibiousRaycastDelay = 20;
+				HitResult hitResult = amphibiousRaycast(1);
+				if (hitResult.getType() == HitResult.Type.MISS && !this.hasVehicle()) {
+					kill();
+				}
+				if (this.age > 1) {
+					BlockPos blockPos2 = this.getBlockPos();
+					BlockState blockState = this.getLandingBlockState();
+					FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -1, 0));
+					if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
+						this.dryLand = true;
+						onWater = false;
+					} else {
+						this.dryLand = false;
+						onWater = true;
+					}
+					if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
+						if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+							this.dropItem(ModItems.COFFEEBEAN_SEED_PACKET);
+						}
+						this.discard();
+					}
+				}
+			}
 		}
 	}
+
 
 
 	public void tickMovement() {

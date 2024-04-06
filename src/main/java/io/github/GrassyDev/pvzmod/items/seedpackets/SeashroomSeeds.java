@@ -119,7 +119,7 @@ public class SeashroomSeeds extends SeedItem implements FabricItem {
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
-								if (fluidState.getFluid() == Fluids.WATER) {
+//								if (fluidState.getFluid() == Fluids.WATER) {
 									((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 									RandomGenerator randomGenerator = aquaticEntity.getRandom();
 									BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -131,9 +131,9 @@ public class SeashroomSeeds extends SeedItem implements FabricItem {
 									}
 									world.emitGameEvent(user, GameEvent.ENTITY_PLACE, hitResult.getPos());
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 0.25f, 0.8F);
-								} else {
-									return TypedActionResult.fail(itemStack);
-								}
+//								} else {
+//									return TypedActionResult.fail(itemStack);
+//								}
 								if (!user.getAbilities().creativeMode) {
 									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);

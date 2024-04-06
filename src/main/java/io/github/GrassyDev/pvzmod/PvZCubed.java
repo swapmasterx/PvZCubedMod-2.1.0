@@ -106,6 +106,8 @@ public class PvZCubed implements ModInitializer {
 
 
 	public static final RegistryKey<ItemGroup> PVZPLANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "plants"));
+	public static final RegistryKey<ItemGroup> PVZPACKETFABS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "packet_fab"));
+	public static final RegistryKey<ItemGroup> PVZPLANTSPROJ = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "plants_proj"));
 
 	public static final RegistryKey<ItemGroup> PVZZOMBIES = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "zombies"));
 
@@ -130,24 +132,8 @@ public class PvZCubed implements ModInitializer {
 
 		PvZSounds.registerSounds();
 		Registry.register(Registries.ITEM_GROUP, PVZPLANTS, FabricItemGroup.builder()
-			.icon(() -> new ItemStack(ModItems.SUN))
+			.icon(() -> new ItemStack(ModItems.PEASHOOTER_SEED_PACKET))
 			.entries((context, entries) -> {
-				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
-				entries.addStack(new ItemStack(ModItems.GARDENINGGLOVE));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AIR));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AQUATIC));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_COLD));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_ELEC));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FIRE));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FLOWER));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_MUSHROOM));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_SHADOW));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_TOUGH));
-				entries.addStack(new ItemStack(ModItems.SMALLSUN));
-				entries.addStack(new ItemStack(ModItems.SUN));
-				entries.addStack(new ItemStack(ModItems.LARGESUN));
-				entries.addStack(new ItemStack(ModItems.DAVES_SHOVEL));
 				entries.addStack(new ItemStack(ModItems.PEASHOOTER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUNFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHERRYBOMB_SEED_PACKET));
@@ -253,6 +239,36 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.DOOMROSE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DOGWOOD_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GAMBLESHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
+			})
+			.name(Text.translatable("itemGroup.pvzmod.plants"))
+			.build()); // build() no longer registers by itself
+
+		Registry.register(Registries.ITEM_GROUP, PVZPACKETFABS, FabricItemGroup.builder()
+			.icon(() -> new ItemStack(ModItems.GARDENINGGLOVE))
+			.entries((context, entries) -> {
+				entries.addStack(new ItemStack(ModItems.DAVES_SHOVEL));
+				entries.addStack(new ItemStack(ModItems.GARDENINGGLOVE));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AIR));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AQUATIC));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_COLD));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_ELEC));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FIRE));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FLOWER));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_MUSHROOM));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_SHADOW));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_TOUGH));
+				entries.addStack(new ItemStack(ModItems.SMALLSUN));
+				entries.addStack(new ItemStack(ModItems.SUN));
+				entries.addStack(new ItemStack(ModItems.LARGESUN));
+			})
+			.name(Text.translatable("itemGroup.pvzmod.seedfab"))
+			.build()); // build() no longer registers by itself
+
+		Registry.register(Registries.ITEM_GROUP, PVZPLANTSPROJ, FabricItemGroup.builder()
+			.icon(() -> new ItemStack(ModItems.PEA))
+			.entries((context, entries) -> {
 				entries.addStack(new ItemStack(ModItems.PEA));
 				entries.addStack(new ItemStack(ModItems.SNOWPEAPROJ));
 				entries.addStack(new ItemStack(ModItems.SPORE));
@@ -298,7 +314,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.BARK));
 				entries.addStack(new ItemStack(ModItems.GOLDENCARDPROJ));
 			})
-			.name(Text.translatable("itemGroup.pvzmod.plants"))
+			.name(Text.translatable("itemGroup.pvzmod.plants.proj"))
 			.build()); // build() no longer registers by itself
 		Registry.register(Registries.ITEM_GROUP, PVZZOMBIES, FabricItemGroup.builder()
 			.icon(() -> new ItemStack(ModItems.BRAIN))
@@ -476,7 +492,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.DARK_MAUSOLEUM_TILE));
 				entries.addStack(new ItemStack(ModItems.LEGENDARY_TILE));
 			})
-			.name(Text.translatable("itemGroup.pvzmod.graves"))
+			.name(Text.translatable("itemGroup.pvzmod.blocks"))
 			.build());
 
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "ice"), ICE);

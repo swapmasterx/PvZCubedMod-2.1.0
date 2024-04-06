@@ -196,12 +196,10 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 		this.targetSelector.add(4, new TargetGoal<>(this, MerchantEntity.class, false, true));
 		this.targetSelector.add(2, new TargetGoal<>(this, IronGolemEntity.class, false, true));
 
-		////////// Must-Protect Plants ///////
+		////////// Jetpacker's ignore plants and go straight for objective or players ///////
+		this.targetSelector.add(10, new TargetGoal<>(this, PlayerEntity.class, false, false));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenChallengeEntity.class, false, true));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, SunflowerEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, TwinSunflowerEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, SunshroomEntity.class, false, true));
     }
 
 	protected void initHypnoGoals(){
@@ -246,7 +244,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 			this.kill();
 		}
 		LivingEntity target = this.getTarget();
-		this.setNoGravity(false);
+		this.setNoGravity(true);
 		if (target instanceof PlayerEntity player && player.getAbilities().creativeMode){
 			this.setTarget(null);
 		}
@@ -255,7 +253,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 			if (target.squaredDistanceTo(this) > 2.25) {
 				if (this.getVariant().equals(JetpackVariants.BLASTRONAUT) ||
 						this.getVariant().equals(JetpackVariants.BLASTRONAUTHYPNO)){
-					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 1.8);
+					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 2.0);
 				}
 				else {
 					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 1.5);
@@ -347,7 +345,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createJetpackAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.15D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.jetpackH());
@@ -356,7 +354,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createBlastronautAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.blastronautH());

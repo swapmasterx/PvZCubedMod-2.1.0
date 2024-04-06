@@ -121,8 +121,8 @@ public class AcidshroomSeeds extends SeedItem implements FabricItem {
 								float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, (int) -0.25, 0));
-								if (fluidState.getFluid() == Fluids.WATER) {
+								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
+//								if (fluidState.getFluid() == Fluids.WATER) {
 									((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 									RandomGenerator randomGenerator = aquaticEntity.getRandom();
 									BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -134,9 +134,10 @@ public class AcidshroomSeeds extends SeedItem implements FabricItem {
 									}
 									world.emitGameEvent(user, GameEvent.ENTITY_PLACE, hitResult.getPos());
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 0.25f, 0.8F);
-								} else {
-									return TypedActionResult.fail(itemStack);
-								}
+//								}
+//								else {
+//									return TypedActionResult.fail(itemStack);
+//								}
 								if (!user.getAbilities().creativeMode) {
 									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
@@ -170,11 +171,11 @@ public class AcidshroomSeeds extends SeedItem implements FabricItem {
 		PlantEntity plantEntity = null;
 		List<PlantEntity> list = null;
 		if (world instanceof ServerWorld serverworld) {
-			plantEntity = PvZEntity.ACIDSHROOM.create(serverworld);
-//			serverWorld, stack.getNbt(), (Text) null, user, blockPos, SpawnReason.SPAWN_EGG, true, true
+			plantEntity = PvZEntity.ACIDSHROOM.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
 			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.ACIDSHROOM.getDimensions().getBoxAt(plantEntity.getPos()));
 		}
 		if (world instanceof ServerWorld serverWorld && (entity instanceof BubblePadEntity || entity instanceof WaterTile))  {
+
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

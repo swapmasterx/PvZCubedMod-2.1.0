@@ -210,12 +210,12 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 1);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.target), 1);
 					} else {
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 1);
 					}
 					if (!((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
 						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
@@ -265,12 +265,12 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage2 = damage3 - livingEntity.getHealth();
+											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
-											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 1);
 											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 1);
 										} else {
+											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
-											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 1);
 										}
 										if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
 											livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
