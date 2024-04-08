@@ -273,7 +273,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SUNFLOWER_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -335,10 +335,10 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.TWINSUNFLOWER_SEED_PACKET, TwinSunflowerSeeds.cooldown);
 				}
 			}

@@ -1022,7 +1022,7 @@ public abstract class PlantEntity extends GolemEntity {
 
 	@Override
 	protected void dropLoot(DamageSource source, boolean causedByPlayer) {
-		if (this.getWorld().getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_DROP)){
+		if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_DROP)){
 			super.dropLoot(source, causedByPlayer);
 		}
 	}
@@ -1464,7 +1464,7 @@ public abstract class PlantEntity extends GolemEntity {
 		}
 
 		@Override
-		public double getMountedHeightOffset() {
+		protected float method_52537(Entity entity) {
 			return 0;
 		}
 

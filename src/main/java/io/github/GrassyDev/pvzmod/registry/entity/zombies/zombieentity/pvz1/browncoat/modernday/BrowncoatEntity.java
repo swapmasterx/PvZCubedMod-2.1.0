@@ -867,8 +867,8 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0;
+	protected float method_52537(Entity entity) {
+		return 0.0F;
 	}
 
 	public boolean canWalkOnFluid(FluidState state) {

@@ -559,7 +559,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			randomChallenge = Math.random();
 		}
 		if (randomChallenge <= 0.33333) {
-			if (this.getWorld().getGameRules().getBoolean(PvZCubed.SHOULD_ZOMBIE_DROP)) {
+			if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.SHOULD_ZOMBIE_DROP)) {
 				if (!(this instanceof ZombiePropEntity)) {
 					double random = Math.random();
 					float multiplier = ZOMBIE_STRENGTH.get(this.getType()).orElse(1);
@@ -569,13 +569,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 					double multiplierFinal = Math.pow(multiplier / 5, 2);
 					Item item = ModItems.SUN;
 					double random2 = Math.random();
-					if (random2 <= 0.01){
-						item = ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.LEGENDARY_SEED_LIST.size()));
-					}
-					else if (random2 <= 0.1){
-						item = ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.PREMIUM_SEED_LIST.size()));
-					}
-					else if (random2 <= 0.43){
+					if (random2 <= 0.43){
 						item = ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.SEED_PACKET_LIST.size()));
 					}
 					else {
@@ -601,18 +595,24 @@ public class GeneralPvZombieEntity extends HostileEntity {
 							item = ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.SEED_PACKET_LIST.size()));
 						}
 					}
-					if (random <= 0.075 * multiplierFinal) {
-						dropItem(item);
-						playSound(LOOTGIFTDEVENT);
-					} else if (random <= 0.15 * multiplierFinal) {
-						dropItem(Items.DIAMOND);
-						playSound(LOOTDIAMONDEVENT);
-					} else if (random <= 0.30 * multiplierFinal) {
-						dropItem(Items.GOLD_NUGGET);
-						playSound(LOOTNUGGETEVENT);
-					} else if (random <= 0.70 * multiplierFinal) {
-						dropItem(Items.IRON_NUGGET);
-						playSound(LOOTNUGGETEVENT);
+
+					if (random <= 0.7 * multiplierFinal) {
+						dropItem(Items.ROTTEN_FLESH);
+					}
+					if (random <= 1 * multiplierFinal) {
+						if (random <= 0.05 * multiplierFinal) {
+							dropItem(item);
+							playSound(LOOTGIFTDEVENT);
+						}
+						else if (random <= 0.15 * multiplierFinal) {
+							dropItem(Items.GOLD_NUGGET);
+							playSound(LOOTNUGGETEVENT);
+						}
+						else if (random <= 0.4 * multiplierFinal) {
+							dropItem(Items.IRON_NUGGET);
+							playSound(LOOTNUGGETEVENT);
+						}
+						dropItem(Items.ROTTEN_FLESH);
 					}
 					double random3 = Math.random();
 					if (random3 <= 0.2 && this.isChallengeZombie()) {
@@ -621,13 +621,11 @@ public class GeneralPvZombieEntity extends HostileEntity {
 					}
 					if (source.getSource() instanceof ShootingCardEntity shootingCardEntity && shootingCardEntity.getGolden()) {
 						double random4 = Math.random();
-						if (random4 <= 0.1) {
-							this.playSound(PvZSounds.LOOTDIAMONDEVENT, 1f, 1);
-							this.dropItem(Items.DIAMOND);
-						} else if (random4 <= 0.4) {
+						if (random4 <= 0.4) {
 							this.playSound(PvZSounds.LOOTNUGGETEVENT, 0.5f, 1);
 							this.dropItem(Items.GOLD_NUGGET);
-						} else {
+						}
+						else {
 							this.playSound(PvZSounds.LOOTNUGGETEVENT, 0.3f, 1);
 							this.dropItem(Items.IRON_NUGGET);
 						}
@@ -653,7 +651,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 
 	@Override
 	protected void dropLoot(DamageSource source, boolean causedByPlayer) {
-		if (this.getWorld().getGameRules().getBoolean(PvZCubed.SHOULD_ZOMBIE_DROP)){
+		if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.SHOULD_ZOMBIE_DROP)){
 			super.dropLoot(source, causedByPlayer);
 		}
 	}

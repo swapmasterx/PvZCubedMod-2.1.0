@@ -249,7 +249,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoEntity {
 					pos.getY() > 50 &&
 					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
-					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
+					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
@@ -257,7 +257,7 @@ public class EgyptGraveEntity extends GraveEntity implements GeoEntity {
 					world.toServerWorld().getTime() > 48000 &&
 					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
-					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
+					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 	}
 

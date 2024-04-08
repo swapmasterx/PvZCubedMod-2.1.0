@@ -77,7 +77,7 @@ public class ShootingPowerSpikeEntity extends PvZProjectileEntity implements Geo
 
     public void tick() {
 		super.tick();
-		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {

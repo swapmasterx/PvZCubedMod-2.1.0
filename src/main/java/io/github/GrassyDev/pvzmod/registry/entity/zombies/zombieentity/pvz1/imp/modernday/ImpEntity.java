@@ -636,8 +636,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 1;
+	protected float method_52537(Entity entity) {
+		return 1.00F;
 	}
 
 	public boolean canWalkOnFluid(FluidState state) {

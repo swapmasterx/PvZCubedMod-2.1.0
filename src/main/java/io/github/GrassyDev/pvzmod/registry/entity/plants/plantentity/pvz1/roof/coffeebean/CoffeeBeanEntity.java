@@ -124,7 +124,7 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 						onWater = true;
 					}
 					if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-						if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+						if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 							this.dropItem(ModItems.COFFEEBEAN_SEED_PACKET);
 						}
 						this.discard();

@@ -30,7 +30,7 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 
 	public ZombiePropEntity(EntityType<? extends HostileEntity> entityType, World world) {
 		super(entityType, world);
-		this.noClip = true;
+		this.noClip = false;
 	}
 
 	public EntityGroup getGroup() {
@@ -68,10 +68,10 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 				this.getType().equals(PvZEntity.SERGEANTSHIELDGEAR)){
 			isHeavy = true;
 		}
-		if (this.getVehicle() != null){
-			this.setYaw(this.getVehicle().getYaw());
-			this.setHeadYaw(this.getVehicle().getHeadYaw());
-		}
+//		if (this.getVehicle() != null){
+//			this.setYaw(this.getVehicle().getYaw());
+//			this.setHeadYaw(this.getVehicle().getHeadYaw());
+//		}
 		LivingEntity vehicle = (LivingEntity) this.getVehicle();
 		if (vehicle instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying()){
 			this.setFlying(Flying.TRUE);

@@ -75,7 +75,7 @@ public class BoneProjEntity extends PvZProjectileEntity implements GeoEntity {
     public BoneProjEntity(World world, double x, double y, double z, float yaw, float pitch, int interpolation, boolean interpolate, int id, UUID uuid) {
         super(PvZEntity.BASKETBALLPROJ, world);
         updatePosition(x, y, z);
-        updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation, interpolate);
+        updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation);
 		setId(id);
         setUuid(uuid);
     }
@@ -83,7 +83,7 @@ public class BoneProjEntity extends PvZProjectileEntity implements GeoEntity {
 
     public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();

@@ -5,6 +5,7 @@ import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -77,11 +78,6 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 		setInvisibleSnorkel(false);
 
         this.experiencePoints = 6;
-	}
-
-	@Override
-	public boolean canBreatheInWater() {
-		return true;
 	}
 
 	protected void initDataTracker() {
@@ -342,9 +338,9 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0;
-	}
+	protected float method_52537(Entity entity) {
+        return 0.0F;
+    }
 
 	public boolean canWalkOnFluid(FluidState state) {
 		return state.isIn(FluidTags.WATER);

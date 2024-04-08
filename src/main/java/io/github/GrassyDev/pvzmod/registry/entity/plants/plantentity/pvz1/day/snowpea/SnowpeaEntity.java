@@ -186,7 +186,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoEntity, RangedAttac
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
 			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.SNOW_PEA_SEED_PACKET);
 				}
 				this.discard();
@@ -210,7 +210,7 @@ public class SnowpeaEntity extends PlantEntity implements GeoEntity, RangedAttac
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SNOW_PEA_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -257,10 +257,10 @@ public class SnowpeaEntity extends PlantEntity implements GeoEntity, RangedAttac
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.SNOW_QUEENPEA_SEED_PACKET, TwinSunflowerSeeds.cooldown);
 				}
 			}

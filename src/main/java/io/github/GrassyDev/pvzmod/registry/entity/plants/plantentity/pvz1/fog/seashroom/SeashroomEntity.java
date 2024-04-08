@@ -191,7 +191,7 @@ public class SeashroomEntity extends PlantEntity implements GeoEntity, RangedAtt
 					onWater = true;
 				}
 				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 						this.dropItem(ModItems.SEASHROOM_SEED_PACKET);
 					}
 					this.discard();
@@ -215,7 +215,7 @@ public class SeashroomEntity extends PlantEntity implements GeoEntity, RangedAtt
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.SEASHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}

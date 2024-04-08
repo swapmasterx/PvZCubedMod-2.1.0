@@ -580,7 +580,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoEntity {
 				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -1, 0));
 				onWater = fluidState.getFluid() == Fluids.WATER;
 				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 						this.dropItem(ModItems.GHOSTPEPPER_SEED_PACKET);
 					}
 					this.discard();

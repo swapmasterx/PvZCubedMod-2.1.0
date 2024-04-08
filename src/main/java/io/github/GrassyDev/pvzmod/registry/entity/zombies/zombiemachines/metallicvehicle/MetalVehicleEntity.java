@@ -290,7 +290,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (this.getType().equals(PvZEntity.BOBSLEDVEHICLE)) {
 			if (!this.isSliding()) {
-				float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
+				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger) + passenger.getHeightOffset(passenger)));
 				Vec3d vec3d = new Vec3d((double) 1, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				if (this.getPassengerList().size() == 1) {
 					vec3d = new Vec3d((double) 0.3, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -324,7 +324,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 				passenger.setBodyYaw(this.bodyYaw);
 			}
 			else {
-				float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
+				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger) + passenger.getHeightOffset(passenger)));
 				Vec3d vec3d = new Vec3d((double) 0, 0.0, 1).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				if (this.getPassengerList().size() == 1) {
 					vec3d = new Vec3d((double) 0, 0.0, 0.3).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -364,8 +364,8 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 	}
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0.25f;
+	protected float method_52537(Entity entity) {
+		return 0.25F;
 	}
 
 

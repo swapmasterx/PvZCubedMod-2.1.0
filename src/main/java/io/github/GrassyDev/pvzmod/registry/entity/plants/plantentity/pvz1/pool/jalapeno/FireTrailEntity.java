@@ -110,7 +110,7 @@ public class FireTrailEntity extends PathAwareEntity implements GeoEntity {
 				}
 				if (zombiePropEntity2 == null ||
 				zombiePropEntity2 instanceof ZombieShieldEntity) {
-					int damage = 2;
+					int damage = 1;
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 					if ("paper".equals(zombieMaterial) || "plant".equals(zombieMaterial) || "cloth".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
 						damage = damage * 2;

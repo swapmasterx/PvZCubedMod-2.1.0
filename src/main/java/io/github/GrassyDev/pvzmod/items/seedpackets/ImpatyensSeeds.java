@@ -138,13 +138,13 @@ public class ImpatyensSeeds extends SeedItem implements FabricItem {
 
 					PlayerEntity user = context.getPlayer();
 					if (!user.getAbilities().creativeMode) {
-						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
-						if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+						if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
-						/**if (world.getGameRules().getBoolean(PvZCubed.COSTS_SUN)) {
+						/**if (world.getGameRules().getBooleanValue(PvZCubed.COSTS_SUN)) {
 							int slot = user.getInventory().getSlotWithStack(ModItems.SUN.getDefaultStack());
 							if (slot != -1) {
 								user.getInventory().removeStack(slot, 1);
@@ -184,13 +184,13 @@ public class ImpatyensSeeds extends SeedItem implements FabricItem {
 				world.playSound((PlayerEntity) null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 				if (!user.getAbilities().creativeMode) {
-					if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+					if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 						stack.decrement(1);
 					}
-					if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+					if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 						user.getItemCooldownManager().set(this, cooldown);
 					}
-					/**if (world.getGameRules().getBoolean(PvZCubed.COSTS_SUN)) {
+					/**if (world.getGameRules().getBooleanValue(PvZCubed.COSTS_SUN)) {
 						int slot = user.getInventory().getSlotWithStack(ModItems.SUN.getDefaultStack());
 						if (slot != -1) {
 							user.getInventory().removeStack(slot, 1);
@@ -227,13 +227,13 @@ public class ImpatyensSeeds extends SeedItem implements FabricItem {
 			plantEntity.rideLilyPad(entity);
 			world.playSound((PlayerEntity) null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), sound, SoundCategory.BLOCKS, 0.6f, 0.8F);
 			if (!user.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					stack.decrement(1);
 				}
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 					user.getItemCooldownManager().set(this, cooldown);
 				}
-				/**if (world.getGameRules().getBoolean(PvZCubed.COSTS_SUN)) {
+				/**if (world.getGameRules().getBooleanValue(PvZCubed.COSTS_SUN)) {
 					int slot = user.getInventory().getSlotWithStack(ModItems.SUN.getDefaultStack());
 					if (slot != -1) {
 						user.getInventory().removeStack(slot, 1);

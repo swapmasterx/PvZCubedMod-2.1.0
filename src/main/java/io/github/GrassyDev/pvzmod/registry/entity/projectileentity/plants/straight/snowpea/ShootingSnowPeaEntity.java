@@ -86,17 +86,17 @@ public class ShootingSnowPeaEntity extends PvZProjectileEntity implements GeoEnt
     }
 
     @Environment(EnvType.CLIENT)
-    public ShootingSnowPeaEntity(World world, double x, double y, double z, float yaw, float pitch, int interpolation, boolean interpolate, int id, UUID uuid) {
+    public ShootingSnowPeaEntity(World world, double x, double y, double z, float yaw, float pitch, int interpolation, int id, UUID uuid) {
         super(PvZEntity.SNOWPEAPROJ, world);
 		updatePosition(x, y, z);
-		updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation, interpolate);
+		updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation);
 		setId(id);
 		setUuid(uuid);
     }
 
     public void tick() {
 		super.tick();
-		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();

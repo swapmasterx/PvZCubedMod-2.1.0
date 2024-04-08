@@ -61,7 +61,7 @@ public class DarkAgesGraveSpawn extends SeedItem {
 					darkAgesGraveEntity.setPersistent();
                     world.playSound((PlayerEntity) null, darkAgesGraveEntity.getX(), darkAgesGraveEntity.getY(), darkAgesGraveEntity.getZ(), PvZSounds.ENTITYRISINGEVENT, SoundCategory.BLOCKS, 0.75F, 0.8F);
 
-                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+                if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
 			};
                 return ActionResult.success(world.isClient);

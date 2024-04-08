@@ -113,10 +113,10 @@ public class PeanutBowlingEntity extends PvZProjectileEntity implements GeoEntit
     }
 
     @Environment(EnvType.CLIENT)
-    public PeanutBowlingEntity(World world, double x, double y, double z, float yaw, float pitch, int interpolation, boolean interpolate, int id, UUID uuid) {
+    public PeanutBowlingEntity(World world, double x, double y, double z, float yaw, float pitch, int interpolation, int id, UUID uuid) {
         super(PvZEntity.GROUNDBOUNCE, world);
         updatePosition(x, y, z);
-        updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation, interpolate);
+        updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation);
 		setId(id);
         setUuid(uuid);
     }

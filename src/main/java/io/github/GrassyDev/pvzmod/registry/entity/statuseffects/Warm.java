@@ -13,7 +13,7 @@ public class Warm extends StatusEffect {
 
     // This method is called every tick to check whether it should apply the status effect or not
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyUpdateEffect(int duration, int amplifier) {
         // In our case, we just make it return true so that it applies the status effect every tick.
         return true;
     }

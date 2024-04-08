@@ -334,10 +334,10 @@ public class BasketballCarrierEntity extends BullyEntity implements GeoEntity {
 		}
 	}
 
-	@Override
-	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		super.updatePassengerPosition(passenger);
-	}
+//	@Override
+//	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
+//		super.updatePassengerPosition(passenger);
+//	}
 
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 

@@ -76,30 +76,30 @@ public class PvZCubed implements ModInitializer {
 	public static final StatusEffect MARIGOLD = new Marigold();
 	public static final StatusEffect ACID = new Acid();
 
-	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_PLANT_SPAWN =
+	public static final GameRules.Key<GameRules.BooleanGameRule> SHOULD_PLANT_SPAWN =
 			GameRuleRegistry.register("pvzdoPlantSpawn", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(true));
-	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_GRAVE_SPAWN =
+	public static final GameRules.Key<GameRules.BooleanGameRule> SHOULD_GRAVE_SPAWN =
 			GameRuleRegistry.register("pvzdoGraveSpawn", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(true));
 
-	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_PLANT_DROP =
+	public static final GameRules.Key<GameRules.BooleanGameRule> SHOULD_PLANT_DROP =
 			GameRuleRegistry.register("pvzdoPlantDrop", GameRules.Category.DROPS, GameRuleFactory.createBooleanRule(true));
-	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_SUNFLOWER_DROP =
+	public static final GameRules.Key<GameRules.BooleanGameRule> SHOULD_SUNFLOWER_DROP =
 			GameRuleRegistry.register("pvzdoSunflowerDrop", GameRules.Category.DROPS, GameRuleFactory.createBooleanRule(true));
 
-	public static final GameRules.Key<GameRules.BooleanRule> SHOULD_ZOMBIE_DROP =
+	public static final GameRules.Key<GameRules.BooleanGameRule> SHOULD_ZOMBIE_DROP =
 			GameRuleRegistry.register("pvzdoZombieDrop", GameRules.Category.DROPS, GameRuleFactory.createBooleanRule(true));
 
-	public static final GameRules.Key<GameRules.BooleanRule> INFINITE_SEEDS =
+	public static final GameRules.Key<GameRules.BooleanGameRule> INFINITE_SEEDS =
 			GameRuleRegistry.register("pvzinfiniteSeeds", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));
-	public static final GameRules.Key<GameRules.BooleanRule> INSTANT_RECHARGE =
+	public static final GameRules.Key<GameRules.BooleanGameRule> INSTANT_RECHARGE =
 			GameRuleRegistry.register("pvzinstantRecharge", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));
 	/**public static final GameRules.Key<GameRules.BooleanRule> COSTS_SUN =
 			GameRuleRegistry.register("pvzseedCostSun", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));**/
 
-	public static final GameRules.Key<GameRules.BooleanRule> PLANTS_GLOW =
+	public static final GameRules.Key<GameRules.BooleanGameRule> PLANTS_GLOW =
 			GameRuleRegistry.register("pvzplantsGlow", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
 
-	public static final GameRules.Key<GameRules.BooleanRule> SPECIAL_ZOMBIE =
+	public static final GameRules.Key<GameRules.BooleanGameRule> SPECIAL_ZOMBIE =
 			GameRuleRegistry.register("pvzspawnSpecialZombies", GameRules.Category.SPAWNING, GameRuleFactory.createBooleanRule(false));
 
 	public static final String MOD_ID = "pvzmod";
@@ -140,6 +140,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.WALLNUT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.POTATOMINE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SNOW_PEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.DOGWOOD_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHOMPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.REPEATER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.PUFFSHROOM_SEED_PACKET));
@@ -150,7 +151,11 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.SCAREDYSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ICESHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DOOMSHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BREEZESHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BURSTSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.LILYPAD_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.DROPEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SEAPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SQUASH_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.THREEPEATER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TANGLEKELP_SEED_PACKET));
@@ -161,25 +166,24 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.SEASHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MAGNETSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CABBAGEPULT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.ICEBERGPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.COFFEEBEAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GATLINGPEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SNOW_QUEENPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TWINSUNFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GLOOMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CATTAIL_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SPIKEROCK_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.ICEBERGPULT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.ICEBERGLETTUCE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.CHILLYPEPPER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.FRISBLOOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BLOOMERANG_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BEET_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.FIRE_PEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SHAMROCK_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.CHILLYPEPPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BEESHOOTER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SNOW_QUEENPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.OXYGAE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BREEZESHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BURSTSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUPERCHOMPER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BLOOMERANG_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.ICEBERGLETTUCE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SPRINGBEAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.COCONUTCANNON_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.LIGHTNINGREED_SEED_PACKET));
@@ -208,8 +212,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.IMPATYENS_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.HAMMERFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.METEORHAMMER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.DROPEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.FRISBLOOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BEAUTYSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHARMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MAGNETOSHROOM_SEED_PACKET));
@@ -234,10 +236,8 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.BELLFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUNFLOWERSEED_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.KNIGHTPEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SEAPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.NIGHTCAP_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DOOMROSE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.DOGWOOD_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GAMBLESHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
 			})

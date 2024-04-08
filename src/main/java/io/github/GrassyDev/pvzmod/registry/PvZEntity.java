@@ -265,7 +265,7 @@ import net.minecraft.entity.attribute.DefaultAttributeRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
+import org.quiltmc.qsl.entity.extensions.api.QuiltEntityTypeBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -1859,7 +1859,7 @@ public class PvZEntity{
 
 	public static final EntityType<MetalHelmetProjEntity> METALHELMETPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(MOD_ID, "armor"),
+			new Identifier(MOD_ID, "metalhelmetprojentity"),
 			QuiltEntityTypeBuilder.<MetalHelmetProjEntity>create(SpawnGroup.MONSTER, MetalHelmetProjEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 

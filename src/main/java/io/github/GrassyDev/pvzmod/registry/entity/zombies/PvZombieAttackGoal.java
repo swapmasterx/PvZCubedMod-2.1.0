@@ -7,11 +7,14 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 public class PvZombieAttackGoal extends MeleeAttackGoal {
 
    private final GeneralPvZombieEntity pvzombie;
+
    private int ticks;
 
    public PvZombieAttackGoal(GeneralPvZombieEntity pvzombie, double speed, boolean pauseWhenMobIdle) {
       super(pvzombie, speed, pauseWhenMobIdle);
+
       this.pvzombie = pvzombie;
+
    }
 
    public void start() {

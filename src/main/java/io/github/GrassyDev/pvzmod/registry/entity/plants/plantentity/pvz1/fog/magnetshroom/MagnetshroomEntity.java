@@ -169,7 +169,7 @@ public class MagnetshroomEntity extends PlantEntity implements GeoEntity, Ranged
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
 			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.MAGNETSHROOM_SEED_PACKET);
 				}
 				this.discard();
@@ -224,7 +224,7 @@ public class MagnetshroomEntity extends PlantEntity implements GeoEntity, Ranged
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.MAGNETSHROOM_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -289,7 +289,7 @@ public class MagnetshroomEntity extends PlantEntity implements GeoEntity, Ranged
 	}
 
 	@Override
-	public double getMountedHeightOffset() {
+	protected float method_52537(Entity entity) {
 		return 1.35f;
 	}
 

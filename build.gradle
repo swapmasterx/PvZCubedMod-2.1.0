@@ -1,6 +1,7 @@
 plugins {
+	id 'org.quiltmc.loom' version '1.+'
 	id 'maven-publish'
-	alias libs.plugins.quilt.loom
+//	alias libs.plugins.quilt.loom
 }
 archivesBaseName = project.archives_base_name
 version = "${project.version}+${libs.versions.minecraft.get()}"
@@ -36,17 +37,16 @@ project.configurations.configureEach {
 
 dependencies {
 	minecraft libs.minecraft
-	modImplementation libs.quilt.loader
-
+	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
 	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings}:intermediary-v2"
+	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
+	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
 
-	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:7.5.0+0.91.0-1.20.1"
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.4:4.4.4'
 
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.1:4.4.4'
-
-	modImplementation "vazkii.patchouli:Patchouli:1.20.1-84-FABRIC"
-	modImplementation "io.wispforest:owo-lib:0.11.2+1.20"
-	annotationProcessor modImplementation("io.wispforest:owo-lib:0.11.2+1.20")
+	modImplementation "vazkii.patchouli:Patchouli:1.20.4-85-FABRIC"
+	modImplementation "io.wispforest:owo-lib:0.12.3+1.20.3+"
+	annotationProcessor modImplementation("io.wispforest:owo-lib:0.12.3+1.20.3+")
 }
 processResources {
 	inputs.property "version", version

@@ -85,7 +85,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 
 	@Override
 	protected void dropLoot(DamageSource source, boolean causedByPlayer) {
-		if (this.getWorld().getGameRules().getBoolean(PvZCubed.SHOULD_ZOMBIE_DROP)){
+		if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.SHOULD_ZOMBIE_DROP)){
 			super.dropLoot(source, causedByPlayer);
 		}
 	}
@@ -143,7 +143,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 		if (this.isInfinite()){
 			this.setPersistent();
 		}
-		if (this.getWorld().getGameRules().getBoolean(PvZCubed.SPECIAL_ZOMBIE) || PVZCONFIG.nestedSpawns.specialZombieSpawn()) {
+		if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.SPECIAL_ZOMBIE) || PVZCONFIG.nestedSpawns.specialZombieSpawn()) {
 			double random = Math.random();
 			if (random <= 0.25) {
 				this.setUnlockSpecial(UnlockSpecial.TRUE);

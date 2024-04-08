@@ -4,6 +4,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gar
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.items.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.zmech.ScrapMechEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -702,8 +703,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0;
+	protected float method_52537(Entity entity) {
+		return 0.00F;
 	}
 
 //	@Override
@@ -907,9 +908,11 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 		}
 
 		@Override
-		protected double getSquaredMaxAttackDistance(LivingEntity entity) {
+		protected void attack(LivingEntity target) {
 			float f = GargantuarEntity.this.getWidth() - 0.1F;
-			return (double)(f * 4F * f * 4F + entity.getWidth());
+			if (this.mob.squaredDistanceTo(target) < (double) (f * 4F * f * 4F + target.getWidth()) * (double) (f * 4F * f * 4F + target.getWidth())) {
+				this.resetCooldown();
+			}
 		}
 	}
 

@@ -166,7 +166,7 @@ public class BubblePadEntity extends PlantEntity.VineEntity implements GeoEntity
 					onWater = true;
 				}
 				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 						this.dropItem(ModItems.OXYGAE_SEED_PACKET);
 					}
 					this.discard();
@@ -274,6 +274,6 @@ public class BubblePadEntity extends PlantEntity.VineEntity implements GeoEntity
 		BlockPos blockPos2 = pos.add(0, 0, 0);
 		return ((worldAccess.getFluidState(pos.down()).isSource() && !worldAccess.getFluidState(blockPos2).isSource() && !worldAccess.getFluidState(pos.down()).isOf(Fluids.LAVA)) ||
 			worldAccess.getBlockState(pos.down()).getBlock().equals(ICE)) &&
-			Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
+			Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN);
 	}
 }

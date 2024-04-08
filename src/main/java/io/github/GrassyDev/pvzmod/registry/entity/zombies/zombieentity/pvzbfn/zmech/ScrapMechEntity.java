@@ -38,6 +38,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
@@ -571,9 +572,10 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0;
+	protected float method_52537(Entity entity) {
+		return 0.00F;
 	}
+
 
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
@@ -665,14 +667,17 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 
 	private class AttackGoal extends PvZombieAttackGoal {
 		public AttackGoal() {
+
 			super(ScrapMechEntity.this, 1.0, true);
 		}
 
 		@Override
-		protected double getSquaredMaxAttackDistance(LivingEntity entity) {
+		protected void attack(LivingEntity target) {
 			float f = ScrapMechEntity.this.getWidth() - 0.1F;
-			return (double)(f * 4F * f * 4F + entity.getWidth());
+			if (this.mob.squaredDistanceTo(target) < (double) (f * 4F * f * 4F + target.getWidth()) * (double) (f * 4F * f * 4F + target.getWidth())) {
+				this.resetCooldown();
+			}
 		}
-	}
 
+	}
 }

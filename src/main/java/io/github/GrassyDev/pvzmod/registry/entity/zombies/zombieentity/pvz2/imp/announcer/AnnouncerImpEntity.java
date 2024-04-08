@@ -329,9 +329,10 @@ public class AnnouncerImpEntity extends SummonerEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0;
+	protected float method_52537(Entity entity) {
+		return 0.00F;
 	}
+
 
 	public boolean canWalkOnFluid(FluidState state) {
 		return state.isIn(FluidTags.WATER);

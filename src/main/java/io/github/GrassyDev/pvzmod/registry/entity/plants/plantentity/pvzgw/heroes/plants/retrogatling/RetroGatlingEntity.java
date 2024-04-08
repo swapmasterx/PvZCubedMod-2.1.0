@@ -35,6 +35,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.piercingpea.PiercePeaEntityModel;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -134,7 +135,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
 			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.RETROGATLING_SEED_PACKET);
 				}
 				this.discard();
@@ -157,7 +158,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
 			dropItem(ModItems.RETROGATLING_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 			}
@@ -279,6 +280,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 
 		public void tick() {
 			LivingEntity livingEntity = this.plantEntity.getTarget();
+
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			if ((!this.plantEntity.canSee(livingEntity)) &&
@@ -304,6 +306,9 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.6F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
+//						proj.setYaw(this.plantEntity.getVisualYaw());
+//						proj.setYaw(this.plantEntity.getHeadYaw());
+						proj.setBodyYaw(this.plantEntity.getVisualYaw());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
 							this.beamTicks = -2;

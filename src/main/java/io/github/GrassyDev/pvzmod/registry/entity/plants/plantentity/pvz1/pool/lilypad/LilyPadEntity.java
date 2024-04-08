@@ -254,7 +254,7 @@ public class LilyPadEntity extends PlantEntity implements GeoEntity {
 					onWater = true;
 				}
 				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
+				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
 					this.dropItem(ModItems.LILYPAD_SEED_PACKET);
 				}
 				this.discard();
@@ -272,7 +272,7 @@ public class LilyPadEntity extends PlantEntity implements GeoEntity {
 		}
 		float time = 200 / this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
 		if (this.age > 4 && this.age <= time && !this.getPuffshroomPermanency() && !this.hasStatusEffect(StatusEffects.GLOWING)) {
-			if (this.getWorld().getGameRules().getBoolean(PvZCubed.PLANTS_GLOW)) {
+			if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.PLANTS_GLOW)) {
 				this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, (int) Math.floor(time), 1)));
 			}
 		}
@@ -305,11 +305,11 @@ public class LilyPadEntity extends PlantEntity implements GeoEntity {
 				this.remove(RemovalReason.DISCARDED);
 			}
 			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBoolean(PvZCubed.INFINITE_SEEDS)) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
 				}
 				;
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBoolean(PvZCubed.INSTANT_RECHARGE)) {
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 					player.getItemCooldownManager().set(ModItems.CATTAIL_SEED_PACKET, CattailSeeds.cooldown);
 				}
 			}
@@ -423,6 +423,6 @@ public class LilyPadEntity extends PlantEntity implements GeoEntity {
 		BlockPos blockPos2 = pos.add(0, 0, 0);
 		return ((worldAccess.getFluidState(pos.down()).isSource() && !worldAccess.getFluidState(blockPos2).isSource() && !worldAccess.getFluidState(pos.down()).isOf(Fluids.LAVA)) ||
 				worldAccess.getBlockState(pos.down()).getBlock().equals(ICE)) &&
-				Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_PLANT_SPAWN);
+				Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN);
 	}
 }

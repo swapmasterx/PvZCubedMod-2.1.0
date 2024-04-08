@@ -18,10 +18,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZ
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieVehicleEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityGroup;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -210,9 +207,10 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoEnti
 	}
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 1f;
+	protected float method_52537(Entity entity) {
+		return 1.00F;
 	}
+
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
 

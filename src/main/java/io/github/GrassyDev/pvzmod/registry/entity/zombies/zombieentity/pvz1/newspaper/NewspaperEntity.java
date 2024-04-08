@@ -385,7 +385,7 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (this.hasPassenger(passenger)) {
-			float g = (float)((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
+			float g = (float)((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
 			float f = 0.4F;
 
 			Vec3d vec3d = new Vec3d((double)f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -407,8 +407,8 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	@Override
-	public double getMountedHeightOffset() {
-		return 0;
+	protected float method_52537(Entity entity) {
+		return 0.0F;
 	}
 
 	public boolean canWalkOnFluid(FluidState state) {

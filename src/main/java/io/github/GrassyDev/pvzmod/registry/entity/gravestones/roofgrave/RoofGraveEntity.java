@@ -251,7 +251,7 @@ public class RoofGraveEntity extends GraveEntity implements GeoAnimatable {
 					world.getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
 					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
-					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
+					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 		else {
 			return world.getDifficulty() != Difficulty.PEACEFUL &&
@@ -260,7 +260,7 @@ public class RoofGraveEntity extends GraveEntity implements GeoAnimatable {
 					world.getLocalDifficulty(pos).getLocalDifficulty() >= 1.8 &&
 					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
 					!checkVillager(Vec3d.ofCenter(pos), world) &&
-					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBoolean(PvZCubed.SHOULD_GRAVE_SPAWN);
+					!checkPlant(Vec3d.ofCenter(pos), world) && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_GRAVE_SPAWN);
 		}
 	}
 
