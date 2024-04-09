@@ -1491,9 +1491,9 @@
 
   "itemGroup.pvzmod.blocks": "PvZ Blocks",
 
-  "block.pvzmod.entity.botany_station": "Botany Station",
+  "block.pvzmod.entity.botany_station": "Botany Box",
 
-  "block.pvzmod.botany_station": "Botany Station",
+  "block.pvzmod.botany_station": "Botany Box",
   "block.pvzmod.grass_tile": "Grass Tile",
   "block.pvzmod.dark_grass_tile": "Dark Grass Tile",
   "block.pvzmod.night_tile": "Night Tile",

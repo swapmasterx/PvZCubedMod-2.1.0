@@ -1,5 +1,4 @@
 package io.github.GrassyDev.pvzmod.screen;
 
-public class ModScreenHandlers {
-
+public class BotanyStationScreenHandler {
 }

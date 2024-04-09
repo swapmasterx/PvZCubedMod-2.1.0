@@ -116,7 +116,7 @@ public class PvZCubed implements ModInitializer {
 
 	@Override
 	public void onInitialize(ModContainer mod) {
-		LOGGER.info("{} says: Trans Rights are Human Rights! The Zombies... are coming...");
+		LOGGER.info("Izzy says: Trans Rights are Human Rights! Also the zombies are coming.");
 
 		ModItems.registerItems();
 		ModItems.setSeedPacketList();
