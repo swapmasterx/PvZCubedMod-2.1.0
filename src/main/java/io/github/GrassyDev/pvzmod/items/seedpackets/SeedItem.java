@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.items.seedpackets;
 
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.oc.bully.basic;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
@@ -350,9 +350,6 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 				passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 				passenger.setBodyYaw(this.bodyYaw);
 			}
-		}
-		else {
-			super.updatePassengerPosition(passenger);
 		}
 	}
 

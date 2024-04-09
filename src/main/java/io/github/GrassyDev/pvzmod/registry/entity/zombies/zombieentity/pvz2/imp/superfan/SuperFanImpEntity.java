@@ -2,8 +2,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.imp
 
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -294,6 +295,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoEntity {
 	@Override
 	protected void initCustomGoals() {
 		super.initCustomGoals();
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(2, new ImpIgniteGoal(this));
 		this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0D, false));
 	}
@@ -301,6 +303,7 @@ public class SuperFanImpEntity extends ImpEntity implements GeoEntity {
 	@Override
 	protected void initHypnoGoals() {
 		super.initHypnoGoals();
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(2, new ImpIgniteGoal(this));
 		this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0D, false));
 	}

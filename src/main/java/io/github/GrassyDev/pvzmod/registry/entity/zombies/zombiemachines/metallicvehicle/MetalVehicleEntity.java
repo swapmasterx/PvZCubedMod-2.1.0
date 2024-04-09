@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.metallicvehicle;
 
 
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
@@ -357,9 +357,6 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 				passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 				passenger.setBodyYaw(this.bodyYaw);
 			}
-		}
-		else {
-			super.updatePassengerPosition(passenger);
 		}
 	}
 

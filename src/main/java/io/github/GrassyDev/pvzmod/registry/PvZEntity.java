@@ -62,7 +62,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.t
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.torchwood.TorchwoodEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.cabbagepult.CabbagepultEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.coffeebean.CoffeeBeanEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.scrapped.icebergpult.IcebergpultEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.icebergpult.IcebergpultEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.cattail.CattailEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.gatlingpea.GatlingpeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.gloomshroom.GloomshroomEntity;
@@ -2079,61 +2079,61 @@ public class PvZEntity{
 	public static final EntityType<GargantuarEntity> GARGANTUAR = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "gargantuar"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> GARGANTUARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "gargantuar_hypnotized"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> MUMMYGARGANTUAR = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "mummygargantuar"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> MUMMYGARGANTUARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "mummygargantuar_hypnotized"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEEND = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "defensiveend"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.85f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEENDHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "defensiveend_hypnotized"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.85f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEEND_NEWYEAR = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "defensiveend_newyear"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.85f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEEND_NEWYEARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "defensiveend_newyear_hypnotized"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.85f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> CURSEDGARGOLITH = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "cursedgargolith"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> CURSEDGARGOLITHHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "cursedgargolith_hypnotized"),
-			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<RockObstacleEntity> GARGOLITHOBSTACLE = Registry.register(
@@ -2145,13 +2145,13 @@ public class PvZEntity{
 	public static final EntityType<ScrapMechEntity> SCRAPMECH = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "scrapmech"),
-			QuiltEntityTypeBuilder.<ScrapMechEntity>create(SpawnGroup.MONSTER, ScrapMechEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<ScrapMechEntity>create(SpawnGroup.MONSTER, ScrapMechEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<ScrapMechEntity> SCRAPMECHHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "scrapmech_hypnotized"),
-			QuiltEntityTypeBuilder.<ScrapMechEntity>create(SpawnGroup.CREATURE, ScrapMechEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
+			QuiltEntityTypeBuilder.<ScrapMechEntity>create(SpawnGroup.CREATURE, ScrapMechEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<LaserEntity> LASER = Registry.register(

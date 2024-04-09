@@ -2,7 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.oct
 
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
@@ -289,11 +289,11 @@ public class OctoEntity extends BullyEntity implements GeoEntity {
 			this.getWorld().sendEntityStatus(this, (byte) 103);
 		}
 	}
-
-	@Override
-	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		super.updatePassengerPosition(passenger);
-	}
+//
+//	@Override
+//	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
+//		super.updatePassengerPosition(passenger);
+//	}
 
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 

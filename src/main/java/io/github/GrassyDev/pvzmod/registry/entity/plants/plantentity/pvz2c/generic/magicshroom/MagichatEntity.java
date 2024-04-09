@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.magicshroom;
 
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -231,14 +231,14 @@ public class MagichatEntity extends PlantEntity implements GeoEntity, RangedAtta
 	public void onDeath(DamageSource source) {
 		double random = Math.random();
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			if (random <= 0.33) {
+			if (random <= 0.25) {
 				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
 				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BROWNCOATHYPNO.create(getWorld());
 				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
 				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
 			}
-			else if (random <= 0.66) {
+			else if (random <= 0.75) {
 				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
 				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.CONEHEADHYPNO.create(getWorld());
 				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
@@ -246,14 +246,14 @@ public class MagichatEntity extends PlantEntity implements GeoEntity, RangedAtta
 				zombie.createConeheadProp();
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
 			}
-			else {
-				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
-				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BUCKETHEADHYPNO.create(getWorld());
-				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
-				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-				zombie.createConeheadProp();
-				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
-			}
+//			else {
+//				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
+//				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BUCKETHEADHYPNO.create(getWorld());
+//				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
+//				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+//				zombie.createConeheadProp();
+//				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
+//			}
 		}
 		this.playSound(PvZSounds.MAGICHATZOMBIEEVENT, 3, 1);
 		this.getWorld().sendEntityStatus(this, (byte) 117);

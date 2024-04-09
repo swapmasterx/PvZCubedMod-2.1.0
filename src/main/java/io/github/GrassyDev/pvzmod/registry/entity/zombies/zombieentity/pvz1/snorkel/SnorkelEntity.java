@@ -1,11 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
-import net.minecraft.registry.tag.EntityTypeTags;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -239,7 +239,7 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected void initCustomGoals() {
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.targetSelector.add(6, new RevengeGoal(this, new Class[0]));
 		this.goalSelector.add(1, new PvZombieAttackGoal(this, 1.0D, true));
@@ -260,7 +260,7 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected void initHypnoGoals(){
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new HypnoPvZombieAttackGoal(this, 1.0D, true));
 		////////// Hypnotized Zombie targets ///////

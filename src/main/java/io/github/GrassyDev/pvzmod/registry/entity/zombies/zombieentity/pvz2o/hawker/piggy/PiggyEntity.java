@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2o.hawker.piggy;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -184,7 +185,7 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 	}
 
 	protected void initCustomGoals() {
-
+		this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.targetSelector.add(6, new RevengeGoal(this, new Class[0]));
 		this.goalSelector.add(1, new PvZombieAttackGoal(this, 1.0D, true));
@@ -205,7 +206,7 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 	}
 
 	protected void initHypnoGoals(){
-
+		this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new HypnoPvZombieAttackGoal(this, 1.0D, true));
 		////////// Hypnotized Zombie targets ///////
@@ -260,7 +261,7 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createZombiePiggyAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.zombiepigH());

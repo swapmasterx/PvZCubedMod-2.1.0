@@ -1,8 +1,9 @@
 package io.github.GrassyDev.pvzmod;
 
+import io.github.GrassyDev.pvzmod.block.entity.ModBlockEntities;
 import io.github.GrassyDev.pvzmod.config.PvZConfig;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.*;
@@ -27,8 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 import software.bernie.geckolib.GeckoLib;
-import java.nio.charset.StandardCharsets;
-import java.util.UUID;
 
 public class PvZCubed implements ModInitializer {
 
@@ -127,29 +126,36 @@ public class PvZCubed implements ModInitializer {
 		PvZEntity.Entities();
 		GeckoLib.initialize();
 		PvZEntitySpawn.addEntitySpawn();
+		ModBlockEntities.registerBlockEntities();
 		//Entity Initialization
 
 
 		PvZSounds.registerSounds();
 		Registry.register(Registries.ITEM_GROUP, PVZPLANTS, FabricItemGroup.builder()
-			.icon(() -> new ItemStack(ModItems.PEASHOOTER_SEED_PACKET))
+			.icon(() -> new ItemStack(ModItems.EMPTY_SEED_PACKET))
 			.entries((context, entries) -> {
+				entries.addStack(new ItemStack(ModItems.EMPTY_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.PEASHOOTER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUNFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHERRYBOMB_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.WALLNUT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.POTATOMINE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BELLFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SNOW_PEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DOGWOOD_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SUNFLOWERSEED_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHOMPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.REPEATER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.DANDELIONWEED_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.PUFFSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUNSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.FUMESHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.MAGICSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GRAVEBUSTER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.HYPNOSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SCAREDYSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ICESHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BEAUTYSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DOOMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BREEZESHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BURSTSHROOM_SEED_PACKET));
@@ -161,29 +167,19 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.TANGLEKELP_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.JALAPENO_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SPIKEWEED_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.NARCISSUS_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TORCHWOOD_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TALLNUT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.DRIPPHYLLEIA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SEASHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.ACIDSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MAGNETSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CABBAGEPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ICEBERGPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.COFFEEBEAN_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.GATLINGPEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SNOW_QUEENPEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.TWINSUNFLOWER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.GLOOMSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.CATTAIL_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SPIKEROCK_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ICEBERGLETTUCE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHILLYPEPPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.FRISBLOOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BLOOMERANG_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BEET_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.FIRE_PEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SHAMROCK_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BEESHOOTER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.OXYGAE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SUPERCHOMPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SPRINGBEAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.COCONUTCANNON_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.LIGHTNINGREED_SEED_PACKET));
@@ -192,54 +188,58 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.PEPPERPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ENDURIAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GOLDLEAF_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SHADOWSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.MISSILETOE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.ELECTROPEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.PEANUT_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.GHOSTPEPPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.OLIVEPIT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.CHARMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GLOOMVINE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.HEAVENLYPEACH_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.MAGICSHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.VAMPIREFLOWER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.PUMPKINWITCH_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.LOQUAT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SAUCER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.OILYOLIVE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SMACKADAMIA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SHADOWSHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.GHOSTPEPPER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.OXYGAE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.ADMIRALNAVYBEAN_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.NAVYBEAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SPRINGPRINCESS_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.DRIPPHYLLEIA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.PUMPKINWITCH_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.OILYOLIVE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.PEANUT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.HEAVENLYPEACH_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BEET_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SHAMROCK_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.JUMPINGBEAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TULIMPETER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.NARCISSUS_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.IMPATYENS_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.HAMMERFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.METEORHAMMER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BEAUTYSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.CHARMSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.MAGNETOSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.RETROGATLING_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.CHESTER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.ACIDSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.VAMPIREFLOWER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.DANDELIONWEED_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.PERFOOMSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SMALLNUT_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SMACKADAMIA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.LOCOCOCO_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BUTTONSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BOMBSEEDLING_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BUTTONSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ZAPRICOT_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BANANASAURUS_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SMALLNUT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.WEENIEBEANIE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.RETROGATLING_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.TWINSUNFLOWER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SNOW_QUEENPEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SUPERCHOMPER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.GATLINGPEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.GLOOMSHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.GAMBLESHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.CATTAIL_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.SPIKEROCK_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.MAGNETOSHROOM_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BLOOMERANG_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.FIRE_PEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.ELECTROPEA_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.BEESHOOTER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.CHESTER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.PERFOOMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SMOOSHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.ADMIRALNAVYBEAN_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.NAVYBEAN_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.JUMPINGBEAN_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BELLFLOWER_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SUNFLOWERSEED_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.KNIGHTPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.NIGHTCAP_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DOOMROSE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.GAMBLESHROOM_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
+				entries.addStack(new ItemStack(ModItems.BANANASAURUS_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.MISSILETOE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.LOCOCOCO_SEED_PACKET));
 			})
 			.name(Text.translatable("itemGroup.pvzmod.plants"))
 			.build()); // build() no longer registers by itself
@@ -247,7 +247,9 @@ public class PvZCubed implements ModInitializer {
 		Registry.register(Registries.ITEM_GROUP, PVZPACKETFABS, FabricItemGroup.builder()
 			.icon(() -> new ItemStack(ModItems.GARDENINGGLOVE))
 			.entries((context, entries) -> {
+				entries.addStack(new ItemStack(ModItems.BOTANY_STATION));
 				entries.addStack(new ItemStack(ModItems.DAVES_SHOVEL));
+				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
 				entries.addStack(new ItemStack(ModItems.GARDENINGGLOVE));
 				entries.addStack(new ItemStack(ModItems.PLANTFOOD));
 				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AIR));

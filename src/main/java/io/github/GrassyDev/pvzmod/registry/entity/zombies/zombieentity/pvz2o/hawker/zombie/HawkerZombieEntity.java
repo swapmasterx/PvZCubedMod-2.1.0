@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2o.hawker.zombie;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -229,7 +230,7 @@ public class HawkerZombieEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected void initCustomGoals() {
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.targetSelector.add(6, new RevengeGoal(this, new Class[0]));
 		this.goalSelector.add(1, new PvZombieAttackGoal(this, 1.0D, true));
@@ -335,9 +336,6 @@ public class HawkerZombieEntity extends PvZombieEntity implements GeoEntity {
 			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 			passenger.setBodyYaw(this.bodyYaw);
-		}
-		else {
-			super.updatePassengerPosition(passenger);
 		}
 	}
 

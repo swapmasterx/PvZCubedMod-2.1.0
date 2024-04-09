@@ -1,7 +1,8 @@
-package io.github.GrassyDev.pvzmod.items;
+package io.github.GrassyDev.pvzmod.config;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
+import io.github.GrassyDev.pvzmod.items.*;
 import io.github.GrassyDev.pvzmod.items.seedpackets.*;
 import io.github.GrassyDev.pvzmod.items.spawneggs.*;
 import io.github.GrassyDev.pvzmod.items.targets.MissileToeTargetItem;
@@ -358,6 +359,7 @@ public class ModItems {
     //Plant Spawn
 	public static final Item GARDENINGGLOVE = new GardeningGloves(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
 	public static final Item FERTILIZER = new Fertilizer(new Item.Settings().maxCount(64).rarity(Rarity.EPIC));
+	public static final Item EMPTY_SEED_PACKET = new Item(new Item.Settings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item SUNFLOWER_SEED_PACKET = new SunflowerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
     public static final Item PEASHOOTER_SEED_PACKET = new PeashooterSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
     public static final Item CHERRYBOMB_SEED_PACKET = new CherryBombSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
@@ -598,6 +600,8 @@ public class ModItems {
 	public static final Item MAUSOLEUMGRAVESPAWN = new MausoleumGraveSpawn(new Item.Settings().rarity(Rarity.EPIC));
 
     //Blocks
+
+	public static final BlockItem BOTANY_STATION = new BlockItem(ModBlocks.BOTANY_STATION, new Item.Settings());
     public static final BlockItem GRASS_TILE = new BlockItem(ModBlocks.GRASS_TILE, new Item.Settings());
     public static final BlockItem DARK_GRASS_TILE = new BlockItem(ModBlocks.DARK_GRASS_TILE, new Item.Settings());
 	public static final BlockItem NIGHT_TILE = new BlockItem(ModBlocks.NIGHT_TILE, new Item.Settings());
@@ -661,6 +665,7 @@ public class ModItems {
     //addItem
     //addBlock
     public static void registerItems() {
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"empty_seed_packet"), EMPTY_SEED_PACKET);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"icon_almanac"), ALMANAC);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"plantfood"), PLANTFOOD);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"plantfood_air"), PLANTFOOD_AIR);

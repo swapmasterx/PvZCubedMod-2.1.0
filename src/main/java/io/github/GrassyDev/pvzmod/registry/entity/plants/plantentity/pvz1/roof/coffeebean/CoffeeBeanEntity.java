@@ -1,11 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.coffeebean;
 
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import net.fabricmc.api.EnvType;
@@ -100,37 +99,37 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 		super.tick();
 		BlockPos blockPos = this.getBlockPos();
 		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox());
-		if (--turningTicks <=0 ){
-			for (LivingEntity livingEntity : list){
-				if (livingEntity instanceof PlantEntity plantEntity){
+		if (--amphibiousRaycastDelay <= 0 && age > 5) {
+			amphibiousRaycastDelay = 20;
+			HitResult hitResult = amphibiousRaycast(1);
+			if (hitResult.getType() == HitResult.Type.MISS && !this.hasVehicle()) {
+				kill();
+			}
+		}
+		if (this.age > 1) {
+			BlockPos blockPos2 = this.getBlockPos();
+			BlockState blockState = this.getLandingBlockState();
+			FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -1, 0));
+			if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
+				this.dryLand = true;
+				onWater = false;
+			}
+			else {
+				this.dryLand = false;
+				onWater = true;
+			}
+			if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
+				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead) {
+					this.dropItem(ModItems.COFFEEBEAN_SEED_PACKET);
+				}
+			}
+		if (--turningTicks <=0 ) {
+			for (LivingEntity livingEntity : list) {
+				if (livingEntity instanceof PlantEntity plantEntity) {
 					plantEntity.setCoffee(Coffee.TRUE);
 				}
 			}
-			if (--amphibiousRaycastDelay <= 0 && age > 5) {
-				amphibiousRaycastDelay = 20;
-				HitResult hitResult = amphibiousRaycast(1);
-				if (hitResult.getType() == HitResult.Type.MISS && !this.hasVehicle()) {
-					kill();
-				}
-				if (this.age > 1) {
-					BlockPos blockPos2 = this.getBlockPos();
-					BlockState blockState = this.getLandingBlockState();
-					FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -1, 0));
-					if (!(fluidState.getFluid() == Fluids.WATER) && !onWaterTile) {
-						this.dryLand = true;
-						onWater = false;
-					} else {
-						this.dryLand = false;
-						onWater = true;
-					}
-					if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-						if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
-							this.dropItem(ModItems.COFFEEBEAN_SEED_PACKET);
-						}
-						this.discard();
-					}
-				}
-			}
+			this.discard();}
 		}
 	}
 
@@ -212,7 +211,7 @@ public class CoffeeBeanEntity extends PlantEntity implements GeoEntity {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (this.turningTicks < 0 || source.getAttacker() instanceof PlayerEntity || source.isTypeIn(DamageTypeTags.BYPASSES_COOLDOWN)) {
+		if (this.turningTicks < 0 || source.getAttacker() instanceof PlayerEntity) {
 			super.applyDamage(source, amount);
 		}
 	}

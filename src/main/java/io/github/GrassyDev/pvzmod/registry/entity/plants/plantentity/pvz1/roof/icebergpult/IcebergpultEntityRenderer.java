@@ -1,4 +1,4 @@
-package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.scrapped.icebergpult;
+package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.icebergpult;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;

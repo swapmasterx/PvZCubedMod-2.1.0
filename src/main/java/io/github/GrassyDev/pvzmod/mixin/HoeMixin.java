@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.mixin;
 
 import com.mojang.datafixers.util.Pair;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;

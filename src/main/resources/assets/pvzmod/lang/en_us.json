@@ -428,6 +428,9 @@
   "item.pvzmod.seed_packet.fullmoon.tooltip": "Full Moon",
   "item.pvzmod.creative": "Creative Only",
 
+
+  "item.pvzmod.empty_seed_packet": "Empty Seed Packet",
+
   "entity.pvzmod.sunflower": "Sunflower",
   "item.pvzmod.sunflower_seed_packet": "☀ Sunflower Seed Packet",
   "item.pvzmod.sunflower_seed_packet.flavour": "\"Not to brag, but I'm pretty much your",
@@ -1488,6 +1491,9 @@
 
   "itemGroup.pvzmod.blocks": "PvZ Blocks",
 
+  "block.pvzmod.entity.botany_station": "Botany Station",
+
+  "block.pvzmod.botany_station": "Botany Station",
   "block.pvzmod.grass_tile": "Grass Tile",
   "block.pvzmod.dark_grass_tile": "Dark Grass Tile",
   "block.pvzmod.night_tile": "Night Tile",

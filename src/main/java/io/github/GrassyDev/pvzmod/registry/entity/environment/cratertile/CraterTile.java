@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.cratertile;
 
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import net.minecraft.entity.EntityType;

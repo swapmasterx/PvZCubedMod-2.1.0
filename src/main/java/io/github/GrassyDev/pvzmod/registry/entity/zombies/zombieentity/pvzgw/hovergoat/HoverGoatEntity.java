@@ -2,7 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzgw.ho
 
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -19,6 +19,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.TargetGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -36,7 +37,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.registry.tag.FluidTags;
@@ -188,7 +188,7 @@ public class HoverGoatEntity extends PvZombieEntity implements GeoEntity {
     }
 
     protected void initCustomGoals() {
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new PvZombieAttackGoal(this, 1.0D, true));
 
@@ -205,7 +205,7 @@ public class HoverGoatEntity extends PvZombieEntity implements GeoEntity {
     }
 
 	protected void initHypnoGoals(){
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new HypnoPvZombieAttackGoal(this, 1.0D, true));
 		////////// Hypnotized Zombie targets ///////
@@ -238,9 +238,7 @@ public class HoverGoatEntity extends PvZombieEntity implements GeoEntity {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		if (source.isTypeIn(DamageTypeTags.IS_FIRE)){
-			super.applyDamage(source, amount);
-		}
+		super.applyDamage(source, amount);
 	}
 
 	boolean resetSpeed = false;

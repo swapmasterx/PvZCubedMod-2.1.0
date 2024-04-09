@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.browncoat.modernday;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
@@ -29,6 +29,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.TargetGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -611,6 +612,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.targetSelector.add(6, new RevengeGoal(this, new Class[0]));
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(1, new PvZombieAttackGoal(this, 1.0D, true));
 
 		this.targetSelector.add(5, new TargetGoal<>(this, MobEntity.class, 0, false, false, (livingEntity) -> {
@@ -631,6 +633,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 	public void initHypnoGoals(){
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new HypnoPvZombieAttackGoal(this, 1.0D, true));
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		////////// Hypnotized Zombie targets ///////
 		this.targetSelector.add(1, new TargetGoal<>(this, MobEntity.class, 0, false, false, (livingEntity) -> {
 			return (livingEntity instanceof ZombiePropEntity zombiePropEntity && !(zombiePropEntity.getHypno()));
@@ -790,30 +793,39 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 			}
 		}
 	}
+	@Override
+	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 
-//	@Override
-//	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-//		if (this.hasPassenger(passenger) && passenger instanceof ZombieObstacleEntity) {
-//			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
-//			float f = 0.9F;
-//
-//			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-//			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
-//			passenger.setBodyYaw(this.bodyYaw);
-//		}
-//		else if (this.hasPassenger(passenger) && passenger instanceof ZombieShieldEntity) {
-//			float g = (float) ((this.isRemoved() ? 0.01F : this.getMountedHeightOffset()) + passenger.getHeightOffset());
-//			float f = 0.6F;
-//
-//			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-//			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
-//			passenger.setBodyYaw(this.bodyYaw);
-//		}
-//		else {
-//			super.updatePassengerPosition(passenger);
-//		}
-//	}
+		if (this.hasPassenger(passenger) && passenger instanceof ZombieObstacleEntity) {
+			float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+			float f = 0.9F;
 
+			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
+			passenger.setBodyYaw(this.bodyYaw);
+		}
+		else if (this.hasPassenger(passenger) && passenger instanceof ZombieShieldEntity) {
+			float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+			float f = 0.6F;
+
+			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
+			passenger.setBodyYaw(this.bodyYaw);
+		}
+		else {
+			float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+			float f = 0.0F;
+
+			Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+			passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
+			passenger.setBodyYaw(this.bodyYaw);
+		}
+	}
+
+	@Override
+	protected float method_52537(Entity entity) {
+		return 0.0F;
+	}
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 
 	@Nullable
@@ -866,10 +878,6 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 		);
 	}
 
-	@Override
-	protected float method_52537(Entity entity) {
-		return 0.0F;
-	}
 
 	public boolean canWalkOnFluid(FluidState state) {
 		return state.isIn(FluidTags.WATER);

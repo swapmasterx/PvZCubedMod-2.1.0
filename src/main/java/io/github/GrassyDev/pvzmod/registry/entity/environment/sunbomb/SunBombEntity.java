@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.environment.sunbomb;
 
 import blue.endless.jankson.annotation.Nullable;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.icetile.IceTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;

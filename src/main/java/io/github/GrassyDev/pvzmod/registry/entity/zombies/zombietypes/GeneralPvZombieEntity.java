@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
@@ -600,15 +600,15 @@ public class GeneralPvZombieEntity extends HostileEntity {
 						dropItem(Items.ROTTEN_FLESH);
 					}
 					if (random <= 1 * multiplierFinal) {
-						if (random <= 0.05 * multiplierFinal) {
+						if (random <= 0.04 * multiplierFinal) {
 							dropItem(item);
 							playSound(LOOTGIFTDEVENT);
 						}
-						else if (random <= 0.15 * multiplierFinal) {
+						else if (random <= 0.125 * multiplierFinal) {
 							dropItem(Items.GOLD_NUGGET);
 							playSound(LOOTNUGGETEVENT);
 						}
-						else if (random <= 0.4 * multiplierFinal) {
+						else if (random <= 0.3 * multiplierFinal) {
 							dropItem(Items.IRON_NUGGET);
 							playSound(LOOTNUGGETEVENT);
 						}

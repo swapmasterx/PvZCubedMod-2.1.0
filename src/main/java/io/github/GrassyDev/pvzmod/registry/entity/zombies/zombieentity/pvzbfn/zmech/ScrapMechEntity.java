@@ -2,7 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.z
 
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
@@ -30,6 +30,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.TargetGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -38,7 +39,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
-import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
@@ -234,7 +234,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.targetSelector.add(6, new RevengeGoal(this, new Class[0]));
 		this.goalSelector.add(1, new PvZombieAttackGoal(this, 1.0D, true));
-
+		this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
 		this.targetSelector.add(5, new TargetGoal<>(this, MobEntity.class, 0, false, false, (livingEntity) -> {
 			return livingEntity instanceof PlantEntity plantEntity;
 		}));
@@ -251,7 +251,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 	}
 
 	protected void initHypnoGoals(){
-
+		this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(1, new ScrapMechEntity.AttackGoal());
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new HypnoPvZombieAttackGoal(this, 1.0D, true));
@@ -581,9 +581,6 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (passenger instanceof PlayerEntity){
 			passenger.setPosition(this.getX(), this.getY() + 3.25, this.getZ());
-		}
-		else {
-			super.updatePassengerPosition(passenger);
 		}
 	}
 

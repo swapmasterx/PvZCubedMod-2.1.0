@@ -2,9 +2,8 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gar
 
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
-import io.github.GrassyDev.pvzmod.items.ModItems;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.zmech.ScrapMechEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -33,6 +32,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.TargetGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -351,7 +351,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected void initCustomGoals() {
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(1, new GargantuarEntity.AttackGoal());
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.targetSelector.add(6, new RevengeGoal(this, new Class[0]));
@@ -373,7 +373,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected void initHypnoGoals(){
-
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(1, new GargantuarEntity.AttackGoal());
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		this.goalSelector.add(1, new HypnoPvZombieAttackGoal(this, 1.0D, true));
@@ -701,7 +701,15 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
+	@Override
+	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
+		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+		float f = 0.05F;
 
+		Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+		passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
+		passenger.setBodyYaw(this.bodyYaw);
+	}
 	@Override
 	protected float method_52537(Entity entity) {
 		return 0.00F;
@@ -907,13 +915,13 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 			super(GargantuarEntity.this, 1.0, true);
 		}
 
-		@Override
-		protected void attack(LivingEntity target) {
-			float f = GargantuarEntity.this.getWidth() - 0.1F;
-			if (this.mob.squaredDistanceTo(target) < (double) (f * 4F * f * 4F + target.getWidth()) * (double) (f * 4F * f * 4F + target.getWidth())) {
-				this.resetCooldown();
-			}
-		}
+//		@Override
+//		protected void attack(LivingEntity target) {
+//			float f = GargantuarEntity.this.getWidth() - 0.1F;
+//			if (this.mob.squaredDistanceTo(target) < (double) (f * 4F * f * 4F + target.getWidth()) * (double) (f * 4F * f * 4F + target.getWidth())) {
+//				attack(target);
+//			}
+//		}
 	}
 
 }
