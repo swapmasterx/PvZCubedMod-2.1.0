@@ -15,6 +15,7 @@ public class ModBlocks {
 	public static final Block BOTANY_STATION = new Block(QuiltBlockSettings.create()
 			.mapColor(MapColor.GREEN).pistonBehavior(PistonBehavior.BLOCK)
 			.requiresTool()
+			.nonOpaque()
 			.sounds(BlockSoundGroup.CHERRY_WOOD)
 			.strength(1.9f, 1000f));
     public static final Block GRASS_TILE = new Block(QuiltBlockSettings.create()

@@ -14,6 +14,8 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -249,7 +251,7 @@ public class PvZCubed implements ModInitializer {
 		Registry.register(Registries.ITEM_GROUP, PVZPACKETFABS, FabricItemGroup.builder()
 			.icon(() -> new ItemStack(ModItems.GARDENINGGLOVE))
 			.entries((context, entries) -> {
-				entries.addStack(new ItemStack(ModItems.BOTANY_STATION));
+				entries.addItem(ModBlocks.BOTANY_STATION);
 				entries.addStack(new ItemStack(ModItems.DAVES_SHOVEL));
 				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
 				entries.addStack(new ItemStack(ModItems.GARDENINGGLOVE));

@@ -307,6 +307,7 @@ public class ModItems {
 	public static final Item PLANTFOOD_TOUGH = new Item(new Item.Settings().maxCount(8));
 	public static final Item PLANTFOOD_SHADOW = new Item(new Item.Settings().maxCount(8));
 
+
     public static final Item PEA = new PeaItem(new Item.Settings().maxCount(32).rarity(Rarity.COMMON));
     public static final Item SPORE = new SporeItem(new Item.Settings().maxCount(64).rarity(Rarity.COMMON));
     public static final Item FUME = new FumeItem(new Item.Settings().maxCount(32).rarity(Rarity.UNCOMMON));
@@ -665,6 +666,7 @@ public class ModItems {
     //addItem
     //addBlock
     public static void registerItems() {
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"botany_station"), BOTANY_STATION);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"empty_seed_packet"), EMPTY_SEED_PACKET);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"icon_almanac"), ALMANAC);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"plantfood"), PLANTFOOD);

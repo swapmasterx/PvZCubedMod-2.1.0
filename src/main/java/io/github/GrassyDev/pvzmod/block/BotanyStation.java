@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class BotanyStation extends BlockWithEntity implements BlockEntityProvider {
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 15, 16, 15);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(1, 1, 1, 15, 15, 15);
     public BotanyStation(Settings settings) {
 
         super(settings);
