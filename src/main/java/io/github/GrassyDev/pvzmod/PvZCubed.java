@@ -5,6 +5,7 @@ import io.github.GrassyDev.pvzmod.config.PvZConfig;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.screen.ModScreenHandlers;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.*;
 import io.github.GrassyDev.pvzmod.registry.world.gen.entity.PvZEntitySpawn;
@@ -127,6 +128,7 @@ public class PvZCubed implements ModInitializer {
 		GeckoLib.initialize();
 		PvZEntitySpawn.addEntitySpawn();
 		ModBlockEntities.registerBlockEntities();
+		ModScreenHandlers.registerScreenHandlers();
 		//Entity Initialization
 
 

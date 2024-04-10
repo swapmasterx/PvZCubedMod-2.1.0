@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.block.entity;
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.screen.BotanyStationScreenHandler;
 import io.wispforest.owo.util.ImplementedInventory;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -34,7 +35,6 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     private static final int INPUT_SLOT_3 = 3;
     private static final int INPUT_SLOT_4 = 4;
     private static final int INPUT_SLOT_5 = 5;
-
     private static final int INPUT_SLOT_6 = 6;
     private static final int SEED_PACKET_SLOT = 7;
     private static final int OUTPUT_SLOT = 8;
@@ -48,6 +48,8 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     int sunCost = 0;
     int craftDelay = 0;
     int maxcraftDelay = 80;
+
+	int missingSun = 0;
 
     public BotanyStationBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BOTANY_STATION_BLOCK_ENTITY, pos, state);
@@ -73,6 +75,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
                     case 3 -> BotanyStationBlockEntity.this.sunCost;
                     case 4 -> BotanyStationBlockEntity.this.craftDelay;
                     case 5 -> BotanyStationBlockEntity.this.maxcraftDelay;
+					case 6 -> BotanyStationBlockEntity.this.missingSun;
                     default -> 0;
                 };
             }
@@ -99,13 +102,14 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
                     case 3 -> BotanyStationBlockEntity.this.sunCost = value;
                     case 4 -> BotanyStationBlockEntity.this.craftDelay = value;
                     case 5 -> BotanyStationBlockEntity.this.maxcraftDelay = value;
+					case 6 -> BotanyStationBlockEntity.this.missingSun = value;
                 }
 
             }
 
             @Override
             public int size() {
-                return 6;
+                return 7;
             }
         };
     }
@@ -143,8 +147,8 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
     @Nullable
     @Override
-    public ScreenHandler createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return null;
+    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+        return new BotanyStationScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
     public void tick(World world, BlockPos pos, BlockState state){
         if(world.isClient()){
