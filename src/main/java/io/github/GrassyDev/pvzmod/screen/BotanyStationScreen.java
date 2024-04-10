@@ -21,7 +21,7 @@ public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandle
     protected void init() {
         super.init();
         titleY = 0;
-        playerInventoryTitleY = 0;
+        playerInventoryTitleY = 80;
     }
 
     @Override
@@ -35,8 +35,8 @@ public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandle
         graphics.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         renderProgressArrow(graphics, x, y);
-//		renderSunResource(graphics, x, y);
-//		renderNeedMoreSun(graphics, x, y);
+		renderSunResource(graphics, x, y);
+		renderNeedMoreSun(graphics, x, y);
 
     }
 
@@ -45,16 +45,16 @@ public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandle
             graphics.drawTexture(TEXTURE, x + 102, y + 30, 192, 0, handler.getScaledProgress(),10);
         }
     }
-//	private void renderSunResource(GuiGraphics graphics, int x, int y) {
-//		if(handler.isCrafting()){
-//			graphics.drawTexture(TEXTURE, x + 30, y + 32, 180, 0, 8, handler.getScaledResource());
-//		}
-//	}
-//	private void renderNeedMoreSun(GuiGraphics graphics, int x, int y) {
-//		if(handler.isCrafting()){
-//			graphics.drawTexture(TEXTURE, x + 30, y + 32, 180, 0, 8, handler.getScaledResource());
-//		}
-//	}
+	private void renderSunResource(GuiGraphics graphics, int x, int y) {
+		if(handler.isCrafting()){
+			graphics.drawTexture(TEXTURE, x + 30, y + 32, 180, 0, 8, handler.getSunResource());
+		}
+	}
+	private void renderNeedMoreSun(GuiGraphics graphics, int x, int y) {
+		if(handler.isCrafting()){
+			graphics.drawTexture(TEXTURE, x + 30, y + 32, 180, 0, 8, handler.getShowRequiredSun());
+		}
+	}
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {

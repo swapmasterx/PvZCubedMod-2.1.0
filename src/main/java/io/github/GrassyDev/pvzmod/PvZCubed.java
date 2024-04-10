@@ -131,6 +131,9 @@ public class PvZCubed implements ModInitializer {
 		PvZEntitySpawn.addEntitySpawn();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
+
+
+
 		//Entity Initialization
 
 

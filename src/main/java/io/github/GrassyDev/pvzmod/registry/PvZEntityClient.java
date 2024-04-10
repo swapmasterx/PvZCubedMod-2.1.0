@@ -258,8 +258,11 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.plantobsta
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.plastichelmet.PlasticHelmetEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.rockobstacle.RockObstacleEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.stonehelmet.StoneHelmetEntityRenderer;
+import io.github.GrassyDev.pvzmod.screen.BotanyStationScreen;
+import io.github.GrassyDev.pvzmod.screen.ModScreenHandlers;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 
@@ -268,6 +271,8 @@ public class PvZEntityClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient(ModContainer mod) {
+
+		HandledScreens.register(ModScreenHandlers.BOTANY_STATION_SCREEN_HANDLER, BotanyStationScreen::new);
 
 		EntityRendererRegistry.register(PvZEntity.GARDEN, GardenEntityRenderer::new);
 

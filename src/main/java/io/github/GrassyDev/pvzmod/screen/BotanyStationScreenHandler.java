@@ -63,6 +63,20 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}
+	public int getSunResource() {
+		int currentSun = this.propertyDelegate.get(2);
+		int maxSun = this.propertyDelegate.get(1);  // Max Sun
+		int progressArrowSize = 43; // Height of bar
+
+		return maxSun != 0 && currentSun != 0 ? currentSun * progressArrowSize / maxSun : 0;
+	}
+	public int getShowRequiredSun() {
+		int sunCost = this.propertyDelegate.get(3);
+		int maxSun = this.propertyDelegate.get(1);  // Max Sun
+		int progressArrowSize = 43; // Height of bar
+
+		return maxSun != 0 && sunCost != 0 ? sunCost * progressArrowSize / maxSun : 0;
+	}
 
 	@Override
 	public ItemStack quickTransfer(PlayerEntity player, int invSlot) {

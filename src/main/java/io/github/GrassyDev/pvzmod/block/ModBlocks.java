@@ -12,7 +12,7 @@ import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
 public class ModBlocks {
 
-	public static final Block BOTANY_STATION = new Block(QuiltBlockSettings.create()
+	public static final Block BOTANY_STATION = new BotanyStation(QuiltBlockSettings.create()
 			.mapColor(MapColor.GREEN).pistonBehavior(PistonBehavior.BLOCK)
 			.requiresTool()
 			.nonOpaque()

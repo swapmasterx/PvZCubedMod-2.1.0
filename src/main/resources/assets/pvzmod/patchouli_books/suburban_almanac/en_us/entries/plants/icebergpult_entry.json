@@ -9,7 +9,7 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)16 ",
-        "$(#bd951a)Damage: $()$(#ff0000)3 DMG/2.5s, 1 DMG (Splash)",
+        "$(#bd951a)Damage: $()$(#ff0000)1 DMG/2.5s, 1 DMG (Splash)",
         "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks",
         "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks (Lobbed)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",

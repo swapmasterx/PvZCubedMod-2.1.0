@@ -20,12 +20,14 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class BotanyStation extends BlockWithEntity implements BlockEntityProvider {
-    private static final VoxelShape SHAPE = Block.createCuboidShape(1, 1, 1, 15, 15, 15);
-    public BotanyStation(Settings settings) {
+    private static final VoxelShape SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
+
+	public static final MapCodec<BotanyStation> CODEC = BotanyStation.method_54094(BotanyStation::new);
+
+	public BotanyStation(Settings settings) {
 
         super(settings);
     }
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
@@ -33,12 +35,14 @@ public class BotanyStation extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+
+		return BlockRenderType.MODEL;
     }
 
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return null;
+
+		return CODEC;
     }
 
     @Nullable

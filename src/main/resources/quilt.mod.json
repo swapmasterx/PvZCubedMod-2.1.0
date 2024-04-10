@@ -26,7 +26,10 @@
 			],
 			"client_init": [
 				"io.github.GrassyDev.pvzmod.registry.PvZEntityClient"
-			]
+			],
+			"fabric-datagen": [
+				"io.github.GrassyDev.pvzmod.PvZCubedDataGeneration"
+				]
 		},
 		"depends": [
 			{

@@ -44,7 +44,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     protected final PropertyDelegate propertyDelegate;
     int minsunResource = 0;
     int currentSunResource = 0;
-    int maxsunResource = 500;
+    int maxsunResource = 200;
     int sunCost = 0;
     int craftDelay = 0;
     int maxcraftDelay = 80;
@@ -124,6 +124,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, this.inventory);
+		nbt.putInt("craft_delay", this.craftDelay);
         nbt.putInt("sun_stored", this.currentSunResource);
     }
 
@@ -131,6 +132,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt, this.inventory);
+		this.craftDelay = nbt.getInt("craft_delay");
         this.currentSunResource = nbt.getInt("sun_stored");
     }
 
@@ -157,16 +159,14 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
         if(isOutputSlotEmptyOrReceivable()){
             if(this.hasRecipe()){
-                this.increaseCraftDelay();
-                markDirty(world, pos, state);
-
-                if(hasCraftingFinished()){
-                    if(canAffordSunCost()) {
-                        this.craftItem();
-                        this.deductSunCost();
-                        this.resetCraftDelay();
-                    }
-                    else {
+				if(canAffordSunCost()){
+					this.increaseCraftDelay();
+					markDirty(world, pos, state);
+					if(hasCraftingFinished()){
+						this.craftItem();
+						this.deductSunCost();
+						this.resetCraftDelay();}
+					else {
                         this.resetCraftDelay();
                     }
                 }
@@ -182,7 +182,8 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private  boolean canAffordSunCost(){
-        return this.sunCost <= this.currentSunResource;
+
+		return this.sunCost <= this.currentSunResource;
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {
@@ -221,7 +222,11 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private void deductSunCost() {
-        this.currentSunResource -= this.sunCost;
+
+		this.currentSunResource -= this.sunCost;
+		if (this.currentSunResource < 0){
+			this.currentSunResource = 0;
+		}
     }
 
     private void resetCraftDelay() {
