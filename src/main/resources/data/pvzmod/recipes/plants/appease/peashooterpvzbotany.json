@@ -1,0 +1,22 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "mossy_cobblestone",
+  "packettemplate": {
+    "item": "pvzmod:empty_seed_packet"
+  },
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:sun"
+    },
+    {
+      "item": "pvzmod:sun"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:peashooter_seed_packet",
+    "count": 1
+  }
+}

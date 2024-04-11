@@ -1,6 +1,8 @@
 package io.github.GrassyDev.pvzmod.block.entity;
 
+import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.recipe.BotanyStationRecipe;
 import io.github.GrassyDev.pvzmod.screen.BotanyStationScreenHandler;
 import io.wispforest.owo.util.ImplementedInventory;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -10,10 +12,12 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.RecipeHolder;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -23,6 +27,8 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
@@ -47,7 +53,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     int maxsunResource = 200;
     int sunCost = 0;
     int craftDelay = 0;
-    int maxcraftDelay = 80;
+    int maxcraftDelay = 20;
 
 	int missingSun = 0;
 
@@ -159,19 +165,25 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
         if(isOutputSlotEmptyOrReceivable()){
             if(this.hasRecipe()){
+                PvZCubed.LOGGER.info("Has Recipe");
 				if(canAffordSunCost()){
+                    PvZCubed.LOGGER.info("Can afford sun");
 					this.increaseCraftDelay();
 					markDirty(world, pos, state);
 					if(hasCraftingFinished()){
+
+                        PvZCubed.LOGGER.info("crafting complete");
 						this.craftItem();
 						this.deductSunCost();
 						this.resetCraftDelay();}
 					else {
+                        PvZCubed.LOGGER.info("crafting should have completed but reset");
                         this.resetCraftDelay();
                     }
                 }
             }
             else {
+                PvZCubed.LOGGER.info("Has Recipe not met");
                 this.resetCraftDelay();
             }
         }
@@ -183,7 +195,12 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
     private  boolean canAffordSunCost(){
 
-		return this.sunCost <= this.currentSunResource;
+        if (this.sunCost <= this.currentSunResource){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {
@@ -191,10 +208,20 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private boolean hasRecipe() {
-        ItemStack result = new ItemStack(ModItems.PEASHOOTER_SEED_PACKET);
-        boolean hasInput = getStack(INPUT_SLOT_1).getItem() == ModItems.PLANTFOOD;
+        Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
 
-        return hasInput && canInsertAmountIntoOutputSlot(result) && canInsertItemIntoOutputSlot(result.getItem());
+
+        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+                && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
+    }
+
+    private Optional<RecipeHolder<BotanyStationRecipe>> getCurrentRecipe() {
+        SimpleInventory inv = new SimpleInventory(this.size());
+        for(int i = 0; i < this.size(); i++) {
+            inv.setStack(i, this.getStack(i));
+        }
+
+        return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.BOTANYFICATION, inv, getWorld());
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
@@ -214,10 +241,18 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private void craftItem() {
-        this.removeStack(INPUT_SLOT_1, 1);
-        ItemStack result = new ItemStack(ModItems.PEASHOOTER_SEED_PACKET);
+        Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
 
-        this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
+        this.removeStack(INPUT_SLOT_1, 1);
+        this.removeStack(INPUT_SLOT_2, 1);
+        this.removeStack(INPUT_SLOT_3, 1);
+        this.removeStack(INPUT_SLOT_4, 1);
+        this.removeStack(INPUT_SLOT_5, 1);
+        this.removeStack(INPUT_SLOT_6, 1);
+        this.removeStack(SEED_PACKET_SLOT, 1);
+
+        this.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().value().getResult(null).getItem(),
+                getStack(OUTPUT_SLOT).getCount() + recipe.get().value().getResult(null).getCount()));
 
     }
 

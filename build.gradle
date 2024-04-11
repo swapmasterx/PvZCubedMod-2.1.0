@@ -38,6 +38,7 @@ project.configurations.configureEach {
 dependencies {
 	minecraft libs.minecraft
 	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
+//	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
 	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings}:intermediary-v2"
 	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
