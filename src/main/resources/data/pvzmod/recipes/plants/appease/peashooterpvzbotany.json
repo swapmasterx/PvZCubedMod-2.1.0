@@ -1,6 +1,5 @@
 {
   "type": "pvzmod:botany_station",
-  "group": "mossy_cobblestone",
   "packettemplate": {
     "item": "pvzmod:empty_seed_packet"
   },
