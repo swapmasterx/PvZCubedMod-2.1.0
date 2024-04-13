@@ -239,7 +239,6 @@ public class ModItems {
 		SEED_PACKET_LIST.add(ModItems.SMACKADAMIA_SEED_PACKET);
 
 		SEED_PACKET_LIST.add(ModItems.SMACKADAMIA_SEED_PACKET);
-		LEGENDARY_SEED_LIST.add(ModItems.LOCOCOCO_SEED_PACKET);
 
 		SEED_PACKET_LIST.add(ModItems.BUTTONSHROOM_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.BOMBSEEDLING_SEED_PACKET);
@@ -447,7 +446,6 @@ public class ModItems {
 	public static final Item MAGNETOSHROOM_SEED_PACKET = new MagnetoShroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item SMALLNUT_SEED_PACKET = new SmallnutSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item SMACKADAMIA_SEED_PACKET = new SmackadamiaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
-	public static final Item LOCOCOCO_SEED_PACKET = new LocoCocoSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item BUTTONSHROOM_SEED_PACKET = new ButtonshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item BOMBSEEDLING_SEED_PACKET = new BombSeedlingSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item OILYOLIVE_SEED_PACKET = new OilyOliveSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
@@ -848,7 +846,6 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"magnetoshroom_seed_packet"), MAGNETOSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"smallnut_seed_packet"), SMALLNUT_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"smackadamia_seed_packet"), SMACKADAMIA_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"locococo_seed_packet"), LOCOCOCO_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"buttonshroom_seed_packet"), BUTTONSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"bombseedling_seed_packet"), BOMBSEEDLING_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"oilyolive_seed_packet"), OILYOLIVE_SEED_PACKET);

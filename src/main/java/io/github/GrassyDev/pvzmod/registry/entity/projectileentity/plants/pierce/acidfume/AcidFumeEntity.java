@@ -178,9 +178,9 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 					entityStore.add((LivingEntity) entity);
 				}
 				if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 60, 6)));
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 60, 2)));
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 50, 1)));
 				entity.extinguish();
 				entityStore.add((LivingEntity) entity);
 			}

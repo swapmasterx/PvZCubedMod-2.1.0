@@ -9,7 +9,7 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)28",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 2.5 DMG/2s (Pierce)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 20 DMG/2s (Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Wet Zombies and applies Acid to them.",

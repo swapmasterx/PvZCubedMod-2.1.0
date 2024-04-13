@@ -34,7 +34,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
@@ -169,12 +171,15 @@ public class TangleKelpSeeds extends SeedItem implements FabricItem {
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
 		PlantEntity plantEntity = null;
-		List<PlantEntity> list = null;
+		List<Entity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		Box box = PvZEntity.SQUASH.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world instanceof ServerWorld serverWorld) {
-			plantEntity = PvZEntity.TANGLE_KELP.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);;
-			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.TANGLE_KELP.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 		}
 		if (world instanceof ServerWorld serverWorld && (entity instanceof BubblePadEntity || entity instanceof WaterTile))  {
+			plantEntity = PvZEntity.TANGLE_KELP.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);;
+
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

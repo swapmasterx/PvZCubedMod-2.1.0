@@ -106,9 +106,9 @@ public class OlivePitSeeds extends SeedItem implements FabricItem {
 			Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 			Box box = PvZEntity.OLIVEPIT.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-				OlivePitEntity plantEntity = (OlivePitEntity) PvZEntity.OLIVEPIT.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
-				List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.OLIVEPIT.getDimensions().getBoxAt(plantEntity.getPos()));
+				List<Entity> list = world.getNonSpectatingEntities(Entity.class, box);
 				if (list.isEmpty()) {
+					OlivePitEntity plantEntity = (OlivePitEntity) PvZEntity.OLIVEPIT.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 
 					float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
@@ -141,16 +141,20 @@ public class OlivePitSeeds extends SeedItem implements FabricItem {
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
 		PlantEntity plantEntity = null;
-		List<PlantEntity> list = null;
+		List<Entity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		Box box = PvZEntity.OLIVEPIT.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
+
 		if (world instanceof ServerWorld serverWorld) {
-			plantEntity = PvZEntity.OLIVEPIT.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.OLIVEPIT.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 		}
 		if (world instanceof ServerWorld serverWorld && entity instanceof TileEntity
 				&& !(entity instanceof ScorchedTile)
 				&& !(entity instanceof SnowTile)
 				&& !(entity instanceof CraterTile)) {
 			if (list.isEmpty()) {
+				plantEntity = PvZEntity.OLIVEPIT.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -171,6 +175,8 @@ public class OlivePitSeeds extends SeedItem implements FabricItem {
 			}
 		}  else if (world instanceof ServerWorld serverWorld && (entity instanceof PlantEntity.VineEntity && !(entity instanceof BubblePadEntity)) && !(entity.getVehicle() instanceof LilyPadEntity))  {
 			sound = PvZSounds.PLANTPLANTEDEVENT;
+			plantEntity = PvZEntity.OLIVEPIT.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

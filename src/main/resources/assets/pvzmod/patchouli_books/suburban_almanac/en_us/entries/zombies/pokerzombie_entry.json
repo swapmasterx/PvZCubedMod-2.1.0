@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)(Paper)Health: $()$(#ff0000)65(Heart), 37(Spade/Club), 50(Diamond)",
+        "$(#bd951a)(Paper)Health: $()$(#ff0000)65(Heart), 30(Spade/Club), 50(Diamond)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)6(Heart), 12(Spade/Diamond), 18(Club)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic(Heart/Club/Diamond), Decent(Spade)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Can spawn as any of its 4 forms, Heart, Spade, Club, or Diamond.",

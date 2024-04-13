@@ -160,7 +160,7 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoEntity {
 				List<LilyPadEntity> list = world.getEntitiesByClass(
 						LilyPadEntity.class, this.getBoundingBox().expand(12.5), EntityPredicates.NOT_MOUNTED
 				);
-				if (!list.isEmpty()) {
+				if (list.isEmpty()) {
 					LilyPadEntity lilyPadEntity = (LilyPadEntity) list.get(0);
 					this.startRiding(lilyPadEntity);
 				}

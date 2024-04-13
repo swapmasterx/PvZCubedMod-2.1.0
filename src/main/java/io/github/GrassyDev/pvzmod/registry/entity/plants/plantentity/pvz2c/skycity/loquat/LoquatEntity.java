@@ -3,7 +3,10 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skyc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.bombseedling.BombSeedlingEntity;
@@ -164,6 +167,8 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	 **/
 
 	protected void initGoals() {
+		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 5.0F));
+		this.goalSelector.add(2, new LookAtEntityGoal(this, GeneralPvZombieEntity.class, 15.0F));
 	}
 
 	protected void snorkelGoal() {

@@ -7,9 +7,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27, 140(Metal Helmet)",
+        "$(#bd951a)Health: $()$(#ff0000)26, 140(Metal Helmet)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2.5 Blocks",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Every Conehead loves him, every Buckethead wants to be him. What they don't know is that this helmet causes neck pain."
       ]

@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27 (Paper), 37(Plastic Cone)",
+        "$(#bd951a)Health: $()$(#ff0000)26 (Paper), 36(Plastic Cone)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Conehead Mummy Zombie prefers the circular cone shape over the typical pyramid shape. It's a fashion thing, and Conehead Mummy Zombie always stays ahead of fashion."

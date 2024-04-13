@@ -1,12 +1,15 @@
 package io.github.GrassyDev.pvzmod.block.entity;
 
+import com.google.common.collect.Maps;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.recipe.BotanyStationRecipe;
 import io.github.GrassyDev.pvzmod.screen.BotanyStationScreenHandler;
 import io.wispforest.owo.util.ImplementedInventory;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.SharedConstants;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,20 +17,26 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeHolder;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
@@ -48,7 +57,6 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
 
     protected final PropertyDelegate propertyDelegate;
-    int minsunResource = 0;
     int currentSunResource = 0;
     int maxsunResource = 200;
     int sunCost = 0;
@@ -75,13 +83,12 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 //                    default:
 //                        return 0;
                 return switch (index) {
-                    case 0 -> BotanyStationBlockEntity.this.minsunResource;
-                    case 1 -> BotanyStationBlockEntity.this.maxsunResource;
-                    case 2 -> BotanyStationBlockEntity.this.currentSunResource;
-                    case 3 -> BotanyStationBlockEntity.this.sunCost;
-                    case 4 -> BotanyStationBlockEntity.this.craftDelay;
-                    case 5 -> BotanyStationBlockEntity.this.maxcraftDelay;
-					case 6 -> BotanyStationBlockEntity.this.missingSun;
+                    case 0 -> BotanyStationBlockEntity.this.maxsunResource;
+                    case 1 -> BotanyStationBlockEntity.this.currentSunResource;
+                    case 2 -> BotanyStationBlockEntity.this.sunCost;
+                    case 3 -> BotanyStationBlockEntity.this.craftDelay;
+                    case 4 -> BotanyStationBlockEntity.this.maxcraftDelay;
+					case 5 -> BotanyStationBlockEntity.this.missingSun;
                     default -> 0;
                 };
             }
@@ -102,20 +109,19 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 //                        BotanyStationBlockEntity.this.sunCost = value;
 //                        break;
                 switch (index) {
-                    case 0 -> BotanyStationBlockEntity.this.minsunResource = value;
-                    case 1 -> BotanyStationBlockEntity.this.maxsunResource = value;
-                    case 2 -> BotanyStationBlockEntity.this.currentSunResource = value;
-                    case 3 -> BotanyStationBlockEntity.this.sunCost = value;
-                    case 4 -> BotanyStationBlockEntity.this.craftDelay = value;
-                    case 5 -> BotanyStationBlockEntity.this.maxcraftDelay = value;
-					case 6 -> BotanyStationBlockEntity.this.missingSun = value;
+                    case 0 -> BotanyStationBlockEntity.this.maxsunResource = value;
+                    case 1 -> BotanyStationBlockEntity.this.currentSunResource = value;
+                    case 2 -> BotanyStationBlockEntity.this.sunCost = value;
+                    case 3 -> BotanyStationBlockEntity.this.craftDelay = value;
+                    case 4 -> BotanyStationBlockEntity.this.maxcraftDelay = value;
+					case 5 -> BotanyStationBlockEntity.this.missingSun = value;
                 }
 
             }
 
             @Override
             public int size() {
-                return 7;
+                return 6;
             }
         };
     }
@@ -165,25 +171,20 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
         if(isOutputSlotEmptyOrReceivable()){
             if(this.hasRecipe()){
-                PvZCubed.LOGGER.info("Has Recipe");
 				if(canAffordSunCost()){
-                    PvZCubed.LOGGER.info("Can afford sun");
 					this.increaseCraftDelay();
 					markDirty(world, pos, state);
 					if(hasCraftingFinished()){
 
-                        PvZCubed.LOGGER.info("crafting complete");
 						this.craftItem();
 						this.deductSunCost();
 						this.resetCraftDelay();}
 					else {
-                        PvZCubed.LOGGER.info("crafting should have completed but reset");
                         this.resetCraftDelay();
                     }
                 }
             }
             else {
-                PvZCubed.LOGGER.info("Has Recipe not met");
                 this.resetCraftDelay();
             }
         }
@@ -211,19 +212,28 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
 
 
-        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
-                && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
+        return recipe.isPresent()&& canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null)) && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
     private Optional<RecipeHolder<BotanyStationRecipe>> getCurrentRecipe() {
+
         SimpleInventory inv = new SimpleInventory(this.size());
         for(int i = 0; i < this.size(); i++) {
             inv.setStack(i, this.getStack(i));
         }
-
         return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.BOTANYFICATION, inv, getWorld());
     }
-
+	private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {
+		Item item2 = item.asItem();
+		fuelTimes.put(item2, fuelTime);
+	}
+	public static Map<Item, Integer> createSunAmountMap() {
+		Map<Item, Integer> map = Maps.newLinkedHashMap();
+		addFuel(map, ModItems.SUN, 2);
+		addFuel(map, ModItems.LARGESUN, 4);
+		addFuel(map, ModItems.SMALLSUN, 1);
+		return map;
+	}
     private boolean canInsertItemIntoOutputSlot(Item item) {
         return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
     }

@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)Poker Zombie, 37(Plastic Cone)",
+        "$(#bd951a)Health: $()$(#ff0000)Poker Zombie, 30(Plastic Cone)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)Poker Zombie",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Poker Zombie",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Poker Zombie.",

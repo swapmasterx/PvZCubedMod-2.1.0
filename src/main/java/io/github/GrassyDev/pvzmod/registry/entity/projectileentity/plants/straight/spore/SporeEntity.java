@@ -200,7 +200,6 @@ public class SporeEntity extends PvZProjectileEntity implements GeoEntity {
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 40, 6)));
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
 				break;

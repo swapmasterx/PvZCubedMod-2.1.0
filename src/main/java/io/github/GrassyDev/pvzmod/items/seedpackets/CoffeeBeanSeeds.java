@@ -88,7 +88,7 @@ public class CoffeeBeanSeeds extends SeedItem implements FabricItem {
 		if (world instanceof ServerWorld serverWorld && entity instanceof PlantEntity plantEntity1 && plantEntity1.nocturnal && !plantEntity1.getCofee()) {
 			CoffeeBeanEntity plantEntity = PvZEntity.COFFEEBEAN.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
 			list = world.getNonSpectatingEntities(CoffeeBeanEntity.class, PvZEntity.COFFEEBEAN.getDimensions().getBoxAt(plantEntity.getPos()));
-			if (list.isEmpty()) {
+			if (!list.isEmpty()) {
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 				plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

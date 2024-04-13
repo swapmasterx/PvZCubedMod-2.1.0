@@ -39,6 +39,7 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 	public String getGroup() {
 		return this.group;
 	}
+
 //	public CraftingCategory getCategory() {
 //		return this.category;
 //	}
@@ -51,7 +52,7 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 			ItemStack itemStack = inventory.getStack(j);
 			if (!itemStack.isEmpty()) {
 				++i;
-				recipeMatcher.addInput(itemStack, 64);
+				recipeMatcher.addInput(itemStack, 1);
 			}
 		}
 
@@ -121,7 +122,7 @@ public static class Serializer implements RecipeSerializer<BotanyStationRecipe> 
 				{return botanyStationRecipe.output;}),
 				Ingredient.field_46096.listOf().fieldOf("ingredients").flatXmap((list) ->
 						{Ingredient[] ingredients = (Ingredient[])list.stream().filter((ingredient) ->
-						{return !ingredient.isEmpty();}).toArray((i) -> {return new Ingredient[i];});
+						{return !ingredient.isEmpty();}).toArray(Ingredient[]::new);
 							if (ingredients.length == 0)
 							{return DataResult.error(() ->
 							{return "No ingredients for Botany Box recipe";});}
@@ -146,8 +147,6 @@ public static class Serializer implements RecipeSerializer<BotanyStationRecipe> 
 		public BotanyStationRecipe read(PacketByteBuf buf) {
 			//group string
 			String string = buf.readString();
-//			//crafting category
-//			CraftingCategory craftingCategory = (CraftingCategory)buf.readEnumConstant(CraftingCategory.class);
 			//seed packet template
 			Ingredient packetTemp = Ingredient.fromPacket(buf);
 			//defaulted list
@@ -168,15 +167,7 @@ public static class Serializer implements RecipeSerializer<BotanyStationRecipe> 
 
 			buf.writeString(botanyStationRecipe.group);
 
-//			buf.writeEnumConstant(botanyStationRecipe.category);
-
 			botanyStationRecipe.packetTemplate.write(buf);
-//
-//			buf.writeVarInt(botanyStationRecipe.recipeItems.size());
-//
-//            for (Ingredient ingredient : botanyStationRecipe.recipeItems) {
-//                ingredient.write(buf);
-//            }
 
 			buf.writeInt(botanyStationRecipe.getIngredients().size());
 			for (Ingredient ingredient : botanyStationRecipe.getIngredients()) {

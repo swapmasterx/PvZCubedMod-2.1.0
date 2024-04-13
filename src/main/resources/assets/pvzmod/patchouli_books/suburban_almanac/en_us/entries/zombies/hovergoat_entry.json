@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)75",
+        "$(#bd951a)Health: $()$(#ff0000)74",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Buff Range: $()$(#ff0000)6x6",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent, Basic (Buffing)",

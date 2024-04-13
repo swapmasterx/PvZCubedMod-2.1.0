@@ -99,9 +99,10 @@ public class GoldLeafSeeds extends SeedItem implements FabricItem {
 			Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 			Box box = PvZEntity.GOLDLEAF.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			if (world.isSpaceEmpty((Entity) null, box) && world instanceof ServerWorld serverWorld) {
-				GoldLeafEntity plantEntity = (GoldLeafEntity) PvZEntity.GOLDLEAF.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
-				List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.GOLDLEAF.getDimensions().getBoxAt(plantEntity.getPos()));
+				List<Entity> list = world.getNonSpectatingEntities(Entity.class, box);
 				if (list.isEmpty()) {
+					GoldLeafEntity plantEntity = (GoldLeafEntity) PvZEntity.GOLDLEAF.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 					float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
 					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

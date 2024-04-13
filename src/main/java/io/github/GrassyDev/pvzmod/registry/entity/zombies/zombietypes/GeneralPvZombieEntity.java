@@ -507,7 +507,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 
 
 	public boolean isPushable() {
-		return false;
+		return true;
 	}
 
 	protected void pushAway(Entity entity) {

@@ -21,13 +21,13 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 
 	public BotanyStationScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
 		this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-			new ArrayPropertyDelegate(9));
+			new ArrayPropertyDelegate(7));
 	}
 
 
 	public BotanyStationScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
 		super(ModScreenHandlers.BOTANY_STATION_SCREEN_HANDLER, syncId);
-		checkSize((Inventory) blockEntity, 9);
+		checkSize((Inventory) blockEntity, 7);
 		this.inventory = ((Inventory) blockEntity);
 		playerInventory.onOpen(playerInventory.player);
 		this.propertyDelegate = arrayPropertyDelegate;
@@ -54,25 +54,25 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 	}
 
 	public boolean isCrafting(){
-		return propertyDelegate.get(4) > 0;
+		return propertyDelegate.get(3) > 0;
 	}
 	public int getScaledProgress() {
-		int progress = this.propertyDelegate.get(4);
-		int maxProgress = this.propertyDelegate.get(5);  // Max Progress
+		int progress = this.propertyDelegate.get(3);
+		int maxProgress = this.propertyDelegate.get(4);  // Max Progress
 		int progressArrowSize = 28; // This is the width in pixels of your arrow
 
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}
 	public int getSunResource() {
-		int currentSun = this.propertyDelegate.get(2);
-		int maxSun = this.propertyDelegate.get(1);  // Max Sun
+		int currentSun = this.propertyDelegate.get(1);
+		int maxSun = this.propertyDelegate.get(0);  // Max Sun
 		int progressArrowSize = 43; // Height of bar
 
 		return maxSun != 0 && currentSun != 0 ? currentSun * progressArrowSize / maxSun : 0;
 	}
 	public int getShowRequiredSun() {
-		int sunCost = this.propertyDelegate.get(3);
-		int maxSun = this.propertyDelegate.get(1);  // Max Sun
+		int sunCost = this.propertyDelegate.get(2);
+		int maxSun = this.propertyDelegate.get(0);  // Max Sun
 		int progressArrowSize = 43; // Height of bar
 
 		return maxSun != 0 && sunCost != 0 ? sunCost * progressArrowSize / maxSun : 0;

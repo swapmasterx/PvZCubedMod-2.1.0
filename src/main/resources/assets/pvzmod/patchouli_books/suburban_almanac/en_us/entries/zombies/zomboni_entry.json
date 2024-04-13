@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)(Electronic) Vehicle Health: $()$(#ff0000)135",
-        "$(br)$(#bd951a)Rider Health: $()$(#ff0000)65",
+        "$(#bd951a)(Electronic) Vehicle Health: $()$(#ff0000)130",
+        "$(br)$(#bd951a)Rider Health: $()$(#ff0000)64",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, slightly faster without a pilot.",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Leaves a trail of Snow Tiles behind it.",

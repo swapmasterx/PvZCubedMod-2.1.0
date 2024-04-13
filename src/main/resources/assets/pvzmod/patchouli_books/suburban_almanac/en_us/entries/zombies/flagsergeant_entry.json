@@ -7,9 +7,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)75",
+        "$(#bd951a)Health: $()$(#ff0000)74",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2.5 Blocks",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
         "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)60s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Summons x2 Helmet Sergeants, x1 Shield Sergeant, x3 Bowl Sergeants, and x6 Sergeants behind them.",

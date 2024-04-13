@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)65",
+        "$(#bd951a)Health: $()$(#ff0000)64",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8, Instant-kill (Burn)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Speedy",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Explorer Zombie. Leaves Scorched Tiles when burning plants or 50% of the time every 5 seconds.",

@@ -126,7 +126,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroe
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.potted.acidshroom.AcidshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.potted.perfoomshroom.PerfoomshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.summon.plants.dandelionweed.DandelionWeedEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.locococo.LocoCocoEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.smackadamia.SmackadamiaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.smallnut.SmallNutEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.bombseedling.BombSeedlingEntity;
@@ -853,12 +852,6 @@ public class PvZEntity{
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "smackadamia"),
 			QuiltEntityTypeBuilder.<SmackadamiaEntity>create(SpawnGroup.CREATURE, SmackadamiaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.65f)).build()
-	);
-
-	public static final EntityType<LocoCocoEntity> LOCOCOCO = Registry.register(
-			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "locococo"),
-			QuiltEntityTypeBuilder.<LocoCocoEntity>create(SpawnGroup.CREATURE, LocoCocoEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.65f)).build()
 	);
 
 	public static final EntityType<ButtonshroomEntity> BUTTONSHROOM = Registry.register(
@@ -2995,8 +2988,6 @@ public class PvZEntity{
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SMALLNUT, SmallNutEntity.createSmallnutAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SMACKADAMIA, SmackadamiaEntity.createSmackadamiaAttributes().build());
-
-		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.LOCOCOCO, LocoCocoEntity.createLocoCocoAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.BUTTONSHROOM, ButtonshroomEntity.createButtonshroomAttributes().build());
 

@@ -9,8 +9,8 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 2 DMG/2s (Pierce)",
-        "$(br)$(#bd951a)Big Bubble: $()$(#ff0000)2 DMG/2s (Destroys Armor, but not Shields)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 1.5 DMG/2s (Pierce)",
+        "$(br)$(#bd951a)Big Bubble: $()$(#ff0000)6 DMG/2s (Stuns for 1 second)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. 25% Big Bubble/shot if in water. Extinguishes Zombies.",
@@ -24,7 +24,7 @@
       ],
       "title": "✂ Spear Family",
       "border": "true",
-      "text": "$(#25228d)They sometimes shoot Big Bubbles that destroys armor if in water."
+      "text": "$(#25228d)Sometimes shoots Big Bubbles that stuns if planted in water."
     },
     {
       "type": "crafting",

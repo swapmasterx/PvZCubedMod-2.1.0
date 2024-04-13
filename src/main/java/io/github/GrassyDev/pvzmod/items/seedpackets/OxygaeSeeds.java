@@ -34,7 +34,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
@@ -117,7 +119,7 @@ public class OxygaeSeeds extends SeedItem implements FabricItem {
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
-								if (fluidState.getFluid() == Fluids.WATER) {
+//								if (fluidState.getFluid() == Fluids.WATER) {
 									((ServerWorld) world).spawnEntityAndPassengers(aquaticEntity);
 									RandomGenerator randomGenerator = aquaticEntity.getRandom();
 									BlockState blockState = aquaticEntity.getLandingBlockState();
@@ -129,9 +131,9 @@ public class OxygaeSeeds extends SeedItem implements FabricItem {
 									}
 									world.emitGameEvent(user, GameEvent.ENTITY_PLACE, hitResult.getPos());
 									world.playSound((PlayerEntity) null, aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 0.25f, 0.8F);
-								} else {
-									return TypedActionResult.fail(itemStack);
-								}
+//								} else {
+//									return TypedActionResult.fail(itemStack);
+//								}
 								if (!user.getAbilities().creativeMode) {
 									if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 				itemStack.decrement(1);
@@ -163,12 +165,15 @@ public class OxygaeSeeds extends SeedItem implements FabricItem {
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
 		PlantEntity plantEntity = null;
-		List<PlantEntity> list = null;
+		List<Entity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		Box box = PvZEntity.OXYGAE.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world instanceof ServerWorld serverWorld) {
-			plantEntity = PvZEntity.OXYGAE.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.OXYGAE.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 		}
 		if (world instanceof ServerWorld serverWorld && (entity instanceof BubblePadEntity || entity instanceof WaterTile))  {
+			plantEntity = PvZEntity.OXYGAE.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

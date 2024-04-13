@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27",
+        "$(#bd951a)Health: $()$(#ff0000)20",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Drops a Metal Heal Station Obstacle with 60 HP and 2 seconds of Invincibility that heals Zombies by 12 HP/1s in a 3.5 Block area, clears negative status effects, and Wets them.",

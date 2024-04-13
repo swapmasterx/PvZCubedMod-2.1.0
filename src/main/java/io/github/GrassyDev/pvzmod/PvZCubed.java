@@ -248,7 +248,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.DOOMROSE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BANANASAURUS_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MISSILETOE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.LOCOCOCO_SEED_PACKET));
 			})
 			.name(Text.translatable("itemGroup.pvzmod.plants"))
 			.build()); // build() no longer registers by itself

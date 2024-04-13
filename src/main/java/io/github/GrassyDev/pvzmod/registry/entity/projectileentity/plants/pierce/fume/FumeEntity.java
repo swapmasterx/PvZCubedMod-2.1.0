@@ -237,7 +237,6 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 6)));
 				entityStore.add((LivingEntity) entity);
 			}
 		}

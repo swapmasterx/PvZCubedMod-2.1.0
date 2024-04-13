@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27 (Rubber)",
+        "$(#bd951a)Health: $()$(#ff0000)26 (Rubber)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Future zombies look good in red shirts. Future fact #23: Nothing bad happens to red shirts."

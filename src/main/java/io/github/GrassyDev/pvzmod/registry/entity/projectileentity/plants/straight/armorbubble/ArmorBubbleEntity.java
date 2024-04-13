@@ -172,9 +172,6 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 					damage = damage * 2;
 				} else if ("plant".equals(zombieMaterial) || "crystal".equals(zombieMaterial)) {
 					damage = damage / 2;
-				}
-				if (entity instanceof ZombiePropEntity && !(entity instanceof ZombieShieldEntity)) {
-					entity.kill();
 				} else {
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
@@ -183,6 +180,7 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 					((LivingEntity) entity).removeStatusEffect(PvZCubed.WARM);
 				}
 				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 10, 1)));
 				entity.extinguish();
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

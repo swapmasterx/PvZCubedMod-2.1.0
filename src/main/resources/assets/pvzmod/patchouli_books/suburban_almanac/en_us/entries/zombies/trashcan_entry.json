@@ -7,8 +7,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27 ",
-        "$(#bd951a)Obstacle Metal Trash Can Health: $()$(#ff0000)225",
+        "$(#bd951a)Health: $()$(#ff0000)26 ",
+        "$(#bd951a)Obstacle Metal Trash Can Health: $()$(#ff0000)220",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Creeper (Carrying)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Carries a Trash Can around. The Trash Can stays around if this is defeated. This and Browncoat can take Trash Cans.",

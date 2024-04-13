@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27",
-        "$(br)$(#bd951a)Paper Burning Books Health: $()$(#ff0000)65",
+        "$(#bd951a)Health: $()$(#ff0000)26",
+        "$(br)$(#bd951a)Paper Burning Books Health: $()$(#ff0000)64",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)16 (15%/second), 8 (if Immune)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
         "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)Insta-Kill (if Books are burning), 4",
