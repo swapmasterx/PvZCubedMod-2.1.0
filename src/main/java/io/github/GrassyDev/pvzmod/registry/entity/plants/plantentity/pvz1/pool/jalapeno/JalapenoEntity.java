@@ -212,7 +212,7 @@ public class JalapenoEntity extends PlantEntity implements GeoEntity {
 				}
 
 				if (!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())){
-					damage = 180;
+					damage = 90;
 				}
 
 			if (((livingEntity instanceof Monster &&
@@ -385,7 +385,7 @@ public class JalapenoEntity extends PlantEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 180);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90);
     }
 
 	protected boolean canClimb() {

@@ -215,10 +215,10 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 
 	public static DefaultAttributeContainer.Builder createFrisbloomAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10.0D);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D);
     }
 
 	protected boolean canClimb() {return false;}
@@ -292,8 +292,8 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 		}
 
 		public void start() {
-			this.beamTicks = -10;
-			this.animationTicks = -16;
+			this.beamTicks = -15;
+			this.animationTicks = -20;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
 			this.plantEntity.velocityDirty = true;
@@ -308,7 +308,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 			LivingEntity livingEntity = this.plantEntity.getTarget();
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
-			if (animationTicks == -13){
+			if (animationTicks == -17){
 				this.plantEntity.playSound(PvZSounds.BLOOMERANGSHOOTEVENT, 0.2F, 1);
 			}
 			if ((!this.plantEntity.canSee(livingEntity)) &&
@@ -332,12 +332,12 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.4F, 0F);
+						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.5F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						proj.damageMultiplier = plantEntity.damageMultiplier;
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -10;
+							this.beamTicks = -15;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.getWorld().spawnEntity(proj);
 						}
@@ -346,8 +346,8 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 				else if (this.animationTicks >= 0)
 				{
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -10;
-					this.animationTicks = -16;
+					this.beamTicks = -15;
+					this.animationTicks = -20;
 				}
 				super.tick();
 			}

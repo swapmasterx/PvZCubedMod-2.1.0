@@ -466,7 +466,7 @@ public class PvZCubed implements ModInitializer {
 			.name(Text.translatable("itemGroup.pvzmod.graves"))
 			.build());
 		Registry.register(Registries.ITEM_GROUP, PVZBLOCKS, FabricItemGroup.builder()
-			.icon(() -> new ItemStack(ModItems.FAIRY_TILE))
+			.icon(() -> new ItemStack(ModItems.GRASS_TILE))
 			.entries((context, entries) -> {
 				entries.addStack(new ItemStack(ModItems.GRASS_TILE));
 				entries.addStack(new ItemStack(ModItems.DARK_GRASS_TILE));

@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26 ",
-        "$(#bd951a)Damage: $()$(#ff0000)x4 2.5 DMG/1.5s (3 Zombie Pierce) ",
+        "$(#bd951a)Health: $()$(#ff0000)20 ",
+        "$(#bd951a)Damage: $()$(#ff0000)1x6 DMG/1.5s (3 Pierce, shots hit on return) ",
         "$(#bd951a)Range: $()$(#ff0000)10 Blocks ",
         "$(#bd951a)Seed Time: $()$(#ff0000)25s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots in the middle and in a cone shape. Pierces up to 3 Zombies, then the projectile comes back dealing damage to the Zombies it pierced. Can target Flying Zombies.",

@@ -4,6 +4,7 @@
     "pvzmod:electricdamage",
     "pvzmod:hypnodamage",
     "pvzmod:selfdeathdamage",
-    "pvzmod:generic_no_iframe"
+    "pvzmod:generic_no_iframe",
+    "pvzmod:vanilla_armor_pen"
   ]
 }

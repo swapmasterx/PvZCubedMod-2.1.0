@@ -243,7 +243,7 @@ public class EMPeachEntity extends PlantEntity implements GeoEntity {
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity2 && checkList.contains(generalPvZombieEntity2.getOwner())) &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 							&& (generalPvZombieEntity.getHypno()))) && checkList != null && !checkList.contains(livingEntity))) {
-				float damage = 10;
+				float damage = 1;
 				if (livingEntity instanceof OilTile oilTile){
 					oilTile.makeFireTrail(oilTile.getBlockPos());
 				}
@@ -398,7 +398,7 @@ public class EMPeachEntity extends PlantEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1);
     }
 
 	protected boolean canClimb() {

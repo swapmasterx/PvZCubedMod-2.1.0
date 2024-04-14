@@ -348,7 +348,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createTangleKelpAttributes() {
         return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4D)

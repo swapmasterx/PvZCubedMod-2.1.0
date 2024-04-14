@@ -7,81 +7,49 @@
     {
       "type": "text",
       "text": [
-        "The first day on the Zombie apocalypse is really important.",
-        "$(br2)Your objective is to find plants on the surface and punch them (they will glow). When they die, they drop different types of Plant Food. ",
-        "The Plant Foods are important to make different plants, but most importantly you will find Sunflower Seeds around. Punch them to get Petal Plant Food."
+        "Welcome to Plants vs Zombies Cubed.",
+        "$(br2)This Almanac will provide vital information on how to handle the numorus threats to your brains and thus your life.",
+        "Nothing bad should happen to you on your first day provided you don't stumble upon a place you aren't ready for."
         ]
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/sunflowerpvz",
+      "type": "text",
       "text": [
-        "After finding x2 Petal Plant Food, craft a Sunflower. ",
-        "Sunflowers produce Sun, which is used to craft most plants.",
-        "$(br)After crafting your Sunflowers, find a nice place to call home and plant them on your lawn."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/peashooterpvz",
-      "text": [
-        "When you place your Sunflower you will notice that it will give you 2 Suns already, this is the perfect amount to make a Peashooter, make one."
+        "$(br2)Reguardless, the first thing you should do outside your usual punching of trees is look for plants, and I'm ",
+        "not talking standard flora but living moving plants. It's good practice to punch them and collect what they drop.",
+        "You can't do much with that stuff yet but doing this now will help you a lot later."
       ]
     },
     {
       "type": "text",
       "text": [
-        "$(br2)You may have already noticed the main threat of this mod by now: the Zombies.",
-        "$(br2)While you can defeat them by yourself, they have lots of health and will easily overwhelm you, so the best solution is to craft Plants. ",
-        "Your first Peashooter will be crucial for that, but be sure to help it by attacking tough zombies and planting more Plants."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/bellflower",
-      "text": [
-        "Bellflowers are weak but cheap and effective, make one or two if you can. ",
-        "They deal slightly less damage than a repeater, but their attacks pierce and have a chance to deal a critical hit. They have really short range."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/bombard/potatomine",
-      "text": [
-        "Potato Mines will ensure the safety of your plants if you have a hole in your defenses,",
-        "as it will be able to instantly kill any Zombie that can spawn at this moment in the game."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/wallnut",
-      "text": [
-        "Wall-nuts are handy walls that slow zombies down. Plant them in the way between the zombies and your sun-producers. ",
-        "Zombies will try to attack your sun-producers, but they will stop to eat any plants in their way."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/arma/cabbagepult",
-      "text": [
-        "Cabbage-pults are really useful long range plants that while weaker than a peashooter can ignore shields and shoot over weird terrain."
+        "What you really want to look out for are sunflower seeds. They're found most commonly in flowery biomes like ",
+        "Flower Forests and the like. They produce small sun every 5 minutes like how chickens lay eggs. ",
+        "You can also punch them to collect sunflower seed shells which very important later."
       ]
     },
     {
       "type": "text",
       "text": [
-        "$(br2)When gathering resouces you may notice a cloud of smoke with purple and yellow particles in the middle, that's a Solar Wind!",
-        "$(br)Solar Winds are great to convert resources you might not want into more Petal Plant Food or Sun!",
-        "$(br)Simply throw any type of Plant Food in the middle of the smoke and it will spit out the items!"
+        "$(br2)NOTE:",
+        "$(br2)Sun producer plants need at least 5 blocks of space from other sun producers of the same plant in order to generate sun.",
+        "This is not the case though with different kinds of plants. While 2 sunflower seeds won't make sun next to each other, a sunflower seed and a sunflower will."
       ]
     },
     {
       "type": "text",
       "text": [
-        "$(br2)The Zombies will spawn from Graves. At first the Graves will vanish the moment they spawn a wave of zombies, ",
-        "but later on they will spawn more waves before vanishing. ",
-        "Difficulty influences this. Strong Zombies will not spawn on the first days on Normal and below.",
-        "$(br2)While you wait for night time, we recommend crafting these plants to help you."
+        "As for those sunflower seed shells, you need them to craft the source of all your planting power: ",
+        "$(br2)THE BOTANY BOX",
+        "Using the items you gather from harvested plants and the power of sun you can make new plants to defend yourself from threats."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "To use it, just place sun in the sun slot, put the required ingredients in the 2x3 grid and an empty seed packet in the respective slot. : ",
+        "So long as you have the sun to create a given plant the Botany Box will fabricate your new plants in seconds. Just note that plants stack to at most ",
+        "8 per slot, so organize yourself accordingly."
       ]
     },
     {
@@ -93,11 +61,7 @@
         "pvzmod:plants/potatomine_entry",
         "pvzmod:plants/snowpea_entry",
         "pvzmod:plants/repeater_entry",
-        "pvzmod:plants/cherrybomb_entry",
-        "pvzmod:plants/squash_entry",
-        "pvzmod:plants/tanglekelp_entry",
-        "pvzmod:plants/cabbagepult_entry",
-        "pvzmod:plants/bellflower_entry"
+        "pvzmod:plants/dogwood_entry"
       ],
       "title": "Recommended Plants:"
     }

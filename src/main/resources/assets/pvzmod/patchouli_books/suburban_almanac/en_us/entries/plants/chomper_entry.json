@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)36 ",
-        "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 32 DMG/1.5s (Immune)",
+        "$(#bd951a)Health: $()$(#ff0000)20 ",
+        "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 16 DMG/1.5s (Immune)",
         "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks",
         "$(br)$(#bd951a)Chew Time: $()$(#ff0000)12.5s, 1.5s (Small Zombies)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",

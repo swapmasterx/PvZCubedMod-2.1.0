@@ -2,7 +2,15 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.fog.m
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.items.seedpackets.GatlingpeaSeeds;
+import io.github.GrassyDev.pvzmod.items.seedpackets.MagnetoShroomSeeds;
+import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.gatlingpea.GatlingpeaEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.magnet.MagnetoShroomEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.item.Item;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.armor.MetalHelmetProjEntity;
@@ -231,6 +239,39 @@ public class MagnetshroomEntity extends PlantEntity implements GeoEntity, Ranged
 			this.discard();
 			return ActionResult.SUCCESS;
 		}
+		Item item = itemStack.getItem();
+		if (itemStack.isOf(ModItems.MAGNETOSHROOM_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
+			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
+			if ((this.getWorld() instanceof ServerWorld serverWorld)) {
+				MagnetoShroomEntity plantEntity = PvZEntity.MAGNETOSHROOM.create(getWorld());
+                assert plantEntity != null;
+                plantEntity.setTarget(this.getTarget());
+				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.setAiDisabled(this.isAiDisabled());
+				if (this.hasCustomName()) {
+					plantEntity.setCustomName(this.getCustomName());
+					plantEntity.setCustomNameVisible(this.isCustomNameVisible());
+				}
+				if (this.hasVehicle()){
+					plantEntity.startRiding(this.getVehicle(), true);
+				}
+
+				plantEntity.setPersistent();
+				serverWorld.spawnEntityAndPassengers(plantEntity);
+				this.remove(RemovalReason.DISCARDED);
+			}
+			if (!player.getAbilities().creativeMode) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
+					itemStack.decrement(1);
+				}
+				;
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
+					player.getItemCooldownManager().set(ModItems.MAGNETOSHROOM_SEED_PACKET, MagnetoShroomSeeds.cooldown);
+				}
+			}
+			return ActionResult.SUCCESS;
+		}
 		return super.interactMob(player, hand);
 	}
 
@@ -245,10 +286,10 @@ public class MagnetshroomEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createMagnetshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12D);
 	}
 
 	protected boolean canClimb() {

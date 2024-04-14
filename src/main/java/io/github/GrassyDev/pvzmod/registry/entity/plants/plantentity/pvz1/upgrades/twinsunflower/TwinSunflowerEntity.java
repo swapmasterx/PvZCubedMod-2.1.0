@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgra
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.sunflower.SunflowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -63,10 +64,8 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 
 	int raycastDelay = 20;
 
-	Entity prevZombie;
-
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-	private boolean zombieSunCheck;
+	private boolean sunProducerCheck;
 	int secondSunTick;
 	boolean secondSunStart;
 
@@ -205,12 +204,12 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 
 			if (this.currentFuseTime >= this.sunProducingTime) {
-				if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn()) {
+				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()) {
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					this.dropItem(ModItems.SUN);
 					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.twinSunflowerSec() * 20);
 					secondSunTick = 20;
-					zombieSunCheck = false;
+					sunProducerCheck = false;
 					secondSunStart = true;
 				}
 				if (secondSunStart) {
@@ -233,12 +232,12 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 				raycastDelay = 20;
 			}
 		}
-		if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn()){
+		if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
 			this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 			this.dropItem(ModItems.SUN);
 			this.sunProducingTime = (int) (PVZCONFIG.nestedSun.twinSunflowerSec() * 20);
 			secondSunTick = 6;
-			zombieSunCheck = false;
+			sunProducerCheck = false;
 			secondSunStart = true;
 		}
 		if (secondSunStart) {
@@ -258,8 +257,8 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 	}
 
 	protected void produceSun() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(30));
-		List<GeneralPvZombieEntity> zombieList = this.getWorld().getNonSpectatingEntities(GeneralPvZombieEntity.class, this.getBoundingBox().expand(30));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(4));
+		List<TwinSunflowerEntity> twinSunflowerList = this.getWorld().getNonSpectatingEntities(TwinSunflowerEntity.class, this.getBoundingBox().expand(4));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -273,11 +272,10 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 900);
 
-			if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-				if (livingEntity.getY() < (this.getY() + 5) && livingEntity.getY() > (this.getY() - 5)) {
-					if ((this.prevZombie == null || zombieList.get(0) != prevZombie) && !zombieList.isEmpty()) {
-						prevZombie = zombieList.get(0);
-						this.zombieSunCheck = true;
+			if (livingEntity instanceof SunflowerEntity) {
+				if (livingEntity.getY() < (this.getY() + 4) && livingEntity.getY() > (this.getY() - 4)) {
+					if (twinSunflowerList.size() <= 1) {
+						this.sunProducerCheck = true;
 					}
 				}
 			}
@@ -361,7 +359,7 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createTwinSunflowerAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 28D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)8",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)Insta-kill",
         "$(br)$(#bd951a)Range: $()$(#ff0000)0 Blocks",
         "$(br)$(#bd951a)Digest Time: $()$(#ff0000)12.5s, 0s (Small Zombies)",

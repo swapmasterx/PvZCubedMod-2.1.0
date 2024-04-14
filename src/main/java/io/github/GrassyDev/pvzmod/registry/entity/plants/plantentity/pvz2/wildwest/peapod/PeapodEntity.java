@@ -280,10 +280,10 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			this.addCount();
 			EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-			double health = this.getMaxHealth() - 12;
+			double health = this.getMaxHealth() - 5;
 			maxHealthAttribute.removeModifier(MAX_HEALTH_UUID);
-			maxHealthAttribute.addPersistentModifier(createHealthModifier(health + 12));
-			heal(12);
+			maxHealthAttribute.addPersistentModifier(createHealthModifier(health + 5));
+			heal(5);
 			if (!player.getAbilities().creativeMode) {
 				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
@@ -334,7 +334,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 
 	public static DefaultAttributeContainer.Builder createPeapodAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 5)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);

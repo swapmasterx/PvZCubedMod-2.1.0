@@ -220,7 +220,7 @@ public class PvZConfigModel {
 		@RestartRequired
 		public float doomroseS = 20.0f;
 		@RestartRequired
-		public float doomshroomS = 25.0f;
+		public float doomshroomS = 60.0f;
 		@RestartRequired
 		public float dripphylleiaS = 15f;
 		@RestartRequired
@@ -262,7 +262,7 @@ public class PvZConfigModel {
 		@RestartRequired
 		public float icebergpultS = 12.5f;
 		@RestartRequired
-		public float iceshroomS = 25.0f;
+		public float iceshroomS = 30.0f;
 		@RestartRequired
 		public float impatyensS = 17.5f;
 		@RestartRequired
@@ -284,7 +284,7 @@ public class PvZConfigModel {
 		@RestartRequired
 		public float magnetshroomS = 15.0f;
 		@RestartRequired
-		public float magnetoshroomS = 10.0f;
+		public float magnetoshroomS = 35.0f;
 		@RestartRequired
 		public float meteorhammerS = 15.0f;
 		@RestartRequired
@@ -368,7 +368,7 @@ public class PvZConfigModel {
 		@RestartRequired
 		public float threepeaterS = 7.5f;
 		@RestartRequired
-		public float torchwoodS = 37.5f;
+		public float torchwoodS = 30.0f;
 		@RestartRequired
 		public float tulimpeterS = 20.0f;
 		@RestartRequired
@@ -386,17 +386,17 @@ public class PvZConfigModel {
 	@Nest
 	public PvZSunNest nestedSun = new PvZSunNest();
 	public static class PvZSunNest {
-		public float sunflowerSec = 120f;
-		public float sunflowerSecInitial = 120f;
+		public float sunflowerSec = 300f;
+		public float sunflowerSecInitial = 60f;
 		public boolean sunflowerDropSun = true;
-		public float twinSunflowerSec = 120f;
-		public float sunshroomSec = 120f;
-		public float sunshroomSecInitial = 5f;
+		public float twinSunflowerSec = 300f;
+		public float sunshroomSec = 300f;
+		public float sunshroomSecInitial = 60f;
 		public float sunshroomSunChance = 0.45f;
 		public float sunshroomSun2ndChance = 0.75f;
-		public float goldtileSec = 120f;
-		public float sunseedSec = 180f;
-		public float zombiegraveSec = 10f;
+		public float goldtileSec = 300f;
+		public float sunseedSec = 300f;
+		public float zombiegraveSec = 300f;
 	}
 
 	@SectionHeader("projDMG")
@@ -404,26 +404,26 @@ public class PvZConfigModel {
 	public PvZDMGNest nestedProjDMG = new PvZDMGNest();
 	public static class PvZDMGNest {
 		public float acidFumeDMG = 2f;
-		public float acidSporeDMG = 3f;
+		public float acidSporeDMG = 2f;
 		public float armorBubbleDMG = 4f;
 		public float beespikeDMGv2 = 2f;
 		public float breezeDMG = 1f;
-		public float boomerangDMGv2 = 2.5f;
+		public float boomerangDMGv2 = 1f;
 		public float bubblesDMG = 2f;
-		public float cabbageDMG = 4f;
+		public float cabbageDMG = 2f;
 		public float cardDMGv2 = 0.5f;
-		public float coconutDMGv2 = 180f;
-		public float coconutSDMG = 100f;
+		public float coconutDMGv2 = 90f;
+		public float coconutSDMG = 50f;
 		public float dropDMGv2 = 2.5f;
 		public float dropSDMG = 2.5f;
 		public float dyeDMG = 4f;
-		public float electricPeaDMG = 4f;
+		public float electricPeaDMG = 2f;
 		public float firepiercepeaDMG = 6f;
 		public float firepiercepeaSDMG = 3f;
-		public float frisbeeDMG = 3.5f;
-		public float flamingPeaDMGv2 = 8f;
-		public float flamingPeaSDMG = 4f;
-		public float fumeDMG = 2f;
+		public float frisbeeDMG = 2.0f;
+		public float flamingPeaDMGv2 = 3f;
+		public float flamingPeaSDMG = 3f;
+		public float fumeDMG = 1f;
 		public float goldencardDMG = 1f;
 		public float hypnoprojDMGv2 = 8f;
 		public float icebergDMGv2 = 3f;
@@ -435,21 +435,21 @@ public class PvZConfigModel {
 		public float missileToeDMGFar = 60f;
 		public float missileToeDMGRangeNear = 1.5f;
 		public float missileToeDMGRangeFar = 2.5f;
-		public float peaDMG = 4f;
-		public float pepperDMGv2 = 7f;
-		public float pepperSDMG = 2.5f;
+		public float peaDMG = 2f;
+		public float pepperDMGv2 = 5f;
+		public float pepperSDMG = 2f;
 		public float piercepeaDMG = 3f;
 		public float piercesporeDMG = 6f;
-		public float plasmaPeaDMG = 12f;
+		public float plasmaPeaDMG = 6f;
 		public float rainbowBulletDMG = 4f;
-		public float snowPeaDMG = 4f;
+		public float snowPeaDMG = 2f;
 		public float snowQueenPeaDMGv2 = 9f;
 		public float snowQueenPeaSDMG = 3f;
 		public float springDMG = 4f;
-		public float spikeDMGv2 = 4f;
+		public float spikeDMGv2 = 2f;
 		public float spitDMG = 2f;
 		public float smooshProjDMG = 12f;
-		public float sporeDMG = 4f;
+		public float sporeDMG = 2f;
 		public float swordDMG = 6f;
 
 		public float basketBallDMG = 4f;

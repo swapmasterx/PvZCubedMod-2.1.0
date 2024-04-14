@@ -302,15 +302,18 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 													!(livingEntity instanceof ZombieShieldEntity) &&
 													livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 												float damageSplash2 = damageSplash - livingEntity.getHealth();
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damageSplash2*0.5));
-												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damageSplash*0.5));
+
+												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash2);
 												generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash2);
 											} else if (livingEntity instanceof ZombiePropEntity zombiePropEntity) {
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damageSplash*0.5));
-												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damageSplash*0.5));
+
+												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash);
 											} else {
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damageSplash*0.5));
-												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damageSplash*0.5));
+
+												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash);
 											}
 											if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !entity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 												livingEntity.removeStatusEffect(PvZCubed.FROZEN);

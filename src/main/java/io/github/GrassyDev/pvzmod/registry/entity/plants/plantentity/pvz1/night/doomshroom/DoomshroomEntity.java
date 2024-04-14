@@ -273,10 +273,7 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 81);
 
-			float damage = 180;
-			if (this.getShadowPowered()){
-				damage = 360;
-			}
+			float damage = 120;
 			if (livingEntity instanceof OilTile oilTile) {
 				oilTile.makeFireTrail(oilTile.getBlockPos());
 			}
@@ -425,19 +422,7 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 	public void tick() {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			if (tileCheck.isEmpty()) {
-				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
-					if (serverWorld.isNight()) {
-						this.setShadowPowered(Shadow.TRUE);
-					}
-				} else {
-					this.setShadowPowered(Shadow.FALSE);
-				}
-			}
-			if (!tileCheck.isEmpty()) {
-				this.setShadowPowered(Shadow.TRUE);
-			}
+			this.setShadowPowered(Shadow.FALSE);
 		}
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
@@ -537,7 +522,7 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 180);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 120);
 	}
 
 	protected boolean canClimb() {

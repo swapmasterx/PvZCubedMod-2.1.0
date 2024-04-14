@@ -212,7 +212,7 @@ public class IceshroomEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 81);
 
-			float damage = 4;
+			float damage = 2;
 			if (livingEntity instanceof ScorchedTile) {
 				livingEntity.discard();
 			}
@@ -415,7 +415,7 @@ public class IceshroomEntity extends PlantEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2);
     }
 
 	protected boolean canClimb() {

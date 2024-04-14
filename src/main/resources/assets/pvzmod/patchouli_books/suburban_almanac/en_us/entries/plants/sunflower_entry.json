@@ -7,10 +7,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(#bd951a)Health: $()$(#ff0000)20",
         "$(br)$(#bd951a)Sun: $()$(#ff0000)Normal (Bright Ambient), Small (Dark Ambient)",
-        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)30 seconds (First Time), 3 minutes",
-        "$(br)$(#bd951a)Zombie Sun Radius: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)60 seconds (First Time), 5 minutes",
+        "$(br)$(#bd951a)Sunflower Crowding Radius: $()$(#ff0000)5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
         "$(br2)$(#bd951a)Sunflower can't resist bouncing to the beat. Which beat is that? Why, the life-giving jazzy rhythm of the Earth itself, thumping at a frequency only Sunflower can hear."
       ]

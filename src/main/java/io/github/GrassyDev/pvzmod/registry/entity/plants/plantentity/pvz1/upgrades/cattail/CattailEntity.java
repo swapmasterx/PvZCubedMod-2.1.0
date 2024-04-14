@@ -232,7 +232,7 @@ public class CattailEntity extends PlantEntity implements GeoEntity, RangedAttac
 
 	public static DefaultAttributeContainer.Builder createCattailAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 15.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30D)

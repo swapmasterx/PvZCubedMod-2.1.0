@@ -195,14 +195,14 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.VANILLA_ARMOR_PEN), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.VANILLA_ARMOR_PEN), damage);
 				}
 				if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 60, 6)));
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 60, 3)));
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

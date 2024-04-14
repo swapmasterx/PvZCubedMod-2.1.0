@@ -347,7 +347,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 100);
 
-			float damage = 12;
+			float damage = 6;
 
 			if (((livingEntity instanceof Monster &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity1 && generalPvZombieEntity1.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering()) &&
@@ -390,7 +390,7 @@ public class GhostpepperEntity extends PlantEntity implements GeoEntity {
 			if (livingEntity instanceof IceTile || livingEntity instanceof SnowTile || livingEntity instanceof WaterTile) {
 				livingEntity.discard();
 			}
-			float damage = 90;
+			float damage = 45;
 			if (livingEntity instanceof OilTile oilTile){
 				oilTile.makeFireTrail(oilTile.getBlockPos());
 			}
@@ -483,43 +483,19 @@ public class GhostpepperEntity extends PlantEntity implements GeoEntity {
 	public void tick() {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			if (fullCheck.isEmpty() && tileCheck.isEmpty()) {
-				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
-					if (serverWorld.isNight()) {
-						this.setShadowPowered(Shadow.TRUE);
-					}
-				} else {
-					this.setShadowPowered(Shadow.FALSE);
-				}
-				if (this.getWorld().getMoonSize() > 0.9 && this.getWorld().isSkyVisible(this.getBlockPos())) {
-					if (serverWorld.isNight()) {
-						this.setMoonPowered(Moon.TRUE);
-					}
-				} else {
-					this.setMoonPowered(Moon.FALSE);
-				}
-			}
-			if (!fullCheck.isEmpty()) {
-				this.setMoonPowered(Moon.TRUE);
-			}
-			if (!tileCheck.isEmpty()) {
-				this.setShadowPowered(Shadow.TRUE);
-			}
+			this.setShadowPowered(Shadow.FALSE);
+			this.setMoonPowered(Moon.FALSE);
 		}
 		super.tick();
 		if (this.getLiftime() <= 0){
-			if (this.getMoonPowered()){
-				this.exploding = true;
-				this.getWorld().sendEntityStatus(this, (byte) 109);
-				if (--explodeTick <= 0){
-					this.checkList.clear();
-					this.raycastExplode2();
-					this.playSound(PvZSounds.POTATOMINEEXPLOSIONEVENT, 0.5f, 1);
-					this.discard();
+			this.exploding = true;
+			this.getWorld().sendEntityStatus(this, (byte) 109);
+			if (--explodeTick <= 0){
+				this.checkList.clear();
+				this.raycastExplode2();
+				this.playSound(PvZSounds.POTATOMINEEXPLOSIONEVENT, 0.5f, 1);
+				this.discard();
 				}
-			}
 			else {
 				this.discard();
 			}

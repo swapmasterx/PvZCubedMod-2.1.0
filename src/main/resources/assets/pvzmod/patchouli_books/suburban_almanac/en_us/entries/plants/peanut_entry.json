@@ -8,8 +8,9 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)90 (45 for each head)",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x2 4 DMG/1.5s (x1 for each head)",
+        "$(#bd951a)Health: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000) 2x2 DMG/1.5s (above 50% hp)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000) 2 DMG/1.5s (below 50% hp)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Top Pea(above 45 HP) hits Flying. Bottom Pea is Low Profile.",

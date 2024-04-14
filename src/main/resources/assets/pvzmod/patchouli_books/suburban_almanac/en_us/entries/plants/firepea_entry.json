@@ -8,10 +8,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)8 DMG/1.5s, 4 DMG (Splash) ",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s, 3 DMG (Splash) ",
         "$(#bd951a)Splash: $()$(#ff0000)1.5 Blocks ",
-        "$(br)$(#bd951a)Plasma DMG: $()$(#ff0000)12 DMG/1.5s (Pierce)",
+        "$(br)$(#bd951a)Plasma DMG: $()$(#ff0000)6 DMG/1.5s (Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Illuminating. Fire Damage. 66% Fire Pea, 33% Plasma Pea",

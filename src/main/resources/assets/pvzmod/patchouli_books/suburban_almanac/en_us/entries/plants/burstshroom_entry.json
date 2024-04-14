@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)24 ",
-        "$(#bd951a)Damage: $()$(#ff0000)60 DMG (Area) ",
+        "$(#bd951a)Health: $()$(#ff0000)30 ",
+        "$(#bd951a)Damage: $()$(#ff0000)30 DMG (Area) ",
         "$(#bd951a)Damage Radius: $()$(#ff0000)Med Profile. 3 Blocks ",
         "$(#bd951a)Exhaustion Time: $()$(#ff0000)15s ",
         "$(#bd951a)Seed Time: $()$(#ff0000)20s",

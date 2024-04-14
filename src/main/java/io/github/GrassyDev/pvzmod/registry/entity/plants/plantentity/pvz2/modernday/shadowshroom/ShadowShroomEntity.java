@@ -244,7 +244,7 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 	private void raycastExplode() {
 		if (!this.getShadowPowered()){
 			if (this.getTarget() != null){
-				this.getTarget().addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+				this.getTarget().addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 			}
 		}
 		else {
@@ -294,17 +294,17 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
-						generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
+						generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 						checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 						checkList.add(zombieShieldEntity);
 					} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 						checkList.add(livingEntity);
 						checkList.add(zombieShieldEntity);
 					} else {

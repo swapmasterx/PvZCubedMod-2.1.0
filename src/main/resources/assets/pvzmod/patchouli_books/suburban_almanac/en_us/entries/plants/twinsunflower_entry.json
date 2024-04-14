@@ -8,10 +8,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)28",
+        "$(#bd951a)Health: $()$(#ff0000)20",
         "$(br)$(#bd951a)Sun: $()$(#ff0000)x2 Normal",
-        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)3 minutes",
-        "$(br)$(#bd951a)Zombie Sun Radius: $()$(#ff0000)30 Blocks",
+        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)5 minutes",
+        "$(br)$(#bd951a)Twin Sunflower Crowding Radius: $()$(#ff0000)5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
         "$(br2)$(#bd951a)Twin Sunflower's super-chic line of ultra-expensive sunglasses has been a huge hit wherever they go. Due to this they have been unable to travel without being swarmed by the Poppyrazzi."
       ]

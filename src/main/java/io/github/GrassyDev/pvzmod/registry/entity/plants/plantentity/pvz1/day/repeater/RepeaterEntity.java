@@ -208,7 +208,7 @@ public class RepeaterEntity extends PlantEntity implements RangedAttackMob, GeoE
 
 	public static DefaultAttributeContainer.Builder createRepeaterAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);

@@ -266,7 +266,7 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 5)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 2)));
 					}
 				}
 			}
@@ -383,7 +383,7 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 
 	public static DefaultAttributeContainer.Builder createGloomshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 64.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D);

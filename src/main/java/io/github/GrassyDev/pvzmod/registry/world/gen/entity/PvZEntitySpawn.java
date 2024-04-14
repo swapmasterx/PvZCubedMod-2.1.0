@@ -15,8 +15,8 @@ public class PvZEntitySpawn {
 	public static void addEntitySpawn(){
 //
 //		Graves
-		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BASICGRAVESTONE, PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGv2(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGmin(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGmax());
-		SpawnRestriction.register(PvZEntity.BASICGRAVESTONE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BasicGraveEntity::canBasicGraveSpawn);
+//		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BASICGRAVESTONE, PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGv2(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGmin(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGmax());
+//		SpawnRestriction.register(PvZEntity.BASICGRAVESTONE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BasicGraveEntity::canBasicGraveSpawn);
 //
 //		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.NIGHTGRAVESTONE, PVZCONFIG.nestedSpawns.nestedGraveSpawns.nightGv2(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.nightGmin(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.nightGmax());
 //		SpawnRestriction.register(PvZEntity.NIGHTGRAVESTONE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, NightGraveEntity::canNightGraveSpawn);

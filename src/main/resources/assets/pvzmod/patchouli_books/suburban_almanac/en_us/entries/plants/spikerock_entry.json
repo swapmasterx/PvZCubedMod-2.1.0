@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)+90(for each Spike)",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)+4 DMG/1s(for each Spike) ",
+        "$(#bd951a)Health: $()$(#ff0000)90 for each large spike",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 + (1 for each large spike)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)0.75 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Low Profile. Immune to Fire. 75% high-damage resistance. Spikeweed. Starts with 3 Spikes.",

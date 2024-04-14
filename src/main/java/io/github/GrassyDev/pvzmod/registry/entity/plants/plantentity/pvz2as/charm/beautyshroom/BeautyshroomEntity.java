@@ -196,7 +196,7 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 25);
 
-			float damage = 10;
+			float damage = 5;
 			ZombiePropEntity zombiePropEntity4 = null;
 			boolean hasHelmet = false;
 			if (livingEntity.hasVehicle()) {
@@ -271,7 +271,7 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 				} else {
 					if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-						if (random <= 0.166) {
+						if (random <= 0.125) {
 							if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity1 && !generalPvZombieEntity1.isCovered()) {
 								livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0);
 							}
@@ -429,7 +429,7 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5);
 	}
 
 	protected boolean canClimb() {

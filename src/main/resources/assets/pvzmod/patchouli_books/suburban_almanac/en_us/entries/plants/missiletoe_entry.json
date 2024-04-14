@@ -8,11 +8,11 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
+        "$(#bd951a)Health: $()$(#ff0000)20",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)120 (Near), 60 (Far)",
         "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)3.5 Blocks, 1.5 (Near), 2.5 (Far",
         "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
-        "$(br)$(#bd951a)Recharge Time: $()$(#ff0000)14s",
+        "$(br)$(#bd951a)Recharge Time: $()$(#ff0000)25s",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Interactive. Has to recharge between shots. Creates Ice Tiles in the damage area.",
         "$(br2)$(#bd951a)While she is called Missile Toe, Missile Toe has no toes."

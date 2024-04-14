@@ -184,7 +184,7 @@ public class FlamingpeaEntity extends PlantEntity implements GeoEntity, RangedAt
 
 	public static DefaultAttributeContainer.Builder createFlamingpeaAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);
@@ -312,7 +312,7 @@ public class FlamingpeaEntity extends PlantEntity implements GeoEntity, RangedAt
 				if (this.beamTicks >= 0 && this.animationTicks <= -7) {
 					if (probability <= 0.33) {
 						ShootingPlasmaPeaEntity proj = new ShootingPlasmaPeaEntity(PvZEntity.PLASMAPEA, this.plantEntity.getWorld());
-						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.53F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {

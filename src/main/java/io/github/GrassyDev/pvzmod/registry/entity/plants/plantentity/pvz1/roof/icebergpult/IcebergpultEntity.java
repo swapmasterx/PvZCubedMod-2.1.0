@@ -306,7 +306,7 @@ public class IcebergpultEntity extends PlantEntity implements GeoEntity, RangedA
 							proj.getTarget(plantEntity.getTarget());
 						}
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -30;
+							this.beamTicks = -25;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 							this.plantEntity.getWorld().spawnEntity(proj);

@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)12 Blocks",
         "$(br)$(#bd951a)Ability Recharge: $()$(#ff0000)10s",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Steals non-heavy Metal/Electronic objects from Zombies, except obstacles, then has to recharge.",

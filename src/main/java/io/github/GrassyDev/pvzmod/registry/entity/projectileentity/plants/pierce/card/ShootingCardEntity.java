@@ -53,8 +53,8 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int maxAge = 140;
-	public int returnAge = 50;
+	public int maxAge = 100;
+	public int returnAge = 80;
 
 	private int returningTicks = 7;
 	private boolean retuningStart;
@@ -200,18 +200,8 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 			this.remove(RemovalReason.DISCARDED);
 		}
 		if (!this.getWorld().isClient && this.age >= returnAge || this.damageCounter >= 3) {
-			if (this.age >= returnAge + returnAge / 2){
-				this.retuningStart = true;
-			}
-			if (this.damageCounter >= 3 && returningTicks <= 0){
-				this.retuningStart = true;
-			}
-			if (--returningTicks <= 0) {
-				this.setReturning(Returning.TRUE);
-				Vec3d vec3d = new Vec3d((double) -0.04, 0.0, 0.0).rotateY(-this.ownerYaw * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				if (this.age <= this.returnAge + 20) {
-					this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
-				}
+			if (this.damageCounter >= 3){
+				this.remove(RemovalReason.DISCARDED);
 			}
 		}
 		if (!this.getWorld().isClient && this.age >= maxAge) {

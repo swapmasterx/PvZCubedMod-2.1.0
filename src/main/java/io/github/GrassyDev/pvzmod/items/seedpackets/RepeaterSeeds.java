@@ -111,7 +111,7 @@ public class RepeaterSeeds extends SeedItem implements FabricItem {
 			Box box = PvZEntity.REPEATER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
 				List<Entity> list = world.getNonSpectatingEntities(Entity.class, box);
-				if (!list.isEmpty()) {
+				if (list.isEmpty()) {
 					RepeaterEntity plantEntity = (RepeaterEntity) PvZEntity.REPEATER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 
 					float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;

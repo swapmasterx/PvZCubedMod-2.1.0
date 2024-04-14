@@ -52,10 +52,10 @@ public class ShootingFrisbeeEntity extends PvZProjectileEntity implements GeoEnt
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int maxAge = 90;
-	public int returnAge = 28;
+	public int maxAge = 75;
+	public int returnAge = 25;
 
-	private int returningTicks = 7;
+	private int returningTicks = 6;
 	private boolean retuningStart;
 
 	public float ownerYaw;

@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)24",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x2 4 DMG/1.5s (Spike)",
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x2 DMG/1.5s (Spike)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Aquatic. Prioritizes flying zombies, then the strongest Zombie without headwear",

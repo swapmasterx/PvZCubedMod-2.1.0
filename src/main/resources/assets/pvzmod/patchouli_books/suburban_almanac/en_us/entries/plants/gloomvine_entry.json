@@ -8,11 +8,11 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)32",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 2 DMG/2s (Area)",
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x4 1 DMG/2s (Area)",
         "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Low Profile. 5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Wraps around a Plant, protecting it from most damage. Creates a Shadow Tile inside it.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Wraps around a Plant, protecting it from most damage.",
         "$(br)$(#bd951a)\"Gloom Vine's gloomy exterior shouldn't be seen as implying a gloomy interior. His interior is gloomy, but for complicated personal reasons that go way back.\""
       ]
     },
@@ -23,7 +23,7 @@
       ],
       "title": "☁ Conceal Family",
       "border": "true",
-      "text": "$(#25228d)Gloom-vines power New Moon shadow plants and shoot gloom around it."
+      "text": "$(#25228d)Gloom-vines deal damage around them and protects plants inside it."
     },
     {
       "type": "crafting",

@@ -13,7 +13,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -116,7 +118,9 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 	 **/
 
 	protected void initGoals() {
-		this.goalSelector.add(1, new ProjectileAttackGoal(this, 0D, 30, 15.0F));
+		this.targetSelector.add(6, new RevengeGoal(this));
+		this.goalSelector.add(6, new ProjectileAttackGoal(this, 0D, 30, 15.0F));
+		this.goalSelector.add(6, new LookAroundGoal(this));
 	}
 
 
@@ -242,11 +246,11 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 
 	public static DefaultAttributeContainer.Builder createBurstshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 1.5D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 30.0D);
 	}
 
 	protected boolean canClimb() {
@@ -368,7 +372,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-						float damage = 40F;
+						float damage = 30F;
 						if ("paper".equals(zombieMaterial) || "plant".equals(zombieMaterial) || "cloth".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
 							if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
 								livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));

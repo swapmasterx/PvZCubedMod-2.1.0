@@ -121,7 +121,7 @@ public class TorchwoodEntity extends PlantEntity implements GeoEntity {
 						zombiePropEntity3 = zpe;
 					}
 				}
-				float damage = 4 * damageMultiplier;
+				float damage = 2 * damageMultiplier;
 				if (zombiePropEntity2 == null ||
 						zombiePropEntity2 instanceof ZombieShieldEntity) {
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
@@ -135,12 +135,13 @@ public class TorchwoodEntity extends PlantEntity implements GeoEntity {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					if (!(livingEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 						livingEntity.removeStatusEffect(PvZCubed.FROZEN);
@@ -234,7 +235,7 @@ public class TorchwoodEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createTorchwoodAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 65.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);

@@ -8,10 +8,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)7 DMG/2.5s, 2.5 DMG (Splash)",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)5 DMG/2.5s, 2 DMG (Splash)",
         "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)2.5 Blocks",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)25 Blocks (Lobbed)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Illuminating. Fire Damage.",
         "$(br2)$(#bd951a)Some say Pepper-pult is a hot head. Some find his fiery disposition off-putting. But the truth is, he's just very focused and determined."

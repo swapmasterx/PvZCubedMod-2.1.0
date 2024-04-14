@@ -511,6 +511,9 @@ public class GeneralPvZombieEntity extends HostileEntity {
 	}
 
 	protected void pushAway(Entity entity) {
+		if (!this.isSleeping()) {
+			super.pushAwayFrom(entity);
+		}
 	}
 
 	@Override
@@ -1426,11 +1429,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 						this.damage(PvZDamageTypes.of(getWorld(),PvZDamageTypes.HYPNO_DAMAGE), 0);
 					}
 					float damage = 12;
-					if (target instanceof EndurianEntity) {
-						damage = 6;
-					}
-					if (!doesntBite && (target instanceof GravebusterEntity ||
-							target instanceof EndurianEntity) &&
+					if (!doesntBite && (target instanceof GravebusterEntity) &&
 							!this.isCovered()){
 						ZombiePropEntity zombiePropEntity2 = null;
 						for (Entity entity1 : this.getPassengerList()) {

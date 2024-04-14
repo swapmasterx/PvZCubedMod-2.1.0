@@ -191,17 +191,17 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-						float damage = 2F;
+						float damage = 1F;
 						if (damage > livingEntity.getHealth() &&
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 							generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
 						} else {
-							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damage*0.5));
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), (float) (damage*0.5));
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
 					}
 				}
@@ -224,27 +224,27 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 
 	/** /~*~//~*TICKING*~//~*~/ **/
 
-	public void createShadowTile(BlockPos blockPos){
-		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			ShadowTile tile = (ShadowTile) PvZEntity.SHADOWTILE.create(getWorld());
-			tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-
-			Vec3d vec3d = Vec3d.ofCenter(blockPos).add(0, -0.5, 0);
-
-			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-
-			for (ShadowFullTile shadowFullTile : fullCheck){
-				shadowFullTile.discard();
-			}
-			if (tileCheck.isEmpty()) {
-				tile.setHeadYaw(0);
-				tile.setPersistent();
-				serverWorld.spawnEntityAndPassengers(tile);
-			}
-		}
-	}
+//	public void createShadowTile(BlockPos blockPos){
+//		if (this.getWorld() instanceof ServerWorld serverWorld) {
+//			ShadowTile tile = (ShadowTile) PvZEntity.SHADOWTILE.create(getWorld());
+//			tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
+//			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+//
+//			Vec3d vec3d = Vec3d.ofCenter(blockPos).add(0, -0.5, 0);
+//
+//			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+//			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
+//
+//			for (ShadowFullTile shadowFullTile : fullCheck){
+//				shadowFullTile.discard();
+//			}
+//			if (tileCheck.isEmpty()) {
+//				tile.setHeadYaw(0);
+//				tile.setPersistent();
+//				serverWorld.spawnEntityAndPassengers(tile);
+//			}
+//		}
+//	}
 
 	public void tick() {
 		this.targetZombies(this.getPos(), 3, true, false, true);
@@ -260,7 +260,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 				this.discard();
 			}
 		}
-		this.createShadowTile(this.getBlockPos());
+//		this.createShadowTile(this.getBlockPos());
 	}
 
 	public void tickMovement() {
@@ -303,7 +303,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 
 	public static DefaultAttributeContainer.Builder createGloomVineAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D);
@@ -389,7 +389,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 		}
 
 		public void start() {
-			this.beamTicks = -8;
+			this.beamTicks = -10;
 			this.animationTicks = -21;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
@@ -422,7 +422,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 				}
 				if (this.animationTicks >= 0) {
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -8;
+					this.beamTicks = -10;
 					this.animationTicks = -21;
 				}
 				super.tick();

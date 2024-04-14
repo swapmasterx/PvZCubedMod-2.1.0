@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text":[
-        "$(#bd951a)Health: $()$(#ff0000)36",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s",
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x3 DMG/1.5s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots a pea in the middle and two others in a cone shape",

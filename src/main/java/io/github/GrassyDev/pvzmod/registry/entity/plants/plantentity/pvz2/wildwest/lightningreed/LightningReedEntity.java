@@ -532,11 +532,11 @@ public class LightningReedEntity extends PlantEntity implements GeoEntity, Range
 
 	public static DefaultAttributeContainer.Builder createLightningReedAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 
 	protected boolean canClimb() {
@@ -956,7 +956,7 @@ public class LightningReedEntity extends PlantEntity implements GeoEntity, Range
 							};
 							this.plantEntity.playSound(PvZSounds.LIGHTNINGSHOOTEVENT, 0.75F, (float) (0.75F + (Math.random() / 2)));
 							damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-							float damage = 2 * plantEntity.damageMultiplier;
+							float damage = 1 * plantEntity.damageMultiplier;
 							if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)) {
 								damage = damage * 2;
 							}

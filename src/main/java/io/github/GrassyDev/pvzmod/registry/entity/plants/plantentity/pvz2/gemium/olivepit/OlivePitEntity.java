@@ -433,7 +433,7 @@ public class OlivePitEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createOlivePitAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

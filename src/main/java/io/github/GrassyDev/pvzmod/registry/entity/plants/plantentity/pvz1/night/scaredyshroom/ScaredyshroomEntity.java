@@ -322,7 +322,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 
 	public static DefaultAttributeContainer.Builder createScaredyshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 5D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30.0D);
@@ -409,7 +409,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 
 		public void start() {
 			this.beamTicks = -7;
-			this.animationTicks = -16;
+			this.animationTicks = -14;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
 			this.plantEntity.velocityDirty = true;
@@ -457,7 +457,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 								proj.setOwner(this.plantEntity);
 								proj.damageMultiplier = plantEntity.damageMultiplier;
 								if (livingEntity != null && livingEntity.isAlive()) {
-									this.beamTicks = -13;
+									this.beamTicks = -11;
 									this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 									this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 									this.plantEntity.getWorld().spawnEntity(proj);
@@ -468,7 +468,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 						{
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 							this.beamTicks = -7;
-							this.animationTicks = -16;
+							this.animationTicks = -14;
 						}
 					}
 				}

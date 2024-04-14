@@ -67,10 +67,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	int raycastDelay = (int) (PVZCONFIG.nestedSun.sunflowerSec() * 20);
 
-	Entity prevZombie;
-
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-	private boolean zombieSunCheck;
+	private boolean sunProducerCheck;
 
 	public SunflowerEntity(EntityType<? extends SunflowerEntity> entityType, World world) {
 		super(entityType, world);
@@ -154,7 +152,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 	/** /~*~//~*AI*~//~*~/ **/
 
 	protected void initGoals() {
-        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 50.0F));
+
+		this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 20.0F));
     }
 
 
@@ -206,7 +205,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 
 			if (this.currentFuseTime >= this.sunProducingTime) {
-				if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn()){
+				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					if (this.getWorld().getAmbientDarkness() >= 2 ||
 							this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2){
@@ -217,7 +216,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 						this.dropItem(ModItems.SUN);
 					}
 					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.sunflowerSec() * 20);
-					this.zombieSunCheck = false;
+					this.sunProducerCheck = false;
 					this.currentFuseTime = this.sunProducingTime;
 				}
 			}
@@ -239,8 +238,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 	}
 
 	protected void produceSun() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(15));
-		List<GeneralPvZombieEntity> zombieList = this.getWorld().getNonSpectatingEntities(GeneralPvZombieEntity.class, this.getBoundingBox().expand(15));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5));
+		List<SunflowerEntity> sunflowerList = this.getWorld().getNonSpectatingEntities(SunflowerEntity.class, this.getBoundingBox().expand(5));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -254,11 +253,10 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 225);
 
-			if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-				if (livingEntity.getY() < (this.getY() + 5) && livingEntity.getY() > (this.getY() - 5)) {
-					if ((this.prevZombie == null || zombieList.get(0) != prevZombie) && !zombieList.isEmpty()) {
-						prevZombie = zombieList.get(0);
-						this.zombieSunCheck = true;
+			if (livingEntity instanceof SunflowerEntity) {
+				if (livingEntity.getY() < (this.getY() + 4) && livingEntity.getY() > (this.getY() - 4)) {
+					if (sunflowerList.size() <= 1) {
+						this.sunProducerCheck = true;
 					}
 				}
 			}
@@ -389,7 +387,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createSunflowerAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

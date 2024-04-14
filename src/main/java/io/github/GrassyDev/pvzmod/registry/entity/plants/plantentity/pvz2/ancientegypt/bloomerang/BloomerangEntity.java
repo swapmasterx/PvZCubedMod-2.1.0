@@ -174,7 +174,7 @@ public class BloomerangEntity extends PlantEntity implements GeoEntity, RangedAt
 
 	public static DefaultAttributeContainer.Builder createBloomerangAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 26.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10.0D);
@@ -294,7 +294,7 @@ public class BloomerangEntity extends PlantEntity implements GeoEntity, RangedAt
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.33F, 0F);
+						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.5F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
@@ -305,15 +305,15 @@ public class BloomerangEntity extends PlantEntity implements GeoEntity, RangedAt
 						}
 						// Right Pea
 						ShootingBoomerangEntity proj3 = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.getWorld());
-						Vec3d vec3d2 = new Vec3d((double) 0.0, 0.0, 0.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						Vec3d vec3d4 = new Vec3d((double) 10, 0.0, 1.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+						Vec3d vec3d2 = new Vec3d((double) 0.0, 0.0, 0.25).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+						Vec3d vec3d4 = new Vec3d((double) 5.0, 0.0, 0.75).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						double d3 = this.plantEntity.squaredDistanceTo(predictedPos);
 						float df3 = (float) d3;
 						double e3 = predictedPos.getX() - this.plantEntity.getX();
 						double f3 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g3 = predictedPos.getZ() - this.plantEntity.getZ();
 						float h3 = MathHelper.sqrt(MathHelper.sqrt(df3)) * 0.5F;
-						proj3.setVelocity(e3 * (double) h + vec3d4.x, f3 * (double) h3, g3 * (double) h +vec3d4.z, 0.33F, 0F);
+						proj3.setVelocity(e3 * (double) h + vec3d4.x, f3 * (double) h3, g3 * (double) h +vec3d4.z, 0.5F, 0F);
 						proj3.updatePosition(this.plantEntity.getX() + vec3d2.x, this.plantEntity.getY() + 0.5, this.plantEntity.getZ() + vec3d2.z);
 						proj3.setOwner(this.plantEntity);
 						proj3.right = true;
@@ -323,8 +323,8 @@ public class BloomerangEntity extends PlantEntity implements GeoEntity, RangedAt
 						}
 						// Left Pea
 						ShootingBoomerangEntity proj2 = new ShootingBoomerangEntity(PvZEntity.BOOMERANGPROJ, this.plantEntity.getWorld());
-						Vec3d vec3d5 = new Vec3d((double) 0.0, 0.0, -0.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						Vec3d vec3d6 = new Vec3d((double) 10.0, 0.0, -1.5).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+						Vec3d vec3d5 = new Vec3d((double) 0.0, 0.0, -0.25).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
+						Vec3d vec3d6 = new Vec3d((double) 5.0, 0.0, -0.75).rotateY(-this.plantEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						double d2 = this.plantEntity.squaredDistanceTo(predictedPos);
 						float df2 = (float) d2;
 						double e2 = predictedPos.getX() - this.plantEntity.getX();

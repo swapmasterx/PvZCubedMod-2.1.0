@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)22",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 2 DMG/2s (Pierce)",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x4 1 DMG/2s (Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Wind Damage. Chills Zombies.",
