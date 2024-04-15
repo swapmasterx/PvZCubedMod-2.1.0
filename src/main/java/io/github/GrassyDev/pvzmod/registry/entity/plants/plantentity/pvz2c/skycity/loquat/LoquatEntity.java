@@ -8,6 +8,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.JetpackVarian
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.PvZombieEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -69,7 +70,10 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 
 		this.setNoGravity(true);
 	}
+	@Override
+	public void setOnGround(boolean onGround) {
 
+	}
 	public LoquatEntity(World world, double x, double y, double z) {
 		this(PvZEntity.LOQUAT, world);
 		this.setPosition(x, y, z);
@@ -77,7 +81,10 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 		this.prevY = y;
 		this.prevZ = z;
 	}
-
+	@Override
+	public boolean isOnGround() {
+		return false;
+	}
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
@@ -98,7 +105,28 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	/**
 	 * /~*~//~*VARIANTS*~//~*~/
 	 **/
+	@Override
+	public Vec3d handleFrictionAndCalculateMovement(Vec3d movementInput, float slipperiness) {
+		BlockPos blockPos = this.getVelocityAffectingPos();
+		float p = this.getWorld().getBlockState(blockPos).getBlock().getSlipperiness();
+		if (p > 0.6f){
+			this.updateVelocity(this.getMovementSpeed(0.6f * p), movementInput);
+		}
+		else {
+			this.updateVelocity(this.getMovementSpeed(0.6f), movementInput);
+		}
+		this.move(MovementType.SELF, this.getVelocity());
+		Vec3d vec3d = this.getVelocity();
+		if ((this.horizontalCollision || this.jumping)
+			&& (this.isClimbing() || this.getBlockStateAtPos().isOf(Blocks.POWDER_SNOW) && PowderSnowBlock.canWalkOnPowderSnow(this))) {
+			vec3d = new Vec3d(vec3d.x, 0.2, vec3d.z);
+		}
 
+		return vec3d;
+	}
+	private float getMovementSpeed(float slipperiness) {
+		return this.isOnGround() ? this.getMovementSpeed() * (0.21600002F / (slipperiness * slipperiness * slipperiness)) : this.getAirSpeed();
+	}
 	@Nullable
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
@@ -145,7 +173,8 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.0));
 		this.goalSelector.add(2, new LookAtEntityGoal(this, GeneralPvZombieEntity.class, 15.0F));
 		this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0));
-		this.targetSelector.add(3, new TargetGoal<>(this, HostileEntity.class, true, true));
+
+		this.targetSelector.add(3, new TargetGoal<>(this, PvZombieEntity.class, true, true));
 		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 5.0F));
 		this.goalSelector.add(7, new LookAroundGoal(this));
 	}

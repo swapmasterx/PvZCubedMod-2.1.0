@@ -283,6 +283,7 @@ public class EndurianEntity extends PlantEntity implements GeoEntity {
         return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 120D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }
 

@@ -458,7 +458,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.3F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.33D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						proj.lowProf = true;
@@ -478,7 +478,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 							double f3 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 							double g3 = predictedPos.getZ() - this.plantEntity.getZ();
 							float h3 = MathHelper.sqrt(MathHelper.sqrt(df3)) * 0.5F;
-							proj3.setVelocity(e3 * (double) h3, f3 * (double) h3, g3 * (double) h3, 0.33F, 0F);
+							proj3.setVelocity(e3 * (double) h3, f3 * (double) h3, g3 * (double) h3, 0.4F, 0F);
 							proj3.updatePosition(this.plantEntity.getX() + vec3d3.x, this.plantEntity.getY() + 0.3, this.plantEntity.getZ() + vec3d3.z);
 							proj3.setOwner(this.plantEntity);
 							proj3.lowProf = true;
@@ -502,7 +502,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 							double f2 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 							double g2 = predictedPos.getZ() - this.plantEntity.getZ();
 							float h2 = MathHelper.sqrt(MathHelper.sqrt(df2)) * 0.5F;
-							proj2.setVelocity(e2 * (double) h2, f2 * (double) h2, g2 * (double) h2, 0.33F, 0);
+							proj2.setVelocity(e2 * (double) h2, f2 * (double) h2, g2 * (double) h2, 0.5F, 0);
 							proj2.updatePosition(this.plantEntity.getX() + vec3d2.x, this.plantEntity.getY() + 0.3, this.plantEntity.getZ() + vec3d2.z);
 							proj2.lowProf = true;
 							proj2.setOwner(this.plantEntity);
@@ -524,7 +524,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 							double f4 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 							double g4 = predictedPos.getZ() - this.plantEntity.getZ();
 							float h4 = MathHelper.sqrt(MathHelper.sqrt(df4)) * 0.5F;
-							proj4.setVelocity(e4 * (double) h4, f4 * (double) h4, g4 * (double) h4, 0.33F, 0F);
+							proj4.setVelocity(e4 * (double) h4, f4 * (double) h4, g4 * (double) h4, 0.6F, 0F);
 							proj4.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 							proj4.setOwner(this.plantEntity);
 							proj4.damageMultiplier = plantEntity.damageMultiplier;
@@ -545,7 +545,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 							double f5 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 							double g5 = predictedPos.getZ() - this.plantEntity.getZ();
 							float h5 = MathHelper.sqrt(MathHelper.sqrt(df5)) * 0.5F;
-							proj5.setVelocity(e5 * (double) h5, f5 * (double) h5, g5 * (double) h5, 0.5F, 0F);
+							proj5.setVelocity(e5 * (double) h5, f5 * (double) h5, g5 * (double) h5, 7.0F, 0F);
 							proj5.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 1.25D, this.plantEntity.getZ());
 							proj5.setOwner(this.plantEntity);
 							proj5.canHitFlying = true;

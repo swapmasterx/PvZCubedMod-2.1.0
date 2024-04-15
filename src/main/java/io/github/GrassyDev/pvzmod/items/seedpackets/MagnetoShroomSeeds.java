@@ -79,6 +79,9 @@ public class MagnetoShroomSeeds extends SeedItem implements FabricItem {
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.contain.family").setStyle(Style.EMPTY.withColor(10987175)));
 
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.upgrade.tooltip")
+			.formatted(Formatting.UNDERLINE));
+
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.nocturnal.tooltip")
 			.formatted(Formatting.UNDERLINE));
 

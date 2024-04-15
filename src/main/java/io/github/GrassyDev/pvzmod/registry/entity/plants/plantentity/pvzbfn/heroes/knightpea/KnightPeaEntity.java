@@ -181,7 +181,7 @@ public class KnightPeaEntity extends PlantEntity implements GeoEntity, RangedAtt
         return MobEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D)
 				.add(EntityAttributes.GENERIC_ARMOR, 10D)
-				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 1D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20.0D);

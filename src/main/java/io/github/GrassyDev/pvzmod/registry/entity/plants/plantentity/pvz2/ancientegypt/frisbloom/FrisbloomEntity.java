@@ -292,7 +292,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 		}
 
 		public void start() {
-			this.beamTicks = -15;
+			this.beamTicks = -13;
 			this.animationTicks = -20;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
@@ -337,7 +337,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 						proj.setOwner(this.plantEntity);
 						proj.damageMultiplier = plantEntity.damageMultiplier;
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -15;
+							this.beamTicks = -13;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.getWorld().spawnEntity(proj);
 						}
@@ -346,7 +346,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 				else if (this.animationTicks >= 0)
 				{
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -15;
+					this.beamTicks = -13;
 					this.animationTicks = -20;
 				}
 				super.tick();

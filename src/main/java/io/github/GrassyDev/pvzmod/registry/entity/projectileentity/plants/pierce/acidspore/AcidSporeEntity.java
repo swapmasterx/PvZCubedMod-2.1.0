@@ -202,7 +202,7 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.VANILLA_ARMOR_PEN), damage);
 				}
 				if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 60, 3)));
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 40, 3)));
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

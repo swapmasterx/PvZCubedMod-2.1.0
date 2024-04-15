@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.s
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.items.seedpackets.VampireSunflowerSeeds;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
@@ -343,7 +344,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
 				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				VampireFlowerEntity vampireFlowerEntity = (VampireFlowerEntity) PvZEntity.VAMPIREFLOWER.create(getWorld());
+				VampireFlowerEntity vampireFlowerEntity = PvZEntity.VAMPIREFLOWER.create(getWorld());
 				vampireFlowerEntity.setTarget(this.getTarget());
 				vampireFlowerEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
 				vampireFlowerEntity.initialize(serverWorld, getWorld().getLocalDifficulty(vampireFlowerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -363,7 +364,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 					itemStack.decrement(1);
 				}
 				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
-					player.getItemCooldownManager().set(ModItems.TWINSUNFLOWER_SEED_PACKET, TwinSunflowerSeeds.cooldown);
+					player.getItemCooldownManager().set(ModItems.VAMPIREFLOWER_SEED_PACKET, VampireSunflowerSeeds.cooldown);
 				}
 			}
 			return ActionResult.SUCCESS;

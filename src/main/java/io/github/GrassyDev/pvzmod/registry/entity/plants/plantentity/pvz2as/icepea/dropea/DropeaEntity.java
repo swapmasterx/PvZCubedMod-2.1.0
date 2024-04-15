@@ -288,7 +288,7 @@ public class DropeaEntity extends PlantEntity implements GeoEntity, RangedAttack
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 				ShootingDropEntity proj = new ShootingDropEntity(PvZEntity.DROP, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h + 0.1, g * (double) h, 0.5F, 0F);
+				proj.setVelocity(e * (double) h, 0.5, g * (double) h, 0.6F, 0F);
 				proj.updatePosition(this.getX(), this.getY() + 0.75D, this.getZ());
 				proj.setOwner(this);
 				this.beamTicks = -30;

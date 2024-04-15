@@ -10,7 +10,7 @@
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)150",
         "$(#bd951a)Armor: $()$(#ff0000)10",
-        "$(#bd951a)Armor Toughness: $()$(#ff0000)1",
+        "$(#bd951a)Armor Toughness: $()$(#ff0000)2",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)20 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
