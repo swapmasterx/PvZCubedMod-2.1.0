@@ -267,7 +267,7 @@ public class PerfoomshroomEntity extends PlantEntity implements GeoEntity {
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 81);
-			float damage = 40;
+			float damage = 50;
 
 			ZombiePropEntity zombiePropEntity4 = null;
 			boolean hasHelmet = false;

@@ -169,11 +169,11 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.VANILLA_ARMOR_PEN), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.VANILLA_ARMOR_PEN), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}
@@ -181,6 +181,7 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 60, 2)));
 				}
 				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 50, 1)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.GENERICSLOW, 5, 1)));
 				entity.extinguish();
 				entityStore.add((LivingEntity) entity);
 			}

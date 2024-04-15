@@ -202,7 +202,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoEntity {
 			if (livingEntity instanceof ScorchedTile){
 				livingEntity.discard();
 			}
-			float damage = 60;
+			float damage = 30;
 			String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 			if ("crystal".equals(zombieMaterial) || "gold".equals(zombieMaterial) || "cloth".equals(zombieMaterial)) {
 				damage = damage / 2;

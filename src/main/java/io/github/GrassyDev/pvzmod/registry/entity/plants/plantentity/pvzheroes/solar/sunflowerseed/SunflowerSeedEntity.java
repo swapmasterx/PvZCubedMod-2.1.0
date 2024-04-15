@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.sunflower.SunflowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -16,6 +17,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -26,6 +28,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
@@ -58,38 +61,53 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+	private boolean sunProducerCheck;
 
     private String controllerName = "puffcontroller";
 	public int sunProducingTime = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);
+	int raycastDelay = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);
 	public boolean produceSun;
 
 	public boolean isFiring;
+	private static final TrackedData<Integer> SUN_SPEED;
 
-    public SunflowerSeedEntity(EntityType<? extends SunflowerSeedEntity> entityType, World world) {
+	static {
+		SUN_SPEED = DataTracker.registerData(SunflowerSeedEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	}
+
+
+	public SunflowerSeedEntity(EntityType<? extends SunflowerSeedEntity> entityType, World world) {
         super(entityType, world);
 
 		this.isBurst = true;
 
     }
-
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+	public void readCustomDataFromNbt(NbtCompound tag) {
+		super.readCustomDataFromNbt(tag);
+		if (tag.contains("Fuse", 99)) {
+			this.sunProducingTime = tag.getShort("Fuse");
+		}
 	}
 
 	public void writeCustomDataToNbt(NbtCompound tag) {
 		super.writeCustomDataToNbt(tag);
-		tag.putBoolean("Permanent", this.getPuffshroomPermanency());
+		tag.putShort("Fuse", (short)this.sunProducingTime);
+	}
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(SUN_SPEED, -1);
+	}
+	private int currentFuseTime;
+
+	public void setFuseSpeed(int fuseSpeed) {
+
+		this.dataTracker.set(SUN_SPEED, fuseSpeed);
 	}
 
-	public void readCustomDataFromNbt(NbtCompound tag) {
-		super.readCustomDataFromNbt(tag);
-		this.dataTracker.set(DATA_ID_TYPE_COUNT, tag.getBoolean("Permanent"));
-	}
+	public int getFuseSpeed() {
 
-	static {
+		return this.dataTracker.get(SUN_SPEED);
 	}
-
 	@Environment(EnvType.CLIENT)
 	public void handleStatus(byte status) {
 		if (status != 2 && status != 60){
@@ -139,28 +157,6 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 	private static final TrackedData<Boolean> DATA_ID_TYPE_COUNT =
 			DataTracker.registerData(SunflowerSeedEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-	public enum PuffPermanency {
-		DEFAULT(false),
-		PERMANENT(true);
-
-		PuffPermanency(boolean id) {
-			this.id = id;
-		}
-
-		private final boolean id;
-
-		public boolean getId() {
-			return this.id;
-		}
-	}
-
-	private Boolean getPuffshroomPermanency() {
-		return this.dataTracker.get(DATA_ID_TYPE_COUNT);
-	}
-
-	public void setPuffshroomPermanency(SunflowerSeedEntity.PuffPermanency puffshroomPermanency) {
-		this.dataTracker.set(DATA_ID_TYPE_COUNT, puffshroomPermanency.getId());
-	}
 
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
@@ -189,7 +185,8 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 	/** /~*~//~*AI*~//~*~/ **/
 
 	protected void initGoals() {
-		this.goalSelector.add(1, new SunflowerSeedEntity.FireBeamGoal(this));
+		this.goalSelector.add(5, new SunflowerSeedEntity.FireBeamGoal(this));
+		this.goalSelector.add(4, new LookAtEntityGoal(this, PlayerEntity.class, 20.0F));
 	}
 
 
@@ -281,41 +278,70 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 			BlockPos blockPos2 = this.getBlockPos();
 			BlockState blockState = this.getLandingBlockState();
 			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
-					this.dropItem(ModItems.BELLFLOWER_SEED_PACKET);
+				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead) {
+					this.dropItem(ModItems.SUNFLOWER_SEED_PACKET);
 				}
 				this.discard();
 			}
 		}
-		this.targetZombies(this.getPos(), 3, true, false, true);
-		if (this.age >= 900 && !this.getPuffshroomPermanency()) {
-			this.discard();
-		}
-		float time = 200 / this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
-		if (this.age > 4 && this.age <= time && !this.getPuffshroomPermanency() && !this.hasStatusEffect(StatusEffects.GLOWING)) {
-			if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.PLANTS_GLOW)) {
-				this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, (int) Math.floor(time), 1)));
+		if (this.isAlive()) {
+			this.setFuseSpeed(1);
+
+			int i = this.getFuseSpeed();
+
+			this.currentFuseTime += i;
+			if (this.currentFuseTime < 0) {
+				this.currentFuseTime = 0;
+			}
+
+			if (this.currentFuseTime >= this.sunProducingTime) {
+				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
+					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
+					this.dropItem(ModItems.SMALLSUN);
+					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);
+					this.sunProducerCheck = false;
+					this.currentFuseTime = this.sunProducingTime;
+				}
 			}
 		}
+		this.targetZombies(this.getPos(), 3, true, false, true);
 	}
 
 	public void tickMovement() {
 		super.tickMovement();
+		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(DISABLE)) {
+			if (--raycastDelay >= 0){
+				this.produceSun();
+				raycastDelay = 60;
+			}
+		}
+
 		if (!this.getWorld().isClient && this.isAlive() && this.isInsideWaterOrBubbleColumn() && this.deathTime == 0) {
 			this.discard();
 		}
-		--this.sunProducingTime;
+	}
 
-		if (!this.getWorld().isClient && this.isAlive() && this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(DISABLE)){
-			if (this.produceSun){
-				this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
-				this.dropItem(ModItems.SMALLSUN);
-				this.sunProducingTime = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);;
-				this.produceSun = false;
+	protected void produceSun() {
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5));
+		List<SunflowerSeedEntity> seedEntityList = this.getWorld().getNonSpectatingEntities(SunflowerSeedEntity.class, this.getBoundingBox().expand(5));
+		Iterator var9 = list.iterator();
+		while (true) {
+			LivingEntity livingEntity;
+			do {
+				do {
+					if (!var9.hasNext()) {
+						return;
+					}
+
+					livingEntity = (LivingEntity) var9.next();
+				} while (livingEntity == this);
+			} while (this.squaredDistanceTo(livingEntity) > 25);
+
+			if (seedEntityList.size() <= 1) {
+						this.sunProducerCheck = true;
 			}
 		}
 	}
-
 
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 
@@ -331,7 +357,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
 	public static DefaultAttributeContainer.Builder createSunflowerSeedAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D);

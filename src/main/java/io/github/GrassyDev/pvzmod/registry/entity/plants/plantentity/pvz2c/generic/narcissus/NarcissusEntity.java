@@ -222,10 +222,10 @@ public class NarcissusEntity extends PlantEntity implements GeoEntity, RangedAtt
 
 	public static DefaultAttributeContainer.Builder createNarcissusAttributes() {
         return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 6D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 7D);
     }
 
 	protected boolean canClimb() {return false;}
@@ -302,7 +302,7 @@ public class NarcissusEntity extends PlantEntity implements GeoEntity, RangedAtt
 		}
 
 		public void start() {
-			this.beamTicks = -8;
+			this.beamTicks = -10;
 			this.animationTicks = -21;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
@@ -360,7 +360,7 @@ public class NarcissusEntity extends PlantEntity implements GeoEntity, RangedAtt
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					BubbleEntity proj = new BubbleEntity(PvZEntity.BUBBLE, this.plantEntity.getWorld());
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.85F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.9F, 0F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (livingEntity != null && livingEntity.isAlive()) {
@@ -371,7 +371,7 @@ public class NarcissusEntity extends PlantEntity implements GeoEntity, RangedAtt
 				}
 				if (this.animationTicks >= 0) {
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -8;
+					this.beamTicks = -10;
 					this.animationTicks = -21;
 				}
 				super.tick();

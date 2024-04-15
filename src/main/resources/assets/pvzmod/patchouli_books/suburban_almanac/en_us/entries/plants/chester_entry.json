@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)30 ",
+        "$(#bd951a)Health: $()$(#ff0000)20 ",
         "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 32 DMG/1.5s (Immune)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)2 Blocks (Melee), 6 Blocks (Cheese)",
         "$(br)$(#bd951a)Chew Time: $()$(#ff0000)8.75s, 1.5s (Small Zombies)",

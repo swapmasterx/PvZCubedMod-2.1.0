@@ -124,7 +124,6 @@ public class LoquatSeeds extends SeedItem implements FabricItem {
 									double fg = aquaticEntity.getZ() + (double) MathHelper.nextBetween(randomGenerator, -0.4F, 0.4F);
 									aquaticEntity.getWorld().addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState), dg, eg, fg, 0.0, 0.0, 0.0);
 								}
-								aquaticEntity.setPuffshroomPermanency(LoquatEntity.PuffPermanency.PERMANENT);
 								world.emitGameEvent(user, GameEvent.ENTITY_PLACE, hitResult.getPos());
 								FluidState fluidState = world.getFluidState(aquaticEntity.getBlockPos().add(0, 0, 0));
 								if (fluidState.getFluid() == Fluids.WATER) {
@@ -177,7 +176,6 @@ public class LoquatSeeds extends SeedItem implements FabricItem {
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				world.spawnEntity(plantEntity);
-				((LoquatEntity) plantEntity).setPuffshroomPermanency(LoquatEntity.PuffPermanency.PERMANENT);
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 				if (!user.getAbilities().creativeMode) {

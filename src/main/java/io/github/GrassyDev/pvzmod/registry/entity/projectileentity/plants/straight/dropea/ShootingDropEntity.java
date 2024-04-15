@@ -76,7 +76,7 @@ public class ShootingDropEntity extends PvZProjectileEntity implements GeoEntity
 
     public ShootingDropEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
-		this.setNoGravity(true);
+		this.setNoGravity(false);
     }
 
     public ShootingDropEntity(World world, LivingEntity owner) {

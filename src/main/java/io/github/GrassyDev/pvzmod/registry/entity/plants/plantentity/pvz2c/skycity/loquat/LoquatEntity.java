@@ -3,10 +3,15 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skyc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.JetpackVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.PvZombieEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.bombseedling.BombSeedlingEntity;
@@ -52,8 +57,8 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 public class LoquatEntity extends PlantEntity implements GeoEntity {
 
-
-	private int amphibiousRaycastDelay;
+	public boolean hovering;
+	protected int hoverTicks = 20;
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
@@ -61,8 +66,6 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 
 	public LoquatEntity(EntityType<? extends LoquatEntity> entityType, World world) {
 		super(entityType, world);
-
-		amphibiousRaycastDelay = 1;
 
 		this.setNoGravity(true);
 	}
@@ -80,27 +83,21 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
 	}
 
-	public void writeCustomDataToNbt(NbtCompound tag) {
-		super.writeCustomDataToNbt(tag);
-		tag.putBoolean("Permanent", this.getPuffshroomPermanency());
-	}
-
 	public void readCustomDataFromNbt(NbtCompound tag) {
 		super.readCustomDataFromNbt(tag);
 		this.dataTracker.set(DATA_ID_TYPE_COUNT, tag.getBoolean("Permanent"));
 	}
 
-	static {
-	}
-
 	@Environment(EnvType.CLIENT)
 	public void handleStatus(byte status) {
-		if (status != 2 && status != 60){
+		if (status != 2 && status != 60) {
 			super.handleStatus(status);
 		}
 	}
 
-	/** /~*~//~*VARIANTS*~//~*~/ **/
+	/**
+	 * /~*~//~*VARIANTS*~//~*~/
+	 **/
 
 	@Nullable
 	@Override
@@ -116,30 +113,7 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	}
 
 	private static final TrackedData<Boolean> DATA_ID_TYPE_COUNT =
-			DataTracker.registerData(LoquatEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
-	public enum PuffPermanency {
-		DEFAULT(false),
-		PERMANENT(true);
-
-		PuffPermanency(boolean id) {
-			this.id = id;
-		}
-
-		private final boolean id;
-
-		public boolean getId() {
-			return this.id;
-		}
-	}
-
-	private Boolean getPuffshroomPermanency() {
-		return this.dataTracker.get(DATA_ID_TYPE_COUNT);
-	}
-
-	public void setPuffshroomPermanency(LoquatEntity.PuffPermanency puffshroomPermanency) {
-		this.dataTracker.set(DATA_ID_TYPE_COUNT, puffshroomPermanency.getId());
-	}
+		DataTracker.registerData(LoquatEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
 
 	/**
@@ -147,7 +121,7 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	 **/
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
 	}
 
@@ -167,8 +141,13 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	 **/
 
 	protected void initGoals() {
-		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 5.0F));
+
+		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.0));
 		this.goalSelector.add(2, new LookAtEntityGoal(this, GeneralPvZombieEntity.class, 15.0F));
+		this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0));
+		this.targetSelector.add(3, new TargetGoal<>(this, HostileEntity.class, true, true));
+		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 5.0F));
+		this.goalSelector.add(7, new LookAroundGoal(this));
 	}
 
 	protected void snorkelGoal() {
@@ -179,60 +158,46 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	 * //~*~//~POSITION~//~*~//
 	 **/
 
-	public void setPosition(double x, double y, double z) {
-		BlockPos blockPos = this.getBlockPos();
-		if (this.hasVehicle()) {
-			super.setPosition(x, y, z);
-		} else {
-			super.setPosition((double) MathHelper.floor(x) + 0.5, (double)MathHelper.floor(y + 0.5), (double)MathHelper.floor(z) + 0.5);
-		}
+//	public void setPosition(double x, double y, double z) {
+//		BlockPos blockPos = this.getBlockPos();
+//		if (this.hasVehicle()) {
+//			super.setPosition(x, y, z);
+//		} else {
+//			super.setPosition((double) MathHelper.floor(x) + 0.5, (double)MathHelper.floor(y + 0.5), (double)MathHelper.floor(z) + 0.5);
+//		}
+//	}
+	public boolean canWalkOnFluid(FluidState state) {
+		return state.isIn(FluidTags.WATER);
 	}
 
+	protected boolean shouldSwimInFluids() {
+		return true;
+	}
 
 	/**
 	 * //~*~//~TICKING~//~*~//
 	 **/
 
 	public void tick() {
-		super.tick();
-		BlockPos blockPos = this.getBlockPos();
-		if (this.age >= 900 && !this.getPuffshroomPermanency()) {
-			this.discard();
-		}
-		float time = 200 / this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
-		if (this.age > 4 && this.age <= time && !this.getPuffshroomPermanency() && !this.hasStatusEffect(StatusEffects.GLOWING)) {
-			if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.PLANTS_GLOW)) {
-				this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, (int) Math.floor(time), 1)));
+		LivingEntity target = this.getTarget();
+		this.setNoGravity(true);
+		if (target != null) {
+			Vec3d lastPos = this.getPos();
+			if (this.isInsideWaterOrBubbleColumn()) {
+				this.addVelocity(0, 0.3, 0);
 			}
-		}
-		if (--amphibiousRaycastDelay <= 0 && age > 5) {
-			amphibiousRaycastDelay = 20;
-			HitResult hitResult = amphibiousRaycast(1);
-			if (hitResult.getType() == HitResult.Type.MISS && !this.hasVehicle()) {
-				kill();
+			if (--hoverTicks <= 0) {
+				this.hoverTicks = 20;
 			}
-			if (this.age > 1) {
-				BlockPos blockPos2 = this.getBlockPos();
-				BlockState blockState = this.getLandingBlockState();
-				FluidState fluidState = getWorld().getFluidState(this.getBlockPos().add(0, -1, 0));
-				onWater = fluidState.getFluid() == Fluids.WATER;
-				if (!blockPos2.equals(blockPos) || (!(fluidState.getFluid() == Fluids.WATER) && !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
-					if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
-						this.dropItem(ModItems.LOQUAT_SEED_PACKET);
-					}
-					this.discard();
-				}
+			if (this.getY() > target.getY() + 0.125) {
+				this.addVelocity(0, -0.004, 0);
+			} else if (this.getY() <= target.getY()) {
+				this.addVelocity(0, 0.005, 0);
+				this.hovering = true;
 			}
+			super.tick();
 		}
 	}
-
-	public void tickMovement() {
-		super.tickMovement();
-		if (!this.getWorld().isClient && this.isAlive() && this.isInsideWaterOrBubbleColumn() && this.deathTime == 0) {
-			this.discard();
-		}
-	}
-
 
 	/**
 	 * /~*~//~*INTERACTION*~//~*~/
@@ -251,11 +216,11 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createLoquatAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
-				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
+			.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
+			.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+			.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
+			.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D)
+			.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 
 	protected boolean canClimb() {
@@ -313,34 +278,15 @@ public class LoquatEntity extends PlantEntity implements GeoEntity {
 	/**
 	 * //~*~//~DAMAGE HANDLER~//~*~//
 	 **/
-
-
-
-	public boolean handleFallDamage(float fallDistance, float damageMultiplier) {
-		if (fallDistance > 0F) {
-			this.playSound(PvZSounds.PLANTPLANTEDEVENT, 0.4F, 1.0F);
-			this.discard();
-		}
-		this.playBlockFallSound();
-		return true;
+	protected SoundEvent getStepSound() {
+		return PvZSounds.SILENCEVENET;
 	}
-
-
-	/** /~*~//~*SPAWNING*~//~*~/ **/
-
-	public static boolean canLoquatSpawn(EntityType<? extends LoquatEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
-		BlockPos blockPos = pos.down();
-		float nightchance = random.nextFloat();
-		if (nightchance <= 0.5){
-			return !world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&
-					!checkPlant(Vec3d.ofCenter(pos), world, type) &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
-		}
-		else {
-			return !world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&
-					!checkPlant(Vec3d.ofCenter(pos), world, type) &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && world.getAmbientDarkness() < 4 &&
-					world.getLightLevel(LightType.SKY, pos) > 10 && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
-		}
+	@Override
+	protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition) {
+		super.fall(0, false, landedState, landedPosition);
+	}
+	@Override
+	public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
+		return false;
 	}
 }

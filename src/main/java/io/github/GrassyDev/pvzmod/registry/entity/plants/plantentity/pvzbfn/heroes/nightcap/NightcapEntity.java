@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.her
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -233,13 +234,15 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 6)));
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 60, 1)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 3)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.GENERICSLOW, 60, 1)));
 					this.zombieList.add(livingEntity);
 				}
 			}
@@ -252,22 +255,6 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 	private int tickDamage = 20;
 
 	public void tick() {
-		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			if (tileCheck.isEmpty()) {
-				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
-					if (serverWorld.isNight()) {
-						this.setShadowPowered(Shadow.TRUE);
-					}
-				} else {
-					this.setShadowPowered(Shadow.FALSE);
-				}
-			}
-			if (!tileCheck.isEmpty()) {
-				this.setShadowPowered(Shadow.TRUE);
-			}
-		}
 		if (!this.getWorld().isClient && !this.getCofee()) {
 			if ((this.getWorld().getAmbientDarkness() >= 2 ||
 					this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2 ||
@@ -310,7 +297,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 		}
 		super.tick();
 
-		if (this.isAfraid && this.getShadowPowered()) {
+		if (this.isAfraid) {
 			double dx = (double) (180 & 255) / 255.0;
 			double ex = (double) (30 & 255) / 255.0;
 			double fx = (double) (200 & 255) / 255.0;
@@ -335,7 +322,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 			--this.animationScare;
 		}
 		this.checkForZombies();
-		if (this.isAfraid && this.getShadowPowered()) {
+		if (this.isAfraid) {
 			if (--tickDamage <= 0) {
 				this.zombieList.clear();
 				if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
@@ -367,7 +354,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 	@Nullable
 	@Override
 	public ItemStack getPickBlockStack() {
-		return ModItems.SHAMROCK_SEED_PACKET.getDefaultStack();
+		return ModItems.NIGHTCAP_SEED_PACKET.getDefaultStack();
 	}
 
 
@@ -375,7 +362,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	public static DefaultAttributeContainer.Builder createNightcapAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
@@ -515,7 +502,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 								}
 								double g = predictedPos.getZ() - this.plantEntity.getZ();
 								float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-								proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
+								proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.7F, 0F);
 								proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 								proj.setOwner(this.plantEntity);
 								proj.damageMultiplier = plantEntity.damageMultiplier;

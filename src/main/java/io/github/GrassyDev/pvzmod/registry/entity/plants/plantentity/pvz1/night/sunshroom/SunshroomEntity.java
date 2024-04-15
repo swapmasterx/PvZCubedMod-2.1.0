@@ -143,11 +143,13 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 	private int currentFuseTime;
 
 	public void setFuseSpeed(int fuseSpeed) {
+
 		this.dataTracker.set(SUN_SPEED, fuseSpeed);
 	}
 
 	public int getFuseSpeed() {
-		return (Integer)this.dataTracker.get(SUN_SPEED);
+
+		return this.dataTracker.get(SUN_SPEED);
 	}
 
 	public void tick() {
@@ -235,12 +237,9 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 225);
 
-			if (livingEntity instanceof SunflowerEntity) {
-				if (livingEntity.getY() < (this.getY() + 4) && livingEntity.getY() > (this.getY() - 4)) {
-					if (sunShroomList.size() <= 1) {
-						this.sunProducerCheck = true;
-					}
-				}
+
+			if (sunShroomList.size() <= 1) {
+				this.sunProducerCheck = true;
 			}
 		}
 	}

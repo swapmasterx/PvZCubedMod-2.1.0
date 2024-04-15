@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.s
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.twinsunflower.TwinSunflowerEntity;
@@ -204,7 +205,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 				this.currentFuseTime = 0;
 			}
 
-			if (this.currentFuseTime >= this.sunProducingTime) {
+			if (this.currentFuseTime <= this.sunProducingTime) {
 				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					if (this.getWorld().getAmbientDarkness() >= 2 ||
@@ -251,14 +252,9 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 225);
-
-			if (livingEntity instanceof SunflowerEntity) {
-				if (livingEntity.getY() < (this.getY() + 4) && livingEntity.getY() > (this.getY() - 4)) {
-					if (sunflowerList.size() <= 1) {
-						this.sunProducerCheck = true;
-					}
-				}
+			} while (this.squaredDistanceTo(livingEntity) > 25);
+			if (sunflowerList.size() <= 1) {
+				this.sunProducerCheck = true;
 			}
 		}
 	}
@@ -342,6 +338,36 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 			return ActionResult.SUCCESS;
 		}
+		Item item2 = itemStack.getItem();
+		if (itemStack.isOf(ModItems.VAMPIREFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item2)) {
+			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
+			if ((this.getWorld() instanceof ServerWorld)) {
+				ServerWorld serverWorld = (ServerWorld) this.getWorld();
+				VampireFlowerEntity vampireFlowerEntity = (VampireFlowerEntity) PvZEntity.VAMPIREFLOWER.create(getWorld());
+				vampireFlowerEntity.setTarget(this.getTarget());
+				vampireFlowerEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+				vampireFlowerEntity.initialize(serverWorld, getWorld().getLocalDifficulty(vampireFlowerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				vampireFlowerEntity.setAiDisabled(this.isAiDisabled());
+				vampireFlowerEntity.setPersistent();
+				if (this.hasCustomName()) {
+					vampireFlowerEntity.setCustomName(this.getCustomName());
+					vampireFlowerEntity.setCustomNameVisible(this.isCustomNameVisible());
+				}
+				if (this.hasVehicle()){
+					vampireFlowerEntity.startRiding(this.getVehicle(), true);
+				}
+				this.remove(RemovalReason.DISCARDED);
+			}
+			if (!player.getAbilities().creativeMode) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
+					itemStack.decrement(1);
+				}
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
+					player.getItemCooldownManager().set(ModItems.TWINSUNFLOWER_SEED_PACKET, TwinSunflowerSeeds.cooldown);
+				}
+			}
+			return ActionResult.SUCCESS;
+		}
 		if (!this.getVariant().equals(SunflowerVariants.DEFAULT) && itemStack.isOf(Items.WHITE_DYE)) {
 			this.setVariant(SunflowerVariants.DEFAULT);
 			if (!player.getAbilities().creativeMode){
@@ -387,7 +413,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createSunflowerAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

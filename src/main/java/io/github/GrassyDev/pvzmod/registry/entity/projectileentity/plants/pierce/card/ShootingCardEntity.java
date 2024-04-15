@@ -199,8 +199,8 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 		if (!this.getWorld().isClient && this.isInsideWaterOrBubbleColumn()) {
 			this.remove(RemovalReason.DISCARDED);
 		}
-		if (!this.getWorld().isClient && this.age >= returnAge || this.damageCounter >= 3) {
-			if (this.damageCounter >= 3){
+		if (!this.getWorld().isClient && this.age >= returnAge || this.damageCounter >= 1) {
+			if (this.damageCounter >= 1){
 				this.remove(RemovalReason.DISCARDED);
 			}
 		}

@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "text",
-      "text": ["$(#bd951a)Health: $()$(#ff0000)8",
+      "text": ["$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)6 DMG/1.5s (3 Zombie Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon. Poisons Zombies. Hides if a Zombie is 6 blocks near and becomes Low Profile.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Poisons Zombies. If a Zombie is nearby she hides and releases a cloud that damages, Poisons, and slows Zombies.",
         "$(br)$(#bd951a)She specializes in Fung Fu, and the technique she's best at is \"hide and pretend there are no Zombies.\" It surprisingly works."
       ]
     },
@@ -22,28 +22,7 @@
       ],
       "title": "☁ Conceal Family",
       "border": "true",
-      "text": "$(#25228d)Poisons multiple Zombies with her spores and hides from them."
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br2)$(#bd951a)Health: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)8 DMG/1.5s (4 Zombie Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Cloud Damage: $()$(#ff0000)1 DMG/1s",
-        "$(br)$(#bd951a)Cloud Range: $()$(#ff0000)3 Blocks",
-        "$(br)$(#bd951a)Stale: $()$(#ff0000)1.5% (Proj)",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon Powered Form. Poisons Zombies. Hides if a Zombie is 3 blocks near and becomes Low Profile. When hiding, releases a cloud that damages, Poisons, slows, and weakens Zombies."
-      ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/nightcap_powered.png"
-      ],
-      "title": "☁ Conceal Family",
-      "border": "true",
-      "text": "$(#25228d)Night Cap's Shadow Form. Slows and Poisons Zombies when hiding."
+      "text": "$(#25228d)Poisons Zombies and does damage around herself when they get too close."
     },
     {
       "type": "crafting",

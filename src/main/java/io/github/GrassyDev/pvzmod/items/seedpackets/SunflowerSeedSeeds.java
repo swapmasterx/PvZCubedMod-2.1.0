@@ -111,7 +111,6 @@ public class SunflowerSeedSeeds extends SeedItem implements FabricItem {
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
 					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 					world.spawnEntity(plantEntity);
-					plantEntity.setPuffshroomPermanency(SunflowerSeedEntity.PuffPermanency.PERMANENT);
 					world.playSound((PlayerEntity) null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 
@@ -158,7 +157,6 @@ public class SunflowerSeedSeeds extends SeedItem implements FabricItem {
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				world.spawnEntity(plantEntity);
-				((SunflowerSeedEntity) plantEntity).setPuffshroomPermanency(SunflowerSeedEntity.PuffPermanency.PERMANENT);
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 				if (!user.getAbilities().creativeMode) {
@@ -196,7 +194,6 @@ public class SunflowerSeedSeeds extends SeedItem implements FabricItem {
 			plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 			((ServerWorld) world).spawnEntityAndPassengers(plantEntity);
-			((SunflowerSeedEntity) plantEntity).setPuffshroomPermanency(SunflowerSeedEntity.PuffPermanency.PERMANENT);
 			plantEntity.rideLilyPad(entity);
 			world.playSound((PlayerEntity) null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), sound, SoundCategory.BLOCKS, 0.6f, 0.8F);
 			if (!user.getAbilities().creativeMode) {

@@ -11,7 +11,7 @@
         "$(#bd951a)Health: $()$(#ff0000)20 ",
         "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 16 DMG/1.5s (Immune)",
         "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks",
-        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)12.5s, 1.5s (Small Zombies)",
+        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)25s, 1.5s (Small Zombies)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Kills a Zombie instantly, but has to chew it afterwards. Immune if they are Big or above, a Grave, or a Machine. Will eat a Shield or Cover instead of the Zombie.",
         "$(br)$(#bd951a)Chomper never gets the hint when you offer her a mint."

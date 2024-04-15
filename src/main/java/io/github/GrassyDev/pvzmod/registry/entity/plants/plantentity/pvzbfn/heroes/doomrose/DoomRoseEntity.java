@@ -143,33 +143,6 @@ public class DoomRoseEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	public void tick() {
 		super.tick();
-		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			Vec3d vec3d = Vec3d.ofCenter(this.getBlockPos()).add(0, -0.5, 0);
-			List<ShadowFullTile> fullCheck = getWorld().getNonSpectatingEntities(ShadowFullTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			List<ShadowTile> tileCheck = getWorld().getNonSpectatingEntities(ShadowTile.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ()));
-			if (fullCheck.isEmpty() && tileCheck.isEmpty()) {
-				if (this.getWorld().getMoonSize() < 0.1 && this.getWorld().isSkyVisible(this.getBlockPos())) {
-					if (serverWorld.isNight()) {
-						this.setShadowPowered(Shadow.TRUE);
-					}
-				} else {
-					this.setShadowPowered(Shadow.FALSE);
-				}
-				if (this.getWorld().getMoonSize() > 0.9 && this.getWorld().isSkyVisible(this.getBlockPos())) {
-					if (serverWorld.isNight()) {
-						this.setMoonPowered(Moon.TRUE);
-					}
-				} else {
-					this.setMoonPowered(Moon.FALSE);
-				}
-			}
-			if (!fullCheck.isEmpty()) {
-				this.setMoonPowered(Moon.TRUE);
-			}
-			if (!tileCheck.isEmpty()) {
-				this.setShadowPowered(Shadow.TRUE);
-			}
-		}
 		this.targetZombies(this.getPos(), 3, false, false, false);
 		BlockPos blockPos = this.getBlockPos();
 		if (tickDelay <= 1) {
@@ -231,7 +204,7 @@ public class DoomRoseEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	public static DefaultAttributeContainer.Builder createDoomRoseAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D)
@@ -354,21 +327,21 @@ public class DoomRoseEntity extends PlantEntity implements GeoEntity, RangedAtta
 			}
 			if (this.charge && this.animationTicks == -40 && this.getTarget() != null) {
 				if (this.getWorld() instanceof ServerWorld serverWorld) {
-					RoseBudTile tile = (RoseBudTile) PvZEntity.ROSEBUDS.create(getWorld());
-					tile.refreshPositionAndAngles(this.getTarget().getBlockPos().getX(), this.getTarget().getBlockPos().getY(), this.getTarget().getBlockPos().getZ(), 0, 0);
-					tile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-					tile.setPersistent();
-					tile.setHeadYaw(0);
-					tile.setTarget(this.getTarget());
-					tile.damageMultiplier = damageMultiplier;
-					if (this.getMoonPowered()){
-						tile.setMoonPowered(TileEntity.Moon.TRUE);
-					}
-					if (this.getShadowPowered()){
-						tile.setShadowPowered(TileEntity.Shadow.TRUE);
-					}
-					serverWorld.spawnEntityAndPassengers(tile);
-					if (this.getShadowPowered()){
+//					RoseBudTile tile = (RoseBudTile) PvZEntity.ROSEBUDS.create(getWorld());
+//					tile.refreshPositionAndAngles(this.getTarget().getBlockPos().getX(), this.getTarget().getBlockPos().getY(), this.getTarget().getBlockPos().getZ(), 0, 0);
+//					tile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+//					tile.setPersistent();
+//					tile.setHeadYaw(0);
+//					tile.setTarget(this.getTarget());
+//					tile.damageMultiplier = damageMultiplier;
+//					if (this.getMoonPowered()){
+//						tile.setMoonPowered(TileEntity.Moon.TRUE);
+//					}
+//					if (this.getShadowPowered()){
+//						tile.setShadowPowered(TileEntity.Shadow.TRUE);
+//					}
+//					serverWorld.spawnEntityAndPassengers(tile);
+//					if (this.getShadowPowered()){
 						Vec3d vec3d2 = new Vec3d((double) -1, 0.0, 0).rotateY(-this.getTarget().getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						RoseBudTile tile2 = (RoseBudTile) PvZEntity.ROSEBUDS.create(getWorld());
 						tile2.refreshPositionAndAngles(this.getTarget().getBlockPos().getX() + vec3d2.x, this.getTarget().getBlockPos().getY(), this.getTarget().getBlockPos().getZ() + vec3d2.z, 0, 0);
@@ -378,7 +351,7 @@ public class DoomRoseEntity extends PlantEntity implements GeoEntity, RangedAtta
 						tile2.setShadowPowered(TileEntity.Shadow.TRUE);
 						tile2.damageMultiplier = damageMultiplier;
 						serverWorld.spawnEntityAndPassengers(tile2);
-					}
+//					}
 				}
 			}
 		}

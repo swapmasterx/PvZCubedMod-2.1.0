@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Sun: $()$(#ff0000)Normal (Bright Ambient), Small (Dark Ambient)",
         "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)60 seconds (First Time), 5 minutes",
         "$(br)$(#bd951a)Sunflower Crowding Radius: $()$(#ff0000)5 Blocks",

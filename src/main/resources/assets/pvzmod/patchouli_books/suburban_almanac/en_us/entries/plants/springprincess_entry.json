@@ -9,7 +9,7 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/4s",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/4.5s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks (Lobbed)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Slightly Bounces the damaged Zombie back, then the projectile bounces backwards and creates a Spring Tile when it hits the ground.",

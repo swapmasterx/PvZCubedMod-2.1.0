@@ -318,11 +318,11 @@ public class NavyBeanEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	public static DefaultAttributeContainer.Builder createNavyBeanAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D);
 	}
 
 	protected boolean canClimb() {

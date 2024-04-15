@@ -9,10 +9,9 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)12",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)7 DMG/1.5s (Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Sound Damage.",
         "$(br2)$(#bd951a)She wants to ask Snowdrop out soooo badly, but she feels like she's always getting the cold shoulder."
       ]
     },
@@ -23,7 +22,7 @@
       ],
       "title": "✂ Spear Family",
       "border": "true",
-      "text": "$(#25228d)Bellflowers ring a jingle that pass through Zombies."
+      "text": "$(#25228d)Rings out close range soundwaves that have a chance to crit."
     },
     {
       "type": "crafting",

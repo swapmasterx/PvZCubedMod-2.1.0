@@ -605,14 +605,6 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 							if ("rubber".equals(zombieMaterial)) {
 								damage = 0;
 							}
-						} else {
-							((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 30, 1)));
-							entity.extinguish();
-							if ("paper".equals(zombieMaterial) || "stone".equals(zombieMaterial)) {
-								damage = damage * 2;
-							} else if ("plant".equals(zombieMaterial)) {
-								damage = damage / 2;
-							}
 						}
 						if (damage > ((LivingEntity) entity).getHealth() &&
 								!(entity instanceof ZombieShieldEntity) &&
@@ -732,14 +724,6 @@ public class ShootingDyeEntity extends PvZProjectileEntity implements GeoEntity 
 											}
 											if ("crystal".equals(zombieMaterial2)) {
 												damage3 = damage3 * 2;
-											}
-										} else {
-											livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 30, 1)));
-											livingEntity.extinguish();
-											if ("paper".equals(zombieMaterial2) || "stone".equals(zombieMaterial2)) {
-												damage3 = damage3 * 2;
-											} else if ("plant".equals(zombieMaterial2)) {
-												damage3 = damage3 / 2;
 											}
 										}
 										ZombiePropEntity zombiePropEntity4 = null;

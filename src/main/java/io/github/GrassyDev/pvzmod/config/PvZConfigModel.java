@@ -403,20 +403,20 @@ public class PvZConfigModel {
 	@Nest
 	public PvZDMGNest nestedProjDMG = new PvZDMGNest();
 	public static class PvZDMGNest {
-		public float acidFumeDMG = 2f;
+		public float acidFumeDMG = 1f;
 		public float acidSporeDMG = 2f;
-		public float armorBubbleDMG = 4f;
-		public float beespikeDMGv2 = 2f;
+		public float armorBubbleDMG = 2f;
+		public float beespikeDMGv2 = 1f;
 		public float breezeDMG = 1f;
 		public float boomerangDMGv2 = 1f;
-		public float bubblesDMG = 2f;
+		public float bubblesDMG = 1f;
 		public float cabbageDMG = 2f;
-		public float cardDMGv2 = 0.5f;
+		public float cardDMGv2 = 1f;
 		public float coconutDMGv2 = 90f;
 		public float coconutSDMG = 50f;
-		public float dropDMGv2 = 2.5f;
-		public float dropSDMG = 2.5f;
-		public float dyeDMG = 4f;
+		public float dropDMGv2 = 3f;
+		public float dropSDMG = 3f;
+		public float dyeDMG = 2f;
 		public float electricPeaDMG = 2f;
 		public float firepiercepeaDMG = 6f;
 		public float firepiercepeaSDMG = 3f;
@@ -430,7 +430,7 @@ public class PvZConfigModel {
 		public float icebergSDMG = 1f;
 		public float icespikeDMGv2 = 2f;
 		public float iceSpikeMultiplier = 2f;
-		public float jingleDMGv2 = 7f;
+		public float jingleDMGv2 = 3f;
 		public float missileToeDMGNear = 120f;
 		public float missileToeDMGFar = 60f;
 		public float missileToeDMGRangeNear = 1.5f;
@@ -439,16 +439,16 @@ public class PvZConfigModel {
 		public float pepperDMGv2 = 5f;
 		public float pepperSDMG = 2f;
 		public float piercepeaDMG = 3f;
-		public float piercesporeDMG = 6f;
+		public float piercesporeDMG = 3f;
 		public float plasmaPeaDMG = 6f;
 		public float rainbowBulletDMG = 4f;
 		public float snowPeaDMG = 2f;
-		public float snowQueenPeaDMGv2 = 9f;
-		public float snowQueenPeaSDMG = 3f;
+		public float snowQueenPeaDMGv2 = 2f;
+		public float snowQueenPeaSDMG = 1f;
 		public float springDMG = 4f;
 		public float spikeDMGv2 = 2f;
 		public float spitDMG = 2f;
-		public float smooshProjDMG = 12f;
+		public float smooshProjDMG = 6f;
 		public float sporeDMG = 2f;
 		public float swordDMG = 6f;
 
@@ -471,238 +471,238 @@ public class PvZConfigModel {
 	public PvZZombieHealth nestedZombieHealth = new PvZZombieHealth();
 	public static class PvZZombieHealth {
 		@RestartRequired
-		public double zombieGraveH = 60D;
+		public double zombieGraveH = 30D;
 		@RestartRequired
-		public double basicGraveH = 140D;
+		public double basicGraveH = 70D;
 		@RestartRequired
-		public double nightGraveH = 170D;
+		public double nightGraveH = 85D;
 		@RestartRequired
-		public double poolGraveH = 200D;
+		public double poolGraveH = 100D;
 		@RestartRequired
-		public double egyptGraveH = 200D;
+		public double egyptGraveH = 100D;
 		@RestartRequired
-		public double roofGraveH = 230D;
+		public double roofGraveH = 115D;
 		@RestartRequired
-		public double futureGraveH = 240D;
+		public double futureGraveH = 120D;
 		@RestartRequired
-		public double darkAgesGraveH = 170D;
+		public double darkAgesGraveH = 85D;
 		@RestartRequired
-		public double fairytaleGraveH = 360D;
+		public double fairytaleGraveH = 180D;
 		@RestartRequired
-		public double mausoleumGraveH = 300D;
+		public double mausoleumGraveH = 150D;
 
 		@RestartRequired
-		public double backupH = 26D;
+		public double backupH = 14D;
 		@RestartRequired
-		public double bassH = 80D;
+		public double bassH = 40D;
 		@RestartRequired
-		public double browncoatH = 26D;
+		public double browncoatH = 14D;
 		@RestartRequired
-		public double summerH = 26D;
+		public double summerH = 14D;
 		@RestartRequired
-		public double mummyH = 26D;
+		public double mummyH = 14D;
 		@RestartRequired
-		public double futureH = 26D;
+		public double futureH = 14D;
 		@RestartRequired
-		public double peasantH = 26D;
+		public double peasantH = 14D;
 		@RestartRequired
-		public double pokerheartH = 64D;
+		public double pokerheartH = 32D;
 		@RestartRequired
-		public double pokerspadeH = 36D;
+		public double pokerspadeH = 18D;
 		@RestartRequired
-		public double pokerclubH = 36D;
+		public double pokerclubH = 18D;
 		@RestartRequired
-		public double pokerdiamondH = 50D;
+		public double pokerdiamondH = 25D;
 		@RestartRequired
-		public double bobsledH = 64D;
+		public double bobsledH = 32D;
 		@RestartRequired
-		public double sargeantH = 26D;
+		public double sargeantH = 16D;
 		@RestartRequired
-		public double bullyH = 110D;
+		public double bullyH = 55D;
 		@RestartRequired
-		public double actionheroH = 84D;
+		public double actionheroH = 42D;
 		@RestartRequired
-		public double basketballH = 110D;
+		public double basketballH = 55D;
 		@RestartRequired
-		public double dancingH = 50D;
+		public double dancingH = 25D;
 		@RestartRequired
-		public double dolphinH = 50D;
+		public double dolphinH = 25D;
 		@RestartRequired
-		public double explorerH = 50D;
+		public double explorerH = 25D;
 		@RestartRequired
-		public double torchlightH = 64D;
+		public double torchlightH = 32D;
 		@RestartRequired
-		public double flagH = 50D;
+		public double flagH = 25D;
 		@RestartRequired
-		public double flagSummerH = 50D;
+		public double flagSummerH = 25D;
 		@RestartRequired
-		public double flagMummyH = 50D;
+		public double flagMummyH = 25D;
 		@RestartRequired
-		public double flagFuturetH = 50D;
+		public double flagFuturetH = 25D;
 		@RestartRequired
-		public double flagPeasantH = 50D;
+		public double flagPeasantH = 25D;
 		@RestartRequired
-		public double flagPokerH = 64D;
+		public double flagPokerH = 32D;
 		@RestartRequired
-		public double flagSargeantH = 74D;
+		public double flagSargeantH = 37D;
 		@RestartRequired
-		public double footballH = 26D;
+		public double footballH = 14D;
 		@RestartRequired
-		public double berserkerH = 26D;
+		public double berserkerH = 14D;
 		@RestartRequired
-		public double gargantuarH = 360D;
+		public double gargantuarH = 180D;
 		@RestartRequired
-		public double mummygargantuarH = 420D;
+		public double mummygargantuarH = 210D;
 		@RestartRequired
-		public double defensiveendH = 360D;
+		public double defensiveendH = 180D;
 		@RestartRequired
-		public double cursedgargolithH = 260D;
+		public double cursedgargolithH = 130D;
 		@RestartRequired
-		public double unicorngargantuarH = 360D;
+		public double unicorngargantuarH = 180D;
 		@RestartRequired
-		public double hawkerpusherH = 50D;
+		public double hawkerpusherH = 25D;
 		@RestartRequired
-		public double hoverGoatH = 74D;
+		public double hoverGoatH = 36D;
 		@RestartRequired
-		public double impH = 20D;
+		public double impH = 10D;
 		@RestartRequired
-		public double impdragonH = 64D;
+		public double impdragonH = 20D;
 		@RestartRequired
-		public double bassimpH = 64D;
+		public double bassimpH = 28D;
 		@RestartRequired
-		public double scrapimpH = 80D;
+		public double scrapimpH = 40D;
 		@RestartRequired
-		public double superFanH = 20D;
+		public double superFanH = 10D;
 		@RestartRequired
-		public double announcerH = 36D;
+		public double announcerH = 18D;
 		@RestartRequired
-		public double jetpackH = 50D;
+		public double jetpackH = 25D;
 		@RestartRequired
-		public double blastronautH = 50D;
+		public double blastronautH = 25D;
 		@RestartRequired
-		public double newspaperH = 26D;
+		public double newspaperH = 14D;
 		@RestartRequired
-		public double sundayH = 50D;
+		public double sundayH = 25D;
 		@RestartRequired
-		public double octoH = 100D;
+		public double octoH = 50D;
 		@RestartRequired
-		public double poleH = 50D;
+		public double poleH = 25D;
 		@RestartRequired
-		public double pharaohH = 50D;
+		public double pharaohH = 25D;
 		@RestartRequired
-		public double undyingPharaohH = 64D;
+		public double undyingPharaohH = 32D;
 		@RestartRequired
-		public double pumpkincarH = 210D;
+		public double pumpkincarH = 90D;
 		@RestartRequired
-		public double roboconeH = 250D;
+		public double roboconeH = 125D;
 		@RestartRequired
-		public double scrapmechH = 290D;
+		public double scrapmechH = 145D;
 		@RestartRequired
-		public double scientistH = 26D;
+		public double scientistH = 14D;
 		@RestartRequired
-		public double snorkelH = 50D;
+		public double snorkelH = 25D;
 		@RestartRequired
-		public double soldierH = 50D;
+		public double soldierH = 30D;
 		@RestartRequired
-		public double tombraiserH = 74D;
+		public double tombraiserH = 35D;
 		@RestartRequired
-		public double zombiekingH = 100D;
+		public double zombiekingH = 50D;
 		@RestartRequired
-		public double zombiepigH = 12D;
+		public double zombiepigH = 6D;
 		@RestartRequired
-		public double zomblobH = 64D;
+		public double zomblobH = 32D;
 		@RestartRequired
-		public double zomblobBH = 128D;
+		public double zomblobBH = 64D;
 		@RestartRequired
-		public double zomblobSH = 32D;
+		public double zomblobSH = 16D;
 		@RestartRequired
-		public double zomboniH = 64D;
+		public double zomboniH = 32D;
 
 		@RestartRequired
-		public double coneH = 36D;
-		public double pokerpawngearH = 140D;
-		public double pokerknightgearH = 212D;
-		public double pokertowergearH = 286D;
-		public double pokerbishopgearH = 212D;
-		public double kingpiecegearH = 66D;
+		public double coneH = 18D;
+		public double pokerpawngearH = 70D;
+		public double pokerknightgearH = 105D;
+		public double pokertowergearH = 140D;
+		public double pokerbishopgearH = 105D;
+		public double kingpiecegearH = 33D;
 
 		@RestartRequired
-		public double bucketH = 110D;
+		public double bucketH = 55D;
 		@RestartRequired
-		public double medallionH = 36D;
+		public double medallionH = 10D;
 		@RestartRequired
-		public double footballHelmH = 140D;
+		public double footballHelmH = 70D;
 		@RestartRequired
-		public double berserkerHelmH = 330D;
+		public double berserkerHelmH = 160D;
 		@RestartRequired
-		public double defensiveendHelmH = 140D;
+		public double defensiveendHelmH = 70D;
 		@RestartRequired
-		public double blastronautHelmH = 36D;
+		public double blastronautHelmH = 18D;
 		@RestartRequired
-		public double knightHelmH = 150D;
+		public double knightHelmH = 75D;
 		@RestartRequired
-		public double sargeanthelmetH = 140D;
+		public double sargeanthelmetH = 75D;
 		@RestartRequired
-		public double soldierhelmetH = 110D;
+		public double soldierhelmetH = 55D;
 
 		@RestartRequired
-		public double brickH = 210D;
+		public double brickH = 105D;
 		@RestartRequired
-		public double coneTowerH = 50D;
+		public double coneTowerH = 25D;
 		@RestartRequired
-		public double pyramidH = 340D;
+		public double pyramidH = 170D;
 		@RestartRequired
-		public double sarcophagusH = 212D;
+		public double sarcophagusH = 105D;
 		@RestartRequired
-		public double bowlH = 26D;
+		public double bowlH = 12D;
 
 		@RestartRequired
-		public double holoHelmetH = 190D;
+		public double holoHelmetH = 80D;
 		@RestartRequired
-		public double crystalshoeHelmetH = 84D;
+		public double crystalshoeHelmetH = 40D;
 
 		@RestartRequired
-		public double pumpkinH = 84D;
+		public double pumpkinH = 40D;
 
 		@RestartRequired
-		public double screendoorShieldH = 150D;
+		public double screendoorShieldH = 75D;
 
 		@RestartRequired
-		public double sergeantShieldH = 180D;
+		public double sergeantShieldH = 90D;
 
 		@RestartRequired
-		public double newspaperShieldH = 16D;
+		public double newspaperShieldH = 10D;
 		@RestartRequired
-		public double sundayShieldH = 116D;
+		public double sundayShieldH = 55D;
 		@RestartRequired
-		public double bookShieldH = 66D;
+		public double bookShieldH = 33D;
 
 		@RestartRequired
-		public double trashcanObstH = 220D;
+		public double trashcanObstH = 110D;
 		@RestartRequired
-		public double basketballObstH = 120D;
+		public double basketballObstH = 60D;
 		@RestartRequired
-		public double healstationObstH = 60D;
+		public double healstationObstH = 30D;
 
 		@RestartRequired
-		public double gargolithObstH = 360D;
+		public double gargolithObstH = 180D;
 		@RestartRequired
-		public double imptabletObstH = 64D;
+		public double imptabletObstH = 30D;
 
 		@RestartRequired
-		public double egyptTombstoneH = 90D;
+		public double egyptTombstoneH = 45D;
 
 		@RestartRequired
-		public double hawkerObstH = 90D;
+		public double hawkerObstH = 45D;
 
 		@RestartRequired
-		public double octoObstH = 64;
+		public double octoObstH = 32;
 
 		@RestartRequired
-		public double zomboniVH = 134D;
+		public double zomboniVH = 65D;
 		@RestartRequired
-		public double bobsledVH = 64D;
+		public double bobsledVH = 32D;
 		@RestartRequired
-		public double speakerVH = 110D;
+		public double speakerVH = 55D;
 	}
 }

@@ -179,7 +179,6 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 				if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM)) {
 					((LivingEntity) entity).removeStatusEffect(PvZCubed.WARM);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
 				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 10, 1)));
 				entity.extinguish();
 				this.getWorld().sendEntityStatus(this, (byte) 3);

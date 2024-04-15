@@ -170,7 +170,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.BURSTSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.LILYPAD_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.DROPEA_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SEAPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SQUASH_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.THREEPEATER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TANGLEKELP_SEED_PACKET));
@@ -222,9 +221,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.HAMMERFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.METEORHAMMER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BOMBSEEDLING_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.BUTTONSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ZAPRICOT_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.SMALLNUT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.WEENIEBEANIE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.RETROGATLING_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TWINSUNFLOWER_SEED_PACKET));

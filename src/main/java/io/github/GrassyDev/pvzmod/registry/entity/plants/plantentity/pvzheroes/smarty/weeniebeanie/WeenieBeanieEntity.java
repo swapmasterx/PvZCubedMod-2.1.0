@@ -70,15 +70,6 @@ public class WeenieBeanieEntity extends PlantEntity implements GeoEntity, Ranged
 		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
 	}
 
-	public void writeCustomDataToNbt(NbtCompound tag) {
-		super.writeCustomDataToNbt(tag);
-		tag.putBoolean("Permanent", this.getPuffshroomPermanency());
-	}
-
-	public void readCustomDataFromNbt(NbtCompound tag) {
-		super.readCustomDataFromNbt(tag);
-		this.dataTracker.set(DATA_ID_TYPE_COUNT, tag.getBoolean("Permanent"));
-	}
 
 	static {
 	}
@@ -124,28 +115,6 @@ public class WeenieBeanieEntity extends PlantEntity implements GeoEntity, Ranged
 	private static final TrackedData<Boolean> DATA_ID_TYPE_COUNT =
 			DataTracker.registerData(WeenieBeanieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-	public enum PuffPermanency {
-		DEFAULT(false),
-		PERMANENT(true);
-
-		PuffPermanency(boolean id) {
-			this.id = id;
-		}
-
-		private final boolean id;
-
-		public boolean getId() {
-			return this.id;
-		}
-	}
-
-	private Boolean getPuffshroomPermanency() {
-		return this.dataTracker.get(DATA_ID_TYPE_COUNT);
-	}
-
-	public void setPuffshroomPermanency(WeenieBeanieEntity.PuffPermanency puffshroomPermanency) {
-		this.dataTracker.set(DATA_ID_TYPE_COUNT, puffshroomPermanency.getId());
-	}
 
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
@@ -252,16 +221,6 @@ public class WeenieBeanieEntity extends PlantEntity implements GeoEntity, Ranged
 				this.discard();
 			}
 		}
-		this.targetZombies(this.getPos(), 2, false, false, true);
-		if (this.age >= 900 && !this.getPuffshroomPermanency()) {
-			this.discard();
-		}
-		float time = 200 / this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
-		if (this.age > 4 && this.age <= time && !this.getPuffshroomPermanency() && !this.hasStatusEffect(StatusEffects.GLOWING)) {
-			if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.PLANTS_GLOW)) {
-				this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, (int) Math.floor(time), 1)));
-			}
-		}
 	}
 
 	public void tickMovement() {
@@ -290,11 +249,11 @@ public class WeenieBeanieEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createWeenieBeanieAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8D);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4D);
     }
 
 	protected boolean canClimb() {

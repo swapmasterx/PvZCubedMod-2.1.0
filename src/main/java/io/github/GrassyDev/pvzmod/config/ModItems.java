@@ -235,12 +235,10 @@ public class ModItems {
 		SEED_PACKET_LIST.add(ModItems.MAGNETOSHROOM_SEED_PACKET);
 		PREMIUM_SEED_LIST.add(ModItems.MAGNETOSHROOM_SEED_PACKET);
 
-		SEED_PACKET_LIST.add(ModItems.SMALLNUT_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.SMACKADAMIA_SEED_PACKET);
 
 		SEED_PACKET_LIST.add(ModItems.SMACKADAMIA_SEED_PACKET);
 
-		SEED_PACKET_LIST.add(ModItems.BUTTONSHROOM_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.BOMBSEEDLING_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.OILYOLIVE_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.ZAPRICOT_SEED_PACKET);
@@ -264,10 +262,7 @@ public class ModItems {
 
 		SEED_PACKET_LIST.add(ModItems.KNIGHTPEA_SEED_PACKET);
 		PREMIUM_SEED_LIST.add(ModItems.KNIGHTPEA_SEED_PACKET);
-
-		SEED_PACKET_LIST.add(ModItems.SEAPEA_SEED_PACKET);
-		POOL_SEED_LIST.add(ModItems.SEAPEA_SEED_PACKET);
-
+		
 		SEED_PACKET_LIST.add(ModItems.NIGHTCAP_SEED_PACKET);
 		PREMIUM_SEED_LIST.add(ModItems.NIGHTCAP_SEED_PACKET);
 
@@ -444,9 +439,7 @@ public class ModItems {
 	public static final Item BEAUTYSHROOM_SEED_PACKET = new BeautyshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item CHARMSHROOM_SEED_PACKET = new CharmshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.RARE));
 	public static final Item MAGNETOSHROOM_SEED_PACKET = new MagnetoShroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
-	public static final Item SMALLNUT_SEED_PACKET = new SmallnutSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item SMACKADAMIA_SEED_PACKET = new SmackadamiaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
-	public static final Item BUTTONSHROOM_SEED_PACKET = new ButtonshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item BOMBSEEDLING_SEED_PACKET = new BombSeedlingSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item OILYOLIVE_SEED_PACKET = new OilyOliveSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item ZAPRICOT_SEED_PACKET = new ZapricotSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
@@ -459,7 +452,6 @@ public class ModItems {
 	public static final Item SUNFLOWERSEED_SEED_PACKET = new SunflowerSeedSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item BELLFLOWER_SEED_PACKET = new BellflowerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item KNIGHTPEA_SEED_PACKET = new KnightPeaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
-	public static final Item SEAPEA_SEED_PACKET = new SeapeaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item NIGHTCAP_SEED_PACKET = new NightcapSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item DOOMROSE_SEED_PACKET = new DoomRoseSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item DOGWOOD_SEED_PACKET = new DogwoodSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
@@ -844,9 +836,7 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"beautyshroom_seed_packet"), BEAUTYSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"charmshroom_seed_packet"), CHARMSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"magnetoshroom_seed_packet"), MAGNETOSHROOM_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"smallnut_seed_packet"), SMALLNUT_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"smackadamia_seed_packet"), SMACKADAMIA_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"buttonshroom_seed_packet"), BUTTONSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"bombseedling_seed_packet"), BOMBSEEDLING_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"oilyolive_seed_packet"), OILYOLIVE_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"zapricot_seed_packet"), ZAPRICOT_SEED_PACKET);
@@ -859,7 +849,6 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"sunflowerseed_seed_packet"), SUNFLOWERSEED_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"bellflower_seed_packet"), BELLFLOWER_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"knightpea_seed_packet"), KNIGHTPEA_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"seapea_seed_packet"), SEAPEA_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"nightcap_seed_packet"), NIGHTCAP_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"doomrose_seed_packet"), DOOMROSE_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"dogwood_seed_packet"), DOGWOOD_SEED_PACKET);

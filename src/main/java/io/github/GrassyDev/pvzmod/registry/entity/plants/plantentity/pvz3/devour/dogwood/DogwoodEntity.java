@@ -173,7 +173,7 @@ public class DogwoodEntity extends PlantEntity implements GeoEntity, RangedAttac
 
 	public static DefaultAttributeContainer.Builder createDogwoodAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 6D);
@@ -294,7 +294,7 @@ public class DogwoodEntity extends PlantEntity implements GeoEntity, RangedAttac
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 				BarkEntity proj = new BarkEntity(PvZEntity.BARK, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.5F, 0F);
+				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.2F, 0F);
 				proj.updatePosition(this.getX(), this.getY() + 0.5D, this.getZ());
 				proj.setOwner(this);
 				this.beamTicks = -30;

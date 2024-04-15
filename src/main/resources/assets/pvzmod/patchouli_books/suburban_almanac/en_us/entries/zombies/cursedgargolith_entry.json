@@ -46,7 +46,6 @@
       "type": "relations",
       "title": "Recommended Plants",
       "entries": [
-        "pvzmod:plants/seapea_entry",
         "pvzmod:plants/retrogatling_entry",
         "pvzmod:plants/admiralnavybean_entry",
         "pvzmod:plants/jumpingbean_entry",

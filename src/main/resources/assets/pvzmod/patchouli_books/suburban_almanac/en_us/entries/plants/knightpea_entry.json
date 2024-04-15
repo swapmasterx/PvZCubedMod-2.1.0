@@ -8,9 +8,11 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)180",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)6 DMG/1.5s (Spike)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(#bd951a)Health: $()$(#ff0000)150",
+        "$(#bd951a)Armor: $()$(#ff0000)10",
+        "$(#bd951a)Armor Toughness: $()$(#ff0000)1",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)20 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire.",
         "$(br2)$(#bd951a)Will joust for honor, for justice, for honor again--preferably between nine and five. "
@@ -21,9 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/knightpea.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "⭘ Appease Family",
       "border": "true",
-      "text": "$(#25228d)Pea of Valiance shoots swords, slicing through Zombies."
+      "text": "$(#25228d)Wears a suit of armor, granting it immense protection."
     },
     {
       "type": "crafting",

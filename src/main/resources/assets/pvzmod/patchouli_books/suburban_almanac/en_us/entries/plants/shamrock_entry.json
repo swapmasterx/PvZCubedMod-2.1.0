@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "text",
-      "text": ["$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
+      "text": ["$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/2.9s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)50 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Hides if a Zombie is 4 blocks near. Can target Flying Zombies.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Hides if a Zombie is 6 blocks near. Can target Flying Zombies.",
         "$(br)$(#bd951a)You could say Shamrock is lucky, if your definition of “luck” includes “hiding whenever there’s anything dangerous or herbivorous around.” Which is a kind of luck, you must admit."
       ]
     },
@@ -22,7 +22,7 @@
       ],
       "title": "⭘ Appease Family",
       "border": "true",
-      "text": "$(#25228d)Shoots far. Hides when zombies are nearby."
+      "text": "$(#25228d)Shoots very far. Hides when zombies are nearby."
     },
     {
       "type": "crafting",

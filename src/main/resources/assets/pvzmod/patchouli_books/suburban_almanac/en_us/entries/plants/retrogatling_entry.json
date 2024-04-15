@@ -8,11 +8,11 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)60",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x3 3 DMG/1.5s (3 Zombie Pierce)",
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1s (3 Zombie Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br2)$(#bd951a)Retro Gatling uses the ancient Peashooter techniques of manually cranking out peas. Although this results in less peas, the peas are ancient and far more piercing."
+        "$(br2)$(#bd951a)Retro Gatling uses the ancient Peashooter techniques of manually cranking out peas. Although less total d-pea-s, the peas are ancient and far more piercing."
       ]
     },
     {
@@ -22,7 +22,7 @@
       ],
       "title": "✂ Spear Family",
       "border": "true",
-      "text": "$(#25228d)Retro Gatlings shoot three piercing peas at a time."
+      "text": "$(#25228d)Retro Gatling fires piercing peas at a moderate speed."
     },
     {
       "type": "crafting",

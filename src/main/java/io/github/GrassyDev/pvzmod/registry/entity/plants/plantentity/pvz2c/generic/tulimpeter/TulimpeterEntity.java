@@ -190,24 +190,6 @@ public class TulimpeterEntity extends PlantEntity implements GeoEntity, RangedAt
 	}
 
 
-	protected List<HostileEntity> checkForZombiesHYPNO() {
-		List<HostileEntity> list = this.getWorld().getNonSpectatingEntities(HostileEntity.class, this.getBoundingBox().expand(15));
-		List<HostileEntity> list2 = new ArrayList<>();
-		Iterator var9 = list.iterator();
-		while (true) {
-			HostileEntity hostileEntity;
-			if (!var9.hasNext()) {
-				return list2;
-			}
-			hostileEntity = (HostileEntity) var9.next();
-
-			if (hostileEntity.squaredDistanceTo(this) <= 100) {
-				list2.add(hostileEntity);
-			}
-		}
-	}
-
-
 	protected List<PlantEntity> healPlants() {
 		List<PlantEntity> list = this.getWorld().getNonSpectatingEntities(PlantEntity.class, this.getBoundingBox().expand(5));
 		Iterator var9 = list.iterator();
@@ -291,7 +273,7 @@ public class TulimpeterEntity extends PlantEntity implements GeoEntity, RangedAt
 
 	public static DefaultAttributeContainer.Builder createTulimpeterAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
@@ -404,8 +386,6 @@ public class TulimpeterEntity extends PlantEntity implements GeoEntity, RangedAt
 				if (this.animationTicks == -16) {
 					if (!this.plantEntity.checkForZombiesHEAL().isEmpty()) {
 						this.plantEntity.setVariant(TulipVariants.HEAL);
-					} else if (!this.plantEntity.checkForZombiesHYPNO().isEmpty()) {
-						this.plantEntity.setVariant(TulipVariants.HYPNO);
 					}
 					else {
 						this.plantEntity.setVariant(TulipVariants.DEFAULT);
@@ -442,33 +422,6 @@ public class TulimpeterEntity extends PlantEntity implements GeoEntity, RangedAt
 								this.beamTicks = -13;
 								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 								this.plantEntity.playSound(SoundEvent.createVariableRangeEvent(Identifier.tryParse("block.note_block.flute")),  0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
-								this.plantEntity.getWorld().spawnEntity(proj);
-							}
-						}
-					}
-					else if (this.plantEntity.getVariant().equals(TulipVariants.HYPNO)) {
-						if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
-							HypnoProjEntity proj = new HypnoProjEntity(PvZEntity.HYPNOPROJ, this.plantEntity.getWorld());
-							double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 225) ? 50 : 5;
-							Vec3d targetPos = livingEntity.getPos();
-							double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
-						double predictedPosZ = targetPos.getZ() + (livingEntity.getVelocity().z * time);
-						Vec3d predictedPos = new Vec3d(predictedPosX, targetPos.getY(), predictedPosZ);
-							double d = this.plantEntity.squaredDistanceTo(predictedPos);
-							float df = (float) d;
-							double e = predictedPos.getX() - this.plantEntity.getX();
-							double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
-							double g = predictedPos.getZ() - this.plantEntity.getZ();
-							float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-							proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
-							proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
-							proj.setOwner(this.plantEntity);
-							proj.damageMultiplier = plantEntity.damageMultiplier;
-							if (livingEntity != null && livingEntity.isAlive()) {
-								this.beamTicks = -13;
-								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
-								this.plantEntity.playSound(SoundEvent.createVariableRangeEvent(Identifier.tryParse("block.note_block.flute")), 0.2F, (this.plantEntity.random.nextFloat() - this.plantEntity.random.nextFloat()) + 0.75F);
 								this.plantEntity.getWorld().spawnEntity(proj);
 							}
 						}

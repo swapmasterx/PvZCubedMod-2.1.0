@@ -8,11 +8,11 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)HP: $()$(#ff0000)12 ",
-        "$(#bd951a)Melee: $()$(#ff0000)6 DMG/1.5s(Bite), 32 DMG/1s(Sucking) ",
+        "$(#bd951a)HP: $()$(#ff0000)15 ",
+        "$(#bd951a)Melee: $()$(#ff0000)6 DMG/1.5s(Bite), 12 DMG/1s(Sucking) ",
         "$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks ",
         "$(#bd951a)Seed: $()$(#ff0000)15s ",
-        "$(#bd951a)Special: $()$(#ff0000)Bites a Zombie directly, ignoring gear(or bite Shield/Cover), then Sucks it, dropping Small Sun and Stunning for 10s on damage. Unsuckable if they are Big or above, or an Obstacle.",
+        "$(#bd951a)Special: $()$(#ff0000)Bites a Zombie directly, ignoring gear(or bite Shield/Cover), then Sucks it, dropping Small Sun and Stunning for 5s on damage. Unsuckable if they are Big or above, or an Obstacle.",
         "$(br)$(#bd951a)Being a summer goth takes commitment. Especially when you're a Plant that produces sun for a living."
       ]
     },

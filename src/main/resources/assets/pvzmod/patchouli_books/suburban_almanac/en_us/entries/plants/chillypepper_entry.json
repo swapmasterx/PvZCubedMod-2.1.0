@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)90",
+        "$(#bd951a)Damage: $()$(#ff0000)30",
         "$(br)$(#bd951a)Activation Range: $()$(#ff0000)12 Blocks",
         "$(br)$(#bd951a)Damage Area: $()$(#ff0000)Low Profile. 10 Blocks to the left and to the right, 3 wide.",
         "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)1.5s",

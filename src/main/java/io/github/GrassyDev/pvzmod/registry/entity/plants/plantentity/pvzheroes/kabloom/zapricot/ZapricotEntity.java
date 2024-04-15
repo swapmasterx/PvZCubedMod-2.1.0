@@ -481,10 +481,10 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
-					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 2);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 5);
 				}
 				else {
-					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 1);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 3);
 				}
 				damaged.damage(getDamageSources().mobProjectile(this, this), 0);
 				setSparkTarget(damaged.getId());
@@ -532,10 +532,10 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	public static DefaultAttributeContainer.Builder createZapricotAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 15D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 

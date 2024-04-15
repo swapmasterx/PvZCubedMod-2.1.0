@@ -252,16 +252,16 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 			}
 		}
 		else if (hasShield) {
-			this.attackTicksLeft = 250;
-			this.setCount(250);
+			this.attackTicksLeft = 500;
+			this.setCount(500);
 			this.getWorld().sendEntityStatus(this, (byte) 105);
 			if (damaged instanceof GeneralPvZombieEntity generalPvZombieEntity){
 				generalPvZombieEntity.swallowed = true;
 			}
 		}
 		else {
-			this.attackTicksLeft = 250;
-			this.setCount(250);
+			this.attackTicksLeft = 500;
+			this.setCount(500);
 			this.getWorld().sendEntityStatus(this, (byte) 104);
 			if (damaged instanceof GeneralPvZombieEntity generalPvZombieEntity){
 				generalPvZombieEntity.swallowed = true;

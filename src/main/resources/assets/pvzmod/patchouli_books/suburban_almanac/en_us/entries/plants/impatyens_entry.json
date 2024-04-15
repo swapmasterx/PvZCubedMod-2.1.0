@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)18 ",
-        "$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s, 4 DMG (Splash) ",
+        "$(#bd951a)Health: $()$(#ff0000)10 ",
+        "$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s, 2 DMG (Splash) ",
         "$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks ",
         "$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)17.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
@@ -29,11 +29,11 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Contain: $()$(#ff0000)Wets Zombies. Slows Zombies down for 0.5s.",
-        "$(br)$(#bd951a)Appease: $()$(#ff0000)Wets Zombies. +2 Damage.",
-        "$(br)$(#bd951a)Spear: $()$(#ff0000)Wets Zombies. No Splash. 3 Pierce.",
-        "$(br)$(#bd951a)Conceal: $()$(#ff0000)Wets Zombies. No Splash. -2 Damage. Infinite Pierce.",
-        "$(br)$(#bd951a)Enforce: $()$(#ff0000)Wets Zombies. No Splash. +6 Damage. 7 Blocks Range.",
+        "$(#bd951a)Contain: $()$(#ff0000)Slows Zombies down for 0.5s.",
+        "$(br)$(#bd951a)Appease: $()$(#ff0000)+2 Damage.",
+        "$(br)$(#bd951a)Spear: $()$(#ff0000)No Splash. 3 Pierce.",
+        "$(br)$(#bd951a)Conceal: $()$(#ff0000)No Splash. -2 Damage. Infinite Pierce.",
+        "$(br)$(#bd951a)Enforce: $()$(#ff0000)No Splash. +6 Damage. 7 Blocks Range.",
         "$(br)$(#bd951a)Enchant: $()$(#ff0000)Magic Damage.",
         "$(br)$(#bd951a)Ailment: $()$(#ff0000)Poisons Zombies.",
         "$(br)$(#bd951a)Bombard: $()$(#ff0000)Burns Zombies. +2 Splash Damage."
@@ -42,12 +42,12 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Reinforce: $()$(#ff0000)Wets Zombies. 0.5s Stun to Zombie directly damaged.",
-        "$(br)$(#bd951a)Enlighten: $()$(#ff0000)Wets Zombies. -2 Damage. +2 Splash Damage. Can damage Stealthing Zombies.",
+        "$(#bd951a)Reinforce: $()$(#ff0000)0.5s Stun to Zombie directly damaged.",
+        "$(br)$(#bd951a)Enlighten: $()$(#ff0000)-2 Damage. +2 Splash Damage. Can damage Stealthing Zombies.",
         "$(br)$(#bd951a)Winter: $()$(#ff0000)Chills Zombies.",
         "$(br)$(#bd951a)Pepper: $()$(#ff0000)Burns Zombies. +2 Damage.",
         "$(br)$(#bd951a)Filament: $()$(#ff0000)Electrocutes Zombies (5 Radius, 3 Chains, 4 DMG). No Splash.",
-        "$(br)$(#bd951a)Arma: $()$(#ff0000)Lobbed. Wets Zombies. +2 Damage."
+        "$(br)$(#bd951a)Arma: $()$(#ff0000)Lobbed. +2 Damage."
       ]
     },
     {

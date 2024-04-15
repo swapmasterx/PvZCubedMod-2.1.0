@@ -310,7 +310,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 						proj.setBodyYaw(this.plantEntity.getVisualYaw());
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -2;
+							this.beamTicks = -6;
 							++this.numShots;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);

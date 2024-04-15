@@ -119,7 +119,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventur
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.heroes.doomrose.DoomRoseEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.heroes.knightpea.KnightPeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.heroes.nightcap.NightcapEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.heroes.seapea.SeapeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.chester.ChesterEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.retrogatling.RetroGatlingEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
@@ -127,9 +126,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.potte
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.potted.perfoomshroom.PerfoomshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.summon.plants.dandelionweed.DandelionWeedEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.smackadamia.SmackadamiaEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.guardian.smallnut.SmallNutEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.bombseedling.BombSeedlingEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.buttonshroom.ButtonshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.kabloom.zapricot.ZapricotEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.megagrow.bananasaurus.BananasaurusEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.smarty.admiralnavybean.AdmiralNavyBeanEntity;
@@ -148,7 +145,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.peanut.PeaNutProjEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.pepper.ShootingPepperEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.pumpkinproj.ShootingPumpkinEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.smallnut.SmallNutProjEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.smooshproj.SmooshProjEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.acidfume.AcidFumeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.acidspore.AcidSporeEntity;
@@ -298,7 +294,6 @@ public class PvZEntity{
 		PLANT_LIST.add(PvZEntity.FRISBLOOM);
 		PLANT_LIST.add(PvZEntity.VAMPIREFLOWER);
 		PLANT_LIST.add(PvZEntity.DANDELIONWEED);
-		PLANT_LIST.add(PvZEntity.SMALLNUT);
 		PLANT_LIST.add(PvZEntity.SMACKADAMIA);
 		PLANT_LIST.add(PvZEntity.BOMBSEEDLING);
 		PLANT_LIST.add(PvZEntity.DOGWOOD);
@@ -842,22 +837,11 @@ public class PvZEntity{
 			QuiltEntityTypeBuilder.<CharmshroomEntity>create(SpawnGroup.CREATURE, CharmshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
-	public static final EntityType<SmallNutEntity> SMALLNUT = Registry.register(
-			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "smallnut"),
-			QuiltEntityTypeBuilder.<SmallNutEntity>create(SpawnGroup.CREATURE, SmallNutEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
-	);
 
 	public static final EntityType<SmackadamiaEntity> SMACKADAMIA = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "smackadamia"),
 			QuiltEntityTypeBuilder.<SmackadamiaEntity>create(SpawnGroup.CREATURE, SmackadamiaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.65f)).build()
-	);
-
-	public static final EntityType<ButtonshroomEntity> BUTTONSHROOM = Registry.register(
-			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "buttonshroom"),
-			QuiltEntityTypeBuilder.<ButtonshroomEntity>create(SpawnGroup.CREATURE, ButtonshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<BombSeedlingEntity> BOMBSEEDLING = Registry.register(
@@ -937,13 +921,6 @@ public class PvZEntity{
 			new Identifier(ModID, "knightpea"),
 			QuiltEntityTypeBuilder.<KnightPeaEntity>create(SpawnGroup.CREATURE, KnightPeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
-
-	public static final EntityType<SeapeaEntity> SEAPEA = Registry.register(
-			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "seapea"),
-			QuiltEntityTypeBuilder.<SeapeaEntity>create(SpawnGroup.CREATURE, SeapeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
-	);
-
 
 	public static final EntityType<NightcapEntity> NIGHTCAP = Registry.register(
 			Registries.ENTITY_TYPE,
@@ -1228,12 +1205,6 @@ public class PvZEntity{
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "peanutbowling"),
 			QuiltEntityTypeBuilder.<PeanutBowlingEntity>create(SpawnGroup.MISC, PeanutBowlingEntity::new).setDimensions(EntityDimensions.fixed(2.5f,.5f)).build()
-	);
-
-	public static final EntityType<SmallNutProjEntity> SMALLNUTPROJ = Registry.register(
-			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "smallnutproj"),
-			QuiltEntityTypeBuilder.<SmallNutProjEntity>create(SpawnGroup.MISC, SmallNutProjEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<PeaNutProjEntity> PEANUTPROJ = Registry.register(
@@ -2985,11 +2956,7 @@ public class PvZEntity{
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.CHARMSHROOM, CharmshroomEntity.createCharmshroomAttributes().build());
 
-		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SMALLNUT, SmallNutEntity.createSmallnutAttributes().build());
-
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SMACKADAMIA, SmackadamiaEntity.createSmackadamiaAttributes().build());
-
-		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.BUTTONSHROOM, ButtonshroomEntity.createButtonshroomAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.BOMBSEEDLING, BombSeedlingEntity.createBombSeedlingAttributes().build());
 
@@ -3016,8 +2983,6 @@ public class PvZEntity{
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.BELLFLOWER, BellflowerEntity.createBellflowerAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.KNIGHTPEA, KnightPeaEntity.createKnightPeashooterAttributes().build());
-
-		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SEAPEA, SeapeaEntity.createSeapeaAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.NIGHTCAP, NightcapEntity.createNightcapAttributes().build());
 

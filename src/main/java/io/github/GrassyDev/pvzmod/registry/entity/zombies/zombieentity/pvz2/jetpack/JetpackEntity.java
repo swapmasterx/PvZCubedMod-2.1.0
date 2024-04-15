@@ -194,7 +194,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 		this.targetSelector.add(4, new TargetGoal<>(this, MerchantEntity.class, false, true));
 		this.targetSelector.add(2, new TargetGoal<>(this, IronGolemEntity.class, false, true));
 
-		////////// Jetpacker's ignore plants and go straight for objective or players ///////
+		////////// Jetpacker's ignore plants and go straight for gardens or players ///////
 		this.targetSelector.add(5, new TargetGoal<>(this, PlayerEntity.class, false, false));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenChallengeEntity.class, false, true));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenEntity.class, false, true));

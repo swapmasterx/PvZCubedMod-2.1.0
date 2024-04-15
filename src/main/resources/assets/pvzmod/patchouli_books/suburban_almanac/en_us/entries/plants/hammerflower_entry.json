@@ -8,9 +8,9 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)24",
-        "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)16 DMG/1.5s",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)8 DMG/1.5s",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)3 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Stuns Zombies without helmets that aren't Big or bigger for 5 seconds and hits behind the shield.",
         "$(br2)$(#bd951a)\"There's nothing that can't be solved with a hammer hit. If there is, just hammer twice.\" - Hammer Flower."

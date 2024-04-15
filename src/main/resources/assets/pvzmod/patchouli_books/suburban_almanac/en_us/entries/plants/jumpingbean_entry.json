@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)22 ",
+        "$(#bd951a)Health: $()$(#ff0000)10 ",
         "$(#bd951a)Range: $()$(#ff0000)10 ",
         "$(#bd951a)Bounce Area: $()$(#ff0000)1.75 Blocks ",
         "$(#bd951a)Bounce: $()$(#ff0000)~7 Blocks Backwards",

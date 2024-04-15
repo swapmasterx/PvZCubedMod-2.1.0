@@ -436,7 +436,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 					++this.animationTicks;
 					++this.beamTicks;
 					if (this.plantEntity.checkForZombies().isEmpty())  {
-						if (this.beamTicks >= 0 && this.animationTicks >= -7) {
+						if (this.beamTicks >= 0 && this.animationTicks >= -5) {
 							if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 								SporeEntity proj = new SporeEntity(PvZEntity.SPORE, this.plantEntity.getWorld());

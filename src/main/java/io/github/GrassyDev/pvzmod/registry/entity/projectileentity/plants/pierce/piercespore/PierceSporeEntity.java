@@ -224,9 +224,6 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 					!(entity instanceof SnorkelEntity snorkelEntity && snorkelEntity.isInvisibleSnorkel()) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity3 && generalPvZombieEntity3.isStealth())
 					&& !(entity instanceof ZombieVehicleEntity && (zombiePropEntity instanceof ZombieObstacleEntity))) {
 				float damage = PVZCONFIG.nestedProjDMG.piercesporeDMG() * damageMultiplier;
-				if (this.getVariant().equals(ShadowSporeVariants.SHADOW)){
-					damage = damage + 2;
-				}
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
@@ -255,7 +252,7 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 20, 6)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 20, 3)));
 				entityStore.add((LivingEntity) entity);
 			}
 		}

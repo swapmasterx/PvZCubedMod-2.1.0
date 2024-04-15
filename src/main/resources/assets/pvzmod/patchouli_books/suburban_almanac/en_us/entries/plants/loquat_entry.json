@@ -7,9 +7,9 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)24",
+        "$(#bd951a)Health: $()$(#ff0000)20",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Spawns uncommonly. Drops Windy Plant Food",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Flies around and disracts zombies she gets close to.",
         "$(br2)$(#bd951a)Loquat dreams of becoming a ballet dancer, and she has one trick: she can do many turns in place. \"I believe I can be the world's greatest ballet dancer, but no one wants to hire me, I don't understand why.\""
       ]
     },
@@ -20,7 +20,7 @@
       ],
       "title": "⛨ Reinforce Family",
       "border": "true",
-      "text": "$(#25228d)Their Windy Plant Food makes plants that interact with flying Zombies."
+      "text": "$(#25228d) Flies around and distracts zombies."
     },
     {
       "type": "crafting",

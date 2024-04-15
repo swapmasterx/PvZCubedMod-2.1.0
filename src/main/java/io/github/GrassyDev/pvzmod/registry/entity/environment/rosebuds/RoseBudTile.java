@@ -91,7 +91,7 @@ public class RoseBudTile extends TileEntity {
 					hasHelmet = true;
 				}
 			}
-			float damage = 6 * damageMultiplier;
+			float damage = 4 * damageMultiplier;
 			if (!hasHelmet && !(livingEntity instanceof ZombiePropEntity) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
 				damage = damage * 2;
 			}

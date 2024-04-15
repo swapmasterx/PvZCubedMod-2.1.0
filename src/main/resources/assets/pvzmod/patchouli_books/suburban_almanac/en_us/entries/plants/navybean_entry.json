@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)12",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)12 DMG/1s (Melee), 2 DMG/1.5s (Spit)",
         "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
         "$(br)$(#bd951a)Spit Range: $()$(#ff0000)15 Blocks",

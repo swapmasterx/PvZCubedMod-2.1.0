@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)64 ",
-        "$(#bd951a)Damage: $()$(#ff0000)22 DMG/3s (Smash), 12 DMG/3s (Hammer) ",
+        "$(#bd951a)Health: $()$(#ff0000)30 ",
+        "$(#bd951a)Damage: $()$(#ff0000)11 DMG/3s (Smash), 6 DMG/3s (Hammer) ",
         "$(#bd951a)Smash Range: $()$(#ff0000)4 Blocks ",
         "$(#bd951a)Smash Radius: $()$(#ff0000)2.5 Blocks, center is 1.5 blocks in front. ",
         "$(#bd951a)Hammer Range: $()$(#ff0000)15 Blocks ",

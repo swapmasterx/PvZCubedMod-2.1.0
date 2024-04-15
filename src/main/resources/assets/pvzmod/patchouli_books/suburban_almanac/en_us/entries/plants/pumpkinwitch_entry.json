@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)32",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks (Lobbed)",
         "$(br)$(#bd951a)Pumpkin Recharge: $()$(#ff0000)25 Seconds",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
@@ -23,7 +23,7 @@
       ],
       "title": "⭐ Enchant Family",
       "border": "true",
-      "text": "$(#25228d)Throws a pumpkin that transforms normal Zombies into explosive ones."
+      "text": "$(#25228d)Putts a pumpkin that transforms mobs into friendly pumpkin zombies that explode on death."
     },
     {
       "type": "crafting",

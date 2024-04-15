@@ -8,10 +8,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2.5 DMG/1.5s, 2.5 DMG (Splash)",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s, 3 DMG (Splash)",
         "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)17 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)10s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Wet Zombies.",
         "$(br2)$(#bd951a)Her favorite pass time is soaking Zombies and Torchwoods. Why Torchwoods? Because she thinks it's funny seeing them without the flames."
@@ -24,7 +24,7 @@
       ],
       "title": "⭘ Appease Family",
       "border": "true",
-      "text": "$(#25228d)Dropeas deal damage to a group of zombies."
+      "text": "$(#25228d)Dropeas shoots splash damaging peas in an arch"
     },
     {
       "type": "crafting",

@@ -185,11 +185,11 @@ public class BeetEntity extends PlantEntity implements GeoEntity, RangedAttackMo
 
 	public static DefaultAttributeContainer.Builder createBeetAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D);
 	}
 
 	protected boolean canClimb() {
@@ -270,9 +270,12 @@ public class BeetEntity extends PlantEntity implements GeoEntity, RangedAttackMo
 		if (passenger != null){
 			damaged = passenger;
 		}
-		boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
-
+		boolean bl = damaged.damage(getDamageSources().mobAttack(this), 0);
+		boolean bl2 = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
 		if (bl) {
+			this.applyDamageEffects(this, target);
+		}
+		if (bl2) {
 			this.applyDamageEffects(this, target);
 		}
 		String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");

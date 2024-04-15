@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)14",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)9 DMG/1s (Area)",
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1s (Area)",
         "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Hits flying zombies.",
