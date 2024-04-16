@@ -8,10 +8,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)64 ",
+        "$(#bd951a)Health: $()$(#ff0000)30 ",
         "$(#bd951a)Damage: $()$(#ff0000)Insta-kill ",
         "$(#bd951a)Range: $()$(#ff0000)2 Blocks(Activate), 6 Blocks(Suction)",
-        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)30s",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)30s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. When a Zombie gets close, sucks and swallows any Zombie in range. Chews after sucking for 2s.",
         "$(br)$(#bd951a)Super Chomper wins any eating contest he enters. Only one problem: It's because he ends up eating the competition too. He sucks."

@@ -196,8 +196,6 @@ public class ModItems {
 		SEED_PACKET_LIST.add(ModItems.MAGICSHROOM_SEED_PACKET);
 		NIGHT_SEED_LIST.add(ModItems.MAGICSHROOM_SEED_PACKET);
 
-		SEED_PACKET_LIST.add(ModItems.LOQUAT_SEED_PACKET);
-		SKYCITY_SEED_LIST.add(ModItems.LOQUAT_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.SAUCER_SEED_PACKET);
 		SKYCITY_SEED_LIST.add(ModItems.SAUCER_SEED_PACKET);
 
@@ -219,9 +217,6 @@ public class ModItems {
 
 		SEED_PACKET_LIST.add(ModItems.HAMMERFLOWER_SEED_PACKET);
 		SEED_PACKET_LIST.add(ModItems.METEORHAMMER_SEED_PACKET);
-
-		SEED_PACKET_LIST.add(ModItems.DROPEA_SEED_PACKET);
-		POOL_SEED_LIST.add(ModItems.DROPEA_SEED_PACKET);
 
 		SEED_PACKET_LIST.add(ModItems.FRISBLOOM_SEED_PACKET);
 		EGYPT_SEED_LIST.add(ModItems.FRISBLOOM_SEED_PACKET);
@@ -262,7 +257,7 @@ public class ModItems {
 
 		SEED_PACKET_LIST.add(ModItems.KNIGHTPEA_SEED_PACKET);
 		PREMIUM_SEED_LIST.add(ModItems.KNIGHTPEA_SEED_PACKET);
-		
+
 		SEED_PACKET_LIST.add(ModItems.NIGHTCAP_SEED_PACKET);
 		PREMIUM_SEED_LIST.add(ModItems.NIGHTCAP_SEED_PACKET);
 
@@ -337,7 +332,6 @@ public class ModItems {
 	public static final Item BUBBLES = new BubblesItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
 	public static final Item ARMORBUBBLE = new ArmorBubbleItem(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item DYEITEM = new DyeItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
-	public static final Item DROP = new DropItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
 	public static final Item SMOOSH = new HammerItem(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item SPIT = new SpitItem(new Item.Settings().maxCount(32).rarity(Rarity.COMMON));
 	public static final Item JINGLE = new JingleItem(new Item.Settings().maxCount(32).rarity(Rarity.COMMON));
@@ -424,7 +418,6 @@ public class ModItems {
 	public static final Item GLOOMVINE_SEED_PACKET = new GloomVineSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item HEAVENLYPEACH_SEED_PACKET = new HeavenlyPeachSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item MAGICSHROOM_SEED_PACKET = new MagicshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.RARE));
-	public static final Item LOQUAT_SEED_PACKET = new LoquatSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item SAUCER_SEED_PACKET = new SaucerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item SPRINGPRINCESS_SEED_PACKET = new SpringPrincessSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item DRIPPHYLLEIA_SEED_PACKET = new DripphylleiaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
@@ -434,7 +427,6 @@ public class ModItems {
 	public static final Item IMPATYENS_SEED_PACKET = new ImpatyensSeeds(new Item.Settings().maxCount(8).rarity(Rarity.RARE));
 	public static final Item HAMMERFLOWER_SEED_PACKET = new HammerFlowerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item METEORHAMMER_SEED_PACKET = new MeteorHammerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
-	public static final Item DROPEA_SEED_PACKET = new DropeaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item FRISBLOOM_SEED_PACKET = new FrisbloomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item BEAUTYSHROOM_SEED_PACKET = new BeautyshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item CHARMSHROOM_SEED_PACKET = new CharmshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.RARE));
@@ -704,7 +696,6 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"bubblesitem"), BUBBLES);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"armorbubbleitem"), ARMORBUBBLE);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"dyeitem"), DYEITEM);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"drop"), DROP);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"hammer"), SMOOSH);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"spit"), SPIT);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"jingle"), JINGLE);
@@ -821,7 +812,6 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"gloomvine_seed_packet"), GLOOMVINE_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"heavenlypeach_seed_packet"), HEAVENLYPEACH_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"magicshroom_seed_packet"), MAGICSHROOM_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"loquat_seed_packet"), LOQUAT_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"saucer_seed_packet"), SAUCER_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"springprincess_seed_packet"), SPRINGPRINCESS_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"dripphylleia_seed_packet"), DRIPPHYLLEIA_SEED_PACKET);
@@ -831,7 +821,6 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"impatyens_seed_packet"), IMPATYENS_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"hammerflower_seed_packet"), HAMMERFLOWER_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"meteorhammer_seed_packet"), METEORHAMMER_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"dropea_seed_packet"), DROPEA_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"frisbloom_seed_packet"), FRISBLOOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"beautyshroom_seed_packet"), BEAUTYSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"charmshroom_seed_packet"), CHARMSHROOM_SEED_PACKET);

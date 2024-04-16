@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)360, 140(Heavy Metal Helmet) ",
+        "$(#bd951a)Health: $()$(#ff0000)180, 70(Heavy Metal Helmet) ",
         "$(#bd951a)Damage: $()$(#ff0000)360",
         "$(br)$(#bd951a)Range: $()$(#ff0000)3 Blocks",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",

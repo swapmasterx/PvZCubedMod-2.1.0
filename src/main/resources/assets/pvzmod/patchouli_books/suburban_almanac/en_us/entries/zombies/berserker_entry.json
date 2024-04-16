@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26, 330(Metal Helmet)",
+        "$(#bd951a)Health: $()$(#ff0000)14, 165(Metal Helmet)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)180(Tackle, Movement/Throw), 4(normal)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Speedy(Tackling)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Football Zombie, but can tackle any Small Zombie an unlimited number of times.",

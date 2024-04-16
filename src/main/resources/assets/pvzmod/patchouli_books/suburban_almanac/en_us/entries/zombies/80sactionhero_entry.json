@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)84",
+        "$(#bd951a)Health: $()$(#ff0000)42",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
         "$(br)$(#bd951a)Rocket Damage: $()$(#ff0000)15 DMG/0.5s",
         "$(br)$(#bd951a)Rocket Blast Radius: $()$(#ff0000)1.5 Blocks",

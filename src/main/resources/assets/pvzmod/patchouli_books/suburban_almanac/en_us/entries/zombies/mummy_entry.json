@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26 (Paper)",
+        "$(#bd951a)Health: $()$(#ff0000)14 (Paper)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Is he a mummy? Is he a Zombie? It turns out he's a Zombie who's rolled himself in toilet paper to protect his fair skin. True fact!"
@@ -31,8 +31,7 @@
         "pvzmod:plants/navybean_entry",
         "pvzmod:plants/fumeshroom_entry",
         "pvzmod:plants/peapod_entry",
-        "pvzmod:plants/lightningreed_entry",
-        "pvzmod:plants/dropea_entry"
+        "pvzmod:plants/lightningreed_entry"
       ]
     },
     {

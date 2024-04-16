@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)100, 64 (Plastic King Piece) ",
+        "$(#bd951a)Health: $()$(#ff0000)50, 32 (Plastic King Piece) ",
         "$(#bd951a)Despawn: $()$(#ff0000)2 minutes.",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Big. 20%/sec transforms a Heart or Diamond Poker Guard into a Spade or Club one with 2 sec of Invinci. and heals their body.",
         "$(br)$(#bd951a)He may be an evil tyrant, but he will execute on the spot anyone that doesn't approve his daughter's same-imp marriage with Red Queen Imp. What, you thought it was because it was same-gender?"

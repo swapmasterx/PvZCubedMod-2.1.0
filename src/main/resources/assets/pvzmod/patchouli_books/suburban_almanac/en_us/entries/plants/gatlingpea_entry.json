@@ -8,7 +8,9 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)40",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(#bd951a)Armor: $()$(#ff0000)20",
+        "$(#bd951a)Armor Toughness: $()$(#ff0000)3",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)2x4 DMG/1.5s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
@@ -22,7 +24,7 @@
       ],
       "title": "⭘ Appease Family",
       "border": "true",
-      "text": "$(#25228d)Gatling Peas shoot four peas at a time. Helmet provides moderate protection."
+      "text": "$(#25228d)Gatling Peas shoot four peas at a time. Helmet provides amazing protection."
     },
     {
       "type": "crafting",

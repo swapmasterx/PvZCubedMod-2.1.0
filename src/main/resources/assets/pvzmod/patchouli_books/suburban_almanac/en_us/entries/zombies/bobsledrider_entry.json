@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)64",
+        "$(#bd951a)Health: $()$(#ff0000)32",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)\"Hello? Why am I alone in here? Where are my brothers!? Hello!?\""

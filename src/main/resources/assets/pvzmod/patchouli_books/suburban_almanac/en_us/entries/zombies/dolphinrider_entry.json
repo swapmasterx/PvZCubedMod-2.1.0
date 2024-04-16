@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(#bd951a)Health: $()$(#ff0000)25",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Flighty (Dolphin)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Rides a Dolphin when in water and is Invincible during it. The Dolphin jumps over the first Plant it touches(3 block jump distance) or jumps after exiting water, then disappears. Tall plants block its jump.",

@@ -407,12 +407,13 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
+					damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage * 2);
 				}
 				else {
+					damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 				}
-				damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 				setSparkTarget(damaged.getId());
 				this.getWorld().sendEntityStatus(this, (byte) 121);
 				if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){

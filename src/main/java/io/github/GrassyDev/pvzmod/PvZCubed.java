@@ -169,7 +169,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.BREEZESHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BURSTSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.LILYPAD_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.DROPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SQUASH_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.THREEPEATER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TANGLEKELP_SEED_PACKET));
@@ -201,7 +200,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.GLOOMVINE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.VAMPIREFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.PUMPKINWITCH_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.LOQUAT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SAUCER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SMACKADAMIA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SHADOWSHROOM_SEED_PACKET));
@@ -304,7 +302,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.BUBBLES));
 				entries.addStack(new ItemStack(ModItems.ARMORBUBBLE));
 				entries.addStack(new ItemStack(ModItems.DYEITEM));
-				entries.addStack(new ItemStack(ModItems.DROP));
 				entries.addStack(new ItemStack(ModItems.ICESPIKE));
 				entries.addStack(new ItemStack(ModItems.POWERICESPIKE));
 				entries.addStack(new ItemStack(ModItems.FRISBEE));

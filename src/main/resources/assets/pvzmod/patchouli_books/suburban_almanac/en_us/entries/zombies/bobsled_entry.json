@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)(Metal) Vehicle Health: $()$(#ff0000)64 ",
+        "$(#bd951a)(Metal) Vehicle Health: $()$(#ff0000)32 ",
         "$(#bd951a)Rider: $()$(#ff0000)x4 Bobsled Zombie",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)360, 360 (Slide/Throw)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, faster when sliding. ",

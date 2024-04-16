@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20 (Paper)",
+        "$(#bd951a)Health: $()$(#ff0000)10 (Paper)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Flighty",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Small.",

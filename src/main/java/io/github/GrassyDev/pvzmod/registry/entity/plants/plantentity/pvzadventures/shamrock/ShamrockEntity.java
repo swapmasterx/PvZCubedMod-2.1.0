@@ -383,7 +383,7 @@ public class ShamrockEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 		public void start() {
 			this.beamTicks = -7;
-			this.animationTicks = -39;
+			this.animationTicks = -32;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
 			this.plantEntity.velocityDirty = true;
@@ -409,7 +409,7 @@ public class ShamrockEntity extends PlantEntity implements GeoEntity, RangedAtta
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 					++this.animationTicks;
 					++this.beamTicks;
-					if (this.beamTicks >= 0 && this.animationTicks >= -14){
+					if (this.beamTicks >= 0 && this.animationTicks >= -23){
 						if (!(this.plantEntity.checkForZombies().isEmpty())){
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 104);
 						}
@@ -418,7 +418,7 @@ public class ShamrockEntity extends PlantEntity implements GeoEntity, RangedAtta
 						}
 					}
 					if (this.plantEntity.checkForZombies().isEmpty())  {
-						if (this.beamTicks >= 0 && this.animationTicks >= -7) {
+						if (this.beamTicks >= 0 && this.animationTicks >= -23) {
 							if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 								this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 14);
 								RainbowBulletEntity proj = new RainbowBulletEntity(PvZEntity.RAINBOWBULLET, this.plantEntity.getWorld());
@@ -441,7 +441,7 @@ public class ShamrockEntity extends PlantEntity implements GeoEntity, RangedAtta
 								proj.setOwner(this.plantEntity);
 								proj.damageMultiplier = plantEntity.damageMultiplier;
 								if (livingEntity != null && livingEntity.isAlive()) {
-									this.beamTicks = -13;
+									this.beamTicks = -26;
 									this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 									this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 									this.plantEntity.getWorld().spawnEntity(proj);
@@ -452,7 +452,7 @@ public class ShamrockEntity extends PlantEntity implements GeoEntity, RangedAtta
 						{
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 							this.beamTicks = -7;
-							this.animationTicks = -39;
+							this.animationTicks = -32;
 						}
 					}
 				}

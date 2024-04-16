@@ -7,8 +7,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26",
-        "$(br)$(#bd951a)(Paper) Newspaper Health: $()$(#ff0000)15",
+        "$(#bd951a)Health: $()$(#ff0000)16",
+        "$(br)$(#bd951a)(Paper) Newspaper Health: $()$(#ff0000)14",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4, 8 (Angry)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Speedy (Angry)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Becomes angry when the Newspaper is destroyed and gets 2 seconds of Invincibility.",
@@ -37,7 +37,6 @@
         "pvzmod:plants/torchwood_entry",
         "pvzmod:plants/narcissus_entry",
         "pvzmod:plants/spikeweed_entry",
-        "pvzmod:plants/dropea_entry",
         "pvzmod:plants/hypnoshroom_entry",
         "pvzmod:plants/springbean_entry",
         "pvzmod:plants/burstshroom_entry"

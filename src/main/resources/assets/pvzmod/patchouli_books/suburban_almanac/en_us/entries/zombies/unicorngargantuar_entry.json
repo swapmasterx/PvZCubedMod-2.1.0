@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)360 (Cloth)",
+        "$(#bd951a)Health: $()$(#ff0000)180 (Cloth)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
         "$(br)$(#bd951a)Range: $()$(#ff0000)3 Blocks",
         "$(br)$(#bd951a)Rainbow Area: $()$(#ff0000)9 Blocks behind, 3 wide. ",

@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)74 (Paper)",
+        "$(#bd951a)Health: $()$(#ff0000)37 (Paper)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Creeper",
         "$(br)$(#bd951a)Special: $()$(#ff0000)15%/sec chance to throw a Bone on a random block, spawning an Egypt Tombstone, inside a 10x10 area when 15 Blocks near a Plant.",

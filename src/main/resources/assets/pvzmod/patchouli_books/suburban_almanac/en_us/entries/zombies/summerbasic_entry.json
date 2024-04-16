@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26",
+        "$(#bd951a)Health: $()$(#ff0000)14",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Chill.",

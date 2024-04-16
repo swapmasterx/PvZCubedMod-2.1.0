@@ -339,8 +339,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 			return ActionResult.SUCCESS;
 		}
-		Item item2 = itemStack.getItem();
-		if (itemStack.isOf(ModItems.VAMPIREFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item2)) {
+		else if (itemStack.isOf(ModItems.VAMPIREFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
 				ServerWorld serverWorld = (ServerWorld) this.getWorld();

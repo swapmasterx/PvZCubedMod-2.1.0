@@ -94,7 +94,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.wildwe
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.ancientegypt.frisbloom.FrisbloomEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.charm.beautyshroom.BeautyshroomEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.charm.charmshroom.CharmshroomEntityRenderer;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.icepea.dropea.DropeaEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.magnet.MagnetoShroomEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.fairytale.springprincess.SpringPrincessEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.hammerflower.HammerFlowerEntityRenderer;
@@ -108,7 +107,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.gener
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.heian.dripphylleia.DripphylleiaEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.kongfu.heavenlypeach.HeavenlyPeachEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.renaissance.oilyolive.OilyOliveEntityRenderer;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skycity.loquat.LoquatEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skycity.saucer.SaucerEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz3.devour.dogwood.DogwoodEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzadventures.beeshooter.BeeshooterEntityRenderer;
@@ -171,7 +169,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spiked
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spiked.sword.ShootingSwordEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.armorbubble.ArmorBubbleEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.coconut.CoconutEntityRenderer;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.dropea.ShootingDropEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.dye.ShootingDyeEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.flamingpea.ShootingFlamingpeaEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.hypnoproj.HypnoProjRenderer;
@@ -422,8 +419,6 @@ public class PvZEntityClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(PvZEntity.GAMBLEHAT, GamblehatEntityRenderer::new);
 
-		EntityRendererRegistry.register(PvZEntity.LOQUAT, LoquatEntityRenderer::new);
-
 		EntityRendererRegistry.register(PvZEntity.SAUCER, SaucerEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.OILYOLIVE, OilyOliveEntityRenderer::new);
@@ -443,8 +438,6 @@ public class PvZEntityClient implements ClientModInitializer {
 		EntityRendererRegistry.register(PvZEntity.HAMMERFLOWER, HammerFlowerEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.METEORHAMMER, MeteorHammerEntityRenderer::new);
-
-		EntityRendererRegistry.register(PvZEntity.DROPEA, DropeaEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.FRISBLOOM, FrisbloomEntityRenderer::new);
 
@@ -560,8 +553,6 @@ public class PvZEntityClient implements ClientModInitializer {
 		EntityRendererRegistry.register(PvZEntity.BUBBLE, BubbleEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.ARMORBUBBLE, ArmorBubbleEntityRenderer::new);
-
-		EntityRendererRegistry.register(PvZEntity.DROP, ShootingDropEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.DYEPROJ, ShootingDyeEntityRenderer::new);
 

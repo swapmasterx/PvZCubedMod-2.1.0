@@ -117,12 +117,14 @@ public class RoseBudTile extends TileEntity {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 				}
 			}

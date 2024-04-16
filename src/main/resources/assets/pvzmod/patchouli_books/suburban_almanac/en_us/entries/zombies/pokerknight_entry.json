@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)Poker Zombie, 210(Plastic Knight Piece)",
+        "$(#bd951a)Health: $()$(#ff0000)Poker Zombie, 105(Plastic Knight Piece)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)Poker Zombie",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Poker Zombie",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Poker Zombie. Jumps forward every 5 seconds if not eating a Plant.",

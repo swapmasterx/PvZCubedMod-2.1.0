@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50, 110 (Metal) ",
+        "$(#bd951a)Health: $()$(#ff0000)30, 55 (Metal) ",
         "$(#bd951a)Damage: $()$(#ff0000)30 ",
         "$(#bd951a)Blast Radius: $()$(#ff0000)1.5 Blocks ",
         "$(#bd951a)Range: $()$(#ff0000)4 Blocks ",

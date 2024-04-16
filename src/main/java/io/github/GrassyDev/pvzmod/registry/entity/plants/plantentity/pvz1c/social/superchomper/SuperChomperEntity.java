@@ -267,7 +267,7 @@ public class SuperChomperEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createSuperChomperAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 64.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D)
@@ -460,8 +460,8 @@ public class SuperChomperEntity extends PlantEntity implements GeoEntity, Ranged
 			this.isFiring = true;
 			if (this.animationTicks >= 0) {
 				if (ateZombie){
-					this.attackTicksLeft = 400;
-					this.setCount(400);
+					this.attackTicksLeft = 600;
+					this.setCount(600);
 					this.getWorld().sendEntityStatus(this, (byte) 104);
 					ateZombie = false;
 				}
@@ -485,8 +485,8 @@ public class SuperChomperEntity extends PlantEntity implements GeoEntity, Ranged
 		}
 		else if (animationTicks >= 0){
 			if (ateZombie){
-				this.attackTicksLeft = 400;
-				this.setCount(400);
+				this.attackTicksLeft = 600;
+				this.setCount(600);
 				this.getWorld().sendEntityStatus(this, (byte) 104);
 				ateZombie = false;
 			}

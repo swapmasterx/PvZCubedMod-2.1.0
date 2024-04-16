@@ -123,7 +123,6 @@ public class ShadowShroomSeeds extends SeedItem implements FabricItem {
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
 					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 					world.spawnEntity(plantEntity);
-					plantEntity.setPuffshroomPermanency(ShadowShroomEntity.PuffPermanency.PERMANENT);
 					world.playSound((PlayerEntity) null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 

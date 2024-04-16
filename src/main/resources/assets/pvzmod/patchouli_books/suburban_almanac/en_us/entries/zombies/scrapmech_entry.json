@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)290 (Electronic) ",
+        "$(#bd951a)Health: $()$(#ff0000)145 (Electronic) ",
         "$(#bd951a)Damage: $()$(#ff0000)32 (20%/second) ",
         "$(#bd951a)Range: $()$(#ff0000)7 Blocks ",
         "$(#bd951a)Melee Damage: $()$(#ff0000)360 ",

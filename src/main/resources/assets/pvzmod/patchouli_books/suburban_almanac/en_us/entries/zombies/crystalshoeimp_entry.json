@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20, 84(Crystal Shoe)",
+        "$(#bd951a)Health: $()$(#ff0000)10, 42(Crystal Shoe)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Since her fairy godmother is a romantic, she used the excuse of meeting the dashing prince so she would help her get to the party. She likes desserts."

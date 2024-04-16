@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50",
-        "$(br)$(#bd951a)(Paper) Sunday Edition Health: $()$(#ff0000)114",
+        "$(#bd951a)Health: $()$(#ff0000)25",
+        "$(br)$(#bd951a)(Paper) Sunday Edition Health: $()$(#ff0000)55",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4, 12 (Angry)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent, Flighty (Angry)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Newspaper Zombie.",

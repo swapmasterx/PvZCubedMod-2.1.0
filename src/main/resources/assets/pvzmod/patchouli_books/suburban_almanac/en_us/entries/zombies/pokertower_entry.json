@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)Poker Zombie, 286(Plastic Tower Piece)",
+        "$(#bd951a)Health: $()$(#ff0000)Poker Zombie, 140(Plastic Tower Piece)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)Poker Zombie",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Poker Zombie",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Poker Zombie. Is very fast, until he gets 6 blocks near a Plant, then he slows down a lot.",

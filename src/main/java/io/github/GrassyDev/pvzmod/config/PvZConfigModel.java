@@ -608,7 +608,7 @@ public class PvZConfigModel {
 		@RestartRequired
 		public double zombiekingH = 50D;
 		@RestartRequired
-		public double zombiepigH = 6D;
+		public double zombiepigH = 8D;
 		@RestartRequired
 		public double zomblobH = 32D;
 		@RestartRequired

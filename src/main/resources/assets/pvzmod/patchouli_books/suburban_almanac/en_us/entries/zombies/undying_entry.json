@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)64 (Paper), 210(Heavy Stone Sarcophagus) ",
+        "$(#bd951a)Health: $()$(#ff0000)32 (Paper), 105(Heavy Stone Sarcophagus) ",
         "$(#bd951a)Damage: $()$(#ff0000)12 ",
         "$(#bd951a)Speed: $()$(#ff0000)Speedy, Stiff (Sarcophagus) ",
         "$(#bd951a)Spawn: $()$(#ff0000)3s (Initial), 8s ",

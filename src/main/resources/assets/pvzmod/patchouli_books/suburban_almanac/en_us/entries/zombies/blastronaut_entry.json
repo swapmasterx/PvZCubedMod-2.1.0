@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50, 36 (Metal Helmet)",
+        "$(#bd951a)Health: $()$(#ff0000)25, 18 (Metal Helmet)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Flight (Electronic).",

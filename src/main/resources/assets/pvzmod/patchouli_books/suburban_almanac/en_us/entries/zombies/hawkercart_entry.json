@@ -8,8 +8,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50",
-        "$(br)$(#bd951a)(Plant) Hawker Cart Health: $()$(#ff0000)90",
+        "$(#bd951a)Health: $()$(#ff0000)25",
+        "$(br)$(#bd951a)(Plant) Hawker Cart Health: $()$(#ff0000)45",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Stiff",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Rolls a Cart around that summons a Zombie Piggy every 7 seconds and summons 2 Piggies when destroyed. The Cart stays if this is defeated. Can take Carts.",

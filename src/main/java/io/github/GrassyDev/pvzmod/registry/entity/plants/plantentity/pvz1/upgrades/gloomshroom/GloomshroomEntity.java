@@ -254,7 +254,7 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-						float damage = 6F;
+						float damage = 2F;
 						if (damage > livingEntity.getHealth() &&
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {

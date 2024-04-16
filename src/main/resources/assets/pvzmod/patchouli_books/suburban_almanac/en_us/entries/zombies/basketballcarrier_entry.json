@@ -7,8 +7,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)110 ",
-        "$(#bd951a)Metal Basket Health: $()$(#ff0000)120 ",
+        "$(#bd951a)Health: $()$(#ff0000)55 ",
+        "$(#bd951a)Metal Basket Health: $()$(#ff0000)60 ",
         "$(#bd951a)Damage: $()$(#ff0000)4 (15%/second) ",
         "$(#bd951a)Range: $()$(#ff0000)15 Blocks (From Garden, Lobbed) ",
         "$(#bd951a)Melee Damage: $()$(#ff0000)8 ",

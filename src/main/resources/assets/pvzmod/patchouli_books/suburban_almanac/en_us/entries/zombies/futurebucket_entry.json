@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26 (Rubber), 110(Metal Bucket)",
+        "$(#bd951a)Health: $()$(#ff0000)14 (Rubber), 55(Metal Bucket)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)His techno-bucket greatly increases his protection from damage."

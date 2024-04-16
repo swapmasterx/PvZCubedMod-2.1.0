@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Speedy",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Small. Carries a random Imp and throws them with 0.5s of Invincibility when 6 blocks near a Plant.",
