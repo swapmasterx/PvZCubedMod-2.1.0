@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.items.seedpackets.VampireSunflowerSeeds;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.superchomper.SuperChomperEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -276,6 +277,37 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			return ActionResult.SUCCESS;
 		}
 		Item item = itemStack.getItem();
+		if (itemStack.isOf(ModItems.VAMPIREFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
+			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
+			if ((this.getWorld() instanceof ServerWorld)) {
+				ServerWorld serverWorld = (ServerWorld) this.getWorld();
+				VampireFlowerEntity plantEntity = PvZEntity.VAMPIREFLOWER.create(getWorld());
+				plantEntity.setTarget(this.getTarget());
+				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.setAiDisabled(this.isAiDisabled());
+				if (this.hasCustomName()) {
+					plantEntity.setCustomName(this.getCustomName());
+					plantEntity.setCustomNameVisible(this.isCustomNameVisible());
+				}
+				if (this.hasVehicle()){
+					plantEntity.startRiding(this.getVehicle(), true);
+				}
+
+				plantEntity.setPersistent();
+				serverWorld.spawnEntityAndPassengers(plantEntity);
+				this.remove(RemovalReason.DISCARDED);
+			}
+			if (!player.getAbilities().creativeMode) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
+					itemStack.decrement(1);
+				}
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
+					player.getItemCooldownManager().set(ModItems.VAMPIREFLOWER_SEED_PACKET, VampireSunflowerSeeds.cooldown);
+				}
+			}
+			return ActionResult.SUCCESS;
+		}
 		if (itemStack.isOf(ModItems.TWINSUNFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
@@ -339,35 +371,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 			return ActionResult.SUCCESS;
 		}
-		else if (itemStack.isOf(ModItems.VAMPIREFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
-			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
-			if ((this.getWorld() instanceof ServerWorld)) {
-				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				VampireFlowerEntity vampireFlowerEntity = PvZEntity.VAMPIREFLOWER.create(getWorld());
-				vampireFlowerEntity.setTarget(this.getTarget());
-				vampireFlowerEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				vampireFlowerEntity.initialize(serverWorld, getWorld().getLocalDifficulty(vampireFlowerEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-				vampireFlowerEntity.setAiDisabled(this.isAiDisabled());
-				vampireFlowerEntity.setPersistent();
-				if (this.hasCustomName()) {
-					vampireFlowerEntity.setCustomName(this.getCustomName());
-					vampireFlowerEntity.setCustomNameVisible(this.isCustomNameVisible());
-				}
-				if (this.hasVehicle()){
-					vampireFlowerEntity.startRiding(this.getVehicle(), true);
-				}
-				this.remove(RemovalReason.DISCARDED);
-			}
-			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
-					itemStack.decrement(1);
-				}
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
-					player.getItemCooldownManager().set(ModItems.VAMPIREFLOWER_SEED_PACKET, VampireSunflowerSeeds.cooldown);
-				}
-			}
-			return ActionResult.SUCCESS;
-		}
+
 		if (!this.getVariant().equals(SunflowerVariants.DEFAULT) && itemStack.isOf(Items.WHITE_DYE)) {
 			this.setVariant(SunflowerVariants.DEFAULT);
 			if (!player.getAbilities().creativeMode){

@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.jalapeno.FireTrailEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.pepper.ShootingPepperEntity;
@@ -107,10 +108,10 @@ public class OilTile extends TileEntity {
 						if (damage > zombiePropEntity2.getHealth() &&
 								livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - zombiePropEntity2.getHealth();
-							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
-							zombiePropEntity2.damage(getDamageSources().mobProjectile(this, this), damage);
+							zombiePropEntity2.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
+							zombiePropEntity2.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						} else {
-							zombiePropEntity2.damage(getDamageSources().mobProjectile(this, this), damage);
+							zombiePropEntity2.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
 					}
 				}
@@ -177,7 +178,7 @@ public class OilTile extends TileEntity {
 		}
 		super.tick();
 
-		if (this.age >= 1200){
+		if (this.age >= 600){
 			this.discard();
 		}
 		BlockPos blockPos = this.getBlockPos();

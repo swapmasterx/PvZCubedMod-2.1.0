@@ -430,7 +430,7 @@ public class PvZConfigModel {
 		public float icebergSDMG = 1f;
 		public float icespikeDMGv2 = 2f;
 		public float iceSpikeMultiplier = 2f;
-		public float jingleDMGv2 = 3f;
+		public float jingleDMGv2 = 2f;
 		public float missileToeDMGNear = 120f;
 		public float missileToeDMGFar = 60f;
 		public float missileToeDMGRangeNear = 1.5f;

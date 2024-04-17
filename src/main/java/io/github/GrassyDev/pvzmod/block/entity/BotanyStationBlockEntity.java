@@ -23,6 +23,7 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeHolder;
+import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
@@ -170,7 +171,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         }
 
         if(isOutputSlotEmptyOrReceivable()){
-            if(this.hasRecipe()){
+//            if(this.hasRecipe()){
 				if(canAffordSunCost()){
 					this.increaseCraftDelay();
 					markDirty(world, pos, state);
@@ -183,7 +184,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
                         this.resetCraftDelay();
                     }
                 }
-            }
+//            }
             else {
                 this.resetCraftDelay();
             }
@@ -216,12 +217,12 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private Optional<RecipeHolder<BotanyStationRecipe>> getCurrentRecipe() {
-
+		RecipeMatcher recipeMatcher = new RecipeMatcher();
         SimpleInventory inv = new SimpleInventory(this.size());
         for(int i = 0; i < this.size(); i++) {
             inv.setStack(i, this.getStack(i));
         }
-        return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.BOTANYFICATION, inv, getWorld());
+        return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.INSTANCE, inv, getWorld());
     }
 	private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {
 		Item item2 = item.asItem();

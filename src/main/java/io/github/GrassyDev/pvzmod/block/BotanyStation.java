@@ -23,7 +23,14 @@ public class BotanyStation extends BlockWithEntity implements BlockEntityProvide
     private static final VoxelShape SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
 
 	public static final MapCodec<BotanyStation> CODEC = BotanyStation.method_54094(BotanyStation::new);
+	public Settings getProperties() {
+		return this.settings;
+	}
+	@Override
+	protected MapCodec<? extends BlockWithEntity> getCodec() {
 
+		return CODEC;
+	}
 	public BotanyStation(Settings settings) {
 
         super(settings);
@@ -39,11 +46,6 @@ public class BotanyStation extends BlockWithEntity implements BlockEntityProvide
 		return BlockRenderType.MODEL;
     }
 
-    @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
-
-		return CODEC;
-    }
 
     @Nullable
     @Override

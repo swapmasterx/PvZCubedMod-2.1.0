@@ -473,7 +473,7 @@ public class ExplorerEntity extends PvZombieEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createTorchlightAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.22D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.torchlightH());

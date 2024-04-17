@@ -9,7 +9,7 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)12",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
         "$(br)$(#bd951a)Range: $()$(#ff0000)5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
         "$(br2)$(#bd951a)She wants to ask Snowdrop out soooo badly, but she feels like she's always getting the cold shoulder."

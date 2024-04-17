@@ -118,8 +118,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 	 **/
 
 	protected void initGoals() {
-		this.targetSelector.add(6, new RevengeGoal(this));
-		this.goalSelector.add(6, new ProjectileAttackGoal(this, 0D, 30, 15.0F));
+		this.goalSelector.add(7, new ProjectileAttackGoal(this, 0D, 30, 15.0F));
 		this.goalSelector.add(6, new LookAroundGoal(this));
 	}
 
@@ -251,7 +250,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 1.5D)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2.0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 30.0D);
 	}
 

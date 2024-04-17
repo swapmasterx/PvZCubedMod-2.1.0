@@ -68,7 +68,7 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 			return output;
 				}
 		else{
-			return null;
+			return output;
 		}
 	}
 
@@ -95,22 +95,22 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return Serializer.BOTANYSTATIONSERIALIZER;
+		return Serializer.INSTANCE;
 	}
 
 	@Override
 	public RecipeType<?> getType() {
 
-		return Type.BOTANYFICATION;
+		return Type.INSTANCE;
 	}
 
 	public static class Type implements RecipeType<BotanyStationRecipe>{
-		public static final Type BOTANYFICATION = new Type();
+		public static final Type INSTANCE = new Type();
 		public static final String ID = "botany_station";
 	}
 
 public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
-		public static final Serializer BOTANYSTATIONSERIALIZER = new Serializer();
+		public static final Serializer INSTANCE = new Serializer();
 		public static final String ID = "botany_station";
 
 	private static final Codec<BotanyStationRecipe> CODEC = RecordCodecBuilder.create((instance) -> {

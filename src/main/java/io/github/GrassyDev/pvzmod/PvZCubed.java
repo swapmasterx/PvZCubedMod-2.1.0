@@ -141,9 +141,9 @@ public class PvZCubed implements ModInitializer {
 
 		PvZSounds.registerSounds();
 		Registry.register(Registries.ITEM_GROUP, PVZPLANTS, FabricItemGroup.builder()
-			.icon(() -> new ItemStack(ModItems.EMPTY_SEED_PACKET))
+			.icon(() -> new ItemStack(ModItems.PEASHOOTER_SEED_PACKET))
 			.entries((context, entries) -> {
-				entries.addStack(new ItemStack(ModItems.EMPTY_SEED_PACKET));
+
 				entries.addStack(new ItemStack(ModItems.PEASHOOTER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUNFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHERRYBOMB_SEED_PACKET));
@@ -251,6 +251,9 @@ public class PvZCubed implements ModInitializer {
 			.icon(() -> new ItemStack(ModItems.GARDENINGGLOVE))
 			.entries((context, entries) -> {
 				entries.addItem(ModBlocks.BOTANY_STATION);
+				entries.addStack(new ItemStack(ModItems.EMPTY_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.EMPTY_UPGRADE_PACKET));
+				entries.addStack(new ItemStack(ModItems.UPGRADE_PACKET_FRAGMENT));
 				entries.addStack(new ItemStack(ModItems.DAVES_SHOVEL));
 				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
 				entries.addStack(new ItemStack(ModItems.GARDENINGGLOVE));

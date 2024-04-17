@@ -8,9 +8,9 @@ import net.minecraft.util.Identifier;
 public class ModRecipes {
     public static void registerRecipes(){
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(PvZCubed.MOD_ID, BotanyStationRecipe.Serializer.ID),
-                BotanyStationRecipe.Serializer.BOTANYSTATIONSERIALIZER);
+                BotanyStationRecipe.Serializer.INSTANCE);
         Registry.register(Registries.RECIPE_TYPE, new Identifier(PvZCubed.MOD_ID, BotanyStationRecipe.Type.ID),
-               BotanyStationRecipe.Type.BOTANYFICATION);
+               BotanyStationRecipe.Type.INSTANCE);
         PvZCubed.LOGGER.info("Registering Recipes for" + PvZCubed.MOD_ID);
     }
 }

@@ -529,7 +529,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createFootballAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.footballH());
@@ -538,7 +538,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createBerserkerAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.22D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.berserkerH());

@@ -387,7 +387,7 @@
   "item.pvzmod.plantfood_fire": "Blazing Plant Food",
   "item.pvzmod.plantfood_flower": "Petal Plant Food",
   "item.pvzmod.plantfood_tough": "Tough Plant Food",
-  "item.pvzmod.plantfood_mushroom": "Mushroom Plant Food",
+  "item.pvzmod.plantfood_mushroom": "Mushroom Spores",
   "item.pvzmod.plantfood_shadow": "Shadow Plant Food",
 
 
@@ -430,6 +430,8 @@
 
 
   "item.pvzmod.empty_seed_packet": "Empty Seed Packet",
+  "item.pvzmod.empty_upgrade_packet": "Empty Upgrade Packet",
+  "item.pvzmod.upgrade_packet_fragment": "Upgrade Packet Fragment",
 
   "entity.pvzmod.sunflower": "Sunflower",
   "item.pvzmod.sunflower_seed_packet": "☀ Sunflower Seed Packet",

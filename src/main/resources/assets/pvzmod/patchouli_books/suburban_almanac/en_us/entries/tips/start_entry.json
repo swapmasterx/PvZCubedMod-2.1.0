@@ -32,7 +32,7 @@
       "type": "text",
       "text": [
         "$(br2)NOTE:",
-        "$(br2)Sun producer plants need at least 5 blocks of space from other sun producers of the same plant in order to generate sun.",
+        "$(br2)Sun producer plants need at least 5 blocks of space from other sun producers of the same plant in order to generate sun. ",
         "This is not the case though with different kinds of plants. While 2 sunflower seeds won't make sun next to each other, a sunflower seed and a sunflower will."
       ]
     },
@@ -40,14 +40,14 @@
       "type": "text",
       "text": [
         "As for those sunflower seed shells, you need them to craft the source of all your planting power: ",
-        "$(br2)THE BOTANY BOX",
-        "Using the items you gather from harvested plants and the power of sun you can make new plants to defend yourself from threats."
+        "$(br2)THE BOTANY BOX!!!!! ",
+        "$(br2)Using the items you gather from harvested plants and the power of sun you can make new plants to defend yourself from threats."
       ]
     },
     {
       "type": "text",
       "text": [
-        "To use it, just place sun in the sun slot, put the required ingredients in the 2x3 grid and an empty seed packet in the respective slot. : ",
+        "To use it, just place sun in the sun slot, put the required ingredients in the 2x3 grid and an empty seed packet in the respective slot. ",
         "So long as you have the sun to create a given plant the Botany Box will fabricate your new plants in seconds. Just note that plants stack to at most ",
         "8 per slot, so organize yourself accordingly."
       ]

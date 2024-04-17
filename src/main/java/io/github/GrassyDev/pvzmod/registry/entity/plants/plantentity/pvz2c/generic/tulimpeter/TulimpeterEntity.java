@@ -276,7 +276,7 @@ public class TulimpeterEntity extends PlantEntity implements GeoEntity, RangedAt
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 14.0D);
 	}
 
 	protected boolean canClimb() {
@@ -411,9 +411,6 @@ public class TulimpeterEntity extends PlantEntity implements GeoEntity, RangedAt
 							float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 							proj.jingleAge = 60;
 							double random = Math.random();
-							if (random <= 0.25) {
-								proj.critical = true;
-							}
 							proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
 							proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 							proj.setOwner(this.plantEntity);

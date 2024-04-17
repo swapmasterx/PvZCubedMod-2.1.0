@@ -1,5 +1,7 @@
 {
   "type": "pvzmod:botany_station",
+  "category": "misc",
+  "group": "boat",
   "packettemplate": {
     "item": "pvzmod:empty_seed_packet"
   },

@@ -9,9 +9,9 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10 ",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
         "$(#bd951a)Heal: $()$(#ff0000)2 HP/1.5s ",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)7-15 (Damage), 4 (Heal Area)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)7-14 (Attack Range), 4 (Heal Area)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Switches to healing when a zombie is 6 blocks away",
         "$(br)$(#bd951a)They often say, \"He's such an unpredictable plant.\""

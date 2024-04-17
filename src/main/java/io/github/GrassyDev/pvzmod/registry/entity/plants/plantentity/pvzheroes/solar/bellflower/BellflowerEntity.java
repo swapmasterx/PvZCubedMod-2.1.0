@@ -316,9 +316,6 @@ public class BellflowerEntity extends PlantEntity implements GeoEntity, RangedAt
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 						JingleEntity proj = new JingleEntity(PvZEntity.JINGLE, this.plantEntity.getWorld());
 						double random = Math.random();
-						if (random <= 0.25) {
-							proj.critical = true;
-						}
 						proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.85F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);

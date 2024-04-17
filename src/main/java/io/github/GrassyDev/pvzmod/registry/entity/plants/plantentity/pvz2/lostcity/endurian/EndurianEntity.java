@@ -199,7 +199,7 @@ public class EndurianEntity extends PlantEntity implements GeoEntity {
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 	protected void splashDamage() {
 		Vec3d vec3d = this.getPos();
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(1.5).expand(0, 2, 0).offset(0, 1, 0));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(2));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -211,7 +211,7 @@ public class EndurianEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 9);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
 
 			if (livingEntity instanceof Monster &&
 				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
