@@ -1,0 +1,15 @@
+{
+  "name": "pvzmod:graveyard_start_curve",
+  "fallback": "pvzmod:pvz_graveyard/graveyard_fallback_sections",
+  "elements": [
+	{
+      "weight": 50,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_junction_03",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

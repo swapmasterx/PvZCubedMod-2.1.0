@@ -1,0 +1,15 @@
+{
+  "name": "pvzmod:graveyard_fallback_sections",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 50,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_hallend_01",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
