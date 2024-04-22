@@ -1,11 +1,14 @@
 package io.github.GrassyDev.pvzmod.screen;
 
 import io.github.GrassyDev.pvzmod.block.entity.BotanyStationBlockEntity;
+import io.github.GrassyDev.pvzmod.config.ModItems;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -21,31 +24,76 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 
 	public BotanyStationScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
 		this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-			new ArrayPropertyDelegate(7));
+			new ArrayPropertyDelegate(6));
 	}
 
 
 	public BotanyStationScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
 		super(ModScreenHandlers.BOTANY_STATION_SCREEN_HANDLER, syncId);
-		checkSize((Inventory) blockEntity, 7);
+		checkSize((Inventory) blockEntity, 9);
 		this.inventory = ((Inventory) blockEntity);
 		playerInventory.onOpen(playerInventory.player);
 		this.propertyDelegate = arrayPropertyDelegate;
 		this.blockEntity = ((BotanyStationBlockEntity) blockEntity);
 
 		//sun input
-		this.addSlot(new Slot(inventory, 0, 26, 8));
+		this.addSlot(new Slot(inventory, 0, 26, 8) {
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+			return itemStack.isOf(ModItems.SUN) || itemStack.isOf(ModItems.SMALLSUN) || itemStack.isOf(ModItems.LARGESUN);
+			}
+		});
 		//crafting slots
-		this.addSlot(new Slot(inventory, 1, 62, 11));
-		this.addSlot(new Slot(inventory, 2, 62, 29));
-		this.addSlot(new Slot(inventory, 3, 62, 47));
-		this.addSlot(new Slot(inventory, 4, 80, 11));
-		this.addSlot(new Slot(inventory, 5, 80, 29));
-		this.addSlot(new Slot(inventory, 6, 80, 47));
+		this.addSlot(new Slot(inventory, 1, 62, 11){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
+		this.addSlot(new Slot(inventory, 2, 62, 29){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
+		this.addSlot(new Slot(inventory, 3, 62, 47){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
+		this.addSlot(new Slot(inventory, 4, 80, 11){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
+		this.addSlot(new Slot(inventory, 5, 80, 29){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
+		this.addSlot(new Slot(inventory, 6, 80, 47){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
 		//empty seed packet input
-		this.addSlot(new Slot(inventory, 7, 107, 11));
+		this.addSlot(new Slot(inventory, 7, 107, 11){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return itemStack.isOf(ModItems.EMPTY_SEED_PACKET) || itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+			}
+		});
 		//output
-		this.addSlot(new Slot(inventory, 8, 134, 29));
+		this.addSlot(new Slot(inventory, 8, 134, 29){
+			@Override
+			public boolean canInsert(ItemStack itemStack){
+				return itemStack.isOf(Items.JIGSAW);
+			}
+		});
 
 		addPlayerInventory(playerInventory);
 		addPlayerHotbar(playerInventory);
@@ -66,14 +114,14 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 	public int getSunResource() {
 		int currentSun = this.propertyDelegate.get(1);
 		int maxSun = this.propertyDelegate.get(0);  // Max Sun
-		int progressArrowSize = 43; // Height of bar
+		int progressArrowSize = 42; // Height of bar
 
 		return maxSun != 0 && currentSun != 0 ? currentSun * progressArrowSize / maxSun : 0;
 	}
 	public int getShowRequiredSun() {
-		int sunCost = this.propertyDelegate.get(2);
+		int sunCost = this.propertyDelegate.get(5);
 		int maxSun = this.propertyDelegate.get(0);  // Max Sun
-		int progressArrowSize = 43; // Height of bar
+		int progressArrowSize = 42; // Height of bar
 
 		return maxSun != 0 && sunCost != 0 ? sunCost * progressArrowSize / maxSun : 0;
 	}

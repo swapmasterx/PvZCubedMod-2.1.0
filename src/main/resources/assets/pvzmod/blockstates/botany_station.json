@@ -1,5 +1,19 @@
 {
-	"variants": {
-		"": { "model": "pvzmod:block/botany_station" }
-	}
+  "variants": {
+    "facing=east": {
+      "model": "pvzmod:block/botany_station",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pvzmod:block/botany_station"
+    },
+    "facing=south": {
+      "model": "pvzmod:block/botany_station",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pvzmod:block/botany_station",
+      "y": 270
+    }
+  }
 }

@@ -1,14 +1,16 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 100,
   "ingredients": [
     {
       "item": "pvzmod:plantfood"
     },
     {
-      "item": "pvzmod:sun"
+      "item": "pvzmod:pea"
     },
     {
-      "item": "pvzmod:sun"
+      "item": "pvzmod:empty_seed_packet"
     }
   ],
   "result": {

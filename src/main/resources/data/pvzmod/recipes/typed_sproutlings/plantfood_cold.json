@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "#S#",
+    "LLL"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:blue_ice"
+    },
+    "S": {
+      "item": "pvzmod:plantfood"
+    },
+    "L": {
+      "item": "minecraft:packed_ice"
+    }
+  },
+  "result": {
+    "item": "pvzmod:plantfood_cold",
+    "count": 1
+  }
+}

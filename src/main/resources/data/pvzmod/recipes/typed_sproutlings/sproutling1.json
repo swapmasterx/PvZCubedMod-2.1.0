@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "pvzmod:sunflowerseed_seed_packet"
+      "tag": "minecraft:saplings"
     }
   ],
   "result": {
-    "item": "pvzmod:plantfood_flower",
+    "item": "pvzmod:plantfood",
     "count": 1
   }
 }

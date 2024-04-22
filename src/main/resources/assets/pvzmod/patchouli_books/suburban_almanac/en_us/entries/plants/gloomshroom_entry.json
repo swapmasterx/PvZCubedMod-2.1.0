@@ -9,10 +9,10 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)30",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x5 DMG/2s (Area)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3x5 DMG/2s (Area)",
         "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Med Profile. 5 Blocks.",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Poisons zombies.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal",
         "$(br2)$(#bd951a)\"I've always enjoyed releasing heavy fumes. I know a lot of people aren't cool with that. They say it's rude or that it smells bad. But would you rather have your brain eaten by zombies?\""
       ]
     },

@@ -198,7 +198,6 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.OLIVEPIT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CHARMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GLOOMVINE_SEED_PACKET));
-				entries.addStack(new ItemStack(ModItems.VAMPIREFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.PUMPKINWITCH_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SAUCER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SMACKADAMIA_SEED_PACKET));
@@ -223,6 +222,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.WEENIEBEANIE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.RETROGATLING_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.TWINSUNFLOWER_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.VAMPIREFLOWER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SNOW_QUEENPEA_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.SUPERCHOMPER_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GATLINGPEA_SEED_PACKET));
@@ -258,15 +258,14 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.GARDEN_SPAWN));
 				entries.addStack(new ItemStack(ModItems.GARDENINGGLOVE));
 				entries.addStack(new ItemStack(ModItems.PLANTFOOD));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AIR));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AQUATIC));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_COLD));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_ELEC));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FIRE));
 				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FLOWER));
 				entries.addStack(new ItemStack(ModItems.PLANTFOOD_MUSHROOM));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_COLD));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AQUATIC));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_FIRE));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_ELEC));
+				entries.addStack(new ItemStack(ModItems.PLANTFOOD_AIR));
 				entries.addStack(new ItemStack(ModItems.PLANTFOOD_SHADOW));
-				entries.addStack(new ItemStack(ModItems.PLANTFOOD_TOUGH));
 				entries.addStack(new ItemStack(ModItems.SMALLSUN));
 				entries.addStack(new ItemStack(ModItems.SUN));
 				entries.addStack(new ItemStack(ModItems.LARGESUN));

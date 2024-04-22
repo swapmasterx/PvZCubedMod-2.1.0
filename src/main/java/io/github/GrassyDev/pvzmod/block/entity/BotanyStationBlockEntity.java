@@ -1,43 +1,30 @@
 package io.github.GrassyDev.pvzmod.block.entity;
 
-import com.google.common.collect.Maps;
-import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.recipe.BotanyStationRecipe;
 import io.github.GrassyDev.pvzmod.screen.BotanyStationScreenHandler;
 import io.wispforest.owo.util.ImplementedInventory;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.SharedConstants;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeHolder;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
 import java.util.Optional;
 
 public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
@@ -59,10 +46,10 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
     protected final PropertyDelegate propertyDelegate;
     int currentSunResource = 0;
-    int maxsunResource = 200;
+    int maxsunResource = 1000;
     int sunCost = 0;
     int craftDelay = 0;
-    int maxcraftDelay = 20;
+    int maxcraftDelay = 40;
 
 	int missingSun = 0;
 
@@ -165,44 +152,80 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
         return new BotanyStationScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
-    public void tick(World world, BlockPos pos, BlockState state){
+//	protected int getFuelTime(ItemStack fuel) {
+//		if (fuel.isEmpty()) {
+//			return 0;
+//		} else {
+//			Item item = fuel.getItem();
+//			return (Integer)createSunAmountMap().getOrDefault(item, 0);
+//		}
+//	}
+    public void tick(World world, BlockPos pos, BlockState state, BotanyStationBlockEntity blockEntity){
         if(world.isClient()){
             return;
         }
+		ItemStack itemStack = (ItemStack)blockEntity.inventory.get(INPUT_SUN_SLOT);
+		boolean bl1 = !itemStack.isEmpty();
+		boolean bl2 = !((ItemStack)blockEntity.inventory.get(SEED_PACKET_SLOT)).isEmpty();
+		RecipeHolder<BotanyStationRecipe> recipeHolder;
+		if (bl1) {
+			if (currentSunResource < maxsunResource){
+				if (itemStack.isOf(ModItems.SUN)){
+					this.currentSunResource += 25;
+				}
+				else if(itemStack.isOf(ModItems.LARGESUN)){
+					this.currentSunResource += 50;
+
+				}
+				else if(itemStack.isOf(ModItems.SMALLSUN)){
+					this.currentSunResource += 15;
+				}
+				itemStack.decrement(1);
+			}
+			else if (currentSunResource > maxsunResource){
+				this.currentSunResource = this.maxsunResource;
+			}
+		}
 
         if(isOutputSlotEmptyOrReceivable()){
-//            if(this.hasRecipe()){
-				if(canAffordSunCost()){
-					this.increaseCraftDelay();
-					markDirty(world, pos, state);
-					if(hasCraftingFinished()){
-
-						this.craftItem();
-						this.deductSunCost();
-						this.resetCraftDelay();}
-					else {
+           if(hasRecipe()){
+               this.setMissingSunVisual();
+               if(canAffordSunCost()) {
+                    this.increaseCraftDelay();
+                    markDirty(world, pos, state);
+                    if (hasCraftingFinished()) {
+                        this.deductSunCost();
+                        this.craftItem();
                         this.resetCraftDelay();
                     }
-                }
-//            }
-            else {
+               }
+               else {
+                    this.resetCraftDelay();
+               }
+           }
+           else {
+                this.setMissingSunVisual();
                 this.resetCraftDelay();
-            }
+           }
         }
         else {
             this.resetCraftDelay();
             markDirty(world, pos, state);
         }
     }
-
-    private  boolean canAffordSunCost(){
-
-        if (this.sunCost <= this.currentSunResource){
-            return true;
+    private void setMissingSunVisual(){
+        Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isPresent()) {
+            this.missingSun = recipe.get().value().getSunCost();
         }
         else {
-            return false;
+            this.missingSun = 0;
         }
+    }
+    private  boolean canAffordSunCost(){
+        Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
+
+        return recipe.isPresent() && recipe.get().value().getSunCost() <= this.currentSunResource;
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {
@@ -213,28 +236,28 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
 
 
-        return recipe.isPresent()&& canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null)) && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
+        return recipe.isPresent()&& canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+                && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
     private Optional<RecipeHolder<BotanyStationRecipe>> getCurrentRecipe() {
-		RecipeMatcher recipeMatcher = new RecipeMatcher();
         SimpleInventory inv = new SimpleInventory(this.size());
         for(int i = 0; i < this.size(); i++) {
             inv.setStack(i, this.getStack(i));
         }
         return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.INSTANCE, inv, getWorld());
     }
-	private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {
-		Item item2 = item.asItem();
-		fuelTimes.put(item2, fuelTime);
-	}
-	public static Map<Item, Integer> createSunAmountMap() {
-		Map<Item, Integer> map = Maps.newLinkedHashMap();
-		addFuel(map, ModItems.SUN, 2);
-		addFuel(map, ModItems.LARGESUN, 4);
-		addFuel(map, ModItems.SMALLSUN, 1);
-		return map;
-	}
+//	private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {
+//		Item item2 = item.asItem();
+//		fuelTimes.put(item2, fuelTime);
+//	}
+//	public static Map<Item, Integer> createSunAmountMap() {
+//		Map<Item, Integer> map = Maps.newLinkedHashMap();
+//		addFuel(map, ModItems.SUN, 2);
+//		addFuel(map, ModItems.LARGESUN, 4);
+//		addFuel(map, ModItems.SMALLSUN, 1);
+//		return map;
+//	}
     private boolean canInsertItemIntoOutputSlot(Item item) {
         return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
     }
@@ -248,7 +271,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private boolean hasCraftingFinished() {
-        return craftDelay >= maxcraftDelay;
+        return craftDelay > maxcraftDelay;
     }
 
     private void craftItem() {
@@ -268,8 +291,10 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private void deductSunCost() {
-
-		this.currentSunResource -= this.sunCost;
+        Optional<RecipeHolder<BotanyStationRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isPresent()){
+            this.currentSunResource -= recipe.get().value().getSunCost();
+        }
 		if (this.currentSunResource < 0){
 			this.currentSunResource = 0;
 		}

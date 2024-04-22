@@ -10,7 +10,7 @@ import org.quiltmc.qsl.block.entity.api.QuiltBlockEntityTypeBuilder;
 
 public class ModBlockEntities {
     public static final BlockEntityType<BotanyStationBlockEntity> BOTANY_STATION_BLOCK_ENTITY =
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(PvZCubed.MOD_ID, "botany_table_be"),
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(PvZCubed.MOD_ID, "botany_station"),
                     QuiltBlockEntityTypeBuilder.create(BotanyStationBlockEntity::new,
                             ModBlocks.BOTANY_STATION).build());
 

@@ -8,9 +8,9 @@
       "spawns": [
         {
           "type": "pvzmod:puffshroom",
-          "weight": 5,
+          "weight": 6,
           "minCount": 1,
-          "maxCount": 1
+          "maxCount": 2
         },
         {
           "type": "pvzmod:peashooter",
@@ -37,8 +37,14 @@
           "maxCount": 2
         },
         {
+          "type": "minecraft:skeleton",
+          "weight": 35,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
           "type": "pvzmod:browncoat",
-          "weight": 50,
+          "weight": 40,
           "minCount": 1,
           "maxCount": 3
         }
@@ -51,11 +57,11 @@
   "start_height": {
     "type": "minecraft:constant",
     "value": {
-      "absolute": 1
+      "absolute": -1
     }
   },
   "start_jigsaw_name": "pvzmod:pvz_gravyard_junction_entrance_spawn",
   "project_start_to_heightmap": "WORLD_SURFACE_WG",
-  "max_distance_from_center": 80,
+  "max_distance_from_center": 100,
   "use_expansion_hack": false
 }

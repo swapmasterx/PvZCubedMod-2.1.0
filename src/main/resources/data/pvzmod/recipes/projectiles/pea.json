@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "pvzmod:sun"
+      "item": "pvzmod:plantfood"
     }
   ],
   "result": {
-    "item": "pvzmod:smallsun",
-    "count": 2
+    "item": "pvzmod:pea",
+    "count": 1
   }
 }

@@ -1,18 +1,23 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.armor;
 
 import com.google.common.collect.Maps;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.GrassyDev.pvzmod.PvZCubed;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.piercingpea.PiercePeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.MetalHelmetVariants;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.Color;
 import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib.util.RenderUtils;
 
 import java.util.Map;
 
@@ -149,7 +154,12 @@ public class MetalHelmetProjEntityRenderer extends GeoEntityRenderer<MetalHelmet
 				map.put(MetalHelmetVariants.SCRAPIMP,
 						new Identifier(PvZCubed.MOD_ID, "geo/scrapimpproj.geo.json"));
 			});
+	@Override
+	public void preRender(MatrixStack poseStack, MetalHelmetProjEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
+						  float alpha) {
+		RenderUtils.faceRotation(poseStack, animatable, partialTick);
 
+	}
 	public MetalHelmetProjEntityRenderer(EntityRendererFactory.Context ctx) {
 		super(ctx, new MetalHelmetProjEntityModel());
 		this.shadowRadius = 0.3F; //change 0.7 to the desired shadow size.

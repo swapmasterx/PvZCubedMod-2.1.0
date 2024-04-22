@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "pvzmod:sun"
+      "item": "minecraft:wheat_seeds"
     },
     {
-      "item": "pvzmod:sun"
+      "item": "minecraft:sunflower"
     }
   ],
   "result": {
-    "item": "pvzmod:largesun",
+    "item": "pvzmod:plantfood_flower",
     "count": 1
   }
 }

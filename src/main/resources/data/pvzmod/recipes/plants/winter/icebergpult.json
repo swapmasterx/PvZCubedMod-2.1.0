@@ -1,5 +1,7 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 50,
   "ingredients": [
     {
       "item": "pvzmod:iceberglettuce_seed_packet"
@@ -8,13 +10,7 @@
       "item": "pvzmod:cabbagepult_seed_packet"
     },
     {
-      "item": "pvzmod:sun"
-    },
-    {
-      "item": "pvzmod:sun"
-    },
-    {
-      "item": "pvzmod:smallsun"
+      "item": "pvzmod:empty_seed_packet"
     }
   ],
   "result": {
