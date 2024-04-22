@@ -29,7 +29,10 @@
 			],
 			"fabric-datagen": [
 				"io.github.GrassyDev.pvzmod.PvZCubedDataGeneration"
-				]
+			],
+			"rei-client": [
+				"io.github.GrassyDev.pvzmod.compat.PvZModJEIClientPlugin"
+			]
 		},
 		"depends": [
 			{

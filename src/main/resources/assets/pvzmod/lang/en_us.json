@@ -380,13 +380,13 @@
   "item.pvzmod.gardeninggloves2": "and get their Seed Packet",
 
   "item.pvzmod.plantfood": "Sproutling",
-  "item.pvzmod.plantfood_air": "Windy Plant Food",
-  "item.pvzmod.plantfood_aquatic": "Aquatic Plant Food",
+  "item.pvzmod.plantfood_air": "Clover",
+  "item.pvzmod.plantfood_aquatic": "Aquatic Foliage",
   "item.pvzmod.plantfood_cold": "Cold Sproutling",
-  "item.pvzmod.plantfood_elec": "Electric Plant Food",
+  "item.pvzmod.plantfood_elec": "Electro Leaf",
   "item.pvzmod.plantfood_fire": "Fuse Cherry",
   "item.pvzmod.plantfood_flower": "Flower Seeds",
-  "item.pvzmod.plantfood_tough": "Tough Plant Food",
+  "item.pvzmod.plantfood_tough": "Bark Enforced Sproutling",
   "item.pvzmod.plantfood_mushroom": "Mushroom Spores",
   "item.pvzmod.plantfood_shadow": "Shadow Plant Food",
 

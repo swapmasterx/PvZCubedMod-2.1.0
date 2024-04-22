@@ -8,18 +8,26 @@
       "type": "text",
       "text": [
         "The sun sets, the mushrooms wake up, and the danger increases.",
-        "$(br2)A new grave type will spawn in dark areas on and near the surface, the Night Grave. ",
-        "This grave is dangerous, because it can spawn zombies tougher than before."
+        "$(br2)The zombies are coming and I don't mean the green ones."
         ]
     },
     {
       "type": "text",
       "text": [
         "$(br2)Mushrooms are nocturnal Plants, meaning that they can only function when it's dark.",
-        "$(br2)To make mushrooms you will need Mushroom Plant Food, they are acquired by harvesting either a ",
-        "Button-shroom (Day spawn) or a Puff-shroom (Night spawn).",
-        "$(br)After getting some Mushroom Plant Food make some new Plants."
+        "$(br2)To make mushrooms you will need Mushroom Spores, they are acquired by putting together ",
+        "various types of mushrooms together with purple dye. After that its time to look into your options."
       ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/puffshroom_entry",
+        "pvzmod:plants/scaredyshroom_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/sunshroom_entry"
+      ],
+      "title": "Recommended Plants:"
     },
     {
       "type": "crafting",
@@ -33,30 +41,22 @@
       "type": "crafting",
       "recipe": "pvzmod:plants/ailment/scaredyshroom",
       "text": [
-        "$(br2)Scaredy-shroom will deal with zombies from afar, helping thinning their numbers. They also poison the target."
+        "$(br2)Scaredy-shroom will deal with zombies from afar, helping thinning their numbers."
       ]
     },
     {
       "type": "crafting",
       "recipe": "pvzmod:plants/ailment/fumeshroompvz",
       "text": [
-        "$(br2)The next Plant you can make is the Fume-shroom. It's a better Bellflower.",
-        "$(br2)Fume-shrooms are good crowd controlling plants."
-      ]
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br2)One of the main uses of the Fume-shroom is dealing with shielded zombies like the Screen Door Zombie, as it will deal direct damage to the Zombie instead of the shield.",
-        "$(br)Fume-shroom can finish off Newspaper Zombies, but they can't easily deal with them by themselves."
+        "$(br2)Fume-shrooms are great at handling weak groups and shield zombies ",
+        "$(br2)but struggle with tanky targets like bucketheads."
       ]
     },
     {
       "type": "text",
       "text": [
         "$(br)While these mushrooms are great for their cost, be mindful of depending on them at this stage of the game, as they will fall asleep during daytime.",
-        "$(br2)The more days pass, the tougher the zombies get, so it's recommended to stay awake during the night to get more resources instead of sleeping.",
-        "$(br2)Here are some other Mushrooms you can make:"
+        "$(br2)Coffee Beans can wake them during day time but aren't easy to make in large batches especially early on."
       ]
     },
     {

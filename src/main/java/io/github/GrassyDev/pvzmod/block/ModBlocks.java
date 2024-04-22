@@ -21,21 +21,25 @@ public class ModBlocks {
     public static final Block GRASS_TILE = new Block(QuiltBlockSettings.create()
 		.mapColor(MapColor.GRASS).pistonBehavior(PistonBehavior.NORMAL)
 		.sounds(BlockSoundGroup.GRASS)
+		.solid()
 		.strength(0.9f, 1000f));
 
     public static final Block DARK_GRASS_TILE = new Block(QuiltBlockSettings.create()
 		.mapColor(MapColor.GRASS).pistonBehavior(PistonBehavior.NORMAL)
             .sounds(BlockSoundGroup.GRASS)
+		.solid()
             .strength(0.9f, 1000f));
 
 	public static final Block NIGHT_TILE = new Block(QuiltBlockSettings.create()
 		.mapColor(MapColor.BLUE).pistonBehavior(PistonBehavior.NORMAL)
 			.sounds(BlockSoundGroup.GRASS)
+		.solid()
 			.strength(0.9f, 1000f));
 
 	public static final Block DARK_NIGHT_TILE = new Block(QuiltBlockSettings.create()
 		.mapColor(MapColor.BLUE).pistonBehavior(PistonBehavior.NORMAL)
 			.sounds(BlockSoundGroup.GRASS)
+		.solid()
 			.strength(0.9f, 1000f));
 
 	public static final Block ROOF_TILE = new Block(QuiltBlockSettings.create()

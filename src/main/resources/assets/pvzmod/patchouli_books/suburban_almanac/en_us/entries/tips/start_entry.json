@@ -45,6 +45,10 @@
       ]
     },
     {
+      "type": "crafting",
+      "recipe": "pvzmod:botany_table"
+    },
+    {
       "type": "text",
       "text": [
         "To use it, just place sun in the sun slot, put the required ingredients in the 2x3 grid and an empty seed packet in the respective slot. ",
@@ -55,13 +59,11 @@
     {
       "type": "relations",
       "entries": [
-        "pvzmod:plants/sunflower_entry",
+        "pvzmod:plants/sunflowerseed_entry",
         "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/bellflower_entry",
         "pvzmod:plants/wallnut_entry",
-        "pvzmod:plants/potatomine_entry",
-        "pvzmod:plants/snowpea_entry",
-        "pvzmod:plants/repeater_entry",
-        "pvzmod:plants/dogwood_entry"
+        "pvzmod:plants/sunflower_entry"
       ],
       "title": "Recommended Plants:"
     }

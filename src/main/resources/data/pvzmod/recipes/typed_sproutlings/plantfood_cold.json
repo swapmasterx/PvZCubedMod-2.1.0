@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "LLL",
+    " # ",
     "#S#",
-    "LLL"
+    " # "
   ],
   "key": {
     "#": {
@@ -11,9 +11,6 @@
     },
     "S": {
       "item": "pvzmod:plantfood"
-    },
-    "L": {
-      "item": "minecraft:packed_ice"
     }
   },
   "result": {
