@@ -2,8 +2,8 @@
   "name": "Charm-shroom",
   "icon": "pvzmod:charmshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 115,
-  "advancement": "pvzmod:make_beautyshroom",
+  "sortnum": 53,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
@@ -20,31 +20,9 @@
       "images": [
         "pvzmod:textures/gui/entries/charmshroom.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "⏳ Stallers",
       "border": "true",
       "text": "$(#25228d)Charm-shrooms will make Zombies turn around and fight for you."
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br2)$(#bd951a)Health: $()$(#ff0000)12 $(#bd951a)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
-        "$(br)$(#bd951a)Hypnotizing Time: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Full Moon Powered Form. Hypnotizes up to 4 of the toughest Zombies, then vanishes."
-      ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/charmshroom_moon.png"
-      ],
-      "title": "⭐ Enchant Family",
-      "border": "true",
-      "text": "$(#25228d)Charm-shroom's Moon Form. Hypnotizes more Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/charmshroom"
     },
     {
       "type": "text",

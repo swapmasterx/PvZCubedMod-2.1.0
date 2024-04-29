@@ -2,8 +2,8 @@
   "name": "Sun-shroom",
   "icon": "pvzmod:sunshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 9,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 13,
+  "advancement": "pvzmod:make_puffshroom",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/sunshroom.png"
       ],
-      "title": "☀ Enlighten Family",
+      "title": "☀ Sun Producer",
       "border": "true",
       "text": "$(#25228d)Sun-shroom gives a random amount of sun."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/sunshroom"
     },
     {
       "type": "text",

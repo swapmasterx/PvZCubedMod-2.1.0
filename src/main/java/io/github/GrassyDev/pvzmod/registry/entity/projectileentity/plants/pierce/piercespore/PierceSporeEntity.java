@@ -252,7 +252,7 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 20, 3)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 30, 2)));
 				entityStore.add((LivingEntity) entity);
 			}
 		}

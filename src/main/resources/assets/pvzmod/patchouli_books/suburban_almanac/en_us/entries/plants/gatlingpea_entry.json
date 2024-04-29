@@ -2,7 +2,7 @@
   "name": "Gatling Pea",
   "icon": "pvzmod:gatlingpea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 33,
+  "sortnum": 80,
   "advancement": "pvzmod:make_repeater",
   "pages": [
     {
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/gatlingpea.png"
       ],
-      "title": "⭘ Appease Family",
+      "title": "⭘ Shooter",
       "border": "true",
       "text": "$(#25228d)Gatling Peas shoot four peas at a time. Helmet provides amazing protection."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/gatlingpea"
     },
     {
       "type": "text",

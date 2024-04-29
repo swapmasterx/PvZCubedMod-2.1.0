@@ -86,7 +86,7 @@ public class GhostPepperSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.conceal.family").setStyle(Style.EMPTY.withColor(8150669)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.spear.family").setStyle(Style.EMPTY.withColor(4210752)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.instant.tooltip")
 				.formatted(Formatting.UNDERLINE));
@@ -120,8 +120,7 @@ public class GhostPepperSeeds extends SeedItem implements FabricItem {
 					} else {
 						if (!world.isClient) {
 							List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.GHOSTPEPPER.getDimensions().getBoxAt(aquaticEntity.getPos()));
-							List<TileEntity> list2 = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.GHOSTPEPPER.getDimensions().getBoxAt(aquaticEntity.getPos()));
-							if (list.isEmpty() && list2.isEmpty()){
+							if (list.isEmpty()){
 								float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);

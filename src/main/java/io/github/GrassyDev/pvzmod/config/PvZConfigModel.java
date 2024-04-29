@@ -178,7 +178,7 @@ public class PvZConfigModel {
 		@RestartRequired
 		public float bananasaurusS = 20f;
 		@RestartRequired
-		public float beautyshroomS = 12.5f;
+		public float beautyshroomS = 30.0f;
 		@RestartRequired
 		public float beeshooterS = 15.0f;
 		@RestartRequired
@@ -395,7 +395,7 @@ public class PvZConfigModel {
 		public float sunshroomSunChance = 0.45f;
 		public float sunshroomSun2ndChance = 0.75f;
 		public float goldtileSec = 300f;
-		public float sunseedSec = 300f;
+		public float sunseedSec = 180f;
 		public float zombiegraveSec = 300f;
 	}
 
@@ -406,11 +406,11 @@ public class PvZConfigModel {
 		public float acidFumeDMG = 1f;
 		public float acidSporeDMG = 2f;
 		public float armorBubbleDMG = 2f;
-		public float beespikeDMGv2 = 1f;
+		public float beespikeDMGv2 = 2f;
 		public float breezeDMG = 1f;
 		public float boomerangDMGv2 = 1f;
 		public float bubblesDMG = 1f;
-		public float cabbageDMG = 2f;
+		public float cabbageDMG = 3f;
 		public float cardDMGv2 = 1f;
 		public float coconutDMGv2 = 90f;
 		public float coconutSDMG = 50f;
@@ -662,7 +662,7 @@ public class PvZConfigModel {
 		public double crystalshoeHelmetH = 40D;
 
 		@RestartRequired
-		public double pumpkinH = 40D;
+		public double pumpkinH = 20D;
 
 		@RestartRequired
 		public double screendoorShieldH = 75D;

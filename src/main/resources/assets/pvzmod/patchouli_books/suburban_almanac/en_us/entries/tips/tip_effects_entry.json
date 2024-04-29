@@ -103,9 +103,9 @@
       "type": "text",
       "text": [
         "$(br2)Acid",
-        "$(br2)Deals continuous damage to Zombies.",
+        "$(br2)Deals continuous damage to Zombie Armor.",
         "$(br2)Deals 8 DMG/0.5sec.",
-        "$(br2)Can only be applied to Metal, Electronic, Plant, Paper, and Cloth."
+        "$(br2)Can only be applied to metallic gear."
       ]
     },
     {
@@ -165,19 +165,6 @@
         "$(br)They are not immune to splash, explosions, electric chains, melee, etc.",
         "$(br)They can still be targeted by \"close-range\" Plants, Instant-Use Plants, and Magic or Sound damaging Plants.",
         "$(br)A Zombie is uncloaked if it's on fire, gets 6 blocks near an Illuminating Plant, or starts eating a plant."
-      ]
-    },
-    {
-      "type": "relations",
-      "entries": [
-        "pvzmod:plants/peashooter_entry",
-        "pvzmod:plants/snowpea_entry",
-        "pvzmod:plants/navybean_entry",
-        "pvzmod:plants/torchwood_entry",
-        "pvzmod:plants/scaredyshroom_entry",
-        "pvzmod:plants/seashroom_entry",
-        "pvzmod:plants/zapricot_entry",
-        "pvzmod:plants/hypnoshroom_entry"
       ]
     }
   ]

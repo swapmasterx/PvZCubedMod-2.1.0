@@ -23,53 +23,18 @@
       "type": "relations",
       "entries": [
         "pvzmod:plants/puffshroom_entry",
-        "pvzmod:plants/scaredyshroom_entry",
+        "pvzmod:plants/magicshroom_entry",
         "pvzmod:plants/fumeshroom_entry",
         "pvzmod:plants/sunshroom_entry"
       ],
       "title": "Recommended Plants:"
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/sunshroom",
-      "text": [
-        "$(br2)Sun-shrooms are important because Sunflowers produce small sun during night/rain/thunder/caves instead of the normal size.",
-        "$(br)Sun-shrooms have a random chance to produce small, normal, or large suns."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/scaredyshroom",
-      "text": [
-        "$(br2)Scaredy-shroom will deal with zombies from afar, helping thinning their numbers."
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/fumeshroompvz",
-      "text": [
-        "$(br2)Fume-shrooms are great at handling weak groups and shield zombies ",
-        "$(br2)but struggle with tanky targets like bucketheads."
-      ]
-    },
-    {
       "type": "text",
       "text": [
         "$(br)While these mushrooms are great for their cost, be mindful of depending on them at this stage of the game, as they will fall asleep during daytime.",
-        "$(br2)Coffee Beans can wake them during day time but aren't easy to make in large batches especially early on."
+        "$(br2)Coffee Beans can wake them during day time but aren't easy to make in large batches. Especially early on."
       ]
-    },
-    {
-      "type": "relations",
-      "entries": [
-        "pvzmod:plants/puffshroom_entry",
-        "pvzmod:plants/scaredyshroom_entry",
-        "pvzmod:plants/fumeshroom_entry",
-        "pvzmod:plants/hypnoshroom_entry",
-        "pvzmod:plants/iceshroom_entry",
-        "pvzmod:plants/doomshroom_entry"
-      ],
-      "title": "Recommended Plants:"
     }
   ]
 }

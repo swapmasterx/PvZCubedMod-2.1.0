@@ -1,0 +1,17 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 0,
+  "ingredients": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:oilyolive_seed_packet",
+    "count": 2
+  }
+}

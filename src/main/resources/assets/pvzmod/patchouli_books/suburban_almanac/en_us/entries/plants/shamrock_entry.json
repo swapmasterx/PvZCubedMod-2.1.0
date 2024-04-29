@@ -2,8 +2,8 @@
   "name": "Shamrock",
   "icon": "pvzmod:shamrock_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 43,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 68,
+  "advancement": "pvzmod:make_beet",
   "pages": [
     {
       "type": "text",
@@ -20,13 +20,9 @@
       "images": [
         "pvzmod:textures/gui/entries/shamrock.png"
       ],
-      "title": "⭘ Appease Family",
+      "title": "\uD83C\uDFF9 Snipers",
       "border": "true",
       "text": "$(#25228d)Shoots very far. Hides when zombies are nearby."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/shamrock"
     },
     {
       "type": "text",

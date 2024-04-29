@@ -39,15 +39,15 @@ public class AcidFumeItem extends Item {
             AcidFumeEntity proj = new AcidFumeEntity(PvZEntity.ACIDFUME, world);
             proj.setPos(user.getX(), user.getY() + 1f, user.getZ());
             proj.setOwner(user);
-            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.85F, 0);
+            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 1.0F, 0);
             world.spawnEntity(proj);
         }
 
         if (!user.getAbilities().creativeMode) {
 				itemStack.decrement(1);
 				// decrements itemStack if user is not in creative mode
-            user.getItemCooldownManager().set(this, 20);
         }
+		user.getItemCooldownManager().set(this, 20);
 
         return TypedActionResult.success(itemStack, world.isClient());
     }

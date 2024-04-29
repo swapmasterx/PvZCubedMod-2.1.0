@@ -2,8 +2,8 @@
   "name": "Saucer",
   "icon": "pvzmod:saucer_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 99,
-  "advancement": "pvzmod:make_empeach",
+  "sortnum": 56,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -20,13 +20,9 @@
       "images": [
         "pvzmod:textures/gui/entries/saucer.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⏳ Stallers",
       "border": "true",
       "text": "$(#25228d)Saucers emit light to stun and capture Zombies below them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/saucer"
     },
     {
       "type": "text",

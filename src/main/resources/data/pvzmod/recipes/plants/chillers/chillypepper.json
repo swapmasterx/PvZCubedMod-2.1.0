@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:chillypepper_seed_packet",
+    "count": 1
+  }
+}

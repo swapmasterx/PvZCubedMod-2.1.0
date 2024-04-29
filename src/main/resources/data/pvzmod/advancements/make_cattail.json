@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:cattail_seed_packet"
     },
-    "title": "Meow! That's right!",
-    "description": "Craft a Cattail",
+    "title": "Woof!",
+    "description": "Craft the Cat Tail upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
-  "parent": "pvzmod:make_navybean",
+  "parent": "pvzmod:make_lilypad",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
-    "experience": 100
+    "recipes": [],
+    "experience": 25
   }
 }

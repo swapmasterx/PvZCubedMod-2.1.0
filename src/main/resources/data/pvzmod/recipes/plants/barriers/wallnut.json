@@ -1,0 +1,17 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 50,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:wallnut_seed_packet",
+    "count": 1
+  }
+}

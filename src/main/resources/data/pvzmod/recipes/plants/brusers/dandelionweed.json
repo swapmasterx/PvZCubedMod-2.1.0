@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 125,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "minecraft:azure_bluet"
+    },
+    {
+      "item": "minecraft:azure_bluet"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:dandelionweed_seed_packet",
+    "count": 1
+  }
+}

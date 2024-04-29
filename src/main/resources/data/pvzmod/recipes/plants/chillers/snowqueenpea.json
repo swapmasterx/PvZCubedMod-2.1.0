@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 175,
+  "ingredients": [
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:snowqueenpea_seed_packet",
+    "count": 1
+  }
+}

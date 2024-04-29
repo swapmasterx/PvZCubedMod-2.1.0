@@ -2,8 +2,8 @@
   "name": "Doom-shroom",
   "icon": "pvzmod:doomshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 15,
-  "advancement": "pvzmod:make_cherrybomb",
+  "sortnum": 21,
+  "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
       "type": "text",
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/doomshroom.png"
       ],
-      "title": "☄ Bombard Family",
+      "title": "☄ Blaster",
       "border": "true",
       "text": "$(#25228d)Doom-shrooms destroy everything in a large area and leave a crater behind."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/bombard/doomshroom"
     },
     {
       "type": "text",

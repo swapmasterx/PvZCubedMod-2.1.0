@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 275,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "minecraft:jack_o_lantern"
+    },
+    {
+      "item": "minecraft:brush"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:pumpkinwitch_seed_packet",
+    "count": 1
+  }
+}

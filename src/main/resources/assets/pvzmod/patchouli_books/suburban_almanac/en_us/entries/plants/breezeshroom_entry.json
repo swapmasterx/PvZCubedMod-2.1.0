@@ -2,8 +2,8 @@
   "name": "Breeze-shroom",
   "icon": "pvzmod:breezeshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 48,
-  "advancement": "pvzmod:make_fumeshroom",
+  "sortnum": 22,
+  "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/breezeshroom.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "❄ Chiller",
       "border": "true",
       "text": "$(#25228d)Breeze-shrooms shoot a chilly wind that slows down multiple zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/breezeshroom"
     },
     {
       "type": "text",

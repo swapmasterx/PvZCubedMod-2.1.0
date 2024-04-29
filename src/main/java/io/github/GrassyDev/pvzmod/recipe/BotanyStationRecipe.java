@@ -121,7 +121,7 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 					if (ingredients.length == 0) {
 						return DataResult.error(() -> "No ingredients for Botany Box recipe");
 					} else {
-						return ingredients.length > 6 ?
+						return ingredients.length > 7 ?
 							DataResult.error(() -> "Too many ingredients for Botany Box recipe") :
 							DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredients));
 					}

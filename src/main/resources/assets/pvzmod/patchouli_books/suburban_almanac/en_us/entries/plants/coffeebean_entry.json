@@ -2,8 +2,8 @@
   "name": "Coffee Bean",
   "icon": "pvzmod:coffeebean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 34,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 38,
+  "advancement": "pvzmod:make_seashroom",
   "pages": [
     {
       "type": "text",
@@ -18,13 +18,9 @@
       "images": [
         "pvzmod:textures/gui/entries/coffeebean.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Use Coffee Beans to wake up sleeping mushrooms."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/coffeebean"
     },
     {
       "type": "text",

@@ -3,12 +3,12 @@
   "icon": "pvzmod:magnetoshroom_seed_packet",
   "category": "pvzmod:plant_category",
   "advancement": "pvzmod:make_magnetshroom",
-  "sortnum": 116,
+  "sortnum": 85,
   "pages": [
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)32 ",
+        "$(#bd951a)Health: $()$(#ff0000)32",
         "$(#bd951a)Range: $()$(#ff0000)15 Blocks ",
         "$(#bd951a)Ability Recharge: $()$(#ff0000)5s (Throw), 7.5s (Total) ",
         "$(#bd951a)Seed Recharge: $()$(#ff0000)10s ",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/magnetoshroom.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Magneto-shrooms remove metal objects from zombies, then launches them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/magnetoshroom"
     },
     {
       "type": "text",

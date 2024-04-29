@@ -2,7 +2,8 @@
   "name": "Grave Buster",
   "icon": "pvzmod:gravebuster_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 11,
+  "sortnum": 16,
+  "advancement": "pvzmod:make_magicshroom",
   "pages": [
     {
       "type": "text",
@@ -20,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/gravebuster.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Plant Grave Busters on top of graves to remove them. "
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/gravebuster"
     },
     {
       "type": "text",

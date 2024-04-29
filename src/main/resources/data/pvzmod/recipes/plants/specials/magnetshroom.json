@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:plantfood_elec"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:magnetshroom_seed_packet",
+    "count": 1
+  }
+}

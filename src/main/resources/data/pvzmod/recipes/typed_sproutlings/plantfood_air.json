@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " c ",
+    "cGc",
+    " G "
+  ],
+  "key": {
+    "c": {
+      "tag": "minecraft:leaves"
+    },
+    "G": {
+      "item": "pvzmod:plantfood"
+    }
+  },
+  "result": {
+    "item": "pvzmod:plantfood_air",
+    "count": 1
+  }
+}

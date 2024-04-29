@@ -2,7 +2,7 @@
   "name": "Gloom-shroom",
   "icon": "pvzmod:gloomshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 35,
+  "sortnum": 81,
   "advancement": "pvzmod:make_fumeshroom",
   "pages": [
     {
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/gloomshroom.png"
       ],
-      "title": "\uD83E\uDDEA Ailment Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Gloom-shrooms fire heavy fumes in an area around them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/gloomshroom"
     },
     {
       "type": "text",

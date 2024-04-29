@@ -2,8 +2,8 @@
   "name": "Jumping Bean",
   "icon": "pvzmod:jumpingbean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 321,
-  "advancement": "pvzmod:make_springbean",
+  "sortnum": 69,
+  "advancement": "pvzmod:make_beet",
   "pages": [
     {
       "type": "text",
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/jumpingbean.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⏳ Stallers",
       "border": "true",
       "text": "$(#25228d)Jumping Beans bounce back zombies from the ground."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/jumpingbean"
     },
     {
       "type": "text",

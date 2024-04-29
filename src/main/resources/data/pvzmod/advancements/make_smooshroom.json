@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:smooshroom_seed_packet"
     },
-    "title": "Super Smoosh Bros.",
-    "description": "Craft a Smoo-shroom",
-    "frame": "challenge",
+    "title": "Hammer Time",
+    "description": "Craft a Smoo-Shroom",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_hammerflower",
   "criteria": {
@@ -30,8 +30,6 @@
     }
   },
   "rewards": {
-    "recipes": [
-    ],
-    "experience": 100
+    "experience": 25
   }
 }

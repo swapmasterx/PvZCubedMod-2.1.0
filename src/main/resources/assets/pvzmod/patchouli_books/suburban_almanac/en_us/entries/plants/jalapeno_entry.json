@@ -2,8 +2,8 @@
   "name": "Jalapeno",
   "icon": "pvzmod:jalapeno_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 20,
-  "advancement": "pvzmod:make_potatomine",
+  "sortnum": 28,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/jalapeno.png"
       ],
-      "title": "\uD83D\uDD25 Pepper Family",
+      "title": "☄ Blaster",
       "border": "true",
       "text": "$(#25228d)Jalapenos destroy an entire row of zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/pepper/jalapeno"
     },
     {
       "type": "text",

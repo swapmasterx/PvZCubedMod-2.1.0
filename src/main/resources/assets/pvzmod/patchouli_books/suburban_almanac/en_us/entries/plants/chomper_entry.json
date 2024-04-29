@@ -2,8 +2,8 @@
   "name": "Chomper",
   "icon": "pvzmod:chomper_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 6,
-  "advancement": "pvzmod:make_beet",
+  "sortnum": 9,
+  "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/chomper.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83D\uDDE1 Bruiser",
       "border": "true",
       "text": "$(#25228d)Chompers can devour a Zombie whole, but they are vulnerable while chewing."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/chomper"
     },
     {
       "type": "text",

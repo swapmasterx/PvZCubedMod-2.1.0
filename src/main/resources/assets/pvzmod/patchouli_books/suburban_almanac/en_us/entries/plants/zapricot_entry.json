@@ -2,7 +2,8 @@
   "name": "Zapricot",
   "icon": "pvzmod:zapricot_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 303,
+  "sortnum": 46,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
@@ -22,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/zapricot.png"
       ],
-      "title": "⚡ Filament Family",
+      "title": "\uD83D\uDDE1 Bruisers",
       "border": "true",
       "text": "$(#25228d)Zapricot electrocutes nearby zombies"
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/filament/zapricot"
     },
     {
       "type": "text",

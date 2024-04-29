@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:plantfood_fire",
+          "name": "minecraft:lime_dye",
           "functions": [
             {
               "function": "minecraft:set_count",

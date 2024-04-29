@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:spikeweed_seed_packet",
+    "count": 1
+  }
+}

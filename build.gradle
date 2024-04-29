@@ -16,6 +16,7 @@ loom {
 }
 
 repositories {
+	mavenCentral()
 	maven { url "https://maven.shedaniel.me" }
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven {
@@ -37,6 +38,7 @@ repositories {
 		// location of a maven mirror for JEI files, as a fallback
 		name = "ModMaven"
 		url = "https://modmaven.dev"
+
 	}
 }
 
@@ -46,20 +48,24 @@ project.configurations.configureEach {
 }
 
 dependencies {
+	modApi("me.shedaniel.cloth:cloth-config-fabric:13.0.121") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+	modApi("dev.architectury:architectury-fabric:11.1.17")
 	minecraft libs.minecraft
 	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
 	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings}:intermediary-v2"
 	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
-
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:14.1.714"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:14.1.714"
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:14.1.714"
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.4:4.4.4'
 	modImplementation "vazkii.patchouli:Patchouli:1.20.4-85-FABRIC"
 	modImplementation "io.wispforest:owo-lib:0.12.3+1.20.3+"
 	annotationProcessor modImplementation("io.wispforest:owo-lib:0.12.3+1.20.3+")
 }
+
+
 processResources {
 	inputs.property "version", version
 

@@ -2,15 +2,15 @@
   "name": "Potato Mine",
   "icon": "pvzmod:potatomine_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 3,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 5,
+  "advancement": "pvzmod:make_peashooter",
   "pages": [
     {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)180",
-        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)0.66 Blocks",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)0.75 Blocks",
         "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)2.5 Blocks",
         "$(br)$(#bd951a)Preparation Time: $()$(#ff0000)60s",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/potatomine.png"
       ],
-      "title": "☄ Bombard Family",
+      "title": "☄ Blaster",
       "border": "true",
       "text": "$(#25228d)Potato Mines pack a powerful punch, but they need a while to arm themselves."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/bombard/potatomine"
     },
     {
       "type": "text",

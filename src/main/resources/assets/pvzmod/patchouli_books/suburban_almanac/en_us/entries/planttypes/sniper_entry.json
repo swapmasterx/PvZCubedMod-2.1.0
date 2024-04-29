@@ -1,0 +1,27 @@
+{
+  "name": "Snipers",
+  "icon": "minecraft:bow",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Sniper plants have the highest range of any plant, able to hit targets from notably far away.",
+        "$(br)Some shoot lobbed/launched projectiles that ignores shields and go over hilly terrain."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/scaredyshroom_entry",
+        "pvzmod:plants/cabbagepult_entry",
+        "pvzmod:plants/pepperpult_entry",
+        "pvzmod:plants/shamrock_entry",
+        "pvzmod:plants/pumpkinwitch_entry",
+        "pvzmod:plants/beeshooter_entry"
+      ],
+      "title": "\uD83C\uDFF9 Snipers:"
+    }
+  ]
+}

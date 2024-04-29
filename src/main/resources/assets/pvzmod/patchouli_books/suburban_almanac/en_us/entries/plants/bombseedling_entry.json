@@ -2,8 +2,8 @@
   "name": "Bomb Seedling",
   "icon": "pvzmod:bombseedling_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 312,
-  "advancement": "pvzmod:make_potatomine",
+  "sortnum": 74,
+  "advancement": "pvzmod:make_beet",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/bombseedling.png"
       ],
-      "title": "☄ Bombard Family",
+      "title": "☄ Blaster",
       "border": "true",
       "text": "$(#25228d)Explodes nearby Zombies and transforms into a random Plant."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/bombard/bombseedling"
     },
     {
       "type": "text",

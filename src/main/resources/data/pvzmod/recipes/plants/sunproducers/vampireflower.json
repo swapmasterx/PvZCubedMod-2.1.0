@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 175,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:vampireflower_seed_packet",
+    "count": 1
+  }
+}

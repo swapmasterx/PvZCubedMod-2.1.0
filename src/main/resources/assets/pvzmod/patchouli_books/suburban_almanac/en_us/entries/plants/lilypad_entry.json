@@ -2,7 +2,8 @@
   "name": "Lily Pad",
   "icon": "pvzmod:lilypad_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 16,
+  "sortnum": 24,
+  "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
       "type": "text",
@@ -18,13 +19,9 @@
       "images": [
         "pvzmod:textures/gui/entries/lilypad.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "\uD83E\uDDEA Aquatics",
       "border": "true",
-      "text": "$(#25228d)Lets you Plant on top of them and their Aquatic Plant food makes aquatic plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/lilypad"
+      "text": "$(#25228d)Lets you Plant non-Aquatics Plants on water."
     },
     {
       "type": "text",

@@ -2,8 +2,9 @@
   "name": "Heavenly Peach",
   "icon": "pvzmod:heavenlypeach_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 96,
-  "advancement": "pvzmod:make_coffeebean",
+  "sortnum": 66,
+
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -20,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/heavenlypeach.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Heals plants around it."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/heavenlypeach"
     },
     {
       "type": "text",

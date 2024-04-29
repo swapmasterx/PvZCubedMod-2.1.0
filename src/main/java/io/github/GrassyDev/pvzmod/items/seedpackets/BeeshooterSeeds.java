@@ -78,7 +78,7 @@ public class BeeshooterSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.ailment.family").setStyle(Style.EMPTY.withColor(9188263)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.arma.family").setStyle(Style.EMPTY.withColor(8276024)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.premium.tooltip")
 				.formatted(Formatting.UNDERLINE));

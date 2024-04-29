@@ -2,9 +2,27 @@
   "name": "Admiral Navy Bean",
   "icon": "pvzmod:admiralnavybean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 319,
-  "advancement": "pvzmod:make_navybean",
+  "sortnum": 62,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/admiralnavybean_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cocoa Beans, 1 Leather Helmet, 2 Aquatic Foliage, 1 Empty Seed Packet, 200 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/admiralnavybean.png"
+      ],
+      "title": "\uD83E\uDDEA Aquatics",
+      "border": "true",
+      "text": "$(#25228d)Admiral Navy Beans are twice as strong and twice as sailor as Navy Beans."
+    },
     {
       "type": "text",
       "text": [
@@ -19,19 +37,6 @@
         "$(br)$(#bd951a)For we have received orders,",
         "$(br)$(#bd951a)For to sail to Dark Ages"
       ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/admiralnavybean.png"
-      ],
-      "title": "\uD83D\uDDE1 Enforce Family",
-      "border": "true",
-      "text": "$(#25228d)Admiral Navy Beans are twice as strong and twice as sailor as Navy Beans."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/admiralnavybean"
     },
     {
       "type": "text",

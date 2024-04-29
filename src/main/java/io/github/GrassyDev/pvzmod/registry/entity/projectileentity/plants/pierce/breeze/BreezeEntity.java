@@ -91,7 +91,7 @@ public class BreezeEntity extends PvZProjectileEntity implements GeoEntity {
 			this.remove(RemovalReason.DISCARDED);
 		}
 
-		if (!this.getWorld().isClient && this.age >= 7) {
+		if (!this.getWorld().isClient && this.age >= 8) {
 			this.getWorld().sendEntityStatus(this, (byte) 3);
 			this.remove(RemovalReason.DISCARDED);
 		}

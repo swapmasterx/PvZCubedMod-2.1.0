@@ -512,10 +512,10 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 						}
 						this.lightning((LivingEntity) entity);
 						this.lightningCounter = 3;
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE),damage);
-						generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage2);
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE),damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage2);
 					} else {
 						this.lightningCounter = 3;
 						if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -526,8 +526,8 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 						}
 						this.lightning((LivingEntity) entity);
 						this.lightningCounter = 3;
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

@@ -2,7 +2,7 @@
   "name": "Missile Toe",
   "icon": "pvzmod:missiletoe_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 89,
+  "sortnum": 97,
   "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
@@ -26,10 +26,6 @@
       "title": "❄ Winter Family",
       "border": "true",
       "text": "$(#25228d)Missile Toes launch cold blasts that damage, chill and slow zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/missiletoe"
     },
     {
       "type": "text",

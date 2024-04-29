@@ -2,7 +2,7 @@
   "name": "Meteor Hammer",
   "icon": "pvzmod:meteorhammer_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 110,
+  "sortnum": 73,
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/meteorhammer.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83D\uDDE1 Brusiers",
       "border": "true",
       "text": "$(#25228d)Meteor Hammers charge a powerful attack when not attacking."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/meteorhammer"
     },
     {
       "type": "text",

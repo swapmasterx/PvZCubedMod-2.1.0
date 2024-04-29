@@ -2,8 +2,8 @@
   "name": "Spring Bean",
   "icon": "pvzmod:springbean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 57,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 43,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
       "type": "text",
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/springbean.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⏳ Staller",
       "border": "true",
       "text": "$(#25228d)Spring Beans bounce back zombies that get too close."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/springbean"
     },
     {
       "type": "text",

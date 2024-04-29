@@ -2,8 +2,8 @@
   "name": "Pea Pod",
   "icon": "pvzmod:peapod_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 59,
-  "advancement": "pvzmod:make_peashooter",
+  "sortnum": 47,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
@@ -24,10 +24,6 @@
       "title": "⭘ Appease Family",
       "border": "true",
       "text": "$(#25228d)Pea Pods can be planted in the same space for up to 5 times the destruction."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/peapod"
     },
     {
       "type": "text",

@@ -47,44 +47,44 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 		this.addSlot(new Slot(inventory, 1, 62, 11){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) && !itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		this.addSlot(new Slot(inventory, 2, 62, 29){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) && !itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		this.addSlot(new Slot(inventory, 3, 62, 47){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) && !itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		this.addSlot(new Slot(inventory, 4, 80, 11){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) && !itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		this.addSlot(new Slot(inventory, 5, 80, 29){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) && !itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		this.addSlot(new Slot(inventory, 6, 80, 47){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return !itemStack.isOf(ModItems.EMPTY_SEED_PACKET) && !itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) && !itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		//empty seed packet input
 		this.addSlot(new Slot(inventory, 7, 107, 11){
 			@Override
 			public boolean canInsert(ItemStack itemStack){
-				return itemStack.isOf(ModItems.EMPTY_SEED_PACKET) || itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET);
+				return itemStack.isOf(ModItems.EMPTY_SEED_PACKET) || itemStack.isOf(ModItems.EMPTY_UPGRADE_PACKET) || itemStack.isOf(ModItems.EMPTY_PREMIUM_PACKET);
 			}
 		});
 		//output

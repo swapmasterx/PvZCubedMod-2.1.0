@@ -545,7 +545,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 							double f5 = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 							double g5 = predictedPos.getZ() - this.plantEntity.getZ();
 							float h5 = MathHelper.sqrt(MathHelper.sqrt(df5)) * 0.5F;
-							proj5.setVelocity(e5 * (double) h5, f5 * (double) h5, g5 * (double) h5, 7.0F, 0F);
+							proj5.setVelocity(e5 * (double) h5, f5 * (double) h5, g5 * (double) h5, 0.7F, 0F);
 							proj5.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 1.25D, this.plantEntity.getZ());
 							proj5.setOwner(this.plantEntity);
 							proj5.canHitFlying = true;

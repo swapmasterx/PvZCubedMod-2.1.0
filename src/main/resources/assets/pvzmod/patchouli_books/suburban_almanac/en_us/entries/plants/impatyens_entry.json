@@ -2,8 +2,8 @@
   "name": "Impatyens",
   "icon": "pvzmod:impatyens_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 108,
-  "advancement": "pvzmod:make_narcissus",
+  "sortnum": 71,
+  "advancement": "pvzmod:make_beet",
   "pages": [
     {
       "type": "text",
@@ -22,7 +22,7 @@
       "images": [
         "pvzmod:textures/gui/entries/impatyens.png"
       ],
-      "title": "⏳ Contain Family",
+      "title":  "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Impatyens are versatile Plants that change their strengths based on nearby Plants."
     },
@@ -49,10 +49,6 @@
         "$(br)$(#bd951a)Filament: $()$(#ff0000)Electrocutes Zombies (5 Radius, 3 Chains, 4 DMG). No Splash.",
         "$(br)$(#bd951a)Arma: $()$(#ff0000)Lobbed. +2 Damage."
       ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/impatyens"
     },
     {
       "type": "text",

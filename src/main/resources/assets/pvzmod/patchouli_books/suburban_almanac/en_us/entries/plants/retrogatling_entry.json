@@ -2,8 +2,8 @@
   "name": "Retro Gatling",
   "icon": "pvzmod:retrogatling_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 148,
-  "advancement": "pvzmod:make_repeater",
+  "sortnum": 75,
+  "advancement": "pvzmod:make_peashooter",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/retrogatling.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "⭘ Shooter",
       "border": "true",
       "text": "$(#25228d)Retro Gatling fires piercing peas at a moderate speed."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/retrogatling"
     },
     {
       "type": "text",

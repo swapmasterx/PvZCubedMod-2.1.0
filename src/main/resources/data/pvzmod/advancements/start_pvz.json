@@ -18,7 +18,7 @@
         "items": [
           {
             "items": [
-              "pvzmod:sunflower_seed_packet"
+              "pvzmod:sunflowerseed_seed_packet"
             ],
             "count": {
               "min": 1,
@@ -30,27 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:gardenchallenge",
-      "pvzmod:plants/ailment/buttonshroom",
-      "pvzmod:plants/ailment/puffshroom",
-      "pvzmod:plants/ailment/scaredyshroom",
-      "pvzmod:plants/appease/peashooterpvz",
-      "pvzmod:plants/enforce/weeniebeanie",
-      "pvzmod:plants/arma/cabbagepult",
-      "pvzmod:plants/bombard/bombseedling",
-      "pvzmod:plants/bombard/potatomine",
-      "pvzmod:plants/contain/gravebuster",
-      "pvzmod:plants/enlighten/sunflowerpvz",
-      "pvzmod:plants/enlighten/sunshroom",
-      "pvzmod:plants/reinforce/lilypad",
-      "pvzmod:plants/reinforce/smallnut",
-      "pvzmod:plants/reinforce/wallnut",
-      "pvzmod:plants/spear/bellflower",
-      "pvzmod:plants/filament/zapricot",
-      "pvzmod:plants/appease/shamrock",
-      "pvzmod:my_book_recipe_shapeless"
-    ],
+    "recipes": [],
     "experience": 25
   }
 }

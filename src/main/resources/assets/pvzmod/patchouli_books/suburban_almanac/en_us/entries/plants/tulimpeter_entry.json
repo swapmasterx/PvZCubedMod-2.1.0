@@ -2,8 +2,8 @@
   "name": "Tulimpeter",
   "icon": "pvzmod:tulimpeter_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 106,
-  "advancement": "pvzmod:make_narcissus",
+  "sortnum": 70,
+  "advancement": "pvzmod:make_beet",
   "pages": [
     {
       "type": "text",
@@ -14,7 +14,7 @@
         "$(br)$(#bd951a)Range: $()$(#ff0000)7-14 (Attack Range), 4 (Heal Area)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Switches to healing when a zombie is 6 blocks away",
-        "$(br)$(#bd951a)They often say, \"He's such an unpredictable plant.\""
+        "$(br)$(#bd951a)Holds brass lessons every Thursday."
       ]
     },
     {
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/tulimpeter.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)A plant that can attack or heal depending on where the Zombies are."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/tulimpeter"
     },
     {
       "type": "text",

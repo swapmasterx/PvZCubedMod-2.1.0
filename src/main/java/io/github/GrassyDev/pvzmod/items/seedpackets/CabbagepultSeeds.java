@@ -80,7 +80,6 @@ public class CabbagepultSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.arma.family").setStyle(Style.EMPTY.withColor(8276024)));
-
 		tooltip.add(Text.translatable("item.pvzmod.cabbagepult_seed_packet.flavour")
 				.formatted(Formatting.DARK_GRAY));
 	}

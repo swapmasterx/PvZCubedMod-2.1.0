@@ -2,32 +2,38 @@
   "name": "Bellflower",
   "icon": "pvzmod:bellflower_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 322,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 6,
+  "advancement": "pvzmod:make_peashooter",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)12",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)5 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
-        "$(br2)$(#bd951a)She wants to ask Snowdrop out soooo badly, but she feels like she's always getting the cold shoulder."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/bellflower_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 1 Of any small flower, 1 Empty Seed Packet, 75 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/bellflower.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Rings out close range soundwaves that have a chance to crit."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/bellflower"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s (Pierce, 25% chance to deal +50% damage) ",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br2)$(#bd951a)She wants to ask Snowdrop out soooo badly, but she feels like she's always getting the cold shoulder."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

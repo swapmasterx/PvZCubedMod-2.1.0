@@ -78,7 +78,7 @@ public class BurstShroomSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.pepper.family").setStyle(Style.EMPTY.withColor(14490395)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.reinforce.family").setStyle(Style.EMPTY.withColor(11567676)));
 
 		tooltip.add(Text.translatable("item.pvzmod.burstshroom_seed_packet.flavour")
 				.formatted(Formatting.DARK_GRAY));

@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 275,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:threepeater_seed_packet",
+    "count": 1
+  }
+}

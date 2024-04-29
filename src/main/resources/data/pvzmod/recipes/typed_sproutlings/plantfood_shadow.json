@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "pvzmod:plantfood"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:plantfood_shadow",
+    "count": 8
+  }
+}

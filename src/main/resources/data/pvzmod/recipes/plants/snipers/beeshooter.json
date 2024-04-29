@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 325,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "item": "minecraft:honeycomb_block"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:beeshooter_seed_packet",
+    "count": 1
+  }
+}

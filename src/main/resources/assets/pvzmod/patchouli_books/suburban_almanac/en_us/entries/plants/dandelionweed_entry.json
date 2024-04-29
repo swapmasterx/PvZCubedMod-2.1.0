@@ -2,7 +2,7 @@
   "name": "Dandelion Weed",
   "icon": "pvzmod:dandelionweed_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 150,
+  "sortnum": 11,
   "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/dandelionweed.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83D\uDDE1 Bruisers",
       "border": "true",
       "text": "$(#25228d)Dandelions create small explosions around themselves."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/dandelionweed"
     },
     {
       "type": "text",

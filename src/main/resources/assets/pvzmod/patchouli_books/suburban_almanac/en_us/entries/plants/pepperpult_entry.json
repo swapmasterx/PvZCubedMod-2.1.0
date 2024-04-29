@@ -2,8 +2,8 @@
   "name": "Pepper-pult",
   "icon": "pvzmod:pepperpult_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 60,
-  "advancement": "pvzmod:make_cabbagepult",
+  "sortnum": 49,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
@@ -11,7 +11,7 @@
         "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)5 DMG/2.5s, 2 DMG (Splash)",
         "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)2.5 Blocks",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)25 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks (Lobbed)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Illuminating. Fire Damage.",
         "$(br2)$(#bd951a)Some say Pepper-pult is a hot head. Some find his fiery disposition off-putting. But the truth is, he's just very focused and determined."
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/pepperpult.png"
       ],
-      "title": "\uD83D\uDD25 Pepper Family",
+      "title": "\uD83C\uDFF9 Snipers",
       "border": "true",
       "text": "$(#25228d)Pepper-pults lob flaming peppers at zombies ."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/pepper/pepperpult"
     },
     {
       "type": "text",

@@ -2,8 +2,8 @@
   "name": "Cattail",
   "icon": "pvzmod:cattail_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 36,
-  "advancement": "pvzmod:make_navybean",
+  "sortnum": 83,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/cattail.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Cattails shut down flying zombies and zombies without headwear."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/cattail"
     },
     {
       "type": "text",

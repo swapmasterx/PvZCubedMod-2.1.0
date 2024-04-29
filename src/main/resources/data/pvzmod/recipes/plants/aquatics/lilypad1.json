@@ -1,0 +1,17 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 25,
+  "ingredients": [
+    {
+      "item": "minecraft:lily_pad"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:lilypad_seed_packet",
+    "count": 1
+  }
+}

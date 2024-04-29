@@ -153,7 +153,6 @@ public class SunflowerSeeds extends SeedItem implements FabricItem {
 					if (PVZCONFIG.nestedSun.sunflowerDropSun() && world.getGameRules().getBooleanValue(SHOULD_SUNFLOWER_DROP)){
 						plantEntity.playSound(PvZSounds.SUNDROPEVENT, 0.5F, 1F);
 						plantEntity.dropItem(ModItems.SUN);
-						plantEntity.dropItem(ModItems.SUN);
 					}
 
 					PlayerEntity user = context.getPlayer();

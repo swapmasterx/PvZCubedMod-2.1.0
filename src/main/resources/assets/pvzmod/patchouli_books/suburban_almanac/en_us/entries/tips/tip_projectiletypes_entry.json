@@ -48,17 +48,6 @@
         "$(br2)Similar to Splash, there's Explosion. They are not a type of projectile, but are another type of damage worth explaining.",
         "$(br2)Explosions deal damage in an area, hitting every Zombie except for ones behind shields, hitting the shields instead."
       ]
-    },
-    {
-      "type": "relations",
-      "entries": [
-        "pvzmod:plants/peashooter_entry",
-        "pvzmod:plants/bellflower_entry",
-        "pvzmod:plants/cabbagepult_entry",
-        "pvzmod:plants/firepea_entry",
-        "pvzmod:plants/navybean_entry",
-        "pvzmod:plants/snowqueenpea_entry"
-      ]
     }
   ]
 }

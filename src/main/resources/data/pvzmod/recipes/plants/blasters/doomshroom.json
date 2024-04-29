@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 150,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_fire"
+    },
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:plantfood_fire"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:doomshroom_seed_packet",
+    "count": 1
+  }
+}

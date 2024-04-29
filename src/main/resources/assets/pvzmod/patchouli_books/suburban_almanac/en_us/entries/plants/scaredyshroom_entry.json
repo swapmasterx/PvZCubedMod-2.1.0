@@ -2,12 +2,12 @@
   "name": "Scaredy-shroom",
   "icon": "pvzmod:scaredyshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 13,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 18,
+  "advancement": "pvzmod:make_magicshroom",
   "pages": [
     {
       "type": "text",
-      "text": ["$(#bd951a)Health: $()$(#ff0000)12",
+      "text": ["$(#bd951a)Health: $()$(#ff0000)5",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.3s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
@@ -20,13 +20,9 @@
       "images": [
         "pvzmod:textures/gui/entries/scaredyshroom.png"
       ],
-      "title": "\uD83E\uDDEA Ailment Family",
+      "title": "\uD83C\uDFF9 Snipers",
       "border": "true",
       "text": "$(#25228d)Takes Zombies out with superior range, but hides when they get close."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/scaredyshroom"
     },
     {
       "type": "text",

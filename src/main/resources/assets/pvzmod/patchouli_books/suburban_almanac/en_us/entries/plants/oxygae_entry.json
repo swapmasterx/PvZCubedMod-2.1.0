@@ -2,8 +2,8 @@
   "name": "Oxygae",
   "icon": "pvzmod:oxygae_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 47,
-  "advancement": "pvzmod:make_navybean",
+  "sortnum": 60,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -20,13 +20,9 @@
       "images": [
         "pvzmod:textures/gui/entries/oxygae.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "\uD83E\uDDEA Aquatics",
       "border": "true",
       "text": "$(#25228d)Lets you Plant on water and protects plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/oxygae"
     },
     {
       "type": "text",

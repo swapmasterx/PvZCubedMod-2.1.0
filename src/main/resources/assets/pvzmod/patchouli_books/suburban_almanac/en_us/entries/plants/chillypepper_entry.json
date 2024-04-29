@@ -2,8 +2,8 @@
   "name": "Chilly Pepper",
   "icon": "pvzmod:chillypepper_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 44,
-  "advancement": "pvzmod:make_gravebuster",
+  "sortnum": 41,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/chillypepper.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "❄ Chiller",
       "border": "true",
       "text": "$(#25228d)Chilly Peppers freeze many zombies and make a slowing barricade."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/chillypepper"
     },
     {
       "type": "text",

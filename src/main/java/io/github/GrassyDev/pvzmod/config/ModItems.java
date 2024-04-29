@@ -241,8 +241,6 @@ public class ModItems {
 		SEED_PACKET_LIST.add(ModItems.BANANASAURUS_SEED_PACKET);
 		LEGENDARY_SEED_LIST.add(ModItems.BANANASAURUS_SEED_PACKET);
 
-		SEED_PACKET_LIST.add(ModItems.WEENIEBEANIE_SEED_PACKET);
-
 		SEED_PACKET_LIST.add(ModItems.SMOOSHROOM_SEED_PACKET);
 		PREMIUM_SEED_LIST.add(ModItems.SMOOSHROOM_SEED_PACKET);
 
@@ -299,9 +297,9 @@ public class ModItems {
 
     public static final Item PEA = new PeaItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
     public static final Item SPORE = new SporeItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
-    public static final Item FUME = new FumeItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
+    public static final Item FUME = new FumeItem(new Item.Settings().maxCount(32).rarity(Rarity.COMMON));
 	public static final Item BREEZE = new BreezeItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
-	public static final Item ACIDFUME = new AcidFumeItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
+	public static final Item ACIDFUME = new AcidFumeItem(new Item.Settings().maxCount(32).rarity(Rarity.UNCOMMON));
 	public static final Item PIERCEPEA = new PiercePeaItem(new Item.Settings().maxCount(16).rarity(Rarity.EPIC));
 	public static final Item FIREPIERCEPEA = new FirePiercePeaItem(new Item.Settings().maxCount(16).rarity(Rarity.EPIC));
 	public static final Item HYPNO = new HypnoItem(new Item.Settings().maxCount(16).rarity(Rarity.EPIC));
@@ -311,7 +309,7 @@ public class ModItems {
 	public static final Item CABBAGE = new CabbageItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
 	public static final Item ICEBERG = new IcebergItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
 	public static final Item SNOWQUEENPEAPROJ = new SnowqueenpeaItem(new Item.Settings().maxCount(16).rarity(Rarity.EPIC));
-	public static final Item BOOMERANG = new BoomerangItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
+	public static final Item BOOMERANG = new BoomerangItem(new Item.Settings().maxCount(64).rarity(Rarity.UNCOMMON));
 	public static final Item FRISBEE = new FrisbeeItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
 	public static final Item COCONUT = new CoconutItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
 	public static final Item PEPPER = new PepperItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
@@ -327,7 +325,7 @@ public class ModItems {
 	public static final Item POWERBEESPIKE = new PowerBeeSpikeItem(new Item.Settings().maxCount(16).rarity(Rarity.EPIC));
 	public static final Item PUMPKINPROJ = new PumpkinItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
 	public static final Item HYPNOPROJ = new HypnoprojItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
-	public static final Item CARDPROJ = new CardItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
+	public static final Item CARDPROJ = new CardItem(new Item.Settings().maxCount(64).rarity(Rarity.COMMON));
 	public static final Item GOLDENCARDPROJ = new GoldenCardItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
 	public static final Item BUBBLES = new BubblesItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
 	public static final Item ARMORBUBBLE = new ArmorBubbleItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
@@ -350,6 +348,7 @@ public class ModItems {
 	public static final Item FERTILIZER = new Fertilizer(new Item.Settings().maxCount(64).rarity(Rarity.EPIC));
 	public static final Item EMPTY_SEED_PACKET = new Item(new Item.Settings().maxCount(64).rarity(Rarity.COMMON));
 	public static final Item EMPTY_UPGRADE_PACKET = new Item(new Item.Settings().maxCount(64).rarity(Rarity.EPIC));
+	public static final Item EMPTY_PREMIUM_PACKET = new Item(new Item.Settings().maxCount(64).rarity(Rarity.EPIC));
 	public static final Item UPGRADE_PACKET_FRAGMENT = new Item(new Item.Settings().maxCount(64).rarity(Rarity.UNCOMMON));
 
 	public static final Item SUNFLOWER_SEED_PACKET = new SunflowerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
@@ -439,7 +438,6 @@ public class ModItems {
 	public static final Item OILYOLIVE_SEED_PACKET = new OilyOliveSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item ZAPRICOT_SEED_PACKET = new ZapricotSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item BANANASAURUS_SEED_PACKET = new BananasaurusSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
-	public static final Item WEENIEBEANIE_SEED_PACKET = new WeenieBeanieSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item SMOOSHROOM_SEED_PACKET = new SmooshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item ADMIRALNAVYBEAN_SEED_PACKET = new AdmiralNavyBeanSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item NAVYBEAN_SEED_PACKET = new NavyBeanSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
@@ -655,6 +653,7 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"upgrade_packet_fragment"), UPGRADE_PACKET_FRAGMENT);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"empty_upgrade_packet"), EMPTY_UPGRADE_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"empty_seed_packet"), EMPTY_SEED_PACKET);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"empty_premium_packet"), EMPTY_PREMIUM_PACKET);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"icon_almanac"), ALMANAC);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"plantfood"), PLANTFOOD);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"plantfood_air"), PLANTFOOD_AIR);
@@ -836,7 +835,6 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"zapricot_seed_packet"), ZAPRICOT_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"bananasaurus_seed_packet"), BANANASAURUS_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"smooshroom_seed_packet"), SMOOSHROOM_SEED_PACKET);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"weeniebeanie_seed_packet"), WEENIEBEANIE_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"navybean_seed_packet"), NAVYBEAN_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"admiralnavybean_seed_packet"), ADMIRALNAVYBEAN_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"jumpingbean_seed_packet"), JUMPINGBEAN_SEED_PACKET);

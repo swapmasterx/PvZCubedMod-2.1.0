@@ -2,7 +2,7 @@
   "name": "Cheetah Chomper",
   "icon": "pvzmod:chester_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 146,
+  "sortnum": 90,
   "advancement": "pvzmod:make_chomper",
   "pages": [
     {
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/chester.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83D\uDDE1 Bruiser",
       "border": "true",
       "text": "$(#25228d)Cheetah Chompers quickly devour Zombies and spit sticky cheese."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/chester"
     },
     {
       "type": "text",

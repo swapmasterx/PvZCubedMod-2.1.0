@@ -2,9 +2,26 @@
   "name": "Peashooter",
   "icon": "pvzmod:peashooter_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 0,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 1,
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/peashooter_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Pea, 1 Empty Seed Packet, 100 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/peashooter.png"
+      ],
+      "title": "⭘ Shooter",
+      "border": "true",
+      "text": "$(#25228d)Peashooters are your first line of defense. They shoot peas at attacking Zombies."
+    },
     {
       "type": "text",
       "text": [
@@ -14,19 +31,6 @@
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
         "$(br2)$(#bd951a)How can a single Plant grow and shoot so many peas so quickly? Peashooter says, \"Hard work, commitment, and a healthy, well-balanced breakfast of sunlight and high-fiber carbon dioxide make it all possible.\""
       ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/peashooter.png"
-      ],
-      "title": "⭘ Appease Family",
-      "border": "true",
-      "text": "$(#25228d)Peashooters are your first line of defense. They shoot peas at attacking Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/peashooterpvz"
     },
     {
       "type": "text",

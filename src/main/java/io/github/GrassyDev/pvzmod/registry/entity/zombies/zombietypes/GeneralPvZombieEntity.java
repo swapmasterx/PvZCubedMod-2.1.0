@@ -538,22 +538,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 					tile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 					tile.setPersistent();
 					tile.setHeadYaw(0);
-					if (roseBudTile.getShadowPowered()){
-						tile.setShadowPowered(TileEntity.Shadow.TRUE);
-					}
-					if (roseBudTile.getMoonPowered()){
-						tile.setCount(PeapodCountVariants.THREE);
-					}
-					else {
-						if (ZOMBIE_STRENGTH.get(this.getType()).orElse(0) <= 3) {
-							tile.setCount(PeapodCountVariants.ONE);
-						} else if (ZOMBIE_STRENGTH.get(this.getType()).orElse(0) <= 4) {
-							tile.setCount(PeapodCountVariants.TWO);
-						} else {
-							tile.setCount(PeapodCountVariants.THREE);
-
-						}
-					}
+					tile.setShadowPowered(TileEntity.Shadow.TRUE);
 					serverWorld.spawnEntityAndPassengers(tile);
 				}
 			}
@@ -570,40 +555,41 @@ public class GeneralPvZombieEntity extends HostileEntity {
 						multiplier = 10;
 					}
 					double multiplierFinal = Math.pow(multiplier / 5, 2);
-					Item item = ModItems.SUN;
+					Item item;
 					double random2 = Math.random();
 					if (random2 <= 0.43){
-						item = ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.SEED_PACKET_LIST.size()));
+						item = ModItems.UPGRADE_PACKET_FRAGMENT;
 					}
 					else {
-						String zombieWorld = ZOMBIE_WORLD.get(this.getType()).orElse("basic");
-						item = switch (zombieWorld) {
-							case "night" -> ModItems.NIGHT_SEED_LIST.get(getRandom().nextInt(ModItems.NIGHT_SEED_LIST.size()));
-							case "pool" -> ModItems.POOL_SEED_LIST.get(getRandom().nextInt(ModItems.POOL_SEED_LIST.size()));
-							case "fog" -> ModItems.FOG_SEED_LIST.get(getRandom().nextInt(ModItems.FOG_SEED_LIST.size()));
-							case "roof" -> ModItems.ROOF_SEED_LIST.get(getRandom().nextInt(ModItems.ROOF_SEED_LIST.size()));
-							case "egypt" -> ModItems.EGYPT_SEED_LIST.get(getRandom().nextInt(ModItems.EGYPT_SEED_LIST.size()));
-							case "pirate" -> ModItems.PIRATE_SEED_LIST.get(getRandom().nextInt(ModItems.PIRATE_SEED_LIST.size()));
-							case "wildwest" -> ModItems.WILDWEST_SEED_LIST.get(getRandom().nextInt(ModItems.WILDWEST_SEED_LIST.size()));
-							case "future" -> ModItems.FUTURE_SEED_LIST.get(getRandom().nextInt(ModItems.FUTURE_SEED_LIST.size()));
-							case "darkages" -> ModItems.DARKAGES_SEED_LIST.get(getRandom().nextInt(ModItems.DARKAGES_SEED_LIST.size()));
-							case "beach" -> ModItems.BEACH_SEED_LIST.get(getRandom().nextInt(ModItems.BEACH_SEED_LIST.size()));
-							case "frostbite" -> ModItems.FROSTBITE_SEED_LIST.get(getRandom().nextInt(ModItems.FROSTBITE_SEED_LIST.size()));
-							case "lostcity" -> ModItems.LOSTCITY_SEED_LIST.get(getRandom().nextInt(ModItems.LOSTCITY_SEED_LIST.size()));
-							case "skycity" -> ModItems.SKYCITY_SEED_LIST.get(getRandom().nextInt(ModItems.SKYCITY_SEED_LIST.size()));
-							case "fairytale" -> ModItems.FAIRYTALE_SEED_LIST.get(getRandom().nextInt(ModItems.FAIRYTALE_SEED_LIST.size()));
-							default -> ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.SEED_PACKET_LIST.size()));
-						};
-						if (item == null){
-							item = ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.SEED_PACKET_LIST.size()));
-						}
+						item = ModItems.UPGRADE_PACKET_FRAGMENT;
+//						String zombieWorld = ZOMBIE_WORLD.get(this.getType()).orElse("basic");
+//						item = switch (zombieWorld) {
+//							case "night" -> ModItems.NIGHT_SEED_LIST.get(getRandom().nextInt(ModItems.NIGHT_SEED_LIST.size()));
+//							case "pool" -> ModItems.POOL_SEED_LIST.get(getRandom().nextInt(ModItems.POOL_SEED_LIST.size()));
+//							case "fog" -> ModItems.FOG_SEED_LIST.get(getRandom().nextInt(ModItems.FOG_SEED_LIST.size()));
+//							case "roof" -> ModItems.ROOF_SEED_LIST.get(getRandom().nextInt(ModItems.ROOF_SEED_LIST.size()));
+//							case "egypt" -> ModItems.EGYPT_SEED_LIST.get(getRandom().nextInt(ModItems.EGYPT_SEED_LIST.size()));
+//							case "pirate" -> ModItems.PIRATE_SEED_LIST.get(getRandom().nextInt(ModItems.PIRATE_SEED_LIST.size()));
+//							case "wildwest" -> ModItems.WILDWEST_SEED_LIST.get(getRandom().nextInt(ModItems.WILDWEST_SEED_LIST.size()));
+//							case "future" -> ModItems.FUTURE_SEED_LIST.get(getRandom().nextInt(ModItems.FUTURE_SEED_LIST.size()));
+//							case "darkages" -> ModItems.DARKAGES_SEED_LIST.get(getRandom().nextInt(ModItems.DARKAGES_SEED_LIST.size()));
+//							case "beach" -> ModItems.BEACH_SEED_LIST.get(getRandom().nextInt(ModItems.BEACH_SEED_LIST.size()));
+//							case "frostbite" -> ModItems.FROSTBITE_SEED_LIST.get(getRandom().nextInt(ModItems.FROSTBITE_SEED_LIST.size()));
+//							case "lostcity" -> ModItems.LOSTCITY_SEED_LIST.get(getRandom().nextInt(ModItems.LOSTCITY_SEED_LIST.size()));
+//							case "skycity" -> ModItems.SKYCITY_SEED_LIST.get(getRandom().nextInt(ModItems.SKYCITY_SEED_LIST.size()));
+//							case "fairytale" -> ModItems.FAIRYTALE_SEED_LIST.get(getRandom().nextInt(ModItems.FAIRYTALE_SEED_LIST.size()));
+//							default -> ModItems.SEED_PACKET_LIST.get(getRandom().nextInt(ModItems.SEED_PACKET_LIST.size()));
+//						};
+//						if (item == null){
+//							item = ModItems.UPGRADE_PACKET_FRAGMENT;
+//						}
 					}
 
 					if (random <= 0.7 * multiplierFinal) {
 						dropItem(Items.ROTTEN_FLESH);
 					}
 					if (random <= 1 * multiplierFinal) {
-						if (random <= 0.04 * multiplierFinal) {
+						if (random <= 0.05 * multiplierFinal) {
 							dropItem(item);
 							playSound(LOOTGIFTDEVENT);
 						}
@@ -1471,7 +1457,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 					}
 					float damage = 12;
 					if (target instanceof EndurianEntity) {
-						damage = 6;
+						damage = 3;
 					}
 					if (!doesntBite && (target instanceof GravebusterEntity ||
 							target instanceof EndurianEntity) &&

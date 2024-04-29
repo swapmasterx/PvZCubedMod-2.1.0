@@ -2,8 +2,8 @@
   "name": "Tangle Kelp",
   "icon": "pvzmod:tanglekelp_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 19,
-  "advancement": "pvzmod:make_navybean",
+  "sortnum": 27,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
       "type": "text",
@@ -24,10 +24,6 @@
       "title": "\uD83D\uDDE1 Enforce Family",
       "border": "true",
       "text": "$(#25228d)Tangle Kelp are aquatic plants that pull the first Zombie that nears them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/tanglekelp"
     },
     {
       "type": "text",

@@ -6,11 +6,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond",
+          "name": "minecraft:honeycomb",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": 5
             }
           ],
           "conditions": [

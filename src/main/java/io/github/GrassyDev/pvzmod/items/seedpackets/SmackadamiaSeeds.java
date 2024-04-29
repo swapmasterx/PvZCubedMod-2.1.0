@@ -87,7 +87,6 @@ public class SmackadamiaSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.reinforce.family").setStyle(Style.EMPTY.withColor(11567676)));
-
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.fly.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

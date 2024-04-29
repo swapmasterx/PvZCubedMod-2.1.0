@@ -2,8 +2,8 @@
   "name": "Dogwood",
   "icon": "pvzmod:dogwood_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 600,
-  "advancement": "pvzmod:make_wallnut",
+  "sortnum": 8,
+  "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/dogwood.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⏳ Staller",
       "border": "true",
-      "text": "$(#25228d)Dogwoods slow Zombies in front of them by barking at them. Frightens small Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/dogwood"
+      "text": "$(#25228d)Dogwoods slow Zombies in front of them by barking at them. Frightens small Zombies to death."
     },
     {
       "type": "text",

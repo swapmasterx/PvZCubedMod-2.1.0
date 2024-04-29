@@ -88,22 +88,8 @@
       "type": "text",
       "text": [
         "$(br)Gold Tile",
-        "$(br2)Gold Tile produces one Small Sun every 3 minutes if there's a non-flying Plant on top of them. The Zombie Sun Radius is 10 blocks.",
+        "$(br2)Gold Tile produces one Small Sun every 3 minutes if there's a non-flying Plant on top of them. They can only produce sun if a Zombie is 10 blocks away from it.",
         "$(br2)They can be removed by right clicking them with a Gold Shovel."
-      ]
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br)Moonlight Tile",
-        "$(br2)Provides Full Moon power to plants inside it."
-      ]
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br)Shadow Tile",
-        "$(br2)Provides New Moon power to plants inside it."
       ]
     },
     {
@@ -127,15 +113,6 @@
     {
       "type": "text",
       "text": [
-        "$(br)Marigold Pile",
-        "$(br2)Can stack up to 3. When a Zombie steps on it, it loses a stack.",
-        "$(br2)When a Zombie steps on it, it will receive a status effect for 10 seconds, if it steps on another Marigold Pile with the effect, it gets hypnotized.",
-        "$(br2)They last for 1 minute or until they lose all stacks."
-      ]
-    },
-    {
-      "type": "text",
-      "text": [
         "$(br)Withered Marigold Pile",
         "$(br2)Can stack up to 3. When a Zombie steps on it, it loses a stack.",
         "$(br2)When a Zombie steps on it, it will receive a status effect that slows and weakens it for 10 seconds.",
@@ -147,21 +124,6 @@
       "text": [
         "$(br)Obstacle",
         "$(br2)Destroys Plants close to it. Takes damage, shielding zombies behind. They are Heavy. Gravebusters eat them."
-      ]
-    },
-    {
-      "type": "relations",
-      "entries": [
-        "pvzmod:zombies/trashcan_entry",
-        "pvzmod:zombies/basketballcarrier_entry",
-        "pvzmod:zombies/torchlight_entry",
-        "pvzmod:plants/iceberglettuce_entry",
-        "pvzmod:plants/torchwood_entry",
-        "pvzmod:plants/doomshroom_entry",
-        "pvzmod:plants/smackadamia_entry",
-        "pvzmod:plants/goldleaf_entry",
-        "pvzmod:plants/bananasaurus_entry",
-        "pvzmod:plants/doomrose_entry"
       ]
     }
   ]

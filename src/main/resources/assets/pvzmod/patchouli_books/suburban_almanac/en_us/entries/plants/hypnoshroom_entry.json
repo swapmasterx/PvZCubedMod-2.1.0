@@ -2,8 +2,8 @@
   "name": "Hypno-shroom",
   "icon": "pvzmod:hypnoshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 12,
-  "advancement": "pvzmod:make_gravebuster",
+  "sortnum": 17,
+  "advancement": "pvzmod:make_magicshroom",
   "pages": [
     {
       "type": "text",
@@ -19,13 +19,9 @@
       "images": [
         "pvzmod:textures/gui/entries/hypnoshroom.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Hypno-shrooms will make a Zombie turn around and fight for you."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/hypnoshroom"
     },
     {
       "type": "text",

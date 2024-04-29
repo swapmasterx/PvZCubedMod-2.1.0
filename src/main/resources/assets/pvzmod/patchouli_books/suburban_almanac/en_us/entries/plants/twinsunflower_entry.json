@@ -3,7 +3,7 @@
   "icon": "pvzmod:twinsunflower_seed_packet",
   "category": "pvzmod:plant_category",
   "advancement": "pvzmod:make_sunflower",
-  "sortnum": 34,
+  "sortnum": 76,
   "pages": [
     {
       "type": "text",
@@ -24,10 +24,6 @@
       "title": "☀ Enlighten Family",
       "border": "true",
       "text": "$(#25228d)Twin Sunflowers give twice as much sun as a normal sunflower."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/twinsunflower"
     },
     {
       "type": "text",

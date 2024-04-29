@@ -20,10 +20,10 @@ public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandle
     @Override
     protected void init() {
         super.init();
-        titleY = 0;
-        titleX = 100;
-        playerInventoryTitleY = 70;
-        playerInventoryTitleX = 100;
+        titleY = 70;
+        titleX = 120;
+        playerInventoryTitleY = 1000;
+        playerInventoryTitleX = 120;
     }
 
     @Override

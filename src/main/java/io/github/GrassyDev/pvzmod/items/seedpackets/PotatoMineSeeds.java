@@ -77,7 +77,6 @@ public class PotatoMineSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.bombard.family").setStyle(Style.EMPTY.withColor(16676888)));
-
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.instant.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

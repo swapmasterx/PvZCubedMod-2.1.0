@@ -2,8 +2,8 @@
   "name": "Smackadamia",
   "icon": "pvzmod:smackadamia_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 301,
-  "advancement": "pvzmod:make_wallnut",
+  "sortnum": 57,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/smackadamia.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "⛨ Barrier",
       "border": "true",
       "text": "$(#25228d)They block flying zombies and smack them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/smackadamia"
     },
     {
       "type": "text",

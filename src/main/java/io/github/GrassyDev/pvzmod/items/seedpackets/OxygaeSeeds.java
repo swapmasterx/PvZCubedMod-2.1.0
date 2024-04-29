@@ -85,8 +85,7 @@ public class OxygaeSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.reinforce.family").setStyle(Style.EMPTY.withColor(11567676)));
-
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.filament.family").setStyle(Style.EMPTY.withColor(3977628)));
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.aquatic.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

@@ -2,8 +2,11 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.sunflower.SunflowerEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.variants.plants.FumeshroomVariants;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -30,10 +33,14 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -65,6 +72,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
     private String controllerName = "puffcontroller";
 	public int sunProducingTime = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);
+	public int growUpTime = 0;
 	int raycastDelay = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);
 	public boolean produceSun;
 
@@ -284,7 +292,31 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 				this.discard();
 			}
 		}
+		if (this.growUpTime >= 48000){
+			PlantEntity plant = (PlantEntity) PvZEntity.SUNFLOWER.create(getWorld());
+			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
+			if ((this.getWorld() instanceof ServerWorld)) {
+				ServerWorld serverWorld = (ServerWorld) this.getWorld();
+				PlantEntity plantEntity = (PlantEntity) PvZEntity.SUNFLOWER.create(getWorld());
+				plantEntity.setTarget(this.getTarget());
+				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.setAiDisabled(this.isAiDisabled());
+				if (this.hasCustomName()) {
+					plantEntity.setCustomName(this.getCustomName());
+					plantEntity.setCustomNameVisible(this.isCustomNameVisible());
+				}
+				if (this.hasVehicle()){
+					plantEntity.startRiding(this.getVehicle(), true);
+				}
+
+				plantEntity.setPersistent();
+				serverWorld.spawnEntityAndPassengers(plantEntity);
+				this.remove(RemovalReason.DISCARDED);
+			}
+		}
 		if (this.isAlive()) {
+			++this.growUpTime;
 			this.setFuseSpeed(1);
 
 			int i = this.getFuseSpeed();
@@ -296,6 +328,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
 			if (this.currentFuseTime >= this.sunProducingTime) {
 				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
+
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					this.dropItem(ModItems.SMALLSUN);
 					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.sunseedSec() * 20);
@@ -304,6 +337,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 				}
 			}
 		}
+
 		this.targetZombies(this.getPos(), 3, true, false, true);
 	}
 
@@ -337,7 +371,8 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 25);
 
-			if (seedEntityList.size() <= 1) {
+			if (seedEntityList.size() <= 1 && this.getWorld().getAmbientDarkness() < 2 &&
+				this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2) {
 						this.sunProducerCheck = true;
 			}
 		}
@@ -350,7 +385,17 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 	public ItemStack getPickBlockStack() {
 		return ModItems.SUNFLOWERSEED_SEED_PACKET.getDefaultStack();
 	}
-
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		ItemStack itemStack = player.getStackInHand(hand);
+		if (itemStack.isOf(Items.BONE_MEAL)) {
+			this.growUpTime += 12000;
+			if (!player.getAbilities().creativeMode) {
+				itemStack.decrement(1);
+			}
+			return ActionResult.SUCCESS;
+		}
+		return super.interactMob(player, hand);
+	}
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 

@@ -2,8 +2,8 @@
   "name": "Frisbloom",
   "icon": "pvzmod:frisbloom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 113,
-  "advancement": "pvzmod:make_bellflower",
+  "sortnum": 42,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/frisbloom.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Frisblooms can hit up to three targets in their lane, twice each coming and going!"
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/frisbloom"
     },
     {
       "type": "text",

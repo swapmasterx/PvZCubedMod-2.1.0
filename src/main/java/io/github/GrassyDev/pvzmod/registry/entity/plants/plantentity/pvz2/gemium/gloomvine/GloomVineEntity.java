@@ -303,7 +303,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 
 	public static DefaultAttributeContainer.Builder createGloomVineAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D);
@@ -389,7 +389,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 		}
 
 		public void start() {
-			this.beamTicks = -10;
+			this.beamTicks = -8;
 			this.animationTicks = -21;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
@@ -422,7 +422,7 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 				}
 				if (this.animationTicks >= 0) {
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -10;
+					this.beamTicks = -8;
 					this.animationTicks = -21;
 				}
 				super.tick();

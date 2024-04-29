@@ -2,8 +2,8 @@
   "name": "Spikeweed",
   "icon": "pvzmod:spikeweed_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 21,
-  "advancement": "pvzmod:make_beet",
+  "sortnum": 29,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/spikeweed.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "✂ Crowd Controllers",
       "border": "true",
       "text": "$(#25228d)Spikeweed destroys objects and hurt any zombies that step on them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/spikeweed"
     },
     {
       "type": "text",

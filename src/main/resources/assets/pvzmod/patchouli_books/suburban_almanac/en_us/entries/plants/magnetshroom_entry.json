@@ -2,8 +2,8 @@
   "name": "Magnet-shroom",
   "icon": "pvzmod:magnetshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_gravebuster",
-  "sortnum": 25,
+  "advancement": "pvzmod:make_seashroom",
+  "sortnum": 36,
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/magnetshroom.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Magnet-shrooms remove helmets and other metal objects from zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/magnetshroom"
     },
     {
       "type": "text",

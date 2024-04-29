@@ -2,8 +2,8 @@
   "name": "Coconut Cannon",
   "icon": "pvzmod:coconutcannon_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 58,
-  "advancement": "pvzmod:make_cherrybomb",
+  "sortnum": 44,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
       "type": "text",
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/coconutcannon.png"
       ],
-      "title": "☄ Bombard Family",
+      "title": "☄ Blasters",
       "border": "true",
       "text": "$(#25228d)Coconut Cannons fire when clicked, causing a medium explosion on projectile impact."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/bombard/coconutcannon"
     },
     {
       "type": "text",

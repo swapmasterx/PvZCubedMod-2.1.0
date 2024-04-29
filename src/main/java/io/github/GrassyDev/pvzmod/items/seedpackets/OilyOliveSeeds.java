@@ -79,7 +79,6 @@ public class OilyOliveSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.contain.family").setStyle(Style.EMPTY.withColor(10987175)));
-
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.instant.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

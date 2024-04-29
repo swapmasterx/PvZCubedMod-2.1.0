@@ -2,8 +2,8 @@
   "name": "Narcissus",
   "icon": "pvzmod:narcissus_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 107,
-  "advancement": "pvzmod:make_bellflower",
+  "sortnum": 33,
+  "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/narcissus.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "\uD83E\uDDEA Aquatics",
       "border": "true",
       "text": "$(#25228d)Sometimes shoots stunning bubbles if planted in water."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/narcissus"
     },
     {
       "type": "text",

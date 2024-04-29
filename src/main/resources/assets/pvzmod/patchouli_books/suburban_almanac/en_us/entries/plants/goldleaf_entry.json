@@ -2,8 +2,8 @@
   "name": "Gold Leaf",
   "icon": "pvzmod:goldleaf_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_sunflower",
-  "sortnum": 81,
+  "advancement": "pvzmod:make_lightningreed",
+  "sortnum": 51,
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/goldleaf.png"
       ],
-      "title": "☀ Enlighten Family",
+      "title": "☀ Sun Producer",
       "border": "true",
       "text": "$(#25228d)Gold Leaves create a Gold Tile on planting."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/goldleaf"
     },
     {
       "type": "text",

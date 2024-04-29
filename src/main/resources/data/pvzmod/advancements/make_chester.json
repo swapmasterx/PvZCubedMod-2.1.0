@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:chester_seed_packet"
     },
-    "title": "A Cheesy Joke",
-    "description": "Craft a Cheetah Chomper",
-    "frame": "challenge",
+    "title": "This was an actual brand sponsored plant",
+    "description": "Craft a Chester Chomper",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_chomper",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
-    "experience": 100
+    "recipes": [],
+    "experience": 25
   }
 }

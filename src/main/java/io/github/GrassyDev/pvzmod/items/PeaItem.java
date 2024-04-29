@@ -23,13 +23,13 @@ public class PeaItem extends Item {
         super(settings);
     }
 
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-
-		tooltip.add(Text.translatable("item.pvzmod.creative")
-				.formatted(Formatting.UNDERLINE));
-	}
+//	@Override
+//	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+//		super.appendTooltip(stack, world, tooltip, context);
+//
+//		tooltip.add(Text.translatable("item.pvzmod.creative")
+//				.formatted(Formatting.UNDERLINE));
+//	}
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
@@ -39,15 +39,14 @@ public class PeaItem extends Item {
             ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, world);
             proj.setPos(user.getX(), user.getY() + 1f, user.getZ());
             proj.setOwner(user);
-            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.33f, 0);
+            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.5f, 0);
             world.spawnEntity(proj);
         }
 
         if (!user.getAbilities().creativeMode) {
             itemStack.decrement(1); // decrements itemStack if user is not in creative mode
-            user.getItemCooldownManager().set(this, 30);
         }
-
+		user.getItemCooldownManager().set(this, 30);
         return TypedActionResult.success(itemStack, world.isClient());
     }
 

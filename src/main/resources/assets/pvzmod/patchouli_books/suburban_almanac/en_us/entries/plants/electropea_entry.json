@@ -2,8 +2,8 @@
   "name": "Electro Pea",
   "icon": "pvzmod:electropea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 90,
-  "advancement": "pvzmod:make_repeater",
+  "sortnum": 88,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/electropea.png"
       ],
-      "title": "⚡ Filament Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Electro Peas fire orbs that pass through zombies and crackle with electrical power."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/filament/electropea"
     },
     {
       "type": "text",

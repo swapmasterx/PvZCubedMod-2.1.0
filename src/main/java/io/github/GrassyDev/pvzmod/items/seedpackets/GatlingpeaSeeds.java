@@ -56,7 +56,6 @@ public class GatlingpeaSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.appease.family").setStyle(Style.EMPTY.withColor(7714881)));
-
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.upgrade.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 350,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "minecraft:honey_block"
+    },
+    {
+      "item": "minecraft:honey_block"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:chester_seed_packet",
+    "count": 1
+  }
+}

@@ -1,12 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "pvzmod:zapricot_seed_packet"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "cGc",
+    " # "
   ],
+  "key": {
+    "#": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "c": {
+      "item": "minecraft:copper_ingot"
+    },
+    "G": {
+      "item": "minecraft:glow_berries"
+    }
+  },
   "result": {
     "item": "pvzmod:plantfood_elec",
-    "count": 1
+    "count": 2
   }
 }

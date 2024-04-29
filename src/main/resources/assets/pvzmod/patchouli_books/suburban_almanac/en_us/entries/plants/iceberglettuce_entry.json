@@ -2,7 +2,8 @@
   "name": "Iceberg Lettuce",
   "icon": "pvzmod:iceberglettuce_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 56,
+  "sortnum": 40,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
       "type": "text",
@@ -22,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/iceberglettuce.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "❄ Chiller",
       "border": "true",
       "text": "$(#25228d)Freeze a Zombie when stepped on and their Cold Plant Food makes icy plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/iceberglettuce"
     },
     {
       "type": "text",

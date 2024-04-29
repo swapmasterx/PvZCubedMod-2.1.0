@@ -49,7 +49,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     int maxsunResource = 1000;
     int sunCost = 0;
     int craftDelay = 0;
-    int maxcraftDelay = 40;
+    int maxcraftDelay = 50;
 
 	int missingSun = 0;
 

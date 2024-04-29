@@ -1,15 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "pvzmod:largesun"
-    },
-    {
-      "item": "pvzmod:largesun"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#"
   ],
+  "key": {
+    "#": {
+      "item": "minecraft:green_carpet"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
   "result": {
     "item": "pvzmod:gardeningglove",
-    "count": 1
+    "count": 16
   }
 }

@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:chomper_seed_packet"
     },
-    "title": "Voracious",
+    "title": "A quick bite?",
     "description": "Craft a Chomper",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:make_beet",
+  "parent": "pvzmod:make_bellflower",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,11 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/enforce/bananasaurus",
-      "pvzmod:plants/enforce/chester",
-      "pvzmod:plants/enforce/superchomper"
-    ],
+    "recipes": [],
     "experience": 25
   }
 }

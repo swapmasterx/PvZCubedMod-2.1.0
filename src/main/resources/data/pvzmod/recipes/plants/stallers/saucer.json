@@ -1,0 +1,20 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 50,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_air"
+    },
+    {
+      "item": "minecraft:pumpkin"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:saucer_seed_packet",
+    "count": 1
+  }
+}

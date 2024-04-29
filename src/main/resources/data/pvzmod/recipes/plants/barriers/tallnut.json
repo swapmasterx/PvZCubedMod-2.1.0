@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 125,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "tag": "minecraft:logs"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:tallnut_seed_packet",
+    "count": 1
+  }
+}

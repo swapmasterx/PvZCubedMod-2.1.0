@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:gloomshroom_seed_packet"
     },
-    "title": "Bloom & Gloom Seed Co.",
-    "description": "Craft a Gloom-shroom",
+    "title": "OG crowd devastator",
+    "description": "Craft the Gloom-Shroom Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_fumeshroom",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
+    "recipes": [],
     "experience": 100
   }
 }

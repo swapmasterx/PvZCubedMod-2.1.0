@@ -2,32 +2,39 @@
   "name": "Beet",
   "icon": "pvzmod:beet_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 41,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 67,
+
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)2012",
-        "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)6 DMG/1.5s",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
-        "$(br2)$(#bd951a)Beet’s a brawler, a tough root from the streets who won’t back down no matter how many zombies line up to take a crack at him. If anything, that makes him even more into it."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/beet_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Bark Enforced Sproutling, 4 Beetroot, 1 Empty Seed Packet, 175 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/beet.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83D\uDDE1 Bruisers",
       "border": "true",
       "text": "$(#25228d)Headbutts zombies into submission"
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/beet"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)6 DMG/1.5s",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
+        "$(br2)$(#bd951a)Beet’s a brawler, a tough root from the streets who won’t back down no matter how many zombies line up to take a crack at him. If anything, that makes him even more into it."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

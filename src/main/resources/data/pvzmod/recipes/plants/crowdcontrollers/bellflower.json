@@ -1,0 +1,20 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 75,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "tag": "minecraft:small_flowers"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:bellflower_seed_packet",
+    "count": 1
+  }
+}

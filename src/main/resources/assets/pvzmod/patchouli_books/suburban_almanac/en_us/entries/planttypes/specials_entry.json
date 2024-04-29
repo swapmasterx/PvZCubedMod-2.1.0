@@ -1,0 +1,28 @@
+{
+  "name": "Specials",
+  "icon": "minecraft:nether_star",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Special plants have various unique utility that don't quite fit in other categories."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/gravebuster_entry",
+        "pvzmod:plants/coffeebean_entry",
+        "pvzmod:plants/dripphylleia_entry",
+        "pvzmod:plants/heavenlypeach_entry",
+        "pvzmod:plants/tulimpeter_entry",
+        "pvzmod:plants/impatyens_entry",
+        "pvzmod:plants/magnetshroom_entry",
+        "pvzmod:plants/magnetoshroom_entry"
+      ],
+      "title": "⭐ Specials"
+    }
+  ]
+}

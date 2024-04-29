@@ -2,8 +2,8 @@
   "name": "Doom Rose",
   "icon": "pvzmod:doomrose_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 501,
-  "advancement": "pvzmod:make_charmshroom",
+  "sortnum": 95,
+  "advancement": "pvzmod:make_beet",
   "pages": [
     {
       "type": "text",
@@ -12,7 +12,7 @@
         "$(#bd951a)Damage: $()$(#ff0000)4x2 DMG/2s",
         "$(br)$(#bd951a)Area: $()$(#ff0000)Med Profile. Target's tile.",
         "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)When a Zombie dies to it, it drops a Withered Marigold Pile on it's tile, amount depending on it's strength.",
         "$(br2)$(#bd951a)Doom Rose really likes Doom, though doesn't have hands to rip and tear with so punching with rose buds will have to do."
         ]
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/doomrose.png"
       ],
-      "title": "☁ Conceal Family",
+      "title": "\uD83D\uDDE1 Bruisers",
       "border": "true",
-      "text": "$(#25228d)Doom Roses flood the field with hypnotizing flowers."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/conceal/doomrose"
+      "text": "$(#25228d)Doom Roses flood the field with withering flowers."
     },
     {
       "type": "text",

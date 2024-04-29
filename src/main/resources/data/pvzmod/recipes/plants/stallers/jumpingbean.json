@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "pvzmod:springhair"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:jumpingbean_seed_packet",
+    "count": 1
+  }
+}

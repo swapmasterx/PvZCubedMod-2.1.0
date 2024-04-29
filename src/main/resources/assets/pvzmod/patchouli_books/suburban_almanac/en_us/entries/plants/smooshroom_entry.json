@@ -2,7 +2,7 @@
   "name": "Smoo-shroom",
   "icon": "pvzmod:smooshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 318,
+  "sortnum": 92,
   "advancement": "pvzmod:make_hammerflower",
   "pages": [
     {
@@ -13,7 +13,7 @@
         "$(#bd951a)Smash Range: $()$(#ff0000)4 Blocks ",
         "$(#bd951a)Smash Radius: $()$(#ff0000)2.5 Blocks, center is 1.5 blocks in front. ",
         "$(#bd951a)Hammer Range: $()$(#ff0000)15 Blocks ",
-        "$(#bd951a)Seed: $()$(#ff0000)25s $(#bd951a)Stale: $()$(#ff0000)1.5%(Proj) ",
+        "$(#bd951a)Seed: $()$(#ff0000)25s",
         "$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Immune to Fire. The first 1.5s of the attack is charging, then decides if Smash or Hammer after.",
         "$(br)$(#bd951a)He learned the hammer-throwing technique from certain turtle siblings."
       ]
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/smooshroom.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83D\uDDE1 Brusier",
       "border": "true",
       "text": "$(#25228d)Charges, then either throws their hammer, or smashes the ground."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/smooshroom"
     },
     {
       "type": "text",

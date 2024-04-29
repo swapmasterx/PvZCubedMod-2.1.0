@@ -2,7 +2,7 @@
   "name": "Fire Peashooter",
   "icon": "pvzmod:firepea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 42,
+  "sortnum": 87,
   "advancement": "pvzmod:make_repeater",
   "pages": [
     {
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/firepeashooter.png"
       ],
-      "title": "\uD83D\uDD25 Pepper Family",
+      "title": "⭘ Shooter",
       "border": "true",
-      "text": "$(#25228d)Fire Peashooter shoots flaming and plasma peas down the lane."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/pepper/firepea"
+      "text": "$(#25228d)Shoots flaming splash damage peas and piercing plasma peas."
     },
     {
       "type": "text",

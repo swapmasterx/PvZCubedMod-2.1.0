@@ -2,7 +2,7 @@
   "name": "Iceberg-pult",
   "icon": "pvzmod:icebergpult_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 40,
+  "sortnum": 39,
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/icebergpult.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "❄ Chillers",
       "border": "true",
       "text": "$(#25228d)Iceberg-pults hurl icebergs at the enemy, slowing a group."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/icebergpult"
     },
     {
       "type": "text",

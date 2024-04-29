@@ -310,7 +310,7 @@ public class BananasaurusEntity extends PlantEntity implements GeoEntity, Ranged
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0D);
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D);
 	}
 
 	protected boolean canClimb() {

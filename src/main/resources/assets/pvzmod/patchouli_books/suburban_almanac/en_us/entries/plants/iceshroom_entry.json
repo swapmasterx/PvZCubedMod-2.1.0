@@ -2,8 +2,8 @@
   "name": "Ice-shroom",
   "icon": "pvzmod:iceshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 14,
-  "advancement": "pvzmod:make_chillypepper",
+  "sortnum": 19,
+  "advancement": "pvzmod:make_magicshroom",
   "pages": [
     {
       "type": "text",
@@ -24,13 +24,9 @@
       "images": [
         "pvzmod:textures/gui/entries/iceshroom.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "❄ Chillers",
       "border": "true",
       "text": "$(#25228d)Ice-shrooms temporarily immobilize all Zombies in a large area."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/iceshroom"
     },
     {
       "type": "text",

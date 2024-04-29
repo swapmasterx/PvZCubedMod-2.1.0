@@ -80,7 +80,6 @@ public class ChesterSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.enforce.family").setStyle(Style.EMPTY.withColor(2528827)));
-
 		tooltip.add(Text.translatable("item.pvzmod.chester_seed_packet.flavour")
 				.formatted(Formatting.DARK_GRAY));
 

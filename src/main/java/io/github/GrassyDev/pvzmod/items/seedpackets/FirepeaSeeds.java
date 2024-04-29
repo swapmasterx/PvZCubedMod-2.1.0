@@ -77,7 +77,7 @@ public class FirepeaSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.pepper.family").setStyle(Style.EMPTY.withColor(14490395)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.appease.family").setStyle(Style.EMPTY.withColor(7714881)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.premium.tooltip")
 				.formatted(Formatting.UNDERLINE));

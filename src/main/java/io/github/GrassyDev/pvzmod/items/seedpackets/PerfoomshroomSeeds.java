@@ -77,7 +77,7 @@ public class PerfoomshroomSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.enchant.family").setStyle(Style.EMPTY.withColor(16399550)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.bombard.family").setStyle(Style.EMPTY.withColor(16676888)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.premium.tooltip")
 				.formatted(Formatting.UNDERLINE));

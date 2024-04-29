@@ -2,8 +2,8 @@
   "name": "Fume-shroom",
   "icon": "pvzmod:fumeshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 10,
-  "advancement": "pvzmod:make_scaredyshroom",
+  "sortnum": 14,
+  "advancement": "pvzmod:make_puffshroom",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/fumeshroom.png"
       ],
-      "title": "\uD83E\uDDEA Ailment Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Fume-shrooms shoot fumes that can pass through Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/fumeshroompvz"
     },
     {
       "type": "text",

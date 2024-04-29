@@ -2,8 +2,8 @@
   "name": "Burst-shroom",
   "icon": "pvzmod:burstshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 49,
-  "advancement": "pvzmod:make_springbean",
+  "sortnum": 23,
+  "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
       "type": "text",
@@ -24,13 +24,9 @@
       "images": [
         "pvzmod:textures/gui/entries/burstshroom.png"
       ],
-      "title": "\uD83D\uDD25 Pepper Family",
+      "title": "⛨ Barrier",
       "border": "true",
       "text": "$(#25228d)Burst-shrooms bump away all Zombies that get too close."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/pepper/burstshroom"
     },
     {
       "type": "text",

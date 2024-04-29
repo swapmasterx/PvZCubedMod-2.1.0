@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:gatlingpea_seed_packet"
     },
-    "title": "The Pea War II flashbacks",
-    "description": "Craft a Gatling Pea",
+    "title": "Garden Warfare",
+    "description": "Craft the Gatling Pea Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_repeater",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
+    "recipes": [],
     "experience": 100
   }
 }

@@ -2,8 +2,8 @@
   "name": "Threepeater",
   "icon": "pvzmod:threepeater_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 18,
-  "advancement": "pvzmod:make_repeater",
+  "sortnum": 26,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/threepeater.png"
       ],
-      "title": "⭘ Appease Family",
+      "title": "⭘ Shooter",
       "border": "true",
       "text": "$(#25228d)Threepeaters shoot peas in three directions."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/threepeater"
     },
     {
       "type": "text",

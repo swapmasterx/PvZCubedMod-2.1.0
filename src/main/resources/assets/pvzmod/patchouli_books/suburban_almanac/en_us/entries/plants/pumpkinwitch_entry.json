@@ -2,14 +2,14 @@
   "name": "Pumpkin Witch",
   "icon": "pvzmod:pumpkinwitch_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 105,
-  "advancement": "pvzmod:make_charmshroom",
+  "sortnum": 55,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)25 Blocks (Lobbed)",
         "$(br)$(#bd951a)Pumpkin Recharge: $()$(#ff0000)25 Seconds",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Projectile converts a Zombie into a Pumpkin Zombie, then needs to recharge. Can only convert non-Covered medium Zombies.",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/pumpkinwitch.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "\uD83C\uDFF9 Snipers",
       "border": "true",
       "text": "$(#25228d)Putts a pumpkin that transforms mobs into friendly pumpkin zombies that explode on death."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/pumpkinwitch"
     },
     {
       "type": "text",

@@ -2,8 +2,8 @@
   "name": "Dripphylleia",
   "icon": "pvzmod:dripphylleia_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 102,
-  "advancement": "pvzmod:make_springbean",
+  "sortnum": 33,
+  "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
       "type": "text",
@@ -18,13 +18,9 @@
       "images": [
         "pvzmod:textures/gui/entries/dripphylleia.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "⭐ Specials",
       "border": "true",
       "text": "$(#25228d)Allows Aquatic Plants to be planted on land."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/drip"
     },
     {
       "type": "text",

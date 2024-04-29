@@ -16,7 +16,7 @@
       "type": "text",
       "text": [
         "$(br2)Reguardless, the first thing you should do outside your usual punching of trees is look for plants, and I'm ",
-        "not talking standard flora but living moving plants. It's good practice to punch them and collect what they drop.",
+        "not talking standard flora but living moving plants. It's good practice to punch them and collect what they drop. ",
         "You can't do much with that stuff yet but doing this now will help you a lot later."
       ]
     },
@@ -24,7 +24,7 @@
       "type": "text",
       "text": [
         "What you really want to look out for are sunflower seeds. They're found most commonly in flowery biomes like ",
-        "Flower Forests and the like. They produce small sun every 5 minutes like how chickens lay eggs. ",
+        "Flower Forests and the like. They produce small sun every 3 minutes like how chickens lay eggs. ",
         "You can also punch them to collect flower seeds which very important later."
       ]
     },
@@ -53,7 +53,8 @@
       "text": [
         "To use it, just place sun in the sun slot, put the required ingredients in the 2x3 grid and an empty seed packet in the respective slot. ",
         "So long as you have the sun to create a given plant the Botany Box will fabricate your new plants in seconds. Just note that plants stack to at most ",
-        "8 per slot, so organize yourself accordingly."
+        "8 per slot, so organize yourself accordingly. Recipes to create plants can be found in their almanac entries, ",
+        "and more entries can be unlocked by crafting plants listed in advancements."
       ]
     },
     {

@@ -2,7 +2,8 @@
   "name": "Shadow-shroom",
   "icon": "pvzmod:shadowshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 82,
+  "sortnum": 58,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -12,7 +13,7 @@
         "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
         "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon. Explodes, poisoning the strongest Zombie with headwear, or closest. Spawns uncommonly. Drops Shadow Plant Food",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon. Explodes, poisoning the strongest Zombie with headwear, or closest.",
         "$(br)$(#bd951a)Despite being such a poisonous fungus, Shadow-shroom is nonetheless a total cutie-pie."
       ]
     },
@@ -21,32 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/shadowshroom.png"
       ],
-      "title": "☁ Conceal Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
-      "text": "$(#25228d)Poisons a zombie near them and their Shadow Plant Food makes shadowy plants."
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br2)$(#bd951a)Damage: $()$(#ff0000)0",
-        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)1.5 Blocks",
-        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
-        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. New Moon Powered Form. Explodes, poisoning Zombies."
-      ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/shadowshroom_shadow.png"
-      ],
-      "title": "☁ Conceal Family",
-      "border": "true",
-      "text": "$(#25228d)Shadow-shroom's Shadow Form. Poisons all Zombies in range."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/conceal/shadowshroom"
+      "text": "$(#25228d)Poisons a zombie near them."
     },
     {
       "type": "text",

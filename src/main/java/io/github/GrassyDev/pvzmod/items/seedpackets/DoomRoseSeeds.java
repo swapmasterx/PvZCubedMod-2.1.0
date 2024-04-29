@@ -77,7 +77,7 @@ public class DoomRoseSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.conceal.family").setStyle(Style.EMPTY.withColor(8150669)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.enforce.family").setStyle(Style.EMPTY.withColor(2528827)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.fullmoon.tooltip")
 				.formatted(Formatting.UNDERLINE));

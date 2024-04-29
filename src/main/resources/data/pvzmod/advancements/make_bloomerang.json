@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:bloomerang_seed_packet"
     },
-    "title": "A Brick Joke",
-    "description": "Craft a Bloomerang",
+    "title": "Crikey!",
+    "description": "Craft the Bloomerang Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_frisbloom",
   "criteria": {

@@ -2,8 +2,8 @@
   "name": "Torchwood",
   "icon": "pvzmod:torchwood_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_wallnut",
-  "sortnum": 22,
+  "advancement": "pvzmod:make_spikeweed",
+  "sortnum": 31,
   "pages": [
     {
       "type": "text",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/torchwood.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "⛨ Barrier",
       "border": "true",
       "text": "$(#25228d)Torchwoods turn peas that pass through them into fireballs."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/torchwood"
     },
     {
       "type": "text",

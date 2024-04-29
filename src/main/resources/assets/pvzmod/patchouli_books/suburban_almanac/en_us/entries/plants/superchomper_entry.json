@@ -2,7 +2,7 @@
   "name": "Super Chomper",
   "icon": "pvzmod:superchomper_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 50,
+  "sortnum": 79,
   "advancement": "pvzmod:make_chomper",
   "pages": [
     {
@@ -25,10 +25,6 @@
       "title": "\uD83D\uDDE1 Enforce Family",
       "border": "true",
       "text": "$(#25228d)Super Chompers suck everything in front of them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/superchomper"
     },
     {
       "type": "text",

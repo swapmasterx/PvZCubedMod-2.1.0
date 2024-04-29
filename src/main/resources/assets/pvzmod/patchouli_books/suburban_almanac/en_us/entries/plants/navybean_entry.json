@@ -2,8 +2,8 @@
   "name": "Navy Bean",
   "icon": "pvzmod:navybean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 320,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 61,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -22,13 +22,9 @@
       "images": [
         "pvzmod:textures/gui/entries/navybean.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "\uD83E\uDDEA Aquatics",
       "border": "true",
       "text": "$(#25228d)Navy Beans whack zombies, but can also spit on them when on water."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/navybean"
     },
     {
       "type": "text",

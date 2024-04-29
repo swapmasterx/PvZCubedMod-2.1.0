@@ -2,7 +2,9 @@
   "name": "Oily Olive",
   "icon": "pvzmod:oilyolive_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 100,
+  "sortnum": 64,
+
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",
@@ -24,10 +26,6 @@
       "title": "⏳ Contain Family",
       "border": "true",
       "text": "$(#25228d)Leaves Oil behind and their Blazing Plant Food makes combustive plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/oilyolive"
     },
     {
       "type": "text",

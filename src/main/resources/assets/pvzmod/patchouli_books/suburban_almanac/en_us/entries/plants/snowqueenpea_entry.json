@@ -2,7 +2,7 @@
   "name": "Snow Queen Pea",
   "icon": "pvzmod:snowqueenpea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 46,
+  "sortnum": 78,
   "advancement": "pvzmod:make_snowpea",
   "pages": [
     {
@@ -26,10 +26,6 @@
       "title": "❄ Winter Family",
       "border": "true",
       "text": "$(#25228d)Deals extra damage to frozen targets, then slows down many zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/snowqueenpea"
     },
     {
       "type": "text",

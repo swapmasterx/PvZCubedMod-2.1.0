@@ -79,7 +79,6 @@ public class TulimpeterSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.enchant.family").setStyle(Style.EMPTY.withColor(16399550)));
-
 		tooltip.add(Text.translatable("item.pvzmod.tulimpeter_seed_packet.flavour")
 				.formatted(Formatting.DARK_GRAY));
 

@@ -2,14 +2,14 @@
   "name": "Gloom-vine",
   "icon": "pvzmod:gloomvine_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 94,
-  "advancement": "pvzmod:make_wallnut",
+  "sortnum": 54,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x4 1 DMG/2s (Area)",
+        "$(#bd951a)Health: $()$(#ff0000)30",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x5 DMG/2s (Area)",
         "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Low Profile. 5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Wraps around a Plant, protecting it from most damage.",
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/gloomvine.png"
       ],
-      "title": "☁ Conceal Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Gloom-vines deal damage around them and protects plants inside it."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/conceal/gloomvine"
     },
     {
       "type": "text",

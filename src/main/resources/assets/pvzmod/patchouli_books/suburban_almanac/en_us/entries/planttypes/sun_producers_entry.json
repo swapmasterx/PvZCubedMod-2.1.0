@@ -1,0 +1,27 @@
+{
+  "name": "Sun Producers",
+  "icon": "pvzmod:largesun",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Sun Producers produce sun, a critical component of plant creation.",
+        "$(br)Sun Producers need 5 blocks of space from sun producers of their own plant type to make sun."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/sunflowerseed_entry",
+        "pvzmod:plants/sunflower_entry",
+        "pvzmod:plants/sunshroom_entry",
+        "pvzmod:plants/goldleaf_entry",
+        "pvzmod:plants/twinsunflower_entry",
+        "pvzmod:plants/vampireflower_entry"
+      ],
+      "title": "☀ Sun Producers:"
+    }
+  ]
+}

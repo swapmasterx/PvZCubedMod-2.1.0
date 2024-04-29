@@ -1,10 +1,28 @@
 {
-  "name": "Acid Goop-shroom",
+  "name": "Acid-Shroom",
   "icon": "pvzmod:acidshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 149,
+  "sortnum": 35,
   "advancement": "pvzmod:make_seashroom",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/acidshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 1 Acid Fume, 1 Green Dye, 1 Aquatic Foliage, 1 Empty Seed Packet, 125 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/acidshroom.png"
+      ],
+      "title": "\uD83E\uDDEA Aquatics",
+      "border": "true",
+      "text": "$(#25228d)Acid-Shrooms shoot fumes that can pass through zombies and destroy metal."
+    },
     {
       "type": "text",
       "text": [
@@ -12,23 +30,11 @@
         "$(br)$(#bd951a)Damage: $()$(#ff0000)1x4 DMG/2s (Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)7 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Shoots piercing acid fumes that devastate metal objects and briefly slow.",
-        "$(br2)$(#bd951a)Acid Goop-shroom's job is to suck the toxins from the water and recycle it by shooting it at zombies. They are serious about environmental activism."
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Does acid damage that devastate metal objects.",
+        "$(br2)$(#bd951a)Acid-shroom's job is to suck the toxins from the water and recycle it by shooting it at zombies. They are serious about environmental activism."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/acidshroom.png"
-      ],
-      "title": "\uD83E\uDDEA Ailment Family",
-      "border": "true",
-      "text": "$(#25228d)Acid Goop-shrooms shoot goop that can pass through zombies and destroy metal."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/acidshroom"
-    },
+
     {
       "type": "text",
       "title": "References",

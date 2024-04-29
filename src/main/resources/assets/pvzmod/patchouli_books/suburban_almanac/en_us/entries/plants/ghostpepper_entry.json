@@ -2,8 +2,8 @@
   "name": "Ghost Pepper",
   "icon": "pvzmod:ghostpepper_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 92,
-  "advancement": "pvzmod:make_spikeweed",
+  "sortnum": 59,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
       "type": "text",

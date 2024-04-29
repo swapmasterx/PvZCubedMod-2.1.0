@@ -77,7 +77,6 @@ public class CoconutCannonSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.bombard.family").setStyle(Style.EMPTY.withColor(16676888)));
-
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.2x2.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

@@ -89,8 +89,7 @@ public class NarcissusSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.spear.family").setStyle(Style.EMPTY.withColor(4210752)));
-
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.filament.family").setStyle(Style.EMPTY.withColor(3977628)));
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.amphibious.tooltip")
 				.formatted(Formatting.UNDERLINE));
 

@@ -2,7 +2,8 @@
   "name": "Sea-shroom",
   "icon": "pvzmod:seashroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 24,
+  "sortnum": 34,
+  "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
       "type": "text",
@@ -20,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/seashroom.png"
       ],
-      "title": "\uD83E\uDDEA Ailment Family",
+      "title": "\uD83E\uDDEA Aquatics",
       "border": "true",
-      "text": "$(#25228d)Sea-shrooms are short-ranged aquatic plants that destroys metal."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/seashroom"
+      "text": "$(#25228d)Sea-shrooms are aquatic plants that destroys metal."
     },
     {
       "type": "text",

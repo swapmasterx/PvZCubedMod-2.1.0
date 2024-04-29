@@ -2,7 +2,7 @@
   "name": "Vampire Flower",
   "icon": "pvzmod:vampireflower_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 147,
+  "sortnum": 77,
   "advancement": "pvzmod:make_sunflower",
   "pages": [
     {
@@ -24,10 +24,6 @@
       "title": "☀ Enlighten Family",
       "border": "true",
       "text": "$(#25228d)Vampire Flowers suck Sun out of Zombies, damaging them directly."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/vampireflower"
     },
     {
       "type": "text",

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#B#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "pvzmod:fume"
+    },
+    "B": {
+      "item": "minecraft:blue_ice"
+    }
+  },
+  "result": {
+    "item": "pvzmod:breeze",
+    "count": 4
+  }
+}

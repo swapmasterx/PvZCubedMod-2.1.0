@@ -2,7 +2,7 @@
   "name": "Spikerock",
   "icon": "pvzmod:spikerock_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 39,
+  "sortnum": 84,
   "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
@@ -21,13 +21,9 @@
       "images": [
         "pvzmod:textures/gui/entries/spikerock.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "✂ Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Spikerocks destroy multiple objects and hurt any zombies that step on them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/spikerock"
     },
     {
       "type": "text",

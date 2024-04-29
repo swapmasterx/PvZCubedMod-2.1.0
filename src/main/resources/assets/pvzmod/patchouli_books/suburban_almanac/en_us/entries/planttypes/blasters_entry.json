@@ -1,0 +1,28 @@
+{
+  "name": "Blasters",
+  "icon": "minecraft:tnt",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Blaster Plants deal massive damage that can obliterate large groups of enemies.",
+        "$(br)However they come with long recharge times and are often single use. Those that aren't take up more space then other plants."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/cherrybomb_entry",
+        "pvzmod:plants/potatomine_entry",
+        "pvzmod:plants/doomshroom_entry",
+        "pvzmod:plants/jalapeno_entry",
+        "pvzmod:plants/bombseedling_entry",
+        "pvzmod:plants/coconutcannon_entry",
+        "pvzmod:plants/perfoomshroom_entry"
+      ],
+      "title": "☄ Blasters:"
+    }
+  ]
+}

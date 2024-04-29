@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+  "group": "boat",
+  "suncost": 175,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:magicshroom_seed_packet",
+    "count": 1
+  }
+}

@@ -385,7 +385,7 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4D);
 	}
 
 	protected boolean canClimb() {

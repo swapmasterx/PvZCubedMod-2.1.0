@@ -2,8 +2,8 @@
   "name": "Tall-nut",
   "icon": "pvzmod:tallnut_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_wallnut",
-  "sortnum": 23,
+  "advancement": "pvzmod:make_spikeweed",
+  "sortnum": 32,
   "pages": [
     {
       "type": "text",
@@ -19,13 +19,9 @@
       "images": [
         "pvzmod:textures/gui/entries/tallnut.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "⛨ Barrier",
       "border": "true",
       "text": "$(#25228d)Tall-nuts are heavy-duty wall plants that blocks most zombies from going over."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/tallnut"
     },
     {
       "type": "text",

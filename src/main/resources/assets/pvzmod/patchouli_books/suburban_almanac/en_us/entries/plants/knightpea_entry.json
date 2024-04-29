@@ -2,7 +2,7 @@
   "name": "Pea of Valiance",
   "icon": "pvzmod:knightpea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 498,
+  "sortnum": 93,
   "advancement": "pvzmod:make_peanut",
   "pages": [
     {
@@ -23,13 +23,9 @@
       "images": [
         "pvzmod:textures/gui/entries/knightpea.png"
       ],
-      "title": "⭘ Appease Family",
+      "title": "⭘ Shooter",
       "border": "true",
       "text": "$(#25228d)Wears a suit of armor, granting it immense protection."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/knightpea"
     },
     {
       "type": "text",
