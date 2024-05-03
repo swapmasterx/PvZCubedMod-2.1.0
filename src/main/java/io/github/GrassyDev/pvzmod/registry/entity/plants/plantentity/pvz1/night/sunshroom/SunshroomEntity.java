@@ -235,7 +235,7 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 225);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
 
 
 			if (sunShroomList.size() <= 1) {

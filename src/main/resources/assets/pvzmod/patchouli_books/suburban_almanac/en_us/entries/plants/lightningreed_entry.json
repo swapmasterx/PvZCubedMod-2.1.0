@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/lightningreed_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Electro Leaf, 1 Aquatic Foliage, 1 Empty Seed Packet, 125 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/lightningreed.png"
+      ],
+      "title": "\uD83E\uDDEA Aquatics",
+      "border": "true",
+      "text": "$(#25228d)Lightning Reeds shoot lightning at a Zombie. The bolt will then arc and hit other zombies."
+    },
+    {
       "type": "text",
       "text":[
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -14,7 +32,7 @@
         "$(br)$(#bd951a)Electric Chains: $()$(#ff0000)5 Chains",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Illuminating. Electrocutes Zombies. Can target any Zombie.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Illuminating. Can target any Zombie. Amphibious.",
         "$(br2)$(#bd951a)This may come as a shock, but Lightning Reed has a serious passion for ham radio. His call sign is El3ctric H1ccup."
       ]
     },

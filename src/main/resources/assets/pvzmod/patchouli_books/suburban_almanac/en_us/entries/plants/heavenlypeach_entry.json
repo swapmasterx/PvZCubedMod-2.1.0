@@ -7,14 +7,13 @@
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Heal: $()$(#ff0000)8 HP/1s",
-        "$(br)$(#bd951a)Heal Radius: $()$(#ff0000)5 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Immune to damage. Heals Plants, Gardens, and Hypnotized Zombies for 10 seconds. Holding the Seed Packet will reveal Plants below 50% HP in a 10 block radius.",
-        "$(br2)$(#bd951a)Her resume says that she was once a peach of Wangmu Niangnian, but became a medic after being demoted to mortal."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/heavenlypeach_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 4 Glistering Melon, 1 Empty Seed Packet, 200 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +24,17 @@
       "border": "true",
       "text": "$(#25228d)Heals plants around it."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Heal: $()$(#ff0000)8 HP/1s",
+        "$(br)$(#bd951a)Heal Radius: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Flying. Immune to damage. Heals Plants, Gardens, and Hypnotized Zombies for 10 seconds. Holding the Seed Packet will reveal Plants below 50% HP in a 10 block radius.",
+        "$(br2)$(#bd951a)Her resume says that she was once a peach of Wangmu Niangnian, but became a medic after being demoted to mortal."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

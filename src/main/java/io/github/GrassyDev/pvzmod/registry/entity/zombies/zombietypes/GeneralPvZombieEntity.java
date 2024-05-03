@@ -536,7 +536,6 @@ public class GeneralPvZombieEntity extends HostileEntity {
 					MariTile tile = (MariTile) PvZEntity.MARITILE.create(getWorld());
 					tile.refreshPositionAndAngles(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), 0, 0);
 					tile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-					tile.setPersistent();
 					tile.setHeadYaw(0);
 					tile.setShadowPowered(TileEntity.Shadow.TRUE);
 					serverWorld.spawnEntityAndPassengers(tile);

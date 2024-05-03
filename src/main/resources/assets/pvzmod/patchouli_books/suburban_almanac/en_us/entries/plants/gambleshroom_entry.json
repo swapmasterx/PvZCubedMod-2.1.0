@@ -6,16 +6,13 @@
   "advancement": "pvzmod:make_magicshroom",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x3 DMG/1.5s (3 Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Magic Hat: $()$(#ff0000)10(Range), 30s(Recharge), 32HP",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Magic-shroom. Magic Hat drops loot instead of a Zombie when destroyed. Zombies drop loot when killed by it.",
-        "$(br)$(#bd951a)Currently owes money to banks, loan sharks, friends, family, and counting..."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/gambleshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 3 Card, 1 Gold Block, 1 Empty Upgrade Packet, 100 Sun value."
     },
     {
       "type": "image",
@@ -26,6 +23,19 @@
       "border": "true",
       "text": "$(#25228d)Gamble-shrooms hats make money instead of friendly zombies."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x3 DMG/1.5s (3 Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Magic Hat: $()$(#ff0000)10(Range), 30s(Recharge), 32HP",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Magic Hat drops loot instead of a Zombie when destroyed. Zombies drop loot when killed by it.",
+        "$(br)$(#bd951a)Currently owes money to banks, loan sharks, friends, family, and counting..."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_peanut",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/knightpea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Pea, 1 Sproutling, 1 Iron Chestplate, 1 Empty Seed Packet, 200 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/knightpea.png"
+      ],
+      "title": "⭘ Shooter",
+      "border": "true",
+      "text": "$(#25228d)Wears a suit of armor, granting it immense protection."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)150",
@@ -18,15 +36,7 @@
         "$(br2)$(#bd951a)Will joust for honor, for justice, for honor again--preferably between nine and five. "
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/knightpea.png"
-      ],
-      "title": "⭘ Shooter",
-      "border": "true",
-      "text": "$(#25228d)Wears a suit of armor, granting it immense protection."
-    },
+
     {
       "type": "text",
       "title": "References",

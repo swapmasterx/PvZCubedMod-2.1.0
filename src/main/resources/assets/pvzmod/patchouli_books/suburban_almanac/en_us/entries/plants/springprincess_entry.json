@@ -7,6 +7,24 @@
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/springprincess_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 2 Spring Grass, 1 Empty Seed Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/springprincess.png"
+      ],
+      "title": "⏳ Stallers",
+      "border": "true",
+      "text": "$(#25228d)Lobs springs to deal damage to zombies and bounce them back."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -17,15 +35,7 @@
         "$(br)$(#bd951a)She refused many princes trying to rescue her from her tall tower. Why? She is still waiting for a princess in shining armor."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/springprincess.png"
-      ],
-      "title": "⏳ Stallers",
-      "border": "true",
-      "text": "$(#25228d)Shoots springs to deal damage to zombies and bounce them back."
-    },
+
     {
       "type": "text",
       "title": "References",

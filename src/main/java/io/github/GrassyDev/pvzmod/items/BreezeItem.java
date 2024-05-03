@@ -46,7 +46,7 @@ public class BreezeItem extends Item {
         if (!user.getAbilities().creativeMode) {
             itemStack.decrement(1); // decrements itemStack if user is not in creative mode
         }
-		user.getItemCooldownManager().set(this, 20);
+		user.getItemCooldownManager().set(this, 80);
         return TypedActionResult.success(itemStack, world.isClient());
     }
 

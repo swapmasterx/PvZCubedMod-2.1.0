@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/tanglekelp_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)4 Kelp, 1 Empty Seed Packet, 25 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Damage: $()$(#ff0000)Insta-kill",

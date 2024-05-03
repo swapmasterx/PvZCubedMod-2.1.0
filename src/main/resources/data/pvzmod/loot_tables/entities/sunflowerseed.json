@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:plantfood_flower",
+          "name": "pvzmod:sunflowerseed_seed_packet",
           "functions": [
             {
               "function": "minecraft:set_count",

@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/snowpea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Pea, 1 Empty Seed Packet, 175 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",

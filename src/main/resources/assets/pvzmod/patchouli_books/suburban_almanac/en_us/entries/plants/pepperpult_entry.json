@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/pepperfult_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Bark Enforced Sproutling, 1 Sproutling, 1 Torchflower, 1 Empty Seed Packet, 200 Sun value."
+    }, {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/pepperpult.png"
+      ],
+      "title": "\uD83C\uDFF9 Snipers",
+      "border": "true",
+      "text": "$(#25228d)Pepper-pults lob flaming peppers at zombies ."
+    },
+
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -17,15 +35,7 @@
         "$(br2)$(#bd951a)Some say Pepper-pult is a hot head. Some find his fiery disposition off-putting. But the truth is, he's just very focused and determined."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/pepperpult.png"
-      ],
-      "title": "\uD83C\uDFF9 Snipers",
-      "border": "true",
-      "text": "$(#25228d)Pepper-pults lob flaming peppers at zombies ."
-    },
+
     {
       "type": "text",
       "title": "References",

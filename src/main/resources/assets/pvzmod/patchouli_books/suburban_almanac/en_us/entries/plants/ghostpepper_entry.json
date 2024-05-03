@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/ghostpepper_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Dark Leaf, 1 Clover, 1 White Banner, 1 Empty Seed Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/ghostpepper.png"
+      ],
+      "title": "✂ Crowd Controller",
+      "border": "true",
+      "text": "$(#25228d)Ghost Peppers haunt zombies that pass by."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Damage: $()$(#ff0000)6 DMG/1s $(#bd951a)Area: $()$(#ff0000)Low Profile, 2 Blocks in front and behind, 3 wide. ",
@@ -18,15 +36,7 @@
         "$(br)$(#bd951a)She didn't always wear that bed sheet. After trying it on as a joke it just stuck with her."
         ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/ghostpepper.png"
-      ],
-      "title": "☁ Conceal Family",
-      "border": "true",
-      "text": "$(#25228d)Ghost Peppers haunt zombies that pass by."
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond",
+          "name": "minecraft:lightning_rod",
           "functions": [
             {
               "function": "minecraft:set_count",

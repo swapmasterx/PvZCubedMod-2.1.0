@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/iceburglettuce_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Empty Seed Packet, 0 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/iceberglettuce.png"
+      ],
+      "title": "❄ Chiller",
+      "border": "true",
+      "text": "$(#25228d)Freezes a Zombie when stepped on."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Damage: $()$(#ff0000)2",
@@ -18,15 +36,7 @@
         "$(br)$(#bd951a)Don't get lost staring into Iceberg's cute eyes. If you do, it will be your last step... but only if you're a Zombie."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/iceberglettuce.png"
-      ],
-      "title": "❄ Chiller",
-      "border": "true",
-      "text": "$(#25228d)Freeze a Zombie when stepped on and their Cold Plant Food makes icy plants."
-    },
+
     {
       "type": "text",
       "title": "References",

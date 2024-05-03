@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_peashooter",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/retrogatling_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Pea, 1 Iron Helmet, 1 Empty Upgrade Packet, 175 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/retrogatling.png"
+      ],
+      "title": "⭘ Shooter",
+      "border": "true",
+      "text": "$(#25228d)Retro Gatling fires piercing peas at a moderate speed."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -17,15 +35,7 @@
         "$(br2)$(#bd951a)Retro Gatling uses the ancient Peashooter techniques of manually cranking out peas. Although less total d-pea-s, the peas are ancient and far more piercing."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/retrogatling.png"
-      ],
-      "title": "⭘ Shooter",
-      "border": "true",
-      "text": "$(#25228d)Retro Gatling fires piercing peas at a moderate speed."
-    },
+
     {
       "type": "text",
       "title": "References",

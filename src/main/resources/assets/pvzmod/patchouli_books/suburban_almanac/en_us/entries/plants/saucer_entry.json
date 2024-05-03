@@ -1,10 +1,19 @@
 {
-  "name": "Saucer",
+  "name": "Saucer Squash",
   "icon": "pvzmod:saucer_seed_packet",
   "category": "pvzmod:plant_category",
   "sortnum": 56,
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/saucer_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Pumpkin, 1 Clover, 1 Empty Seed Packet, 50 Sun value."
+    },
     {
       "type": "text",
       "text": [

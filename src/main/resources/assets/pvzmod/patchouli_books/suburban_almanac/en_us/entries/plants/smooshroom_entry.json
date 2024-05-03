@@ -6,18 +6,15 @@
   "advancement": "pvzmod:make_hammerflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)30 ",
-        "$(#bd951a)Damage: $()$(#ff0000)11 DMG/3s (Smash), 6 DMG/3s (Hammer) ",
-        "$(#bd951a)Smash Range: $()$(#ff0000)4 Blocks ",
-        "$(#bd951a)Smash Radius: $()$(#ff0000)2.5 Blocks, center is 1.5 blocks in front. ",
-        "$(#bd951a)Hammer Range: $()$(#ff0000)15 Blocks ",
-        "$(#bd951a)Seed: $()$(#ff0000)25s",
-        "$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Immune to Fire. The first 1.5s of the attack is charging, then decides if Smash or Hammer after.",
-        "$(br)$(#bd951a)He learned the hammer-throwing technique from certain turtle siblings."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/smooshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 1 Anvil, 1 Empty Premium Packet, 350 Sun value."
     },
+
     {
       "type": "image",
       "images": [
@@ -26,6 +23,19 @@
       "title": "\uD83D\uDDE1 Brusier",
       "border": "true",
       "text": "$(#25228d)Charges, then either throws their hammer, or smashes the ground."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)30 ",
+        "$(#bd951a)Damage: $()$(#ff0000)11 DMG/3s (Smash), 7 DMG/3s (Hammer) ",
+        "$(#bd951a)Smash Range: $()$(#ff0000)4 Blocks ",
+        "$(#bd951a)Smash Radius: $()$(#ff0000)2.5 Blocks, center is 1.5 blocks in front. ",
+        "$(#bd951a)Hammer Range: $()$(#ff0000)15 Blocks ",
+        "$(#bd951a)Seed: $()$(#ff0000)25s",
+        "$(#bd951a)Special: $()$(#ff0000)Immune to Fire. The first 1.5s of the attack is charging, then decides if Smash or Hammer after.",
+        "$(br)$(#bd951a)He learned the hammer-throwing technique from certain turtle siblings."
+      ]
     },
     {
       "type": "text",

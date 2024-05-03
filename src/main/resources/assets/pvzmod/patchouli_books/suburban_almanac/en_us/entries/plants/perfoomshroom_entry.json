@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_doomshroom",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/perfoomshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Doom-Shroom Seed Packet, 1 Beauty-Shroom, 1 Empty Premium Packet, 0 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/perfoomshroom.png"
+      ],
+      "title": "☄ Blaster",
+      "border": "true",
+      "text": "$(#25228d)They hypnotize every Zombie that survives their blast."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)12",
@@ -18,15 +36,7 @@
         "$(br)$(#bd951a)This lovely smelling shroom is dolled up and ready to go!"
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/perfoomshroom.png"
-      ],
-      "title": "☄ Blaster",
-      "border": "true",
-      "text": "$(#25228d)They hypnotize every Zombie that survives their blast."
-    },
+
     {
       "type": "text",
       "title": "References",

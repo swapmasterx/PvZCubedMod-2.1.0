@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/electropea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Electro Leaf, 1 Pea, 1 Sproutling, 1 Empty Premium Packet, 300 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/electropea.png"
+      ],
+      "title": "✂ Crowd Controller",
+      "border": "true",
+      "text": "$(#25228d)Electro Peas fire orbs that pass through zombies and crackle with electrical power."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -18,15 +36,7 @@
         "$(br2)$(#bd951a)Electric Peashooter expects resistance, but he doesn't want to ohm anybody."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/electropea.png"
-      ],
-      "title": "✂ Crowd Controller",
-      "border": "true",
-      "text": "$(#25228d)Electro Peas fire orbs that pass through zombies and crackle with electrical power."
-    },
+
     {
       "type": "text",
       "title": "References",

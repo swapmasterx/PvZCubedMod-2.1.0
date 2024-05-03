@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_chomper",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/superchomper_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 2 Iron Ingot, 1 Empty Upgrade Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/superchomper.png"
+      ],
+      "title": "\uD83D\uDDE1 Brusier",
+      "border": "true",
+      "text": "$(#25228d)Super Chompers inhales nearby zombies before chewing it all down."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)30 ",
@@ -17,21 +35,13 @@
         "$(br)$(#bd951a)Super Chomper wins any eating contest he enters. Only one problem: It's because he ends up eating the competition too. He sucks."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/superchomper.png"
-      ],
-      "title": "\uD83D\uDDE1 Enforce Family",
-      "border": "true",
-      "text": "$(#25228d)Super Chompers suck everything in front of them."
-    },
+
     {
       "type": "text",
       "title": "References",
       "text": [
         "$(br)$(#bd951a)Plants vs. Zombies: Social Edition: $()$(#ff0000)Chomper",
-        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Chomper"
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Chomper (plantfood effect)"
       ]
     }
   ]

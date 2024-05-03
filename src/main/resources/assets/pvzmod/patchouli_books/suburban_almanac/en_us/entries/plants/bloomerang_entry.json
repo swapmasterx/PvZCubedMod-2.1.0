@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_frisbloom",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/bloomerang_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Clover, 1 Flower Seeds, 1 Frisbee, 1 Empty Upgrade Packet, 175 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/bloomerang.png"
+      ],
+      "title": "✂ Crowd Controller",
+      "border": "true",
+      "text": "$(#25228d)Hurls a spread of Boomerangs that deal damage coming and going!"
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)20 ",
@@ -16,15 +34,7 @@
         "$(br)$(#bd951a)As the first new member to your home defense team, Bloomerang enjoys listening to his Bob Barley albums."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/bloomerang.png"
-      ],
-      "title": "✂ Crowd Controller",
-      "border": "true",
-      "text": "$(#25228d)Bloomerangs can hit up to 3 targets in three directions!"
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,14 +6,13 @@
   "advancement": "pvzmod:make_fumeshroom",
   "pages": [
     {
-      "type": "text",
-      "text": ["$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s (3 Zombie Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Poisons Zombies. Hides when a zombie is 6 blocks away. Damages, Poisons, and slows Zombies 3 blocks away.",
-        "$(br)$(#bd951a)She specializes in Fung Fu, and the technique she's best at is \"hide and pretend there are no Zombies.\" It surprisingly works."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/nightcap_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Dark Leaf, 1 Mushroom Spores, 1 Fume, 1 Empty Premium Packet, 250 Sun value."
     },
     {
       "type": "image",
@@ -24,6 +23,17 @@
       "border": "true",
       "text": "$(#25228d)Poisons Zombies; Hides and does damage around herself when they get close."
     },
+    {
+      "type": "text",
+      "text": ["$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s (3 Zombie Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Poisons Zombies. Hides when a zombie is 6 blocks away. Damages, Poisons, and slows Zombies 3 blocks away.",
+        "$(br)$(#bd951a)She specializes in Fung Fu, and the technique she's best at is \"hide and pretend there are no Zombies.\" It surprisingly works."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,17 +6,14 @@
   "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)25 Blocks (Lobbed)",
-        "$(br)$(#bd951a)Pumpkin Recharge: $()$(#ff0000)25 Seconds",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Projectile converts a Zombie into a Pumpkin Zombie, then needs to recharge. Can only convert non-Covered medium Zombies.",
-        "$(br)$(#bd951a)Pumpkin Witch is a powerful arcane mage. For example, it can control its broom to clean the floor, cook, do the dishes..."
-      ]
-    },
-    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/pumpkinwitch_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Jack o' Lantern, 1 Brush, 1 Bark Enforced Sproutling, 1 Sproutling, 1 Empty Seed Packet, 275 Sun value."
+    },{
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/pumpkinwitch.png"
@@ -25,6 +22,19 @@
       "border": "true",
       "text": "$(#25228d)Putts a pumpkin that transforms mobs into friendly pumpkin zombies that explode on death."
     },
+
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)25 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Pumpkin Recharge: $()$(#ff0000)25 Seconds",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Projectile converts a Zombie into a Pumpkin Zombie, then needs to recharge.",
+        "$(br)$(#bd951a)Pumpkin Witch is a powerful arcane mage. For example, it can control its broom to clean the floor, cook, do the dishes..."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

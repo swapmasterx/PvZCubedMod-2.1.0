@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_puffshroom",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/fumeshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 2 Fume, 1 Empty Seed Packet, 75 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/fumeshroom.png"
+      ],
+      "title": "✂ Crowd Controller",
+      "border": "true",
+      "text": "$(#25228d)Shoots fumes that can pass through Zombies."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -16,15 +34,7 @@
         "$(br2)$(#bd951a)\"I was in a dead-end job producing yeast spores for a bakery,\" says Fume-shroom. \"Then Puff-shroom, bless 'im, told me about this great opportunity blasting Zombies.\""
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/fumeshroom.png"
-      ],
-      "title": "✂ Crowd Controller",
-      "border": "true",
-      "text": "$(#25228d)Fume-shrooms shoot fumes that can pass through Zombies."
-    },
+
     {
       "type": "text",
       "title": "References",

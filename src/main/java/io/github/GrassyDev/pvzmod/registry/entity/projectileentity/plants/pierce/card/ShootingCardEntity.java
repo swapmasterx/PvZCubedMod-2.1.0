@@ -257,9 +257,6 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 							hasHelmet = true;
 						}
 					}
-					if (!hasHelmet && !(entity instanceof ZombiePropEntity) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
-						damage = damage * 1;
-					}
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 					if ("crystal".equals(zombieMaterial)) {
 						damage = damage * 1;
@@ -308,11 +305,11 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 					}
 				}
 				if (!hasHelmet && !(entity instanceof ZombiePropEntity) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
-					damage = damage * 2;
+					damage = damage * 1;
 				}
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				if ("crystal".equals(zombieMaterial)) {
-					damage = damage * 2;
+					damage = damage * 1;
 				}
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {

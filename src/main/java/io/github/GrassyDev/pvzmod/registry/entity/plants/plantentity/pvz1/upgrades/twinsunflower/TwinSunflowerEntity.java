@@ -270,7 +270,7 @@ public class TwinSunflowerEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 900);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
 
 
 			if (twinSunflowerList.size() <= 1) {

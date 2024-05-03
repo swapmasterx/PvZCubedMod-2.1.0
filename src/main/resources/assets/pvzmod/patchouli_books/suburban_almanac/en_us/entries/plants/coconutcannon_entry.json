@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/coconutcannon_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Bark Enforced Sproutling, 1 Tnt, 1 Fuse Cherry, 1 Empty Seed Packet, 350 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/coconutcannon.png"
+      ],
+      "title": "☄ Blasters",
+      "border": "true",
+      "text": "$(#25228d)Coconut Cannons fire when clicked, causing a medium explosion on projectile impact."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)30",
@@ -18,15 +36,7 @@
         "$(br)$(#bd951a)Sure, he's a hairy old man, but Coconut Cannon can still fire on all cylinders. The reason he's so hairy: he's in-between waxings."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/coconutcannon.png"
-      ],
-      "title": "☄ Blasters",
-      "border": "true",
-      "text": "$(#25228d)Coconut Cannons fire when clicked, causing a medium explosion on projectile impact."
-    },
+
     {
       "type": "text",
       "title": "References",

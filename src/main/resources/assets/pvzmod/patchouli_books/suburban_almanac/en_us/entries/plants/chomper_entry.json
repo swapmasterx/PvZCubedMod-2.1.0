@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/chomper_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 1 Pointed Dripstone, 1 Empty Seed Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/chomper.png"
+      ],
+      "title": "\uD83D\uDDE1 Bruiser",
+      "border": "true",
+      "text": "$(#25228d)Chompers can devour a Zombie whole, but they are vulnerable while chewing."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)20 ",
@@ -16,15 +34,6 @@
         "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Kills a Zombie instantly, but has to chew it afterwards. Immune if they are Big or above, a Grave, or a Machine. Will eat a Shield or Cover instead of the Zombie.",
         "$(br)$(#bd951a)Chomper never gets the hint when you offer her a mint."
       ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/chomper.png"
-      ],
-      "title": "\uD83D\uDDE1 Bruiser",
-      "border": "true",
-      "text": "$(#25228d)Chompers can devour a Zombie whole, but they are vulnerable while chewing."
     },
     {
       "type": "text",

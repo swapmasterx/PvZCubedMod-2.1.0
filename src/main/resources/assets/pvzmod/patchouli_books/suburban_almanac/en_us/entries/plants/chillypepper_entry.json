@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/chillypepper_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 2 Blue Ice, 1 Empty Seed Packet, 100 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/chillypepper.png"
+      ],
+      "title": "❄ Chiller",
+      "border": "true",
+      "text": "$(#25228d)Explodes and creates a line of chilling ice perpendicular to its target."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Damage: $()$(#ff0000)30",
@@ -18,21 +36,11 @@
         ]
     },
     {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/chillypepper.png"
-      ],
-      "title": "❄ Chiller",
-      "border": "true",
-      "text": "$(#25228d)Chilly Peppers freeze many zombies and make a slowing barricade."
-    },
-    {
       "type": "text",
       "title": "References",
       "text": [
         "$(br)$(#bd951a)Plants vs. Zombies Adventures: $()$(#ff0000)Chilly Pepper",
-        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Chilly Pepper",
-        "$(br2)$(#bd951a)Plants vs. Zombies 3: $()$(#ff0000)Chilly Pepper"
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Chilly Pepper"
       ]
     }
   ]

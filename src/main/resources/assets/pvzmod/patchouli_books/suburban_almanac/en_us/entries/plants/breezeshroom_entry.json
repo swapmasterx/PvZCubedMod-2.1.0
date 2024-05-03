@@ -6,15 +6,13 @@
   "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x4 1 DMG/2s (Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Wind Damage. Chills Zombies.",
-        "$(br2)$(#bd951a)\"I was in a dead-end job cooling desserts at a bakery,\" says Breeze-shroom. \"Then Fume-shroom, bless 'im, told me about this great opportunity blowing Zombies.\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/breezeshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Mushroom Spores, 2 Breeze, 1 Empty Seed Packet, 175 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +23,18 @@
       "border": "true",
       "text": "$(#25228d)Breeze-shrooms shoot a chilly wind that slows down multiple zombies."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)x4 1 DMG/2s (Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)7 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Wind Damage. Chills Zombies.",
+        "$(br2)$(#bd951a)\"I was in a dead-end job cooling desserts at a bakery,\" says Breeze-shroom. \"Then Fume-shroom, bless 'im, told me about this great opportunity blowing Zombies.\""
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,16 +6,13 @@
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10 ",
-        "$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s, 2 DMG (Splash) ",
-        "$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks ",
-        "$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)17.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Multiple forms that depends on the family of the Plant it's currently facing. Turn page for details.",
-        "$(br)$(#bd951a)She always wanted to be a famous makeup artist, posting selfies dyed all sorts of different colors, but doesn't know that everyone prefers her in her natural color."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/impatyens_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Flower Seeds, 1 Oxeye Daisy, 1 of any small flower, 150 Sun value."
     },
     {
       "type": "image",
@@ -29,19 +26,34 @@
     {
       "type": "text",
       "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10 ",
+        "$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s, 2 DMG (Splash) ",
+        "$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks ",
+        "$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)17.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Multiple forms that depends on the family of the Plant it's currently facing. Turn page for details.",
+        "$(br)$(#bd951a)She always wanted to be a famous makeup artist, posting selfies dyed all sorts of different colors, but doesn't know that everyone prefers her in her natural color."
+      ]
+    },
+
+    {
+      "type": "text",
+      "text": [
+        "Note: Currently uses legacy plant groups. Will be fixed in next update.",
         "$(#bd951a)Contain: $()$(#ff0000)Slows Zombies down for 0.5s.",
         "$(br)$(#bd951a)Appease: $()$(#ff0000)+2 Damage.",
         "$(br)$(#bd951a)Spear: $()$(#ff0000)No Splash. 3 Pierce.",
         "$(br)$(#bd951a)Conceal: $()$(#ff0000)No Splash. -2 Damage. Infinite Pierce.",
         "$(br)$(#bd951a)Enforce: $()$(#ff0000)No Splash. +6 Damage. 7 Blocks Range.",
         "$(br)$(#bd951a)Enchant: $()$(#ff0000)Magic Damage.",
-        "$(br)$(#bd951a)Ailment: $()$(#ff0000)Poisons Zombies.",
-        "$(br)$(#bd951a)Bombard: $()$(#ff0000)Burns Zombies. +2 Splash Damage."
+        "$(br)$(#bd951a)Ailment: $()$(#ff0000)Poisons Zombies."
+
       ]
     },
     {
       "type": "text",
       "text": [
+        "$(br)$(#bd951a)Bombard: $()$(#ff0000)Burns Zombies. +2 Splash Damage.",
         "$(#bd951a)Reinforce: $()$(#ff0000)0.5s Stun to Zombie directly damaged.",
         "$(br)$(#bd951a)Enlighten: $()$(#ff0000)-2 Damage. +2 Splash Damage. Can damage Stealthing Zombies.",
         "$(br)$(#bd951a)Winter: $()$(#ff0000)Chills Zombies.",

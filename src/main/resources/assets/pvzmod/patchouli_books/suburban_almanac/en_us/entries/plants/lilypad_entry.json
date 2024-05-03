@@ -6,13 +6,14 @@
   "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)0s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. Low Profile on ground. Allows non-underground plants to be planted on water.",
-        "$(br2)$(#bd951a)Lily Pad never complains. Lily Pad never wants to know what's going on. Put a Plant on top of Lily Pad, they won't say a thing. Do they have startling opinions or shocking secrets? Nobody knows."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/lilypad_r.png",
+        "pvzmod:textures/gui/entry_recipies/lilypad1_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Aquatic Foliage 'or' 1 Lily Pad, 1 Empty Seed Packet, 25 Sun value."
     },
     {
       "type": "image",
@@ -23,6 +24,16 @@
       "border": "true",
       "text": "$(#25228d)Lets you Plant non-Aquatics Plants on water."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)8",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)0s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. Low Profile on ground. Allows non-underground plants to be planted on water.",
+        "$(br2)$(#bd951a)Lily Pad never complains. Lily Pad never wants to know what's going on. Put a Plant on top of Lily Pad, they won't say a thing. Do they have startling opinions or shocking secrets? Nobody knows."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

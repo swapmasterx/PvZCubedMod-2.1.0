@@ -17,15 +17,7 @@
       "type": "text",
       "text": [
         "$(br2)Sun producer plants have a universal condition. They will not make sun if a sun producer of the same kind of plant ",
-        "is within a 5 block radius of them. 6 or more and its business as usual. However the same is not the case if they are different plants.",
-        "$(br)Two Sunflowers won't make sun if they are right next to each other. But a Sunflower and Sunflower Seed? They'll produce sun just fine."
-      ]
-    },
-    {
-      "type": "text",
-      "text": [
-        "$(br2)Sun producer plants have a universal condition. They will not make sun if a sun producer of the same kind of plant ",
-        "is within a 5 block radius of them. 6 or more and its business as usual. However the same is not the case if they are different plants.",
+        "is within a 4 block radius of them. 5 or more and its business as usual. However the same is not the case if they are different plants.",
         "$(br)Two Sunflowers won't make sun if they are right next to each other. But a Sunflower and Sunflower Seed? They'll produce sun just fine."
       ]
     },
@@ -33,7 +25,7 @@
       "type": "text",
       "text": [
         "$(br2)Certain sun producers also have unique conditions as well for sun production.",
-        "$(br)Sunflower Seeds won't produce any sun outside direct sunlight.",
+        "$(br)Sunflower Seeds won't produce any sun without access to sunlight.",
         "$(br)Sunflowers and Twin Sunflowers produce small sun instead of regular sun without access to sunlight.",
         "$(br)Sun-Shrooms are nocturnal, not producing sun at all during the day without the intervention of a coffee bean."
       ]

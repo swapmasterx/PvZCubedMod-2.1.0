@@ -6,11 +6,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond",
+          "name": "pvzmod:fume",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": 4
             }
           ],
           "conditions": [

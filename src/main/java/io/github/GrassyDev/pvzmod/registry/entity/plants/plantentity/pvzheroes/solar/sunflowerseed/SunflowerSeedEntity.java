@@ -31,12 +31,14 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
@@ -356,8 +358,8 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 	}
 
 	protected void produceSun() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5));
-		List<SunflowerSeedEntity> seedEntityList = this.getWorld().getNonSpectatingEntities(SunflowerSeedEntity.class, this.getBoundingBox().expand(5));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(4));
+		List<SunflowerSeedEntity> seedEntityList = this.getWorld().getNonSpectatingEntities(SunflowerSeedEntity.class, this.getBoundingBox().expand(4));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -369,7 +371,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 25);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
 
 			if (seedEntityList.size() <= 1 && this.getWorld().getAmbientDarkness() < 2 &&
 				this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) >= 2) {
@@ -467,13 +469,21 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
 
 	/** /~*~//~*SPAWNING*~//~*~/ **/
-
+//	public static boolean canSunflowerSeedSpawn(EntityType<? extends SunflowerSeedEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
+//		boolean bl = SpawnReason.method_54987(spawnReason) || isBrightEnoughForNaturalSpawn(world, pos);
+//		return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && bl;
+//	}
+//
+//	protected static boolean isBrightEnoughForNaturalSpawn(BlockRenderView world, BlockPos pos) {
+//		return world.getBaseLightLevel(pos, 0) > 8;
+//	}
 	public static boolean canSunflowerSeedSpawn(EntityType<? extends SunflowerSeedEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
 		BlockPos blockPos = pos.down();
 		return !world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&
+			world.getBlockState(blockPos).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) &&
 					!checkPlant(Vec3d.ofCenter(pos), world, type) &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && world.getAmbientDarkness() < 4 &&
-				world.getLightLevel(LightType.SKY, pos) > 10 && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
+					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
+				world.getBaseLightLevel(pos, 0) > 8 && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
 	}
 
 

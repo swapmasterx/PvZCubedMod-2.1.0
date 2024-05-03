@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/meteorhammer_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 1 Beetroot, 2 Pointed Dripstone, 1 Empty Seed Packet, 225 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)20 ",
@@ -13,7 +22,7 @@
         "$(#bd951a)Damage Radius: $()$(#ff0000)2.5 Blocks, center is 1.5 blocks in front.",
         "$(#bd951a)Range: $()$(#ff0000)3 Blocks, 4-8 Blocks(Charge) ",
         "$(#bd951a)Seed Time: $()$(#ff0000)15s ",
-        "$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Charges when a Zombie is in range, increasing damage for one strike.",
+        "$(#bd951a)Special: $()$(#ff0000)Charges when a Zombie is in range, increasing damage for it's next strike.",
         "$(br)$(#bd951a)Used to be hammer rivals with Hammer Flower, but then one day, \"I reject my hammer, FlowFlow!\" Since then, he became Meteor Hammer."
       ]
     },

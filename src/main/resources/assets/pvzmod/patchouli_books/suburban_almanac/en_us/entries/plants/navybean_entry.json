@@ -6,16 +6,13 @@
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)12 DMG/1s (Melee), 2 DMG/1.5s (Spit)",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
-        "$(br)$(#bd951a)Spit Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed: $()$(#ff0000)5s $(#bd951a)Stale: $()$(#ff0000)1.5% (Proj)",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. Can only spit on water.",
-        "$(br2)$(#bd951a)After he lost his wife he swore to destroy all zombies. He swore like a sailor."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/navybean_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cocoa Beans, 1 Aquatic Foliage, 1 Empty Seed Packet, 100 Sun value."
     },
     {
       "type": "image",
@@ -24,8 +21,21 @@
       ],
       "title": "\uD83E\uDDEA Aquatics",
       "border": "true",
-      "text": "$(#25228d)Navy Beans whack zombies, but can also spit on them when on water."
+      "text": "$(#25228d)Navy Beans whack zombies, but can also spit at them when on water."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)5 DMG/1s (Melee), 2 DMG/1.5s (Spit)",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
+        "$(br)$(#bd951a)Spit Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed: $()$(#ff0000)5s $(#bd951a)Stale: $()$(#ff0000)1.5% (Proj)",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. Can only spit on water.",
+        "$(br2)$(#bd951a)After he lost his wife he swore to destroy all zombies. He swore like a sailor."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

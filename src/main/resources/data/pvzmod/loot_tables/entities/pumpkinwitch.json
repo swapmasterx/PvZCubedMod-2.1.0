@@ -6,7 +6,28 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:sun",
+          "name": "minecraft:carved_pumpkin",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:killed_by_player",
+              "inverse": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brush",
           "functions": [
             {
               "function": "minecraft:set_count",

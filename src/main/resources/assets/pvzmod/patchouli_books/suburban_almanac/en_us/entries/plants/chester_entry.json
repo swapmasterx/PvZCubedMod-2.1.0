@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_chomper",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/chester_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 2 Honey Block, 1 Slime Ball, 1 Empty Premium Packet, 300 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/chester.png"
+      ],
+      "title": "\uD83D\uDDE1 Bruiser",
+      "border": "true",
+      "text": "$(#25228d)Cheetah Chompers quickly devour Zombies and spit sticky cheese."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)20 ",
@@ -17,15 +35,7 @@
         "$(br)$(#bd951a)Crazy Dave accidentally planted a chunk of cheese in his Zen garden..."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/chester.png"
-      ],
-      "title": "\uD83D\uDDE1 Bruiser",
-      "border": "true",
-      "text": "$(#25228d)Cheetah Chompers quickly devour Zombies and spit sticky cheese."
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,12 +6,13 @@
   "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Creates Water Tiles in a 3x3 area around it.",
-        "$(br2)$(#bd951a)As a member of the fire brigade, Dripphylleia has extreme enthusiasm for extinguishing fire, down to the smallest flame, and always carries ice water for cooling down very hot objects."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/dripphylleia_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 3 Aquatic Foliage, 1 Empty Seed Packet, 50 Sun value."
     },
     {
       "type": "image",
@@ -22,6 +23,15 @@
       "border": "true",
       "text": "$(#25228d)Allows Aquatic Plants to be planted on land."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Creates Water Tiles in a 3x3 area around it. Water tiles disappear after some time unless planted on.",
+        "$(br2)$(#bd951a)As a member of the fire brigade, Dripphylleia has extreme enthusiasm for extinguishing fire, down to the smallest flame, and always carries ice water for cooling down very hot objects."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

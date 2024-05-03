@@ -52,8 +52,8 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int maxAge = 90;
-	public int returnAge = 25;
+	public int maxAge = 85;
+	public int returnAge = 20;
 
 	private int returningTicks = 7;
 	private boolean retuningStart;

@@ -6,15 +6,13 @@
   "advancement": "pvzmod:make_magicshroom",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
-        "$(br)$(#bd951a)Contact Damage: $()$(#ff0000)12",
-        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)4s",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Only on Obstacles. Tall. Eats medium or lower obstacles then vanishes after. Damages Zombies that eat it.",
-        "$(br)$(#bd951a)Despite Grave Buster's fearsome appearance, he wants everyone to know that he loves kittens and spends his off hours volunteering at a local Zombie rehabilitation center."
-        ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/graveyard_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cactus, 1 Empty Seed Packet, 25 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +23,19 @@
       "border": "true",
       "text": "$(#25228d)Plant Grave Busters on top of graves to remove them. "
     },
+
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Contact Damage: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)4s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Only on Obstacles. Tall. Eats medium or lower obstacles then vanishes after. Damages Zombies that eat it.",
+        "$(br)$(#bd951a)Despite Grave Buster's fearsome appearance, he wants everyone to know that he loves kittens and spends his off hours volunteering at a local Zombie rehabilitation center."
+        ]
+    },
+
     {
       "type": "text",
       "title": "References",

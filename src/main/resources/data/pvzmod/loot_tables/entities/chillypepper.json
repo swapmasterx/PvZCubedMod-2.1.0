@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:chillypepper_seed_packet",
+          "name": "minecraft:blue_ice",
           "functions": [
             {
               "function": "minecraft:set_count",

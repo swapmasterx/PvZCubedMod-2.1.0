@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/narcissus_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 1 Oxeye Daisy, 1 Aquatic Foliage, 1 Empty Seed Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/narcissus.png"
+      ],
+      "title": "\uD83E\uDDEA Aquatics",
+      "border": "true",
+      "text": "$(#25228d)Shoots piercing bubbles and sometimes stunning bubbles if planted in water."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -17,15 +35,7 @@
         "$(br2)$(#bd951a)\"How DARE a ZOMBIE have nicer things than me!?\", says Narcissus, enraged. \"If I can't have nice things, no one can!\""
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/narcissus.png"
-      ],
-      "title": "\uD83E\uDDEA Aquatics",
-      "border": "true",
-      "text": "$(#25228d)Sometimes shoots stunning bubbles if planted in water."
-    },
+
     {
       "type": "text",
       "title": "References",

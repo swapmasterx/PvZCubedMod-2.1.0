@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/jumpingbean_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Cocoa Beans, 1 Spring Grass, 1 Empty Seed Packet, 100 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10 ",

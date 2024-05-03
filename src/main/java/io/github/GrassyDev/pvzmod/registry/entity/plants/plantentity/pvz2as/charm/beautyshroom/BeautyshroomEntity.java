@@ -428,7 +428,7 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5);
 	}
 

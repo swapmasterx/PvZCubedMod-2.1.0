@@ -6,15 +6,13 @@
   "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)6",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal.",
-        "$(br2)$(#bd951a)\"Like many fungi, I'd just assumed Zombies were fairy tales or movie monsters. This whole experience has been a huge eye-opener for me.\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/puffshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 1 Empty Seed Packet, 0 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +23,19 @@
       "border": "true",
       "text": "$(#25228d)Puff-shrooms are cheap, but can only fire a short distance."
     },
+
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)6",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal.",
+        "$(br2)$(#bd951a)\"Like many fungi, I'd just assumed Zombies were fairy tales or movie monsters. This whole experience has been a huge eye-opener for me.\""
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,15 +6,13 @@
   "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)15",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1s (Area)",
-        "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)5 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Hits flying zombies.",
-        "$(br)$(#bd951a)After hearing that his favorite plants (Peashooter, Peashooter, and Peashootre) were going to Minecraft, he invited himself to the party and went through the mysterious portal, waking up all square afterwards. It's uncomfortable? Yeah. But it's worth it for the autograph."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/dandelionweed_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Flower Seeds, 2 Azure Bluet, 125 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +23,18 @@
       "border": "true",
       "text": "$(#25228d)Dandelions create small explosions around themselves."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1s (Area)",
+        "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Hits flying zombies.",
+        "$(br)$(#bd951a)After hearing that his favorite plants (Peashooter, Peashooter, and Peashootre) were going to Minecraft, he invited himself to the party and went through the mysterious portal, waking up all square afterwards. It's uncomfortable? Yeah. But it's worth it for the autograph."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

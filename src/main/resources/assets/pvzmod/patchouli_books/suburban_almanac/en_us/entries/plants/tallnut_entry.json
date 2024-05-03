@@ -6,13 +6,13 @@
   "sortnum": 32,
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)180",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Super Tall. 75% resist to throw-based damage.",
-        "$(br)$(#bd951a)People wonder if there's a rivalry between Wall-nut and Tall-nut. Tall-nut laughs a rich baritone laugh. \"How could there be anything between us? We are brothers. If you knew what Wall-nut has done for me...\" Tall-nut's voice trails off and he smiles knowingly."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/tallnut_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Bark Enforced Sproutling, 1 of any log, 1 Empty Seed Packet, 125 Sun value."
     },
     {
       "type": "image",
@@ -23,6 +23,16 @@
       "border": "true",
       "text": "$(#25228d)Tall-nuts are heavy-duty wall plants that blocks most zombies from going over."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)180",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Super Tall. 75% resist to throw-based damage.",
+        "$(br)$(#bd951a)People wonder if there's a rivalry between Wall-nut and Tall-nut. Tall-nut laughs a rich baritone laugh. \"How could there be anything between us? We are brothers. If you knew what Wall-nut has done for me...\" Tall-nut's voice trails off and he smiles knowingly."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

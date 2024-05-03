@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_repeater",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/gatlingpea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)4 Pea, 1 Sproutling, 1 Iron Helmet, 1 Empty Upgrade Packet, 250 Sun value."
+    },{
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/gatlingpea.png"
+      ],
+      "title": "⭘ Shooter",
+      "border": "true",
+      "text": "$(#25228d)Gatling Peas shoot four peas at a time. Helmet provides amazing protection."
+    },
+
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -17,15 +35,7 @@
         "$(br2)$(#bd951a)His parents were concerned when he announced his intention to work on customer service. \"But honey, it's so dangerous!\" they said in unison. Gatling Pea refused to budge. \"Life is dangerous,\" he replied, eyes glinting with steely conviction."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/gatlingpea.png"
-      ],
-      "title": "⭘ Shooter",
-      "border": "true",
-      "text": "$(#25228d)Gatling Peas shoot four peas at a time. Helmet provides amazing protection."
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -30,23 +30,28 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 
 	public ZombiePropEntity(EntityType<? extends HostileEntity> entityType, World world) {
 		super(entityType, world);
-		this.noClip = true;
+		this.noClip = false;
 	}
 
 	public EntityGroup getGroup() {
 		return EntityGroup.DEFAULT;
 	}
 
-	public boolean isPushable() {
-		return false;
-	}
+//	public boolean isPushable() {
+//		return false;
+//	}
+//
+//	protected void pushAway(Entity entity) {
+//		if (!this.isSleeping()) {
+//			super.pushAwayFrom(entity);
+//		}
+//	}
 
-	protected void pushAway(Entity entity) {
-	}
+
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return (this.getHypno()) ? PvZSounds.ZOMBIEBITEEVENT : PvZSounds.SILENCEVENET;
+		return PvZSounds.SILENCEVENET;
 	}
 
 	@Override

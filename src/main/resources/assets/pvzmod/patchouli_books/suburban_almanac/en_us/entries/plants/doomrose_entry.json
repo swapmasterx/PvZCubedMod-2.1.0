@@ -6,16 +6,13 @@
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
-        "$(#bd951a)Damage: $()$(#ff0000)4x2 DMG/2s",
-        "$(br)$(#bd951a)Area: $()$(#ff0000)Med Profile. Target's tile.",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)When a Zombie dies to it, it drops a Withered Marigold Pile on it's tile, amount depending on it's strength.",
-        "$(br2)$(#bd951a)Doom Rose really likes Doom, though doesn't have hands to rip and tear with so punching with rose buds will have to do."
-        ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/doomrose_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d) 2 Dark Leaf, 1 Sproutling, 1 Bark Enforced Sproutling, 1 Empty Premium Packet, 200 Sun value."
     },
     {
       "type": "image",
@@ -24,7 +21,19 @@
       ],
       "title": "\uD83D\uDDE1 Bruisers",
       "border": "true",
-      "text": "$(#25228d)Doom Roses flood the field with withering flowers."
+      "text": "$(#25228d)Bashes zombies from below; Creates withering flowers on killing a zombie."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(#bd951a)Damage: $()$(#ff0000)4x2 DMG/2s",
+        "$(br)$(#bd951a)Area: $()$(#ff0000)Med Profile. Target's tile.",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Zombies that dies to it drop a Withered Marigold Pile.",
+        "$(br2)$(#bd951a)Doom Rose really likes Doom, though doesn't have hands to rip and tear with so punching with rose buds will have to do."
+        ]
     },
     {
       "type": "text",

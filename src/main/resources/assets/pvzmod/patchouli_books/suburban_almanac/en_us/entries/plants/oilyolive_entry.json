@@ -7,16 +7,13 @@
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)12",
-        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)3 Blocks",
-        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
-        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Leaves an Oil tile under it after exploding. Spawns uncommonly. Drops Blazing Plant Food",
-        "$(br)$(#bd951a)Oily Olive originates from far within the Mediterranean and has come to this mysterious land to study culinary techniques."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/oilyolive_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Slimeball, 1 Empty Seed Packet, 0 Sun value."
     },
     {
       "type": "image",
@@ -25,8 +22,21 @@
       ],
       "title": "⏳ Contain Family",
       "border": "true",
-      "text": "$(#25228d)Leaves Oil behind and their Blazing Plant Food makes combustive plants."
+      "text": "$(#25228d)Leaves Oil behind that causes zombies to slip and get stunned."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)12",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)3 Blocks",
+        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Leaves an Oil tile under it after exploding.",
+        "$(br)$(#bd951a)Oily Olive originates from far within the Mediterranean and has come to this mysterious land to study culinary techniques."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

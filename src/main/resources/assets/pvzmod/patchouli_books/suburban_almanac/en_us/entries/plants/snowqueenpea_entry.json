@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_snowpea",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/snowqueenpea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Blue Ice, 1 Pea, 1 Pointed Dripstone, 1 Empty Upgrade Packet, 175 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/snowqueenpea.png"
+      ],
+      "title": "❄ Chiller",
+      "border": "true",
+      "text": "$(#25228d)Deals extra damage to frozen targets, then slows down many zombies."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)15 ",
@@ -18,15 +36,7 @@
         "$(br)$(#bd951a)Snow Queen Pea may be happy with Sunflower, but she still has feelings for Fire Pea..."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/snowqueenpea.png"
-      ],
-      "title": "❄ Winter Family",
-      "border": "true",
-      "text": "$(#25228d)Deals extra damage to frozen targets, then slows down many zombies."
-    },
+
     {
       "type": "text",
       "title": "References",

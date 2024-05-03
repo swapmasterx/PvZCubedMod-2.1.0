@@ -325,12 +325,10 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 		this.targetSelector.add(4, new TargetGoal<>(this, MerchantEntity.class, false, true));
 		this.targetSelector.add(2, new TargetGoal<>(this, IronGolemEntity.class, false, true));
 
-		////////// Must-Protect Plants ///////
+		////////// Like Jetpacks prioritizes player and gardens ///////
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenChallengeEntity.class, false, true));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, SunflowerEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, TwinSunflowerEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, SunshroomEntity.class, false, true));
+		this.targetSelector.add(4, new TargetGoal<>(this, PlayerEntity.class, false, true));
 	}
 
 	protected void initHypnoGoals(){
@@ -365,6 +363,8 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 							float f = 180f;
 							if (target instanceof TallnutEntity || target instanceof GargantuarEntity) {
 								f = 45;
+							} else if (target instanceof PlayerEntity) {
+								f = 25;
 							}
 							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
 							if (bl) {

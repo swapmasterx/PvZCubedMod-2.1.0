@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/missiletone_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)3 Cold Sproutling, 1 Fuse Cherry, 1 Diamond, 1 Empty Premium Packet, 500 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/missiletoe.png"
+      ],
+      "title": "❄ Chiller",
+      "border": "true",
+      "text": "$(#25228d)Missile Toes launch cold blasts that damage, chill and slow zombies."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)20",
@@ -18,15 +36,7 @@
         "$(br2)$(#bd951a)While she is called Missile Toe, Missile Toe has no toes."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/missiletoe.png"
-      ],
-      "title": "❄ Winter Family",
-      "border": "true",
-      "text": "$(#25228d)Missile Toes launch cold blasts that damage, chill and slow zombies."
-    },
+
     {
       "type": "text",
       "title": "References",

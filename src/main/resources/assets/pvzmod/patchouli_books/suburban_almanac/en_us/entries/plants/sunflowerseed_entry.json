@@ -31,7 +31,7 @@
         "$(br)$(#bd951a)Sun: $()$(#ff0000)Small",
         "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)3 minutes",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Sunflower Seed Crowding Radius: $()$(#ff0000)5 Blocks",
+        "$(br)$(#bd951a)Sunflower Seed Crowding Radius: $()$(#ff0000)4 Blocks",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Turns into a Sunflower after 2 in-game days. Bone meal advances progress by half day.",
         "$(br)$(#bd951a)From every night's end comes the beginning of a new Sunflower's dawn."
       ]

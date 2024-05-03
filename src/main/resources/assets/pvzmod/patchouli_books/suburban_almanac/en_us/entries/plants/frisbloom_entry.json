@@ -6,24 +6,33 @@
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.7s (3 Pierce, shots hit on return)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)12 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Pierces up to 3 Zombies, then the projectile comes back dealing damage to the Zombies it pierced. Can target Flying Zombies.",
-        "$(br)$(#bd951a)As the first new member to your home defense team, Bloomerang enjoys listening to his Bob Barley albums."
-      ]
-    },
-    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/frisbloom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 1 Clover, 1 Frisbee, 1 Empty Seed Packet, 175 Sun value."
+    }, {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/frisbloom.png"
       ],
       "title": "✂ Crowd Controller",
       "border": "true",
-      "text": "$(#25228d)Frisblooms can hit up to three targets in their lane, twice each coming and going!"
+      "text": "$(#25228d)Hits up to three targets in their lane, twice each coming and going!"
+    },
+
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s (3 Pierce, shots hit on return)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)12 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Pierces up to 3 Zombies, then the projectile comes back dealing damage to the Zombies it pierced. Can target Flying Zombies.",
+        "$(br)$(#bd951a)As the first new member to your home defense team, Bloomerang enjoys listening to his Bob Barley albums."
+      ]
     },
     {
       "type": "text",

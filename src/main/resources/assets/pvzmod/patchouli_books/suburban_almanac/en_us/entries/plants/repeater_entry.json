@@ -6,14 +6,13 @@
   "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x2 DMG/1.5s",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
-        "$(br2)$(#bd951a)Repeater is fierce. He's from the streets. He doesn't take attitude from anybody, Plant or Zombie, and he shoots peas to keep people at a distance. Secretly, though, Repeater yearns for love."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/repeater_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Pea, 1 Sproutling, 1 of any leaf, 1 Empty Seed Packet, 200 Sun value."
     },
     {
       "type": "image",
@@ -24,6 +23,17 @@
       "border": "true",
       "text": "$(#25228d)Repeater fires two peas at a time."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x2 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
+        "$(br2)$(#bd951a)Repeater is fierce. He's from the streets. He doesn't take attitude from anybody, Plant or Zombie, and he shoots peas to keep people at a distance. Secretly, though, Repeater yearns for love."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

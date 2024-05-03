@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_iceshroom",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/doomshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Tnt, 1 Mushroom Spores, 2 Fuse Cherry, 1 Empty Seed Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/doomshroom.png"
+      ],
+      "title": "☄ Blaster",
+      "border": "true",
+      "text": "$(#25228d)Doom-shrooms destroy everything in a large area and leave a crater behind."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)12",
@@ -18,15 +36,7 @@
         "$(br2)$(#bd951a)\"You're lucky I'm on your side,\" says Doom-shroom. \"I could destroy everything you hold dear. It wouldn't be hard.\""
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/doomshroom.png"
-      ],
-      "title": "☄ Blaster",
-      "border": "true",
-      "text": "$(#25228d)Doom-shrooms destroy everything in a large area and leave a crater behind."
-    },
+
     {
       "type": "text",
       "title": "References",

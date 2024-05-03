@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_sunflower",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/vampireflower_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 2 Pointed Dripstone, 1 Red Dye, 1 Empty Upgrade Packet, 175 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/vampireflower.png"
+      ],
+      "title": "☀ Sun Producer",
+      "border": "true",
+      "text": "$(#25228d)Vampire Flowers suck Sun out of Zombies, damaging them directly."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)HP: $()$(#ff0000)15 ",
@@ -16,15 +34,7 @@
         "$(br)$(#bd951a)Being a summer goth takes commitment. Especially when you're a Plant that produces sun for a living."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/vampireflower.png"
-      ],
-      "title": "☀ Enlighten Family",
-      "border": "true",
-      "text": "$(#25228d)Vampire Flowers suck Sun out of Zombies, damaging them directly."
-    },
+
     {
       "type": "text",
       "title": "References",

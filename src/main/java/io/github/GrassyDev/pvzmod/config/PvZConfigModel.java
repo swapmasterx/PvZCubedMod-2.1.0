@@ -105,11 +105,11 @@ public class PvZConfigModel {
 		@RestartRequired
 		public int weeniebeanieSPmax = 4;
 		@RestartRequired
-		public int sunflowerseedSPv2 = 15;
+		public int sunflowerseedSPv2 = 9;
 		@RestartRequired
-		public int sunflowerseedSPmin = 3;
+		public int sunflowerseedSPmin = 1;
 		@RestartRequired
-		public int sunflowerseedSPmax = 4;
+		public int sunflowerseedSPmax = 2;
 		@RestartRequired
 		public int lilypadSP = 13;
 		@RestartRequired
@@ -386,15 +386,15 @@ public class PvZConfigModel {
 	@Nest
 	public PvZSunNest nestedSun = new PvZSunNest();
 	public static class PvZSunNest {
-		public float sunflowerSec = 300f;
+		public float sunflowerSec = 180f;
 		public float sunflowerSecInitial = 60f;
 		public boolean sunflowerDropSun = true;
-		public float twinSunflowerSec = 300f;
-		public float sunshroomSec = 300f;
+		public float twinSunflowerSec = 180f;
+		public float sunshroomSec = 180f;
 		public float sunshroomSecInitial = 60f;
 		public float sunshroomSunChance = 0.45f;
 		public float sunshroomSun2ndChance = 0.75f;
-		public float goldtileSec = 300f;
+		public float goldtileSec = 180f;
 		public float sunseedSec = 180f;
 		public float zombiegraveSec = 300f;
 	}
@@ -448,7 +448,7 @@ public class PvZConfigModel {
 		public float springDMG = 4f;
 		public float spikeDMGv2 = 2f;
 		public float spitDMG = 2f;
-		public float smooshProjDMG = 6f;
+		public float smooshProjDMG = 7f;
 		public float sporeDMG = 2f;
 		public float swordDMG = 6f;
 

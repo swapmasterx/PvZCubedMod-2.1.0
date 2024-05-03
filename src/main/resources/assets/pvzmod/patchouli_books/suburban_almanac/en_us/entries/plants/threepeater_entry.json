@@ -6,15 +6,13 @@
   "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
-      "type": "text",
-      "text":[
-        "$(#bd951a)Health: $()$(#ff0000)15",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x3 DMG/1.5s",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots a pea in the middle and two others in a cone shape",
-        "$(br2)$(#bd951a)Threepeater enjoys going to shows, particularly modern jazz. \"I'm just looking for that special someone,\" they say. Threepeater's favorite number is 5."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/threepeater_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Sproutling, 3 Pea, 1 Empty Seed Packet, 275 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +23,18 @@
       "border": "true",
       "text": "$(#25228d)Threepeaters shoot peas in three directions."
     },
+    {
+      "type": "text",
+      "text":[
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x3 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots a pea in the middle and two others in a cone shape",
+        "$(br2)$(#bd951a)Threepeater enjoys going to shows, particularly modern jazz. \"I'm just looking for that special someone,\" they say. Threepeater's favorite number is 5."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

@@ -655,12 +655,12 @@
   "item.pvzmod.piercepea": "Piercing Pea",
   "item.pvzmod.firepiercepea": "Flaming Piercing Pea",
 
-  "entity.pvzmod.acidshroom": "Acid Goop-shroom",
-  "item.pvzmod.acidshroom.alt": "Goop-shroom",
-  "item.pvzmod.acidshroom_seed_packet": "\uD83E\uDDEA Acid Goop-shroom Seed Packet",
+  "entity.pvzmod.acidshroom": "Acid-shroom",
+  "item.pvzmod.acidshroom.alt": "Acid-shroom",
+  "item.pvzmod.acidshroom_seed_packet": "\uD83E\uDDEA Acid-Shroom Seed Packet",
   "item.pvzmod.acidshroom_seed_packet.flavour": "\"Aaaa- Aaaaa- AAAAAA-\"",
   "item.pvzmod.acidshroom_seed_packet.flavour2": "\"tchoo.\"",
-  "item.pvzmod.acidfume": "Acid Goop",
+  "item.pvzmod.acidfume": "Acid Fume",
 
   "entity.pvzmod.oxygae": "Oxygae",
   "item.pvzmod.oxygae.alt": "Oxygen Algae",

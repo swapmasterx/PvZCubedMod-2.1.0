@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/tulimpeter_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 2 Red Tulip, 1 Gold Ingot, 1 Glistering Melon, 1 Empty Seed Packet, 225 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/tulimpeter.png"
+      ],
+      "title": "⭐ Specials",
+      "border": "true",
+      "text": "$(#25228d)A plant that can attack or heal depending on where the Zombies are."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10 ",
@@ -17,15 +35,7 @@
         "$(br)$(#bd951a)Holds brass lessons every Thursday."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/tulimpeter.png"
-      ],
-      "title": "⭐ Specials",
-      "border": "true",
-      "text": "$(#25228d)A plant that can attack or heal depending on where the Zombies are."
-    },
+
     {
       "type": "text",
       "title": "References",

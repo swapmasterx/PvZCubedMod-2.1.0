@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "pvzmod:pirate_tile",
-    "pvzmod:dark_pirate_tile"
+    "pvzmod:dark_pirate_tile",
+    "pvzmod:botany_station"
   ]
 }

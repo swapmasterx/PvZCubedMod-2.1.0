@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/squash_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Pumpkin, 1 Empty Seed Packet, 50 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Damage: $()$(#ff0000)90",

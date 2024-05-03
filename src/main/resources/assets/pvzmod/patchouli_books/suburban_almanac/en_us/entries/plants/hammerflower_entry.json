@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_beet",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/hammerflower.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Bark Enforced Sproutling, 1 Flower Seeds, 1 Beetroot, 1 Iron Pickaxe, 1 Empty Seed Packet, 300 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/hammerflower.png"
+      ],
+      "title": "\uD83D\uDDE1 Brusier",
+      "border": "true",
+      "text": "$(#25228d)Stuns zombies without hats; Deals extra damage to what it can't stun."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)20",
@@ -16,15 +34,7 @@
         "$(br2)$(#bd951a)\"There's nothing that can't be solved with a hammer hit. If there is, just hammer twice.\" - Hammer Flower."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/hammerflower.png"
-      ],
-      "title": "\uD83D\uDDE1 Brusier",
-      "border": "true",
-      "text": "$(#25228d)Hammer Flowers stun zombies by crushing them into the ground."
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -6,6 +6,24 @@
   "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/olivepit_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Slime Ball, 2 Lime Dye, 1 Bark Enforced Sproutling, 1 Empty Seed Packet, 225 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/olivepit.png"
+      ],
+      "title": "\uD83D\uDDE1 Bruisers",
+      "border": "true",
+      "text": "$(#25228d)Drills into the ground and waits to consume Zombies that walk over them."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",
@@ -17,15 +35,7 @@
         "$(br)$(#bd951a)He ponders a lot, he is deep."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/olivepit.png"
-      ],
-      "title": "\uD83D\uDDE1 Bruisers",
-      "border": "true",
-      "text": "$(#25228d)Olive Pits drill into the ground and wait to consume Zombies that walk over them."
-    },
+
     {
       "type": "text",
       "title": "References",

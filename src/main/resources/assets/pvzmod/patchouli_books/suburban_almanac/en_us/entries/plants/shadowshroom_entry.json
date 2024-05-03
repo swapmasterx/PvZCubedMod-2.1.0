@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/shadowshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Dark Leaf, 1 Mushroom Spores, 1 Empty Seed Packet, 50 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Damage: $()$(#ff0000)0",

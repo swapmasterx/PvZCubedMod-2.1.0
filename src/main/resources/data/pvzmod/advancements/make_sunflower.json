@@ -4,7 +4,7 @@
       "item": "pvzmod:sunflower_seed_packet"
     },
     "title": "Zombies on your lawn?",
-    "description": "Craft a Sunflower",
+    "description": "Use Gardening Gloves to gain a Sunflower Seed Packet",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,

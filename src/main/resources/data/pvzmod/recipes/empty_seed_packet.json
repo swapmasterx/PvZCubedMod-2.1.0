@@ -2,15 +2,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#S#",
-    " W "
+    "#W#"
   ],
   "key": {
     "#": {
       "item": "minecraft:paper"
-    },
-    "S": {
-      "item": "minecraft:string"
     },
     "W": {
       "item": "minecraft:wheat_seeds"

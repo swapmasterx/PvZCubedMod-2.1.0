@@ -1,7 +1,7 @@
 {
   "type": "pvzmod:botany_station",
   "group": "boat",
-  "suncost": 350,
+  "suncost": 300,
   "ingredients": [
     {
       "item": "pvzmod:plantfood_tough"

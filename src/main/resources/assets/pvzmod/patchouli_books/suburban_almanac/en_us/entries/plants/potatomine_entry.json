@@ -6,6 +6,15 @@
   "advancement": "pvzmod:make_peashooter",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/potatomine_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Fuse Cherry, 1 Potato, 1 Empty Seed Packet, 25 Sun value."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)10",

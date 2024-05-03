@@ -6,15 +6,13 @@
   "sortnum": 36,
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)12 Blocks",
-        "$(br)$(#bd951a)Ability Recharge: $()$(#ff0000)10s",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Steals non-heavy Metal/Electronic objects from Zombies, except obstacles, then has to recharge.",
-        "$(br2)$(#bd951a)Magnetism is a powerful force. Very powerful. Sometimes it scares Magnet-shroom a little. He's not sure if he can handle that kind of responsibility."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/magnetshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 1 Electro Leaf, 2 Iron Ingot, 1 Empty Seed Packet, 100 Sun value."
     },
     {
       "type": "image",
@@ -25,6 +23,18 @@
       "border": "true",
       "text": "$(#25228d)Magnet-shrooms remove helmets and other metal objects from zombies."
     },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)12 Blocks",
+        "$(br)$(#bd951a)Ability Recharge: $()$(#ff0000)10s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Steals non-heavy Metal/Electronic objects from Zombies, except obstacles, then has to recharge.",
+        "$(br2)$(#bd951a)Magnetism is a powerful force. Very powerful. Sometimes it scares Magnet-shroom a little. He's not sure if he can handle that kind of responsibility."
+      ]
+    },
+
     {
       "type": "text",
       "title": "References",

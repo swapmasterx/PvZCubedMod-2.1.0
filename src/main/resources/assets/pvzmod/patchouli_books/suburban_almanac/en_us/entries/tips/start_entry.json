@@ -32,7 +32,7 @@
       "type": "text",
       "text": [
         "$(br2)NOTE:",
-        "$(br2)Sun producer plants need at least 5 blocks of space from other sun producers of the same plant in order to generate sun. ",
+        "$(br2)Sun producer plants need at least 4 blocks of space from other sun producers of the same plant in order to generate sun. ",
         "This is not the case though with different kinds of plants. While 2 sunflower seeds won't make sun next to each other, a sunflower seed and a sunflower will."
       ]
     },

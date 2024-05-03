@@ -40,7 +40,7 @@ public class FrisbeeItem extends Item {
             ShootingFrisbeeEntity proj = new ShootingFrisbeeEntity(PvZEntity.FRISBEEPROJ, world);
             proj.setPos(user.getX(), user.getY() + 1f, user.getZ());
             proj.setOwner(user);
-            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.33f, 0);
+            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.5f, 0);
             world.spawnEntity(proj);
         }
 

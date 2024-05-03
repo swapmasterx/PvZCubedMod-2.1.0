@@ -139,12 +139,6 @@ public class PeashooterSeeds extends SeedItem implements FabricItem {
 						if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
-						/**if (world.getGameRules().getBooleanValue(PvZCubed.COSTS_SUN)) {
-							int slot = user.getInventory().getSlotWithStack(ModItems.SUN.getDefaultStack());
-							if (slot != -1 && user.getInventory().getStack(slot).getCount() >= 2) {
-								user.getInventory().removeStack(slot, 2);
-							}
-						}**/
 					}
 					return ActionResult.success(world.isClient);
 				}

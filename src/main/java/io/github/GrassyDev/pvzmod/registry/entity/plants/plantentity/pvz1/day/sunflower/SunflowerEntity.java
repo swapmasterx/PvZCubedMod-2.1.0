@@ -207,7 +207,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 				this.currentFuseTime = 0;
 			}
 
-			if (this.currentFuseTime <= this.sunProducingTime) {
+			if (this.currentFuseTime >= this.sunProducingTime) {
 				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					if (this.getWorld().getAmbientDarkness() >= 2 ||
@@ -241,8 +241,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 	}
 
 	protected void produceSun() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5));
-		List<SunflowerEntity> sunflowerList = this.getWorld().getNonSpectatingEntities(SunflowerEntity.class, this.getBoundingBox().expand(5));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(4));
+		List<SunflowerEntity> sunflowerList = this.getWorld().getNonSpectatingEntities(SunflowerEntity.class, this.getBoundingBox().expand(4));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -254,7 +254,9 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 25);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
+
+
 			if (sunflowerList.size() <= 1) {
 				this.sunProducerCheck = true;
 			}
