@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/admiralnavybean.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Admiral Navy Beans are twice as strong and twice as sailor as Navy Beans."
     },

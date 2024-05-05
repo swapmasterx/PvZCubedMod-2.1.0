@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/pumpkinwitch.png"
       ],
-      "title": "\uD83C\uDFF9 Snipers",
+      "title": "Snipers",
       "border": "true",
       "text": "$(#25228d)Putts a pumpkin that transforms mobs into friendly pumpkin zombies that explode on death."
     },

@@ -20,7 +20,7 @@
       "images": [
         "pvzmod:textures/gui/entries/lilypad.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Lets you Plant non-Aquatics Plants on water."
     },

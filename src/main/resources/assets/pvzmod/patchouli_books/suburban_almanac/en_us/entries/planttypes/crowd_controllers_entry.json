@@ -22,7 +22,7 @@
         "pvzmod:plants/nightcap_entry",
         "pvzmod:plants/electropea_entry"
       ],
-      "title": "✂ Crowd Controllers:"
+      "title": "Crowd Controllers:"
     },
     {
       "type": "relations",
@@ -31,7 +31,7 @@
         "pvzmod:plants/gloomshroom_entry",
         "pvzmod:plants/spikerock_entry"
       ],
-      "title": "✂ Crowd Controllers:"
+      "title": "Crowd Controllers:"
     }
   ]
 }

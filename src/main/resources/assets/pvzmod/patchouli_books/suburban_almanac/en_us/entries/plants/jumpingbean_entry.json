@@ -32,7 +32,7 @@
       "images": [
         "pvzmod:textures/gui/entries/jumpingbean.png"
       ],
-      "title": "⏳ Stallers",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Jumping Beans bounce back zombies from the ground."
     },

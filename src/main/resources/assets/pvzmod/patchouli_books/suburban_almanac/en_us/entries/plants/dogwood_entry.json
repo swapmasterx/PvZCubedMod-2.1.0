@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/dogwood.png"
       ],
-      "title": "⏳ Staller",
+      "title": "Staller",
       "border": "true",
       "text": "$(#25228d)Slows Zombies in front of them by barking at them. Frightens small Zombies to death."
     },

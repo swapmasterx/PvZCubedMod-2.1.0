@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/knightpea.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Wears a suit of armor, granting it immense protection."
     },

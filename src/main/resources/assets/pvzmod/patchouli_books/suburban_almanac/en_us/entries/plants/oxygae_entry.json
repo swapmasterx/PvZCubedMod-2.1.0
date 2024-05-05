@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/oxygae.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Lets you plant on water and protects plants."
     },

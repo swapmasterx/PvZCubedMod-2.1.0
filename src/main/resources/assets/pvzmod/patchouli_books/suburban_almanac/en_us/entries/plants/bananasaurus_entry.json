@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/bananasaurus.png"
       ],
-      "title": "\uD83D\uDDE1 Bruiser",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Bananasaurus Rexes bite Zombies quickly and spills banana peels."
     },

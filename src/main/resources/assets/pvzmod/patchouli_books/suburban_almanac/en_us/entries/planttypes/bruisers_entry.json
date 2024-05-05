@@ -24,7 +24,7 @@
         "pvzmod:plants/olivepit_entry"
 
       ],
-      "title": "\uD83D\uDDE1 Brusers:"
+      "title": "Brusers:"
     },
     {
       "type": "relations",
@@ -34,7 +34,7 @@
         "pvzmod:plants/smooshroom_entry",
         "pvzmod:plants/bananasaurus_entry"
       ],
-      "title": "\uD83D\uDDE1 Brusers:"
+      "title": "Brusers:"
     }
   ]
 }

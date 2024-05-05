@@ -20,7 +20,7 @@
       "images": [
         "pvzmod:textures/gui/entries/springprincess.png"
       ],
-      "title": "⏳ Stallers",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Lobs springs to deal damage to zombies and bounce them back."
     },

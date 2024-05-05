@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/impatyens.png"
       ],
-      "title":  "⭐ Specials",
+      "title":  "Specials",
       "border": "true",
       "text": "$(#25228d)Impatyens are versatile Plants that change their strengths based on nearby Plants."
     },

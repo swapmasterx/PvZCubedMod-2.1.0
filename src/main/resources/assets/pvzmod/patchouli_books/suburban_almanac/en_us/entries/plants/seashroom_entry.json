@@ -30,7 +30,7 @@
       "images": [
         "pvzmod:textures/gui/entries/seashroom.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Sea-shrooms are aquatic plants that destroys metal."
     },

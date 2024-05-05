@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/iceberglettuce.png"
       ],
-      "title": "❄ Chiller",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Freezes a Zombie when stepped on."
     },

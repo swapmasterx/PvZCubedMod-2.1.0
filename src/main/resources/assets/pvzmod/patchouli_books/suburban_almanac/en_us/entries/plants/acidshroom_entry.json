@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/acidshroom.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Acid-Shrooms shoot fumes that can pass through zombies and destroy metal."
     },

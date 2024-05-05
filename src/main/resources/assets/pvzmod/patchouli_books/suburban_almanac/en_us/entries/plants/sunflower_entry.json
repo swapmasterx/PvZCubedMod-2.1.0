@@ -14,7 +14,7 @@
       "images": [
         "pvzmod:textures/gui/entries/sunflower.png"
       ],
-      "title": "☀ Sun Producer",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Sunflowers are essential for you to produce extra sun. Try growing as many as you can!"
     },

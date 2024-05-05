@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/iceshroom.png"
       ],
-      "title": "❄ Chillers",
+      "title": "Chillers",
       "border": "true",
       "text": "$(#25228d)Ice-shrooms temporarily immobilize all Zombies in a large area."
     },

@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/peashooter.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Peashooters are your first line of defense. They shoot peas at attacking Zombies."
     },

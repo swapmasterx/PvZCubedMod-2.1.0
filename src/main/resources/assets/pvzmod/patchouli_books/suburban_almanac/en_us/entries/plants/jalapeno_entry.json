@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/jalapeno.png"
       ],
-      "title": "☄ Blaster",
+      "title": "Blaster",
       "border": "true",
       "text": "$(#25228d)Jalapenos destroy an entire row of zombies."
     },

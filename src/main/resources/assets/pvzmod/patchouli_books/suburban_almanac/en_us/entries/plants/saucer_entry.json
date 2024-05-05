@@ -29,7 +29,7 @@
       "images": [
         "pvzmod:textures/gui/entries/saucer.png"
       ],
-      "title": "⏳ Stallers",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Saucers emit light to stun and capture Zombies below them."
     },

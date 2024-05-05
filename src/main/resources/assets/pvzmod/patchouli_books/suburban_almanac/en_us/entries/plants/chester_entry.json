@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/chester.png"
       ],
-      "title": "\uD83D\uDDE1 Bruiser",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Cheetah Chompers quickly devour Zombies and spit sticky cheese."
     },

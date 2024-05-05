@@ -31,7 +31,7 @@
       "images": [
         "pvzmod:textures/gui/entries/squash.png"
       ],
-      "title": "\uD83D\uDDE1 Bruiser",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Squashes will smash the first Zombie that gets close to it."
     },

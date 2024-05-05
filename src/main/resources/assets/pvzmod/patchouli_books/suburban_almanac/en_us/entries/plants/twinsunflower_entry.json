@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/twinsunflower.png"
       ],
-      "title": "☀ Sun Producer",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Twin Sunflowers give twice as much sun as a normal sunflower."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/burstshroom.png"
       ],
-      "title": "⛨ Barrier",
+      "title": "Barrier",
       "border": "true",
       "text": "$(#25228d)Blasts away Zombies that get too close but has to rest after doing so."
     },

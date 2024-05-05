@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/snowqueenpea.png"
       ],
-      "title": "❄ Chiller",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Deals extra damage to frozen targets, then slows down many zombies."
     },

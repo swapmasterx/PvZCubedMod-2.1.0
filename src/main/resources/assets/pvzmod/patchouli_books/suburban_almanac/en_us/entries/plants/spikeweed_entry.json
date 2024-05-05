@@ -30,7 +30,7 @@
       "images": [
         "pvzmod:textures/gui/entries/spikeweed.png"
       ],
-      "title": "✂ Crowd Controllers",
+      "title": "Crowd Controllers",
       "border": "true",
       "text": "$(#25228d)Spikeweed destroys objects and hurt any zombies that step on them."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/superchomper.png"
       ],
-      "title": "\uD83D\uDDE1 Brusier",
+      "title": "Brusier",
       "border": "true",
       "text": "$(#25228d)Super Chompers inhales nearby zombies before chewing it all down."
     },

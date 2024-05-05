@@ -15,6 +15,15 @@
       "text": "$(#25228d)2 Gold Ingot, 1 Sproutling, 1 of any leaf, 1 Empty Seed Packet, 100 Sun value."
     },
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/goldleaf.png"
+      ],
+      "title": "Sun Producer",
+      "border": "true",
+      "text": "$(#25228d)Gold Leaves create a Gold Tile on planting."
+    },
+    {
       "type": "text",
       "text": [
         "$(#bd951a)Gold Tile Sun: $()$(#ff0000)Small",
@@ -25,15 +34,7 @@
         "$(br2)$(#bd951a)\"For a small initial investment, you too can generate huge sun,\" says Gold Leaf. She's a firm believer in solar markets."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/goldleaf.png"
-      ],
-      "title": "☀ Sun Producer",
-      "border": "true",
-      "text": "$(#25228d)Gold Leaves create a Gold Tile on planting."
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/charmshroom.png"
       ],
-      "title": "⏳ Stallers",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Charm-shrooms will make Zombies turn around and fight for you."
     },

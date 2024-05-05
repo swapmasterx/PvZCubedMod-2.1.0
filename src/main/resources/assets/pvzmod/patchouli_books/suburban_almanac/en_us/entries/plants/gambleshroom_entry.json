@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/gambleshroom.png"
       ],
-      "title": "⭘ Shooters",
+      "title": "Shooters",
       "border": "true",
       "text": "$(#25228d)Gamble-shrooms hats make money instead of friendly zombies."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/coffeebean.png"
       ],
-      "title": "⭐ Specials",
+      "title": "Specials",
       "border": "true",
       "text": "$(#25228d)Use Coffee Beans to wake up sleeping mushrooms."
     },

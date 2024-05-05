@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/fumeshroom.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Shoots fumes that can pass through Zombies."
     },

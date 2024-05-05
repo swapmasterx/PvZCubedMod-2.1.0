@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/frisbloom.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Hits up to three targets in their lane, twice each coming and going!"
     },

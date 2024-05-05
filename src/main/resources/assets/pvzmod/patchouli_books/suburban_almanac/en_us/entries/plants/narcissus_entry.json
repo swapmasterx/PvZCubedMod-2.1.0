@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/narcissus.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Shoots piercing bubbles and sometimes stunning bubbles if planted in water."
     },

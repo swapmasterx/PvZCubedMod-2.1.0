@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/tallnut.png"
       ],
-      "title": "⛨ Barrier",
+      "title": "Barrier",
       "border": "true",
       "text": "$(#25228d)Tall-nuts are heavy-duty wall plants that blocks most zombies from going over."
     },

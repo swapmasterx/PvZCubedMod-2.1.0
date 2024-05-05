@@ -30,7 +30,7 @@
       "images": [
         "pvzmod:textures/gui/entries/gloomvine.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Gloom-vines deal damage around them and protects plants inside it."
     },

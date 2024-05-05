@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/magicshroom.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Magic-shrooms throws cards and stalls zombies with obstructions."
     },

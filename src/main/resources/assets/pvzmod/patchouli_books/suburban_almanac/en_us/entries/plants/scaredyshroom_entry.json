@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/scaredyshroom.png"
       ],
-      "title": "\uD83C\uDFF9 Snipers",
+      "title": "Snipers",
       "border": "true",
       "text": "$(#25228d)Takes Zombies out with superior range, but hides when they get close."
     },

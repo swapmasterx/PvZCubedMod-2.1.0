@@ -30,7 +30,7 @@
       "images": [
         "pvzmod:textures/gui/entries/snowpea.png"
       ],
-      "title": "❄ Chiller",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Snow Peas shoot frozen peas that damage, slow, and weaken the enemy."
     },

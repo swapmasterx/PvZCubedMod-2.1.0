@@ -20,7 +20,7 @@
       "images": [
         "pvzmod:textures/gui/entries/oilyolive.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "Contain Family",
       "border": "true",
       "text": "$(#25228d)Leaves Oil behind that causes zombies to slip and get stunned."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/vampireflower.png"
       ],
-      "title": "☀ Sun Producer",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Vampire Flowers suck Sun out of Zombies, damaging them directly."
     },

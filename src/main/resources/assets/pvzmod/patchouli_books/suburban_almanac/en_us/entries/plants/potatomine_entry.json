@@ -32,7 +32,7 @@
       "images": [
         "pvzmod:textures/gui/entries/potatomine.png"
       ],
-      "title": "☄ Blaster",
+      "title": "Blaster",
       "border": "true",
       "text": "$(#25228d)Potato Mines pack a powerful punch, but they need a while to arm themselves."
     },

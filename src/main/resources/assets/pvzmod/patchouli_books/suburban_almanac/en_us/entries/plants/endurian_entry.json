@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/endurian.png"
       ],
-      "title": "⛨ Barrier",
+      "title": "Barrier",
       "border": "true",
       "text": "$(#25228d)Endurians are defensive plants that deal damage to zombies attacking them."
     },

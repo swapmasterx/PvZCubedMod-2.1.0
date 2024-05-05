@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/hammerflower.png"
       ],
-      "title": "\uD83D\uDDE1 Brusier",
+      "title": "Brusier",
       "border": "true",
       "text": "$(#25228d)Stuns zombies without hats; Deals extra damage to what it can't stun."
     },

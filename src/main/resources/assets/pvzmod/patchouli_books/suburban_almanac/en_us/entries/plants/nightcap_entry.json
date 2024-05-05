@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/nightcap.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Poisons Zombies; Hides and does damage around herself when they get close."
     },

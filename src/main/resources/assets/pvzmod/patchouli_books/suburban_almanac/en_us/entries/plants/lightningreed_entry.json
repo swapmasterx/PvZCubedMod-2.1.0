@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/lightningreed.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Lightning Reeds shoot lightning at a Zombie. The bolt will then arc and hit other zombies."
     },
@@ -41,7 +41,7 @@
       "images": [
         "pvzmod:textures/gui/entries/lightningreed.png"
       ],
-      "title": "\uD83E\uDDEA Aquatics",
+      "title": "Aquatics",
       "border": "true",
       "text": "$(#25228d)Lightning Reeds shoot lightning at a Zombie. The bolt will then arc and hit other zombies."
     },

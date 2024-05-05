@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/bombseedling.png"
       ],
-      "title": "☄ Blaster",
+      "title": "Blaster",
       "border": "true",
       "text": "$(#25228d)Explodes nearby Zombies and transforms into a random Plant."
     },

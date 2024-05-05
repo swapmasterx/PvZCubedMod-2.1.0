@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/zapricot.png"
       ],
-      "title": "\uD83D\uDDE1 Bruisers",
+      "title": "Bruisers",
       "border": "true",
       "text": "$(#25228d)Zapricot electrocutes nearby zombies"
     },

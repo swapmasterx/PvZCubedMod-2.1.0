@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/cherrybomb.png"
       ],
-      "title": "☄ Blaster",
+      "title": "Blaster",
       "border": "true",
       "text": "$(#25228d)Cherry Bombs can blow up all Zombies in an area. Plant them near Zombies."
     },

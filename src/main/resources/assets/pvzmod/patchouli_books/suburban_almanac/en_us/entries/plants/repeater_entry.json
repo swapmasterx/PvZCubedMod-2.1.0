@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/repeater.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Repeater fires two peas at a time."
     },

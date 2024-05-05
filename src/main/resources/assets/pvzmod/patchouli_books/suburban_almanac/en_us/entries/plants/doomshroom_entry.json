@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/doomshroom.png"
       ],
-      "title": "☄ Blaster",
+      "title": "Blaster",
       "border": "true",
       "text": "$(#25228d)Doom-shrooms destroy everything in a large area and leave a crater behind."
     },

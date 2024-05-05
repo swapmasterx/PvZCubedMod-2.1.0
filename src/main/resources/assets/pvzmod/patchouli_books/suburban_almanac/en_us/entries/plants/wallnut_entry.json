@@ -27,7 +27,7 @@
       "images": [
         "pvzmod:textures/gui/entries/wallnut.png"
       ],
-      "title": "⛨ Barrier",
+      "title": "Barrier",
       "border": "true",
       "text": "$(#25228d)Wall-nuts have hard shells which you can use to protect your other Plants."
     },

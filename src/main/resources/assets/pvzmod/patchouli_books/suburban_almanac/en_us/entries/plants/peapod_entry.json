@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/peapod.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Pea Pods can be planted in the same space for up to 5 times the destruction."
     },

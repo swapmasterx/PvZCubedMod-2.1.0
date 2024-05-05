@@ -8,7 +8,7 @@
       "type": "text",
       "text": [
         "$(#ff0000)Sun Producers produce sun, a critical component of plant creation.",
-        "$(br)Sun Producers need 5 blocks of space from sun producers of their own plant type to make sun."
+        "$(br)Sun Producers need 4 blocks of space from sun producers of their own plant type to make sun."
         ]
     },
     {
@@ -21,7 +21,7 @@
         "pvzmod:plants/twinsunflower_entry",
         "pvzmod:plants/vampireflower_entry"
       ],
-      "title": "☀ Sun Producers:"
+      "title": "Sun Producers:"
     }
   ]
 }

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/sunshroom.png"
       ],
-      "title": "☀ Sun Producer",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Sun-shroom gives a random amount of sun."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/ghostpepper.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Ghost Peppers haunt zombies that pass by."
     },

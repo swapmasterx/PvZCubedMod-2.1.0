@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/firepeashooter.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Shoots flaming splash damage peas and piercing plasma peas."
     },

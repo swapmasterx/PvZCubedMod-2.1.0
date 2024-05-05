@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/threepeater.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Threepeaters shoot peas in three directions."
     },

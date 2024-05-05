@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/bellflower.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Rings out close range soundwaves that have a chance to crit."
     },

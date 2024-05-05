@@ -20,7 +20,7 @@
       "images": [
         "pvzmod:textures/gui/entries/smooshroom.png"
       ],
-      "title": "\uD83D\uDDE1 Brusier",
+      "title": "Brusier",
       "border": "true",
       "text": "$(#25228d)Charges, then either throws their hammer, or smashes the ground."
     },

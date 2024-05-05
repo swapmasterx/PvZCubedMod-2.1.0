@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/coconutcannon.png"
       ],
-      "title": "☄ Blasters",
+      "title": "Blasters",
       "border": "true",
       "text": "$(#25228d)Coconut Cannons fire when clicked, causing a medium explosion on projectile impact."
     },

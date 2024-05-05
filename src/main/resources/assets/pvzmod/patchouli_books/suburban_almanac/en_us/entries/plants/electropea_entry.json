@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/electropea.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Electro Peas fire orbs that pass through zombies and crackle with electrical power."
     },

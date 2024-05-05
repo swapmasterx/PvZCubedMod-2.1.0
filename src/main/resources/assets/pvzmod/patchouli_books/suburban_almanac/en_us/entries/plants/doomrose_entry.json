@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/doomrose.png"
       ],
-      "title": "\uD83D\uDDE1 Bruisers",
+      "title": "Bruisers",
       "border": "true",
       "text": "$(#25228d)Bashes zombies from below; Creates withering flowers on killing a zombie."
     },

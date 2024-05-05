@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/missiletoe.png"
       ],
-      "title": "❄ Chiller",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Missile Toes launch cold blasts that damage, chill and slow zombies."
     },

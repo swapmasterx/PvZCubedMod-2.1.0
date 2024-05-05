@@ -30,7 +30,7 @@
       "images": [
         "pvzmod:textures/gui/entries/tanglekelp.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "Enforce Family",
       "border": "true",
       "text": "$(#25228d)Tangle Kelp are aquatic plants that pull the first Zombie that nears them."
     },

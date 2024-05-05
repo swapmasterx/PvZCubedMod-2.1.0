@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/olivepit.png"
       ],
-      "title": "\uD83D\uDDE1 Bruisers",
+      "title": "Bruisers",
       "border": "true",
       "text": "$(#25228d)Drills into the ground and waits to consume Zombies that walk over them."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/chillypepper.png"
       ],
-      "title": "❄ Chiller",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Explodes and creates a line of chilling ice perpendicular to its target."
     },

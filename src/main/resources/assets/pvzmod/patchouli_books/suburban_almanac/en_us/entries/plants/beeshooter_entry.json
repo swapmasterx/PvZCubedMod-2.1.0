@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/beeshooter.png"
       ],
-      "title": "\uD83C\uDFF9 Snipers",
+      "title": "Snipers",
       "border": "true",
       "text": "$(#25228d)Beeshooters shut down flying zombies and zombies with headwear by poisoning them."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/springbean.png"
       ],
-      "title": "⏳ Staller",
+      "title": "Staller",
       "border": "true",
       "text": "$(#25228d)Spring Beans bounce back zombies that get too close."
     },

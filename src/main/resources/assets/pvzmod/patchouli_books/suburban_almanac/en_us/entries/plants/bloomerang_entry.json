@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/bloomerang.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Hurls a spread of Boomerangs that deal damage coming and going!"
     },

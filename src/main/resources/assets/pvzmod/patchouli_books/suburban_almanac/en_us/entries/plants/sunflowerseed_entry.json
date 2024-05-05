@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/sunflowerseed.png"
       ],
-      "title": "☀ Sun Producer",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Makes small sun; Grows into a Sunflower after some time."
     },

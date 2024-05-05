@@ -31,7 +31,7 @@
       "images": [
         "pvzmod:textures/gui/entries/meteorhammer.png"
       ],
-      "title": "\uD83D\uDDE1 Brusiers",
+      "title": "Brusiers",
       "border": "true",
       "text": "$(#25228d)Meteor Hammers charge a powerful attack when not attacking."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/magnetshroom.png"
       ],
-      "title": "⭐ Specials",
+      "title": "Specials",
       "border": "true",
       "text": "$(#25228d)Magnet-shrooms remove helmets and other metal objects from zombies."
     },

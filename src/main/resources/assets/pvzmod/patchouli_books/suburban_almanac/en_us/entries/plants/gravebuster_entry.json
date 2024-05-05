@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/gravebuster.png"
       ],
-      "title": "⭐ Specials",
+      "title": "Specials",
       "border": "true",
       "text": "$(#25228d)Plant Grave Busters on top of graves to remove them. "
     },

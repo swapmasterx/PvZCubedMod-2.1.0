@@ -20,7 +20,7 @@
       "images": [
         "pvzmod:textures/gui/entries/beet.png"
       ],
-      "title": "\uD83D\uDDE1 Bruisers",
+      "title": "Bruisers",
       "border": "true",
       "text": "$(#25228d)Headbutts zombies into submission"
     },

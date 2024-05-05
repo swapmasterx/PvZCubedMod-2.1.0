@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/gatlingpea.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Gatling Peas shoot four peas at a time. Helmet provides amazing protection."
     },

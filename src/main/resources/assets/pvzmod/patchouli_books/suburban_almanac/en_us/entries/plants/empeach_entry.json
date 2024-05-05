@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/empeach.png"
       ],
-      "title": "⏳ Stallers",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)E.M.Peaches disables all electronics in an area and stuns Zombies."
     },

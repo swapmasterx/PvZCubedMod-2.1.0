@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/spikerock.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Spikerocks destroy multiple objects and hurt any zombies that step on them."
     },

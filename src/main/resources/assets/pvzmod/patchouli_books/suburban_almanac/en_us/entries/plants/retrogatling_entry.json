@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/retrogatling.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Retro Gatling fires piercing peas at a moderate speed."
     },

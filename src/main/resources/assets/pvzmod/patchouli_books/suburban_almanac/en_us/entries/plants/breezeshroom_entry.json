@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/breezeshroom.png"
       ],
-      "title": "❄ Chiller",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Breeze-shrooms shoot a chilly wind that slows down multiple zombies."
     },

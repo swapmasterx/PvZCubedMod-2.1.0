@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/chomper.png"
       ],
-      "title": "\uD83D\uDDE1 Bruiser",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Chompers can devour a Zombie whole, but they are vulnerable while chewing."
     },

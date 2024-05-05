@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/pepperpult.png"
       ],
-      "title": "\uD83C\uDFF9 Snipers",
+      "title": "Snipers",
       "border": "true",
       "text": "$(#25228d)Pepper-pults lob flaming peppers at zombies ."
     },

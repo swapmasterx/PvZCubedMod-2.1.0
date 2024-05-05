@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/gloomshroom.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Fires heavy fumes in an area around itself."
     },

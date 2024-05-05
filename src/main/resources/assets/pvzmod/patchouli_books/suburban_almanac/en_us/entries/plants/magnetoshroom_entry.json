@@ -18,7 +18,7 @@
       "images": [
         "pvzmod:textures/gui/entries/magnetoshroom.png"
       ],
-      "title": "⭐ Specials",
+      "title": "Specials",
       "border": "true",
       "text": "$(#25228d)Magneto-shrooms remove metal objects from zombies, then launches them."
     },

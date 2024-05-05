@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/puffshroom.png"
       ],
-      "title": "⭘ Shooter",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Puff-shrooms are cheap, but can only fire a short distance."
     },

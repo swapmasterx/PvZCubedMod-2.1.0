@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/shamrock.png"
       ],
-      "title": "\uD83C\uDFF9 Snipers",
+      "title": "Snipers",
       "border": "true",
       "text": "$(#25228d)Shoots very far. Hides when zombies are nearby."
     },

@@ -20,7 +20,7 @@
       "images": [
         "pvzmod:textures/gui/entries/peanut.png"
       ],
-      "title": "⛨ Barriers",
+      "title": "Barriers",
       "border": "true",
       "text": "$(#25228d)Pea-nuts can shoot peas and block zombies."
     },

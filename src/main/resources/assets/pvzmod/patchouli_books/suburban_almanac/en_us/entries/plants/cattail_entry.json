@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/cattail.png"
       ],
-      "title": "✂ Crowd Controller",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Shoots piercing thorns; Prioritizes flying and hatless zombies."
     },

@@ -19,7 +19,7 @@
       "images": [
         "pvzmod:textures/gui/entries/dripphylleia.png"
       ],
-      "title": "⭐ Specials",
+      "title": "Specials",
       "border": "true",
       "text": "$(#25228d)Allows Aquatic Plants to be planted on land."
     },
