@@ -101,7 +101,7 @@ public class PumpkinWitchEntity extends PlantEntity implements GeoEntity, Ranged
 	/** /~*~//~*VARIANTS*~//~*~/ **/
 
 	private static final TrackedData<Boolean> DATA_ID_TYPE_VARIANT =
-			DataTracker.registerData(MagicshroomEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+			DataTracker.registerData(PumpkinWitchEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
 								 SpawnReason spawnReason, @Nullable EntityData entityData,

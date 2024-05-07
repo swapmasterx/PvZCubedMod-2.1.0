@@ -76,9 +76,6 @@ public class PiercePeaEntity extends PvZProjectileEntity implements GeoEntity {
 		this.setNoGravity(true);
     }
 
-//    public PiercePeaEntity(World world, LivingEntity owner) {
-//        super(EntityType.SNOWBALL, owner, world);
-//    }
 
     public void tick() {
 		super.tick();

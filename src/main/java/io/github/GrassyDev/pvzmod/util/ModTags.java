@@ -25,7 +25,7 @@ public class ModTags {
 	}
 
 	public static class Biomes {
-		public static final TagKey<Biome> FLOWERING = TagKey.of(RegistryKeys.BIOME, new Identifier(PvZCubed.MOD_ID, "is_flowerable"));
+		public static final TagKey<Biome> FLOWERING = TagKey.of(RegistryKeys.BIOME, new Identifier(PvZCubed.MOD_ID,"is_flowerable"));
 
 	}
 }

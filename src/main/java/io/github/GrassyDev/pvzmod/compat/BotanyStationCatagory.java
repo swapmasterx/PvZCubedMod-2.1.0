@@ -32,7 +32,7 @@ public class BotanyStationCatagory implements DisplayCategory<BasicDisplay> {
 
 	@Override
 	public Text getTitle() {
-		return Text.literal("Botany Box");
+		return Text.literal("botany_box");
 	}
 
 	@Override

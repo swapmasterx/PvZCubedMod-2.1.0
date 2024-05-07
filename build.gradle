@@ -8,15 +8,32 @@ version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
 loom {
+//	accessWidenerPath = file("src/main/resources/pvzmod.accesswidener")
+//	log4jConfigs.from(file("log4j.xml"))
+//	remapArchives = true
+//	setupRemappedVariants = true
+//	enableTransitiveAccessWideners = true
+//	runtimeOnlyLog4j = false
 	mods {
 		"pvzmod" {
 			sourceSet sourceSets.main
 		}
 	}
 }
+//remapJar {
+//	// Set the input jar for the task, also valid for remapSourcesJar
+//	inputFile = file("example.jar")
+//	// Set the target namespace, also valid for remapSourcesJar
+//	targetNamespace = "intermediary"
+//	// Add a nested mod jar to this task, the include configuration should be used for maven libraries and mods.
+//	nestedJars.from file("nested.jar")
+//	// When enabled nested jars will be included with the output jar.
+//	addNestedDependencies = true
+//}
 
 repositories {
 	mavenCentral()
+	maven { url 'https://maven.nucleoid.xyz' }
 	maven { url "https://maven.shedaniel.me" }
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven {
@@ -48,6 +65,7 @@ project.configurations.configureEach {
 }
 
 dependencies {
+	modImplementation include("xyz.nucleoid:server-translations-api:2.2.0+1.20.3-rc1")
 	modApi("me.shedaniel.cloth:cloth-config-fabric:13.0.121") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}

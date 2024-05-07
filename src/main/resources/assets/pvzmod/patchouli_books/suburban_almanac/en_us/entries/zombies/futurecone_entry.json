@@ -10,7 +10,7 @@
         "$(#bd951a)Health: $()$(#ff0000)14 (Rubber), 18(Plastic Cone)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
-        "$(br2)$(#bd951a)Has tried to calculate the volume of his mathematically perfect cone, but he always ends up dreaming about brain π."
+        "$(br2)$(#bd951a)Has tried to calculate the volume of his mathematically perfect cone, but he always ends up dreaming about brain pi."
       ]
     },
     {

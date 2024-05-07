@@ -105,7 +105,7 @@ public class BassZombieEntity extends ZombieRidersEntity implements GeoEntity {
 	/** /~*~//~*VARIANTS*~//~*~/ **/
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
-			DataTracker.registerData(BackupDancerEntity.class, TrackedDataHandlerRegistry.INTEGER);
+			DataTracker.registerData(BassZombieEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
 								 SpawnReason spawnReason, @Nullable EntityData entityData,

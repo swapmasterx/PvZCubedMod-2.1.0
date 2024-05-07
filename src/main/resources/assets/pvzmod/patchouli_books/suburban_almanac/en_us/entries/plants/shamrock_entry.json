@@ -30,7 +30,7 @@
         "$(br)$(#bd951a)Range: $()$(#ff0000)50 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Hides if a Zombie is 6 blocks near. Can target Flying Zombies.",
-        "$(br)$(#bd951a)You could say Shamrock is lucky, if your definition of “luck” includes “hiding whenever there’s anything dangerous or herbivorous around.” Which is a kind of luck, you must admit."
+        "$(br)$(#bd951a)You could say Shamrock is lucky, if your definition of \"luck\", includes hiding whenever there's anything dangerous or herbivorous around. Which is a kind of luck, you must admit."
       ]
     },
 

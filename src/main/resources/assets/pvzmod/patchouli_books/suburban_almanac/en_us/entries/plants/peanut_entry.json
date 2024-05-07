@@ -32,7 +32,7 @@
         "$(br)$(#bd951a)Damage: $()$(#ff0000) 2 DMG/1.5s (below 50% hp)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Top Pea(above 45 HP) hits Flying. Bottom Pea is Low Profile. Both have 10° projectile deviation.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Top Pea(above 45 HP) hits Flying. Bottom Pea is Low Profile. Both have 10 degree projectile deviation.",
         "$(br)$(#bd951a)Pea-nut knows that some folks have an allergy to him. He tries to be sensitive to their concerns and give them the space they need. Still, he can't help but miss the old days."
       ]
     },

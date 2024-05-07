@@ -469,14 +469,6 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
 
 	/** /~*~//~*SPAWNING*~//~*~/ **/
-//	public static boolean canSunflowerSeedSpawn(EntityType<? extends SunflowerSeedEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
-//		boolean bl = SpawnReason.method_54987(spawnReason) || isBrightEnoughForNaturalSpawn(world, pos);
-//		return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && bl;
-//	}
-//
-//	protected static boolean isBrightEnoughForNaturalSpawn(BlockRenderView world, BlockPos pos) {
-//		return world.getBaseLightLevel(pos, 0) > 8;
-//	}
 	public static boolean canSunflowerSeedSpawn(EntityType<? extends SunflowerSeedEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
 		BlockPos blockPos = pos.down();
 		return !world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&

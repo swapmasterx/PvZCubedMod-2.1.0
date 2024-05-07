@@ -31,7 +31,7 @@
         "$(br)$(#bd951a)Melee Damage: $()$(#ff0000)6 DMG/1.5s",
         "$(br)$(#bd951a)Melee Range: $()$(#ff0000)4 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
-        "$(br2)$(#bd951a)Beet’s a brawler, a tough root from the streets who won’t back down no matter how many zombies line up to take a crack at him. If anything, that makes him even more into it."
+        "$(br2)$(#bd951a)Beet's a brawler, a tough root from the streets who won't back down no matter how many zombies line up to take a crack at him. If anything, that makes him even more into it."
       ]
     },
 

@@ -23,14 +23,6 @@ public class SporeItem extends Item {
         super(settings);
     }
 
-//	@Override
-//	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-//		super.appendTooltip(stack, world, tooltip, context);
-//
-//		tooltip.add(Text.translatable("item.pvzmod.creative")
-//				.formatted(Formatting.UNDERLINE));
-//	}
-
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand); // creates a new ItemStack instance of the user's itemStack in-hand
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 1F); // plays a globalSoundEvent

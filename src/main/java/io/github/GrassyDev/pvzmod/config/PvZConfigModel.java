@@ -436,8 +436,8 @@ public class PvZConfigModel {
 		public float missileToeDMGRangeNear = 1.5f;
 		public float missileToeDMGRangeFar = 2.5f;
 		public float peaDMG = 2f;
-		public float pepperDMGv2 = 5f;
-		public float pepperSDMG = 2f;
+		public float pepperDMGv2 = 6f;
+		public float pepperSDMG = 3f;
 		public float piercepeaDMG = 3f;
 		public float piercesporeDMG = 3f;
 		public float plasmaPeaDMG = 6f;

@@ -1359,21 +1359,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		/**damageTaken += amount;
-		canTakeDmg = true;
-		if (damageTaken <= 50) {
-			super.applyDamage(source, amount);
-		}
-		else if (amount >= 50){
-			super.applyDamage(source, amount);
-		}
-		else if (source.getAttacker() instanceof PlantEntity plantEntity && plantEntity.isBurst){
-			super.applyDamage(source, amount);
-		}
-		else {
-			canTakeDmg = false;
-			super.applyDamage(source, 0);
-		}**/
+
 		if (!this.getRainbow()) {
 			super.applyDamage(source, amount);
 		}
@@ -1489,68 +1475,4 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			return false;
 		}
 	}
-
-	/**@Override
-	protected EntityNavigation createNavigation(World world) {
-		return new GeneralPvZombieEntity.SwimNavigation(this, world);
-	}
-
-	static class PathNodeMaker extends AmphibiousPathNodeMaker {
-		private final BlockPos.Mutable pos = new BlockPos.Mutable();
-
-		public PathNodeMaker(boolean bl) {
-			super(bl);
-		}
-
-		@Nullable
-		@Override
-		public PathNode getStart() {
-			return this.m_etdbalqp(
-					new BlockPos(
-							MathHelper.floor(this.entity.getBoundingBox().minX),
-							MathHelper.floor(this.entity.getBoundingBox().minY),
-							MathHelper.floor(this.entity.getBoundingBox().minZ)
-					)
-			);
-		}
-
-		@Override
-		public PathNodeType getNodeType(
-				BlockView world, int x, int y, int z, MobEntity mob, int sizeX, int sizeY, int sizeZ, boolean canOpenDoors, boolean canEnterOpenDoors
-		) {
-			BlockPos.Mutable mutable = new BlockPos.Mutable();
-
-			for(int i = x; i < x + sizeX; ++i) {
-				for(int j = y; j < y + sizeY; ++j) {
-					for(int k = z; k < z + sizeZ; ++k) {
-						FluidState fluidState = world.getFluidState(mutable.set(i, j, k));
-						BlockState blockState = world.getBlockState(mutable.set(i, j, k));
-						if (fluidState.isEmpty() && blockState.canPathfindThrough(world, mutable.down(), NavigationType.WATER) && blockState.isAir()) {
-							return PathNodeType.BREACH;
-						}
-
-						if (!fluidState.isIn(FluidTags.WATER)) {
-							return PathNodeType.BREACH;
-						}
-					}
-				}
-			}
-
-			BlockState blockState2 = world.getBlockState(mutable);
-			return blockState2.canPathfindThrough(world, mutable, NavigationType.WATER) ? PathNodeType.WATER : PathNodeType.OPEN;
-		}
-	}
-
-	static class SwimNavigtaion extends AmphibiousNavigation {
-		SwimNavigation(GeneralPvZombieEntity zombie, World world) {
-			super(zombie, world);
-		}
-
-		@Override
-		protected PathNodeNavigator createPathNodeNavigator(int range) {
-			this.nodeMaker = new GeneralPvZombieEntity.PathNodeMaker(true);
-			this.nodeMaker.setCanEnterOpenDoors(true);
-			return new PathNodeNavigator(this.nodeMaker, range);
-		}
-	}**/
 }

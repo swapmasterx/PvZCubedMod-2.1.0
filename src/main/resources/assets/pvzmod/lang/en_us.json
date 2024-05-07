@@ -1,16 +1,15 @@
 {
-  "sentient_plant": "sentient plant life",
+  "sentient_plant": "sentientplantlife",
 
-  "gamerule.pvzdoPlantSpawn": "[PVZ] Plants Spawn",
-  "gamerule.pvzdoGraveSpawn": "[PVZ] Graves Spawn",
-  "gamerule.pvzdoPlantDrop": "[PVZ] Plants Drop Loot",
-  "gamerule.pvzdoSunflowerDrop": "[PVZ] Sunflowers drop Sun when Planted",
-  "gamerule.pvzdoZombieDrop": "[PVZ] Zombies Drop Loot",
-  "gamerule.pvzinfiniteSeeds": "[PVZ] Infinite Seeds",
-  "gamerule.pvzinstantRecharge": "[PVZ] Instant Seed Packet Recharge",
-  "gamerule.pvzseedCostSun": "[PVZ] Seeds Cost Sun",
-  "gamerule.pvzplantsGlow": "[PVZ] Natural Spawned Plants Glow",
-  "gamerule.pvzspawnSpecialZombies": "[PVZ] Hard Zombies Spawn Naturally",
+  "gamerule.pvzdoPlantSpawn": "PVZ Plants Spawn",
+  "gamerule.pvzdoGraveSpawn": "PVZ Graves Spawn",
+  "gamerule.pvzdoPlantDrop": "PVZ Plants Drop Loot",
+  "gamerule.pvzdoSunflowerDrop": "PVZ Sunflowers drop Sun when Planted",
+  "gamerule.pvzdoZombieDrop": "PVZ Zombies Drop Loot",
+  "gamerule.pvzinfiniteSeeds": "PVZ Infinite Seeds",
+  "gamerule.pvzinstantRecharge": "PVZ Instant Seed Packet Recharge",
+  "gamerule.pvzplantsGlow": "PVZ Natural Spawned Plants Glow",
+  "gamerule.pvzspawnSpecialZombies": "PVZ Hard Zombies Spawn Naturally",
 
   "text.config.pvz3-config.title": "Plants vs. Zombies: Cubed",
 
@@ -537,7 +536,7 @@
 
   "entity.pvzmod.jalapeno": "Jalapeno",
   "item.pvzmod.jalapeno_seed_packet": "Jalapeno Seed Packet",
-  "item.pvzmod.jalapeno_seed_packet.flavour": "Ándale!",
+  "item.pvzmod.jalapeno_seed_packet.flavour": "Andale!",
   "item.pvzmod.jalapeno_seed_packet.flavour2": "(Pause)",
   "item.pvzmod.jalapeno_seed_packet.flavour3": "Arriba!",
   "item.pvzmod.jalapeno_seed_packet.flavour4": "(Explosion)",
@@ -881,10 +880,6 @@
   "item.pvzmod.charmshroom_seed_packet": "Charm-shroom Seed Packet",
   "item.pvzmod.charmshroom_seed_packet.flavour": "Lucky charm? How about a love charm?",
   "item.pvzmod.charmshroom_seed_packet.flavour2": "[You feel dizzy as you are losing consciousness...]",
-
-  "entity.pvzmod.smallnut": "Small-nut",
-  "item.pvzmod.smallnut_seed_packet": "Small-nut Seed Packet",
-  "item.pvzmod.smallnut_seed_packet.flavour": "I'm nuts.",
 
   "entity.pvzmod.smackadamia": "Smackadamia",
   "item.pvzmod.smackadamia_seed_packet": "Smackadamia Seed Packet",

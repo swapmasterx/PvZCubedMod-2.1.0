@@ -12,7 +12,7 @@
         "$(#bd951a)Rider: $()$(#ff0000)x4 Bobsled Zombie",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)360, 360 (Slide/Throw)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, faster when sliding. ",
-        "$(#bd951a)Special: $()$(#ff0000)Starts sliding when on top or at the side of a Snow Tile/Ice tile/Oil tile, rotating hitbox by 90°. Vehicle destroyed if sliding and hitting a Plant resistant to Throw damage.",
+        "$(#bd951a)Special: $()$(#ff0000)Starts sliding when on top or at the side of a Snow Tile/Ice tile/Oil tile, rotating hitbox by 90 degrees. Vehicle destroyed if sliding and hitting a Plant resistant to Throw damage.",
         "$(br)$(#bd951a)They live together, train together, sleep together, to become a cohesive zombie unit."
       ]
     },

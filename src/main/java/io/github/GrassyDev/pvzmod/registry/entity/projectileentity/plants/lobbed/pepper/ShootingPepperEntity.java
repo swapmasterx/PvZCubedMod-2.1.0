@@ -251,7 +251,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 						if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 							generalPvZombieEntity.fireSplashTicks = 10;
 						}
-						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 0)));
 						Vec3d vec3d = this.getPos();
 						List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
 						Iterator var10 = list.iterator();
@@ -265,7 +265,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 
 									livingEntity = (LivingEntity) var10.next();
 								} while (livingEntity == this.getOwner());
-							} while (entity.squaredDistanceTo(livingEntity) > 6.25);
+							} while (entity.squaredDistanceTo(livingEntity) > 7.25);
 
 
 							if (livingEntity instanceof OilTile oilTile) {
@@ -354,7 +354,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 					} else if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !entity.isWet()) {
 						((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
 						((LivingEntity) entity).removeStatusEffect(PvZCubed.ICE);
-						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 0)));
 						if (!entity.isWet()) {
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 						}

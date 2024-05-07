@@ -355,19 +355,6 @@ public class LilyPadEntity extends PlantEntity implements GeoEntity {
 		return 1;
 	}
 
-	/**public boolean collidesWith(Entity other) {
-		return canCollide(this, other);
-	}
-
-	public static boolean canCollide(Entity entity, Entity other) {
-		return (other.isCollidable() || other.isPushable()) && !entity.isConnectedThroughVehicle(other);
-	}
-
-	public double getMountedHeightOffset() {
-		return 0;
-	}
-	 **/
-
 	protected boolean canClimb() {
 		return false;
 	}
@@ -417,12 +404,5 @@ public class LilyPadEntity extends PlantEntity implements GeoEntity {
 		}
 		this.playBlockFallSound();
 		return true;
-	}
-
-	public static boolean canLilyPadSpawn(EntityType<? extends LilyPadEntity> entityType, WorldAccess worldAccess, SpawnReason reason, BlockPos pos, RandomGenerator random) {
-		BlockPos blockPos2 = pos.add(0, 0, 0);
-		return ((worldAccess.getFluidState(pos.down()).isSource() && !worldAccess.getFluidState(blockPos2).isSource() && !worldAccess.getFluidState(pos.down()).isOf(Fluids.LAVA)) ||
-				worldAccess.getBlockState(pos.down()).getBlock().equals(ICE)) &&
-				Objects.requireNonNull(worldAccess.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN);
 	}
 }
