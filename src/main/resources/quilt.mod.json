@@ -26,22 +26,16 @@
 			],
 			"client_init": [
 				"io.github.GrassyDev.pvzmod.registry.PvZEntityClient"
-			],
-			"fabric-datagen": [
-				"io.github.GrassyDev.pvzmod.PvZCubedDataGeneration"
-			],
-			"rei-client": [
-				"io.github.GrassyDev.pvzmod.compat.PvZModJEIClientPlugin"
 			]
 		},
 		"depends": [
 			{
 				"id": "quilt_loader",
-				"versions": ">=0.24.0-"
+				"versions": ">=0.26.0-beta.1"
 			},
 			{
 				"id": "quilted_fabric_api",
-				"versions": ">=7.5.0+0.91.0-"
+				"versions": ">=9.0.0-alpha.8+0.97.0"
 			},
 			{
 				"id": "geckolib",

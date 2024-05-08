@@ -320,7 +320,7 @@ public class AcidshroomEntity extends PlantEntity implements GeoEntity, RangedAt
 		}
 
 		public void start() {
-			this.beamTicks = -10;
+			this.beamTicks = -8;
 			this.animationTicks = -21;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
@@ -365,7 +365,7 @@ public class AcidshroomEntity extends PlantEntity implements GeoEntity, RangedAt
 				}
 				if (this.animationTicks >= 0) {
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -10;
+					this.beamTicks = -8;
 					this.animationTicks = -21;
 				}
 				super.tick();

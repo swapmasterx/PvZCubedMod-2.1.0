@@ -9,7 +9,7 @@
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entry_recipies/lilypad_r.png",
-        "pvzmod:textures/gui/entry_recipies/lilypad1_r.png"
+        "pvzmod:textures/gui/entry_recipies/lilypada_r.png"
       ],
       "title": "Botany Box Recipe",
       "border": "true",

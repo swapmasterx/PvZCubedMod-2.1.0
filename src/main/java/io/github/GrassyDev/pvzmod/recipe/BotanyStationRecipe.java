@@ -59,9 +59,8 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		}
 
 		return notEmptyStacks == this.recipeItems.size() && recipeMatcher.match(this, null);
-// && this.packetTemplate.test(inventory.getStack(7)
 	}
-//		return recipeItems.get(0).test(inventory.getStack(1));
+
 
 
 	public int getSunCost() {
@@ -69,7 +68,6 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 	}
 	@Override
 	public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-//		ItemStack itemStack = inventory.getStack(7);
 		return this.output;
 	}
 
@@ -82,10 +80,6 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		return output;
 	}
 
-
-//	public boolean matchesPacketTemplateIngredient(ItemStack stack) {
-//		return this.packetTemplate.test(stack);
-//	}
 
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
@@ -127,7 +121,6 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 					}
 				}, DataResult::success).forGetter(botanyStationRecipe -> (DefaultedList<Ingredient>) botanyStationRecipe.recipeItems),
 				ItemStack.field_47309.fieldOf("result").forGetter(botanyStationRecipe -> botanyStationRecipe.output),
-//				Ingredient.field_46095.fieldOf("packettemplate").forGetter(botanyStationRecipe -> botanyStationRecipe.packetTemplate),
 				Codecs.method_53049(Codec.STRING, "group", "").forGetter(botanyStationRecipe -> botanyStationRecipe.group),
 				Codec.INT.fieldOf("suncost").forGetter(botanyStationRecipe -> botanyStationRecipe.sunCost))
 			.apply(instance, BotanyStationRecipe::new));

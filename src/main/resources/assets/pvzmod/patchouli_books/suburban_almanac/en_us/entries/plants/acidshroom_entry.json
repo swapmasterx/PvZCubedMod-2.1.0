@@ -27,7 +27,7 @@
       "type": "text",
       "text": [
         "$(#bd951a)Health: $()$(#ff0000)15",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x4 DMG/2s (Pierce)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x5 DMG/2s (Pierce)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)7 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Does acid damage that devastate metal objects.",

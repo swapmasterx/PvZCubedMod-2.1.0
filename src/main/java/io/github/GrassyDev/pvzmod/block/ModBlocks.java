@@ -16,7 +16,7 @@ public class ModBlocks {
 			.mapColor(MapColor.GREEN).pistonBehavior(PistonBehavior.BLOCK)
 			.nonOpaque()
 			.sounds(BlockSoundGroup.CHERRY_WOOD)
-			.strength(1.0f, 1000f));
+			.strength(1.1f, 1000f));
     public static final Block GRASS_TILE = new Block(QuiltBlockSettings.create()
 		.mapColor(MapColor.GRASS).pistonBehavior(PistonBehavior.NORMAL)
 		.sounds(BlockSoundGroup.GRASS)

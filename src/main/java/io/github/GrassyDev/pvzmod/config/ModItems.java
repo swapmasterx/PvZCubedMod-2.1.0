@@ -948,7 +948,7 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"superhard"), SUPERHARD);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"nightmare"), NIGHTMARE);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"crazy"), CRAAAAZY);
-		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"1x1"), ONEBYONE);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"onebyone"), ONEBYONE);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"half"), HALF);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"infinite"), INFINITE);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"unlock"), UNLOCK);

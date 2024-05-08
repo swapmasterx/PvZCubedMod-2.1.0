@@ -10,7 +10,7 @@ public class ModRecipes {
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(PvZCubed.MOD_ID, BotanyStationRecipe.Serializer.ID),
                 BotanyStationRecipe.Serializer.INSTANCE);
         Registry.register(Registries.RECIPE_TYPE, new Identifier(PvZCubed.MOD_ID, BotanyStationRecipe.Type.ID), BotanyStationRecipe.Type.INSTANCE);
-        PvZCubed.LOGGER.info("Registering Recipes for " + PvZCubed.MOD_ID);
+        PvZCubed.LOGGER.info("Registering Recipes for" + PvZCubed.MOD_ID);
     }
 }
 
