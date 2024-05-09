@@ -21,22 +21,14 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 
 //	final Ingredient packetTemplate;
 	//	final Ingredient sunInput;
-	final String group;
 	//	final CraftingCategory category;
 	private final ItemStack output;
 	private final List<Ingredient> recipeItems;
 	final int sunCost;
-	public BotanyStationRecipe(List<Ingredient> ingredients, ItemStack output, String group, int sunCost){
-//
-//		Ingredient packetTemplate,
-//		this.packetTemplate = packetTemplate;
-//		this.category = category;
-		this.group = group;
-//		this.sunInput = sunInput;
-//		, Ingredient sunInput
-		this.output = output;
-		this.recipeItems = ingredients;
+	public BotanyStationRecipe(int sunCost, List<Ingredient> ingredients, ItemStack output){
 		this.sunCost = sunCost;
+		this.recipeItems = ingredients;
+		this.output = output;
 	}
 //	public String getGroup() {
 //		return this.group;
@@ -113,21 +105,20 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		public static final Serializer INSTANCE = new Serializer();
 		public static final String ID = "botany_station";
 
-		private static final Codec<BotanyStationRecipe> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+		private static final Codec<BotanyStationRecipe> CODEC =
+			RecordCodecBuilder.create(instance -> instance.group(
+				Codec.INT.fieldOf("suncost").forGetter(botanyStationRecipe -> botanyStationRecipe.sunCost),
 				Ingredient.field_46096.listOf().fieldOf("ingredients").flatXmap(list -> {
-					Ingredient[] ingredients = list.stream().filter(ingredient -> !ingredient.isEmpty())
-						.toArray(Ingredient[]::new);
-					if (ingredients.length == 0) {
-						return DataResult.error(() -> "No ingredients for Botany Box recipe");
-					} else {
-						return ingredients.length > 7 ?
-							DataResult.error(() -> "Too many ingredients for Botany Box recipe") :
-							DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredients));
-					}
+				Ingredient[] ingredients = list.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+				if (ingredients.length == 0) {
+					return DataResult.error(() -> "No ingredients for Botany Box recipe");
+				} else {
+					return ingredients.length > 7 ?
+						DataResult.error(() -> "Too many ingredients for Botany Box recipe") :
+						DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredients));
+				}
 				}, DataResult::success).forGetter(botanyStationRecipe -> (DefaultedList<Ingredient>) botanyStationRecipe.recipeItems),
-				ItemStack.field_47309.fieldOf("result").forGetter(botanyStationRecipe -> botanyStationRecipe.output),
-				Codecs.method_53049(Codec.STRING, "group", "").forGetter(botanyStationRecipe -> botanyStationRecipe.group),
-				Codec.INT.fieldOf("suncost").forGetter(botanyStationRecipe -> botanyStationRecipe.sunCost))
+				ItemStack.field_47309.fieldOf("result").forGetter(botanyStationRecipe -> botanyStationRecipe.output))
 			.apply(instance, BotanyStationRecipe::new));
 
 		@Override
@@ -138,29 +129,23 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		@Override
 		public BotanyStationRecipe read(PacketByteBuf buf) {
 
+			int suncost = buf.readVarInt();
 			int ingredientsCount = buf.readVarInt();
 			DefaultedList<Ingredient> inputs = DefaultedList.ofSize(ingredientsCount, Ingredient.EMPTY);
 			inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
 			ItemStack output = buf.readItemStack();
-			String group = buf.readString();
-			int suncost = buf.readVarInt();
-			//seed packet template
-//			Ingredient packetTemp = Ingredient.fromPacket(buf);
-			//defaulted list
 
-			return new BotanyStationRecipe(inputs, output, group, suncost);
+			return new BotanyStationRecipe(suncost, inputs, output);
 		}
 
 		@Override
 		public void write(PacketByteBuf buf, BotanyStationRecipe botanyStationRecipe) {
+			buf.writeInt(botanyStationRecipe.sunCost);
 			buf.writeInt(botanyStationRecipe.getIngredients().size());
 			for (Ingredient ingredient : botanyStationRecipe.getIngredients()) {
 				ingredient.write(buf);
 			}
-//			botanyStationRecipe.packetTemplate.write(buf);
 			buf.writeItemStack(botanyStationRecipe.getResult(null));
-			buf.writeString(botanyStationRecipe.group);
-			buf.writeInt(botanyStationRecipe.sunCost);
 		}
 	}
 }

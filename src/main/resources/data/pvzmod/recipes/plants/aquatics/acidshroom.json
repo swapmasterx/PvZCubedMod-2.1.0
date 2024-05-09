@@ -1,6 +1,5 @@
 {
   "type": "pvzmod:botany_station",
-  "group": "boat",
   "suncost": 125,
   "ingredients": [
     {
