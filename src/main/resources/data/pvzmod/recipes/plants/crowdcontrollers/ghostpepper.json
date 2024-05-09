@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 150,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_shadow"
+    },
+    {
+      "item": "pvzmod:plantfood_air"
+    },
+    {
+      "item": "minecraft:white_banner"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:ghostpepper_seed_packet",
+    "count": 1
+  }
+}

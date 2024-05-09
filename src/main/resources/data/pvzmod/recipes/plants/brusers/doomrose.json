@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 200,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_shadow"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood_shadow"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:doomrose_seed_packet",
+    "count": 1
+  }
+}

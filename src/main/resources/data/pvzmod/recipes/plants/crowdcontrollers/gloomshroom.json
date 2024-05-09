@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 150,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:fume"
+    },
+    {
+      "item": "pvzmod:fume"
+    },
+    {
+      "item": "minecraft:warped_fungus"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:gloomshroom_seed_packet",
+    "count": 1
+  }
+}

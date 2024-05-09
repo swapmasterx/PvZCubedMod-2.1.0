@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 500,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "pvzmod:plantfood_fire"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:missiletoe_seed_packet",
+    "count": 1
+  }
+}

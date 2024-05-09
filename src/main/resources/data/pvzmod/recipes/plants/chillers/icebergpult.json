@@ -1,0 +1,17 @@
+ {
+  "type": "pvzmod:botany_station",
+
+  "suncost": 50,
+  "ingredients": [
+    {
+      "item": "pvzmod:iceberglettuce_seed_packet"
+    },
+    {
+      "item": "pvzmod:cabbagepult_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:icebergpult_seed_packet",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:gambleshroom_seed_packet",
+    "count": 1
+  }
+}

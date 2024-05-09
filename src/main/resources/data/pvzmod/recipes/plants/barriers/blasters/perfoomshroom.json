@@ -1,0 +1,20 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 0,
+  "ingredients": [
+    {
+      "item": "pvzmod:beautyshroom_seed_packet"
+    },
+    {
+      "item": "pvzmod:doomshroom_seed_packet"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:perfoomshroom_seed_packet",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 175,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_cold"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:snowpea_seed_packet",
+    "count": 1
+  }
+}

@@ -4,23 +4,17 @@
   "suncost": 125,
   "ingredients": [
     {
-      "item": "pvzmod:plantfood_mushroom"
-    },
-    {
-      "item": "pvzmod:acidfume"
+      "item": "pvzmod:plantfood_elec"
     },
     {
       "item": "pvzmod:plantfood_aquatic"
-    },
-    {
-      "item": "minecraft:green_dye"
     },
     {
       "item": "pvzmod:empty_seed_packet"
     }
   ],
   "result": {
-    "item": "pvzmod:acidshroom_seed_packet",
+    "item": "pvzmod:lightningreed_seed_packet",
     "count": 1
   }
 }

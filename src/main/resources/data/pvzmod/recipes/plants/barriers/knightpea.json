@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 200,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "minecraft:iron_chestplate"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:knightpea_seed_packet",
+    "count": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 300,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_elec"
+    },
+    {
+      "item": "pvzmod:plantfood_elec"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:electropea_seed_packet",
+    "count": 1
+  }
+}

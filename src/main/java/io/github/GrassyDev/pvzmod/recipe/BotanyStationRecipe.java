@@ -140,8 +140,8 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 
 		@Override
 		public void write(PacketByteBuf buf, BotanyStationRecipe botanyStationRecipe) {
-			buf.writeInt(botanyStationRecipe.sunCost);
-			buf.writeInt(botanyStationRecipe.getIngredients().size());
+			buf.writeVarInt(botanyStationRecipe.sunCost);
+			buf.writeVarInt(botanyStationRecipe.getIngredients().size());
 			for (Ingredient ingredient : botanyStationRecipe.getIngredients()) {
 				ingredient.write(buf);
 			}

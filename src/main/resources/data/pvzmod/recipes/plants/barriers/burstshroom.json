@@ -1,26 +1,23 @@
 {
   "type": "pvzmod:botany_station",
 
-  "suncost": 125,
+  "suncost": 100,
   "ingredients": [
     {
       "item": "pvzmod:plantfood_mushroom"
     },
     {
-      "item": "pvzmod:acidfume"
+      "item": "minecraft:magma_block"
     },
     {
-      "item": "pvzmod:plantfood_aquatic"
-    },
-    {
-      "item": "minecraft:green_dye"
+      "item": "pvzmod:plantfood_tough"
     },
     {
       "item": "pvzmod:empty_seed_packet"
     }
   ],
   "result": {
-    "item": "pvzmod:acidshroom_seed_packet",
+    "item": "pvzmod:burstshroom_seed_packet",
     "count": 1
   }
 }
