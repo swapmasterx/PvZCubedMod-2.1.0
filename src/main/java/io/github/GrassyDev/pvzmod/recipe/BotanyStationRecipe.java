@@ -58,7 +58,12 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 			}
 		}
 
-		return notEmptyStacks == this.recipeItems.size() && recipeMatcher.match(this, null);
+		if(world.isClient()) {
+			return false;
+		}
+		else {
+			return notEmptyStacks == this.recipeItems.size() && recipeMatcher.match(this, null);
+		}
 	}
 
 
