@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.gravebuster.GravebusterEntity;
@@ -232,7 +233,9 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 		}
 		return itemStack;
 	}
-
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return PvZSounds.BUCKETHITEVENT;
+	}
 	protected List<LivingEntity> zombieList = new ArrayList<>();
 	private void healEntity() {
 		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(4));

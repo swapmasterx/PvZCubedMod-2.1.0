@@ -163,9 +163,9 @@ public class BananasaurusEntity extends PlantEntity implements GeoEntity, Ranged
 			String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 			SoundEvent sound;
 			sound = switch (zombieMaterial) {
-				case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-				case "plastic" -> PvZSounds.CONEHITEVENT;
-				case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+				case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+				case "plastic" -> PvZSounds.PEAHITEVENT;
+				case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 				default -> PvZSounds.PEAHITEVENT;
 			};
 			target.playSound(sound, 0.2F, (float) (0.5F + Math.random()));

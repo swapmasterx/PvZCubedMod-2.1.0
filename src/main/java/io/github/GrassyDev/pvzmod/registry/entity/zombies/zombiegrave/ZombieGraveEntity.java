@@ -212,7 +212,9 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoEntity
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.BLOCK_ANCIENT_DEBRIS_BREAK;
 	}
-
+	protected SoundEvent getAmbientSound() {
+		return PvZSounds.SILENCEVENET;
+	}
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.BLOCK_BASALT_HIT;
 	}

@@ -165,7 +165,7 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ITEM_SHIELD_BREAK;
+		return SoundEvents.BLOCK_WOOD_BREAK;
 	}
 
 	protected SoundEvent getAmbientSound() {

@@ -50,6 +50,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -515,7 +516,9 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			super.pushAwayFrom(entity);
 		}
 	}
-
+	protected SoundEvent getAmbientSound() {
+		return PvZSounds.PVZOMBIEMOANEVENT;
+	}
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return (this.getHypno()) ? PvZSounds.ZOMBIEBITEEVENT : PvZSounds.SILENCEVENET;

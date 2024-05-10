@@ -474,9 +474,9 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -949,9 +949,9 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 							String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 							SoundEvent sound;
 							sound = switch (zombieMaterial) {
-								case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-								case "plastic" -> PvZSounds.CONEHITEVENT;
-								case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+								case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+								case "plastic" -> PvZSounds.PEAHITEVENT;
+								case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 								default -> PvZSounds.PEAHITEVENT;
 							};
 							this.plantEntity.playSound(PvZSounds.LIGHTNINGSHOOTEVENT, 0.75F, (float) (0.75F + (Math.random() / 2)));

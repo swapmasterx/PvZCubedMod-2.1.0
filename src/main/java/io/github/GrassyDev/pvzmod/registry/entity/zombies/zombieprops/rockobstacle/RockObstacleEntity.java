@@ -214,9 +214,9 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ITEM_SHIELD_BREAK;
+		return SoundEvents.BLOCK_STONE_BREAK;
 	}
-
+	protected SoundEvent getHurtSound(DamageSource source) {return PvZSounds.STONEHITEVENT;}
 	protected SoundEvent getAmbientSound() {
 		return PvZSounds.SILENCEVENET;
 	}

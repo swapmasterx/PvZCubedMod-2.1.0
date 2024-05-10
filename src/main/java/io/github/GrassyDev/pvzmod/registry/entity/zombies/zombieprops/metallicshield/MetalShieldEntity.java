@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -129,7 +130,9 @@ public class MetalShieldEntity extends ZombieShieldEntity implements GeoEntity {
 
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
-
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return PvZSounds.BUCKETHITEVENT;
+	}
 	public static DefaultAttributeContainer.Builder createScreendoorShieldAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
 
