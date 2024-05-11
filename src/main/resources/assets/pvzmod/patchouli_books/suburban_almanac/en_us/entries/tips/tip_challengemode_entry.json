@@ -2,6 +2,7 @@
   "name": "Challenge Mode",
   "icon": "pvzmod:gardenchallenge_spawn",
   "category": "pvzmod:tutorial_category",
+  "advancement": "pvzmod:make_smooshroom",
   "sortnum": 3,
   "pages": [
     {

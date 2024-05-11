@@ -45,16 +45,19 @@
     ]
   },
   "bucket_hit": {
+    "category": "hostile",
     "sounds": [
       "pvzmod:bucket_hit"
     ]
   },
   "cone_hit": {
+    "category": "hostile",
     "sounds": [
       "pvzmod:cone_hit"
     ]
   },
   "stone_hit": {
+    "category": "hostile",
     "sounds": [
       "pvzmod:stone_hit"
     ]

@@ -5,9 +5,12 @@ import io.github.GrassyDev.pvzmod.registry.entity.gravestones.basicgrave.BasicGr
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.peashooter.PeashooterEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.solar.sunflowerseed.SunflowerSeedEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.browncoat.modernday.BrowncoatEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
 import io.github.GrassyDev.pvzmod.util.ModTags;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -24,29 +27,41 @@ public class PvZEntitySpawn {
 
 	public static void addEntitySpawn(){
 
-		//Zombies
-//		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BROWNCOAT, 10, 1, 2);
-//		SpawnRestriction.register(PvZEntity.BROWNCOAT, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnIgnoreLightLevel);
-
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BROWNCOAT, 80, 2, 2);
+		//Natural Day Zombies
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BROWNCOAT, 70, 1, 2);
 		SpawnRestriction.register(PvZEntity.BROWNCOAT, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnIgnoreLightLevel);
 
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.CONEHEAD, 60, 1, 1);
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.CONEHEAD, 50, 1, 2);
 		SpawnRestriction.register(PvZEntity.CONEHEAD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
 		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.POLEVAULTING, 50, 1, 1);
 		SpawnRestriction.register(PvZEntity.POLEVAULTING, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BUCKETHEAD, 40, 1, 1);
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BUCKETHEAD, 35, 1, 1);
 		SpawnRestriction.register(PvZEntity.BUCKETHEAD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BRICKHEAD, 25, 1, 1);
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BRICKHEAD, 10, 1, 1);
 		SpawnRestriction.register(PvZEntity.BRICKHEAD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
 		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.FLAGZOMBIE, 5, 1, 1);
 		SpawnRestriction.register(PvZEntity.FLAGZOMBIE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
-//		Graves
+		//Natural Night Zombies
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.TAIGA), SpawnGroup.MONSTER, PvZEntity.NEWSPAPER, 35, 1, 1);
+		SpawnRestriction.register(PvZEntity.NEWSPAPER, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
+
+		//Natural Pool Zombies
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.SNORKEL, 30, 1, 1);
+		SpawnRestriction.register(PvZEntity.SNORKEL, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SnorkelEntity::canSpawn);
+
+		//Natural Fog Zombies
+
+
+		//Natural Roof Zombies
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.GARGANTUAR, 1, 1, 1);
+		SpawnRestriction.register(PvZEntity.GARGANTUAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
+
+		//		Graves
 //		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BASICGRAVESTONE, PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGv2(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGmin(), PVZCONFIG.nestedSpawns.nestedGraveSpawns.basicGmax());
 //		SpawnRestriction.register(PvZEntity.BASICGRAVESTONE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BasicGraveEntity::canBasicGraveSpawn);
 //
@@ -74,7 +89,7 @@ public class PvZEntitySpawn {
 
 		//Plants
 
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.CREATURE, PvZEntity.SUNFLOWERSEED, 15, 1, 1);
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.CREATURE, PvZEntity.SUNFLOWERSEED, 17, 1, 1);
 		SpawnRestriction.register(PvZEntity.SUNFLOWERSEED, SpawnRestriction.Location.NO_RESTRICTIONS,  Heightmap.Type.MOTION_BLOCKING, SunflowerSeedEntity::canSunflowerSeedSpawn);
 
 //		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BELLFLOWER, PVZCONFIG.nestedSpawns.nestedPlantSpawns.bellflowerSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.bellflowerSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.bellflowerSPmax());

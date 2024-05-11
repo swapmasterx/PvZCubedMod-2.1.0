@@ -220,11 +220,15 @@ public class ShootingSnowqueenPeaEntity extends PvZProjectileEntity implements G
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				}
 				hit = true;

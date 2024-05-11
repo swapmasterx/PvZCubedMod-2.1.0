@@ -202,16 +202,20 @@ public class ShootingBeeSpikeEntity extends PvZProjectileEntity implements GeoEn
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 4)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 2)));
 				entityStore.add((LivingEntity) entity);
 			}
 		}

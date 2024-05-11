@@ -1,7 +1,8 @@
 {
-  "name": "First Night",
+  "name": "Nighttime and You",
   "icon": "minecraft:black_concrete",
   "category": "pvzmod:tutorial_category",
+  "advancement": "pvzmod:make_puffshroom",
   "sortnum": 1,
   "pages": [
     {

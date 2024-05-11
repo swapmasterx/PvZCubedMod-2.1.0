@@ -219,12 +219,15 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-
-							livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							if (!(livingEntity instanceof ZombiePropEntity zombiePropEntity)){
+								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							}
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 						} else {
-							livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							if (!(livingEntity instanceof ZombiePropEntity zombiePropEntity)){
+								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							}
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
 					}

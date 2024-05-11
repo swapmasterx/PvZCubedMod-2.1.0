@@ -459,7 +459,7 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 								if (livingEntity != null && livingEntity.isAlive()) {
 									this.beamTicks = -11;
 									this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
-									this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
+									this.plantEntity.playSound(PvZSounds.MUSHROOMSHOOTEVENT, 0.2F, 1);
 									this.plantEntity.getWorld().spawnEntity(proj);
 								}
 							}
