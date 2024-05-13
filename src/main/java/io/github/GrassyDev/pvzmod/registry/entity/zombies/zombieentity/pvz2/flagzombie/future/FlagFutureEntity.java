@@ -298,7 +298,7 @@ public class FlagFutureEntity extends SummonerEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createFlagFutureAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)

@@ -299,7 +299,7 @@ public class FlagSargeantEntity extends SummonerEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createFlagSargeantAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)

@@ -146,7 +146,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createBrickGearAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -155,7 +155,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
     }
 
 	public static DefaultAttributeContainer.Builder createPyramidGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -164,7 +164,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createTowerGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -173,7 +173,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createSarcophagusAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -182,7 +182,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBowlGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)

@@ -296,7 +296,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createFlagPokerAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 18.0D)
