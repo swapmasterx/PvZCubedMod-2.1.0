@@ -2,6 +2,7 @@
   "name": "Tip: Effects",
   "icon": "pvzmod:firepea",
   "category": "pvzmod:tutorial_category",
+  "advancement": "pvzmod:make_snowpea",
   "sortnum": 10,
   "pages": [
     {

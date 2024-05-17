@@ -27,7 +27,8 @@
         "$(br2)Certain sun producers also have unique conditions as well for sun production.",
         "$(br)Sunflower Seeds won't produce any sun without access to sunlight.",
         "$(br)Sunflowers and Twin Sunflowers produce small sun instead of regular sun without access to sunlight.",
-        "$(br)Sun-Shrooms are nocturnal, not producing sun at all during the day without the intervention of a coffee bean."
+        "$(br)Sun-Shrooms are nocturnal, not producing sun at all during the day without the intervention of a coffee bean.",
+        "$(br)Gold Leaf tiles require a plant on top of them and a zombie nearby."
       ]
     },
     {

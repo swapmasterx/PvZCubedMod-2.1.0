@@ -7,10 +7,10 @@
       "bounding_box": "piece",
       "spawns": [
         {
-          "type": "pvzmod:puffshroom",
-          "weight": 6,
+          "type": "pvzmod:fumeshroom",
+          "weight": 4,
           "minCount": 1,
-          "maxCount": 2
+          "maxCount": 1
         },
         {
           "type": "pvzmod:peashooter",
@@ -19,28 +19,22 @@
           "maxCount": 1
         },
         {
-          "type": "pvzmod:sunshroom",
-          "weight": 3,
+          "type": "pvzmod:screendoor",
+          "weight": 40,
           "minCount": 1,
           "maxCount": 1
         },
         {
-          "type": "pvzmod:screendoor",
-          "weight": 50,
-          "minCount": 1,
-          "maxCount": 2
-        },
-        {
           "type": "pvzmod:newspaper",
-          "weight": 50,
+          "weight": 40,
           "minCount": 1,
-          "maxCount": 2
+          "maxCount": 1
         },
         {
           "type": "pvzmod:football",
           "weight": 20,
           "minCount": 1,
-          "maxCount": 2
+          "maxCount": 1
         },
         {
           "type": "minecraft:skeleton",

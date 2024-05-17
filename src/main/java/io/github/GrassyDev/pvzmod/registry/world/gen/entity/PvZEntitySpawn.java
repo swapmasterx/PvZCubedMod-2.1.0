@@ -3,6 +3,8 @@ package io.github.GrassyDev.pvzmod.registry.world.gen.entity;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.basicgrave.BasicGraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.peashooter.PeashooterEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.spikeweed.SpikeweedEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.burstshroom.BurstshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.solar.sunflowerseed.SunflowerSeedEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.browncoat.modernday.BrowncoatEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -58,7 +60,7 @@ public class PvZEntitySpawn {
 		SpawnRestriction.register(PvZEntity.SNORKEL, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SnorkelEntity::canSpawn);
 
 		//Natural Roof Zombies
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.GARGANTUAR, 2, 1, 1);
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.GARGANTUAR, 3, 1, 1);
 		SpawnRestriction.register(PvZEntity.GARGANTUAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
 		//Graves
@@ -90,7 +92,13 @@ public class PvZEntitySpawn {
 		//Plants
 
 		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.CREATURE, PvZEntity.SUNFLOWERSEED, 17, 1, 1);
-		SpawnRestriction.register(PvZEntity.SUNFLOWERSEED, SpawnRestriction.Location.NO_RESTRICTIONS,  Heightmap.Type.MOTION_BLOCKING, SunflowerSeedEntity::canSunflowerSeedSpawn);
+		SpawnRestriction.register(PvZEntity.SUNFLOWERSEED, SpawnRestriction.Location.ON_GROUND,  Heightmap.Type.MOTION_BLOCKING, SunflowerSeedEntity::canSunflowerSeedSpawn);
+
+//		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.NETHER), SpawnGroup.MONSTER, PvZEntity.SPIKEWEED, 5, 1, 1);
+//		SpawnRestriction.register(PvZEntity.SPIKEWEED, SpawnRestriction.Location.ON_GROUND,  Heightmap.Type.MOTION_BLOCKING, SpikeweedEntity::canSpikeWeedSpawn);
+//
+//		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.NETHER), SpawnGroup.MONSTER, PvZEntity.BURSTSHROOM, 2, 1, 1);
+//		SpawnRestriction.register(PvZEntity.BURSTSHROOM, SpawnRestriction.Location.ON_GROUND,  Heightmap.Type.MOTION_BLOCKING, BurstshroomEntity::canBurstShroomSpawn);
 
 //		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.BELLFLOWER, PVZCONFIG.nestedSpawns.nestedPlantSpawns.bellflowerSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.bellflowerSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.bellflowerSPmax());
 //		SpawnRestriction.register(PvZEntity.BELLFLOWER, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BellflowerEntity::canBellflowerSpawn);
@@ -106,21 +114,6 @@ public class PvZEntitySpawn {
 //
 //		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.LILYPAD, PVZCONFIG.nestedSpawns.nestedPlantSpawns.lilypadSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.lilypadSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.lilypadSPmax());
 //		SpawnRestriction.register(PvZEntity.LILYPAD, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LilyPadEntity::canLilyPadSpawn);
-//
-//		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.OILYOLIVE, PVZCONFIG.nestedSpawns.nestedPlantSpawns.bombseedlingSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.bombseedlingSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.bombseedlingSPmax());
-//		SpawnRestriction.register(PvZEntity.OILYOLIVE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, OilyOliveEntity::canOilyOliveSpawn);
-//
-//		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.ICEBERGLETTUCE, PVZCONFIG.nestedSpawns.nestedPlantSpawns.icebergSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.icebergSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.icebergSPmax());
-//		SpawnRestriction.register(PvZEntity.ICEBERGLETTUCE, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, IcebergLettuceEntity::canIcebergLettuceSpawn);
-//
-//		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.MONSTER, PvZEntity.ZAPRICOT, PVZCONFIG.nestedSpawns.nestedPlantSpawns.zapricotSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.zapricotSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.zapricotSPmax());
-//		SpawnRestriction.register(PvZEntity.ZAPRICOT, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZapricotEntity::canZapricotSpawn);
-//
-//		BiomeModifications.addSpawn(BiomeSelectors.all(), SpawnGroup.CREATURE, PvZEntity.SOLARWINDS, PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSP(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSPmin(), PVZCONFIG.nestedSpawns.nestedPlantSpawns.solarwindSPmax());
-//		SpawnRestriction.register(PvZEntity.SOLARWINDS, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SolarWinds::canSolarWindsSpawn);
-
-
-		//BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.FOREST), SpawnGroup.MONSTER, PvZEntity.NIGHTGRAVESTONE, 100, 1, 6);
 
 	}
 }

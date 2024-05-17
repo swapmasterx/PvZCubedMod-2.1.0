@@ -2,6 +2,7 @@
   "name": "Tip: Environmental Modifiers",
   "icon": "pvzmod:premium_tile",
   "category": "pvzmod:tutorial_category",
+  "advancement": "pvzmod:make_doomshroom",
   "sortnum": 10,
   "pages": [
     {
