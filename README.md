@@ -1,6 +1,6 @@
 # Plants vs. Zombies Cubed
 
-Plants vs. Zombies Cubed aims to bring as many characters from the Plants vs. Zombies franchise to Minecraft.
+Plants vs. Zombies Cubed aims to bring various pieces of content and characters from the Plants vs. Zombies franchise to Minecraft.
 
 
 ## Requirements
@@ -33,10 +33,7 @@ PopCap
 
 Code:
 1. [Spice of Fabric](https://github.com/Siphalor/spiceoffabric), for the Health Attribute modifier
-2. [Cammie's Combat Tweaks](https://github.com/CammiePone/Cammies-Combat-Tweaks), for the Mixin to remove I-Frames
-3. [TKaupenjoe](https://www.youtube.com/c/TKaupenjoe), for the tutorials
-4. [Entity Reach Attributes](https://github.com/JamiesWhiteShirt/reach-entity-attributes), for the modifiers to the Player's reach
-
+2. [TKaupenjoe](https://www.youtube.com/c/TKaupenjoe), for the tutorials
 
 ## License
 
