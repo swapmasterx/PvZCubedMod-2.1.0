@@ -3,6 +3,7 @@
   "values": [
     "pvzmod:electricdamage",
     "pvzmod:hypnodamage",
-    "pvzmod:selfdeathdamage"
+    "pvzmod:selfdeathdamage",
+    "pvzmod:vanilla_armor_pen"
   ]
 }

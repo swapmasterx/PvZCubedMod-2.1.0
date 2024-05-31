@@ -743,45 +743,45 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createGargantuarAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.gargantuarH());
     }
 
 	public static DefaultAttributeContainer.Builder createMummyGargantuarAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.mummygargantuarH());
 	}
 
 	public static DefaultAttributeContainer.Builder createDefensiveendAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.defensiveendH());
 	}
 
 	public static DefaultAttributeContainer.Builder createUnicornGargantuarAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.unicorngargantuarH());
 	}
 
 	public static DefaultAttributeContainer.Builder createGargolithAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.14D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.cursedgargolithH());

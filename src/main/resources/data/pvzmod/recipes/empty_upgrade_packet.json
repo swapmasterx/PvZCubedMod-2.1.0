@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "SOS",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "pvzmod:upgrade_packet_fragment"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "O": {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  },
+  "result": {
+    "item": "pvzmod:empty_upgrade_packet",
+    "count": 1
+  }
+}

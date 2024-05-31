@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "pvzmod:snowqueenpea_seed_packet"
+    },
+    "title": "Queen of Winter",
+    "description": "Craft the Snow Queen Pea Upgrade",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "pvzmod:make_snowpea",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pvzmod:snowqueenpea_seed_packet"
+            ],
+            "count": {
+              "min": 1,
+              "max": 9999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [],
+    "experience": 100
+  }
+}

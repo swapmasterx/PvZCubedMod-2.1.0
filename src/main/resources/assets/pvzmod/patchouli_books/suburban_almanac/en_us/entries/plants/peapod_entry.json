@@ -2,33 +2,39 @@
   "name": "Pea Pod",
   "icon": "pvzmod:peapod_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 59,
-  "advancement": "pvzmod:make_peashooter",
+  "sortnum": 47,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
-      "type": "text",
-      "text":[
-        "$(#bd951a)Health: $()$(#ff0000)+12 (For every pea)",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)+x1 4 DMG/1.5s (For every pea)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 ",
-        "$(#bd951a)Seed Recharge: $()$(#ff0000)3.75s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. The more peas, the more health and damage. Low Profile adjacent bottom peas, the top pea hits medium height and above.",
-        "$(br)$(#bd951a)Having studied Quantum Spatial Mechanics in Clown College, Pea Pod has been amusing families of all ages."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/peapod_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Pea, 3  Bone Meal, 1 Empty Seed Packet, 125 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/peapod.png"
       ],
-      "title": "⭘ Appease Family",
+      "title": "Shooter",
       "border": "true",
       "text": "$(#25228d)Pea Pods can be planted in the same space for up to 5 times the destruction."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/appease/peapod"
+      "type": "text",
+      "text":[
+        "$(#bd951a)Health: $()$(#ff0000)5 per head",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s (+1 shot per head)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 ",
+        "$(#bd951a)Seed Recharge: $()$(#ff0000)3.75s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. The more peas, the more health and damage. Low Profile adjacent bottom peas, the top pea hits medium height and above.",
+        "$(br)$(#bd951a)Having studied Quantum Spatial Mechanics in Clown College, Pea Pod has been amusing families of all ages."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

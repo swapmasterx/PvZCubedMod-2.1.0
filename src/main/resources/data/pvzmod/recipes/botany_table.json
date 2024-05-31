@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "BCB",
+    "BLB"
+  ],
+  "key": {
+    "#": {
+      "item": "pvzmod:sunflowerseed_seed_packet"
+    },
+    "B": {
+      "tag": "minecraft:planks"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "pvzmod:botany_station",
+    "count": 1
+  }
+}

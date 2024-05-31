@@ -1,0 +1,78 @@
+{
+  "name": "pvzmod:graveyard_01",
+  "fallback": "pvzmod:pvz_graveyard/graveyard_fallback_sections",
+  "elements": [
+	{
+      "weight": 35,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_hall_01",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 40,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_hall_02",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 35,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_hall_03",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	    {
+      "weight": 25,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_junction_01",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 20,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_junction_01a",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 15,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_junction_01b",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 40,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_junction_02",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 45,
+      "element": {
+        "location": "pvzmod:pvz_graveyard/pvz_gravyard_junction_03",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

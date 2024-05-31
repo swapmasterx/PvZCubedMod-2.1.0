@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "SOS",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:gold_nugget"
+    },
+    "O": {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  },
+  "result": {
+    "item": "pvzmod:empty_premium_packet",
+    "count": 1
+  }
+}

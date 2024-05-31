@@ -6,6 +6,8 @@ import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
+import net.minecraft.registry.Holder;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -45,10 +47,9 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.util.random.RandomGenerator;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.Biome;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.object.PlayState;
@@ -275,8 +276,24 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 			return livingEntity instanceof Monster && !(livingEntity instanceof GeneralPvZombieEntity) && !(livingEntity instanceof GraveEntity);
 		}));
 	}
-
-
+	private static boolean isValidSpawnDepth(WorldAccess world, BlockPos pos) {
+		return pos.getY() >= world.getSeaLevel() - 20;
+	}
+	public static boolean canSpawn(EntityType<SnorkelEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
+		if (!world.getFluidState(pos.down()).isIn(FluidTags.WATER) && !SpawnReason.method_54986(spawnReason)) {
+			return false;
+		} else {
+			Holder<Biome> holder = world.getBiome(pos);
+			boolean bl = world.getDifficulty() != Difficulty.PEACEFUL && (SpawnReason.method_54987(spawnReason) || isSpawnDark(world, pos, random)) && (SpawnReason.method_54986(spawnReason) || world.getFluidState(pos).isIn(FluidTags.WATER));
+			if (bl && SpawnReason.method_54986(spawnReason)) {
+				return true;
+			} else if (holder.isIn(BiomeTags.MORE_FREQUENT_DROWNED_SPAWNS)) {
+				return random.nextInt(15) == 0 && bl;
+			} else {
+				return random.nextInt(40) == 0 && isValidSpawnDepth(world, pos) && bl;
+			}
+		}
+	}
 	/** /~*~//~*TICKING*~//~*~/ **/
 
 	public void tick() {
@@ -351,7 +368,7 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createSnorkelAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -361,7 +378,7 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
 
 	protected SoundEvent getAmbientSound() {
 		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
 			return null;

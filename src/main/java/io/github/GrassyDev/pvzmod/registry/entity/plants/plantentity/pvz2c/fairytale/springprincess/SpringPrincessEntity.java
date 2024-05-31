@@ -175,10 +175,10 @@ public class SpringPrincessEntity extends PlantEntity implements GeoEntity, Rang
 
 	public static DefaultAttributeContainer.Builder createSpringPrincessAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);
 	}
 
 	protected boolean canClimb() {
@@ -257,7 +257,7 @@ public class SpringPrincessEntity extends PlantEntity implements GeoEntity, Rang
 			if (this.shootSwitch){
 				this.charge = false;
 				this.beamTicks = -15;
-				this.animationTicks = -80;
+				this.animationTicks = -90;
 				this.getNavigation().stop();
 				this.getLookControl().lookAt(this.getTarget(), 90.0F, 90.0F);
 				this.velocityDirty = true;
@@ -271,7 +271,7 @@ public class SpringPrincessEntity extends PlantEntity implements GeoEntity, Rang
 			if (this.animationTicks >= 0) {
 				this.getWorld().sendEntityStatus(this, (byte) 110);
 				this.beamTicks = -15;
-				this.animationTicks = -80;
+				this.animationTicks = -90;
 				if (shot) {
 					this.getWorld().sendEntityStatus(this, (byte) 121);
 				}
@@ -297,7 +297,7 @@ public class SpringPrincessEntity extends PlantEntity implements GeoEntity, Rang
 				if (this.getTarget() != null){
 					proj.getTarget(this.getTarget());
 				}
-				this.beamTicks = -80;
+				this.beamTicks = -90;
 				this.getWorld().sendEntityStatus(this, (byte) 111);
 				this.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 				this.getWorld().spawnEntity(proj);

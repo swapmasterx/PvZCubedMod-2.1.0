@@ -2,33 +2,39 @@
   "name": "Spikerock",
   "icon": "pvzmod:spikerock_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 39,
+  "sortnum": 84,
   "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)+90(for each Spike)",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)+4 DMG/1s(for each Spike) ",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)0.75 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Heavy Damage. Low Profile. Immune to Fire. 75% high-damage resistance. Spikeweed. Starts with 3 Spikes.",
-        "$(br)$(#bd951a)Spikerock just got back from a trip to Europe. He never knew they made museums so big. That was a big surprise for him."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/spikerock_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Iron Block, 3 Pointed Dripstone, 1 Empty Upgrade Packet, 125 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/spikerock.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "Crowd Controller",
       "border": "true",
       "text": "$(#25228d)Spikerocks destroy multiple objects and hurt any zombies that step on them."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/spikerock"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)90 for each large spike",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 + (1 for each large spike)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)0.75 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Low Profile. Immune to Fire. Starts with 3 Spikes.",
+        "$(br)$(#bd951a)Spikerock just got back from a trip to Europe. He never knew they made museums so big. That was a big surprise for him."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

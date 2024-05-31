@@ -3,7 +3,7 @@
     "icon": {
       "item": "pvzmod:hammerflower_seed_packet"
     },
-    "title": "I Can Fix It!",
+    "title": "Me Mallet",
     "description": "Craft a Hammer Flower",
     "frame": "task",
     "show_toast": true,
@@ -30,9 +30,6 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/enforce/smooshroom"
-    ],
     "experience": 25
   }
 }

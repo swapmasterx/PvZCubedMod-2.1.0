@@ -2,13 +2,31 @@
   "name": "Cheetah Chomper",
   "icon": "pvzmod:chester_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 146,
+  "sortnum": 90,
   "advancement": "pvzmod:make_chomper",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/chester_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 2 Honey Block, 1 Slime Ball, 1 Empty Premium Packet, 300 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/chester.png"
+      ],
+      "title": "Bruiser",
+      "border": "true",
+      "text": "$(#25228d)Cheetah Chompers quickly devour Zombies and spit sticky cheese."
+    },
+    {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)30 ",
+        "$(#bd951a)Health: $()$(#ff0000)20 ",
         "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 32 DMG/1.5s (Immune)",
         "$(br)$(#bd951a)Range: $()$(#ff0000)2 Blocks (Melee), 6 Blocks (Cheese)",
         "$(br)$(#bd951a)Chew Time: $()$(#ff0000)8.75s, 1.5s (Small Zombies)",
@@ -17,19 +35,7 @@
         "$(br)$(#bd951a)Crazy Dave accidentally planted a chunk of cheese in his Zen garden..."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/chester.png"
-      ],
-      "title": "\uD83D\uDDE1 Enforce Family",
-      "border": "true",
-      "text": "$(#25228d)Cheetah Chompers quickly devour Zombies and spit sticky cheese."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/chester"
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -35,7 +35,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
@@ -84,7 +86,7 @@ public class GhostPepperSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.conceal.family").setStyle(Style.EMPTY.withColor(8150669)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.spear.family").setStyle(Style.EMPTY.withColor(4210752)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.instant.tooltip")
 				.formatted(Formatting.UNDERLINE));
@@ -118,8 +120,7 @@ public class GhostPepperSeeds extends SeedItem implements FabricItem {
 					} else {
 						if (!world.isClient) {
 							List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.GHOSTPEPPER.getDimensions().getBoxAt(aquaticEntity.getPos()));
-							List<TileEntity> list2 = world.getNonSpectatingEntities(TileEntity.class, PvZEntity.GHOSTPEPPER.getDimensions().getBoxAt(aquaticEntity.getPos()));
-							if (list.isEmpty() && list2.isEmpty()){
+							if (list.isEmpty()){
 								float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 								aquaticEntity.refreshPositionAndAngles(aquaticEntity.getX(), aquaticEntity.getY(), aquaticEntity.getZ(), f, 0.0F);
 								aquaticEntity.initialize(serverWorld, world.getLocalDifficulty(aquaticEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -174,13 +175,17 @@ public class GhostPepperSeeds extends SeedItem implements FabricItem {
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
 		PlantEntity plantEntity = null;
-		List<PlantEntity> list = null;
+		List<Entity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		Box box = PvZEntity.GHOSTPEPPER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
+
 		if (world instanceof ServerWorld serverWorld) {
-			plantEntity = PvZEntity.GHOSTPEPPER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.GHOSTPEPPER.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 		}
 		if (world instanceof ServerWorld serverWorld && entity instanceof TileEntity) {
 			if (list.isEmpty()) {
+				plantEntity = PvZEntity.GHOSTPEPPER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -212,6 +217,8 @@ public class GhostPepperSeeds extends SeedItem implements FabricItem {
 					lilyPadEntity1.setPuffshroomPermanency(LilyPadEntity.PuffPermanency.PERMANENT);
 				}
 			}
+			plantEntity = PvZEntity.GHOSTPEPPER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

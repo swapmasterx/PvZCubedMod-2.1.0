@@ -1,0 +1,61 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#minecraft:is_forest",
+  "step": "surface_structures",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "pvzmod:fumeshroom",
+          "weight": 4,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "pvzmod:peashooter",
+          "weight": 5,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "pvzmod:screendoor",
+          "weight": 40,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "pvzmod:newspaper",
+          "weight": 40,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "pvzmod:football",
+          "weight": 20,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "minecraft:skeleton",
+          "weight": 40,
+          "minCount": 1,
+          "maxCount": 2
+        }
+      ]
+    }
+  },
+  "terrain_adaptation": "beard_box",
+  "start_pool": "pvzmod:pvz_graveyard/graveyard_03",
+  "size": 3,
+  "start_height": {
+    "type": "minecraft:constant",
+    "value": {
+      "absolute": -1
+    }
+  },
+  "start_jigsaw_name": "pvzmod:pvz_gravyard_junction_entrance_spawn",
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "max_distance_from_center": 100,
+  "use_expansion_hack": false
+}

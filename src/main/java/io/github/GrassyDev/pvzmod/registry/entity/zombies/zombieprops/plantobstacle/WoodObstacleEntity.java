@@ -155,7 +155,7 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createHawkerCartAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -165,7 +165,7 @@ public class WoodObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ITEM_SHIELD_BREAK;
+		return SoundEvents.BLOCK_WOOD_BREAK;
 	}
 
 	protected SoundEvent getAmbientSound() {

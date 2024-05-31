@@ -20,8 +20,10 @@ public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandle
     @Override
     protected void init() {
         super.init();
-        titleY = 200;
-        playerInventoryTitleY = 200;
+        titleY = 70;
+        titleX = 120;
+        playerInventoryTitleY = 1000;
+        playerInventoryTitleX = 120;
     }
 
     @Override
@@ -35,14 +37,23 @@ public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandle
         graphics.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         renderProgressArrow(graphics, x, y);
-
+        renderNeedMoreSun(graphics, x, y);
+		renderSunResource(graphics, x, y);
     }
 
     private void renderProgressArrow(GuiGraphics graphics, int x, int y) {
         if(handler.isCrafting()){
-            graphics.drawTexture(TEXTURE, x + 101, y, 192, 0, handler.getScaledProgress(),40);
+            graphics.drawTexture(TEXTURE, x + 102, y + 30, 192, 0, handler.getScaledProgress(),10);
         }
     }
+    private void renderNeedMoreSun(GuiGraphics graphics, int x, int y) {
+        graphics.drawTexture(TEXTURE, x + 30, y + 32, 223, 0, 8, handler.getShowRequiredSun());
+    }
+	private void renderSunResource(GuiGraphics graphics, int x, int y) {
+		graphics.drawTexture(TEXTURE, x + 30, y + 32, 180, 0, 8, handler.getSunResource());
+	}
+
+
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {

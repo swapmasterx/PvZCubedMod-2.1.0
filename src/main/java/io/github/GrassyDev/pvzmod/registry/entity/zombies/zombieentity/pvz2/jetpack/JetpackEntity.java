@@ -194,7 +194,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 		this.targetSelector.add(4, new TargetGoal<>(this, MerchantEntity.class, false, true));
 		this.targetSelector.add(2, new TargetGoal<>(this, IronGolemEntity.class, false, true));
 
-		////////// Jetpacker's ignore plants and go straight for objective or players ///////
+		////////// Jetpacker's ignore plants and go straight for gardens or players ///////
 		this.targetSelector.add(5, new TargetGoal<>(this, PlayerEntity.class, false, false));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenChallengeEntity.class, false, true));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenEntity.class, false, true));
@@ -254,7 +254,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 2.0);
 				}
 				else {
-					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 1.5);
+					this.getMoveControl().moveTo(target.getX(), target.getY(), target.getZ(), 2.5);
 				}
 			}
 			this.setFlying(Flying.TRUE);
@@ -350,18 +350,18 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createJetpackAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.15D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.jetpackH());
     }
 
 	public static DefaultAttributeContainer.Builder createBlastronautAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.blastronautH());
@@ -379,7 +379,7 @@ public class JetpackEntity extends PvZombieEntity implements GeoEntity {
 
 	protected SoundEvent getAmbientSound() {
 		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
 			return null;

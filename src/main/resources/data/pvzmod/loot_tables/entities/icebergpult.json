@@ -6,7 +6,28 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:smallsun",
+          "name": "pvzmod:iceberglettuce_seed_packet",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:killed_by_player",
+              "inverse": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "pvzmod:cabbagepult_seed_packet",
           "functions": [
             {
               "function": "minecraft:set_count",

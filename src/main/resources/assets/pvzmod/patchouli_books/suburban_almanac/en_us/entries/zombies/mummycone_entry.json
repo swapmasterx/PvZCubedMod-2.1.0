@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27 (Paper), 37(Plastic Cone)",
+        "$(#bd951a)Health: $()$(#ff0000)14 (Paper), 18(Plastic Cone)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Conehead Mummy Zombie prefers the circular cone shape over the typical pyramid shape. It's a fashion thing, and Conehead Mummy Zombie always stays ahead of fashion."
@@ -32,7 +32,6 @@
         "pvzmod:plants/navybean_entry",
         "pvzmod:plants/scaredyshroom_entry",
         "pvzmod:plants/peapod_entry",
-        "pvzmod:plants/dropea_entry",
         "pvzmod:plants/frisbloom_entry"
       ]
     },

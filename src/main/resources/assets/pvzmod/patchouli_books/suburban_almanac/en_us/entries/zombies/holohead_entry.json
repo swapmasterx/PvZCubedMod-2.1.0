@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27 (Rubber), 190(Crystal Helmet)",
+        "$(#bd951a)Health: $()$(#ff0000)14 (Rubber), 85(Crystal Helmet)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)The force field gets a unique color from frequency harmonics and a liberal dose of purple paint."
@@ -34,7 +34,6 @@
         "pvzmod:plants/gatlingpea_entry",
         "pvzmod:plants/tanglekelp_entry",
         "pvzmod:plants/spikerock_entry",
-        "pvzmod:plants/locococo_entry",
         "pvzmod:plants/potatomine_entry",
         "pvzmod:plants/springbean_entry",
         "pvzmod:plants/squash_entry",

@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:retrogatling_seed_packet"
     },
-    "title": "The Pea War flashbacks",
-    "description": "Craft a Retro Gatling",
+    "title": "Old but not Obsolete",
+    "description": "Craft the Retro Gatling Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
-  "parent": "pvzmod:make_repeater",
+  "parent": "pvzmod:make_peashooter",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
+    "recipes": [],
     "experience": 100
   }
 }

@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.plastiche
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.gears.PlasticHelmetVariants;
@@ -21,6 +22,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -148,7 +150,7 @@ public class PlasticHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createConeheadGearAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -157,7 +159,7 @@ public class PlasticHelmetEntity extends ZombiePropEntity implements GeoEntity {
     }
 
 	public static DefaultAttributeContainer.Builder createPawnGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -166,7 +168,7 @@ public class PlasticHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createKnightGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -175,7 +177,7 @@ public class PlasticHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createTownGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -184,7 +186,7 @@ public class PlasticHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBishopGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -193,14 +195,17 @@ public class PlasticHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createKingPieceGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.kingpiecegearH());
 	}
-
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return PvZSounds.CONEHITEVENT;
+	}
+	protected SoundEvent getDeathSound() {return PvZSounds.CONEHITEVENT;}
 	protected SoundEvent getAmbientSound() {
 		return PvZSounds.SILENCEVENET;
 	}

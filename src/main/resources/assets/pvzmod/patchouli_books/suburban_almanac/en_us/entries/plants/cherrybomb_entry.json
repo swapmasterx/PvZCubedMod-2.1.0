@@ -2,13 +2,31 @@
   "name": "Cherry Bomb",
   "icon": "pvzmod:cherrybomb_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 2,
-  "advancement": "pvzmod:make_potatomine",
+  "sortnum": 3,
+  "advancement": "pvzmod:make_peashooter",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/cherrybomb_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 2 Fuse Cherry, 1 Empty Seed Packet, 150 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/cherrybomb.png"
+      ],
+      "title": "Blaster",
+      "border": "true",
+      "text": "$(#25228d)Cherry Bombs can blow up all Zombies in an area. Plant them near Zombies."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)180",
+        "$(#bd951a)Damage: $()$(#ff0000)90",
         "$(br)$(#bd951a)Activation Range: $()$(#ff0000)12 Blocks",
         "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)5 Blocks",
         "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)1.5s",
@@ -16,19 +34,6 @@
         "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Burns Zombies.",
         "$(br2)$(#bd951a)\"I wanna explode,\" says Cherry #1. \"No, let's detonate instead!\" says his brother, Cherry #2. After intense consultation they agree to explodonate."
         ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/cherrybomb.png"
-      ],
-      "title": "☄ Bombard Family",
-      "border": "true",
-      "text": "$(#25228d)Cherry Bombs can blow up all Zombies in an area. Plant them near Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/bombard/cherrybomb"
     },
     {
       "type": "text",

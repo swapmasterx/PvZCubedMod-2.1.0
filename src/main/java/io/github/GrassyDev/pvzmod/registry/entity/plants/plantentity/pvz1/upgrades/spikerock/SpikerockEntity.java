@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -184,15 +185,15 @@ public class SpikerockEntity extends PlantEntity implements GeoEntity {
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					livingEntity.playSound(sound, 0.1F, (float) (0.5F + Math.random()));
-					float damage = 12;
+					float damage = 6;
 					if (this.getCrack().equals(Crack.DAMAGED)){
-						damage = 8;
+						damage = 5;
 					}
 					else if (this.getCrack().equals(Crack.DYING)){
 						damage = 4;
@@ -207,10 +208,10 @@ public class SpikerockEntity extends PlantEntity implements GeoEntity {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage2);
 					} else {
-						livingEntity.damage(getDamageSources().mobProjectile(this, this), damage);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					this.attacking = true;
 					this.zombieList.add(livingEntity);

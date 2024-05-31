@@ -202,7 +202,7 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoEntity
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createZombieGraveAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -212,7 +212,9 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoEntity
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.BLOCK_ANCIENT_DEBRIS_BREAK;
 	}
-
+	protected SoundEvent getAmbientSound() {
+		return PvZSounds.SILENCEVENET;
+	}
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.BLOCK_BASALT_HIT;
 	}

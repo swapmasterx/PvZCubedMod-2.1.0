@@ -658,54 +658,54 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createImpAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.26D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.impH());
     }
 
 	public static DefaultAttributeContainer.Builder createScrapImpAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.26D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.scrapimpH());
 	}
 
 	public static DefaultAttributeContainer.Builder createImpThrowAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.impH());
 	}
 
 	public static DefaultAttributeContainer.Builder createImpDragonAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.19D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.impdragonH());
 	}
 
 	public static DefaultAttributeContainer.Builder createBassImpAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.19D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.bassimpH());
 	}
 
 	public static DefaultAttributeContainer.Builder createCinderellaImpAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.14D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.impH());

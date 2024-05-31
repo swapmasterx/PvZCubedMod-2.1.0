@@ -1,0 +1,37 @@
+{
+  "name": "Crowd Controllers",
+  "icon": "minecraft:shears",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Crowd Controllers are great at dealing area damage."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/bellflower_entry",
+        "pvzmod:plants/fumeshroom_entry",
+        "pvzmod:plants/frisbloom_entry",
+        "pvzmod:plants/spikeweed_entry",
+        "pvzmod:plants/gloomvine_entry",
+        "pvzmod:plants/ghostpepper_entry",
+        "pvzmod:plants/nightcap_entry",
+        "pvzmod:plants/electropea_entry"
+      ],
+      "title": "Crowd Controllers:"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/bloomerang_entry",
+        "pvzmod:plants/gloomshroom_entry",
+        "pvzmod:plants/spikerock_entry"
+      ],
+      "title": "Crowd Controllers:"
+    }
+  ]
+}

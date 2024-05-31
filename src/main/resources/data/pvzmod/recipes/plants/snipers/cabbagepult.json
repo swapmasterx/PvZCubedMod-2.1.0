@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "tag": "minecraft:leaves"
+    },
+    {
+      "tag": "minecraft:leaves"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:cabbagepult_seed_packet",
+    "count": 1
+  }
+}

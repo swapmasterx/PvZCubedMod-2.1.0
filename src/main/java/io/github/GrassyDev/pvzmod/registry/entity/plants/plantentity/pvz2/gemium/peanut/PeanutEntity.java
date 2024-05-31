@@ -368,7 +368,7 @@ public class PeanutEntity extends PlantEntity implements GeoEntity, RangedAttack
 					double g = predictedPos.getZ() - this.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.getWorld());
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 10F);
 					proj.updatePosition(this.getX(), this.getY() + 1.125D, this.getZ());
 					proj.setOwner(this);
 					proj.canHitFlying = true;
@@ -397,7 +397,7 @@ public class PeanutEntity extends PlantEntity implements GeoEntity, RangedAttack
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 				ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 10F);
 				proj.updatePosition(this.getX(), this.getY() + 0.33D, this.getZ());
 				proj.setOwner(this);
 				proj.lowProf = true;
@@ -425,7 +425,7 @@ public class PeanutEntity extends PlantEntity implements GeoEntity, RangedAttack
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 				ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 0F);
+				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.5F, 10F);
 				proj.updatePosition(this.getX(), this.getY() + 0.33D, this.getZ());
 				proj.setOwner(this);
 				proj.lowProf = true;

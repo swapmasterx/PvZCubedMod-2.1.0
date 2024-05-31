@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -162,7 +163,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createBucketGearAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -171,7 +172,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
     }
 
 	public static DefaultAttributeContainer.Builder createMedallionGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -180,7 +181,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createFootballGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -189,7 +190,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBerserkerGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -198,7 +199,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createDefensiveEndGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -207,7 +208,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBlastronautGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -216,7 +217,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createKnightGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -225,7 +226,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createHelmetGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -234,7 +235,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createSoldierGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -243,7 +244,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBassGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -252,7 +253,7 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createScrapImpGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -271,7 +272,9 @@ public class MetalHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	protected SoundEvent getStepSound() {
 		return PvZSounds.SILENCEVENET;
 	}
-
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return PvZSounds.BUCKETHITEVENT;
+	}
 	@Nullable
 	@Override
 	public ItemStack getPickBlockStack() {

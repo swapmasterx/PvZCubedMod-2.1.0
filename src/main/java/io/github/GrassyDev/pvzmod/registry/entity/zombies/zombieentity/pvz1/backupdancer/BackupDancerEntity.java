@@ -284,8 +284,8 @@ public class BackupDancerEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBackupDancerAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.10D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.11D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.backupH());
@@ -293,18 +293,12 @@ public class BackupDancerEntity extends PvZombieEntity implements GeoEntity {
 
 	protected SoundEvent getAmbientSound() {
 		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
 			return null;
 		}
 	}
-
-	public EntityGroup getGroup() {
-		return EntityGroup.UNDEAD;
-	}
-
-
 
 	protected SoundEvent getStepSound() {
 		return SoundEvents.ENTITY_ZOMBIE_STEP;

@@ -186,7 +186,7 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createGargolithObstacleAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -195,7 +195,7 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
     }
 
 	public static DefaultAttributeContainer.Builder createImpTabletObstaclesAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -204,7 +204,7 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 	}
 
 	public static DefaultAttributeContainer.Builder createEgyptTombstoneAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -214,9 +214,9 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ITEM_SHIELD_BREAK;
+		return SoundEvents.BLOCK_STONE_BREAK;
 	}
-
+	protected SoundEvent getHurtSound(DamageSource source) {return PvZSounds.STONEHITEVENT;}
 	protected SoundEvent getAmbientSound() {
 		return PvZSounds.SILENCEVENET;
 	}

@@ -1,0 +1,20 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 350,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "minecraft:anvil"
+    },
+    {
+      "item": "pvzmod:empty_premium_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:smooshroom_seed_packet",
+    "count": 1
+  }
+}

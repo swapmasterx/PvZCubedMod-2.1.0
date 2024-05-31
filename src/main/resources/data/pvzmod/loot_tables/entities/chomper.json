@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:smallsun",
+          "name": "pvzmod:plantfood",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -27,7 +27,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:sun",
+          "name": "pvzmod:plantfood_tough",
           "functions": [
             {
               "function": "minecraft:set_count",

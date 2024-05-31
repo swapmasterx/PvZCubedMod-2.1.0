@@ -8,14 +8,33 @@ version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
 loom {
+//	accessWidenerPath = file("src/main/resources/pvzmod.accesswidener")
+//	log4jConfigs.from(file("log4j.xml"))
+//	remapArchives = true
+//	setupRemappedVariants = true
+//	enableTransitiveAccessWideners = true
+//	runtimeOnlyLog4j = false
 	mods {
 		"pvzmod" {
 			sourceSet sourceSets.main
 		}
 	}
 }
+//remapJar {
+//	// Set the input jar for the task, also valid for remapSourcesJar
+//	inputFile = file("example.jar")
+//	// Set the target namespace, also valid for remapSourcesJar
+//	targetNamespace = "intermediary"
+//	// Add a nested mod jar to this task, the include configuration should be used for maven libraries and mods.
+//	nestedJars.from file("nested.jar")
+//	// When enabled nested jars will be included with the output jar.
+//	addNestedDependencies = true
+//}
 
 repositories {
+	mavenCentral()
+	maven { url 'https://maven.nucleoid.xyz' }
+	maven { url "https://maven.shedaniel.me" }
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven {
 		name 'Quilt'
@@ -27,7 +46,17 @@ repositories {
 		url = "https://maven.terraformersmc.com/"
 	}
 	maven { url 'https://maven.wispforest.io' }
+	maven {
+		// location of the maven that hosts JEI files since January 2023
+		name = "Jared's maven"
+		url = "https://maven.blamejared.com/"
+	}
+	maven {
+		// location of a maven mirror for JEI files, as a fallback
+		name = "ModMaven"
+		url = "https://modmaven.dev"
 
+	}
 }
 
 project.configurations.configureEach {
@@ -36,18 +65,19 @@ project.configurations.configureEach {
 }
 
 dependencies {
+	modImplementation include("xyz.nucleoid:server-translations-api:2.2.0+1.20.3-rc1")
 	minecraft libs.minecraft
 	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
-	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings}:intermediary-v2"
+	mappings "org.quiltmc:quilt-mappings:1.20.4+build.3:intermediary-v2"
 	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
-
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.4:4.4.4'
-
 	modImplementation "vazkii.patchouli:Patchouli:1.20.4-85-FABRIC"
 	modImplementation "io.wispforest:owo-lib:0.12.3+1.20.3+"
 	annotationProcessor modImplementation("io.wispforest:owo-lib:0.12.3+1.20.3+")
 }
+
+
 processResources {
 	inputs.property "version", version
 

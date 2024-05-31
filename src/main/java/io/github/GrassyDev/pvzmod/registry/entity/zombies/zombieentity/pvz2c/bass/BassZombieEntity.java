@@ -105,7 +105,7 @@ public class BassZombieEntity extends ZombieRidersEntity implements GeoEntity {
 	/** /~*~//~*VARIANTS*~//~*~/ **/
 
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
-			DataTracker.registerData(BackupDancerEntity.class, TrackedDataHandlerRegistry.INTEGER);
+			DataTracker.registerData(BassZombieEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
 								 SpawnReason spawnReason, @Nullable EntityData entityData,
@@ -284,7 +284,7 @@ public class BassZombieEntity extends ZombieRidersEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBassAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -294,7 +294,7 @@ public class BassZombieEntity extends ZombieRidersEntity implements GeoEntity {
 
 	protected SoundEvent getAmbientSound() {
 		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
 			return null;

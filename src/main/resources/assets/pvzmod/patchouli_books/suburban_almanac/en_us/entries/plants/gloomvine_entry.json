@@ -2,17 +2,26 @@
   "name": "Gloom-vine",
   "icon": "pvzmod:gloomvine_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 94,
-  "advancement": "pvzmod:make_wallnut",
+  "sortnum": 54,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/gloomvine_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Fume, 2 Bark Enforced Sproutling, 1 Empty Seed Packet, 150 Sun value."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)32",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 2 DMG/2s (Area)",
+        "$(#bd951a)Health: $()$(#ff0000)30",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x5 DMG/2s (Area)",
         "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Low Profile. 5 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Wraps around a Plant, protecting it from most damage. Creates a Shadow Tile inside it.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Wraps around a Plant, protecting it from most damage.",
         "$(br)$(#bd951a)\"Gloom Vine's gloomy exterior shouldn't be seen as implying a gloomy interior. His interior is gloomy, but for complicated personal reasons that go way back.\""
       ]
     },
@@ -21,13 +30,9 @@
       "images": [
         "pvzmod:textures/gui/entries/gloomvine.png"
       ],
-      "title": "☁ Conceal Family",
+      "title": "Crowd Controller",
       "border": "true",
-      "text": "$(#25228d)Gloom-vines power New Moon shadow plants and shoot gloom around it."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/conceal/gloomvine"
+      "text": "$(#25228d)Gloom-vines deal damage around them and protects plants inside it."
     },
     {
       "type": "text",

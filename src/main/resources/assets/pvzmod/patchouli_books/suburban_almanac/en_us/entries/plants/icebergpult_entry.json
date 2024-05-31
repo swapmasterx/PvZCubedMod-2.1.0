@@ -2,14 +2,23 @@
   "name": "Iceberg-pult",
   "icon": "pvzmod:icebergpult_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 40,
+  "sortnum": 39,
   "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/iceburgpult_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cabbage-Pult Seed Packet, 1 Iceberg Lettuce Seed Packet, 50 Sun value."
+    },
+    {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16 ",
-        "$(#bd951a)Damage: $()$(#ff0000)3 DMG/2.5s, 1 DMG (Splash)",
+        "$(#bd951a)Health: $()$(#ff0000)10 ",
+        "$(#bd951a)Damage: $()$(#ff0000)1 DMG/2.5s, 1 DMG (Splash)",
         "$(br)$(#bd951a)Splash Radius: $()$(#ff0000)1.5 Blocks",
         "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks (Lobbed)",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
@@ -22,13 +31,9 @@
       "images": [
         "pvzmod:textures/gui/entries/icebergpult.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "Chillers",
       "border": "true",
       "text": "$(#25228d)Iceberg-pults hurl icebergs at the enemy, slowing a group."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/icebergpult"
     },
     {
       "type": "text",

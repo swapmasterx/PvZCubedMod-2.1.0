@@ -2,32 +2,40 @@
   "name": "Retro Gatling",
   "icon": "pvzmod:retrogatling_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 148,
-  "advancement": "pvzmod:make_repeater",
+  "sortnum": 75,
+  "advancement": "pvzmod:make_peashooter",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)60",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x3 3 DMG/1.5s (3 Zombie Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br2)$(#bd951a)Retro Gatling uses the ancient Peashooter techniques of manually cranking out peas. Although this results in less peas, the peas are ancient and far more piercing."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/retrogatling_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Pea, 1 Iron Helmet, 1 Empty Upgrade Packet, 175 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/retrogatling.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "Shooter",
       "border": "true",
-      "text": "$(#25228d)Retro Gatlings shoot three piercing peas at a time."
+      "text": "$(#25228d)Retro Gatling fires piercing peas at a moderate speed."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/retrogatling"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(#bd951a)Armor: $()$(#ff0000)10",
+        "$(#bd951a)Armor Toughness: $()$(#ff0000)2",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1s (3 Zombie Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br2)$(#bd951a)Retro Gatling uses the ancient Peashooter techniques of manually cranking out peas. Although less total d-pea-s, the peas are ancient and far more piercing."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

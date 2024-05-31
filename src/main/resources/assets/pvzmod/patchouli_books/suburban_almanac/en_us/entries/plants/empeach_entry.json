@@ -2,13 +2,31 @@
   "name": "E.M.Peach",
   "icon": "pvzmod:empeach_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 62,
-  "advancement": "pvzmod:make_gravebuster",
+  "sortnum": 48,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/empeach_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Electro Leaf, 1 Fuse Cherry, 1 Empty Seed Packet, 50 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/empeach.png"
+      ],
+      "title": "Stallers",
+      "border": "true",
+      "text": "$(#25228d)E.M.Peaches disables all electronics in an area and stuns Zombies."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)20",
+        "$(#bd951a)Damage: $()$(#ff0000)1",
         "$(br)$(#bd951a)Activation Range: $()$(#ff0000)12 Blocks",
         "$(br)$(#bd951a)Area: $()$(#ff0000)3.5 Blocks",
         "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
@@ -17,19 +35,7 @@
         "$(br)$(#bd951a)E.M.Peach has grown tired of people lazily calling him E.M.Pea. \"There's a C and H there for a reason people! And I've got the stone to prove it!\""
         ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/empeach.png"
-      ],
-      "title": "⚡ Filament Family",
-      "border": "true",
-      "text": "$(#25228d)E.M.Peaches disables all electronics in an area and stuns Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/filament/empeach"
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -2,13 +2,22 @@
   "name": "Jumping Bean",
   "icon": "pvzmod:jumpingbean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 321,
-  "advancement": "pvzmod:make_springbean",
+  "sortnum": 69,
+  "advancement": "pvzmod:make_beet",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/jumpingbean_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Cocoa Beans, 1 Spring Grass, 1 Empty Seed Packet, 100 Sun value."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)22 ",
+        "$(#bd951a)Health: $()$(#ff0000)10 ",
         "$(#bd951a)Range: $()$(#ff0000)10 ",
         "$(#bd951a)Bounce Area: $()$(#ff0000)1.75 Blocks ",
         "$(#bd951a)Bounce: $()$(#ff0000)~7 Blocks Backwards",
@@ -23,13 +32,9 @@
       "images": [
         "pvzmod:textures/gui/entries/jumpingbean.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Jumping Beans bounce back zombies from the ground."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/jumpingbean"
     },
     {
       "type": "text",

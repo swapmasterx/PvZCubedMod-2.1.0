@@ -2,16 +2,25 @@
   "name": "Snow Pea",
   "icon": "pvzmod:snowpea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 5,
-  "advancement": "pvzmod:make_peashooter",
+  "sortnum": 7,
+  "advancement": "pvzmod:make_bellflower",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/snowpea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Pea, 1 Empty Seed Packet, 175 Sun value."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Chills Zombies.",
         "$(br2)$(#bd951a)Folks often tell Snow Pea how \"cool\" he is, or exhort him to \"chill out.\" They tell him to \"stay frosty.\" Snow Pea just rolls his eyes. He's heard 'em all."
       ]
@@ -21,13 +30,9 @@
       "images": [
         "pvzmod:textures/gui/entries/snowpea.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "Chiller",
       "border": "true",
       "text": "$(#25228d)Snow Peas shoot frozen peas that damage, slow, and weaken the enemy."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/snowpeapvz"
     },
     {
       "type": "text",

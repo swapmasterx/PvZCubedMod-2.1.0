@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    },
+    "W": {
+      "item": "minecraft:wheat_seeds"
+    }
+  },
+  "result": {
+    "item": "pvzmod:empty_seed_packet",
+    "count": 1
+  }
+}

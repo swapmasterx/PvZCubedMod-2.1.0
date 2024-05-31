@@ -78,7 +78,7 @@ public class BeeshooterSeeds extends SeedItem implements FabricItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 
-		tooltip.add(Text.translatable("item.pvzmod.seed_packet.ailment.family").setStyle(Style.EMPTY.withColor(9188263)));
+		tooltip.add(Text.translatable("item.pvzmod.seed_packet.arma.family").setStyle(Style.EMPTY.withColor(8276024)));
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.premium.tooltip")
 				.formatted(Formatting.UNDERLINE));
@@ -107,9 +107,9 @@ public class BeeshooterSeeds extends SeedItem implements FabricItem {
 			Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 			Box box = PvZEntity.BEESHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-				BeeshooterEntity plantEntity = (BeeshooterEntity) PvZEntity.BEESHOOTER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
-				List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.BEESHOOTER.getDimensions().getBoxAt(plantEntity.getPos()));
+				List<Entity> list = world.getNonSpectatingEntities(Entity.class, box);
 				if (list.isEmpty()) {
+					BeeshooterEntity plantEntity = (BeeshooterEntity) PvZEntity.BEESHOOTER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 					float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
 					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -119,9 +119,7 @@ public class BeeshooterSeeds extends SeedItem implements FabricItem {
 
 					PlayerEntity user = context.getPlayer();
 					if (!user.getAbilities().creativeMode) {
-						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
-				itemStack.decrement(1);
-			};
+						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {itemStack.decrement(1);}
 						if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
@@ -142,18 +140,22 @@ public class BeeshooterSeeds extends SeedItem implements FabricItem {
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
 		PlantEntity plantEntity = null;
-		List<PlantEntity> list = null;
+		List<Entity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		Box box = PvZEntity.BEESHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world instanceof ServerWorld serverWorld) {
-			plantEntity = PvZEntity.BEESHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.BEESHOOTER.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 		}
 		if (world instanceof ServerWorld serverWorld && entity instanceof TileEntity
 				&& !(entity instanceof ScorchedTile)
 				&& !(entity instanceof SnowTile)
 				&& !(entity instanceof CraterTile)) {
 			if (list.isEmpty()) {
+				plantEntity = PvZEntity.BEESHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
-				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
+                assert plantEntity != null;
+                plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
 				world.spawnEntity(plantEntity);
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
@@ -183,6 +185,7 @@ public class BeeshooterSeeds extends SeedItem implements FabricItem {
 					lilyPadEntity1.setPuffshroomPermanency(LilyPadEntity.PuffPermanency.PERMANENT);
 				}
 			}
+			plantEntity = PvZEntity.BEESHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

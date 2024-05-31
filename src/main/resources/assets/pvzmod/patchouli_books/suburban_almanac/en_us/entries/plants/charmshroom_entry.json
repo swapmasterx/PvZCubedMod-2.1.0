@@ -2,49 +2,36 @@
   "name": "Charm-shroom",
   "icon": "pvzmod:charmshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 115,
-  "advancement": "pvzmod:make_beautyshroom",
+  "sortnum": 53,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)12 $(#bd951a)Range: $()$(#ff0000)10 Blocks",
-        "$(br)$(#bd951a)Hypnotizing Time: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Full Moon. Hypnotizes up to 2 of the toughest Zombies or 1 Gargantuar, then vanishes.",
-        "$(br)$(#bd951a)\"People ask if I have all these charms to ward off evil Zombies or if it's a new fashion trend. But I can't bring myself to tell them the truth: that it's for good luck in my entrance exams.\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/charmshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Mushroom Spores, 3 Paper, 1 Empty Seed Packet, 100 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/charmshroom.png"
       ],
-      "title": "⭐ Enchant Family",
+      "title": "Stallers",
       "border": "true",
       "text": "$(#25228d)Charm-shrooms will make Zombies turn around and fight for you."
     },
     {
       "type": "text",
       "text": [
-        "$(br2)$(#bd951a)Health: $()$(#ff0000)12 $(#bd951a)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(#bd951a)Health: $()$(#ff0000)12 $(#bd951a)Range: $()$(#ff0000)10 Blocks",
         "$(br)$(#bd951a)Hypnotizing Time: $()$(#ff0000)2.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Full Moon Powered Form. Hypnotizes up to 4 of the toughest Zombies, then vanishes."
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Hypnotizes up to 2 of the toughest Zombies or 1 Gargantuar, then vanishes.",
+        "$(br)$(#bd951a)\"People ask if I have all these charms to ward off evil Zombies or if it's a new fashion trend. But I can't bring myself to tell them the truth: that it's for good luck in my entrance exams.\""
       ]
-    },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/charmshroom_moon.png"
-      ],
-      "title": "⭐ Enchant Family",
-      "border": "true",
-      "text": "$(#25228d)Charm-shroom's Moon Form. Hypnotizes more Zombies."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/charmshroom"
     },
     {
       "type": "text",

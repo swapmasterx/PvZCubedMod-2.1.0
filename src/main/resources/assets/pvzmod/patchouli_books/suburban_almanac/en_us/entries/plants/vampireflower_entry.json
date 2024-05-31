@@ -2,33 +2,39 @@
   "name": "Vampire Flower",
   "icon": "pvzmod:vampireflower_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 147,
+  "sortnum": 77,
   "advancement": "pvzmod:make_sunflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)HP: $()$(#ff0000)12 ",
-        "$(#bd951a)Melee: $()$(#ff0000)6 DMG/1.5s(Bite), 32 DMG/1s(Sucking) ",
-        "$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks ",
-        "$(#bd951a)Seed: $()$(#ff0000)15s ",
-        "$(#bd951a)Special: $()$(#ff0000)Bites a Zombie directly, ignoring gear(or bite Shield/Cover), then Sucks it, dropping Small Sun and Stunning for 10s on damage. Unsuckable if they are Big or above, or an Obstacle.",
-        "$(br)$(#bd951a)Being a summer goth takes commitment. Especially when you're a Plant that produces sun for a living."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/vampireflower_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 2 Pointed Dripstone, 1 Red Dye, 1 Empty Upgrade Packet, 175 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/vampireflower.png"
       ],
-      "title": "☀ Enlighten Family",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Vampire Flowers suck Sun out of Zombies, damaging them directly."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/vampireflower"
+      "type": "text",
+      "text": [
+        "$(#bd951a)HP: $()$(#ff0000)15 ",
+        "$(#bd951a)Melee: $()$(#ff0000)6 DMG/1.5s(Bite), 12 DMG/1s(Sucking) ",
+        "$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks ",
+        "$(#bd951a)Seed: $()$(#ff0000)15s ",
+        "$(#bd951a)Special: $()$(#ff0000)Bites a Zombie directly, ignoring gear(or bite Shield/Cover), then Sucks it, dropping Small Sun and Stunning for 5s on damage. Unsuckable if they are Big or above, or an Obstacle.",
+        "$(br)$(#bd951a)Being a summer goth takes commitment. Especially when you're a Plant that produces sun for a living."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

@@ -202,9 +202,9 @@ public class ShootingSnowPeaEntity extends PvZProjectileEntity implements GeoEnt
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				if (entity instanceof ZombieShieldEntity || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
@@ -220,11 +220,15 @@ public class ShootingSnowPeaEntity extends PvZProjectileEntity implements GeoEnt
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);

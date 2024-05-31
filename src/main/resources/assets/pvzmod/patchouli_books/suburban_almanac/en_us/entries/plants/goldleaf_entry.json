@@ -2,9 +2,27 @@
   "name": "Gold Leaf",
   "icon": "pvzmod:goldleaf_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_sunflower",
-  "sortnum": 81,
+  "advancement": "pvzmod:make_lightningreed",
+  "sortnum": 51,
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/goldleaf_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Gold Ingot, 1 Sproutling, 1 of any leaf, 1 Empty Seed Packet, 100 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/goldleaf.png"
+      ],
+      "title": "Sun Producer",
+      "border": "true",
+      "text": "$(#25228d)Gold Leaves create a Gold Tile on planting."
+    },
     {
       "type": "text",
       "text": [
@@ -16,19 +34,7 @@
         "$(br2)$(#bd951a)\"For a small initial investment, you too can generate huge sun,\" says Gold Leaf. She's a firm believer in solar markets."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/goldleaf.png"
-      ],
-      "title": "☀ Enlighten Family",
-      "border": "true",
-      "text": "$(#25228d)Gold Leaves create a Gold Tile on planting."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/goldleaf"
-    },
+
     {
       "type": "text",
       "title": "References",

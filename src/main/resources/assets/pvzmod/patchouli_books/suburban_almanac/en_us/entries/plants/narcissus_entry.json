@@ -2,34 +2,40 @@
   "name": "Narcissus",
   "icon": "pvzmod:narcissus_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 107,
-  "advancement": "pvzmod:make_bellflower",
+  "sortnum": 33,
+  "advancement": "pvzmod:make_spikeweed",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 2 DMG/2s (Pierce)",
-        "$(br)$(#bd951a)Big Bubble: $()$(#ff0000)2 DMG/2s (Destroys Armor, but not Shields)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. 25% Big Bubble/shot if in water. Extinguishes Zombies.",
-        "$(br2)$(#bd951a)\"How DARE a ZOMBIE have nicer things than me!?\", says Narcissus, enraged. \"If I can't have nice things, no one can!\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/narcissus_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Flower Seeds, 1 Oxeye Daisy, 1 Aquatic Foliage, 1 Empty Seed Packet, 150 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/narcissus.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "Aquatics",
       "border": "true",
-      "text": "$(#25228d)They sometimes shoot Big Bubbles that destroys armor if in water."
+      "text": "$(#25228d)Shoots piercing bubbles and sometimes stunning bubbles if planted in water."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/narcissus"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)1x4 DMG/2s (Pierce)",
+        "$(br)$(#bd951a)Big Bubble: $()$(#ff0000)2 DMG(Stuns for 0.5 seconds)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)7 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)7.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Amphibious. 25% to shoot a stunning bubble while in water. Extinguishes Zombies.",
+        "$(br2)$(#bd951a)\"How DARE a ZOMBIE have nicer things than me!?\", says Narcissus, enraged. \"If I can't have nice things, no one can!\""
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

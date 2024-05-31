@@ -2,33 +2,38 @@
   "name": "Chomper",
   "icon": "pvzmod:chomper_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 6,
-  "advancement": "pvzmod:make_beet",
+  "sortnum": 9,
+  "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)36 ",
-        "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 32 DMG/1.5s (Immune)",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks",
-        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)12.5s, 1.5s (Small Zombies)",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Kills a Zombie instantly, but has to chew it afterwards. Immune if they are Big or above, a Grave, or a Machine. Will eat a Shield or Cover instead of the Zombie.",
-        "$(br)$(#bd951a)Chomper never gets the hint when you offer her a mint."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/chomper_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 1 Pointed Dripstone, 1 Empty Seed Packet, 150 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/chomper.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Chompers can devour a Zombie whole, but they are vulnerable while chewing."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/chomper"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20 ",
+        "$(#bd951a)Melee Damage: $()$(#ff0000)Insta-kill, 16 DMG/1.5s (Immune)",
+        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Chew Time: $()$(#ff0000)25s, 1.5s (Small Zombies)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Kills a Zombie instantly, but has to chew it afterwards. Immune if they are Big or above, a Grave, or a Machine. Will eat a Shield or Cover instead of the Zombie.",
+        "$(br)$(#bd951a)Chomper never gets the hint when you offer her a mint."
+      ]
     },
     {
       "type": "text",

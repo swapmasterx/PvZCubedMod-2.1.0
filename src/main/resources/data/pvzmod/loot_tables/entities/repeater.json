@@ -6,11 +6,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:sun",
+          "name": "pvzmod:pea",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": 2
             }
           ],
           "conditions": [

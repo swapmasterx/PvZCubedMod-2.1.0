@@ -459,9 +459,9 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createSoldierAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.13D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.soldierH());
@@ -469,7 +469,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 
 	protected SoundEvent getAmbientSound() {
 		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
 			return null;

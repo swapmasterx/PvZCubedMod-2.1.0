@@ -91,7 +91,7 @@ public class RoseBudTile extends TileEntity {
 					hasHelmet = true;
 				}
 			}
-			float damage = 6 * damageMultiplier;
+			float damage = 4 * damageMultiplier;
 			if (!hasHelmet && !(livingEntity instanceof ZombiePropEntity) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
 				damage = damage * 2;
 			}
@@ -107,9 +107,9 @@ public class RoseBudTile extends TileEntity {
 					zombiePropEntity2 instanceof ZombieShieldEntity) {
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					livingEntity.playSound(sound, 0.1F, (float) (0.5F + Math.random()));
@@ -117,12 +117,14 @@ public class RoseBudTile extends TileEntity {
 						!(livingEntity instanceof ZombieShieldEntity) &&
 						livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 					} else {
-						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 				}
 			}

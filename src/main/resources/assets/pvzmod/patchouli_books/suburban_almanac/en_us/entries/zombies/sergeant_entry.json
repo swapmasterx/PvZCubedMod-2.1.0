@@ -7,9 +7,8 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27",
+        "$(#bd951a)Health: $()$(#ff0000)14",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2.5 Blocks",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)Other Zombies wonder what it's like to be the guard of a big tomb. Sergeant Zombie thinks it's not lively enough."
       ]

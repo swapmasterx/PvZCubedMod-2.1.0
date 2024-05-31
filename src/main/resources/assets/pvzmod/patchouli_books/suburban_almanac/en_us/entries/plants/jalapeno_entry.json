@@ -2,34 +2,40 @@
   "name": "Jalapeno",
   "icon": "pvzmod:jalapeno_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 20,
-  "advancement": "pvzmod:make_potatomine",
+  "sortnum": 28,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)180",
-        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)12 Blocks",
-        "$(br)$(#bd951a)Damage Area: $()$(#ff0000)Low Profile. 10 Blocks in front and behind, 3 wide. ",
-        "$(#bd951a)Fuse Time: $()$(#ff0000)1.5s",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Won't explode if wet. Fire Damage. Leaves a fire trail that deals 8 Fire dmg/s for 7.5 seconds.",
-        "$(br)$(#bd951a)\"NNNNNGGGGG!!!!!!!!\" Jalapeno says. He's not going to explode, not this time. But soon. Oh, so soon. It's close."
-        ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/jalapeno_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Torchflower, 1 Fuse Cherry, 1 Empty Seed Packet, 125 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/jalapeno.png"
       ],
-      "title": "\uD83D\uDD25 Pepper Family",
+      "title": "Blaster",
       "border": "true",
       "text": "$(#25228d)Jalapenos destroy an entire row of zombies."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/pepper/jalapeno"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)12 Blocks",
+        "$(br)$(#bd951a)Damage Area: $()$(#ff0000)Low Profile. 10 Blocks in front and behind, 3 wide. ",
+        "$(#bd951a)Fuse Time: $()$(#ff0000)1.5s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Won't explode if wet. Fire Damage. Leaves a fire trail that deals 2 Fire dmg/s for 7.5 seconds.",
+        "$(br)$(#bd951a)\"NNNNNGGGGG!!!!!!!!\" Jalapeno says. He's not going to explode, not this time. But soon. Oh, so soon. It's close."
+        ]
     },
+
     {
       "type": "text",
       "title": "References",

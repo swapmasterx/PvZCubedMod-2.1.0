@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:cabbagepult_seed_packet"
     },
-    "title": "The Artillery",
-    "description": "Craft a Cabbage-pult",
+    "title": "Graze the Roof",
+    "description": "Craft a Cabbage Pult",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:start_pvz",
+  "parent": "pvzmod:make_seashroom",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,10 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/pepper/pepperpult",
-      "pvzmod:plants/winter/icebergpult"
-    ],
+    "recipes": [],
     "experience": 25
   }
 }

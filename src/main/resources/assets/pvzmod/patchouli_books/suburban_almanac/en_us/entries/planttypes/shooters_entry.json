@@ -1,0 +1,31 @@
+{
+  "name": "Shooters",
+  "icon": "minecraft:arrow",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Shooters are straight-forward.",
+        "$(br)The most basic family whose main trait is shooting projectiles that go straight."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/peashooter_entry",
+        "pvzmod:plants/repeater_entry",
+        "pvzmod:plants/puffshroom_entry",
+        "pvzmod:plants/magicshroom_entry",
+        "pvzmod:plants/threepeater_entry",
+        "pvzmod:plants/peapod_entry",
+        "pvzmod:plants/firepea_entry",
+        "pvzmod:plants/retrogatling_entry",
+        "pvzmod:plants/gatlingpea_entry",
+        "pvzmod:plants/gambleshroom_entry"
+      ],
+      "title": "Shooters"
+    }
+  ]
+}

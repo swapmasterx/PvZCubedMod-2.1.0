@@ -2,9 +2,27 @@
   "name": "Oxygae",
   "icon": "pvzmod:oxygae_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 47,
-  "advancement": "pvzmod:make_navybean",
+  "sortnum": 60,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/oxygae_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Kelp, 2 Aquatic Foliage, 1 Empty Seed Packet, 75 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/oxygae.png"
+      ],
+      "title": "Aquatics",
+      "border": "true",
+      "text": "$(#25228d)Lets you plant on water and protects plants."
+    },
     {
       "type": "text",
       "text": [
@@ -15,19 +33,7 @@
         "$(br2)$(#bd951a)Do not make the mistake of mispronouncing his name, it brings many childhood traumas."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/oxygae.png"
-      ],
-      "title": "⛨ Reinforce Family",
-      "border": "true",
-      "text": "$(#25228d)Lets you Plant on water and protects plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/oxygae"
-    },
+
     {
       "type": "text",
       "title": "References",

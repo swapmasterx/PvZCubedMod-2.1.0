@@ -2,9 +2,18 @@
   "name": "Wall-nut",
   "icon": "pvzmod:wallnut_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:start_pvz",
-  "sortnum": 6,
+  "sortnum": 4,
+  "advancement": "pvzmod:make_peashooter",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/wallnut_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Bark Enforced Sproutling, 1 Empty Seed Packet, 50 Sun value."
+    },
     {
       "type": "text",
       "text": [
@@ -18,13 +27,9 @@
       "images": [
         "pvzmod:textures/gui/entries/wallnut.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "Barrier",
       "border": "true",
       "text": "$(#25228d)Wall-nuts have hard shells which you can use to protect your other Plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/wallnut"
     },
     {
       "type": "text",

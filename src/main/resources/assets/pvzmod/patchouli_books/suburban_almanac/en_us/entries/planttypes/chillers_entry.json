@@ -1,0 +1,28 @@
+{
+  "name": "Chillers",
+  "icon": "pvzmod:plantfood_cold",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Chillers deal out chill and freeze to slow down the advancing horde.",
+        "$(br)They don't pair well will flaming or explosive plants as heat clears chill and freeze."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/iceberglettuce_entry",
+        "pvzmod:plants/snowpea_entry",
+        "pvzmod:plants/icebergpult_entry",
+        "pvzmod:plants/iceshroom_entry",
+        "pvzmod:plants/snowqueenpea_entry",
+        "pvzmod:plants/breezeshroom_entry",
+        "pvzmod:plants/missiletoe_entry"
+      ],
+      "title": "Chillers:"
+    }
+  ]
+}

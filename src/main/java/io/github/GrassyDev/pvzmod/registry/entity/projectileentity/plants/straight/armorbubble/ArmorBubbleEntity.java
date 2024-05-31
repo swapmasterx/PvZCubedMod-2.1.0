@@ -161,9 +161,9 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				entity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -172,9 +172,6 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 					damage = damage * 2;
 				} else if ("plant".equals(zombieMaterial) || "crystal".equals(zombieMaterial)) {
 					damage = damage / 2;
-				}
-				if (entity instanceof ZombiePropEntity && !(entity instanceof ZombieShieldEntity)) {
-					entity.kill();
 				} else {
 					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
@@ -182,7 +179,7 @@ public class ArmorBubbleEntity extends PvZProjectileEntity implements GeoEntity 
 				if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM)) {
 					((LivingEntity) entity).removeStatusEffect(PvZCubed.WARM);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 10, 1)));
 				entity.extinguish();
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

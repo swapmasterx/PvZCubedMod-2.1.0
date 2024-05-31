@@ -2,33 +2,40 @@
   "name": "Spring Princess",
   "icon": "pvzmod:springprincess_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 101,
-  "advancement": "pvzmod:make_springbean",
+  "sortnum": 63,
+
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)10",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/4s",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks (Lobbed)",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Slightly Bounces the damaged Zombie back, then the projectile bounces backwards and creates a Spring Tile when it hits the ground.",
-        "$(br)$(#bd951a)She refused many princes trying to rescue her from her tall tower. Why? She is still waiting for a princess in shining armor."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/springprincess_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 2 Spring Grass, 1 Empty Seed Packet, 150 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/springprincess.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "Stallers",
       "border": "true",
-      "text": "$(#25228d)Shoots springs to deal damage to zombies and bounce them back."
+      "text": "$(#25228d)Lobs springs to deal damage to zombies and bounce them back."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/springprincess"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/4.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Slightly Bounces the damaged Zombie back, then the projectile bounces backwards and creates a Spring Tile when it hits the ground.",
+        "$(br)$(#bd951a)She refused many princes trying to rescue her from her tall tower. Why? She is still waiting for a princess in shining armor."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

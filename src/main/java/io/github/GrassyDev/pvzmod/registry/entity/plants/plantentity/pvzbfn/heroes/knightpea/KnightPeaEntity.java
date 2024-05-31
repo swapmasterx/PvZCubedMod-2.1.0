@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzbfn.her
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.pea.ShootingPeaEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spiked.sword.ShootingSwordEntity;
@@ -178,10 +179,12 @@ public class KnightPeaEntity extends PlantEntity implements GeoEntity, RangedAtt
 
 	public static DefaultAttributeContainer.Builder createKnightPeashooterAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 180.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D)
+				.add(EntityAttributes.GENERIC_ARMOR, 10D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10.0D);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20.0D);
     }
 
 	protected boolean canClimb() {return false;}
@@ -301,8 +304,8 @@ public class KnightPeaEntity extends PlantEntity implements GeoEntity, RangedAtt
 				double f = (livingEntity != null) ? ((livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.getY() + 0.3595 : livingEntity.getY() - this.getY()) : 0;
 				double g = predictedPos.getZ() - this.getZ();
 				float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-				ShootingSwordEntity proj = new ShootingSwordEntity(PvZEntity.SWORDPROJ, this.getWorld());
-				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.33F, 0F);
+				ShootingPeaEntity proj = new ShootingPeaEntity(PvZEntity.PEA, this.getWorld());
+				proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 0.67F, 0F);
 				proj.updatePosition(this.getX(), this.getY() + 0.75D, this.getZ());
 				proj.setOwner(this);
 				proj.damageMultiplier = damageMultiplier;

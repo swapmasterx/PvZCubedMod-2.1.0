@@ -51,20 +51,6 @@
         "$(br)Some plants specially target a specific type of entity, e.g. Gargantuars target Low Profiles; Dandelion Weeds, Cattails, etc target Flying Zombies; and lobbing plants target Low Profile Zombies and Flying Zombies.",
         "$(br2)This mod has a diverse amount of interactions between Plants and Zombies, experiment to find out the intricacies of the systems!"
       ]
-    },
-    {
-      "type": "relations",
-      "entries": [
-        "pvzmod:zombies/snorkel_entry",
-        "pvzmod:plants/dandelionweed_entry",
-        "pvzmod:plants/tallnut_entry",
-        "pvzmod:zombies/gargantuar_entry",
-        "pvzmod:zombies/bully_entry",
-        "pvzmod:plants/loquat_entry",
-        "pvzmod:plants/peapod_entry",
-        "pvzmod:plants/cabbagepult_entry",
-        "pvzmod:zombies/jetpack_entry"
-      ]
     }
   ]
 }

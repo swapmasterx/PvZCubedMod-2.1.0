@@ -275,7 +275,7 @@ public class PotatomineEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 6.25);
 
-			float damage = 180;
+			float damage = 90;
 			if (livingEntity instanceof OilTile oilTile){
 				oilTile.makeFireTrail(oilTile.getBlockPos());
 			}
@@ -488,8 +488,8 @@ public class PotatomineEntity extends PlantEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 0.66D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 180);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 0.75D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90);
     }
 
 	protected boolean canClimb() {

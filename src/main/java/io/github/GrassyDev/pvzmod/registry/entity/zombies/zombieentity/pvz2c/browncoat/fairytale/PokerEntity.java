@@ -304,7 +304,7 @@ public class PokerEntity extends BrowncoatEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createPokerHeartAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D)
@@ -313,7 +313,7 @@ public class PokerEntity extends BrowncoatEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createPokerSpadeAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)

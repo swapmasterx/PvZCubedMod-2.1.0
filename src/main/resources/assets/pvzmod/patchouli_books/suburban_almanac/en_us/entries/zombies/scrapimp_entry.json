@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)90 (Metal)",
+        "$(#bd951a)Health: $()$(#ff0000)45 (Metal)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Flighty",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Small. Head weak to magnetism.",

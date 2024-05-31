@@ -183,7 +183,7 @@ public class PepperpultEntity extends PlantEntity implements GeoEntity, RangedAt
 
 	public static DefaultAttributeContainer.Builder createPepperPultAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30.0D);
@@ -306,7 +306,7 @@ public class PepperpultEntity extends PlantEntity implements GeoEntity, RangedAt
 							proj.getTarget(plantEntity.getTarget());
 						}
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -30;
+							this.beamTicks = -25;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 							this.plantEntity.getWorld().spawnEntity(proj);

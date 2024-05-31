@@ -2,33 +2,41 @@
   "name": "Pea-nut",
   "icon": "pvzmod:peanut_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_wallnut",
-  "sortnum": 91,
+
+  "advancement": "pvzmod:make_pumpkinwitch",
+  "sortnum": 65,
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)90 (45 for each head)",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x2 4 DMG/1.5s (x1 for each head)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Top Pea(above 45 HP) hits Flying. Bottom Pea is Low Profile.",
-        "$(br)$(#bd951a)Pea-nut knows that some folks have an allergy to him. He tries to be sensitive to their concerns and give them the space they need. Still, he can't help but miss the old days."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/peanut_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Pea, 2 Bark Enforced Sproutling, 1 Sproutling, 1 Empty Seed Packet, 175 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/peanut.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "Barriers",
       "border": "true",
       "text": "$(#25228d)Pea-nuts can shoot peas and block zombies."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/peanut"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)90",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000) 2x2 DMG/1.5s (above 50% hp)",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000) 2 DMG/1.5s (below 50% hp)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)10 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)12.5s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Top Pea(above 45 HP) hits Flying. Bottom Pea is Low Profile. Both have 10 degree projectile deviation.",
+        "$(br)$(#bd951a)Pea-nut knows that some folks have an allergy to him. He tries to be sensitive to their concerns and give them the space they need. Still, he can't help but miss the old days."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

@@ -198,10 +198,10 @@ public class BreezeshroomEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createBreezeshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 22.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 6D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 7D);
 	}
 
 	protected boolean canClimb() {
@@ -284,7 +284,7 @@ public class BreezeshroomEntity extends PlantEntity implements GeoEntity, Ranged
 		}
 
 		public void start() {
-			this.beamTicks = -8;
+			this.beamTicks = -10;
 			this.animationTicks = -21;
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(this.plantEntity.getTarget(), 90.0F, 90.0F);
@@ -318,7 +318,7 @@ public class BreezeshroomEntity extends PlantEntity implements GeoEntity, Ranged
 					double g = predictedPos.getZ() - this.plantEntity.getZ();
 					float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
 					BreezeEntity proj = new BreezeEntity(PvZEntity.BREEZE, this.plantEntity.getWorld());
-					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.10F, 0F);
+					proj.setVelocity(e * (double) h, f * (double) h, g * (double) h, 1.00F, 1F);
 					proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.5D, this.plantEntity.getZ());
 					proj.setOwner(this.plantEntity);
 					if (livingEntity != null && livingEntity.isAlive()) {
@@ -329,7 +329,7 @@ public class BreezeshroomEntity extends PlantEntity implements GeoEntity, Ranged
 				}
 				if (this.animationTicks >= 0) {
 					this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
-					this.beamTicks = -8;
+					this.beamTicks = -10;
 					this.animationTicks = -21;
 				}
 				super.tick();

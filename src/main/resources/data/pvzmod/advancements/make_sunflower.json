@@ -3,15 +3,14 @@
     "icon": {
       "item": "pvzmod:sunflower_seed_packet"
     },
-    "title": "The Sun Makers",
-    "description": "Craft a Sunflower",
-    "background": "pvzmod:textures/gui/advancement/background.png",
+    "title": "Zombies on your lawn?",
+    "description": "Use Gardening Gloves to gain a Sunflower Seed Packet",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:start_pvz",
+  "parent": "pvzmod:make_peashooter",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -31,11 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/enlighten/twinsunflower",
-      "pvzmod:plants/enlighten/goldleaf",
-      "pvzmod:plants/enlighten/vampireflower"
-    ],
+    "recipes": [ ],
     "experience": 25
   }
 }

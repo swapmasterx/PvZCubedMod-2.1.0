@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.sunflower.SunflowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -58,8 +59,7 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-	private Entity prevZombie;
-	private boolean zombieSunCheck;
+	private boolean sunProducerCheck;
 	private int raycastDelay = 20;
 
 	public SunshroomEntity(EntityType<? extends SunshroomEntity> entityType, World world) {
@@ -143,11 +143,13 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 	private int currentFuseTime;
 
 	public void setFuseSpeed(int fuseSpeed) {
+
 		this.dataTracker.set(SUN_SPEED, fuseSpeed);
 	}
 
 	public int getFuseSpeed() {
-		return (Integer)this.dataTracker.get(SUN_SPEED);
+
+		return this.dataTracker.get(SUN_SPEED);
 	}
 
 	public void tick() {
@@ -186,7 +188,7 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 			}
 
 			if (this.currentFuseTime >= this.sunProducingTime) {
-				if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn() && !this.getIsAsleep()) {
+				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn() && !this.getIsAsleep()) {
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					double probability = this.random.nextDouble();
 					if (probability <= PVZCONFIG.nestedSun.sunshroomSunChance()) { // 45%
@@ -197,7 +199,7 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 						this.dropItem(ModItems.LARGESUN);
 					}
 					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.sunshroomSec() * 20);
-					this.zombieSunCheck = false;
+					this.sunProducerCheck = false;
 					this.currentFuseTime = this.sunProducingTime;
 				}
 			}
@@ -220,8 +222,8 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 	}
 
 	protected void produceSun() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(15));
-		List<GeneralPvZombieEntity> zombieList = this.getWorld().getNonSpectatingEntities(GeneralPvZombieEntity.class, this.getBoundingBox().expand(15));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(4));
+		List<SunshroomEntity> sunShroomList = this.getWorld().getNonSpectatingEntities(SunshroomEntity.class, this.getBoundingBox().expand(4));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -233,15 +235,11 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 225);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
 
-			if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-				if (livingEntity.getY() < (this.getY() + 2) && livingEntity.getY() > (this.getY() - 2)) {
-					if ((this.prevZombie == null || zombieList.get(0) != prevZombie) && !zombieList.isEmpty()) {
-						prevZombie = zombieList.get(0);
-						this.zombieSunCheck = true;
-					}
-				}
+
+			if (sunShroomList.size() <= 1) {
+				this.sunProducerCheck = true;
 			}
 		}
 	}
@@ -276,7 +274,7 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createSunshroomAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

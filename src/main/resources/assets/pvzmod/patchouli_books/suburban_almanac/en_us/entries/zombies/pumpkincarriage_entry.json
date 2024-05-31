@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)210 (Plant) ",
+        "$(#bd951a)Health: $()$(#ff0000)100 (Plant) ",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Decent",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Covered. Big. Leaves behind a Crystal Shoe Imp on death with 3s of Invincibility.",

@@ -16,6 +16,7 @@ import io.github.GrassyDev.pvzmod.items.seedpackets.GatlingpeaSeeds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -23,6 +24,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,8 +35,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -141,13 +145,13 @@ public class SpikeweedEntity extends PlantEntity implements GeoEntity {
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					livingEntity.playSound(sound, 0.1F, (float) (0.5F + Math.random()));
-					float damage = 4;
+					float damage = 2;
 					if (damage > livingEntity.getHealth() &&
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
@@ -222,6 +226,10 @@ public class SpikeweedEntity extends PlantEntity implements GeoEntity {
 
 	/** /~*~//~*INTERACTION*~//~*~/ **/
 
+	public static boolean canSpikeWeedSpawn(EntityType<SpikeweedEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
+		return world.getBlockState(pos.down()).isOf(Blocks.NETHERRACK) || world.getBlockState(pos.down()).isOf(Blocks.CRIMSON_NYLIUM);
+	}
+
 	@Nullable
 	@Override
 	public ItemStack getPickBlockStack() {
@@ -282,7 +290,7 @@ public class SpikeweedEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createSpikeweedAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

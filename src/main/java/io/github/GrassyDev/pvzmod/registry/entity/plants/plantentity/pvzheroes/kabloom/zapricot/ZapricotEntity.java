@@ -474,17 +474,17 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
-					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 2);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 5);
 				}
 				else {
-					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 1);
+					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 3);
 				}
 				damaged.damage(getDamageSources().mobProjectile(this, this), 0);
 				setSparkTarget(damaged.getId());
@@ -532,11 +532,11 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	public static DefaultAttributeContainer.Builder createZapricotAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 15D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D);
 	}
 
 	protected boolean canClimb() {
@@ -601,27 +601,6 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 		this.playBlockFallSound();
 		return true;
 	}
-
-
-	/** /~*~//~*SPAWNING*~//~*~/ **/
-
-	public static boolean canZapricotSpawn(EntityType<? extends ZapricotEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
-		BlockPos blockPos = pos.down();
-		float nightchance = random.nextFloat();
-		if (nightchance <= 0.5){
-			return !world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&
-					!checkPlant(Vec3d.ofCenter(pos), world, type) &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
-		}
-		else {
-			return !world.getBlockState(blockPos).isOf(Blocks.AIR) && !world.getBlockState(blockPos).isOf(Blocks.CAVE_AIR) &&
-					!checkPlant(Vec3d.ofCenter(pos), world, type) &&
-					!world.getBlockState(blockPos).getBlock().hasDynamicBounds() && world.getAmbientDarkness() < 4 &&
-					world.getLightLevel(LightType.SKY, pos) > 10 && Objects.requireNonNull(world.getServer()).getGameRules().getBooleanValue(PvZCubed.SHOULD_PLANT_SPAWN) && PVZCONFIG.nestedSpawns.spawnPlants();
-		}
-	}
-
 
 	/**
 	 * /~*~//~*GOALS*~//~*~/
@@ -970,14 +949,14 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 							String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 							SoundEvent sound;
 							sound = switch (zombieMaterial) {
-								case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-								case "plastic" -> PvZSounds.CONEHITEVENT;
-								case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+								case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+								case "plastic" -> PvZSounds.PEAHITEVENT;
+								case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 								default -> PvZSounds.PEAHITEVENT;
 							};
 							this.plantEntity.playSound(PvZSounds.LIGHTNINGSHOOTEVENT, 0.75F, (float) (0.75F + (Math.random() / 2)));
 							damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-							float damage = 1;
+							float damage = 3;
 							if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)) {
 								damage = damage * 2;
 							}

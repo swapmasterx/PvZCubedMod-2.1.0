@@ -234,7 +234,7 @@ public class CoconutCannonEntity extends PlantEntity implements GeoEntity, Range
 
 	public static DefaultAttributeContainer.Builder createCoconutCannonAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 36.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30.0D);

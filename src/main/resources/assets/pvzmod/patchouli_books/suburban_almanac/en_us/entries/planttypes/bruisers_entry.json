@@ -1,0 +1,40 @@
+{
+  "name": "Brusers",
+  "icon": "minecraft:diamond_sword",
+  "category": "pvzmod:planttype_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": [
+        "$(#ff0000)Brusers have low range but deal heavy damage within that range."
+        ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/dandelionweed_entry",
+        "pvzmod:plants/chomper_entry",
+        "pvzmod:plants/superchomper_entry",
+        "pvzmod:plants/squash_entry",
+        "pvzmod:plants/zapricot_entry",
+        "pvzmod:plants/beet_entry",
+        "pvzmod:plants/hammerflower_entry",
+        "pvzmod:plants/meteorhammer_entry",
+        "pvzmod:plants/olivepit_entry"
+
+      ],
+      "title": "Brusers:"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "pvzmod:plants/chester_entry",
+        "pvzmod:plants/doomrose_entry",
+        "pvzmod:plants/smooshroom_entry",
+        "pvzmod:plants/bananasaurus_entry"
+      ],
+      "title": "Brusers:"
+    }
+  ]
+}

@@ -2,32 +2,37 @@
   "name": "Dogwood",
   "icon": "pvzmod:dogwood_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 600,
-  "advancement": "pvzmod:make_wallnut",
+  "sortnum": 8,
+  "advancement": "pvzmod:make_bellflower",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)28",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)0 (Pierce), Instant-kill (Scare, Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Sound Damage. Slows Zombies' movement speed by the same amount as Chill, but doesn't stack. Scares Small Zombies.",
-        "$(br)$(#bd951a)Dogwood is part St. Firnard, part Pineranian, a bit of Oaker Spaniel, and all \"Who's a Good Boy?\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/dogwood_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Bark Enforced Sproutling, 2 of any log, 1 Empty Seed Packet, 75 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/dogwood.png"
       ],
-      "title": "⏳ Contain Family",
+      "title": "Staller",
       "border": "true",
-      "text": "$(#25228d)Dogwoods slow Zombies in front of them by barking at them. Frightens small Zombies."
+      "text": "$(#25228d)Slows Zombies in front of them by barking at them. Frightens small Zombies to death."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/dogwood"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)0 (Pierce), Instant-kill (Scare, Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Slows Zombies' movement speed by the same amount as Chill, but doesn't stack. Scares Small Zombies.",
+        "$(br)$(#bd951a)Dogwood is part St. Firnard, part Pineranian, a bit of Oaker Spaniel, and all \"Who's a Good Boy?\""
+      ]
     },
     {
       "type": "text",

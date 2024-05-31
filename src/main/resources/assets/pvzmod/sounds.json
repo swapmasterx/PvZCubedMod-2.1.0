@@ -45,16 +45,19 @@
     ]
   },
   "bucket_hit": {
+    "category": "hostile",
     "sounds": [
       "pvzmod:bucket_hit"
     ]
   },
   "cone_hit": {
+    "category": "hostile",
     "sounds": [
       "pvzmod:cone_hit"
     ]
   },
   "stone_hit": {
+    "category": "hostile",
     "sounds": [
       "pvzmod:stone_hit"
     ]
@@ -307,6 +310,19 @@
   "imp_moan": {
     "sounds": [
       "pvzmod:imp_moan"
+    ]
+  },
+  "pvzombie_moan": {
+    "sounds": [
+      "pvzmod:pvzombie_noise_1",
+      "pvzmod:pvzombie_noise_2",
+      "pvzmod:pvzombie_noise_3",
+      "pvzmod:pvzombie_noise_4",
+      "pvzmod:pvzombie_noise_5",
+      "pvzmod:pvzombie_noise_6",
+      "pvzmod:pvzombie_noise_7",
+      "pvzmod:pvzombie_noise_8",
+      "pvzmod:pvzombie_noise_9"
     ]
   },
   "newspaper_angry": {

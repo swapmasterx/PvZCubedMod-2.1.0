@@ -2,9 +2,27 @@
   "name": "Coffee Bean",
   "icon": "pvzmod:coffeebean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 34,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 38,
+  "advancement": "pvzmod:make_seashroom",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/coffeebean_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cocoa Beans, 1 Sugar, 1 Golden Apple, 1 Empty Seed Packet, 75 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/coffeebean.png"
+      ],
+      "title": "Specials",
+      "border": "true",
+      "text": "$(#25228d)Use Coffee Beans to wake up sleeping mushrooms."
+    },
     {
       "type": "text",
       "text": [
@@ -13,19 +31,7 @@
         "$(br2)$(#bd951a)\"Hey, guys, hey!\" says Coffee Bean. \"Hey! What's up? Who's that? Hey! Didja see that thing? What thing? Whoa! Lions!\" Yep, Coffee Bean sure does get excited."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/coffeebean.png"
-      ],
-      "title": "⭐ Enchant Family",
-      "border": "true",
-      "text": "$(#25228d)Use Coffee Beans to wake up sleeping mushrooms."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enchant/coffeebean"
-    },
+
     {
       "type": "text",
       "title": "References",

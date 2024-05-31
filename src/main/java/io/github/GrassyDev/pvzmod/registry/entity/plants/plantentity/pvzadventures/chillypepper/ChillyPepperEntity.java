@@ -202,7 +202,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoEntity {
 			if (livingEntity instanceof ScorchedTile){
 				livingEntity.discard();
 			}
-			float damage = 60;
+			float damage = 30;
 			String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 			if ("crystal".equals(zombieMaterial) || "gold".equals(zombieMaterial) || "cloth".equals(zombieMaterial)) {
 				damage = damage / 2;
@@ -358,8 +358,8 @@ public class ChillyPepperEntity extends PlantEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 6D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 30);
     }
 
 	protected boolean canClimb() {

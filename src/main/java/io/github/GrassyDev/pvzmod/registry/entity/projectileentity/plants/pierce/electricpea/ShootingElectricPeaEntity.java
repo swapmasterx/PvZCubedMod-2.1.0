@@ -400,19 +400,20 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
+					damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage * 2);
 				}
 				else {
+					damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 				}
-				damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 				setSparkTarget(damaged.getId());
 				this.getWorld().sendEntityStatus(this, (byte) 121);
 				if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -511,10 +512,14 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 						}
 						this.lightning((LivingEntity) entity);
 						this.lightningCounter = 3;
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE),damage);
+						if (entity != zombiePropEntity){
+							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						generalPvZombieEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage2);
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					} else {
 						this.lightningCounter = 3;
 						if (zombieMaterial.equals("plastic") || zombieMaterial.equals("plant")){
@@ -525,8 +530,8 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 						}
 						this.lightning((LivingEntity) entity);
 						this.lightningCounter = 3;
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage);
 					}
 					entityStore.add((LivingEntity) entity);
 				}

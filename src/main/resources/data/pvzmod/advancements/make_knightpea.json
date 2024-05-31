@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:knightpea_seed_packet"
     },
-    "title": "Pea in Shining Armor",
-    "description": "Craft a Knight Pea",
-    "frame": "challenge",
+    "title": "Plant in shining armor",
+    "description": "Craft a Pea of Valiance",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_peanut",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
-    "experience": 100
+    "recipes": [],
+    "experience": 25
   }
 }

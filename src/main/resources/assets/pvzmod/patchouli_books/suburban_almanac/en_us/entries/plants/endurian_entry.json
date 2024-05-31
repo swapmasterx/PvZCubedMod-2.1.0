@@ -2,30 +2,35 @@
   "name": "Endurian",
   "icon": "pvzmod:endurian_seed_packet",
   "category": "pvzmod:plant_category",
-  "advancement": "pvzmod:make_wallnut",
-  "sortnum": 80,
+  "advancement": "pvzmod:make_lightningreed",
+  "sortnum": 50,
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)120",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)30s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Deal 6 damage to Zombies that eat it.",
-        "$(br2)$(#bd951a)\"When other plants talk about me, they say I'm too gruff. They say I'm difficult to approach, that I'm afraid to let others get too close to me. Also, I smell terrible,\" said Endurian. But deep down inside, he knows that he's so much more than that. He's also short-tempered."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/endurian_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Bark Enforced Sproutling, 4 Pointed Dripstone, 1 Empty Seed Packet, 100 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/endurian.png"
       ],
-      "title": "⛨ Reinforce Family",
+      "title": "Barrier",
       "border": "true",
       "text": "$(#25228d)Endurians are defensive plants that deal damage to zombies attacking them."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/endurian"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)120",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)30s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Deal 3 damage to Zombies that eat it.",
+        "$(br2)$(#bd951a)\"When other plants talk about me, they say I'm too gruff. They say I'm difficult to approach, that I'm afraid to let others get too close to me. Also, I smell terrible,\" said Endurian. But deep down inside, he knows that he's so much more than that. He's also short-tempered."
+      ]
     },
     {
       "type": "text",

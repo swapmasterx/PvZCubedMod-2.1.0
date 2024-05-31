@@ -256,7 +256,7 @@ public class BombSeedlingEntity extends PlantEntity implements GeoEntity {
 				} while (livingEntity == this);
 			} while (this.squaredDistanceTo(livingEntity) > 4);
 
-			float damage = 32;
+			float damage = 15;
 			ZombiePropEntity zombiePropEntity4 = null;
 			if (livingEntity.hasVehicle()) {
 				for (Entity entity1 : livingEntity.getVehicle().getPassengerList()) {

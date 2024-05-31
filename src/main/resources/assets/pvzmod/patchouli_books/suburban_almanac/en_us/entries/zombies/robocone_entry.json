@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)250 (Plastic) ",
+        "$(#bd951a)Health: $()$(#ff0000)125 (Plastic) ",
         "$(#bd951a)Damage: $()$(#ff0000)12 ",
         "$(#bd951a)Speed: $()$(#ff0000)Stiff",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Machine. Covered. Big. Turns Invincible for 5 seconds when health goes below half. Leaves behind a Future Conehead on death with 3s of Invincibility.",

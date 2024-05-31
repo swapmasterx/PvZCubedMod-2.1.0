@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.soci
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.spikeweed.SpikeweedEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -11,9 +12,12 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieShie
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -28,9 +32,11 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -116,7 +122,8 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 	 **/
 
 	protected void initGoals() {
-		this.goalSelector.add(1, new ProjectileAttackGoal(this, 0D, 30, 15.0F));
+		this.goalSelector.add(7, new ProjectileAttackGoal(this, 0D, 30, 15.0F));
+		this.goalSelector.add(6, new LookAroundGoal(this));
 	}
 
 
@@ -213,7 +220,9 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 	/**
 	 * /~*~//~*INTERACTION*~//~*~/
 	 **/
-
+	public static boolean canBurstShroomSpawn(EntityType<BurstshroomEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, RandomGenerator random) {
+		return world.getBlockState(pos.down()).isOf(Blocks.NETHERRACK) || world.getBlockState(pos.down()).isOf(Blocks.CRIMSON_NYLIUM);
+	}
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		ItemStack itemStack = player.getStackInHand(hand);
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
@@ -242,11 +251,13 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 
 	public static DefaultAttributeContainer.Builder createBurstshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
+				.add(EntityAttributes.GENERIC_ARMOR, 8D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 1.5D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2.0D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 30.0D);
 	}
 
 	protected boolean canClimb() {
@@ -362,13 +373,13 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 						String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 						SoundEvent sound;
 						sound = switch (zombieMaterial) {
-							case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-							case "plastic" -> PvZSounds.CONEHITEVENT;
-							case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+							case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+							case "plastic" -> PvZSounds.PEAHITEVENT;
+							case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-						float damage = 40F;
+						float damage = 30F;
 						if ("paper".equals(zombieMaterial) || "plant".equals(zombieMaterial) || "cloth".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
 							if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
 								livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));

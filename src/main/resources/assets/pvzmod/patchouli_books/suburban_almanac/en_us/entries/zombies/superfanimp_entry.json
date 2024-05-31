@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8, 30 (Explosion)",
         "$(br)$(#bd951a)Activation Range: $()$(#ff0000)2 Blocks",
         "$(br)$(#bd951a)Blast Radius: $()$(#ff0000)3 Blocks",
@@ -37,7 +37,6 @@
         "pvzmod:plants/narcissus_entry",
         "pvzmod:plants/spikeweed_entry",
         "pvzmod:plants/dogwood_entry",
-        "pvzmod:plants/dropea_entry",
         "pvzmod:plants/springbean_entry"
       ]
     },

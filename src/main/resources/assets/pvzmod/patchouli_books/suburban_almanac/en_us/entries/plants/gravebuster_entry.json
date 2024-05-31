@@ -2,8 +2,28 @@
   "name": "Grave Buster",
   "icon": "pvzmod:gravebuster_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 11,
+  "sortnum": 16,
+  "advancement": "pvzmod:make_magicshroom",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/graveyard_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cactus, 1 Empty Seed Packet, 25 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/gravebuster.png"
+      ],
+      "title": "Specials",
+      "border": "true",
+      "text": "$(#25228d)Plant Grave Busters on top of graves to remove them. "
+    },
+
     {
       "type": "text",
       "text": [
@@ -15,19 +35,7 @@
         "$(br)$(#bd951a)Despite Grave Buster's fearsome appearance, he wants everyone to know that he loves kittens and spends his off hours volunteering at a local Zombie rehabilitation center."
         ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/gravebuster.png"
-      ],
-      "title": "⏳ Contain Family",
-      "border": "true",
-      "text": "$(#25228d)Plant Grave Busters on top of graves to remove them. "
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/gravebuster"
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -2,33 +2,39 @@
   "name": "Cattail",
   "icon": "pvzmod:cattail_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 36,
-  "advancement": "pvzmod:make_navybean",
+  "sortnum": 83,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)24",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x2 4 DMG/1.5s (Spike)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Aquatic. Prioritizes flying zombies, then the strongest Zombie without headwear",
-        "$(br)$(#bd951a)\"Woof!\" says Cattail. \"Woof woof woof! Does this confuse you? Do you expect me to say 'Meow' like a cat because I look like a cat? I refuse to be pigeonholed.\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/cattail_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Aquatic Foliage, 1 Lily Pad, 2 Pointed Dripstone, 1 Empty Upgrade Packet, 225 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/cattail.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "Crowd Controller",
       "border": "true",
-      "text": "$(#25228d)Cattails shut down flying zombies and zombies without headwear."
+      "text": "$(#25228d)Shoots piercing thorns; Prioritizes flying and hatless zombies."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/cattail"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2x2 DMG/1.5s (Spike)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Aquatic. Prioritizes flying zombies, then the strongest Zombie without headwear",
+        "$(br)$(#bd951a)\"Woof!\" says Cattail. \"Woof woof woof! Does this confuse you? Do you expect me to say 'Meow' like a cat because I look like a cat? I refuse to be pigeonholed.\""
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

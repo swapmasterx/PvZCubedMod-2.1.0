@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:magnetoshroom_seed_packet"
     },
-    "title": "The Power of Magnetism",
-    "description": "Craft a Magneto-shroom",
+    "title": "Super-Magmatism",
+    "description": "Craft the Magneto-Shroom Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_magnetshroom",
   "criteria": {
@@ -30,8 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-    ],
-    "experience": 300
+    "recipes": [],
+    "experience": 25
   }
 }

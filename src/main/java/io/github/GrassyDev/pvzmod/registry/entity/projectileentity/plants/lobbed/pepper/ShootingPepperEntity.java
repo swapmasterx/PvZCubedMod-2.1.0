@@ -200,9 +200,9 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 					if (entity.isWet() && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 						SoundEvent sound;
 						sound = switch (zombieMaterial) {
-							case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-							case "plastic" -> PvZSounds.CONEHITEVENT;
-							case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+							case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+							case "plastic" -> PvZSounds.PEAHITEVENT;
+							case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						entity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -230,11 +230,15 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					hit = true;
@@ -251,7 +255,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 						if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 							generalPvZombieEntity.fireSplashTicks = 10;
 						}
-						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 0)));
 						Vec3d vec3d = this.getPos();
 						List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
 						Iterator var10 = list.iterator();
@@ -265,7 +269,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 
 									livingEntity = (LivingEntity) var10.next();
 								} while (livingEntity == this.getOwner());
-							} while (entity.squaredDistanceTo(livingEntity) > 6.25);
+							} while (entity.squaredDistanceTo(livingEntity) > 7.25);
 
 
 							if (livingEntity instanceof OilTile oilTile) {
@@ -302,15 +306,24 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 													!(livingEntity instanceof ZombieShieldEntity) &&
 													livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 												float damageSplash2 = damageSplash - livingEntity.getHealth();
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damageSplash2*0.5));
-												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damageSplash*0.5));
+
+												if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash2);
 												generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash2);
 											} else if (livingEntity instanceof ZombiePropEntity zombiePropEntity) {
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damageSplash*0.5));
-												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damageSplash*0.5));
+
+												if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash);
 											} else {
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) (damageSplash*0.5));
-												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) (damageSplash*0.5));
+
+												if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash);
 											}
 											if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !entity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 												livingEntity.removeStatusEffect(PvZCubed.FROZEN);
@@ -351,7 +364,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 					} else if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !entity.isWet()) {
 						((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
 						((LivingEntity) entity).removeStatusEffect(PvZCubed.ICE);
-						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 0)));
 						if (!entity.isWet()) {
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 						}

@@ -2,13 +2,31 @@
   "name": "Spring Bean",
   "icon": "pvzmod:springbean_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 57,
-  "advancement": "pvzmod:start_pvz",
+  "sortnum": 43,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/springbean_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cocoa Beans, 1 Sproutling, 1 Empty Seed Packet, 50 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/springbean.png"
+      ],
+      "title": "Staller",
+      "border": "true",
+      "text": "$(#25228d)Spring Beans bounce back zombies that get too close."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)22",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Range: $()$(#ff0000)0.45 Blocks (Bounce), 2.5 Blocks (Preparing)",
         "$(br)$(#bd951a)Bounce Area: $()$(#ff0000)1.75 Blocks",
         "$(br)$(#bd951a)Bounce: $()$(#ff0000)~7 Blocks Backwards",
@@ -18,19 +36,7 @@
         "$(br)$(#bd951a)He's the strong, silent type and little is known about Spring Bean."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/springbean.png"
-      ],
-      "title": "⏳ Contain Family",
-      "border": "true",
-      "text": "$(#25228d)Spring Beans bounce back zombies that get too close."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/springbean"
-    },
+
     {
       "type": "text",
       "title": "References",

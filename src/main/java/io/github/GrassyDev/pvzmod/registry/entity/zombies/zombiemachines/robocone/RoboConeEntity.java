@@ -293,7 +293,7 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoEntity {
 			return null;
 		}
 		else {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 	}
 

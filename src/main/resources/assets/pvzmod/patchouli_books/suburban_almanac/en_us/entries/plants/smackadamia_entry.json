@@ -2,9 +2,27 @@
   "name": "Smackadamia",
   "icon": "pvzmod:smackadamia_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 301,
-  "advancement": "pvzmod:make_wallnut",
+  "sortnum": 57,
+  "advancement": "pvzmod:make_pumpkinwitch",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/breezeshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Bark Enforced Sproutling, 1 Clover, 1 Empty Seed Packet, 100 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/smackadamia.png"
+      ],
+      "title": "Barrier",
+      "border": "true",
+      "text": "$(#25228d)They block flying zombies and smack them."
+    },
     {
       "type": "text",
       "text": [
@@ -17,19 +35,7 @@
         "$(br)$(#bd951a)Smackadamia wasn't born with smack smarts. He studied hard. He's a smackademic."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/smackadamia.png"
-      ],
-      "title": "⛨ Reinforce Family",
-      "border": "true",
-      "text": "$(#25228d)They block flying zombies and smack them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/smackadamia"
-    },
+
     {
       "type": "text",
       "title": "References",

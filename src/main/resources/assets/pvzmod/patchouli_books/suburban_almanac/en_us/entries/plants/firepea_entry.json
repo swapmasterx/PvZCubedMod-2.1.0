@@ -2,34 +2,39 @@
   "name": "Fire Peashooter",
   "icon": "pvzmod:firepea_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 42,
+  "sortnum": 87,
   "advancement": "pvzmod:make_repeater",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)8 DMG/1.5s, 4 DMG (Splash) ",
-        "$(#bd951a)Splash: $()$(#ff0000)1.5 Blocks ",
-        "$(br)$(#bd951a)Plasma DMG: $()$(#ff0000)12 DMG/1.5s (Pierce)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Illuminating. Fire Damage. 66% Fire Pea, 33% Plasma Pea",
-        "$(br)$(#bd951a)She had a relationship with Snow Queen Pea a few months back. She may have cooled since then, but her burning peas have never been hotter."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/firepea_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Torchflower, 1 Pea, 1 Sproutling, 1 Fire Charge, 1 Empty Premium Packet, 225 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/firepeashooter.png"
       ],
-      "title": "\uD83D\uDD25 Pepper Family",
+      "title": "Shooter",
       "border": "true",
-      "text": "$(#25228d)Fire Peashooter shoots flaming and plasma peas down the lane."
+      "text": "$(#25228d)Shoots flaming splash damage peas and piercing plasma peas."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/pepper/firepea"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3 DMG/1.5s, 3 DMG (Splash) ",
+        "$(#bd951a)Splash: $()$(#ff0000)1.5 Blocks ",
+        "$(br)$(#bd951a)Plasma DMG: $()$(#ff0000)6 DMG/1.5s (Pierce)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)15 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)15s $(#bd951a)Stale: $()$(#ff0000)1.5%",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Immune to Fire. Illuminating. Fire Damage. 66% Fire Pea, 33% Plasma Pea",
+        "$(br)$(#bd951a)She had a relationship with Snow Queen Pea a few months back. She may have cooled since then, but her burning peas have never been hotter."
+      ]
     },
     {
       "type": "text",

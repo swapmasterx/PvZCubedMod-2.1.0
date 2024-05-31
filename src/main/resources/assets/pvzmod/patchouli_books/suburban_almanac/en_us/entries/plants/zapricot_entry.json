@@ -2,34 +2,41 @@
   "name": "Zapricot",
   "icon": "pvzmod:zapricot_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 303,
+  "sortnum": 46,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
     {
-      "type": "text",
-      "text":[
-        "$(#bd951a)Health: $()$(#ff0000)8 ",
-        "$(#bd951a)Dmg: $()$(#ff0000)1 DMG/1.5s ",
-        "$(#bd951a)Elec Radius: $()$(#ff0000)10 Blocks ",
-        "$(#bd951a)Elec Chains: $()$(#ff0000)3 Chains ",
-        "$(#bd951a)Range: $()$(#ff0000)10 Blocks ",
-        "$(#bd951a)Seed: $()$(#ff0000)7.5s ",
-        "$(#bd951a)Special: $()$(#ff0000)Electrocutes Zombies. Targets any Zombie. Spawns uncommonly. Drops Elec Plant Food.",
-        "$(br)$(#bd951a)\"My uncle used to say 'With great power comes great responsibility.' Took the lesson to heart: charging criminals, helping power plants... but I'm not powerful enough, I was shocked about this truth.\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/zapricot_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Electro Leaf, 1 Sproutling, 1 Empty Seed Packet, 125 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/zapricot.png"
       ],
-      "title": "⚡ Filament Family",
+      "title": "Bruisers",
       "border": "true",
-      "text": "$(#25228d)Zapricot electrocutes zombies and their Electric Plant Food makes shocking plants."
+      "text": "$(#25228d)Zapricot electrocutes nearby zombies"
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/filament/zapricot"
+      "type": "text",
+      "text":[
+        "$(#bd951a)Health: $()$(#ff0000)15 ",
+        "$(#bd951a)Dmg: $()$(#ff0000)3 DMG/1.5s ",
+        "$(#bd951a)Elec Radius: $()$(#ff0000)10 Blocks ",
+        "$(#bd951a)Elec Chains: $()$(#ff0000)3 Chains ",
+        "$(#bd951a)Range: $()$(#ff0000)5 Blocks ",
+        "$(#bd951a)Seed: $()$(#ff0000)7.5s ",
+        "$(#bd951a)Special: $()$(#ff0000)Electrocutes nearby Zombies. Targets any Zombie.",
+        "$(br)$(#bd951a)\"My uncle used to say 'With great power comes great responsibility.' Took the lesson to heart: charging criminals, helping power plants... but I'm not powerful enough, I was shocked about this truth.\""
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

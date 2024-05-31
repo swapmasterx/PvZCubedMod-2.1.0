@@ -2,7 +2,10 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.s
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.items.seedpackets.VampireSunflowerSeeds;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.superchomper.SuperChomperEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.twinsunflower.TwinSunflowerEntity;
@@ -67,10 +70,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	int raycastDelay = (int) (PVZCONFIG.nestedSun.sunflowerSec() * 20);
 
-	Entity prevZombie;
-
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-	private boolean zombieSunCheck;
+	private boolean sunProducerCheck;
 
 	public SunflowerEntity(EntityType<? extends SunflowerEntity> entityType, World world) {
 		super(entityType, world);
@@ -154,7 +155,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 	/** /~*~//~*AI*~//~*~/ **/
 
 	protected void initGoals() {
-        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 50.0F));
+
+		this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 20.0F));
     }
 
 
@@ -206,7 +208,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 
 			if (this.currentFuseTime >= this.sunProducingTime) {
-				if (!this.getWorld().isClient && this.isAlive() && this.zombieSunCheck && !this.isInsideWaterOrBubbleColumn()){
+				if (!this.getWorld().isClient && this.isAlive() && this.sunProducerCheck && !this.isInsideWaterOrBubbleColumn()){
 					this.playSound(PvZSounds.SUNDROPEVENT, 0.5F, (this.random.nextFloat() - this.random.nextFloat()) + 0.75F);
 					if (this.getWorld().getAmbientDarkness() >= 2 ||
 							this.getWorld().getLightLevel(LightType.SKY, this.getBlockPos()) < 2){
@@ -217,7 +219,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 						this.dropItem(ModItems.SUN);
 					}
 					this.sunProducingTime = (int) (PVZCONFIG.nestedSun.sunflowerSec() * 20);
-					this.zombieSunCheck = false;
+					this.sunProducerCheck = false;
 					this.currentFuseTime = this.sunProducingTime;
 				}
 			}
@@ -239,8 +241,8 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 	}
 
 	protected void produceSun() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(15));
-		List<GeneralPvZombieEntity> zombieList = this.getWorld().getNonSpectatingEntities(GeneralPvZombieEntity.class, this.getBoundingBox().expand(15));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(4));
+		List<SunflowerEntity> sunflowerList = this.getWorld().getNonSpectatingEntities(SunflowerEntity.class, this.getBoundingBox().expand(4));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -252,15 +254,11 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 					livingEntity = (LivingEntity) var9.next();
 				} while (livingEntity == this);
-			} while (this.squaredDistanceTo(livingEntity) > 225);
+			} while (this.squaredDistanceTo(livingEntity) > 16);
 
-			if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-				if (livingEntity.getY() < (this.getY() + 5) && livingEntity.getY() > (this.getY() - 5)) {
-					if ((this.prevZombie == null || zombieList.get(0) != prevZombie) && !zombieList.isEmpty()) {
-						prevZombie = zombieList.get(0);
-						this.zombieSunCheck = true;
-					}
-				}
+
+			if (sunflowerList.size() <= 1) {
+				this.sunProducerCheck = true;
 			}
 		}
 	}
@@ -281,6 +279,37 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			return ActionResult.SUCCESS;
 		}
 		Item item = itemStack.getItem();
+		if (itemStack.isOf(ModItems.VAMPIREFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
+			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
+			if ((this.getWorld() instanceof ServerWorld)) {
+				ServerWorld serverWorld = (ServerWorld) this.getWorld();
+				VampireFlowerEntity plantEntity = PvZEntity.VAMPIREFLOWER.create(getWorld());
+				plantEntity.setTarget(this.getTarget());
+				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.setAiDisabled(this.isAiDisabled());
+				if (this.hasCustomName()) {
+					plantEntity.setCustomName(this.getCustomName());
+					plantEntity.setCustomNameVisible(this.isCustomNameVisible());
+				}
+				if (this.hasVehicle()){
+					plantEntity.startRiding(this.getVehicle(), true);
+				}
+
+				plantEntity.setPersistent();
+				serverWorld.spawnEntityAndPassengers(plantEntity);
+				this.remove(RemovalReason.DISCARDED);
+			}
+			if (!player.getAbilities().creativeMode) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
+					itemStack.decrement(1);
+				}
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
+					player.getItemCooldownManager().set(ModItems.VAMPIREFLOWER_SEED_PACKET, VampireSunflowerSeeds.cooldown);
+				}
+			}
+			return ActionResult.SUCCESS;
+		}
 		if (itemStack.isOf(ModItems.TWINSUNFLOWER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			if ((this.getWorld() instanceof ServerWorld)) {
@@ -344,6 +373,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 			}
 			return ActionResult.SUCCESS;
 		}
+
 		if (!this.getVariant().equals(SunflowerVariants.DEFAULT) && itemStack.isOf(Items.WHITE_DYE)) {
 			this.setVariant(SunflowerVariants.DEFAULT);
 			if (!player.getAbilities().creativeMode){

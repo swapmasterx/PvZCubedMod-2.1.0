@@ -3,9 +3,9 @@
     "icon": {
       "item": "pvzmod:superchomper_seed_packet"
     },
-    "title": "Chomper's Dream Land",
-    "description": "Craft a Super Chomper",
-    "frame": "task",
+    "title": "Only a Mouthful",
+    "description": "Craft the Super Chomper Upgrade",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
@@ -30,8 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-    ],
+    "recipes": [],
     "experience": 25
   }
 }

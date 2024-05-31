@@ -24,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -262,7 +263,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createNewspaperShieldAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -271,7 +272,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
     }
 
 	public static DefaultAttributeContainer.Builder createSundayEditionShieldAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -280,7 +281,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 	}
 
 	public static DefaultAttributeContainer.Builder createSBookShieldAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -295,7 +296,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 	public EntityGroup getGroup() {
 		return EntityGroup.UNDEAD;
 	}
-
+	protected SoundEvent getDeathSound() {return SoundEvents.BLOCK_GRASS_BREAK;}
 	protected SoundEvent getStepSound() {
 		return PvZSounds.SILENCEVENET;
 	}

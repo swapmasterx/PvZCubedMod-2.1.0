@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 100,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_air"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:smackadamia_seed_packet",
+    "count": 1
+  }
+}

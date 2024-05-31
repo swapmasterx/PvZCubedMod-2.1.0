@@ -2,34 +2,41 @@
   "name": "Iceberg Lettuce",
   "icon": "pvzmod:iceberglettuce_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 56,
+  "sortnum": 40,
+  "advancement": "pvzmod:make_cabbagepult",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)4",
-        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)2 Blocks",
-        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
-        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
-        "$(br)$(#bd951a)Freeze Time: $()$(#ff0000)10s",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Low Profile Explosion. Freezes all Zombies in range. Spawns uncommonly. Drops Cold Plant Food",
-        "$(br)$(#bd951a)Don't get lost staring into Iceberg's cute eyes. If you do, it will be your last step... but only if you're a Zombie."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/iceburglettuce_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Empty Seed Packet, 0 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/iceberglettuce.png"
       ],
-      "title": "❄ Winter Family",
+      "title": "Chiller",
       "border": "true",
-      "text": "$(#25228d)Freeze a Zombie when stepped on and their Cold Plant Food makes icy plants."
+      "text": "$(#25228d)Freezes a Zombie when stepped on."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/winter/iceberglettuce"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Damage: $()$(#ff0000)2",
+        "$(br)$(#bd951a)Activation Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Explosion Range: $()$(#ff0000)2 Blocks",
+        "$(br)$(#bd951a)Fuse Time: $()$(#ff0000)0.75s",
+        "$(br)$(#bd951a)Freeze Time: $()$(#ff0000)10s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Low Profile Explosion. Freezes all Zombies in range.",
+        "$(br)$(#bd951a)Don't get lost staring into Iceberg's cute eyes. If you do, it will be your last step... but only if you're a Zombie."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

@@ -2,14 +2,24 @@
   "name": "Sea-shroom",
   "icon": "pvzmod:seashroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 24,
+  "sortnum": 34,
+  "advancement": "pvzmod:make_spikeweed",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/seashroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Aquatic Foliage, 1 Mushroom Spores, 1 Empty Seed Packet, 0 Sun value."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)16",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1.5s",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)6 Blocks",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)8 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)10s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Applies Acid to Zombies.",
         "$(br2)$(#bd951a)Sea-shroom has never seen the sea. It's in his name, he's heard loads about it, but he's just never found the time. One day, though, it'll go down."
@@ -20,13 +30,9 @@
       "images": [
         "pvzmod:textures/gui/entries/seashroom.png"
       ],
-      "title": "\uD83E\uDDEA Ailment Family",
+      "title": "Aquatics",
       "border": "true",
-      "text": "$(#25228d)Sea-shrooms are short-ranged aquatic plants that destroys metal."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/seashroom"
+      "text": "$(#25228d)Sea-shrooms are aquatic plants that destroys metal."
     },
     {
       "type": "text",

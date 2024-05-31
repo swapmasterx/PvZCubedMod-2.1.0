@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 300,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "pvzmod:plantfood_flower"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "minecraft:iron_pickaxe"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:chomper_seed_packet",
+    "count": 1
+  }
+}

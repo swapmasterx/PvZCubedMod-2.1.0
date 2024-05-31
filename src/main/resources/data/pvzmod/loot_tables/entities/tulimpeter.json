@@ -6,11 +6,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pvzmod:largesun",
+          "name": "minecraft:red_tulip",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": 2
             }
           ],
           "conditions": [

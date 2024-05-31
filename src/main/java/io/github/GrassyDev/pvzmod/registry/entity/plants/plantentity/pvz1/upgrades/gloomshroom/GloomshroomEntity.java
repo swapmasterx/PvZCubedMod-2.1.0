@@ -248,13 +248,13 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 						String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 						SoundEvent sound;
 						sound = switch (zombieMaterial) {
-							case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-							case "plastic" -> PvZSounds.CONEHITEVENT;
-							case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+							case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+							case "plastic" -> PvZSounds.PEAHITEVENT;
+							case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-						float damage = 6F;
+						float damage = 3F;
 						if (damage > livingEntity.getHealth() &&
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
@@ -266,7 +266,6 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 5)));
 					}
 				}
 			}
@@ -383,10 +382,10 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 
 	public static DefaultAttributeContainer.Builder createGloomshroomAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 64.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4D);
 	}
 
 	protected boolean canClimb() {

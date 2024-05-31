@@ -240,9 +240,9 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity 
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				entity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -251,13 +251,17 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity 
 						!(entity instanceof ZombieShieldEntity) &&
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) damage);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				}
 				else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), (float) 0);
-					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), (float) damage);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					}
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);

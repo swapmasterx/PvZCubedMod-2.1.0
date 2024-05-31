@@ -80,7 +80,6 @@ public class BellflowerSeeds extends SeedItem implements FabricItem {
 		super.appendTooltip(stack, world, tooltip, context);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.spear.family").setStyle(Style.EMPTY.withColor(4210752)));
-
 		tooltip.add(Text.translatable("item.pvzmod.bellflower_seed_packet.flavour")
 				.formatted(Formatting.DARK_GRAY));
 
@@ -113,9 +112,9 @@ public class BellflowerSeeds extends SeedItem implements FabricItem {
 			Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 			Box box = PvZEntity.BELLFLOWER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-				BellflowerEntity plantEntity = (BellflowerEntity) PvZEntity.BELLFLOWER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
-				List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.BELLFLOWER.getDimensions().getBoxAt(plantEntity.getPos()));
+				List<Entity> list = world.getNonSpectatingEntities(Entity.class, box);
 				if (list.isEmpty()) {
+					BellflowerEntity plantEntity = (BellflowerEntity) PvZEntity.BELLFLOWER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 					float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
 					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -124,10 +123,8 @@ public class BellflowerSeeds extends SeedItem implements FabricItem {
 
 					PlayerEntity user = context.getPlayer();
 					if (!user.getAbilities().creativeMode) {
-						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
-				itemStack.decrement(1);
-			};
-						if (!PVZCONFIG.nestedSeeds.instantRecharge() && world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
+						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {itemStack.decrement(1);}
+						if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
 					}
@@ -148,16 +145,18 @@ public class BellflowerSeeds extends SeedItem implements FabricItem {
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
 		PlantEntity plantEntity = null;
-		List<PlantEntity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		List<Entity> list = null;
+		Box box = PvZEntity.BELLFLOWER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 		if (world instanceof ServerWorld serverWorld) {
-			plantEntity = PvZEntity.BELLFLOWER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.BELLFLOWER.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 		}
 		if (world instanceof ServerWorld serverWorld && entity instanceof TileEntity
 				&& !(entity instanceof ScorchedTile)
 				&& !(entity instanceof SnowTile)
 				&& !(entity instanceof CraterTile)) {
 			if (list.isEmpty()) {
+				plantEntity = PvZEntity.BELLFLOWER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
 			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
@@ -189,6 +188,8 @@ public class BellflowerSeeds extends SeedItem implements FabricItem {
 					lilyPadEntity1.setPuffshroomPermanency(LilyPadEntity.PuffPermanency.PERMANENT);
 				}
 			}
+			plantEntity = PvZEntity.BELLFLOWER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

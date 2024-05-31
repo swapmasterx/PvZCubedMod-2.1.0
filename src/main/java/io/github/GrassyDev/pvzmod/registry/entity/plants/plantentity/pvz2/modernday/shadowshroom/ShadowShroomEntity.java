@@ -3,19 +3,17 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.moder
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.*;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieShieldEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieVehicleEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -94,7 +92,6 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 		nbt.putShort("Fuse", (short)this.fuseTime);
 		nbt.putByte("ExplosionRadius", (byte)this.explosionRadius);
 		nbt.putBoolean("ignited", this.getIgnited());
-		nbt.putBoolean("Permanent", this.getPuffshroomPermanency());
 	}
 
 	public void readCustomDataFromNbt(NbtCompound nbt) {
@@ -164,28 +161,6 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 	private static final TrackedData<Boolean> DATA_ID_TYPE_COUNT =
 			DataTracker.registerData(ShadowShroomEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-	public enum PuffPermanency {
-		DEFAULT(false),
-		PERMANENT(true);
-
-		PuffPermanency(boolean id) {
-			this.id = id;
-		}
-
-		private final boolean id;
-
-		public boolean getId() {
-			return this.id;
-		}
-	}
-
-	private Boolean getPuffshroomPermanency() {
-		return this.dataTracker.get(DATA_ID_TYPE_COUNT);
-	}
-
-	public void setPuffshroomPermanency(ShadowShroomEntity.PuffPermanency puffshroomPermanency) {
-		this.dataTracker.set(DATA_ID_TYPE_COUNT, puffshroomPermanency.getId());
-	}
 
 
 	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
@@ -217,7 +192,9 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 	/** /~*~//~*AI*~//~*~/ **/
 
 	protected void initGoals() {
-		this.goalSelector.add(2, new ShadowShroomIgniteGoal(this));
+		this.targetSelector.add(3, new TargetGoal<>(this, PvZombieEntity.class, true, true));
+
+		this.goalSelector.add(6, new ShadowShroomIgniteGoal(this));
 	}
 
 	public boolean tryAttack(Entity target) {
@@ -244,7 +221,7 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 	private void raycastExplode() {
 		if (!this.getShadowPowered()){
 			if (this.getTarget() != null){
-				this.getTarget().addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+				this.getTarget().addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 			}
 		}
 		else {
@@ -294,17 +271,17 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
-						generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
+						generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 						checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 						checkList.add(zombieShieldEntity);
 					} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
 						checkList.add(livingEntity);
 						checkList.add(zombieShieldEntity);
 					} else {
@@ -455,15 +432,6 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 				this.spawnEffectsCloud();
 				this.dead = true;
 				this.remove(RemovalReason.DISCARDED);
-			}
-		}
-		if (this.age >= 900 && !this.getPuffshroomPermanency()) {
-			this.discard();
-		}
-		float time = 200 / this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
-		if (this.age > 4 && this.age <= time && !this.getPuffshroomPermanency() && !this.hasStatusEffect(StatusEffects.GLOWING)) {
-			if (this.getWorld().getGameRules().getBooleanValue(PvZCubed.PLANTS_GLOW)) {
-				this.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, (int) Math.floor(time), 1)));
 			}
 		}
 	}

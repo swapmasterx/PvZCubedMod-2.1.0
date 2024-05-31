@@ -235,7 +235,7 @@ public class MissileToeEntity extends PlantEntity implements GeoEntity, RangedAt
 
 	public static DefaultAttributeContainer.Builder createMissileToeAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30.0D);
@@ -329,7 +329,7 @@ public class MissileToeEntity extends PlantEntity implements GeoEntity, RangedAt
 			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 87);
 			if (this.plantEntity.rechargeTime <= 0 && this.plantEntity.attacked) {
 				this.plantEntity.attacked = false;
-				this.plantEntity.rechargeTime = 280;
+				this.plantEntity.rechargeTime = 500;
 				this.plantEntity.startShooting = false;
 			}
 			this.plantEntity.setTarget((LivingEntity)null);

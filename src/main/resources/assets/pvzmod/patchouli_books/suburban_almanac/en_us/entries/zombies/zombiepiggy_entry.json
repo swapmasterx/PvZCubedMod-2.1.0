@@ -8,9 +8,9 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(#bd951a)Health: $()$(#ff0000)8",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
-        "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",
+        "$(br)$(#bd951a)Speed: $()$(#ff0000)Flighty",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Small. Can eat Low Profile Plants.",
         "$(br)$(#bd951a)\"Oink.\""
       ]

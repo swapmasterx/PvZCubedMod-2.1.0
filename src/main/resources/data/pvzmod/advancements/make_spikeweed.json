@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:spikeweed_seed_packet"
     },
-    "title": "Yes, it pricks the bucket...",
+    "title": "Stepping on a lego is still worse",
     "description": "Craft a Spikeweed",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:make_beet",
+  "parent": "pvzmod:make_lilypad",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,10 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/enforce/spikerock",
-      "pvzmod:plants/conceal/ghostpepper"
-    ],
+    "recipes": [],
     "experience": 25
   }
 }

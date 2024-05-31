@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.hero
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.piercingpea.PiercePeaEntityRenderer;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -177,7 +178,9 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createRetroGatlingAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
+				.add(EntityAttributes.GENERIC_ARMOR, 10D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);
@@ -292,6 +295,7 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 				if (this.beamTicks >= 0 && this.animationTicks <= -3 && numShots <= 0) {
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 						PiercePeaEntity proj = new PiercePeaEntity(PvZEntity.PIERCEPEA, this.plantEntity.getWorld());
+
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -307,10 +311,11 @@ public class RetroGatlingEntity extends PlantEntity implements GeoEntity, Ranged
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 //						proj.setYaw(this.plantEntity.getVisualYaw());
 //						proj.setYaw(this.plantEntity.getHeadYaw());
-						proj.setBodyYaw(this.plantEntity.getVisualYaw());
+						proj.setHeadYaw((this.plantEntity.getHeadYaw()*-1));
+						proj.setBodyYaw((this.plantEntity.getHeadYaw()*-1));
 						proj.setOwner(this.plantEntity);
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -2;
+							this.beamTicks = -6;
 							++this.numShots;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);

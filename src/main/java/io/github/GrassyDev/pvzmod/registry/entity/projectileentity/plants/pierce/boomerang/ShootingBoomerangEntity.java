@@ -52,8 +52,8 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int maxAge = 90;
-	public int returnAge = 28;
+	public int maxAge = 85;
+	public int returnAge = 20;
 
 	private int returningTicks = 7;
 	private boolean retuningStart;
@@ -237,9 +237,9 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					entity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -247,11 +247,15 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					entityStore.remove(entity);
@@ -272,9 +276,9 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				++this.damageCounter;
@@ -284,11 +288,15 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
 					entityStore.add(entity.getVehicle());
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					entityStore.add(entity);
 					if (!(entity instanceof ZombieShieldEntity)) {

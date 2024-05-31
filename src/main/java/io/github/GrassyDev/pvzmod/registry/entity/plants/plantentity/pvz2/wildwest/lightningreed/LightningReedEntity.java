@@ -459,9 +459,9 @@ public class LightningReedEntity extends PlantEntity implements GeoEntity, Range
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -532,11 +532,11 @@ public class LightningReedEntity extends PlantEntity implements GeoEntity, Range
 
 	public static DefaultAttributeContainer.Builder createLightningReedAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
 	}
 
 	protected boolean canClimb() {
@@ -949,14 +949,14 @@ public class LightningReedEntity extends PlantEntity implements GeoEntity, Range
 							String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 							SoundEvent sound;
 							sound = switch (zombieMaterial) {
-								case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-								case "plastic" -> PvZSounds.CONEHITEVENT;
-								case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+								case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+								case "plastic" -> PvZSounds.PEAHITEVENT;
+								case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 								default -> PvZSounds.PEAHITEVENT;
 							};
 							this.plantEntity.playSound(PvZSounds.LIGHTNINGSHOOTEVENT, 0.75F, (float) (0.75F + (Math.random() / 2)));
 							damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-							float damage = 2 * plantEntity.damageMultiplier;
+							float damage = 1 * plantEntity.damageMultiplier;
 							if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)) {
 								damage = damage * 2;
 							}

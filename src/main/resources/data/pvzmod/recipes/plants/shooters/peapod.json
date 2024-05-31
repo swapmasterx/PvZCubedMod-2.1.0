@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 125,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:peapod_seed_packet",
+    "count": 1
+  }
+}

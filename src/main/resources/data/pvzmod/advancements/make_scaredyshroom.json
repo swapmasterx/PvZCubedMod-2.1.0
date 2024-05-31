@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:scaredyshroom_seed_packet"
     },
-    "title": "The Dusk",
-    "description": "Craft a Scaredy-shroom",
+    "title": "Skittish Sniper",
+    "description": "Craft a Scardy-Shroom",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:start_pvz",
+  "parent": "pvzmod:make_magicshroom",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,9 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/ailment/fumeshroompvz"
-    ],
+    "recipes": [ ],
     "experience": 25
   }
 }

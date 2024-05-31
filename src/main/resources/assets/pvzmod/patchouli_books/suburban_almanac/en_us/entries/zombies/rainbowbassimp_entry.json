@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)65 (Cloth)",
+        "$(#bd951a)Health: $()$(#ff0000)25 (Cloth)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)15 DMG/1s",
         "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)3 Blocks",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry",

@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:repeater_seed_packet"
     },
-      "title": "The Peas",
+    "title": "The Peas The Peas... Wait",
     "description": "Craft a Repeater",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:make_peashooter",
+  "parent": "pvzmod:make_bellflower",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,14 +30,7 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/appease/gatlingpea",
-      "pvzmod:plants/appease/threepeater",
-      "pvzmod:plants/pepper/firepea",
-      "pvzmod:plants/filament/electropea",
-      "pvzmod:plants/ailment/beeshooter",
-      "pvzmod:plants/spear/retrogatling"
-    ],
+    "recipes": [],
     "experience": 25
   }
 }

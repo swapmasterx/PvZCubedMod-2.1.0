@@ -215,10 +215,10 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 
 	public static DefaultAttributeContainer.Builder createFrisbloomAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 10.0D);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D);
     }
 
 	protected boolean canClimb() {return false;}
@@ -332,7 +332,7 @@ public class FrisbloomEntity extends PlantEntity implements GeoEntity, RangedAtt
 						double f = (livingEntity.isInsideWaterOrBubbleColumn()) ? livingEntity.getY() - this.plantEntity.getY() + 0.3595 : livingEntity.getY() - this.plantEntity.getY();
 						double g = predictedPos.getZ() - this.plantEntity.getZ();
 						float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
-						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.4F, 0F);
+						proj.setVelocity(e * (double)h, f * (double)h, g * (double)h, 0.5F, 0F);
 						proj.updatePosition(this.plantEntity.getX(), this.plantEntity.getY() + 0.75D, this.plantEntity.getZ());
 						proj.setOwner(this.plantEntity);
 						proj.damageMultiplier = plantEntity.damageMultiplier;

@@ -2,8 +2,28 @@
   "name": "Lily Pad",
   "icon": "pvzmod:lilypad_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 16,
+  "sortnum": 24,
+  "advancement": "pvzmod:make_iceshroom",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/lilypad_r.png",
+        "pvzmod:textures/gui/entry_recipies/lilypada_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Aquatic Foliage 'or' 1 Lily Pad, 1 Empty Seed Packet, 25 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/lilypad.png"
+      ],
+      "title": "Aquatics",
+      "border": "true",
+      "text": "$(#25228d)Lets you Plant non-Aquatics Plants on water."
+    },
     {
       "type": "text",
       "text": [
@@ -13,19 +33,7 @@
         "$(br2)$(#bd951a)Lily Pad never complains. Lily Pad never wants to know what's going on. Put a Plant on top of Lily Pad, they won't say a thing. Do they have startling opinions or shocking secrets? Nobody knows."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/lilypad.png"
-      ],
-      "title": "⛨ Reinforce Family",
-      "border": "true",
-      "text": "$(#25228d)Lets you Plant on top of them and their Aquatic Plant food makes aquatic plants."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/reinforce/lilypad"
-    },
+
     {
       "type": "text",
       "title": "References",

@@ -8,7 +8,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health (Plant): $()$(#ff0000)32 (Small), 64(Medium), 128(Big)",
+        "$(#bd951a)Health (Plant): $()$(#ff0000)16 (Small), 32(Medium), 64(Big)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Hungry(Small), Basic(Medium), Stiff(Big)",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Varied Size. Immune to Poison. Splits into 2 Medium Zomblobs if it's Big and dies, or 2 Small Zomblobs if it's Medium and dies.",

@@ -221,9 +221,9 @@ public class OlivePitEntity extends PlantEntity implements GeoEntity {
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					livingEntity.playSound(SoundEvents.ENTITY_PLAYER_BURP, 0.4F, (float) (0.5F + Math.random()));
@@ -433,7 +433,7 @@ public class OlivePitEntity extends PlantEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createOlivePitAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
     }

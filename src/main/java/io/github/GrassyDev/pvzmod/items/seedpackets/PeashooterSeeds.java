@@ -122,34 +122,27 @@ public class PeashooterSeeds extends SeedItem implements FabricItem {
 			ItemStack itemStack = context.getStack();
 			Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
 			Box box = PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
-			if (world.isSpaceEmpty((Entity)null, box) && world instanceof ServerWorld serverWorld) {
-				PeashooterEntity plantEntity = (PeashooterEntity) PvZEntity.PEASHOOTER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
-				List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(plantEntity.getPos()));
+			if (world.isSpaceEmpty(null, box) && world instanceof ServerWorld serverWorld) {
+				List<Entity> list = world.getNonSpectatingEntities(Entity.class, box);
 				if (list.isEmpty()) {
+					PeashooterEntity plantEntity = PvZEntity.PEASHOOTER.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos, SpawnReason.SPAWN_EGG, true, true);
 					float f = (float) MathHelper.floor((MathHelper.wrapDegrees(context.getPlayerYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 					plantEntity.refreshPositionAndAngles(plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), f, 0.0F);
-					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+					plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, null, null);
 					world.spawnEntity(plantEntity);
-					world.playSound((PlayerEntity) null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
+					world.playSound(null, plantEntity.getX(), plantEntity.getY(), plantEntity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
 
 					PlayerEntity user = context.getPlayer();
 					if (!user.getAbilities().creativeMode) {
-						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
-				itemStack.decrement(1);
-			};
+						if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !world.getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {itemStack.decrement(1);}
 						if (!PVZCONFIG.nestedSeeds.instantRecharge() && !world.getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
 							user.getItemCooldownManager().set(this, cooldown);
 						}
-						/**if (world.getGameRules().getBooleanValue(PvZCubed.COSTS_SUN)) {
-							int slot = user.getInventory().getSlotWithStack(ModItems.SUN.getDefaultStack());
-							if (slot != -1 && user.getInventory().getStack(slot).getCount() >= 2) {
-								user.getInventory().removeStack(slot, 2);
-							}
-						}**/
 					}
 					return ActionResult.success(world.isClient);
-				} else {
+				}
+				else {
 					return ActionResult.FAIL;
 				}
 			} else {
@@ -163,16 +156,22 @@ public class PeashooterSeeds extends SeedItem implements FabricItem {
 		World world = user.getWorld();
 		BlockPos blockPos = entity.getBlockPos();
 		SoundEvent sound = null;
+		PlantEntity plantEntity = null;
+		List<Entity> list = null;
+		Vec3d vec3d = Vec3d.ofBottomCenter(blockPos);
+		Box box = PvZEntity.PEASHOOTER.getDimensions().getBoxAt(vec3d.getX(), vec3d.getY(), vec3d.getZ());
+
 		if (world instanceof ServerWorld serverWorld && entity instanceof TileEntity
 				&& !(entity instanceof ScorchedTile)
 				&& !(entity instanceof SnowTile)
 				&& !(entity instanceof CraterTile)) {
-			PeashooterEntity plantEntity = PvZEntity.PEASHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
-			List<PlantEntity> list = world.getNonSpectatingEntities(PlantEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(plantEntity.getPos()));
+			list = world.getNonSpectatingEntities(Entity.class, box);
 			if (list.isEmpty()) {
+				plantEntity = PvZEntity.PEASHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+
 				float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 				plantEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), f, 0.0F);
-			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			plantEntity.initialize(serverWorld, world.getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, null, null);
 				world.spawnEntity(plantEntity);
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), PvZSounds.PLANTPLANTEDEVENT, SoundCategory.BLOCKS, 0.6f, 0.8F);
 
@@ -194,7 +193,8 @@ public class PeashooterSeeds extends SeedItem implements FabricItem {
 			} else {
 				return ActionResult.FAIL;
 			}
-		} else if (world instanceof ServerWorld serverWorld && (entity instanceof LilyPadEntity ||
+		}
+		else if (world instanceof ServerWorld serverWorld && (entity instanceof LilyPadEntity ||
 				entity instanceof BubblePadEntity ||
 				entity instanceof PlantEntity.VineEntity))  {
 			if (entity instanceof PlantEntity lilyPadEntity) {
@@ -207,7 +207,7 @@ public class PeashooterSeeds extends SeedItem implements FabricItem {
 					lilyPadEntity1.setPuffshroomPermanency(LilyPadEntity.PuffPermanency.PERMANENT);
 				}
 			}
-			PeashooterEntity plantEntity = (PeashooterEntity) PvZEntity.PEASHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
+			plantEntity = PvZEntity.PEASHOOTER.spawnFromItemStack((ServerWorld)world, stack, user, blockPos, SpawnReason.SPAWN_EGG, true, true);
 			if (plantEntity == null) {
 				return ActionResult.FAIL;
 			}

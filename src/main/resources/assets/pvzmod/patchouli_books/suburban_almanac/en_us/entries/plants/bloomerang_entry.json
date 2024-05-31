@@ -2,33 +2,39 @@
   "name": "Bloomerang",
   "icon": "pvzmod:bloomerang_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 55,
+  "sortnum": 86,
   "advancement": "pvzmod:make_frisbloom",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)26 ",
-        "$(#bd951a)Damage: $()$(#ff0000)x4 2.5 DMG/1.5s (3 Zombie Pierce) ",
-        "$(#bd951a)Range: $()$(#ff0000)10 Blocks ",
-        "$(#bd951a)Seed Time: $()$(#ff0000)25s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots in the middle and in a cone shape. Pierces up to 3 Zombies, then the projectile comes back dealing damage to the Zombies it pierced. Can target Flying Zombies.",
-        "$(br)$(#bd951a)As the first new member to your home defense team, Bloomerang enjoys listening to his Bob Barley albums."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/bloomerang_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Clover, 1 Flower Seeds, 1 Frisbee, 1 Empty Upgrade Packet, 175 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/bloomerang.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "Crowd Controller",
       "border": "true",
-      "text": "$(#25228d)Bloomerangs can hit up to 3 targets in three directions!"
+      "text": "$(#25228d)Hurls a spread of Boomerangs that deal damage coming and going!"
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/bloomerang"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20 ",
+        "$(#bd951a)Damage: $()$(#ff0000)1x6 DMG/1.5s (3 Pierce, shots hit on return) ",
+        "$(#bd951a)Range: $()$(#ff0000)10 Blocks ",
+        "$(#bd951a)Seed Time: $()$(#ff0000)25s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Shoots in the middle and in a cone shape. Pierces up to 3 Zombies, then the projectile comes back dealing damage to the Zombies it pierced. Can target Flying Zombies.",
+        "$(br)$(#bd951a)As the first new member to your home defense team, Bloomerang enjoys listening to his Bob Barley albums."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(#bd951a)Health: $()$(#ff0000)25",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4, Instant-kill (Burn)",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Speedy",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Burns a Plant it touches, or bites it if its fire is extinguished.",
@@ -37,7 +37,6 @@
         "pvzmod:plants/torchwood_entry",
         "pvzmod:plants/spikerock_entry",
         "pvzmod:plants/narcissus_entry",
-        "pvzmod:plants/dropea_entry",
         "pvzmod:plants/breezeshroom_entry",
         "pvzmod:plants/burstshroom_entry"
       ]

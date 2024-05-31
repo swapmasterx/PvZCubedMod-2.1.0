@@ -1,0 +1,29 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 175,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "pvzmod:cardproj"
+    },
+    {
+      "item": "minecraft:black_wool"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:magicshroom_seed_packet",
+    "count": 1
+  }
+}

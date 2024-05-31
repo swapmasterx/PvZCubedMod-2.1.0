@@ -39,15 +39,16 @@ public class GoldenCardItem extends Item {
             ShootingCardEntity proj = new ShootingCardEntity(PvZEntity.CARDPROJ, world);
             proj.setPos(user.getX(), user.getY() + 1f, user.getZ());
             proj.setOwner(user);
-            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.33f, 0);
+            proj.setProperties(user, user.getPitch(), user.getYaw(), 0, 0.7f, 0);
 			proj.setGolden(ShootingCardEntity.Golden.TRUE);
             world.spawnEntity(proj);
         }
 
         if (!user.getAbilities().creativeMode) {
             itemStack.decrement(1); // decrements itemStack if user is not in creative mode
-            user.getItemCooldownManager().set(this, 30);
+
         }
+		user.getItemCooldownManager().set(this, 12);
 
         return TypedActionResult.success(itemStack, world.isClient());
     }

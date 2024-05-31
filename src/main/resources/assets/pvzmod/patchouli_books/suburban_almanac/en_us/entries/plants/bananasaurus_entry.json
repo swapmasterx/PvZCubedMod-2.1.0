@@ -2,32 +2,37 @@
   "name": "Bananasaurus Rex",
   "icon": "pvzmod:bananasaurus_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 314,
-  "advancement": "pvzmod:make_chomper",
+  "sortnum": 96,
+  "advancement": "pvzmod:make_superchomper",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)64",
-        "$(br)$(#bd951a)Bite Damage: $()$(#ff0000)22 DMG/1.5s(-10%sec/Bite, -60% max)",
-        "$(br)$(#bd951a)Range: $()$(#ff0000)5 Blocks(Bite), 15 Blocks(Banana Peel)",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Each bite increases bite speed and Banana Peel amount. Throws up to 6 Banana Peels when there's no zombie within bite range.",
-        "$(br)$(#bd951a)Bananasaurus may look big and scary, but she's really sweet."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/bananasaurus_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 2 Diamonds, 1 Empty Premium Packet, 400 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/bananasaurus.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Bananasaurus Rexes bite Zombies quickly and spills banana peels."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/bananasaurus"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)30",
+        "$(br)$(#bd951a)Bite Damage: $()$(#ff0000)12 DMG/1.5s(-10%sec/Bite, -60% max)",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)5 Blocks(Bite), 15 Blocks(Banana Peel)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)20s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Tall. Each bite increases bite speed and Banana Peel amount. Throws up to 6 Banana Peels when there's no zombie within bite range.",
+        "$(br)$(#bd951a)Bananasaurus may look big and scary, but she's really sweet."
+      ]
     },
     {
       "type": "text",

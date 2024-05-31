@@ -54,7 +54,7 @@ public class IceTile extends TileEntity {
 	public void tick() {
 		super.tick();
 
-		if (this.age >= 1200){
+		if (this.age >= 600){
 			this.discard();
 		}
 		this.damageEntity();

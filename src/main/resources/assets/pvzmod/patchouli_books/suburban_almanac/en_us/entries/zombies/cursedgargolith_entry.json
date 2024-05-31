@@ -8,10 +8,10 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)260",
+        "$(#bd951a)Health: $()$(#ff0000)130",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)360",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Rare Ambush. Smashes all types of plants. Spawns as a 360 HP Stone Gargolith Obst. that when destroyed spawns a 65 HP Stone Ancient Imp Tablet Obst. with 10s of Invinci. that when destroyed (not by Gravebuster) spawns this.",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Rare Ambush. Smashes all types of plants. Spawns as a 180 HP Stone Gargolith Obst. that when destroyed spawns a 65 HP Stone Ancient Imp Tablet Obst. with 10s of Invinci. that when destroyed (not by Gravebuster) spawns this.",
         "$(br)$(#bd951a)The lost temples of Hollow Earth were inviting. Until they started to move."
       ]
     },
@@ -46,7 +46,6 @@
       "type": "relations",
       "title": "Recommended Plants",
       "entries": [
-        "pvzmod:plants/seapea_entry",
         "pvzmod:plants/retrogatling_entry",
         "pvzmod:plants/admiralnavybean_entry",
         "pvzmod:plants/jumpingbean_entry",

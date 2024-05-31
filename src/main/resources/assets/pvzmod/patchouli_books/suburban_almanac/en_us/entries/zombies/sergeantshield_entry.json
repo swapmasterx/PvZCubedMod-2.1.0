@@ -7,10 +7,9 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27, 140(Metal Helmet)",
-        "$(br)$(#bd951a)(Heavy Metal) Shield Health: $()$(#ff0000)180",
+        "$(#bd951a)Health: $()$(#ff0000)14, 70(Metal Helmet)",
+        "$(br)$(#bd951a)(Heavy Metal) Shield Health: $()$(#ff0000)90",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Melee Range: $()$(#ff0000)2.5 Blocks",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic, Creeper (Shield)",
         "$(br2)$(#bd951a)He is an one man army, capable of blocking every attack. His weakness? Emotional damage when reminded of his ex."
       ]

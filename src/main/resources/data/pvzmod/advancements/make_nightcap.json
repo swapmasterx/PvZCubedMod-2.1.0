@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:nightcap_seed_packet"
     },
-    "title": "On the spore of the moment.",
-    "description": "Craft a Night Cap",
-    "frame": "challenge",
+    "title": "Fung-Fu",
+    "description": "Craft a Nightcap",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_fumeshroom",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
+    "recipes": [],
     "experience": 100
   }
 }

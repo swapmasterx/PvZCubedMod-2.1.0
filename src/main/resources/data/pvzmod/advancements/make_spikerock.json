@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:spikerock_seed_packet"
     },
-    "title": "Rock and no Roll",
-    "description": "Craft a Spikerock",
+    "title": "On par with stepping on a Lego",
+    "description": "Craft the Spikerock Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_spikeweed",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
-    "experience": 100
+    "recipes": [],
+    "experience": 25
   }
 }

@@ -1,0 +1,32 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 250,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "minecraft:iron_helmet"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:gatlingpea_seed_packet",
+    "count": 1
+  }
+}

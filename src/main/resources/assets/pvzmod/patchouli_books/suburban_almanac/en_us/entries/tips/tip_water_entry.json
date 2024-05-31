@@ -3,7 +3,7 @@
   "icon": "minecraft:water_bucket",
   "category": "pvzmod:tutorial_category",
   "sortnum": 13,
-  "advancement": "pvzmod:make_navybean",
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
     {
       "type": "text",

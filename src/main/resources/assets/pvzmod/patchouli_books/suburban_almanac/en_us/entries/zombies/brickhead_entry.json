@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)27, 212(Stone Brick)",
+        "$(#bd951a)Health: $()$(#ff0000)14, 105(Stone Brick)",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br2)$(#bd951a)After consultation with various storybook wolves, it was determined that straw helmets and wood helmets were not up to snuff, and that brick helmets had to be seriously considered."
@@ -47,7 +47,6 @@
         "pvzmod:plants/perfoomshroom_entry",
         "pvzmod:plants/narcissus_entry",
         "pvzmod:plants/vampireflower_entry",
-        "pvzmod:plants/seapea_entry",
         "pvzmod:plants/admiralnavybean_entry",
         "pvzmod:plants/pumpkinwitch_entry"
       ]

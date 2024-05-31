@@ -213,26 +213,21 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 							!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 							!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) {
-						String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
-						SoundEvent sound;
-						sound = switch (zombieMaterial) {
-							case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-							case "plastic" -> PvZSounds.CONEHITEVENT;
-							case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
-							default -> PvZSounds.PEAHITEVENT;
-						};
-						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
+						livingEntity.playSound(PvZSounds.PEAHITEVENT, 0.2F, 1F);
 						float damage = 10F;
 						if (damage > livingEntity.getHealth() &&
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damage - ((LivingEntity) livingEntity).getHealth();
-
-							livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							if (!(livingEntity instanceof ZombiePropEntity zombiePropEntity)){
+								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							}
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 						} else {
-							livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							if (!(livingEntity instanceof ZombiePropEntity zombiePropEntity)){
+								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+							}
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
 					}

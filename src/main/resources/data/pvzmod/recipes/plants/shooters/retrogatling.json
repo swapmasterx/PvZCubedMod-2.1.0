@@ -1,0 +1,23 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 175,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:pea"
+    },
+    {
+      "item": "minecraft:iron_helmet"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:retrogatling_seed_packet",
+    "count": 1
+  }
+}

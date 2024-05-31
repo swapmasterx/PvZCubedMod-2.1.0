@@ -35,8 +35,7 @@
         "pvzmod:zombies/robocone_entry",
         "pvzmod:zombies/holohead_entry",
         "pvzmod:zombies/scrapmech_entry",
-        "pvzmod:zombies/scrapimp_entry",
-        "pvzmod:zombies/knightpea_entry"
+        "pvzmod:zombies/scrapimp_entry"
       ],
       "title": "Spawnable Zombies"
     }

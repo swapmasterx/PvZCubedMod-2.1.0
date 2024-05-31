@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)50",
+        "$(#bd951a)Health: $()$(#ff0000)25",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Speedy, Stiff(Dancing)",
         "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)15s",
@@ -48,7 +48,6 @@
       "entries": [
         "pvzmod:plants/magicshroom_entry",
         "pvzmod:plants/beautyshroom_entry",
-        "pvzmod:plants/seapea_entry",
         "pvzmod:plants/charmshroom_entry",
         "pvzmod:plants/pumpkinwitch_entry"
       ]

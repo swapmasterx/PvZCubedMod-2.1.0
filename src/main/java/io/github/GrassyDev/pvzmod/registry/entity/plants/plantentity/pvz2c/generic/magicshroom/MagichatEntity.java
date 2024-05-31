@@ -246,14 +246,6 @@ public class MagichatEntity extends PlantEntity implements GeoEntity, RangedAtta
 				zombie.createConeheadProp();
 				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
 			}
-//			else {
-//				Vec3d blockPos = Vec3d.ofCenter(this.getBlockPos());
-//				BrowncoatEntity zombie = (BrowncoatEntity) PvZEntity.BUCKETHEADHYPNO.create(getWorld());
-//				zombie.refreshPositionAndAngles(blockPos.getX(), this.getY(), blockPos.getZ(), 0, 0);
-//				zombie.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-//				zombie.createConeheadProp();
-//				((ServerWorld) this.getWorld()).spawnEntityAndPassengers(zombie);
-//			}
 		}
 		this.playSound(PvZSounds.MAGICHATZOMBIEEVENT, 3, 1);
 		this.getWorld().sendEntityStatus(this, (byte) 117);

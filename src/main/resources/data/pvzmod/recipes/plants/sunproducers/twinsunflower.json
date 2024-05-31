@@ -1,0 +1,20 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 150,
+  "ingredients": [
+    {
+      "item": "pvzmod:sunflower_seed_packet"
+    },
+    {
+      "item": "pvzmod:sunflower_seed_packet"
+    },
+    {
+      "item": "pvzmod:empty_upgrade_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:twinsunflower_seed_packet",
+    "count": 1
+  }
+}

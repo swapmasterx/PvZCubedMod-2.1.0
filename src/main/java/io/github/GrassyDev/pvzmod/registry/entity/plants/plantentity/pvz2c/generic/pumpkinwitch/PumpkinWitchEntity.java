@@ -101,7 +101,7 @@ public class PumpkinWitchEntity extends PlantEntity implements GeoEntity, Ranged
 	/** /~*~//~*VARIANTS*~//~*~/ **/
 
 	private static final TrackedData<Boolean> DATA_ID_TYPE_VARIANT =
-			DataTracker.registerData(MagicshroomEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+			DataTracker.registerData(PumpkinWitchEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
 								 SpawnReason spawnReason, @Nullable EntityData entityData,
@@ -253,10 +253,10 @@ public class PumpkinWitchEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createPumpkinWitchAttributes() {
         return MobEntity.createAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 25.0D);
     }
 
 	protected boolean canClimb() {return false;}

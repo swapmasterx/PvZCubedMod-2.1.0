@@ -2,13 +2,22 @@
   "name": "Squash",
   "icon": "pvzmod:squash_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 17,
-  "advancement": "pvzmod:make_beet",
+  "sortnum": 25,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/squash_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Pumpkin, 1 Empty Seed Packet, 50 Sun value."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Damage: $()$(#ff0000)180",
+        "$(#bd951a)Damage: $()$(#ff0000)90",
         "$(br)$(#bd951a)Activation Range: $()$(#ff0000)4 Blocks",
         "$(br)$(#bd951a)Smash Radius: $()$(#ff0000)Med Profile. 1.5 Blocks",
         "$(br)$(#bd951a)Delay: $()$(#ff0000)2.25s",
@@ -22,13 +31,9 @@
       "images": [
         "pvzmod:textures/gui/entries/squash.png"
       ],
-      "title": "\uD83D\uDDE1 Enforce Family",
+      "title": "Bruiser",
       "border": "true",
       "text": "$(#25228d)Squashes will smash the first Zombie that gets close to it."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enforce/squash"
     },
     {
       "type": "text",

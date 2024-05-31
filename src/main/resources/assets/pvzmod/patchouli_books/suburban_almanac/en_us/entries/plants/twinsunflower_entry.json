@@ -3,32 +3,38 @@
   "icon": "pvzmod:twinsunflower_seed_packet",
   "category": "pvzmod:plant_category",
   "advancement": "pvzmod:make_sunflower",
-  "sortnum": 34,
+  "sortnum": 76,
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)28",
-        "$(br)$(#bd951a)Sun: $()$(#ff0000)x2 Normal",
-        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)3 minutes",
-        "$(br)$(#bd951a)Zombie Sun Radius: $()$(#ff0000)30 Blocks",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br2)$(#bd951a)Twin Sunflower's super-chic line of ultra-expensive sunglasses has been a huge hit wherever they go. Due to this they have been unable to travel without being swarmed by the Poppyrazzi."
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/twinsunflower_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Sunflower Seed Packet, 1 Empty Upgrade Packet, 150 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/twinsunflower.png"
       ],
-      "title": "☀ Enlighten Family",
+      "title": "Sun Producer",
       "border": "true",
       "text": "$(#25228d)Twin Sunflowers give twice as much sun as a normal sunflower."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/enlighten/twinsunflower"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)20",
+        "$(br)$(#bd951a)Sun: $()$(#ff0000)x2 Normal",
+        "$(br)$(#bd951a)Sun Rate: $()$(#ff0000)3 minutes",
+        "$(br)$(#bd951a)Twin Sunflower Crowding Radius: $()$(#ff0000)4 Blocks",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br2)$(#bd951a)Twin Sunflower's super-chic line of ultra-expensive sunglasses has been a huge hit wherever they go. Due to this they have been unable to travel without being swarmed by the Poppyrazzi."
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

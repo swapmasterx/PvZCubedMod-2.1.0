@@ -193,9 +193,9 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					if (entity instanceof ZombieShieldEntity || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
@@ -210,11 +210,15 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this.target), 1);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
 					}
 					if (!((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
@@ -265,11 +269,15 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 												!(livingEntity instanceof ZombieShieldEntity) &&
 												livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 											float damage2 = damage3 - livingEntity.getHealth();
-											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+											if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+												entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
 											generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 1);
 										} else {
-											entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+											if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
 										}
 										if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {

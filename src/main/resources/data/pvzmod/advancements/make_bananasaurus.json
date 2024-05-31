@@ -8,9 +8,9 @@
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
-  "parent": "pvzmod:make_chomper",
+  "parent": "pvzmod:make_superchomper",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",

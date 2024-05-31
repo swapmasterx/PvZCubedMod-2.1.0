@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "GPG",
+    "#G#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cherry_leaves"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    },
+    "P": {
+      "item": "pvzmod:plantfood"
+    }
+  },
+  "result": {
+    "item": "pvzmod:plantfood_fire",
+    "count": 2
+  }
+}

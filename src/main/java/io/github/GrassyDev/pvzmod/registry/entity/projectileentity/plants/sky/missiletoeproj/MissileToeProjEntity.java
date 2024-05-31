@@ -244,11 +244,15 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 											!(livingEntity instanceof ZombieShieldEntity) &&
 											livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 										float damage2 = damage - livingEntity.getHealth();
-										entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+										if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 										entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 										generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 									} else {
-										entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+										if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 										entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 									}
 									if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {

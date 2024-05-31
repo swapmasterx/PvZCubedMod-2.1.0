@@ -7,7 +7,7 @@
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)37",
+        "$(#bd951a)Health: $()$(#ff0000)18",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)4",
         "$(br)$(#bd951a)Speed: $()$(#ff0000)Basic",
         "$(br)$(#bd951a)Zombie Spawn Rate: $()$(#ff0000)1s",

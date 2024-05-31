@@ -2,13 +2,31 @@
   "name": "Olive Pit",
   "icon": "pvzmod:olivepit_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 93,
-  "advancement": "pvzmod:make_gravebuster",
+  "sortnum": 52,
+  "advancement": "pvzmod:make_lightningreed",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/olivepit_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Slime Ball, 2 Lime Dye, 1 Bark Enforced Sproutling, 1 Empty Seed Packet, 225 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/olivepit.png"
+      ],
+      "title": "Bruisers",
+      "border": "true",
+      "text": "$(#25228d)Drills into the ground and waits to consume Zombies that walk over them."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)8",
+        "$(#bd951a)Health: $()$(#ff0000)10",
         "$(br)$(#bd951a)Damage: $()$(#ff0000)Insta-kill",
         "$(br)$(#bd951a)Range: $()$(#ff0000)0 Blocks",
         "$(br)$(#bd951a)Digest Time: $()$(#ff0000)12.5s, 0s (Small Zombies)",
@@ -17,19 +35,7 @@
         "$(br)$(#bd951a)He ponders a lot, he is deep."
       ]
     },
-    {
-      "type": "image",
-      "images": [
-        "pvzmod:textures/gui/entries/olivepit.png"
-      ],
-      "title": "⏳ Contain Family",
-      "border": "true",
-      "text": "$(#25228d)Olive Pits drill into the ground and wait to consume Zombies that walk over them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/contain/olivepit"
-    },
+
     {
       "type": "text",
       "title": "References",

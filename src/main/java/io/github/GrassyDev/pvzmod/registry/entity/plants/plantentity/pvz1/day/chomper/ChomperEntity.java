@@ -2,6 +2,11 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.c
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.items.seedpackets.GatlingpeaSeeds;
+import io.github.GrassyDev.pvzmod.items.seedpackets.SuperChomperSeeds;
+import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.gatlingpea.GatlingpeaEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.superchomper.SuperChomperEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -24,9 +29,11 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -228,7 +235,7 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 				zombieSize.equals("gargantuar") ||
 				zombieSize.equals("big") ||
 				target instanceof ZombieObstacleEntity) && !hasShield){
-			damage = 32;
+			damage = 16;
 			this.attackTicksLeft = 25;
 			this.setCount(25);
 			this.getWorld().sendEntityStatus(this, (byte) 106);
@@ -245,16 +252,16 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 			}
 		}
 		else if (hasShield) {
-			this.attackTicksLeft = 250;
-			this.setCount(250);
+			this.attackTicksLeft = 500;
+			this.setCount(500);
 			this.getWorld().sendEntityStatus(this, (byte) 105);
 			if (damaged instanceof GeneralPvZombieEntity generalPvZombieEntity){
 				generalPvZombieEntity.swallowed = true;
 			}
 		}
 		else {
-			this.attackTicksLeft = 250;
-			this.setCount(250);
+			this.attackTicksLeft = 500;
+			this.setCount(500);
 			this.getWorld().sendEntityStatus(this, (byte) 104);
 			if (damaged instanceof GeneralPvZombieEntity generalPvZombieEntity){
 				generalPvZombieEntity.swallowed = true;
@@ -266,9 +273,9 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 		}
 		SoundEvent sound;
 		sound = switch (zombieMaterial) {
-			case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-			case "plastic" -> PvZSounds.CONEHITEVENT;
-			case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+			case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+			case "plastic" -> PvZSounds.PEAHITEVENT;
+			case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 			default -> PvZSounds.PEAHITEVENT;
 		};
 		target.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -341,6 +348,39 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 			this.discard();
 			return ActionResult.SUCCESS;
 		}
+		Item item = itemStack.getItem();
+		if (itemStack.isOf(ModItems.SUPERCHOMPER_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
+			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
+			if ((this.getWorld() instanceof ServerWorld)) {
+				ServerWorld serverWorld = (ServerWorld) this.getWorld();
+				SuperChomperEntity plantEntity = PvZEntity.SUPERCHOMPER.create(getWorld());
+				plantEntity.setTarget(this.getTarget());
+				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				plantEntity.setAiDisabled(this.isAiDisabled());
+				if (this.hasCustomName()) {
+					plantEntity.setCustomName(this.getCustomName());
+					plantEntity.setCustomNameVisible(this.isCustomNameVisible());
+				}
+				if (this.hasVehicle()){
+					plantEntity.startRiding(this.getVehicle(), true);
+				}
+
+				plantEntity.setPersistent();
+				serverWorld.spawnEntityAndPassengers(plantEntity);
+				this.remove(RemovalReason.DISCARDED);
+			}
+			if (!player.getAbilities().creativeMode) {
+				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
+					itemStack.decrement(1);
+				}
+				;
+				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
+					player.getItemCooldownManager().set(ModItems.SUPERCHOMPER_SEED_PACKET, SuperChomperSeeds.cooldown);
+				}
+			}
+			return ActionResult.SUCCESS;
+		}
 		if (!this.getVariant().equals(ChomperVariants.DEFAULT) && itemStack.isOf(Items.WHITE_DYE)) {
 			this.setVariant(ChomperVariants.DEFAULT);
 			if (!player.getAbilities().creativeMode){
@@ -386,7 +426,7 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 
 	public static DefaultAttributeContainer.Builder createChomperAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 36.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D)

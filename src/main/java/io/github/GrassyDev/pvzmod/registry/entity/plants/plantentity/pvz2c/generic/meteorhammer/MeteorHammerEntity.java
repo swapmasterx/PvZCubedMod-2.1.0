@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.gene
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -161,7 +162,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoEntity, Ranged
 			this.FireBeamGoal();
 		}
 		if (this.getTarget() != null) {
-			if (this.squaredDistanceTo(this.getTarget()) <= 49 && this.squaredDistanceTo(this.getTarget()) >= 9) {
+			if (this.squaredDistanceTo(this.getTarget()) <= 64 && this.squaredDistanceTo(this.getTarget()) >= 9) {
 				this.charging = true;
 				this.getWorld().sendEntityStatus(this, (byte) 113);
 			}
@@ -176,7 +177,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoEntity, Ranged
 		}
 		if (charging){
 			if (++increment >= 10){
-				damage += 2;
+				damage += 1;
 				increment = 0;
 			}
 		}
@@ -229,7 +230,7 @@ public class MeteorHammerEntity extends PlantEntity implements GeoEntity, Ranged
 
 	public static DefaultAttributeContainer.Builder createMeteorHammerAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8D)
@@ -315,9 +316,10 @@ public class MeteorHammerEntity extends PlantEntity implements GeoEntity, Ranged
 					}
 
 					livingEntity = (LivingEntity) var9.next();
-				} while (livingEntity == this);
-			} while (livingEntity.squaredDistanceTo(vec3d) > 6.25);
-
+				}
+				while (livingEntity == this);
+			}
+			while (livingEntity.squaredDistanceTo(vec3d) > 6.25);
 			if (livingEntity instanceof Monster &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 							&& (generalPvZombieEntity.getHypno()))) {
@@ -340,13 +342,13 @@ public class MeteorHammerEntity extends PlantEntity implements GeoEntity, Ranged
 						String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
 						SoundEvent sound;
 						sound = switch (zombieMaterial) {
-							case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-							case "plastic" -> PvZSounds.CONEHITEVENT;
-							case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+							case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+							case "plastic" -> PvZSounds.PEAHITEVENT;
+							case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 							default -> PvZSounds.PEAHITEVENT;
 						};
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-						float damageBase = damage + 6;
+						float damageBase = damage + 4;
 						if ("metallic".equals(zombieMaterial) || "stone".equals(zombieMaterial) || "electronic".equals(zombieMaterial) || "crystal".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
 							damageBase = damageBase * 2;
 						}
@@ -357,10 +359,12 @@ public class MeteorHammerEntity extends PlantEntity implements GeoEntity, Ranged
 								!(livingEntity instanceof ZombieShieldEntity) &&
 								livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 							float damage2 = damageBase - ((LivingEntity) livingEntity).getHealth();
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damageBase);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageBase);
 							generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, this), damage2);
 						} else {
-							livingEntity.damage(getDamageSources().mobProjectile(this, this), damageBase);
+							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
+							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageBase);
 						}
 					}
 				}

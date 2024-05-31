@@ -53,8 +53,8 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public int maxAge = 140;
-	public int returnAge = 50;
+	public int maxAge = 100;
+	public int returnAge = 80;
 
 	private int returningTicks = 7;
 	private boolean retuningStart;
@@ -199,19 +199,9 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 		if (!this.getWorld().isClient && this.isInsideWaterOrBubbleColumn()) {
 			this.remove(RemovalReason.DISCARDED);
 		}
-		if (!this.getWorld().isClient && this.age >= returnAge || this.damageCounter >= 3) {
-			if (this.age >= returnAge + returnAge / 2){
-				this.retuningStart = true;
-			}
-			if (this.damageCounter >= 3 && returningTicks <= 0){
-				this.retuningStart = true;
-			}
-			if (--returningTicks <= 0) {
-				this.setReturning(Returning.TRUE);
-				Vec3d vec3d = new Vec3d((double) -0.04, 0.0, 0.0).rotateY(-this.ownerYaw * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-				if (this.age <= this.returnAge + 20) {
-					this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
-				}
+		if (!this.getWorld().isClient && this.age >= returnAge || this.damageCounter >= 1) {
+			if (this.damageCounter >= 1){
+				this.remove(RemovalReason.DISCARDED);
 			}
 		}
 		if (!this.getWorld().isClient && this.age >= maxAge) {
@@ -267,18 +257,15 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 							hasHelmet = true;
 						}
 					}
-					if (!hasHelmet && !(entity instanceof ZombiePropEntity) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
-						damage = damage * 2;
-					}
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 					if ("crystal".equals(zombieMaterial)) {
-						damage = damage * 2;
+						damage = damage * 1;
 					}
 					SoundEvent sound;
 					sound = switch (zombieMaterial) {
-						case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-						case "plastic" -> PvZSounds.CONEHITEVENT;
-						case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+						case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+						case "plastic" -> PvZSounds.PEAHITEVENT;
+						case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 						default -> PvZSounds.PEAHITEVENT;
 					};
 					entity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -286,11 +273,15 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno()) && !generalPvZombieEntity.isFlying()) {
 						float damage2 = damage - ((LivingEntity) entity).getHealth();
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					} else {
-						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					entityStore.remove(entity);
@@ -318,17 +309,17 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 					}
 				}
 				if (!hasHelmet && !(entity instanceof ZombiePropEntity) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
-					damage = damage * 2;
+					damage = damage * 1;
 				}
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 				if ("crystal".equals(zombieMaterial)) {
-					damage = damage * 2;
+					damage = damage * 1;
 				}
 				SoundEvent sound;
 				sound = switch (zombieMaterial) {
-					case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-					case "plastic" -> PvZSounds.CONEHITEVENT;
-					case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+					case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+					case "plastic" -> PvZSounds.PEAHITEVENT;
+					case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				++this.damageCounter;
@@ -338,11 +329,15 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 						entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 					float damage2 = damage - ((LivingEntity) entity).getHealth();
 					entityStore.add(entity.getVehicle());
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				} else {
-					entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					if (entity != zombiePropEntity){
+							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+						}
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					entityStore.add(entity);
 					if (!(entity instanceof ZombieShieldEntity)) {

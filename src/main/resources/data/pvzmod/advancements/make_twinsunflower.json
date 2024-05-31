@@ -3,12 +3,12 @@
     "icon": {
       "item": "pvzmod:twinsunflower_seed_packet"
     },
-    "title": "Prepare for trouble...",
-    "description": "Craft a Twin Sunflower",
+    "title": "Mitosis",
+    "description": "Craft the Twin Sunflower Upgrade",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
+    "hidden": false
   },
   "parent": "pvzmod:make_sunflower",
   "criteria": {
@@ -30,6 +30,7 @@
     }
   },
   "rewards": {
-    "experience": 100
+    "recipes": [ ],
+    "experience": 25
   }
 }

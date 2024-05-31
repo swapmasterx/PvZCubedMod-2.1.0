@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.stonehelm
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.gears.StoneHelmetVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
@@ -21,6 +22,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -144,7 +146,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createBrickGearAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -153,7 +155,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
     }
 
 	public static DefaultAttributeContainer.Builder createPyramidGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -162,7 +164,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createTowerGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -171,7 +173,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createSarcophagusAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -180,7 +182,7 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBowlGearAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0D)
@@ -195,11 +197,16 @@ public class StoneHelmetEntity extends ZombiePropEntity implements GeoEntity {
 	public EntityGroup getGroup() {
 		return EntityGroup.UNDEAD;
 	}
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.BLOCK_STONE_BREAK;
+	}
 
 	protected SoundEvent getStepSound() {
 		return PvZSounds.SILENCEVENET;
 	}
 
+	protected SoundEvent getHurtSound(DamageSource source) {return PvZSounds.STONEHITEVENT;}
 	@Nullable
 	@Override
 	public ItemStack getPickBlockStack() {

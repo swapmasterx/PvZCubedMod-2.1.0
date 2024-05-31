@@ -1,0 +1,17 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 0,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood_mushroom"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:puffshroom_seed_packet",
+    "count": 2
+  }
+}

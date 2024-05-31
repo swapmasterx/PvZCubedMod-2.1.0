@@ -325,12 +325,10 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 		this.targetSelector.add(4, new TargetGoal<>(this, MerchantEntity.class, false, true));
 		this.targetSelector.add(2, new TargetGoal<>(this, IronGolemEntity.class, false, true));
 
-		////////// Must-Protect Plants ///////
+		////////// Like Jetpacks prioritizes player and gardens ///////
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenChallengeEntity.class, false, true));
 		this.targetSelector.add(3, new TargetGoal<>(this, GardenEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, SunflowerEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, TwinSunflowerEntity.class, false, true));
-		this.targetSelector.add(4, new TargetGoal<>(this, SunshroomEntity.class, false, true));
+		this.targetSelector.add(4, new TargetGoal<>(this, PlayerEntity.class, false, true));
 	}
 
 	protected void initHypnoGoals(){
@@ -365,6 +363,8 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 							float f = 180f;
 							if (target instanceof TallnutEntity || target instanceof GargantuarEntity) {
 								f = 45;
+							} else if (target instanceof PlayerEntity) {
+								f = 25;
 							}
 							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
 							if (bl) {
@@ -527,18 +527,18 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createFootballAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.footballH());
 	}
 
 	public static DefaultAttributeContainer.Builder createBerserkerAttributes() {
-		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
 
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.22D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.berserkerH());
@@ -546,7 +546,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 
 	protected SoundEvent getAmbientSound() {
 		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
-			return PvZSounds.ZOMBIEMOANEVENT;
+			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
 			return null;

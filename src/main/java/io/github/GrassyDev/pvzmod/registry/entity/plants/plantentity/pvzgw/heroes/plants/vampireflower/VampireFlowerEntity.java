@@ -190,9 +190,9 @@ public class VampireFlowerEntity extends PlantEntity implements GeoEntity, Range
 		}
 		SoundEvent sound;
 		sound = switch (zombieMaterial) {
-			case "metallic", "electronic" -> PvZSounds.BUCKETHITEVENT;
-			case "plastic" -> PvZSounds.CONEHITEVENT;
-			case "stone", "crystal" -> PvZSounds.STONEHITEVENT;
+			case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
+			case "plastic" -> PvZSounds.PEAHITEVENT;
+			case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
 			default -> PvZSounds.PEAHITEVENT;
 		};
 		target.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
@@ -290,7 +290,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoEntity, Range
 
 	public static DefaultAttributeContainer.Builder createVampireFlowerAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 15.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 3D)

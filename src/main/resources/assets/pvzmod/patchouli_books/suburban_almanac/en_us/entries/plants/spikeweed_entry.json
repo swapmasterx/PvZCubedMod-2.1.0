@@ -2,14 +2,23 @@
   "name": "Spikeweed",
   "icon": "pvzmod:spikeweed_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 21,
-  "advancement": "pvzmod:make_beet",
+  "sortnum": 29,
+  "advancement": "pvzmod:make_lilypad",
   "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/spikeweed_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 2 Pointed Dripstone, 1 Empty Seed Packet, 100 Sun value."
+    },
     {
       "type": "text",
       "text": [
-        "$(#bd951a)Health: $()$(#ff0000)8",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)4 DMG/1s",
+        "$(#bd951a)Health: $()$(#ff0000)10",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)2 DMG/1s",
         "$(br)$(#bd951a)Range: $()$(#ff0000)0.25 Blocks",
         "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
         "$(br)$(#bd951a)Special: $()$(#ff0000)Low Profile. Damages everyone nearby. Destroys an object then dies.",
@@ -21,13 +30,9 @@
       "images": [
         "pvzmod:textures/gui/entries/spikeweed.png"
       ],
-      "title": "✂ Spear Family",
+      "title": "Crowd Controllers",
       "border": "true",
       "text": "$(#25228d)Spikeweed destroys objects and hurt any zombies that step on them."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/spear/spikeweed"
     },
     {
       "type": "text",

@@ -2,33 +2,39 @@
   "name": "Gloom-shroom",
   "icon": "pvzmod:gloomshroom_seed_packet",
   "category": "pvzmod:plant_category",
-  "sortnum": 35,
+  "sortnum": 81,
   "advancement": "pvzmod:make_fumeshroom",
   "pages": [
     {
-      "type": "text",
-      "text": [
-        "$(#bd951a)Health: $()$(#ff0000)64",
-        "$(br)$(#bd951a)Damage: $()$(#ff0000)x5 6 DMG/2s (Area)",
-        "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Med Profile. 5 Blocks.",
-        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
-        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal. Poisons zombies.",
-        "$(br2)$(#bd951a)\"I've always enjoyed releasing heavy fumes. I know a lot of people aren't cool with that. They say it's rude or that it smells bad. But would you rather have your brain eaten by zombies?\""
-      ]
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/gloomshroom_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)2 Fume, 2 Mushroom Spores, 1 Warped Fungus, 1 Empty Upgrade Packet, 150 Sun value."
     },
     {
       "type": "image",
       "images": [
         "pvzmod:textures/gui/entries/gloomshroom.png"
       ],
-      "title": "\uD83E\uDDEA Ailment Family",
+      "title": "Crowd Controller",
       "border": "true",
-      "text": "$(#25228d)Gloom-shrooms fire heavy fumes in an area around them."
+      "text": "$(#25228d)Fires heavy fumes in an area around itself."
     },
     {
-      "type": "crafting",
-      "recipe": "pvzmod:plants/ailment/gloomshroom"
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)30",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)3x5 DMG/2s (Area)",
+        "$(br)$(#bd951a)Damage Radius: $()$(#ff0000)Med Profile. 5 Blocks.",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Nocturnal",
+        "$(br2)$(#bd951a)\"I've always enjoyed releasing heavy fumes. I know a lot of people aren't cool with that. They say it's rude or that it smells bad. But would you rather have your brain eaten by zombies?\""
+      ]
     },
+
     {
       "type": "text",
       "title": "References",

@@ -3,14 +3,14 @@
     "icon": {
       "item": "pvzmod:peanut_seed_packet"
     },
-    "title": "Double Nuts",
-    "description": "Craft a Pea-nut",
+    "title": "Hybrid",
+    "description": "Craft a Peanut",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "pvzmod:make_wallnut",
+  "parent": "pvzmod:make_pumpkinwitch",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -30,9 +30,6 @@
     }
   },
   "rewards": {
-    "recipes": [
-      "pvzmod:plants/spear/knightpea"
-    ],
     "experience": 25
   }
 }
