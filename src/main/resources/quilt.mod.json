@@ -6,16 +6,16 @@
 		"version": "${version}",
 		"metadata": {
 			"name": "Plants vs. Zombies Cubed",
-			"description": "Adds various content from the PvZ franchise",
+			"description": "Adds various pieces of content from the PvZ franchise",
 			"license": "MIT",
 			"contributors": {
 				"Grassy": "Original Creator",
-				"IncredibleDonk": "Current Maintainer"
+				"IzzytehWolf": "Current Maintainer"
 			},
 			"contact": {
-				"homepage": "https://github.com/GrassyDev/PvZCubed",
-				"issues": "https://github.com/GrassyDev/PvZCubed/issues",
-				"sources": "https://github.com/GrassyDev/PvZCubed"
+				"homepage": "https://github.com/swapmasterx/PvZCubedMod-2.1.0",
+				"issues": "https://github.com/swapmasterx/PvZCubedMod-2.1.0/issues",
+				"sources": "https://github.com/swapmasterx/PvZCubedMod-2.1.0"
 			},
 			"icon": "assets/pvzmod/icon.png"
 		},
