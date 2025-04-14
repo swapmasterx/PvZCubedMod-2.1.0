@@ -49,7 +49,9 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoEntity
 
 	public int sunProducingTime;
 
-
+	public boolean isPushable() {
+		return false;
+	}
 
 	double tiltchance = this.random.nextDouble();
 

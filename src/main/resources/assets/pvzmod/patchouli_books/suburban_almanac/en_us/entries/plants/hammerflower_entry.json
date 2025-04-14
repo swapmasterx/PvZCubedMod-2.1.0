@@ -8,7 +8,7 @@
     {
       "type": "image",
       "images": [
-        "pvzmod:textures/gui/entry_recipies/hammerflower.png"
+        "pvzmod:textures/gui/entry_recipies/hammerflower_r.png"
       ],
       "title": "Botany Box Recipe",
       "border": "true",

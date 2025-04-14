@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.imp.modernday;
 
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -659,6 +660,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createImpAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
@@ -668,6 +671,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createScrapImpAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
@@ -677,6 +682,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createImpThrowAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
@@ -686,6 +693,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createImpDragonAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.19D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
@@ -695,6 +704,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createBassImpAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.19D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
@@ -704,6 +715,8 @@ public class ImpEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createCinderellaImpAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.14D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)

@@ -511,11 +511,6 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		return true;
 	}
 
-	protected void pushAway(Entity entity) {
-		if (!this.isSleeping()) {
-			super.pushAwayFrom(entity);
-		}
-	}
 	protected SoundEvent getAmbientSound() {
 		return PvZSounds.PVZOMBIEMOANEVENT;
 	}
@@ -1047,7 +1042,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		 }
 		 }**/
 		if (this.getTarget() != null) {
-			if (this.isAttacking() && this.squaredDistanceTo(this.getTarget()) < 1) {
+			if (this.isAttacking() && this.squaredDistanceTo(this.getTarget()) < 0.5) {
 				attackingTick = 40;
 			} else {
 				--attackingTick;

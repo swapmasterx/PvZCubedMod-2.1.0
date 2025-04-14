@@ -448,6 +448,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.RAIN));
 				entries.addStack(new ItemStack(ModItems.THUNDER));
 				entries.addStack(new ItemStack(ModItems.BASICGRAVESPAWN));
+				entries.addStack(new ItemStack(ModItems.BASICTOMBSPAWN));
 				entries.addStack(new ItemStack(ModItems.NIGHTGRAVESPAWN));
 				entries.addStack(new ItemStack(ModItems.POOLGRAVESPAWN));
 				entries.addStack(new ItemStack(ModItems.ROOFGRAVESPAWN));

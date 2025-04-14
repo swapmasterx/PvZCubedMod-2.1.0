@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2c.pumpkinzombie;
 
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -419,6 +420,8 @@ public class PumpkinZombieEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createPumpkinAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)

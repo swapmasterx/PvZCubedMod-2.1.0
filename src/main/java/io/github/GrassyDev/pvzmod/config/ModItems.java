@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.config;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
 import io.github.GrassyDev.pvzmod.items.*;
+import io.github.GrassyDev.pvzmod.items.rockobstacle.BasicTombStone;
 import io.github.GrassyDev.pvzmod.items.seedpackets.*;
 import io.github.GrassyDev.pvzmod.items.spawneggs.*;
 import io.github.GrassyDev.pvzmod.items.targets.MissileToeTargetItem;
@@ -573,6 +574,8 @@ public class ModItems {
 	public static final Item THUNDER = new Item(new Item.Settings().rarity(Rarity.EPIC).maxCount(1));
 	public static final Item UNLOCKSPECIAL = new Item(new Item.Settings().rarity(Rarity.EPIC).maxCount(1));
 	public static final Item ZOMBIEGRAVESPAWN = new ZombieGraveSpawn(new Item.Settings().rarity(Rarity.COMMON).maxCount(8));
+
+	public static final Item BASICTOMBSPAWN = new BasicTombStone(new Item.Settings().rarity(Rarity.COMMON));
     public static final Item BASICGRAVESPAWN = new BasicGraveSpawn(new Item.Settings().rarity(Rarity.COMMON));
     public static final Item NIGHTGRAVESPAWN = new NightGraveSpawn(new Item.Settings().rarity(Rarity.UNCOMMON));
 	public static final Item POOLGRAVESPAWN = new PoolGraveSpawn(new Item.Settings().rarity(Rarity.RARE));
@@ -962,6 +965,7 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"thunder"), THUNDER);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"zombiegrave_spawn"), ZOMBIEGRAVESPAWN);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"basicgrave_spawn"), BASICGRAVESPAWN);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"basictomb_spawn"), BASICTOMBSPAWN);
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"nightgrave_spawn"), NIGHTGRAVESPAWN);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"poolgrave_spawn"), POOLGRAVESPAWN);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"roofgrave_spawn"), ROOFGRAVESPAWN);

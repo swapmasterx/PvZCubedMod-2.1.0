@@ -100,6 +100,7 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity 
 		this.dataTracker.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
 	}
 
+
 	public LivingEntity torchwoodMemory;
 
 

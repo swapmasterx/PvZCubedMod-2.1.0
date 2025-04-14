@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.pharaoh;
 
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -590,6 +591,8 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createUndyingPharaohAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
@@ -599,6 +602,8 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createPharaohAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)

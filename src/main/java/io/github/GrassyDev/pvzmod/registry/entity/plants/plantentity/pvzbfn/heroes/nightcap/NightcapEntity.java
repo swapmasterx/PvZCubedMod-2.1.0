@@ -339,7 +339,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		ItemStack itemStack = player.getStackInHand(hand);
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
-			dropItem(ModItems.SHAMROCK_SEED_PACKET);
+			dropItem(ModItems.NIGHTCAP_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
 				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);

@@ -944,6 +944,8 @@ public class PvZEntityClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(PvZEntity.EGYPTTOMBSTONE, RockObstacleEntityRenderer::new);
 
+		EntityRendererRegistry.register(PvZEntity.BASICTOMBSTONE, RockObstacleEntityRenderer::new);
+
 		EntityRendererRegistry.register(PvZEntity.ZOMBIEGRAVESTONE, ZombieGraveRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.BASICGRAVESTONE, BasicGraveRenderer::new);

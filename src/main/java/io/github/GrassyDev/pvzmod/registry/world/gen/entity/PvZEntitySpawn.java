@@ -42,7 +42,7 @@ public class PvZEntitySpawn {
 		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BUCKETHEAD, 35, 1, 1);
 		SpawnRestriction.register(PvZEntity.BUCKETHEAD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
-		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BRICKHEAD, 15, 1, 1);
+		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.BRICKHEAD, 12, 1, 1);
 		SpawnRestriction.register(PvZEntity.BRICKHEAD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark);
 
 		BiomeModifications.addSpawn(BiomeSelectors.isIn(BiomeTags.OVERWORLD), SpawnGroup.MONSTER, PvZEntity.FLAGZOMBIE, 5, 1, 1);

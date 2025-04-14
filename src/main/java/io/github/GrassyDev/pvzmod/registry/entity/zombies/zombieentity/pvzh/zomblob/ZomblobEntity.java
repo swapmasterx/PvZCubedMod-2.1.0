@@ -1,5 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzh.zomblob;
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -327,6 +328,8 @@ public class ZomblobEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createZomblobAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -336,6 +339,8 @@ public class ZomblobEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createZomblobBigAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.10D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -345,6 +350,8 @@ public class ZomblobEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createZomblobSmallAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)

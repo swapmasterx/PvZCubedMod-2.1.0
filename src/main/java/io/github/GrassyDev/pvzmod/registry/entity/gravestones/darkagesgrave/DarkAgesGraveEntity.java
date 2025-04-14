@@ -211,14 +211,14 @@ public class DarkAgesGraveEntity extends GraveEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createDarkAgesGraveAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.darkAgesGraveH());
     }
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.BLOCK_ANCIENT_DEBRIS_BREAK;
+		return SoundEvents.BLOCK_BASALT_BREAK;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource source) {

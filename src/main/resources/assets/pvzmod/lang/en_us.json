@@ -1447,6 +1447,9 @@
   "item.pvzmod.fertilizer.flavour": "Increases number of defeated",
   "item.pvzmod.fertilizer.flavour2": "Waves by 1 in Challenge Mode.",
 
+  "entity.pvzmod.basictombstone": "Basic Tombstone",
+  "item.pvzmod.basictomb_spawn": "Basic Tombstone",
+
   "entity.pvzmod.zombiegrave": "Zombie Gravestone",
   "item.pvzmod.zombiegrave_spawn": "Zombie Gravestone",
   "item.pvzmod.brain": "Brain",

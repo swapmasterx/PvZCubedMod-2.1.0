@@ -2692,6 +2692,12 @@ public class PvZEntity{
 			QuiltEntityTypeBuilder.<RockObstacleEntity>create(SpawnGroup.MONSTER, RockObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
+	public static final EntityType<RockObstacleEntity> BASICTOMBSTONE = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "basictombstone"),
+		QuiltEntityTypeBuilder.<RockObstacleEntity>create(SpawnGroup.MONSTER, RockObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
+	);
+
 	public static final EntityType<ZombieGraveEntity> ZOMBIEGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "zombiegrave"),
@@ -3381,6 +3387,9 @@ public class PvZEntity{
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SUNBOMB, SunBombEntity.createSunBombAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.EGYPTTOMBSTONE, RockObstacleEntity.createEgyptTombstoneAttributes().build());
+
+		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.BASICTOMBSTONE, RockObstacleEntity.createBasicTombstoneAttributes().build());
+
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.ZOMBIEGRAVESTONE, ZombieGraveEntity.createZombieGraveAttributes().build());
 

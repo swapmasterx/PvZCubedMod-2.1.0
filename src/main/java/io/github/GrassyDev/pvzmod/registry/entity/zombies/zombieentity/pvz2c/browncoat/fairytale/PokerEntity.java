@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2c.browncoat.fairytale;
 
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.BrowncoatVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.PokerVariants;
@@ -305,6 +306,8 @@ public class PokerEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createPokerHeartAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D)
@@ -314,6 +317,8 @@ public class PokerEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createPokerSpadeAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+				.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)

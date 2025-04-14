@@ -40,7 +40,14 @@ repositories {
 		name 'Quilt'
 		url 'https://maven.quiltmc.org/repository/release'
 	}
+	maven {
+		url "https://maven.jamieswhiteshirt.com/libs-release"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
 	maven { url 'https://maven.blamejared.com' }
+
 	maven {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
@@ -67,6 +74,9 @@ project.configurations.configureEach {
 dependencies {
 	modImplementation include("xyz.nucleoid:server-translations-api:2.2.0+1.20.3-rc1")
 	minecraft libs.minecraft
+	dependencies {
+		include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_version}")
+	}
 	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
 	mappings "org.quiltmc:quilt-mappings:1.20.4+build.3:intermediary-v2"
 	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"

@@ -1,4 +1,4 @@
-{
+ {
   "type": "pvzmod:botany_station",
 
   "suncost": 300,
@@ -20,7 +20,7 @@
     }
   ],
   "result": {
-    "item": "pvzmod:chomper_seed_packet",
+    "item": "pvzmod:hammerflower_seed_packet",
     "count": 1
   }
 }

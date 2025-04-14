@@ -690,7 +690,7 @@ public class PvZConfigModel {
 		public double imptabletObstH = 30D;
 
 		@RestartRequired
-		public double egyptTombstoneH = 45D;
+		public double egyptTombstoneH = 100D;
 
 		@RestartRequired
 		public double hawkerObstH = 45D;

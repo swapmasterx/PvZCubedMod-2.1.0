@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gargantuar.modernday;
 
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
@@ -396,18 +397,19 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 		if (!this.getPassengerList().contains(target)) {
 			if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation) {
 				boolean bl = false;
-				if (this.firstAttack && this.animationTicksLeft <= 0 && this.squaredDistanceTo(target) < 16D) {
+				if (this.firstAttack && this.animationTicksLeft <= 0 && this.squaredDistanceTo(target) < 36D) {
 					this.animationTicksLeft = 90 * animationMultiplier;
 					this.firstAttack = false;
-				} else if (this.animationTicksLeft == 40 * animationMultiplier) {
+				}
+				else if (this.animationTicksLeft == 40 * animationMultiplier) {
 					if (target.hasVehicle()){
-						target.getVehicle().damage(getDamageSources().mobAttack(this), 360);
+						target.getVehicle().damage(getDamageSources().mobAttack(this), 90);
 					}
-					if (target instanceof SpikerockEntity && this.squaredDistanceTo(target) < 16D) {
+					if (target instanceof SpikerockEntity && this.squaredDistanceTo(target) < 36D) {
 						bl = true;
 					}
-					else if (this.squaredDistanceTo(target) < 16D) {
-						target.damage(getDamageSources().mobAttack(this), 360);
+					else if (this.squaredDistanceTo(target) < 36D) {
+						target.damage(getDamageSources().mobAttack(this), 90);
 						return true;
 					}
 				}
@@ -744,7 +746,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createGargantuarAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-
+				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+				.add(ReachEntityAttributes.REACH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -753,7 +756,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createMummyGargantuarAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-
+				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -762,7 +766,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createDefensiveendAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-
+				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -771,7 +776,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createUnicornGargantuarAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-
+				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -780,7 +786,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createGargolithAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-
+				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.14D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -911,17 +918,25 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	private class AttackGoal extends PvZombieAttackGoal {
+		@Override
+		protected void attack(LivingEntity entity) {
+			float f = GargantuarEntity.this.getWidth() - 0.1F;
+//			float f = (float) GargantuarEntity.this.getBaseValue(ReachEntityAttributes.ATTACK_RANGE);
+			if ((GargantuarEntity.this.squaredDistanceTo(entity)/4) <= (double)(2*(f * 4F * f * 4F + entity.getWidth()))){
+				if (this.isCooledDown()){
+					GargantuarEntity.this.tryAttack(entity);
+					this.resetCooldown();
+				}
+			}
+		}
 		public AttackGoal() {
 			super(GargantuarEntity.this, 1.0, true);
 		}
 
 //		@Override
-//		protected void attack(LivingEntity target) {
+//		protected double getSquaredMaxAttackDistance(LivingEntity entity) {
 //			float f = GargantuarEntity.this.getWidth() - 0.1F;
-//			if (this.mob.squaredDistanceTo(target) < (double) (f * 4F * f * 4F + target.getWidth()) * (double) (f * 4F * f * 4F + target.getWidth())) {
-//				attack(target);
-//			}
+//			return (double)(f * 4F * f * 4F + entity.getWidth());
 //		}
 	}
-
 }

@@ -219,14 +219,14 @@ public class RoofGraveEntity extends GraveEntity implements GeoAnimatable {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 	public static DefaultAttributeContainer.Builder createRoofGraveAttributes() {
-        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D)
+        return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.poolGraveH());
     }
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.BLOCK_ANCIENT_DEBRIS_BREAK;
+		return SoundEvents.BLOCK_BASALT_BREAK;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource source) {

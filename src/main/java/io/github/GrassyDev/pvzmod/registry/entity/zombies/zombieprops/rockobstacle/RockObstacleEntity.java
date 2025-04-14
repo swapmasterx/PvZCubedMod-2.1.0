@@ -3,6 +3,11 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.rockobsta
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.gravestones.basicgrave.BasicGraveEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.browncoat.modernday.BrowncoatEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.flagzombie.modernday.FlagzombieEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.gravebuster.GravebusterEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gargantuar.modernday.GargantuarEntity;
@@ -12,10 +17,8 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZ
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieObstacleEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityGroup;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -25,10 +28,15 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.random.RandomGenerator;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -41,17 +49,25 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static io.github.GrassyDev.pvzmod.PvZCubed.PLANT_LOCATION;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntity {
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private String controllerName = "shieldcontroller";
-
+	@Override
+	public boolean isPushable() {
+		return false;
+	}
     public RockObstacleEntity(EntityType<? extends RockObstacleEntity> entityType, World world) {
         super(entityType, world);
 
         this.experiencePoints = 27;
 	}
+
 
 
 	static {
@@ -93,15 +109,69 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 		this.dataTracker.set(SUMMON_TIMES, count);
 	}
 
-	public void addCount(){
-		int count = getTypeCount();
-		this.dataTracker.set(SUMMON_TIMES, count + 1);
-	}
+
 
 	/** /~*~//~*TICKING*~//~*~/ **/
+//	private int zombiespawnrng = 0;
+	private int spawnTicks = 100;
+	public void difficultySpawnrateMod(){
+		if (getWorld().getDifficulty().equals(Difficulty.EASY)){
+			spawnTicks = this.random.range(180, 320);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.NORMAL)){
+			spawnTicks = this.random.range(140, 280);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.HARD)){
+			spawnTicks = this.random.range(100, 200);
+		}
+		else {
+			spawnTicks = this.random.range(120, 300);
+		}
+	}
 
-	private int spawnTicks = 80;
-
+	private void healthCostForBasicSpawn(){
+		if (getWorld().getDifficulty().equals(Difficulty.EASY)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 15);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.NORMAL)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 12);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.HARD)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 9);
+		}
+		else {
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 12);
+		}
+	}
+	private void healthCostForConeSpawn(){
+		if (getWorld().getDifficulty().equals(Difficulty.EASY)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 30);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.NORMAL)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 26);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.HARD)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 22);
+		}
+		else {
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 27);
+		}
+	}
+	private void healthCostForBucketSpawn(){
+		if (getWorld().getDifficulty().equals(Difficulty.EASY)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 45);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.NORMAL)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 40);
+		}
+		else if (getWorld().getDifficulty().equals(Difficulty.HARD)){
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 35);
+		}
+		else {
+			this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 40);
+		}
+	}
+	private int selfdeathticks = 0;
 	public void tick() {
 		super.tick();
 		if (this.hasVehicle() && this.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHealth() <= 0 || generalPvZombieEntity.isDead())){
@@ -114,45 +184,94 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 				}
 			}
 		}
-		if (this.getType().equals(PvZEntity.EGYPTTOMBSTONE) && this.isAlive() && this.getTypeCount() <= 6){
-			if (--spawnTicks <= 0){
-				this.addCount();
-				spawnTicks = this.random.range(60, 240);
-				spawnEgypt();
-				this.playSound(PvZSounds.ENTITYRISINGEVENT);
+		if (!(this.getType().equals(PvZEntity.GARGOLITHOBSTACLE)) || !(this.getType().equals(PvZEntity.IMPTABLETOBSTACLE)) && this.isAlive()){
+//			if (this.getTypeCount() <= 5) {
+				if (--spawnTicks <= 0 && !(getWorld().getDifficulty().equals(Difficulty.PEACEFUL))) {
+					if (this.getType().equals(PvZEntity.EGYPTTOMBSTONE)) {
+						spawnEgypt();
+					}
+					if (this.getType().equals(PvZEntity.BASICTOMBSTONE)) {
+						spawnBasic();
+					}
+
+					this.difficultySpawnrateMod();
+					this.playSound(PvZSounds.ENTITYRISINGEVENT);
+//				}
 			}
+//			if (this.getTypeCount() > 5) {
+//				if (--selfdeathticks <= 0){
+//					this.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 2);
+//					selfdeathticks = 20;
+//				}
+//			}
 		}
 	}
 
 	public void spawnEgypt(){
+		RandomGenerator randomGenerator = RockObstacleEntity.this.getRandom();
+		int zombiespawnrng = MathHelper.nextBetween(randomGenerator, 0, 100);
 		if (getWorld() instanceof ServerWorld serverWorld) {
-			double random = Math.random();
-			if (random <= 0.10){
-				MummyEntity zombie = new MummyEntity(PvZEntity.MUMMYBUCKET, this.getWorld());
-				zombie.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
-				zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
-				serverWorld.spawnEntityAndPassengers(zombie);
+			if (zombiespawnrng >= 0 && zombiespawnrng <= 15){
+				BlockPos blockPos = RockObstacleEntity.this.getBlockPos().add(0, 0, 0);
+				MummyEntity bucketheadEntity = PvZEntity.MUMMYBUCKET.create(RockObstacleEntity.this.getWorld());
+				bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+				bucketheadEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+				bucketheadEntity.setOwner(RockObstacleEntity.this);
+				serverWorld.spawnEntityAndPassengers(bucketheadEntity);
+				healthCostForBucketSpawn();
+
 			}
-			else if (random <= 0.30){
-				MummyEntity zombie = new MummyEntity(PvZEntity.MUMMYCONE, this.getWorld());
-				zombie.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
-				zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
-				serverWorld.spawnEntityAndPassengers(zombie);
+			else if (zombiespawnrng >= 16 && zombiespawnrng <= 50){
+				BlockPos blockPos = RockObstacleEntity.this.getBlockPos().add(0, 0, 0);
+				MummyEntity bucketheadEntity = PvZEntity.MUMMYCONE.create(RockObstacleEntity.this.getWorld());
+				bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+				bucketheadEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+				bucketheadEntity.setOwner(RockObstacleEntity.this);
+				serverWorld.spawnEntityAndPassengers(bucketheadEntity);
+				healthCostForBucketSpawn();
 			}
-			else {
-				double random2 = Math.random();
-				if (random2 <= 0.5){
-					MummyEntity zombie = new MummyEntity(PvZEntity.MUMMY, this.getWorld());
-					zombie.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
-					zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
-					serverWorld.spawnEntityAndPassengers(zombie);
-				}
-				else {
-					ImpEntity zombie = new ImpEntity(PvZEntity.MUMMYIMP, this.getWorld());
-					zombie.initialize(serverWorld, this.getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
-					zombie.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
-					serverWorld.spawnEntityAndPassengers(zombie);
-				}
+			else if (zombiespawnrng >= 51 && zombiespawnrng <= 100){
+				BlockPos blockPos = RockObstacleEntity.this.getBlockPos().add(0, 0, 0);
+				MummyEntity bucketheadEntity = PvZEntity.MUMMY.create(RockObstacleEntity.this.getWorld());
+				bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+				bucketheadEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+				bucketheadEntity.setOwner(RockObstacleEntity.this);
+				serverWorld.spawnEntityAndPassengers(bucketheadEntity);
+				healthCostForBucketSpawn();
+			}
+		}
+	}
+	public void spawnBasic(){
+		RandomGenerator randomGenerator = RockObstacleEntity.this.getRandom();
+		float zombiespawnrng = MathHelper.nextBetween(randomGenerator, 0, 100);
+//		zombiespawnrng = this.random.range(0, 100);
+		if (getWorld() instanceof ServerWorld serverWorld) {
+			if (zombiespawnrng >= 0 && zombiespawnrng <= 15){
+				BlockPos blockPos = RockObstacleEntity.this.getBlockPos().add(0, 0, 0);
+				BrowncoatEntity bucketheadEntity = PvZEntity.BUCKETHEAD.create(RockObstacleEntity.this.getWorld());
+				bucketheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+				bucketheadEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+				bucketheadEntity.setOwner(RockObstacleEntity.this);
+				serverWorld.spawnEntityAndPassengers(bucketheadEntity);
+				healthCostForBucketSpawn();
+			}
+			if (zombiespawnrng >= 16 && zombiespawnrng <= 50){
+				BlockPos blockPos = RockObstacleEntity.this.getBlockPos().add(0, 0, 0);
+				BrowncoatEntity coneheadEntity = PvZEntity.CONEHEAD.create(RockObstacleEntity.this.getWorld());
+				coneheadEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+                coneheadEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+				coneheadEntity.setOwner(RockObstacleEntity.this);
+				serverWorld.spawnEntityAndPassengers(coneheadEntity);
+				healthCostForConeSpawn();
+			}
+			if (zombiespawnrng >= 51 && zombiespawnrng <= 100){
+				BlockPos blockPos = RockObstacleEntity.this.getBlockPos().add(0, 0, 0);
+				BrowncoatEntity basicEntity = PvZEntity.BROWNCOAT.create(RockObstacleEntity.this.getWorld());
+				basicEntity.refreshPositionAndAngles(blockPos, 0.0F, 0.0F);
+				basicEntity.initialize(serverWorld, this.getWorld().getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+				basicEntity.setOwner(RockObstacleEntity.this);
+				serverWorld.spawnEntityAndPassengers(basicEntity);
+				healthCostForBasicSpawn();
 			}
 		}
 	}
@@ -211,12 +330,20 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.egyptTombstoneH());
 	}
+	public static DefaultAttributeContainer.Builder createBasicTombstoneAttributes() {
+		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
+
+			.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
+			.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
+			.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
+			.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.egyptTombstoneH());
+	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.BLOCK_STONE_BREAK;
+		return SoundEvents.BLOCK_BASALT_BREAK;
 	}
-	protected SoundEvent getHurtSound(DamageSource source) {return PvZSounds.STONEHITEVENT;}
+	protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.BLOCK_BASALT_HIT;}
 	protected SoundEvent getAmbientSound() {
 		return PvZSounds.SILENCEVENET;
 	}
@@ -262,6 +389,10 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 				gargantuar.setOwner(this);
 				serverWorld.spawnEntityAndPassengers(gargantuar);
 			}
+		}
+		else{
+			super.onDeath(source);
+			super.discard();
 		}
 	}
 }

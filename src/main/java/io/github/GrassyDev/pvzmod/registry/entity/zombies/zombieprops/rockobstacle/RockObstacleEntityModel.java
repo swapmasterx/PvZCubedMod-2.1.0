@@ -17,6 +17,9 @@ public class RockObstacleEntityModel extends GeoModel<RockObstacleEntity> {
 		else if (object.getType().equals(PvZEntity.IMPTABLETOBSTACLE)) {
 			identifier = new Identifier("pvzmod", "geo/imptablet.geo.json");
 		}
+		else if (object.getType().equals(PvZEntity.BASICTOMBSTONE)) {
+			identifier = new Identifier("pvzmod", "geo/basicgravestone.geo.json");
+		}
 		return identifier;
     }
 
@@ -30,6 +33,9 @@ public class RockObstacleEntityModel extends GeoModel<RockObstacleEntity> {
 		}
 		else if (object.getType().equals(PvZEntity.IMPTABLETOBSTACLE)) {
 			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/gargolith.png");
+		}
+		else if (object.getType().equals(PvZEntity.BASICTOMBSTONE)) {
+			identifier = new Identifier("pvzmod", "textures/entity/gravestone/basicgravestone.png");
 		}
 		return identifier;
     }
