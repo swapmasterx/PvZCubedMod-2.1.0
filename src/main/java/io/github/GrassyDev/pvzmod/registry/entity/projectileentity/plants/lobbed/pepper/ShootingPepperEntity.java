@@ -200,10 +200,10 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 					if (entity.isWet() && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 						SoundEvent sound;
 						sound = switch (zombieMaterial) {
-							case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
-							case "plastic" -> PvZSounds.PEAHITEVENT;
-							case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
-							default -> PvZSounds.PEAHITEVENT;
+							case "metallic", "electronic" -> PvZSounds.FIREPEAHITEVENT;
+							case "plastic" -> PvZSounds.FIREPEAHITEVENT;
+							case "stone", "crystal" -> PvZSounds.FIREPEAHITEVENT;
+							default -> PvZSounds.FIREPEAHITEVENT;
 						};
 						entity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 					} else {
@@ -219,12 +219,6 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 							}
 						}
 						damage = damage * 2;
-					}
-				if ("rubber".equals(zombieMaterial) || "crystal".equals(zombieMaterial)){
-					damage = damage / 2;
-				}
-					if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) || entity.isWet() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
-						damage = damage / 2;
 					}
 					if (damage > ((LivingEntity) entity).getHealth() &&
 							!(entity instanceof ZombieShieldEntity) &&

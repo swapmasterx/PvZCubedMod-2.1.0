@@ -1,36 +1,34 @@
 package io.github.GrassyDev.pvzmod;
 
-import io.github.GrassyDev.pvzmod.block.entity.ModBlockEntities;
-import io.github.GrassyDev.pvzmod.config.PvZConfig;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
+import io.github.GrassyDev.pvzmod.block.entity.ModBlockEntities;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.config.PvZConfig;
 import io.github.GrassyDev.pvzmod.recipe.ModRecipes;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
-import io.github.GrassyDev.pvzmod.screen.ModScreenHandlers;
-import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.*;
 import io.github.GrassyDev.pvzmod.registry.world.gen.entity.PvZEntitySpawn;
+import io.github.GrassyDev.pvzmod.screen.ModScreenHandlers;
+import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.registry.Registry;
 import net.minecraft.world.GameRules;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 import software.bernie.geckolib.GeckoLib;
 
 public class PvZCubed implements ModInitializer {
@@ -182,6 +180,8 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.ACIDSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MAGNETSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CABBAGEPULT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.MELONSLICE_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.MELONPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.COFFEEBEAN_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ICEBERGPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.ICEBERGLETTUCE_SEED_PACKET));
@@ -228,6 +228,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.GLOOMSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.GAMBLESHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CATTAIL_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.WINTERMELON));
 				entries.addStack(new ItemStack(ModItems.SPIKEROCK_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MAGNETOSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.BLOOMERANG_SEED_PACKET));

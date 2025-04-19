@@ -665,8 +665,6 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 		super.tick();
 		if (this.getAttacking() != null){
 			this.setVelocity(0, -0.3, 0);
-						this.getNavigation().stop();
-			this.getNavigation().stop();
 		}
 		if (!(this.getHypno()) && !this.getWorld().isClient()){
 			if (this.getType().equals(PvZEntity.SARGEANT) ||
@@ -680,7 +678,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 					}
 					else if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)) {
 						this.setVelocity(0, -0.3, 0);
-						this.getNavigation().stop();
+//						this.getNavigation().stop();
 						this.setTarget(CollidesWithPlant(x, 0f));
 						this.setStealthTag(Stealth.FALSE);
 					} else if (this.CollidesWithPlayer(x + 0.5f) != null && !this.CollidesWithPlayer(x + 0.5f).isCreative()) {
@@ -696,7 +694,7 @@ public class BrowncoatEntity extends PvZombieEntity implements GeoEntity {
 				}
 				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)) {
 					this.setVelocity(0, -0.3, 0);
-						this.getNavigation().stop();
+//						this.getNavigation().stop();
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				} else if (this.CollidesWithPlayer(1.5f) != null && !this.CollidesWithPlayer(1.5f).isCreative()) {

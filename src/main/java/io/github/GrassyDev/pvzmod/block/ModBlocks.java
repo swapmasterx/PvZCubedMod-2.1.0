@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.block;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.registry.Registries;
@@ -217,11 +218,11 @@ public class ModBlocks {
 			.sounds(BlockSoundGroup.AMETHYST_BLOCK)
 			.strength(1.3f, 1000f)
 			.luminance(3));
-
+	public static final Block PEA_CROP = new PeaCropBlock(QuiltBlockSettings.copyOf(Blocks.WHEAT));
 
 
 	public static void registerBlocks(){
-
+		Registry.register(Registries.BLOCK, new Identifier(PvZCubed.MOD_ID,"pea_crop"), PEA_CROP);
 		Registry.register(Registries.BLOCK, new Identifier(PvZCubed.MOD_ID,"botany_station"), BOTANY_STATION);
         Registry.register(Registries.BLOCK, new Identifier(PvZCubed.MOD_ID,"grass_tile"), GRASS_TILE);
         Registry.register(Registries.BLOCK, new Identifier(PvZCubed.MOD_ID,"dark_grass_tile"), DARK_GRASS_TILE);

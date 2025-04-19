@@ -580,13 +580,13 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 		else if (!this.getVariant().equals(GargantuarVariants.GARGOLITH) && this.getAttacking() == null && !(this.getHypno())){
 			if (this.CollidesWithPlant(0f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
 				this.setVelocity(0, -0.3, 0);
-						this.getNavigation().stop();
+				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0f, 0f));
 				this.setStealthTag(Stealth.FALSE);
 			}
 			else if (this.CollidesWithPlant(1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
 				this.setVelocity(0, -0.3, 0);
-						this.getNavigation().stop();
+				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(1f, 0f));
 				this.setStealthTag(Stealth.FALSE);
 			}

@@ -63,11 +63,13 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.t
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.cabbagepult.CabbagepultEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.coffeebean.CoffeeBeanEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.icebergpult.IcebergpultEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.melonpult.MelonpultEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.cattail.CattailEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.gatlingpea.GatlingpeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.gloomshroom.GloomshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.spikerock.SpikerockEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.twinsunflower.TwinSunflowerEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.wintermelon.WinterMelonEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.OxygaeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble.BubblePadEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.breezeshroom.BreezeshroomEntity;
@@ -95,6 +97,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.ancien
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.charm.beautyshroom.BeautyshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.charm.charmshroom.CharmshroomEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.magnet.MagnetoShroomEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.slice.MelonsliceEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.fairytale.springprincess.SpringPrincessEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.hammerflower.HammerFlowerEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.generic.impatyens.ImpatyensEntity;
@@ -139,6 +142,9 @@ import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.wallnut.WallnutBowlingEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.iceberg.ShootingIcebergEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.icemelon.ShootingIceMelonEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.melon.ShootingMelonEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.melonslice.ShootingMelonSliceEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.peanut.PeaNutProjEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.pepper.ShootingPepperEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.pumpkinproj.ShootingPumpkinEntity;
@@ -525,6 +531,21 @@ public class PvZEntity{
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "cabbagepult"),
 			QuiltEntityTypeBuilder.<CabbagepultEntity>create(SpawnGroup.CREATURE, CabbagepultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
+	);
+	public static final EntityType<MelonpultEntity> MELONPULT = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "melonpult"),
+		QuiltEntityTypeBuilder.<MelonpultEntity>create(SpawnGroup.CREATURE, MelonpultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
+	);
+	public static final EntityType<MelonsliceEntity> MELONSLICEPULT = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "melonslicepult"),
+		QuiltEntityTypeBuilder.<MelonsliceEntity>create(SpawnGroup.CREATURE, MelonsliceEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
+	);
+	public static final EntityType<WinterMelonEntity> WINTERMELON = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "wintermelon"),
+		QuiltEntityTypeBuilder.<WinterMelonEntity>create(SpawnGroup.CREATURE, WinterMelonEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<GatlingpeaEntity> GATLINGPEA = Registry.register(
@@ -1069,6 +1090,22 @@ public class PvZEntity{
 			Registries.ENTITY_TYPE,
 			new Identifier(ModID, "cabbage"),
 			QuiltEntityTypeBuilder.<ShootingCabbageEntity>create(SpawnGroup.MISC, ShootingCabbageEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
+	);
+
+	public static final EntityType<ShootingMelonEntity> MELON = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "melon"),
+		QuiltEntityTypeBuilder.<ShootingMelonEntity>create(SpawnGroup.MISC, ShootingMelonEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
+	);
+	public static final EntityType<ShootingIceMelonEntity> ICEMELON = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "ice_melon"),
+		QuiltEntityTypeBuilder.<ShootingIceMelonEntity>create(SpawnGroup.MISC, ShootingIceMelonEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
+	);
+	public static final EntityType<ShootingMelonSliceEntity> MELONSLICE = Registry.register(
+		Registries.ENTITY_TYPE,
+		new Identifier(ModID, "melon_slice"),
+		QuiltEntityTypeBuilder.<ShootingMelonSliceEntity>create(SpawnGroup.MISC, ShootingMelonSliceEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingIcebergEntity> ICEBERG = Registry.register(
@@ -2831,6 +2868,12 @@ public class PvZEntity{
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.SEASHROOM, SeashroomEntity.createSeashroomAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.CABBAGEPULT, CabbagepultEntity.createCabbagePultAttributes().build());
+
+		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.MELONPULT, MelonpultEntity.createMelonPultAttributes().build());
+
+		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.WINTERMELON, WinterMelonEntity.createWinterMelonAttributes().build());
+
+		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.MELONSLICEPULT, MelonpultEntity.createMelonPultAttributes().build());
 
 		DefaultAttributeRegistry.DEFAULT_ATTRIBUTE_REGISTRY.put(PvZEntity.GATLINGPEA, GatlingpeaEntity.createGatlingpeaAttributes().build());
 

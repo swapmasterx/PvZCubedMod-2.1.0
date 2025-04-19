@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "pvzmod:block/pea_crop_stage1"
+  }
+}

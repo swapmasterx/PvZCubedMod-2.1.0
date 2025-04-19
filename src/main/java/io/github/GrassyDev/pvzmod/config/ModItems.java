@@ -9,13 +9,14 @@ import io.github.GrassyDev.pvzmod.items.spawneggs.*;
 import io.github.GrassyDev.pvzmod.items.targets.MissileToeTargetItem;
 import io.github.GrassyDev.pvzmod.items.toolclasses.PlantKillingMaterial;
 import io.github.GrassyDev.pvzmod.items.toolclasses.PlantKillingShovel;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolItem;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.Registries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,12 @@ public class ModItems {
 
 		SEED_PACKET_LIST.add(ModItems.CABBAGEPULT_SEED_PACKET);
 		ROOF_SEED_LIST.add(ModItems.CABBAGEPULT_SEED_PACKET);
+		SEED_PACKET_LIST.add(ModItems.MELONPULT_SEED_PACKET);
+		ROOF_SEED_LIST.add(ModItems.MELONPULT_SEED_PACKET);
+		SEED_PACKET_LIST.add(ModItems.MELONSLICE_SEED_PACKET);
+		ROOF_SEED_LIST.add(ModItems.MELONSLICE_SEED_PACKET);
+		SEED_PACKET_LIST.add(ModItems.WINTERMELON_SEED_PACKET);
+		ROOF_SEED_LIST.add(ModItems.WINTERMELON_SEED_PACKET);
 
 		SEED_PACKET_LIST.add(ModItems.COFFEEBEAN_SEED_PACKET);
 		ROOF_SEED_LIST.add(ModItems.COFFEEBEAN_SEED_PACKET);
@@ -284,7 +291,7 @@ public class ModItems {
     public static final Item ALMANAC = new Item(new Item.Settings().maxCount(1));
 
     //Items
-    public static final Item PLANTFOOD = new Item(new Item.Settings().maxCount(64));
+    public static final Item PLANTFOOD = new AliasedBlockItem(ModBlocks.PEA_CROP, new  Item.Settings().maxCount(64));
 	public static final Item PLANTFOOD_AIR = new Item(new Item.Settings().maxCount(64));
 	public static final Item PLANTFOOD_AQUATIC = new Item(new Item.Settings().maxCount(64));
 	public static final Item PLANTFOOD_COLD = new Item(new Item.Settings().maxCount(64));
@@ -308,6 +315,9 @@ public class ModItems {
     public static final Item SNOWPEAPROJ = new SnowPeaItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
     public static final Item FIREPEA = new FirepeaItem(new Item.Settings().maxCount(16).rarity(Rarity.RARE));
 	public static final Item CABBAGE = new CabbageItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
+	public static final Item MELON = new MelonItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
+	public static final Item MELONSLICE = new MelonItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
+	public static final Item WINTERMELON = new MelonItem(new Item.Settings().maxCount(16).rarity(Rarity.COMMON));
 	public static final Item ICEBERG = new IcebergItem(new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON));
 	public static final Item SNOWQUEENPEAPROJ = new SnowqueenpeaItem(new Item.Settings().maxCount(16).rarity(Rarity.EPIC));
 	public static final Item BOOMERANG = new BoomerangItem(new Item.Settings().maxCount(64).rarity(Rarity.UNCOMMON));
@@ -379,6 +389,9 @@ public class ModItems {
 	public static final Item SEASHROOM_SEED_PACKET = new SeashroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item MAGNETSHROOM_SEED_PACKET = new MagnetshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item CABBAGEPULT_SEED_PACKET = new CabbagepultSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
+	public static final Item MELONPULT_SEED_PACKET = new MelonpultSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
+	public static final Item MELONSLICE_SEED_PACKET = new MelonSliceSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
+	public static final Item WINTERMELON_SEED_PACKET = new WinterMelonSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item COFFEEBEAN_SEED_PACKET = new CoffeeBeanSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item GATLINGPEA_SEED_PACKET = new GatlingpeaSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
 	public static final Item TWINSUNFLOWER_SEED_PACKET = new TwinSunflowerSeeds(new Item.Settings().maxCount(8).rarity(Rarity.EPIC));
@@ -453,6 +466,9 @@ public class ModItems {
 	public static final Item GARDEN_SPAWN = new GardenSpawn(new Item.Settings().rarity(Rarity.EPIC));
 	public static final Item GARDENCHALLENGE_SPAWN = new GardenChallengeSpawn(new Item.Settings().rarity(Rarity.EPIC));
 	public static final Item MISSILETOE_TARGET = new MissileToeTargetItem(new Item.Settings().rarity(Rarity.EPIC).maxCount(1));
+
+	//Crops
+
 
     //Zombie Spawn
     public static final Item BROWNCOATEGG = new BrowncoatEgg(new Item.Settings().rarity(Rarity.COMMON));
@@ -680,6 +696,9 @@ public class ModItems {
         Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"snowpeaproj"), SNOWPEAPROJ);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"firepea"), FIREPEA);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"cabbage"), CABBAGE);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"melon"), MELON);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"melon_slice"), MELONSLICE);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"ice_melon"), WINTERMELON);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"iceberg"), ICEBERG);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"snowqueenpeaproj"), SNOWQUEENPEAPROJ);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"boomerangproj"), BOOMERANG);
@@ -781,6 +800,9 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"seashroom_seed_packet"), SEASHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"magnetshroom_seed_packet"), MAGNETSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"cabbagepult_seed_packet"), CABBAGEPULT_SEED_PACKET);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"melonpult_seed_packet"), MELONPULT_SEED_PACKET);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"melonslice_seed_packet"), MELONSLICE_SEED_PACKET);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"wintermelon_seed_packet"), WINTERMELON_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"coffeebean_seed_packet"), COFFEEBEAN_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"gatlingpea_seed_packet"), GATLINGPEA_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"retrogatling_seed_packet"), RETROGATLING_SEED_PACKET);

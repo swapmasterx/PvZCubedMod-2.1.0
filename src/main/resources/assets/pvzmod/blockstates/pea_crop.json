@@ -1,0 +1,23 @@
+
+{
+  "variants": {
+    "age=0": {
+      "model": "pvzmod:block/pea_crop_stage0"
+    },
+    "age=1": {
+      "model": "pvzmod:block/pea_crop_stage1"
+    },
+    "age=2": {
+      "model": "pvzmod:block/pea_crop_stage2"
+    },
+    "age=3": {
+      "model": "pvzmod:block/pea_crop_stage3"
+    },
+    "age=4": {
+      "model": "pvzmod:block/pea_crop_stage4"
+    },
+    "age=5": {
+      "model": "pvzmod:block/pea_crop_stage5"
+    }
+  }
+}

@@ -1038,7 +1038,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		 if (!(this instanceof ZombiePropEntity)) {
 		 this.canJump = this.onGround;
 		 if (!this.canJump && !this.isFlying() && !this.isInsideWaterOrBubbleColumn()) {
-		 this.getNavigation().stop();
+
 		 }
 		 }**/
 		if (this.getTarget() != null) {
@@ -1172,7 +1172,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			if (target != null) {
 				if (target.squaredDistanceTo(this) < 2.25 && !this.hasStatusEffect(PvZCubed.BOUNCED)) {
 					this.setVelocity(0, -0.3, 0);
-						this.getNavigation().stop();
+
 				}
 			}
 		}

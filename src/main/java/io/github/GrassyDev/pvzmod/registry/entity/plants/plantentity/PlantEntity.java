@@ -93,6 +93,7 @@ public abstract class PlantEntity extends GolemEntity {
 		this.dataTracker.startTracking(DATA_ID_LOWPROF, false);
 		this.dataTracker.startTracking(DATA_ID_FIREIMMUNE, false);
 		this.dataTracker.startTracking(DATA_ID_IMMUNE, false);
+		this.dataTracker.startTracking(FLYING, false);
 	}
 
 	@Override
@@ -106,6 +107,7 @@ public abstract class PlantEntity extends GolemEntity {
 		tag.putBoolean("lowProf", this.getLowProfile());
 		tag.putBoolean("fireImmune", this.getFireImmune());
 		tag.putBoolean("Immune", this.getImmune());
+		tag.putBoolean("Flying", this.getImmune());
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {
@@ -118,6 +120,7 @@ public abstract class PlantEntity extends GolemEntity {
 		this.dataTracker.set(DATA_ID_LOWPROF, tag.getBoolean("lowProf"));
 		this.dataTracker.set(DATA_ID_FIREIMMUNE, tag.getBoolean("fireImmune"));
 		this.dataTracker.set(DATA_ID_IMMUNE, tag.getBoolean("Immune"));
+		this.dataTracker.set(FLYING, tag.getBoolean("Flying"));
 	}
 
 	@Override
@@ -236,6 +239,9 @@ public abstract class PlantEntity extends GolemEntity {
 
 	protected static final TrackedData<Boolean> DATA_ID_ASLEEP =
 			DataTracker.registerData(PlantEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
+	protected static final TrackedData<Boolean> FLYING =
+		DataTracker.registerData(PlantEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
 	public enum IsAsleep {
 		FALSE(false),

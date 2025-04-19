@@ -111,6 +111,9 @@
   "text.config.pvz3-config.option.nestedSeeds.moreSeeds.burstshroomS": "Burst-shroom Seed",
   "text.config.pvz3-config.option.nestedSeeds.moreSeeds.buttonshroomS": "Button-shroom Seed",
   "text.config.pvz3-config.option.nestedSeeds.moreSeeds.cabbagepultS": "Cabbage-pult Seed",
+  "text.config.pvz3-config.option.nestedSeeds.moreSeeds.melonpultS": "Melon-pult Seed",
+  "text.config.pvz3-config.option.nestedSeeds.moreSeeds.melonsliceS": "Melon-slice Seed",
+  "text.config.pvz3-config.option.nestedSeeds.moreSeeds.wintermelonS": "Winter Melon Seed",
   "text.config.pvz3-config.option.nestedSeeds.moreSeeds.cattailS": "Cattail Seed",
   "text.config.pvz3-config.option.nestedSeeds.moreSeeds.coffeeBeanS": "Coffee Bean Seed",
   "text.config.pvz3-config.option.nestedSeeds.moreSeeds.charmshroomS": "Charm-shroom Seed",
@@ -246,6 +249,16 @@
   "text.config.pvz3-config.option.nestedProjDMG.icespikeDMGv2": "Ice Spike Damage",
   "text.config.pvz3-config.option.nestedProjDMG.iceSpikeMultiplier": "Ice Spike Multiplier (Chill Target)",
   "text.config.pvz3-config.option.nestedProjDMG.jingleDMGv2": "Jingle Damage",
+
+  "text.config.pvz3-config.option.nestedProjDMG.melonDMG": "Melon Damage",
+  "text.config.pvz3-config.option.nestedProjDMG.melonSDMG": "Melon Splash Damage",
+
+  "text.config.pvz3-config.option.nestedProjDMG.melonsliceDMG": "Melon-Slice Damage",
+  "text.config.pvz3-config.option.nestedProjDMG.melonsliceSDMG": "Melon-Slice Splash Damage",
+
+  "text.config.pvz3-config.option.nestedProjDMG.wintermelonDMG": "Melon Damage",
+  "text.config.pvz3-config.option.nestedProjDMG.wintermelonSDMG": "Melon Splash Damage",
+
   "text.config.pvz3-config.option.nestedProjDMG.peaDMG": "Pea Damage",
   "text.config.pvz3-config.option.nestedProjDMG.pepperDMGv2": "Pepper Damage",
   "text.config.pvz3-config.option.nestedProjDMG.pepperSDMG": "Pepper Splash Damage",
@@ -447,6 +460,7 @@
   "item.pvzmod.peashooter_seed_packet.flavour2": "2009... and never stopped.",
   "item.pvzmod.pea": "Pea",
 
+
   "entity.pvzmod.cherrybomb": "Cherry Bomb",
   "item.pvzmod.cherrybomb_seed_packet": "Cherry Bomb Seed Packet",
   "item.pvzmod.cherrybomb_seed_packet.flavour": "Explode? Detonate? ... Explodonate!",
@@ -571,6 +585,21 @@
   "item.pvzmod.cabbagepult_seed_packet": "Cabbage-pult Seed Packet",
   "item.pvzmod.cabbagepult_seed_packet.flavour": "Coleslaw from above!",
   "item.pvzmod.cabbage": "Cabbage",
+
+  "entity.pvzmod.melonpult": "Melon-pult",
+  "item.pvzmod.melonpult_seed_packet": "Melon-pult Seed Packet",
+  "item.pvzmod.melonpult_seed_packet.flavour": "People who live in grass houses",
+  "item.pvzmod.melonpult_seed_packet.flavour2": "shouldn't throw stones.",
+  "item.pvzmod.melonpult_seed_packet.flavour3": "But melons, sure, why not?",
+
+  "entity.pvzmod.wintermelon": "Winter Melon",
+  "item.pvzmod.wintermelon_seed_packet": "Winter Melon Seed Packet",
+  "item.pvzmod.wintermelon_seed_packet.flavour": "Perfect for your winter picnics.",
+
+  "entity.pvzmod.melonslice": "Melon-slice",
+  "item.pvzmod.melonslice_seed_packet": " Melon-slice Seed Packet",
+  "item.pvzmod.melonslice_seed_packet.flavour": "Always takes a slice.",
+
 
   "entity.pvzmod.coffeebean": "Coffee Bean",
   "item.pvzmod.coffeebean_seed_packet": "Coffee Bean Seed Packet",
