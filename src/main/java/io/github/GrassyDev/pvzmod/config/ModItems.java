@@ -389,6 +389,7 @@ public class ModItems {
 	public static final Item SEASHROOM_SEED_PACKET = new SeashroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item MAGNETSHROOM_SEED_PACKET = new MagnetshroomSeeds(new Item.Settings().maxCount(8).rarity(Rarity.UNCOMMON));
 	public static final Item CABBAGEPULT_SEED_PACKET = new CabbagepultSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
+	public static final Item KERNALPULT_SEED_PACKET = new KernalpultSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item MELONPULT_SEED_PACKET = new MelonpultSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item MELONSLICE_SEED_PACKET = new MelonSliceSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
 	public static final Item WINTERMELON_SEED_PACKET = new WinterMelonSeeds(new Item.Settings().maxCount(8).rarity(Rarity.COMMON));
@@ -800,6 +801,7 @@ public class ModItems {
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"seashroom_seed_packet"), SEASHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"magnetshroom_seed_packet"), MAGNETSHROOM_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"cabbagepult_seed_packet"), CABBAGEPULT_SEED_PACKET);
+		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"kernalpult_seed_packet"), KERNALPULT_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"melonpult_seed_packet"), MELONPULT_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"melonslice_seed_packet"), MELONSLICE_SEED_PACKET);
 		Registry.register(Registries.ITEM, new Identifier(PvZCubed.MOD_ID,"wintermelon_seed_packet"), WINTERMELON_SEED_PACKET);

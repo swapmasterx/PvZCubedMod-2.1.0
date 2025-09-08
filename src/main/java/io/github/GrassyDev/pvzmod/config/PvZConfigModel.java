@@ -198,6 +198,8 @@ public class PvZConfigModel {
 		@RestartRequired
 		public float cabbagepultS = 5.0f;
 		@RestartRequired
+		public float kernalpultS = 5.0f;
+		@RestartRequired
 		public float melonpultS = 5.0f;
 
 		@RestartRequired
@@ -419,12 +421,12 @@ public class PvZConfigModel {
 		public float boomerangDMGv2 = 1f;
 		public float bubblesDMG = 1f;
 		public float cabbageDMG = 3f;
+		public float kernalDMG = 2f;
+		public float butterDMG = 4f;
 		public float melonDMG = 6f;
 		public float melonSDMG = 2f;
-
-		public float melonsliceDMG = 4f;
+		public float melonsliceDMG = 3f;
 		public float melonsliceSDMG = 1f;
-
 		public float wintermelonDMG = 6f;
 		public float wintermelonSDMG = 2f;
 		public float cardDMGv2 = 1f;

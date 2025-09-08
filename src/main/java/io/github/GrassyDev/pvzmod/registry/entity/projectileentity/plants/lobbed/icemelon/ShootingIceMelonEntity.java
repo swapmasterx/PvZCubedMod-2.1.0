@@ -7,6 +7,7 @@
  import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
  import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
  import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieShieldEntity;
+ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieVehicleEntity;
  import io.github.GrassyDev.pvzmod.sound.PvZSounds;
  import net.fabricmc.api.EnvType;
  import net.fabricmc.api.Environment;
@@ -26,7 +27,6 @@
  import net.minecraft.particle.ItemStackParticleEffect;
  import net.minecraft.particle.ParticleEffect;
  import net.minecraft.particle.ParticleTypes;
- import net.minecraft.sound.SoundEvent;
  import net.minecraft.util.hit.BlockHitResult;
  import net.minecraft.util.hit.HitResult;
  import net.minecraft.util.math.BlockPos;
@@ -178,17 +178,10 @@
 				 !(entity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.hasVehicle()) &&
 				 !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity3 && generalPvZombieEntity3.isStealth()) && !hit) {
 				 String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
-				 SoundEvent sound;
-				 sound = switch (zombieMaterial) {
-					 case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
-					 case "plastic" -> PvZSounds.PEAHITEVENT;
-					 case "stone", "crystal" -> PvZSounds.PEAHITEVENT;
-					 default -> PvZSounds.PEAHITEVENT;
-				 };
-				 if (entity instanceof ZombieShieldEntity || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
-					 entity.playSound(sound, 0.2F, 1F);
-				 }
-				 entity.playSound(PvZSounds.SNOWPEAHITEVENT, 0.2F, 1F);
+
+//				 entity.playSound(sound, 0.5F, 1F);
+
+
 				 float damage = PVZCONFIG.nestedProjDMG.wintermelonDMG() * damageMultiplier;
 
 				 if (damage > ((LivingEntity) entity).getHealth() &&
@@ -265,6 +258,7 @@
 								 }
 							 }
 						 }
+						 this.raycastExplode();
 						 this.getWorld().sendEntityStatus(this, (byte) 3);
 						 this.remove(RemovalReason.DISCARDED);
 					 }
@@ -272,7 +266,90 @@
 			 }
 		 }
 	 }
+	 List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().shrink(0.5, 0, 0));
+	 private void raycastExplode() {
+		 this.playSound(PvZSounds.MELONHITEVENT, 0.8F, 1F);
+		 Vec3d vec3d = this.getPos();
+		 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(10));
+		 Iterator var9 = list.iterator();
+		 while (true) {
+			 LivingEntity livingEntity;
+			 do {
+				 if (!var9.hasNext()) {
+					 return;
+				 }
+				 livingEntity = (LivingEntity) var9.next();
 
+			 } while (this.squaredDistanceTo(livingEntity) > 8);
+			 float damage = PVZCONFIG.nestedProjDMG.wintermelonSDMG() * damageMultiplier;
+			 ZombiePropEntity zombiePropEntity4 = null;
+			 if (livingEntity.hasVehicle()) {
+				 for (Entity entity1 : livingEntity.getVehicle().getPassengerList()) {
+					 if (entity1 instanceof ZombieShieldEntity zpe && zpe != livingEntity) {
+						 zombiePropEntity4 = zpe;
+					 }
+				 }
+			 }
+			 for (Entity entity1 : livingEntity.getPassengerList()) {
+				 if (entity1 instanceof ZombieShieldEntity zpe && zpe != livingEntity) {
+					 zombiePropEntity4 = zpe;
+				 }
+			 }
+			 if (((livingEntity instanceof Monster &&
+				 zombiePropEntity4 == null &&
+				 !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity2 && checkList.contains(generalPvZombieEntity2.getOwner())) &&
+				 !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
+					 && (generalPvZombieEntity.getHypno()))) && checkList != null && !checkList.contains(livingEntity))) {
+				 ZombiePropEntity zombiePropEntity2 = null;
+				 for (Entity entity1 : livingEntity.getPassengerList()) {
+					 if (entity1 instanceof ZombiePropEntity zpe && zombiePropEntity2 == null) {
+						 zombiePropEntity2 = zpe;
+					 }
+				 }
+				 if (damage > livingEntity.getHealth() &&
+					 !(livingEntity instanceof ZombieShieldEntity) &&
+					 livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
+					 float damage2 = damage - livingEntity.getHealth();
+					 generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
+					 livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					 checkList.add(livingEntity);
+					 checkList.add(generalPvZombieEntity);
+				 } else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
+					 zombieShieldEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					 checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
+					 checkList.add(zombieShieldEntity);
+				 } else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
+
+					 zombieShieldEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					 checkList.add(livingEntity);
+					 checkList.add(zombieShieldEntity);
+				 } else {
+					 if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
+						 livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						 checkList.add(livingEntity);
+						 checkList.add(generalPvZombieEntity);
+					 } else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
+						 livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						 checkList.add(livingEntity);
+					 }  else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
+						 livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+						 checkList.add(livingEntity);
+					 }
+				 }
+				 if (zombiePropEntity2 == null && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity)) {
+					 if (!(livingEntity instanceof ZombieShieldEntity) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.FROZEN) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.WARM)) {
+						 livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+					 }
+					 this.getWorld().sendEntityStatus(this, (byte) 3);
+					 this.remove(RemovalReason.DISCARDED);
+				 } else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.FROZEN) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.WARM)) {
+					 livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+					 this.getWorld().sendEntityStatus(this, (byte) 3);
+					 this.remove(RemovalReason.DISCARDED);
+				 }
+			 }
+		 }
+	 }
 	 @Environment(EnvType.CLIENT)
 	 private ParticleEffect getParticleParameters() {
 		 ItemStack itemStack = this.getItem();
@@ -297,6 +374,7 @@
 
 	 protected void onBlockHit(BlockHitResult blockHitResult) {
 		 super.onBlockHit(blockHitResult);
+		 this.raycastExplode();
 		 if (!this.getWorld().isClient) {
 			 this.getWorld().sendEntityStatus(this, (byte) 3);
 			 this.remove(RemovalReason.DISCARDED);

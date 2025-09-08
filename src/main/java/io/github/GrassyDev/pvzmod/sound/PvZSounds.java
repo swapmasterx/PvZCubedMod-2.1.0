@@ -26,6 +26,8 @@ public class PvZSounds {
 	public static SoundEvent SNOWPEASHOOTEVENT = registerSoundEvent("snowpea_shoot");
 
 	public static SoundEvent SNOWPEAHITEVENT = registerSoundEvent("snowpea_hit");
+
+	public static SoundEvent MELONHITEVENT = registerSoundEvent("melon_impact");
 	public static SoundEvent MUSHROOMSHOOTEVENT = registerSoundEvent("mushroom_shoot");
 	public static SoundEvent FUMESHROOMSHOOTEVENT = registerSoundEvent("fumeshroom_shoot");
 	public static SoundEvent MECHSHOOTEVENT = registerSoundEvent("mech_shoot");

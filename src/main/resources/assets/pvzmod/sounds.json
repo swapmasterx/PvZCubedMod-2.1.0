@@ -19,6 +19,11 @@
       "pvzmod:pea_hit"
     ]
   },
+  "melon_impact": {
+    "sounds": [
+      "pvzmod:melon_impact"
+    ]
+  },
   "flaming_pea_hit": {
     "sounds": [
       "pvzmod:flaming_pea_hit"

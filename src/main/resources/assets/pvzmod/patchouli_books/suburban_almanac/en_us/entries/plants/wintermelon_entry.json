@@ -1,0 +1,47 @@
+{
+  "name": "Melon-pult",
+  "icon": "pvzmod:wintermelon_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 39,
+  "advancement": "pvzmod:make_cabbagepult",
+  "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/wintermelon_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Cold Sproutling, 1 Bark Enforced Sproutling, 2 Melon Blocks, 1 Empty Upgrade Packet, 200 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/wintermelon.png"
+      ],
+      "title": "Snipers",
+      "border": "true",
+      "text": "$(#25228d)Winter Melon hurl chilling Melons at zombies in an area."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)8 DMG/2.5s",
+        "$(br)$(#bd951a)Splash Damage: $()$(#ff0000)2 DMG/2.5s",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)35s",
+        "$(br)$(#bd951a)Special: $()$(#ff0000)Chills Zombies.",
+        "$(br2)$(#bd951a)Winter Melon tries to calm his nerves. He hears zombies approach. Will he make it? Will anyone make it?"
+      ]
+    },
+
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Winter Melon",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Winter Melon"
+      ]
+    }
+  ]
+}

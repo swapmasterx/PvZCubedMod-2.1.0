@@ -180,6 +180,7 @@ public class PvZCubed implements ModInitializer {
 				entries.addStack(new ItemStack(ModItems.ACIDSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MAGNETSHROOM_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.CABBAGEPULT_SEED_PACKET));
+				entries.addStack(new ItemStack(ModItems.KERNALPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MELONSLICE_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.MELONPULT_SEED_PACKET));
 				entries.addStack(new ItemStack(ModItems.COFFEEBEAN_SEED_PACKET));

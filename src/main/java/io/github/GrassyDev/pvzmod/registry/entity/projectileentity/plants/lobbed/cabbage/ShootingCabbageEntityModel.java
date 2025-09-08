@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbe
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib.model.GeoModel;
 
-public class ShootingCabbageEntityModel extends GeoModel<ShootingCabbageEntity> {
+public class  ShootingCabbageEntityModel extends GeoModel<ShootingCabbageEntity> {
 
     @Override
     public Identifier getModelResource(ShootingCabbageEntity object)

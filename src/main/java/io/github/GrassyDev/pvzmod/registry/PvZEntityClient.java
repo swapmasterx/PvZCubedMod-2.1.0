@@ -62,10 +62,12 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.t
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.threepeater.ThreepeaterEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.torchwood.TorchwoodEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.cabbagepult.CabbagepultEntityRenderer;
+import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.kernalpult.KernalpultEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.coffeebean.CoffeeBeanEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.icebergpult.IcebergpultEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.melonpult.MelonpultEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.icemelon.ShootingIceMelonEntityRenderer;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.kernal.ShootingKernalEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.melonslice.ShootingMelonSliceEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.slice.MelonsliceEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.cattail.CattailEntityRenderer;
@@ -144,6 +146,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.peanut.PeanutBowlingEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.wallnut.WallnutBowlingEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntityRenderer;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.butter.ShootingButterEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.melon.ShootingMelonEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.iceberg.ShootingIcebergEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.peanut.PeaNutProjEntityRenderer;
@@ -353,6 +356,8 @@ public class PvZEntityClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(PvZEntity.CABBAGEPULT, CabbagepultEntityRenderer::new);
 
+		EntityRendererRegistry.register(PvZEntity.KERNALPULT, KernalpultEntityRenderer::new);
+
 		EntityRendererRegistry.register(PvZEntity.MELONPULT, MelonpultEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.MELONSLICEPULT, MelonsliceEntityRenderer::new);
@@ -539,6 +544,10 @@ public class PvZEntityClient implements ClientModInitializer {
 		EntityRendererRegistry.register(PvZEntity.ACIDFUME, AcidFumeEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.CABBAGE, ShootingCabbageEntityRenderer::new);
+
+		EntityRendererRegistry.register(PvZEntity.KERNAL, ShootingKernalEntityRenderer::new);
+
+		EntityRendererRegistry.register(PvZEntity.BUTTER, ShootingButterEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.MELON, ShootingMelonEntityRenderer::new);
 

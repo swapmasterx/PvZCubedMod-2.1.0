@@ -1,0 +1,47 @@
+{
+  "name": "Melon-pult",
+  "icon": "pvzmod:melonpult_seed_packet",
+  "category": "pvzmod:plant_category",
+  "sortnum": 39,
+  "advancement": "pvzmod:make_cabbagepult",
+  "pages": [
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entry_recipies/melonpult_r.png"
+      ],
+      "title": "Botany Box Recipe",
+      "border": "true",
+      "text": "$(#25228d)1 Sproutling, 1 Bark Enforced Sproutling, 2 Melon Blocks, 1 Empty Seed Packet, 300 Sun value."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pvzmod:textures/gui/entries/melonpult.png"
+      ],
+      "title": "Snipers",
+      "border": "true",
+      "text": "$(#25228d)Melon-pults hurl splash damage Melons at the enemy."
+    },
+    {
+      "type": "text",
+      "text": [
+        "$(#bd951a)Health: $()$(#ff0000)15",
+        "$(br)$(#bd951a)Damage: $()$(#ff0000)8 DMG/2.5s",
+        "$(br)$(#bd951a)Splash Damage: $()$(#ff0000)2 DMG/2.5s",
+        "$(br)$(#bd951a)Range: $()$(#ff0000)30 Blocks (Lobbed)",
+        "$(br)$(#bd951a)Seed Recharge: $()$(#ff0000)5s",
+        "$(br2)$(#bd951a)There's no false modesty with Melon-pult. ''Sun-for-damage, I deliver the biggest punch on the lawn,'' he says. ''I'm not bragging. Run the numbers. You'll see.''"
+      ]
+    },
+
+    {
+      "type": "text",
+      "title": "References",
+      "text": [
+        "$(br)$(#bd951a)Plants vs. Zombies: $()$(#ff0000)Melon-pult",
+        "$(br2)$(#bd951a)Plants vs. Zombies 2: $()$(#ff0000)Melon-pult"
+      ]
+    }
+  ]
+}

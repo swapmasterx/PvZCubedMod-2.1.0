@@ -1,0 +1,26 @@
+{
+  "type": "pvzmod:botany_station",
+
+  "suncost": 150,
+  "ingredients": [
+    {
+      "item": "pvzmod:plantfood"
+    },
+    {
+      "item": "pvzmod:plantfood_tough"
+    },
+    {
+      "item": "minecraft:melon_slice"
+    },
+    {
+      "item": "minecraft:melon_slice"
+    },
+    {
+      "item": "pvzmod:empty_seed_packet"
+    }
+  ],
+  "result": {
+    "item": "pvzmod:melonslice_seed_packet",
+    "count": 1
+  }
+}

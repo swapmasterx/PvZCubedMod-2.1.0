@@ -275,11 +275,7 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 								if (livingEntity != entity) {
 									float damageSplash = PVZCONFIG.nestedProjDMG.pepperSDMG() * damageMultiplier;
 									String zombieMaterial2 = PvZCubed.ZOMBIE_MATERIAL.get(livingEntity.getType()).orElse("flesh");
-									if ("paper".equals(zombieMaterial2)) {
-										damageSplash = damageSplash * 2;
-									} else if ("plant".equals(zombieMaterial2)) {
-										damageSplash = damageSplash * 2;
-									}
+
 									ZombiePropEntity zombiePropEntity4 = null;
 									for (Entity entity1 : livingEntity.getPassengerList()) {
 										if (entity1 instanceof ZombiePropEntity zpe && zombiePropEntity4 == null) {
@@ -304,8 +300,8 @@ public class ShootingPepperEntity extends PvZProjectileEntity implements GeoEnti
 												if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
 							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 						}
-												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash2);
 												generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash2);
+												entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damageSplash2);
 											} else if (livingEntity instanceof ZombiePropEntity zombiePropEntity) {
 
 												if (entity != zombiePropEntity){

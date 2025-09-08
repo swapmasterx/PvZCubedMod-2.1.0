@@ -1,12 +1,10 @@
-package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.melonpult;
+package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.kernalpult;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
-import io.github.GrassyDev.pvzmod.items.seedpackets.WinterMelonSeeds;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.wintermelon.WinterMelonEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.melon.ShootingMelonEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,10 +17,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -46,8 +41,9 @@ import java.util.EnumSet;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
-public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
-	private String controllerName = "peacontroller";
+public class KernalpultEntity extends PlantEntity implements GeoEntity, RangedAttackMob {
+
+    private String controllerName = "peacontroller";
 
 
 
@@ -55,11 +51,15 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public MelonpultEntity(EntityType<? extends MelonpultEntity> entityType, World world) {
-		super(entityType, world);
+    public KernalpultEntity(EntityType<? extends KernalpultEntity> entityType, World world) {
+        super(entityType, world);
 
 		this.lobbedTarget = true;
+    }
+
+	static {
 	}
+
 	@Environment(EnvType.CLIENT)
 	public void handleStatus(byte status) {
 		if (status != 2 && status != 60){
@@ -71,6 +71,15 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 			this.isFiring = false;
 		}
 	}
+
+
+	/** /~*~//~*GECKOLIB ANIMATION*~//~*~/ **/
+
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
+		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
+	}
+
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.factory;
@@ -83,17 +92,14 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 		else {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("cabbagepult.idle"));
 		}
-		return PlayState.CONTINUE;
-	}
+        return PlayState.CONTINUE;
+    }
 
-	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
-		controllers.add(new AnimationController<>(this, controllerName, 0, this::predicate));
-	}
+
 	/** /~*~//~*AI*~//~*~/ **/
 
 	protected void initGoals() {
-		this.goalSelector.add(1, new MelonpultEntity.FireBeamGoal(this));
+		this.goalSelector.add(1, new FireBeamGoal(this));
 	}
 
 	@Override
@@ -123,7 +129,7 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 			BlockState blockState = this.getLandingBlockState();
 			if ((!blockPos2.equals(blockPos) || !blockState.hasSolidTopSurface(getWorld(), this.getBlockPos(), this)) && !this.hasVehicle()) {
 				if (!this.getWorld().isClient && this.getWorld().getGameRules().getBooleanValue(GameRules.DO_MOB_LOOT) && !this.naturalSpawn && this.age <= 10 && !this.dead){
-					this.dropItem(ModItems.MELONPULT_SEED_PACKET);
+					this.dropItem(ModItems.CABBAGEPULT_SEED_PACKET);
 				}
 				this.discard();
 			}
@@ -150,7 +156,7 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		ItemStack itemStack = player.getStackInHand(hand);
 		if (itemStack.isOf(ModItems.GARDENINGGLOVE)) {
-			dropItem(ModItems.MELONPULT_SEED_PACKET);
+			dropItem(ModItems.KERNALPULT_SEED_PACKET);
 			if (!player.getAbilities().creativeMode) {
 				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
 					itemStack.decrement(1);
@@ -159,58 +165,25 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 			this.discard();
 			return ActionResult.SUCCESS;
 		}
-		Item item = itemStack.getItem();
-		if (itemStack.isOf(ModItems.WINTERMELON_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item)) {
-			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
-			if ((this.getWorld() instanceof ServerWorld)) {
-				ServerWorld serverWorld = (ServerWorld) this.getWorld();
-				WinterMelonEntity plantEntity = (WinterMelonEntity) PvZEntity.WINTERMELON.create(getWorld());
-				plantEntity.setTarget(this.getTarget());
-				plantEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
-				plantEntity.initialize(serverWorld, getWorld().getLocalDifficulty(plantEntity.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
-				plantEntity.setAiDisabled(this.isAiDisabled());
-				if (this.hasCustomName()) {
-					plantEntity.setCustomName(this.getCustomName());
-					plantEntity.setCustomNameVisible(this.isCustomNameVisible());
-				}
-				if (this.hasVehicle()){
-					plantEntity.startRiding(this.getVehicle(), true);
-				}
-
-				plantEntity.setPersistent();
-				serverWorld.spawnEntityAndPassengers(plantEntity);
-				this.remove(RemovalReason.DISCARDED);
-			}
-			if (!player.getAbilities().creativeMode) {
-				if (!PVZCONFIG.nestedSeeds.infiniteSeeds() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INFINITE_SEEDS)) {
-					itemStack.decrement(1);
-				}
-				;
-				if (!PVZCONFIG.nestedSeeds.instantRecharge() && !getWorld().getGameRules().getBooleanValue(PvZCubed.INSTANT_RECHARGE)) {
-					player.getItemCooldownManager().set(ModItems.WINTERMELON_SEED_PACKET, WinterMelonSeeds.cooldown);
-				}
-			}
-			return ActionResult.SUCCESS;
-		}
 		return super.interactMob(player, hand);
 	}
 
 	@Nullable
 	@Override
 	public ItemStack getPickBlockStack() {
-		return ModItems.MELONPULT_SEED_PACKET.getDefaultStack();
+		return ModItems.KERNALPULT_SEED_PACKET.getDefaultStack();
 	}
 
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	public static DefaultAttributeContainer.Builder createMelonPultAttributes() {
-		return MobEntity.createAttributes()
-			.add(EntityAttributes.GENERIC_MAX_HEALTH, 15.0D)
-			.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
-			.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
-			.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30.0D);
-	}
+	public static DefaultAttributeContainer.Builder createKernalPultAttributes() {
+        return MobEntity.createAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 30.0D);
+    }
 
 	protected boolean canClimb() {return false;}
 
@@ -264,11 +237,11 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 	/** /~*~//~*GOALS*~//~*~/ **/
 
 	static class FireBeamGoal extends Goal {
-		private final MelonpultEntity plantEntity;
+		private final KernalpultEntity plantEntity;
 		private int beamTicks;
 		private int animationTicks;
 
-		public FireBeamGoal(MelonpultEntity plantEntity) {
+		public FireBeamGoal(KernalpultEntity plantEntity) {
 			this.plantEntity = plantEntity;
 			this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
 		}
@@ -300,7 +273,7 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 			this.plantEntity.getNavigation().stop();
 			this.plantEntity.getLookControl().lookAt(livingEntity, 90.0F, 90.0F);
 			if ((!this.plantEntity.canSee(livingEntity)) &&
-				this.animationTicks >= 0) {
+					this.animationTicks >= 0) {
 				this.plantEntity.setTarget((LivingEntity) null);
 			} else {
 				this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
@@ -309,7 +282,7 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 				if (this.beamTicks >= 0) {
 					// Huge thanks to Forrest Smith(forrestthewoods) for the trajectory code (https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/)
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						ShootingMelonEntity proj = new ShootingMelonEntity(PvZEntity.MELON, this.plantEntity.getWorld());
+						ShootingCabbageEntity proj = new ShootingCabbageEntity(PvZEntity.CABBAGE, this.plantEntity.getWorld());
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
@@ -325,12 +298,11 @@ public class MelonpultEntity extends PlantEntity implements GeoEntity, RangedAtt
 						proj.setVelocity(vel.getX(), -3.9200000762939453 + 28 / (h * 2.2), vel.getZ(),dist, 0F);
 						proj.updatePosition(projPos.getX(), projPos.getY(), projPos.getZ());
 						proj.setOwner(this.plantEntity);
-						proj.damageMultiplier = this.plantEntity.damageMultiplier;
 						if (plantEntity.getTarget() != null){
 							proj.getTarget(plantEntity.getTarget());
 						}
 						if (livingEntity != null && livingEntity.isAlive()) {
-							this.beamTicks = -30;
+							this.beamTicks = -25;
 							this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 111);
 							this.plantEntity.playSound(PvZSounds.PEASHOOTEVENT, 0.2F, 1);
 							this.plantEntity.getWorld().spawnEntity(proj);
