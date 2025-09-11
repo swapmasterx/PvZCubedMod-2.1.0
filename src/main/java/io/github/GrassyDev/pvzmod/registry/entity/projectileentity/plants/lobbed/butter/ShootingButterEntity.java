@@ -1,5 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.butter;
 
+import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
@@ -16,6 +17,7 @@ import net.minecraft.block.entity.EndGatewayBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
@@ -171,7 +173,8 @@ public class ShootingButterEntity extends PvZProjectileEntity implements GeoEnti
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 					!(entity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.hasVehicle())) {
 					entity.playSound(PvZSounds.PEAHITEVENT, 0.2F, 1F);
-					float damage = PVZCONFIG.nestedProjDMG.cabbageDMG();
+					float damage = PVZCONFIG.nestedProjDMG.butterDMG();
+
 					if (damage > ((LivingEntity) entity).getHealth() &&
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
@@ -188,12 +191,14 @@ public class ShootingButterEntity extends PvZProjectileEntity implements GeoEnti
 						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 160, 0)));
+				}
 					this.getWorld().sendEntityStatus(this, (byte) 3);
 					this.remove(RemovalReason.DISCARDED);
 					break;
 			}
 		}
-    }
+
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {

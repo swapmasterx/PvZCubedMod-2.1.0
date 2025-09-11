@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PvZProjectileEntity extends ThrownItemEntity {
-
+	private LivingEntity target;
 	public PvZProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -61,5 +61,9 @@ public abstract class PvZProjectileEntity extends ThrownItemEntity {
 				hitEntities.add(entity);
 			}
 		}
+	}
+
+	public LivingEntity getTarget (LivingEntity target){
+		return this.target = target;
 	}
 }

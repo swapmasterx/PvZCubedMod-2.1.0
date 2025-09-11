@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.butter.ShootingButterEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.kernal.ShootingKernalEntity;
@@ -286,11 +287,12 @@ public class KernalpultEntity extends PlantEntity implements GeoEntity, RangedAt
 					// Huge thanks to Forrest Smith(forrestthewoods) for the trajectory code (https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/)
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
 						int butterChance = r.nextInt(4) + 1;
-						if (butterChance <= 1){
-							ShootingButterEntity proj = new ShootingButterEntity(PvZEntity.BUTTER, this.plantEntity.getWorld());
+						PvZProjectileEntity proj;
+						if (butterChance < 2){
+							proj = new ShootingButterEntity(PvZEntity.BUTTER, this.plantEntity.getWorld());
 						}
 						else {
-							ShootingKernalEntity proj = new ShootingKernalEntity(PvZEntity.KERNAL, this.plantEntity.getWorld());
+							proj = new ShootingKernalEntity(PvZEntity.KERNAL, this.plantEntity.getWorld());
 						}
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();

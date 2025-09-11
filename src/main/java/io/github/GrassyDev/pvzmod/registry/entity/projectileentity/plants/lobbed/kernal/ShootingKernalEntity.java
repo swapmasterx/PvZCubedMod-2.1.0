@@ -171,7 +171,7 @@ public class ShootingKernalEntity extends PvZProjectileEntity implements GeoEnti
 					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
 					!(entity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.hasVehicle())) {
 					entity.playSound(PvZSounds.PEAHITEVENT, 0.2F, 1F);
-					float damage = PVZCONFIG.nestedProjDMG.cabbageDMG();
+					float damage = PVZCONFIG.nestedProjDMG.kernalDMG();
 					if (damage > ((LivingEntity) entity).getHealth() &&
 							!(entity instanceof ZombieShieldEntity) &&
 							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
