@@ -4,7 +4,9 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.butter.ShootingButterEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.kernal.ShootingKernalEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -38,6 +40,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
@@ -267,7 +270,7 @@ public class KernalpultEntity extends PlantEntity implements GeoEntity, RangedAt
 			this.plantEntity.getWorld().sendEntityStatus(this.plantEntity, (byte) 110);
 			this.plantEntity.setTarget((LivingEntity)null);
 		}
-
+		Random r = new Random();
 		public void tick() {
 			LivingEntity livingEntity = this.plantEntity.getTarget();
 			this.plantEntity.getNavigation().stop();
@@ -282,7 +285,13 @@ public class KernalpultEntity extends PlantEntity implements GeoEntity, RangedAt
 				if (this.beamTicks >= 0) {
 					// Huge thanks to Forrest Smith(forrestthewoods) for the trajectory code (https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/)
 					if (!this.plantEntity.isInsideWaterOrBubbleColumn()) {
-						ShootingCabbageEntity proj = new ShootingCabbageEntity(PvZEntity.CABBAGE, this.plantEntity.getWorld());
+						int butterChance = r.nextInt(4) + 1;
+						if (butterChance <= 1){
+							ShootingButterEntity proj = new ShootingButterEntity(PvZEntity.BUTTER, this.plantEntity.getWorld());
+						}
+						else {
+							ShootingKernalEntity proj = new ShootingKernalEntity(PvZEntity.KERNAL, this.plantEntity.getWorld());
+						}
 						double time = (this.plantEntity.squaredDistanceTo(livingEntity) > 36) ? 50 : 1;
 						Vec3d targetPos = livingEntity.getPos();
 						double predictedPosX = targetPos.getX() + (livingEntity.getVelocity().x * time);
