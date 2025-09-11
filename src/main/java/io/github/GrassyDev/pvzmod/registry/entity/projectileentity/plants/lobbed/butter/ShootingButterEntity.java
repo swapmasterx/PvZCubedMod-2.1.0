@@ -79,7 +79,7 @@ public class ShootingButterEntity extends PvZProjectileEntity implements GeoEnti
 
     @Environment(EnvType.CLIENT)
     public ShootingButterEntity(World world, double x, double y, double z, float yaw, float pitch, int interpolation, boolean interpolate, int id, UUID uuid) {
-        super(PvZEntity.CABBAGE, world);
+        super(PvZEntity.BUTTER, world);
         updatePosition(x, y, z);
         updateTrackedPositionAndAngles(x, y, z, yaw, pitch, interpolation);
 		setId(id);
@@ -168,37 +168,39 @@ public class ShootingButterEntity extends PvZProjectileEntity implements GeoEnti
 				}
 			}
 			if (!getWorld().isClient && entity instanceof Monster monster &&
-					!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
-					!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
-					!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
-					!(entity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.hasVehicle())) {
-					entity.playSound(PvZSounds.PEAHITEVENT, 0.2F, 1F);
-					float damage = PVZCONFIG.nestedProjDMG.butterDMG();
+				!(monster instanceof GeneralPvZombieEntity generalPvZombieEntity && (generalPvZombieEntity.getHypno())) &&
+				!(zombiePropEntity2 != null && !(zombiePropEntity2 instanceof ZombieShieldEntity)) &&
+				!(zombiePropEntity3 != null && !(zombiePropEntity3 instanceof ZombieShieldEntity)) &&
+				!(entity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.hasVehicle())) {
+				entity.playSound(PvZSounds.PEAHITEVENT, 0.2F, 1F);
+				float damage = PVZCONFIG.nestedProjDMG.butterDMG();
 
-					if (damage > ((LivingEntity) entity).getHealth() &&
-							!(entity instanceof ZombieShieldEntity) &&
-							entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-						float damage2 = damage - ((LivingEntity) entity).getHealth();
+				if (damage > ((LivingEntity) entity).getHealth() &&
+					!(entity instanceof ZombieShieldEntity) &&
+					entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
+					float damage2 = damage - ((LivingEntity) entity).getHealth();
 
-						if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
-							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-						}
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
-						generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
-					} else {
-						if (!(entity instanceof ZombiePropEntity zombiePropEntity)){
-							entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
-						}
-						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)) {
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 160, 0)));
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+					generalPvZombieEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage2);
 				}
-					this.getWorld().sendEntityStatus(this, (byte) 3);
-					this.remove(RemovalReason.DISCARDED);
-					break;
+				else {
+					if (!(entity instanceof ZombiePropEntity zombiePropEntity)) {
+						entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
+					}
+					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
+
+				}
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 160, 0)));
+
+				this.getWorld().sendEntityStatus(this, (byte) 3);
+				this.remove(RemovalReason.DISCARDED);
+				break;
 			}
 		}
-
+	}
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
