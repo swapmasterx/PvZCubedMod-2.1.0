@@ -34,23 +34,27 @@
 		"depends": [
 			{
 				"id": "quilt_loader",
-				"versions": ">=0.25.0"
+				"versions": "0.29.2-beta.5"
 			},
 			{
 				"id": "quilted_fabric_api",
-				"versions": ">=9.0.0-alpha.8+0.97.0"
+				"versions": "11.0.0-alpha.3+0.102.0-1.21"
 			},
 			{
 				"id": "geckolib",
-				"versions": ">=4.4.4"
+				"versions": ">=4.7.7"
+			},
+			{
+				"id": "owo-lib",
+				"versions": "0.12.15+1.21"
 			},
 			{
 				"id": "patchouli",
-				"versions": ">=1.20.4-85"
+				"versions": "1.21.1-92"
 			},
 			{
 				"id": "minecraft",
-				"versions": ">=1.20.4"
+				"versions": ">=1.21.1"
 			}
 		]
 	},

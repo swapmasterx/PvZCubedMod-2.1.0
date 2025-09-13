@@ -1,9 +1,11 @@
 plugins {
-	id 'org.quiltmc.loom' version '1.+'
+//	id 'org.quiltmc.loom' version '1.6'
 	id 'maven-publish'
-//	alias libs.plugins.quilt.loom
+	alias libs.plugins.quilt.loom
 }
-archivesBaseName = project.archives_base_name
+base {
+	archivesName = project.archives_base_name
+}
 version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
@@ -89,7 +91,7 @@ repositories {
 
 project.configurations.configureEach {
 	exclude(group: "net.fabricmc", module: "fabric-loader")
-	exclude(group: "net.fabricmc.fabric-api")
+//	exclude(group: "net.fabricmc.fabric-api")
 }
 
 dependencies {
@@ -98,14 +100,15 @@ dependencies {
 	dependencies {
 		include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_version}")
 	}
-	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
-	mappings "org.quiltmc:quilt-mappings:1.20.4+build.3:intermediary-v2"
-	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
-	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.4:4.4.4'
-	modImplementation "vazkii.patchouli:Patchouli:1.20.4-85-FABRIC"
-	modImplementation "io.wispforest:owo-lib:0.12.3+1.20.3+"
-	annotationProcessor modImplementation("io.wispforest:owo-lib:0.12.3+1.20.3+")
+	modImplementation  "org.quiltmc:quilt-loader:${project.loader_version}"
+	mappings "org.quiltmc:quilt-mappings:1.21.1+build.9"
+	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft}"
+//	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }
+	modImplementation "org.quiltmc.quilted-fabric-api:${quilted_fabric_api}"
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.21.1:4.7.7'
+	modImplementation "vazkii.patchouli:Patchouli:1.21.1-92-FABRIC"
+	modImplementation "io.wispforest:owo-lib:0.12.15+1.21"
+	annotationProcessor modImplementation("io.wispforest:owo-lib:0.12.15+1.21")
 }
 
 
@@ -116,17 +119,24 @@ processResources {
 		expand "version": version
 	}
 }
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
-}
-
+//tasks.withType(JavaCompile).configureEach {
+//	it.options.release = 21
+//}
+//
+//java {
+//	withSourcesJar()
+//
+//	sourceCompatibility = JavaVersion.VERSION_21
+//	targetCompatibility = JavaVersion.VERSION_21
+//}
 java {
-	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(javaVersion)
+		vendor = JvmVendorSpec.MICROSOFT
+	}
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
-
 jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}

@@ -215,7 +215,7 @@ public class ShootingBeeSpikeEntity extends PvZProjectileEntity implements GeoEn
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 2)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 1)));
 				entityStore.add((LivingEntity) entity);
 			}
 		}

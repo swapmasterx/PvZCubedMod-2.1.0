@@ -193,7 +193,7 @@ public class ShootingButterEntity extends PvZProjectileEntity implements GeoEnti
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 160, 0)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 160, 1)));
 
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
@@ -205,7 +205,7 @@ public class ShootingButterEntity extends PvZProjectileEntity implements GeoEnti
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 
 

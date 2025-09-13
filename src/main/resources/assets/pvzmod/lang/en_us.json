@@ -440,6 +440,20 @@
   "item.pvzmod.seed_packet.fullmoon.tooltip": "Full Moon",
   "item.pvzmod.creative": "Creative Only",
 
+  "effect.pvzmod.stun": "Stun",
+  "effect.pvzmod.ice": "Ice",
+  "effect.pvzmod.frozen": "Frozen",
+  "effect.pvzmod.bounced": "Bounced",
+  "effect.pvzmod.disable": "Disabled",
+  "effect.pvzmod.warm": "Warm",
+  "effect.pvzmod.wet": "Wet",
+  "effect.pvzmod.pvzpoison": "Toxic",
+  "effect.pvzmod.acid": "Acid",
+  "effect.pvzmod.bark": "Bark",
+  "effect.pvzmod.cheese": "Cheesed",
+  "effect.pvzmod.genericslow": "Slow",
+  "effect.pvzmod.shadow": "Shadow",
+  "effect.pvzmod.marigold": "Marigold",
 
   "item.pvzmod.empty_seed_packet": "Empty Seed Packet",
   "item.pvzmod.empty_upgrade_packet": "Empty Upgrade Packet",
@@ -585,6 +599,9 @@
   "item.pvzmod.cabbagepult_seed_packet": "Cabbage-pult Seed Packet",
   "item.pvzmod.cabbagepult_seed_packet.flavour": "Coleslaw from above!",
   "item.pvzmod.cabbage": "Cabbage",
+
+  "entity.pvzmod.kernalpult": "Kernal-pult",
+  "item.pvzmod.kernalpult_seed_packet": "Kernal-pult Seed Packet",
 
   "entity.pvzmod.melonpult": "Melon-pult",
   "item.pvzmod.melonpult_seed_packet": "Melon-pult Seed Packet",

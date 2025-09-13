@@ -1,8 +1,12 @@
 package io.github.GrassyDev.pvzmod.registry.entity.statuseffects;
 
+import io.github.GrassyDev.pvzmod.PvZCubed;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
+
+import static io.github.GrassyDev.pvzmod.PvZCubed.ZOMBIE_MATERIAL;
 
 public class Acid extends StatusEffect {
     public Acid() {
@@ -22,6 +26,8 @@ public class Acid extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		entity.damage(entity.getDamageSources().generic(), 8F);
+		if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
+			entity.damage(entity.getDamageSources().generic(), 8F);
+		}
     }
 }

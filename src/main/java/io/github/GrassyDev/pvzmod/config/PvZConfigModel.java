@@ -385,6 +385,9 @@ public class PvZConfigModel {
 		public float vampireflowerS = 15f;
 		@RestartRequired
 		public float twinsunflowerS = 35.0f;
+
+		@RestartRequired
+		public float wintermelonS = 35.0f;
 		@RestartRequired
 		public float wallnutSv2 = 25.0f;
 		@RestartRequired

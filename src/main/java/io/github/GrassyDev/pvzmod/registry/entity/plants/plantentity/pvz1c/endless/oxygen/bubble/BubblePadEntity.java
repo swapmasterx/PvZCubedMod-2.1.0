@@ -42,7 +42,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Objects;
 
-;import static io.github.GrassyDev.pvzmod.PvZCubed.ICE;
+import static io.github.GrassyDev.pvzmod.PvZCubed.ICE;
 
 public class BubblePadEntity extends PlantEntity.VineEntity implements GeoEntity {
     private String controllerName = "wallcontroller";

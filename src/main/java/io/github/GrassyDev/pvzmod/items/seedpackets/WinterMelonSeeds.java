@@ -18,7 +18,7 @@ import java.util.List;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 public class WinterMelonSeeds extends SeedItem implements FabricItem {
-	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.twinsunflowerS() * 20);
+	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.wintermelonS() * 20);
 
 	public WinterMelonSeeds(Settings settings) {
 		super(settings);

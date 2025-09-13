@@ -1,4 +1,6 @@
 pluginManagement {
+
+
 	repositories {
 		maven {
 			name = 'Quilt'
@@ -11,4 +13,8 @@ pluginManagement {
 		maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 		gradlePluginPortal()
 	}
+
+}
+plugins {
+	id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
