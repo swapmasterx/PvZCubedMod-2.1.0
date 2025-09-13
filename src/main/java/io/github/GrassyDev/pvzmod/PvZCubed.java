@@ -39,27 +39,27 @@ public class PvZCubed implements ModInitializer {
 
 	// Thanks to Ennui Langeweile for the help with Registry Entry Attachments
 	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_MATERIAL =
-			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "zombie_material")).build();
+			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "zombie_material")).build();
 
 	// Thanks to Ennui Langeweile for the help with Registry Entry Attachments
 	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_SIZE =
-			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "zombie_size")).build();
+			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "zombie_size")).build();
 
 	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_WORLD =
-			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "zombie_world")).build();
+			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "zombie_world")).build();
 
 	public static final RegistryEntryAttachment<EntityType<?>, Boolean> IS_MACHINE =
-			RegistryEntryAttachment.boolBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "is_machine")).build();
+			RegistryEntryAttachment.boolBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "is_machine")).build();
 	public static final RegistryEntryAttachment<EntityType<?>, Integer> ZOMBIE_STRENGTH =
-			RegistryEntryAttachment.intBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "zombie_strength")).build();
+			RegistryEntryAttachment.intBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "zombie_strength")).build();
 	public static final RegistryEntryAttachment<EntityType<?>, Boolean> TARGET_GROUND =
-			RegistryEntryAttachment.boolBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "target_ground")).build();
+			RegistryEntryAttachment.boolBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "target_ground")).build();
 	public static final RegistryEntryAttachment<EntityType<?>, Boolean> TARGET_FLY =
-			RegistryEntryAttachment.boolBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "target_fly")).build();
+			RegistryEntryAttachment.boolBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "target_fly")).build();
 	public static final RegistryEntryAttachment<EntityType<?>, String> PLANT_LOCATION =
-			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "plant_location")).build();
+			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "plant_location")).build();
 	public static final RegistryEntryAttachment<EntityType<?>, String> PLANT_TYPE =
-			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, new Identifier("pvzmod", "plant_type")).build();
+			RegistryEntryAttachment.stringBuilder(Registries.ENTITY_TYPE, Identifier.of("pvzmod", "plant_type")).build();
 
 
 	public static final StatusEffect ICE = new Ice();
@@ -106,15 +106,15 @@ public class PvZCubed implements ModInitializer {
 	public static final String MOD_ID = "pvzmod";
 
 
-	public static final RegistryKey<ItemGroup> PVZPLANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "plants"));
-	public static final RegistryKey<ItemGroup> PVZPACKETFABS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "packet_fab"));
-	public static final RegistryKey<ItemGroup> PVZPLANTSPROJ = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "plants_proj"));
+	public static final RegistryKey<ItemGroup> PVZPLANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MOD_ID, "plants"));
+	public static final RegistryKey<ItemGroup> PVZPACKETFABS = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MOD_ID, "packet_fab"));
+	public static final RegistryKey<ItemGroup> PVZPLANTSPROJ = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MOD_ID, "plants_proj"));
 
-	public static final RegistryKey<ItemGroup> PVZZOMBIES = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "zombies"));
+	public static final RegistryKey<ItemGroup> PVZZOMBIES = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MOD_ID, "zombies"));
 
-	public static final RegistryKey<ItemGroup> PVZGRAVES = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "graves"));
+	public static final RegistryKey<ItemGroup> PVZGRAVES = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MOD_ID, "graves"));
 
-	public static final RegistryKey<ItemGroup> PVZBLOCKS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "blocks"));
+	public static final RegistryKey<ItemGroup> PVZBLOCKS = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MOD_ID, "blocks"));
 
 	@Override
 	public void onInitialize(ModContainer mod) {
@@ -504,19 +504,19 @@ public class PvZCubed implements ModInitializer {
 			.name(Text.translatable("itemGroup.pvzmod.blocks"))
 			.build());
 
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "ice"), ICE);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "frozen"), FROZEN);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "stun"), STUN);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "bounced"), BOUNCED);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "disable"), DISABLE);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "warm"), WARM);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "wet"), WET);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "pvzpoison"), PVZPOISON);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "acid"), ACID);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "bark"), BARK);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "cheese"), CHEESE);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "genericslow"), GENERICSLOW);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "shadow"), SHADOW);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("pvzmod", "marigold"), MARIGOLD);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "ice"), ICE);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "frozen"), FROZEN);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "stun"), STUN);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "bounced"), BOUNCED);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "disable"), DISABLE);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "warm"), WARM);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "wet"), WET);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "pvzpoison"), PVZPOISON);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "acid"), ACID);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "bark"), BARK);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "cheese"), CHEESE);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "genericslow"), GENERICSLOW);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "shadow"), SHADOW);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of("pvzmod", "marigold"), MARIGOLD);
 	}
 }

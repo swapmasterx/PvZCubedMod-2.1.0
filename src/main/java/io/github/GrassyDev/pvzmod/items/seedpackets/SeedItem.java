@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.component.DataComponentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -9,16 +10,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class SeedItem extends Item {
 	public SeedItem(Item.Settings settings) {
 		super(settings);
 	}
 
+	@Nullable
+	default <T> T get(DataComponentType<? extends T> type){
+		return (T)this.getComponents()stack.get(type);
+	}
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
-		NbtCompound nbtCompound = stack.getOrCreateNbt();
+
+//		NbtCompound nbtCompound = stack.getOrCreateNbt();
 		if (entity instanceof PlayerEntity player) {
 //			if (selected){
 //				int smallSuns = 0;

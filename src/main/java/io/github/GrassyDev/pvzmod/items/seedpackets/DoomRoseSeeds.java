@@ -3,6 +3,9 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.client.item.TooltipConfig;
+import net.minecraft.component.type.NbtComponent;
+import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.cratertile.CraterTile;
@@ -43,7 +46,7 @@ public class DoomRoseSeeds extends SeedItem implements FabricItem {
 	public boolean used;
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.doomroseS() * 20);
 
-	public DoomRoseSeeds(Settings settings) {
+	public DoomRoseSeeds(Item.Settings settings) {
 		super(settings);
 	}
 
@@ -58,7 +61,9 @@ public class DoomRoseSeeds extends SeedItem implements FabricItem {
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
+
 		NbtCompound nbtCompound = stack.getOrCreateNbt();
+		NbtComponent.of(nbtCompound);
 		if (entity instanceof PlayerEntity player) {
 			if (player.getItemCooldownManager().getCooldownProgress(this, 0) > 0.0f) {
 				nbtCompound.putFloat("Cooldown", player.getItemCooldownManager().getCooldownProgress(this, 0));
@@ -73,9 +78,9 @@ public class DoomRoseSeeds extends SeedItem implements FabricItem {
 	}
 
 	//Credits to Patchouli for the tooltip code!
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.enforce.family").setStyle(Style.EMPTY.withColor(2528827)));
 
