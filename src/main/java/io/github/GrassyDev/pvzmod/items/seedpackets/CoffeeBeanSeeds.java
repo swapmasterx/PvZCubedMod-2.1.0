@@ -3,11 +3,12 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.coffeebean.CoffeeBeanEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
@@ -36,7 +37,7 @@ public class CoffeeBeanSeeds extends SeedItem implements FabricItem {
 	public boolean used;
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.coffeeBeanS() * 20);
 
-	public CoffeeBeanSeeds(Settings settings) {
+	public CoffeeBeanSeeds(Item.Settings settings) {
 		super(settings);
 	}
 

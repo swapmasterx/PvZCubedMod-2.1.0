@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.items.seedpackets;
 
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

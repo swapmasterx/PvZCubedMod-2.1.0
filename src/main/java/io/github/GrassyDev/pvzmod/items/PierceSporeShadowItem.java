@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.items;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.piercespore.PierceSporeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.ShadowSporeVariants;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

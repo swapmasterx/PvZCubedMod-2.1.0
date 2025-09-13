@@ -9,7 +9,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.metalli
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieObstacleEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;

@@ -12,12 +12,13 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.m
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble.BubblePadEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -43,7 +44,7 @@ public class MelonpultSeeds extends SeedItem implements FabricItem {
 	public boolean used;
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.melonpultS() * 20);
 
-	public MelonpultSeeds(Settings settings) {
+	public MelonpultSeeds(Item.Settings settings) {
 		super(settings);
 	}
 

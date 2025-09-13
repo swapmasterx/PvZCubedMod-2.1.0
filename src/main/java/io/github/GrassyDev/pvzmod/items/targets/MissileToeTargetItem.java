@@ -4,11 +4,12 @@ import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.target.missiletoe.MissileToeTarget;
 import io.github.GrassyDev.pvzmod.items.seedpackets.SeedItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
@@ -30,7 +31,7 @@ import java.util.List;
 public class MissileToeTargetItem extends SeedItem implements FabricItem {
     public boolean used;
 
-    public MissileToeTargetItem(Settings settings) {
+    public MissileToeTargetItem(Item.Settings settings) {
         super(settings);
 		targetID = 0;
     }

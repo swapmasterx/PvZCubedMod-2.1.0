@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.items;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.frisbee.ShootingFrisbeeEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

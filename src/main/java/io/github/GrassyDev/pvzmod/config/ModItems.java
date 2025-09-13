@@ -666,6 +666,10 @@ public class ModItems {
 	public static List<Item> LEGENDARY_SEED_LIST = new ArrayList<>();
 	public static List<Item> PLANTFOOD_LIST = new ArrayList<>();
 
+	private static Item registerItem(String name, Item item) {
+		return Registry.register(Registries.ITEM, Identifier.of(PvZCubed.MOD_ID, name), item);
+	}
+
     //addItem
     //addBlock
     public static void registerItems() {

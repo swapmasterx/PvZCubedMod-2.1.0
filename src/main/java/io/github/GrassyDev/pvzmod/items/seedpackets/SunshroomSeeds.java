@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
@@ -14,7 +15,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble.BubblePadEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
@@ -43,7 +44,7 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 public class SunshroomSeeds extends SeedItem implements FabricItem {
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.sunshroomS() * 20);
 
-	public SunshroomSeeds(Settings settings) {
+	public SunshroomSeeds(Item.Settings settings) {
 		super(settings);
 	}
 

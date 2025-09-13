@@ -12,12 +12,13 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.wa
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble.BubblePadEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -42,7 +43,7 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 public class WallnutSeeds extends SeedItem implements FabricItem {
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.wallnutSv2() * 20);
 
-	public WallnutSeeds(Settings settings) {
+	public WallnutSeeds(Item.Settings settings) {
 		super(settings);
 	}
 

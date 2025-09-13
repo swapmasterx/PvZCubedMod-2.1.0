@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.cratertile.CraterTile;
@@ -11,7 +12,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.environment.snowtile.SnowTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.pirateseas.coconutcannon.CoconutCannonEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
@@ -40,7 +41,7 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 public class CoconutCannonSeeds extends SeedItem implements FabricItem {
 
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.coconutS() * 20);
-    public CoconutCannonSeeds(Settings settings) {
+    public CoconutCannonSeeds(Item.Settings settings) {
         super(settings);
     }
 

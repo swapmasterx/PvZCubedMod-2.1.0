@@ -3,7 +3,7 @@ package io.github.GrassyDev.pvzmod.items.toolclasses;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

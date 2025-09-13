@@ -3,11 +3,12 @@ plugins {
 	id 'maven-publish'
 	alias libs.plugins.quilt.loom
 }
-base {
-	archivesName = project.archives_base_name
-}
+
 version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
+base {
+	archivesName = "pvzcubed"
+}
 
 loom {
 	runs {
@@ -91,7 +92,7 @@ repositories {
 
 project.configurations.configureEach {
 	exclude(group: "net.fabricmc", module: "fabric-loader")
-//	exclude(group: "net.fabricmc.fabric-api")
+	exclude(group: "net.fabricmc.fabric-api")
 }
 
 dependencies {
@@ -101,10 +102,10 @@ dependencies {
 		include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_version}")
 	}
 	modImplementation  "org.quiltmc:quilt-loader:${project.loader_version}"
-	mappings "org.quiltmc:quilt-mappings:1.21.1+build.9"
+	mappings "org.quiltmc:quilt-mappings:1.21.1+build.9:intermediary-v2"
 	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft}"
 //	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }
-	modImplementation "org.quiltmc.quilted-fabric-api:${quilted_fabric_api}"
+	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api}"
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.21.1:4.7.7'
 	modImplementation "vazkii.patchouli:Patchouli:1.21.1-92-FABRIC"
 	modImplementation "io.wispforest:owo-lib:0.12.15+1.21"

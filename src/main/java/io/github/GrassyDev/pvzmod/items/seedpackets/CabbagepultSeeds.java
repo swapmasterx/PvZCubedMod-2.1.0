@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
@@ -14,7 +15,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.l
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble.BubblePadEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.roof.cabbagepult.CabbagepultEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
@@ -44,7 +45,7 @@ public class CabbagepultSeeds extends SeedItem implements FabricItem {
     public boolean used;
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.cabbagepultS() * 20);
 
-    public CabbagepultSeeds(Settings settings) {
+    public CabbagepultSeeds(Item.Settings settings) {
         super(settings);
     }
 

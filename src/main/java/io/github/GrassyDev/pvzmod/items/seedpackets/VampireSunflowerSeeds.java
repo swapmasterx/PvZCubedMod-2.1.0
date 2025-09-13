@@ -12,12 +12,13 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.l
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endless.oxygen.bubble.BubblePadEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -44,7 +45,7 @@ public class VampireSunflowerSeeds extends SeedItem implements FabricItem {
 
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.vampireflowerS() * 20);
 
-	public VampireSunflowerSeeds(Settings settings) {
+	public VampireSunflowerSeeds(Item.Settings settings) {
 		super(settings);
 	}
 

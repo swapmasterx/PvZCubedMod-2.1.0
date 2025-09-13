@@ -12,12 +12,13 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.endle
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.slice.MelonsliceEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -43,7 +44,7 @@ public class MelonSliceSeeds extends SeedItem implements FabricItem {
 	public boolean used;
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.melonsliceS() * 20);
 
-	public MelonSliceSeeds(Settings settings) {
+	public MelonSliceSeeds(Item.Settings settings) {
 		super(settings);
 	}
 

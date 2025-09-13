@@ -1,7 +1,7 @@
 package io.github.GrassyDev.pvzmod.items;
 
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
-import net.minecraft.client.item.TooltipContext;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
