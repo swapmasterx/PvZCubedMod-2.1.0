@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.HolderLookup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.dynamic.Codecs;
@@ -58,14 +59,12 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		}
 	}
 
-
-
+	@Override
+	public ItemStack craft(SimpleInventory input, HolderLookup.Provider registryManager) {
+		return this.output;
+	}
 	public int getSunCost() {
 		return this.sunCost;
-	}
-	@Override
-	public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-		return this.output;
 	}
 
 	public boolean fits(int width, int height) {
@@ -73,10 +72,9 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 	}
 
 	@Override
-	public ItemStack getResult(DynamicRegistryManager registryManager) {
+	public ItemStack getResult(HolderLookup.Provider registryManager) {
 		return output;
 	}
-
 
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
