@@ -8,7 +8,10 @@ import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.util.Identifier;
@@ -18,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BotanyStationRecipe implements Recipe<SimpleInventory> {
+public class BotanyStationRecipe(Ingredient inputItem, ItemStack output) implements Recipe<BotanyStationRecipeInput> {
 
 //	final Ingredient packetTemplate;
 	//	final Ingredient sunInput;
@@ -31,13 +34,15 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		this.recipeItems = ingredients;
 		this.output = output;
 	}
-//	public String getGroup() {
-//		return this.group;
-//	}
+	@Override
+	public RecipeSerializer<? extends Recipe<BotanyStationRecipe>> getSerializer() {
+		return ModRecipes.RECIPE_SERIALIZER;
+	}
 
-	//	public CraftingCategory getCategory() {
-//		return this.category;
-//	}
+	@Override
+	public RecipeType<? extends Recipe<BotanyStationRecipe>> getType() {
+		return ModRecipes.RECIPE_TYPE;
+	}
 	@Override
 	public boolean matches(SimpleInventory inventory, World world) {
 		RecipeMatcher recipeMatcher = new RecipeMatcher();
@@ -60,11 +65,16 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 	}
 
 	@Override
-	public ItemStack craft(SimpleInventory input, HolderLookup.Provider registryManager) {
+	public ItemStack craft(BotanyStationRecipeInput input, HolderLookup.Provider registryManager) {
 		return this.output;
 	}
 	public int getSunCost() {
 		return this.sunCost;
+	}
+
+	@Override
+	public boolean matches(BotanyStationRecipeInput input, World world) {
+		return false;
 	}
 
 	public boolean fits(int width, int height) {
@@ -83,7 +93,6 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		return ingredients;
 	}
 
-
 	@Override
 	public RecipeSerializer<BotanyStationRecipe> getSerializer() {
 		return Serializer.INSTANCE;
@@ -94,15 +103,15 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		return Type.INSTANCE;
 	}
 
-	public static class Type implements RecipeType<BotanyStationRecipe>{
-		public static final Type INSTANCE = new Type();
-		public static final String ID = "botany_station";
-	}
-
-	public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
-		public static final Serializer INSTANCE = new Serializer();
-		public static final String ID = "botany_station";
-
+//	public static class Type implements RecipeType<BotanyStationRecipe>{
+//		public static final Type INSTANCE = new Type();
+//		public static final String ID = "botany_station";
+//	}
+//
+//	public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
+//		public static final Serializer INSTANCE = new Serializer();
+//		public static final String ID = "botany_station";
+public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
 		private static final Codec<BotanyStationRecipe> CODEC =
 			RecordCodecBuilder.create(instance -> instance.group(
 				Codec.INT.fieldOf("suncost").forGetter(botanyStationRecipe -> botanyStationRecipe.sunCost),
@@ -122,6 +131,11 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		@Override
 		public Codec<BotanyStationRecipe> getCodec() {
 			return CODEC;
+		}
+
+		@Override
+		public PacketCodec<RegistryByteBuf, BotanyStationRecipe> getPacketCodec() {
+			return null;
 		}
 
 		@Override

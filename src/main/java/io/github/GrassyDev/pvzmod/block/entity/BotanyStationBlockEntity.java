@@ -100,6 +100,13 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         return inventory;
     }
 
+
+	@Override
+	protected void writeData(WriteView writeView) {
+		writeView.putInt("clicks", clicks);
+
+		super.writeData(writeView);
+	}
     @Override
     protected void writeNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
         super.writeNbt(nbt, registryLookup);
@@ -108,7 +115,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         nbt.putInt("sun_stored", this.currentSunResource);
     }
     @Override
-	protected void readNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
+	public void readNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
 
         Inventories.readNbt(nbt, this.inventory, registryLookup);
 		this.craftDelay = nbt.getInt("craft_delay");
