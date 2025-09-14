@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.recipe;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.GrassyDev.pvzmod.block.entity.BotanyStationBlockEntity;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
@@ -21,7 +22,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BotanyStationRecipe(Ingredient inputItem, ItemStack output) implements Recipe<BotanyStationRecipeInput> {
+import static software.bernie.geckolib.constant.dataticket.SerializableDataTicket.STREAM_CODEC;
+
+public class BotanyStationRecipe implements Recipe<BotanyStationRecipeInput> {
 
 //	final Ingredient packetTemplate;
 	//	final Ingredient sunInput;
@@ -35,15 +38,14 @@ public class BotanyStationRecipe(Ingredient inputItem, ItemStack output) impleme
 		this.output = output;
 	}
 	@Override
-	public RecipeSerializer<? extends Recipe<BotanyStationRecipe>> getSerializer() {
-		return ModRecipes.RECIPE_SERIALIZER;
+	public RecipeSerializer<? extends Recipe<BotanyStationRecipeInput>> getSerializer() {
+		return ModRecipes.BOTANY_BOX_SERIALIZER;
 	}
 
 	@Override
-	public RecipeType<? extends Recipe<BotanyStationRecipe>> getType() {
-		return ModRecipes.RECIPE_TYPE;
+	public RecipeType<? extends Recipe<BotanyStationRecipeInput>> getType() {
+		return ModRecipes.BOTANY_BOX_TYPE;
 	}
-	@Override
 	public boolean matches(SimpleInventory inventory, World world) {
 		RecipeMatcher recipeMatcher = new RecipeMatcher();
 		int notEmptyStacks = 0;
@@ -93,15 +95,15 @@ public class BotanyStationRecipe(Ingredient inputItem, ItemStack output) impleme
 		return ingredients;
 	}
 
-	@Override
-	public RecipeSerializer<BotanyStationRecipe> getSerializer() {
-		return Serializer.INSTANCE;
-	}
-
-	@Override
-	public RecipeType<BotanyStationRecipe> getType() {
-		return Type.INSTANCE;
-	}
+//	@Override
+//	public RecipeSerializer<BotanyStationRecipe> getSerializer() {
+//		return Serializer.INSTANCE;
+//	}
+//
+//	@Override
+//	public RecipeType<BotanyStationRecipe> getType() {
+//		return Type.INSTANCE;
+//	}
 
 //	public static class Type implements RecipeType<BotanyStationRecipe>{
 //		public static final Type INSTANCE = new Type();
@@ -128,36 +130,35 @@ public static class Serializer implements RecipeSerializer<BotanyStationRecipe> 
 				ItemStack.CODEC.fieldOf("result").forGetter(botanyStationRecipe -> botanyStationRecipe.output))
 			.apply(instance, BotanyStationRecipe::new));
 
+
 		@Override
-		public Codec<BotanyStationRecipe> getCodec() {
+		public MapCodec<BotanyStationRecipe> getCodec() {
 			return CODEC;
 		}
 
 		@Override
-		public PacketCodec<RegistryByteBuf, BotanyStationRecipe> getPacketCodec() {
-			return null;
+		public PacketCodec<RegistryByteBuf, BotanyStationRecipe> getPacketCodec() {return STREAM_CODEC;
 		}
-
-		@Override
-		public BotanyStationRecipe read(PacketByteBuf buf) {
-
-			int suncost = buf.readVarInt();
-			int ingredientsCount = buf.readVarInt();
-			DefaultedList<Ingredient> inputs = DefaultedList.ofSize(ingredientsCount, Ingredient.EMPTY);
-			inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
-			ItemStack output = buf.readItemStack();
-
-			return new BotanyStationRecipe(suncost, inputs, output);
-		}
-
-		@Override
-		public void write(PacketByteBuf buf, BotanyStationRecipe botanyStationRecipe) {
-			buf.writeVarInt(botanyStationRecipe.sunCost);
-			buf.writeVarInt(botanyStationRecipe.getIngredients().size());
-			for (Ingredient ingredient : botanyStationRecipe.getIngredients()) {
-				ingredient.write(buf);
-			}
-			buf.writeItemStack(botanyStationRecipe.getResult(null));
-		}
+//		@Override
+//		public BotanyStationRecipe read(PacketByteBuf buf) {
+//
+//			int suncost = buf.readVarInt();
+//			int ingredientsCount = buf.readVarInt();
+//			DefaultedList<Ingredient> inputs = DefaultedList.ofSize(ingredientsCount, Ingredient.EMPTY);
+//			inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
+//			ItemStack output = buf.readItemStack();
+//
+//			return new BotanyStationRecipe(suncost, inputs, output);
+//		}
+//
+//		@Override
+//		public void write(PacketByteBuf buf, BotanyStationRecipe botanyStationRecipe) {
+//			buf.writeVarInt(botanyStationRecipe.sunCost);
+//			buf.writeVarInt(botanyStationRecipe.getIngredients().size());
+//			for (Ingredient ingredient : botanyStationRecipe.getIngredients()) {
+//				ingredient.write(buf);
+//			}
+//			buf.writeItemStack(botanyStationRecipe.getResult(null));
+//		}
 	}
 }

@@ -100,13 +100,6 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         return inventory;
     }
 
-
-	@Override
-	protected void writeData(WriteView writeView) {
-		writeView.putInt("clicks", clicks);
-
-		super.writeData(writeView);
-	}
     @Override
     protected void writeNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
         super.writeNbt(nbt, registryLookup);
@@ -114,18 +107,19 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 		nbt.putInt("craft_delay", this.craftDelay);
         nbt.putInt("sun_stored", this.currentSunResource);
     }
+
     @Override
-	public void readNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
+	public void readNbtImpl(NbtCompound nbt, HolderLookup.Provider registryLookup) {
 
         Inventories.readNbt(nbt, this.inventory, registryLookup);
 		this.craftDelay = nbt.getInt("craft_delay");
         this.currentSunResource = nbt.getInt("sun_stored");
-		super.readNbt(nbt, registryLookup);
+		super.readNbtImpl(nbt, registryLookup);
     }
 
 	@Override
 	public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-		return null;
+		return this.pos;
 	}
 
 

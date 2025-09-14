@@ -8,12 +8,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModRecipes {
-    public static void registerRecipes(){
-		RecipeSerializer<BotanyStationRecipe> BOTANY_BOX_SERIALIZER =
+
+	public static final RecipeSerializer<BotanyStationRecipe> BOTANY_BOX_SERIALIZER =
 			Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(PvZCubed.MOD_ID,
 				"botany_station"), new BotanyStationRecipe.Serializer());;
 
-		RecipeType<BotanyStationRecipe> BOTANY_BOX_TYPE =
+	public static final RecipeType<BotanyStationRecipe> BOTANY_BOX_TYPE =
 			Registry.register(Registries.RECIPE_TYPE, Identifier.of(PvZCubed.MOD_ID,
 				"botany_station"),
 				new RecipeType<BotanyStationRecipe>() {
@@ -22,6 +22,7 @@ public class ModRecipes {
 					return "botany_station";
 				}
 			});
+	public static void registerRecipes(){
         PvZCubed.LOGGER.info("Registering Recipes for" + PvZCubed.MOD_ID);
     }
 }

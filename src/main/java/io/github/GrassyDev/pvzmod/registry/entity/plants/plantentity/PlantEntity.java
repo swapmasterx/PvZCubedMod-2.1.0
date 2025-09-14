@@ -82,17 +82,26 @@ public abstract class PlantEntity extends GolemEntity {
 		this.startRiding(livingEntity);
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_ASLEEP, false);
-		this.dataTracker.startTracking(COFFEE, false);
-		this.dataTracker.startTracking(SHADOW, false);
-		this.dataTracker.startTracking(MOON, false);
-		this.dataTracker.startTracking(DATA_ALTFIRE, false);
-		this.dataTracker.startTracking(DATA_ID_LOWPROF, false);
-		this.dataTracker.startTracking(DATA_ID_FIREIMMUNE, false);
-		this.dataTracker.startTracking(DATA_ID_IMMUNE, false);
-		this.dataTracker.startTracking(FLYING, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_ASLEEP, false);
+		builder.add(COFFEE, false);
+		builder.add(SHADOW, false);
+		builder.add(MOON, false);
+		builder.add(DATA_ALTFIRE, false);
+		builder.add(DATA_ID_LOWPROF, false);
+		builder.add(DATA_ID_FIREIMMUNE, false);
+		builder.add(DATA_ID_IMMUNE, false);
+		builder.add(FLYING, false);
+//		this.dataTracker.startTracking(DATA_ID_ASLEEP, false);
+//		this.dataTracker.startTracking(COFFEE, false);
+//		this.dataTracker.startTracking(SHADOW, false);
+//		this.dataTracker.startTracking(MOON, false);
+//		this.dataTracker.startTracking(DATA_ALTFIRE, false);
+//		this.dataTracker.startTracking(DATA_ID_LOWPROF, false);
+//		this.dataTracker.startTracking(DATA_ID_FIREIMMUNE, false);
+//		this.dataTracker.startTracking(DATA_ID_IMMUNE, false);
+//		this.dataTracker.startTracking(FLYING, false);
 	}
 
 	@Override
@@ -146,7 +155,7 @@ public abstract class PlantEntity extends GolemEntity {
 		if (PLANT_LOCATION.get(this.getType()).orElse("normal").equals("ground")){
 			this.setLowprof(LowProf.TRUE);
 		}
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+		return super.initialize(world, difficulty, spawnReason, entityData);
 	}
 
 
@@ -408,7 +417,7 @@ public abstract class PlantEntity extends GolemEntity {
 				hasZombie = true;
 			}
 		}
-		if (!this.getWorld().isClient() && !this.hasStatusEffect(DISABLE)) {
+		if (!this.getWorld().isClient() && !this.hasStatusEffect()) {
 			for (LivingEntity hostileEntity : list) {
 				if (hostileEntity.isAlive() && this.getVisibilityCache().canSee(hostileEntity) &&
 						!(hostileEntity instanceof GraveEntity && targetNotObstacle) &&
