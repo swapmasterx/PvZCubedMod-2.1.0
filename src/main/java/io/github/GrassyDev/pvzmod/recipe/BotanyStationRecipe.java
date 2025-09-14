@@ -106,7 +106,7 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 		private static final Codec<BotanyStationRecipe> CODEC =
 			RecordCodecBuilder.create(instance -> instance.group(
 				Codec.INT.fieldOf("suncost").forGetter(botanyStationRecipe -> botanyStationRecipe.sunCost),
-				Ingredient.field_46096.listOf().fieldOf("ingredients").flatXmap(list -> {
+				Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients").flatXmap(list -> {
 				Ingredient[] ingredients = list.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
 				if (ingredients.length == 0) {
 					return DataResult.error(() -> "No ingredients for Botany Box recipe");
@@ -116,7 +116,7 @@ public class BotanyStationRecipe implements Recipe<SimpleInventory> {
 						DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredients));
 				}
 				}, DataResult::success).forGetter(botanyStationRecipe -> (DefaultedList<Ingredient>) botanyStationRecipe.recipeItems),
-				ItemStack.field_47309.fieldOf("result").forGetter(botanyStationRecipe -> botanyStationRecipe.output))
+				ItemStack.CODEC.fieldOf("result").forGetter(botanyStationRecipe -> botanyStationRecipe.output))
 			.apply(instance, BotanyStationRecipe::new));
 
 		@Override
