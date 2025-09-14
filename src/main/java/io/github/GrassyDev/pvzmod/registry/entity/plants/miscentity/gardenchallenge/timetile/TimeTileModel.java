@@ -9,18 +9,18 @@ public class TimeTileModel extends GeoModel<TimeTile> {
     @Override
     public Identifier getModelResource(TimeTile object)
     {
-		Identifier identifier = new Identifier("pvzmod", "geo/suntile.geo.json");
+		Identifier identifier = Identifier.of("pvzmod", "geo/suntile.geo.json");
 		if (object.getTime().equals(ChallengeTime.FULLMOON)){
-			identifier = new Identifier("pvzmod", "geo/moontile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/moontile.geo.json");
 		}
 		else if (object.getTime().equals(ChallengeTime.HALFMOON)){
-			identifier = new Identifier("pvzmod", "geo/halfmoontile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/halfmoontile.geo.json");
 		}else if (object.getTime().equals(ChallengeTime.NEWMOON)){
-			identifier = new Identifier("pvzmod", "geo/newmoontile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/newmoontile.geo.json");
 		}else if (object.getTime().equals(ChallengeTime.BOMB)){
-			identifier = new Identifier("pvzmod", "geo/sunbombtile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/sunbombtile.geo.json");
 		}else if (object.getTime().equals(ChallengeTime.DROUGHT)){
-			identifier = new Identifier("pvzmod", "geo/droughttile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/droughttile.geo.json");
 		}
 		return identifier;
     }
@@ -28,12 +28,12 @@ public class TimeTileModel extends GeoModel<TimeTile> {
     @Override
     public Identifier getTextureResource(TimeTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/timetiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/timetiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(TimeTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

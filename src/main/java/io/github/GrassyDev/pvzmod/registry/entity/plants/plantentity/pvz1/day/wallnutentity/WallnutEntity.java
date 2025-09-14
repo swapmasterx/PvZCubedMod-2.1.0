@@ -32,13 +32,10 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Comparator;
@@ -112,13 +109,13 @@ public class WallnutEntity extends PlantEntity implements GeoEntity {
 	public static final Map<Crack, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(Crack.class), (map) -> {
 				map.put(Crack.NONE,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
 				map.put(Crack.LOW,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
 				map.put(Crack.MEDIUM,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg1.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg1.png"));
 				map.put(Crack.HIGH,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg2.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg2.png"));
 			});
 
 

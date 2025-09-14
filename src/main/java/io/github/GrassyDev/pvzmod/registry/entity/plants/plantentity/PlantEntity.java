@@ -69,7 +69,6 @@ public abstract class PlantEntity extends GolemEntity {
 
 	public float damageMultiplier = 1;
 
-	@Override
 	public boolean canBeLeashedBy(PlayerEntity player) {
 		return false;
 	}

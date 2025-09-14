@@ -8,18 +8,18 @@ public class GardenEntityModel extends GeoModel<GardenEntity> {
     @Override
     public Identifier getModelResource(GardenEntity object)
     {
-        return new Identifier("pvzmod", "geo/garden.geo.json");
+        return Identifier.of("pvzmod", "geo/garden.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(GardenEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/misc/garden.png");
+        return Identifier.of("pvzmod", "textures/entity/misc/garden.png");
     }
 
     @Override
     public Identifier getAnimationResource(GardenEntity object)
     {
-        return new Identifier ("pvzmod", "animations/garden.json");
+        return Identifier.of ("pvzmod", "animations/garden.json");
     }
 }

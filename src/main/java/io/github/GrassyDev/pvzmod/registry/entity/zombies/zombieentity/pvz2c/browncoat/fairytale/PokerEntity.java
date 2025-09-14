@@ -23,11 +23,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+
+import software.bernie.geckolib.animation.AnimationState;
 
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animation.PlayState;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;

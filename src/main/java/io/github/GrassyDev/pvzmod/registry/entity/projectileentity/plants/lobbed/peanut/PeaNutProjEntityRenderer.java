@@ -8,13 +8,13 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.util.RenderUtil;
 
 public class PeaNutProjEntityRenderer extends GeoEntityRenderer<PeaNutProjEntity> {
 	@Override
 	public void preRender(MatrixStack poseStack, PeaNutProjEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
-		RenderUtils.faceRotation(poseStack, animatable, partialTick);
+		RenderUtil.faceRotation(poseStack, animatable, partialTick);
 
 	}
 	public PeaNutProjEntityRenderer(EntityRendererFactory.Context ctx) {

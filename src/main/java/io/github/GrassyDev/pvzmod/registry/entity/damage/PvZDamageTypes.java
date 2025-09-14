@@ -10,13 +10,13 @@ import net.minecraft.world.World;
 
 public class PvZDamageTypes {
 
-    public static final RegistryKey<DamageType> HYPNO_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "hypnodamage"));
-    public static final RegistryKey<DamageType> ELECTRIC_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "electricdamage"));
-	public static final RegistryKey<DamageType> SELF_TERMINATE_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "selfdeathdamage"));
+    public static final RegistryKey<DamageType> HYPNO_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("pvzmod", "hypnodamage"));
+    public static final RegistryKey<DamageType> ELECTRIC_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("pvzmod", "electricdamage"));
+	public static final RegistryKey<DamageType> SELF_TERMINATE_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("pvzmod", "selfdeathdamage"));
 
-	public static final RegistryKey<DamageType> GENERIC_ANTI_IFRAME = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "generic_no_iframe"));
-	public static final RegistryKey<DamageType> VANILLA_ARMOR_PEN = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "vanilla_armor_pen"));
-	public static final RegistryKey<DamageType> CRAZYDAVEDAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("pvzmod", "davesshovel"));
+	public static final RegistryKey<DamageType> GENERIC_ANTI_IFRAME = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("pvzmod", "generic_no_iframe"));
+	public static final RegistryKey<DamageType> VANILLA_ARMOR_PEN = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("pvzmod", "vanilla_armor_pen"));
+	public static final RegistryKey<DamageType> CRAZYDAVEDAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("pvzmod", "davesshovel"));
 
     public static DamageSource of(World world, RegistryKey<DamageType> key) {
         return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).getHolderOrThrow(key));

@@ -19,13 +19,13 @@ public class SunflowerEntityRenderer extends GeoEntityRenderer<SunflowerEntity> 
 	public static final Map<SunflowerVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(SunflowerVariants.class), (map) -> {
 				map.put(SunflowerVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower.png"));
 				map.put(SunflowerVariants.LESBIAN,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_lesbian.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_lesbian.png"));
 				map.put(SunflowerVariants.WLW,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_wlw.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_wlw.png"));
 				map.put(SunflowerVariants.MLM,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_mlm.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_mlm.png"));
 			});
 
     public SunflowerEntityRenderer(EntityRendererFactory.Context ctx) {

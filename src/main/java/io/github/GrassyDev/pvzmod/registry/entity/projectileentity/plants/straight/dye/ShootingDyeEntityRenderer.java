@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.Map;
 
@@ -56,7 +56,7 @@ public class ShootingDyeEntityRenderer extends GeoEntityRenderer<ShootingDyeEnti
 	@Override
 	public void preRender(MatrixStack poseStack, ShootingDyeEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
-		RenderUtils.faceRotation(poseStack, animatable, partialTick);
+		RenderUtil.faceRotation(poseStack, animatable, partialTick);
 
 	}
 	public ShootingDyeEntityRenderer(EntityRendererFactory.Context ctx) {

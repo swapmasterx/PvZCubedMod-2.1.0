@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod;
 
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
 import io.github.GrassyDev.pvzmod.block.entity.ModBlockEntities;
+import io.github.GrassyDev.pvzmod.component.ModComponents;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.config.PvZConfig;
 import io.github.GrassyDev.pvzmod.recipe.ModRecipes;
@@ -30,12 +31,15 @@ import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.bernie.geckolib.GeckoLib;
+import software.bernie.geckolib.GeckoLibConstants;
+import software.bernie.geckolib.service.GeckoLibNetworking;
 
 public class PvZCubed implements ModInitializer {
 
 	public static final PvZConfig PVZCONFIG = PvZConfig.createAndLoad();
 	// This logger is used to write text to the console and the log file.
 	public static final Logger LOGGER = LoggerFactory.getLogger("Plants vs. Zombies Cubed");
+
 
 	// Thanks to Ennui Langeweile for the help with Registry Entry Attachments
 	public static final RegistryEntryAttachment<EntityType<?>, String> ZOMBIE_MATERIAL =
@@ -124,9 +128,11 @@ public class PvZCubed implements ModInitializer {
 		ModItems.setSeedPacketList();
 		ModItems.setPlantfoodList();
 		ModBlocks.registerBlocks();
+		ModComponents.initialize();
 		PvZEntity.setPlantList();
 		PvZEntity.Entities();
-		GeckoLib.initialize();
+		GeckoLibConstants.init();
+		GeckoLibNetworking.init();
 		PvZEntitySpawn.addEntitySpawn();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();

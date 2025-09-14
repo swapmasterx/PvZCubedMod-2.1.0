@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 public class BotanyStation extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
 
-	public static final MapCodec<BotanyStation> CODEC = BotanyStation.method_54094(BotanyStation::new);
+	public static final MapCodec<BotanyStation> CODEC = BotanyStation.createCodec(BotanyStation::new);
 	public Settings getProperties() {
 		return this.settings;
 	}
@@ -90,7 +90,7 @@ public class BotanyStation extends BlockWithEntity implements BlockEntityProvide
         }
     }
 
-    @Override
+
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((BotanyStationBlockEntity) world.getBlockEntity(pos));

@@ -116,7 +116,7 @@ public class PvZSounds {
 
 
 	private static SoundEvent registerSoundEvent(String name) {
-		Identifier id = new Identifier(PvZCubed.MOD_ID, name);
+		Identifier id = Identifier.of(PvZCubed.MOD_ID, name);
 		return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
 	}
 	public static void registerSounds() {

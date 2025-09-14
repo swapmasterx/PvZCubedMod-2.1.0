@@ -15,7 +15,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.RecipeHolder;
+import net.minecraft.registry.HolderLookup;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,9 +31,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-
-    protected DefaultedList<ItemStack> inventory;
+public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+//    protected DefaultedList<ItemStack> inventory;
 
 
     private static final int INPUT_SUN_SLOT = 0;
@@ -55,21 +59,10 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
     public BotanyStationBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BOTANY_STATION_BLOCK_ENTITY, pos, state);
-        this.inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+//        this.inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
-//                switch (index){
-//                    case 0:
-//                        return BotanyStationBlockEntity.this.minsunResource;
-//                    case 1:
-//                        return BotanyStationBlockEntity.this.maxsunResource;
-//                    case 2:
-//                        return BotanyStationBlockEntity.this.currentSunResource;
-//                    case 3:
-//                        return BotanyStationBlockEntity.this.sunCost;
-//                    default:
-//                        return 0;
                 return switch (index) {
                     case 0 -> BotanyStationBlockEntity.this.maxsunResource;
                     case 1 -> BotanyStationBlockEntity.this.currentSunResource;
@@ -83,19 +76,6 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
 
             @Override
             public void set(int index, int value) {
-//                switch (index) {
-//                    case 0:
-//                        BotanyStationBlockEntity.this.minsunResource = value;
-//                        break;
-//                    case 1:
-//                        BotanyStationBlockEntity.this.maxsunResource = value;
-//                        break;
-//                    case 2:
-//                        BotanyStationBlockEntity.this.currentSunResource = value;
-//                        break;
-//                    case 3:
-//                        BotanyStationBlockEntity.this.sunCost = value;
-//                        break;
                 switch (index) {
                     case 0 -> BotanyStationBlockEntity.this.maxsunResource = value;
                     case 1 -> BotanyStationBlockEntity.this.currentSunResource = value;
@@ -121,24 +101,29 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, this.inventory);
+    protected void writeNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, this.inventory, registryLookup);
 		nbt.putInt("craft_delay", this.craftDelay);
         nbt.putInt("sun_stored", this.currentSunResource);
     }
-
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, this.inventory);
+	protected void readNbt(NbtCompound nbt, HolderLookup.Provider registryLookup) {
+
+        Inventories.readNbt(nbt, this.inventory, registryLookup);
 		this.craftDelay = nbt.getInt("craft_delay");
         this.currentSunResource = nbt.getInt("sun_stored");
+		super.readNbt(nbt, registryLookup);
     }
 
-    @Override
+	@Override
+	public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+		return null;
+	}
+
+
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
+        buf.writePos(this.pos);
 
     }
 
@@ -247,17 +232,7 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         }
         return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.INSTANCE, inv, getWorld());
     }
-//	private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {
-//		Item item2 = item.asItem();
-//		fuelTimes.put(item2, fuelTime);
-//	}
-//	public static Map<Item, Integer> createSunAmountMap() {
-//		Map<Item, Integer> map = Maps.newLinkedHashMap();
-//		addFuel(map, ModItems.SUN, 2);
-//		addFuel(map, ModItems.LARGESUN, 4);
-//		addFuel(map, ModItems.SMALLSUN, 1);
-//		return map;
-//	}
+
     private boolean canInsertItemIntoOutputSlot(Item item) {
         return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
     }
@@ -303,4 +278,13 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
     private void resetCraftDelay() {
         this.craftDelay = 0;
     }
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.of(this);
+	}
+
+	public NbtCompound toInitialChunkDataNbt(HolderLookup.Provider registryLookup) {
+		return toNbt(registryLookup);
+	}
 }

@@ -14,7 +14,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityGroup;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -26,13 +26,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import org.jetbrains.annotations.Nullable;
@@ -207,9 +204,9 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 		return PvZSounds.SILENCEVENET;
 	}
 
-	public EntityGroup getGroup() {
-		return EntityGroup.UNDEAD;
-	}
+//	public EntityGroup getGroup() {
+//		return EntityGroup.UNDEAD;
+//	}
 
 	protected SoundEvent getStepSound() {
 		return PvZSounds.SILENCEVENET;

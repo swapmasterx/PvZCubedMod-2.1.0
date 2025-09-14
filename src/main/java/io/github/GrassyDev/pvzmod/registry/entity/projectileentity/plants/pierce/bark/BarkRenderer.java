@@ -7,13 +7,13 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.util.RenderUtil;
 
 public class BarkRenderer extends GeoEntityRenderer<BarkEntity> {
 	@Override
 	public void preRender(MatrixStack poseStack, BarkEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
-		RenderUtils.faceRotation(poseStack, animatable, partialTick);
+		RenderUtil.faceRotation(poseStack, animatable, partialTick);
 
 	}
 	public BarkRenderer(EntityRendererFactory.Context ctx) {

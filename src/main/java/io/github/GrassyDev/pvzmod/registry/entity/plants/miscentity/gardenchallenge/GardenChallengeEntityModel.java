@@ -8,18 +8,18 @@ public class GardenChallengeEntityModel extends GeoModel<GardenChallengeEntity> 
     @Override
     public Identifier getModelResource(GardenChallengeEntity object)
     {
-        return new Identifier("pvzmod", "geo/garden.geo.json");
+        return Identifier.of("pvzmod", "geo/garden.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(GardenChallengeEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/misc/garden.png");
+        return Identifier.of("pvzmod", "textures/entity/misc/garden.png");
     }
 
     @Override
     public Identifier getAnimationResource(GardenChallengeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/garden.json");
+        return Identifier.of ("pvzmod", "animations/garden.json");
     }
 }

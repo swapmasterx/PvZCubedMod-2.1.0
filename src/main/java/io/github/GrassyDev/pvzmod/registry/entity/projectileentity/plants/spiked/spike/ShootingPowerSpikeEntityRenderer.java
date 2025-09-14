@@ -8,13 +8,13 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.util.RenderUtil;
 
 public class ShootingPowerSpikeEntityRenderer extends GeoEntityRenderer<ShootingPowerSpikeEntity> {
 	@Override
 	public void preRender(MatrixStack poseStack, ShootingPowerSpikeEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
-		RenderUtils.faceRotation(poseStack, animatable, partialTick);
+		RenderUtil.faceRotation(poseStack, animatable, partialTick);
 
 	}
 	public ShootingPowerSpikeEntityRenderer(EntityRendererFactory.Context ctx) {

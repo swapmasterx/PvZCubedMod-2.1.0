@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes;
 
-import net.minecraft.entity.EntityGroup;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.Monster;
@@ -15,9 +15,9 @@ public abstract class PvZombieEntity extends GeneralPvZombieEntity implements Mo
 		super(entityType, world);
 	}
 
-	public EntityGroup getGroup() {
-		return EntityGroup.UNDEAD;
-	}
+//	public EntityGroup getGroup() {
+//		return EntityGroup.UNDEAD;
+//	}
 
 	@Override
 	public void dismountVehicle() {

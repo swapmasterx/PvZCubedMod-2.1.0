@@ -18,11 +18,11 @@ public class SnowpeaEntityRenderer extends GeoEntityRenderer<SnowpeaEntity> {
 	public static final Map<SnowPeaVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(SnowPeaVariants.class), (map) -> {
 				map.put(SnowPeaVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/peashooter/snowpea.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/peashooter/snowpea.png"));
 				map.put(SnowPeaVariants.MLM,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/peashooter/snowpea_mlm.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/peashooter/snowpea_mlm.png"));
 				map.put(SnowPeaVariants.BISEXUAL,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/peashooter/snowpea_bi.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/peashooter/snowpea_bi.png"));
 			});
 
     public SnowpeaEntityRenderer(EntityRendererFactory.Context ctx) {

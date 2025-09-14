@@ -6,7 +6,7 @@ import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gargantuar.modernday.GargantuarEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityGroup;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -33,9 +33,6 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 		this.noClip = false;
 	}
 
-	public EntityGroup getGroup() {
-		return EntityGroup.DEFAULT;
-	}
 	@Override
 	public boolean isPushable() {
 		return true;

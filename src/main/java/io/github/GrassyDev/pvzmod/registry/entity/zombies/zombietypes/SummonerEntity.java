@@ -34,9 +34,9 @@ public abstract class SummonerEntity extends GeneralPvZombieEntity implements Mo
 		return PvZSounds.ENTITYRISINGEVENT;
 	}
 
-	public EntityGroup getGroup() {
-		return EntityGroup.UNDEAD;
-	}
+//	public EntityGroup getGroup() {
+//		return EntityGroup.UNDEAD;
+//	}
 
 
 	protected int getSpellTicks() {

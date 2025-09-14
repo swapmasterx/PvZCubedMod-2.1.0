@@ -12,15 +12,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
+
 public abstract class SeedItem extends Item {
+
 	public SeedItem(Item.Settings settings) {
 		super(settings);
 	}
 
-	@Nullable
-	default <T> T get(DataComponentType<? extends T> type){
-		return (T)this.getComponents()stack.get(type);
-	}
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);

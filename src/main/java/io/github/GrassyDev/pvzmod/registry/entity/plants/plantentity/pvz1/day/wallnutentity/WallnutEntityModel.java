@@ -8,7 +8,7 @@ public class WallnutEntityModel extends GeoModel<WallnutEntity> {
     @Override
     public Identifier getModelResource(WallnutEntity object)
     {
-        return new Identifier("pvzmod", "geo/wallnut.geo.json");
+        return Identifier.of("pvzmod", "geo/wallnut.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class WallnutEntityModel extends GeoModel<WallnutEntity> {
     @Override
     public Identifier getAnimationResource(WallnutEntity object)
     {
-        return new Identifier ("pvzmod", "animations/wallnut.json");
+        return Identifier.of ("pvzmod", "animations/wallnut.json");
     }
 }

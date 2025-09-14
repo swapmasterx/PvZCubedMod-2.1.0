@@ -18,13 +18,13 @@ public class ChomperEntityRenderer extends GeoEntityRenderer<ChomperEntity> {
 	public static final Map<ChomperVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ChomperVariants.class), (map) -> {
 				map.put(ChomperVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/chomper/chomper.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/chomper/chomper.png"));
 				map.put(ChomperVariants.DEMIGIRL,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/chomper/chomper_dg.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/chomper/chomper_dg.png"));
 				map.put(ChomperVariants.ENBY,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/chomper/chomper_enby.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/chomper/chomper_enby.png"));
 				map.put(ChomperVariants.PIRANHAPLANT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/chomper/chomper_piranhaplant.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/chomper/chomper_piranhaplant.png"));
 			});
 
     public ChomperEntityRenderer(EntityRendererFactory.Context ctx) {

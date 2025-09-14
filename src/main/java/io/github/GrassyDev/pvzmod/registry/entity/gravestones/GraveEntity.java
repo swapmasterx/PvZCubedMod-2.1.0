@@ -71,9 +71,9 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 		return PvZSounds.ENTITYRISINGEVENT;
 	}
 
-	public EntityGroup getGroup() {
-		return EntityGroup.UNDEAD;
-	}
+//	public EntityGroup getGroup() {
+//		return EntityGroup.UNDEAD;
+//	}
 
 	protected int getSpellTicks() {
 		return this.spellTicks;

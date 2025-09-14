@@ -36,8 +36,8 @@ import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 

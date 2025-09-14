@@ -8,18 +8,18 @@ public class CherrybombEntityModel extends GeoModel<CherrybombEntity> {
     @Override
     public Identifier getModelResource(CherrybombEntity object)
     {
-        return new Identifier("pvzmod", "geo/cherrybomb.geo.json");
+        return Identifier.of("pvzmod", "geo/cherrybomb.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CherrybombEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cherrybomb/cherrybomb.png");
+        return Identifier.of("pvzmod", "textures/entity/cherrybomb/cherrybomb.png");
     }
 
     @Override
     public Identifier getAnimationResource(CherrybombEntity object)
     {
-        return new Identifier ("pvzmod", "animations/cherrybomb.json");
+        return Identifier.of ("pvzmod", "animations/cherrybomb.json");
     }
 }

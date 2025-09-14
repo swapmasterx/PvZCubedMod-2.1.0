@@ -38,13 +38,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Iterator;
@@ -75,7 +72,7 @@ public class RocketEntity extends PvZProjectileEntity implements GeoEntity {
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "zpg");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "zpg");
 
     public RocketEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);

@@ -18,6 +18,7 @@ import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -43,7 +44,7 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 public class PeanutSeeds extends SeedItem implements FabricItem {
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.peanutS() * 20);
 
-	public PeanutSeeds(Settings settings) {
+	public PeanutSeeds(Item.Settings settings) {
 		super(settings);
 	}
 
@@ -55,22 +56,22 @@ public class PeanutSeeds extends SeedItem implements FabricItem {
 
 	public static final String COOL_KEY = "Cooldown";
 
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		super.inventoryTick(stack, world, entity, slot, selected);
-		NbtCompound nbtCompound = stack.getOrCreateNbt();
-		if (entity instanceof PlayerEntity player) {
-			if (player.getItemCooldownManager().getCooldownProgress(this, 0) > 0.0f) {
-				nbtCompound.putFloat("Cooldown", player.getItemCooldownManager().getCooldownProgress(this, 0));
-			} else if (nbtCompound.getFloat("Cooldown") > 0.1f && player.getItemCooldownManager().getCooldownProgress(this, 0) <= 0.0f) {
-				float progress = nbtCompound.getFloat("Cooldown");
-				player.getItemCooldownManager().set(this, (int) Math.floor(cooldown * progress));
-			}
-			if (!player.getItemCooldownManager().isCoolingDown(this) && (nbtCompound.getFloat("Cooldown") != 0 || nbtCompound.get("Cooldown") == null)) {
-				nbtCompound.putFloat("Cooldown", 0);
-			}
-		}
-	}
+	//	@Override
+//	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+//		super.inventoryTick(stack, world, entity, slot, selected);
+//		NbtCompound nbtCompound = stack.getOrCreateNbt();
+//		if (entity instanceof PlayerEntity player) {
+//			if (player.getItemCooldownManager().getCooldownProgress(this, 0) > 0.0f) {
+//				nbtCompound.putFloat("Cooldown", player.getItemCooldownManager().getCooldownProgress(this, 0));
+//			} else if (nbtCompound.getFloat("Cooldown") > 0.1f && player.getItemCooldownManager().getCooldownProgress(this, 0) <= 0.0f) {
+//				float progress = nbtCompound.getFloat("Cooldown");
+//				player.getItemCooldownManager().set(this, (int) Math.floor(cooldown * progress));
+//			}
+//			if (!player.getItemCooldownManager().isCoolingDown(this) && (nbtCompound.getFloat("Cooldown") != 0 || nbtCompound.get("Cooldown") == null)) {
+//				nbtCompound.putFloat("Cooldown", 0);
+//			}
+//		}
+//	}
 
 	//Credits to Patchouli for the tooltip code!
 	@Override

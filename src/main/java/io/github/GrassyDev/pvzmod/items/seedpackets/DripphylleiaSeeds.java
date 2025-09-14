@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
@@ -44,7 +45,7 @@ public class DripphylleiaSeeds extends SeedItem implements FabricItem {
 	public boolean used;
 	public static int cooldown = (int) (PVZCONFIG.nestedSeeds.moreSeeds.dripphylleiaS() * 20);
 
-	public DripphylleiaSeeds(Settings settings) {
+	public DripphylleiaSeeds(Item.Settings settings) {
 		super(settings);
 	}
 
@@ -56,22 +57,22 @@ public class DripphylleiaSeeds extends SeedItem implements FabricItem {
 
 	public static final String COOL_KEY = "Cooldown";
 
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		super.inventoryTick(stack, world, entity, slot, selected);
-		NbtCompound nbtCompound = stack.getOrCreateNbt();
-		if (entity instanceof PlayerEntity player) {
-			if (player.getItemCooldownManager().getCooldownProgress(this, 0) > 0.0f) {
-				nbtCompound.putFloat("Cooldown", player.getItemCooldownManager().getCooldownProgress(this, 0));
-			} else if (nbtCompound.getFloat("Cooldown") > 0.1f && player.getItemCooldownManager().getCooldownProgress(this, 0) <= 0.0f) {
-				float progress = nbtCompound.getFloat("Cooldown");
-				player.getItemCooldownManager().set(this, (int) Math.floor(cooldown * progress));
-			}
-			if (!player.getItemCooldownManager().isCoolingDown(this) && (nbtCompound.getFloat("Cooldown") != 0 || nbtCompound.get("Cooldown") == null)) {
-				nbtCompound.putFloat("Cooldown", 0);
-			}
-		}
-	}
+	//	@Override
+//	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+//		super.inventoryTick(stack, world, entity, slot, selected);
+//		NbtCompound nbtCompound = stack.getOrCreateNbt();
+//		if (entity instanceof PlayerEntity player) {
+//			if (player.getItemCooldownManager().getCooldownProgress(this, 0) > 0.0f) {
+//				nbtCompound.putFloat("Cooldown", player.getItemCooldownManager().getCooldownProgress(this, 0));
+//			} else if (nbtCompound.getFloat("Cooldown") > 0.1f && player.getItemCooldownManager().getCooldownProgress(this, 0) <= 0.0f) {
+//				float progress = nbtCompound.getFloat("Cooldown");
+//				player.getItemCooldownManager().set(this, (int) Math.floor(cooldown * progress));
+//			}
+//			if (!player.getItemCooldownManager().isCoolingDown(this) && (nbtCompound.getFloat("Cooldown") != 0 || nbtCompound.get("Cooldown") == null)) {
+//				nbtCompound.putFloat("Cooldown", 0);
+//			}
+//		}
+//	}
 
 	//Credits to Patchouli for the tooltip code!
 	@Override

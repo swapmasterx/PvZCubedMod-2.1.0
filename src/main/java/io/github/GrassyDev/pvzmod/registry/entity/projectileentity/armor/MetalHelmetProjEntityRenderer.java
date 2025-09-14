@@ -13,11 +13,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.object.Color;
-import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.Map;
 
@@ -26,138 +23,138 @@ public class MetalHelmetProjEntityRenderer extends GeoEntityRenderer<MetalHelmet
 	public static final Map<MetalHelmetVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(MetalHelmetVariants.class), (map) -> {
 				map.put(MetalHelmetVariants.BUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
 				map.put(MetalHelmetVariants.SUMMERBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
 				map.put(MetalHelmetVariants.MUMMYBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/mummy/mummy.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/mummy/mummy.png"));
 				map.put(MetalHelmetVariants.FUTUREBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/future/future.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/future/future.png"));
 				map.put(MetalHelmetVariants.PEASANTBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant.png"));
 				map.put(MetalHelmetVariants.POKERLIDRED,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/poker.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/poker.png"));
 				map.put(MetalHelmetVariants.POKERLIDBLACK,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/club/pokercl.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/club/pokercl.png"));
 				map.put(MetalHelmetVariants.SERGEANTHELMET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant.png"));
 				map.put(MetalHelmetVariants.SCREENDOOR,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
 				map.put(MetalHelmetVariants.SARGEAMTSHIELD,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant.png"));
 				map.put(MetalHelmetVariants.FOOTBALL,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/football/football.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/football/football.png"));
 				map.put(MetalHelmetVariants.BERSERKER,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/football/berserker.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/football/berserker.png"));
 				map.put(MetalHelmetVariants.DEFENSIVEEND,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/gargantuar/defensiveend.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/gargantuar/defensiveend.png"));
 				map.put(MetalHelmetVariants.TRASHCAN,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat.png"));
 				map.put(MetalHelmetVariants.BLASTRONAUT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/jetpack/blastronaut.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/jetpack/blastronaut.png"));
 				map.put(MetalHelmetVariants.KNIGHT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant.png"));
 				map.put(MetalHelmetVariants.MEDALLION,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/dancingzombie/backupdancer.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/dancingzombie/backupdancer.png"));
 				map.put(MetalHelmetVariants.SOLDIERHELMET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/soldier/soldier.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/soldier/soldier.png"));
 				map.put(MetalHelmetVariants.BASSPROP,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/bass/bass.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/bass/bass.png"));
 				map.put(MetalHelmetVariants.SCRAPIMP,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/imp/scrapimp.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/imp/scrapimp.png"));
 			});
 
 	public static final Map<MetalHelmetVariants, Identifier> LOCATION_BY_VARIANT_DAMAGED =
 			Util.make(Maps.newEnumMap(MetalHelmetVariants.class), (map) -> {
 				map.put(MetalHelmetVariants.BUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
 				map.put(MetalHelmetVariants.SUMMERBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
 				map.put(MetalHelmetVariants.MUMMYBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/mummy/mummy_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/mummy/mummy_geardmg1.png"));
 				map.put(MetalHelmetVariants.FUTUREBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/future/future_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/future/future_geardmg1.png"));
 				map.put(MetalHelmetVariants.PEASANTBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant_geardmg1.png"));
 				map.put(MetalHelmetVariants.POKERLIDRED,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/poker_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/poker_geardmg1.png"));
 				map.put(MetalHelmetVariants.POKERLIDBLACK,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/club/pokercl_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/poker/club/pokercl_geardmg1.png"));
 				map.put(MetalHelmetVariants.SERGEANTHELMET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant_geardmg1.png"));
 				map.put(MetalHelmetVariants.SCREENDOOR,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
 				map.put(MetalHelmetVariants.SARGEAMTSHIELD,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/sargeant/sargeant_geardmg1.png"));
 				map.put(MetalHelmetVariants.FOOTBALL,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/football/football_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/football/football_geardmg1.png"));
 				map.put(MetalHelmetVariants.BERSERKER,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/football/berserker_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/football/berserker_geardmg1.png"));
 				map.put(MetalHelmetVariants.DEFENSIVEEND,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/gargantuar/defensiveend.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/gargantuar/defensiveend.png"));
 				map.put(MetalHelmetVariants.TRASHCAN,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/browncoat_geardmg1.png"));
 				map.put(MetalHelmetVariants.BLASTRONAUT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/jetpack/blastronaut_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/jetpack/blastronaut_geardmg1.png"));
 				map.put(MetalHelmetVariants.KNIGHT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/browncoat/peasant/peasant_geardmg1.png"));
 				map.put(MetalHelmetVariants.MEDALLION,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/dancingzombie/backupdancer_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/dancingzombie/backupdancer_geardmg1.png"));
 				map.put(MetalHelmetVariants.SOLDIERHELMET,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/soldier/soldier_geardmg1.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/soldier/soldier_geardmg1.png"));
 				map.put(MetalHelmetVariants.BASSPROP,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/bass/bass.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/bass/bass.png"));
 				map.put(MetalHelmetVariants.SCRAPIMP,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/imp/scrapimp.png"));
+						 Identifier.of(PvZCubed.MOD_ID, "textures/entity/imp/scrapimp.png"));
 			});
 
 	public static final Map<MetalHelmetVariants, Identifier> MODEL_LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(MetalHelmetVariants.class), (map) -> {
 				map.put(MetalHelmetVariants.BUCKET,
-						new Identifier(PvZCubed.MOD_ID, "geo/bucketproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/bucketproj.geo.json"));
 				map.put(MetalHelmetVariants.SUMMERBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "geo/summerbucketproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/summerbucketproj.geo.json"));
 				map.put(MetalHelmetVariants.MUMMYBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "geo/mummybucketproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/mummybucketproj.geo.json"));
 				map.put(MetalHelmetVariants.FUTUREBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "geo/futurebucketproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/futurebucketproj.geo.json"));
 				map.put(MetalHelmetVariants.PEASANTBUCKET,
-						new Identifier(PvZCubed.MOD_ID, "geo/peasantbucketproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/peasantbucketproj.geo.json"));
 				map.put(MetalHelmetVariants.POKERLIDRED,
-						new Identifier(PvZCubed.MOD_ID, "geo/lidproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/lidproj.geo.json"));
 				map.put(MetalHelmetVariants.POKERLIDBLACK,
-						new Identifier(PvZCubed.MOD_ID, "geo/lidproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/lidproj.geo.json"));
 				map.put(MetalHelmetVariants.SERGEANTHELMET,
-						new Identifier(PvZCubed.MOD_ID, "geo/helmetproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/helmetproj.geo.json"));
 				map.put(MetalHelmetVariants.SCREENDOOR,
-						new Identifier(PvZCubed.MOD_ID, "geo/screendoorproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/screendoorproj.geo.json"));
 				map.put(MetalHelmetVariants.SARGEAMTSHIELD,
-						new Identifier(PvZCubed.MOD_ID, "geo/sargeantshieldproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/sargeantshieldproj.geo.json"));
 				map.put(MetalHelmetVariants.FOOTBALL,
-						new Identifier(PvZCubed.MOD_ID, "geo/footballproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/footballproj.geo.json"));
 				map.put(MetalHelmetVariants.BERSERKER,
-						new Identifier(PvZCubed.MOD_ID, "geo/berserkerproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/berserkerproj.geo.json"));
 				map.put(MetalHelmetVariants.DEFENSIVEEND,
-						new Identifier(PvZCubed.MOD_ID, "geo/defensiveendproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/defensiveendproj.geo.json"));
 				map.put(MetalHelmetVariants.TRASHCAN,
-						new Identifier(PvZCubed.MOD_ID, "geo/trashcanproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/trashcanproj.geo.json"));
 				map.put(MetalHelmetVariants.BLASTRONAUT,
-						new Identifier(PvZCubed.MOD_ID, "geo/blastronautproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/blastronautproj.geo.json"));
 				map.put(MetalHelmetVariants.KNIGHT,
-						new Identifier(PvZCubed.MOD_ID, "geo/knightproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/knightproj.geo.json"));
 				map.put(MetalHelmetVariants.MEDALLION,
-						new Identifier(PvZCubed.MOD_ID, "geo/medallionproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/medallionproj.geo.json"));
 				map.put(MetalHelmetVariants.SOLDIERHELMET,
-						new Identifier(PvZCubed.MOD_ID, "geo/soldierproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/soldierproj.geo.json"));
 				map.put(MetalHelmetVariants.BASSPROP,
-						new Identifier(PvZCubed.MOD_ID, "geo/guitarproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/guitarproj.geo.json"));
 				map.put(MetalHelmetVariants.SCRAPIMP,
-						new Identifier(PvZCubed.MOD_ID, "geo/scrapimpproj.geo.json"));
+						 Identifier.of(PvZCubed.MOD_ID, "geo/scrapimpproj.geo.json"));
 			});
-	@Override
+
 	public void preRender(MatrixStack poseStack, MetalHelmetProjEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
-		RenderUtils.faceRotation(poseStack, animatable, partialTick);
+		RenderUtil.faceRotation(poseStack, animatable, partialTick);
 
 	}
 	public MetalHelmetProjEntityRenderer(EntityRendererFactory.Context ctx) {

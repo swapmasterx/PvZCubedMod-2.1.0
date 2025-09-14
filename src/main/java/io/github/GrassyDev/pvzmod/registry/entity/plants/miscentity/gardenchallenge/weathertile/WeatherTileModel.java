@@ -9,12 +9,12 @@ public class WeatherTileModel extends GeoModel<WeatherTile> {
     @Override
     public Identifier getModelResource(WeatherTile object)
     {
-		Identifier identifier = new Identifier("pvzmod", "geo/cloudtile.geo.json");
+		Identifier identifier = Identifier.of("pvzmod", "geo/cloudtile.geo.json");
 		if (object.getWeather().equals(ChallengeWeather.RAIN)){
-			identifier = new Identifier("pvzmod", "geo/raintile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/raintile.geo.json");
 		}
 		else if (object.getWeather().equals(ChallengeWeather.THUNDER)){
-			identifier = new Identifier("pvzmod", "geo/thundertile.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/thundertile.geo.json");
 		}
 		return identifier;
     }
@@ -22,12 +22,12 @@ public class WeatherTileModel extends GeoModel<WeatherTile> {
     @Override
     public Identifier getTextureResource(WeatherTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/weathertiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/weathertiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(WeatherTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

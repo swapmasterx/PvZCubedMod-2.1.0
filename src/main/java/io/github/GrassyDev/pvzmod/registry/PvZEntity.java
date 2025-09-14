@@ -307,82 +307,82 @@ public class PvZEntity{
 	public static List<EntityType<?>> PLANT_LIST = new ArrayList<>();
 
 	public static final EntityType<GardenEntity> GARDEN = Registry.register(Registries.ENTITY_TYPE,
-		new Identifier(ModID, "garden"),
+		Identifier.of(ModID, "garden"),
 		QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, GardenEntity::new).setDimensions(EntityDimensions.fixed(1f, 1.0f)).build()
 	);
 
 	public static final EntityType<PeashooterEntity> PEASHOOTER = Registry.register(Registries.ENTITY_TYPE,
-		new Identifier(MOD_ID, "peashooter"),
+		Identifier.of(MOD_ID, "peashooter"),
 		QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, PeashooterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 	public static final EntityType<PuffshroomEntity> PUFFSHROOM = Registry.register(Registries.ENTITY_TYPE,
-		new Identifier(ModID, "puffshroom"),
+		Identifier.of(ModID, "puffshroom"),
 		QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, PuffshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<GardenChallengeEntity> GARDENCHALLENGE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gardenchallenge"),
+			Identifier.of(ModID, "gardenchallenge"),
 			QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, GardenChallengeEntity::new).setDimensions(EntityDimensions.fixed(3f, 5f)).build()
 	);
 
 	public static final EntityType<CoffeeBeanEntity> COFFEEBEAN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "coffeebean"),
+			Identifier.of(ModID, "coffeebean"),
 			QuiltEntityTypeBuilder.<CoffeeBeanEntity>create(SpawnGroup.CREATURE, CoffeeBeanEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
     public static final EntityType<SunflowerEntity> SUNFLOWER = Registry.register((
             Registries.ENTITY_TYPE),
-            new Identifier(ModID, "sunflower"),
+            Identifier.of(ModID, "sunflower"),
             QuiltEntityTypeBuilder.<SunflowerEntity>create(SpawnGroup.CREATURE, SunflowerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
             );
 
     public static final EntityType<CherrybombEntity> CHERRYBOMB = Registry.register((
                     Registries.ENTITY_TYPE),
-            new Identifier(ModID, "cherrybomb"),
+            Identifier.of(ModID, "cherrybomb"),
             QuiltEntityTypeBuilder.<CherrybombEntity>create(SpawnGroup.CREATURE, CherrybombEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType<WallnutEntity> WALLNUT = Registry.register((
                     Registries.ENTITY_TYPE),
-            new Identifier(ModID, "wallnut"),
+            Identifier.of(ModID, "wallnut"),
             QuiltEntityTypeBuilder.<WallnutEntity>create(SpawnGroup.CREATURE, WallnutEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
     );
 
     public static final EntityType<PotatomineEntity> POTATOMINE = Registry.register((
                     Registries.ENTITY_TYPE),
-            new Identifier(ModID, "potatomine"),
+            Identifier.of(ModID, "potatomine"),
             QuiltEntityTypeBuilder.<PotatomineEntity>create(SpawnGroup.CREATURE, PotatomineEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType<SnowpeaEntity> SNOWPEA = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "snowpea"),
+            Identifier.of(ModID, "snowpea"),
             QuiltEntityTypeBuilder.<SnowpeaEntity>create(SpawnGroup.CREATURE, SnowpeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType<ChomperEntity> CHOMPER = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "chomper"),
+            Identifier.of(ModID, "chomper"),
             QuiltEntityTypeBuilder.<ChomperEntity>create(SpawnGroup.CREATURE, ChomperEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
     );
 
 	public static final EntityType<ChesterEntity> CHESTER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "chester"),
+			Identifier.of(ModID, "chester"),
 			QuiltEntityTypeBuilder.<ChesterEntity>create(SpawnGroup.CREATURE, ChesterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<VampireFlowerEntity> VAMPIREFLOWER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "vampireflower"),
+			Identifier.of(ModID, "vampireflower"),
 			QuiltEntityTypeBuilder.<VampireFlowerEntity>create(SpawnGroup.CREATURE, VampireFlowerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
     public static final EntityType<RepeaterEntity> REPEATER = Registry.register((
                     Registries.ENTITY_TYPE),
-            new Identifier(ModID, "repeater"),
+            Identifier.of(ModID, "repeater"),
             QuiltEntityTypeBuilder.<RepeaterEntity>create(SpawnGroup.CREATURE, RepeaterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
@@ -390,560 +390,560 @@ public class PvZEntity{
 
     public static final EntityType<SunshroomEntity> SUNSHROOM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "sunshroom"),
+            Identifier.of(ModID, "sunshroom"),
             QuiltEntityTypeBuilder.<SunshroomEntity>create(SpawnGroup.CREATURE, SunshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType <FumeshroomEntity> FUMESHROOM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "fumeshroom"),
+            Identifier.of(ModID, "fumeshroom"),
             QuiltEntityTypeBuilder.<FumeshroomEntity>create(SpawnGroup.CREATURE, FumeshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
     );
 
 	public static final EntityType<OxygaeEntity> OXYGAE = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "oxygae"),
+			Identifier.of(ModID, "oxygae"),
 			QuiltEntityTypeBuilder.<OxygaeEntity>create(SpawnGroup.CREATURE, OxygaeEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.4f)).build()
 	);
 	public static final EntityType<BubblePadEntity> BUBBLEPAD = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "bubblepad"),
+			Identifier.of(ModID, "bubblepad"),
 			QuiltEntityTypeBuilder.<BubblePadEntity>create(SpawnGroup.CREATURE, BubblePadEntity::new).setDimensions(EntityDimensions.fixed(1f, 0.5f)).build()
 	);
 
 	public static final EntityType <BreezeshroomEntity> BREEZESHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "breezeshroom"),
+			Identifier.of(ModID, "breezeshroom"),
 			QuiltEntityTypeBuilder.<BreezeshroomEntity>create(SpawnGroup.CREATURE, BreezeshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType <BurstshroomEntity> BURSTSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "burstshroom"),
+			Identifier.of(ModID, "burstshroom"),
 			QuiltEntityTypeBuilder.<BurstshroomEntity>create(SpawnGroup.CREATURE, BurstshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<SuperChomperEntity> SUPERCHOMPER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "superchomper"),
+			Identifier.of(ModID, "superchomper"),
 			QuiltEntityTypeBuilder.<SuperChomperEntity>create(SpawnGroup.CREATURE, SuperChomperEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<GravebusterEntity> GRAVEBUSTER = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "gravebuster"),
+            Identifier.of(ModID, "gravebuster"),
             QuiltEntityTypeBuilder.<GravebusterEntity>create(SpawnGroup.CREATURE, GravebusterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
     );
 
     public static final EntityType<HypnoshroomEntity> HYPNOSHROOM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "hypnoshroom"),
+            Identifier.of(ModID, "hypnoshroom"),
             QuiltEntityTypeBuilder.<HypnoshroomEntity>create(SpawnGroup.CREATURE, HypnoshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType<ScaredyshroomEntity> SCAREDYSHROOM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "scaredyshroom"),
+            Identifier.of(ModID, "scaredyshroom"),
             QuiltEntityTypeBuilder.<ScaredyshroomEntity>create(SpawnGroup.CREATURE, ScaredyshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType<IceshroomEntity> ICESHROOM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "iceshroom"),
+            Identifier.of(ModID, "iceshroom"),
             QuiltEntityTypeBuilder.<IceshroomEntity>create(SpawnGroup.CREATURE, IceshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
     public static final EntityType<DoomshroomEntity> DOOMSHROOM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "doomshroom"),
+            Identifier.of(ModID, "doomshroom"),
             QuiltEntityTypeBuilder.<DoomshroomEntity>create(SpawnGroup.CREATURE, DoomshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
 	public static final EntityType<LilyPadEntity> LILYPAD = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "lilypad"),
+			Identifier.of(ModID, "lilypad"),
 			QuiltEntityTypeBuilder.<LilyPadEntity>create(SpawnGroup.CREATURE, LilyPadEntity::new).setDimensions(EntityDimensions.fixed(1f, 0.25f)).build()
 	);
 
 	public static final EntityType<SquashEntity> SQUASH = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "squash"),
+			Identifier.of(ModID, "squash"),
 			QuiltEntityTypeBuilder.<SquashEntity>create(SpawnGroup.CREATURE, SquashEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
     public static final EntityType<ThreepeaterEntity> THREEPEATER = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "threepeater"),
+            Identifier.of(ModID, "threepeater"),
             QuiltEntityTypeBuilder.<ThreepeaterEntity>create(SpawnGroup.CREATURE, ThreepeaterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
 	public static final EntityType<TangleKelpEntity> TANGLE_KELP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "tanglekelp"),
+			Identifier.of(ModID, "tanglekelp"),
 			QuiltEntityTypeBuilder.<TangleKelpEntity>create(SpawnGroup.CREATURE, TangleKelpEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.1f)).build()
 	);
 
 	public static final EntityType<JalapenoEntity> JALAPENO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "jalapeno"),
+			Identifier.of(ModID, "jalapeno"),
 			QuiltEntityTypeBuilder.<JalapenoEntity>create(SpawnGroup.CREATURE, JalapenoEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 	public static final EntityType<FireTrailEntity> FIRETRAIL = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "firetrail"),
+			Identifier.of(ModID, "firetrail"),
 			QuiltEntityTypeBuilder.<FireTrailEntity>create(SpawnGroup.CREATURE, FireTrailEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<SpikeweedEntity> SPIKEWEED = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "spikeweed"),
+			Identifier.of(ModID, "spikeweed"),
 			QuiltEntityTypeBuilder.<SpikeweedEntity>create(SpawnGroup.CREATURE, SpikeweedEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.125f)).build()
 	);
 
 	public static final EntityType<TorchwoodEntity> TORCHWOOD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "torchwood"),
+			Identifier.of(ModID, "torchwood"),
 			QuiltEntityTypeBuilder.<TorchwoodEntity>create(SpawnGroup.CREATURE, TorchwoodEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2f)).build()
 	);
 
 	public static final EntityType<TallnutEntity> TALLNUT = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "tallnut"),
+			Identifier.of(ModID, "tallnut"),
 			QuiltEntityTypeBuilder.<TallnutEntity>create(SpawnGroup.CREATURE, TallnutEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 3.75f)).build()
 	);
 
 	public static final EntityType<SeashroomEntity> SEASHROOM = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "seashroom"),
+			Identifier.of(ModID, "seashroom"),
 			QuiltEntityTypeBuilder.<SeashroomEntity>create(SpawnGroup.CREATURE, SeashroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType <MagnetshroomEntity> MAGNETSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "magnetshroom"),
+			Identifier.of(ModID, "magnetshroom"),
 			QuiltEntityTypeBuilder.<MagnetshroomEntity>create(SpawnGroup.CREATURE, MagnetshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType <MagnetoShroomEntity> MAGNETOSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "magnetoshroom"),
+			Identifier.of(ModID, "magnetoshroom"),
 			QuiltEntityTypeBuilder.<MagnetoShroomEntity>create(SpawnGroup.CREATURE, MagnetoShroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<CabbagepultEntity> CABBAGEPULT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cabbagepult"),
+			Identifier.of(ModID, "cabbagepult"),
 			QuiltEntityTypeBuilder.<CabbagepultEntity>create(SpawnGroup.CREATURE, CabbagepultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 	public static final EntityType<KernalpultEntity> KERNALPULT = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "kernalpult"),
+		Identifier.of(ModID, "kernalpult"),
 		QuiltEntityTypeBuilder.<KernalpultEntity>create(SpawnGroup.CREATURE, KernalpultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 	public static final EntityType<MelonpultEntity> MELONPULT = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "melonpult"),
+		Identifier.of(ModID, "melonpult"),
 		QuiltEntityTypeBuilder.<MelonpultEntity>create(SpawnGroup.CREATURE, MelonpultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 	public static final EntityType<MelonsliceEntity> MELONSLICEPULT = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "melonslicepult"),
+		Identifier.of(ModID, "melonslicepult"),
 		QuiltEntityTypeBuilder.<MelonsliceEntity>create(SpawnGroup.CREATURE, MelonsliceEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 	public static final EntityType<WinterMelonEntity> WINTERMELON = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "wintermelon"),
+		Identifier.of(ModID, "wintermelon"),
 		QuiltEntityTypeBuilder.<WinterMelonEntity>create(SpawnGroup.CREATURE, WinterMelonEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<GatlingpeaEntity> GATLINGPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gatlingpea"),
+			Identifier.of(ModID, "gatlingpea"),
 			QuiltEntityTypeBuilder.<GatlingpeaEntity>create(SpawnGroup.CREATURE, GatlingpeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<TwinSunflowerEntity> TWINSUNFLOWER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "twinsunflower"),
+			Identifier.of(ModID, "twinsunflower"),
 			QuiltEntityTypeBuilder.<TwinSunflowerEntity>create(SpawnGroup.CREATURE, TwinSunflowerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<GloomshroomEntity> GLOOMSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gloomshroom"),
+			Identifier.of(ModID, "gloomshroom"),
 			QuiltEntityTypeBuilder.<GloomshroomEntity>create(SpawnGroup.CREATURE, GloomshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<CattailEntity> CATTAIL = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cattail"),
+			Identifier.of(ModID, "cattail"),
 			QuiltEntityTypeBuilder.<CattailEntity>create(SpawnGroup.CREATURE, CattailEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<SpikerockEntity> SPIKEROCK = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "spikerock"),
+			Identifier.of(ModID, "spikerock"),
 			QuiltEntityTypeBuilder.<SpikerockEntity>create(SpawnGroup.CREATURE, SpikerockEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.125f)).build()
 	);
 
 	public static final EntityType<IcebergpultEntity> ICEBERGPULT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "icebergpult"),
+			Identifier.of(ModID, "icebergpult"),
 			QuiltEntityTypeBuilder.<IcebergpultEntity>create(SpawnGroup.CREATURE, IcebergpultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<BeetEntity> BEET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "beet"),
+			Identifier.of(ModID, "beet"),
 			QuiltEntityTypeBuilder.<BeetEntity>create(SpawnGroup.CREATURE, BeetEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<ShamrockEntity> SHAMROCK = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "shamrock"),
+			Identifier.of(ModID, "shamrock"),
 			QuiltEntityTypeBuilder.<ShamrockEntity>create(SpawnGroup.CREATURE, ShamrockEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<ChillyPepperEntity> CHILLYPEPPER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "chillypepper"),
+			Identifier.of(ModID, "chillypepper"),
 			QuiltEntityTypeBuilder.<ChillyPepperEntity>create(SpawnGroup.CREATURE, ChillyPepperEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<BeeshooterEntity> BEESHOOTER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "beeshooter"),
+			Identifier.of(ModID, "beeshooter"),
 			QuiltEntityTypeBuilder.<BeeshooterEntity>create(SpawnGroup.CREATURE, BeeshooterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<SnowqueenpeaEntity> SNOWQUEENPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "snowqueenpea"),
+			Identifier.of(ModID, "snowqueenpea"),
 			QuiltEntityTypeBuilder.<SnowqueenpeaEntity>create(SpawnGroup.CREATURE, SnowqueenpeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<RetroGatlingEntity> RETROGATLING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "retrogatling"),
+			Identifier.of(ModID, "retrogatling"),
 			QuiltEntityTypeBuilder.<RetroGatlingEntity>create(SpawnGroup.CREATURE, RetroGatlingEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType <AcidshroomEntity> ACIDSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "acidshroom"),
+			Identifier.of(ModID, "acidshroom"),
 			QuiltEntityTypeBuilder.<AcidshroomEntity>create(SpawnGroup.CREATURE, AcidshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<DandelionWeedEntity> DANDELIONWEED = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dandelionweed"),
+			Identifier.of(ModID, "dandelionweed"),
 			QuiltEntityTypeBuilder.<DandelionWeedEntity>create(SpawnGroup.CREATURE, DandelionWeedEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<PerfoomshroomEntity> PERFOOMSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "perfoomshroom"),
+			Identifier.of(ModID, "perfoomshroom"),
 			QuiltEntityTypeBuilder.<PerfoomshroomEntity>create(SpawnGroup.CREATURE, PerfoomshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<BloomerangEntity> BLOOMERANG = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bloomerang"),
+			Identifier.of(ModID, "bloomerang"),
 			QuiltEntityTypeBuilder.<BloomerangEntity>create(SpawnGroup.CREATURE, BloomerangEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<IcebergLettuceEntity> ICEBERGLETTUCE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "iceberglettuce"),
+			Identifier.of(ModID, "iceberglettuce"),
 			QuiltEntityTypeBuilder.<IcebergLettuceEntity>create(SpawnGroup.CREATURE, IcebergLettuceEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<SpringbeanEntity> SPRINGBEAN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "springbean"),
+			Identifier.of(ModID, "springbean"),
 			QuiltEntityTypeBuilder.<SpringbeanEntity>create(SpawnGroup.CREATURE, SpringbeanEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<CoconutCannonEntity> COCONUTCANNON = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "coconutcannon"),
+			Identifier.of(ModID, "coconutcannon"),
 			QuiltEntityTypeBuilder.<CoconutCannonEntity>create(SpawnGroup.CREATURE, CoconutCannonEntity::new).setDimensions(EntityDimensions.fixed(2f, 1.8f)).build()
 	);
 
 	public static final EntityType<LightningReedEntity> LIGHTNINGREED = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "lightningreed"),
+			Identifier.of(ModID, "lightningreed"),
 			QuiltEntityTypeBuilder.<LightningReedEntity>create(SpawnGroup.CREATURE, LightningReedEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<PeapodEntity> PEAPOD = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "peapod"),
+			Identifier.of(ModID, "peapod"),
 			QuiltEntityTypeBuilder.<PeapodEntity>create(SpawnGroup.CREATURE, PeapodEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.8f)).build()
 	);
 
 	public static final EntityType<EMPeachEntity> EMPEACH = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "empeach"),
+			Identifier.of(ModID, "empeach"),
 			QuiltEntityTypeBuilder.<EMPeachEntity>create(SpawnGroup.CREATURE, EMPeachEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<PepperpultEntity> PEPPERPULT = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "pepperpult"),
+			Identifier.of(ModID, "pepperpult"),
 			QuiltEntityTypeBuilder.<PepperpultEntity>create(SpawnGroup.CREATURE, PepperpultEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
     public static final EntityType<FlamingpeaEntity> FLAMINGPEA = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "flamingpea"),
+            Identifier.of(ModID, "flamingpea"),
             QuiltEntityTypeBuilder.<FlamingpeaEntity>create(SpawnGroup.CREATURE, FlamingpeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
     );
 
 	public static final EntityType<EndurianEntity> ENDURIAN = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "endurian"),
+			Identifier.of(ModID, "endurian"),
 			QuiltEntityTypeBuilder.<EndurianEntity>create(SpawnGroup.CREATURE, EndurianEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<GoldLeafEntity> GOLDLEAF = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "goldleaf"),
+			Identifier.of(ModID, "goldleaf"),
 			QuiltEntityTypeBuilder.<GoldLeafEntity>create(SpawnGroup.CREATURE, GoldLeafEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<ShadowShroomEntity> SHADOWSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "shadowshroom"),
+			Identifier.of(ModID, "shadowshroom"),
 			QuiltEntityTypeBuilder.<ShadowShroomEntity>create(SpawnGroup.CREATURE, ShadowShroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<MissileToeEntity> MISSILETOE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "missiletoe"),
+			Identifier.of(ModID, "missiletoe"),
 			QuiltEntityTypeBuilder.<MissileToeEntity>create(SpawnGroup.CREATURE, MissileToeEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<ElectropeaEntity> ELECTROPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "electropea"),
+			Identifier.of(ModID, "electropea"),
 			QuiltEntityTypeBuilder.<ElectropeaEntity>create(SpawnGroup.CREATURE, ElectropeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<PeanutEntity> PEANUT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peanut"),
+			Identifier.of(ModID, "peanut"),
 			QuiltEntityTypeBuilder.<PeanutEntity>create(SpawnGroup.CREATURE, PeanutEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.95f)).build()
 	);
 
 
 	public static final EntityType<GhostpepperEntity> GHOSTPEPPER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "ghostpepper"),
+			Identifier.of(ModID, "ghostpepper"),
 			QuiltEntityTypeBuilder.<GhostpepperEntity>create(SpawnGroup.CREATURE, GhostpepperEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<OlivePitEntity> OLIVEPIT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "olivepit"),
+			Identifier.of(ModID, "olivepit"),
 			QuiltEntityTypeBuilder.<OlivePitEntity>create(SpawnGroup.CREATURE, OlivePitEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.125f)).build()
 	);
 	public static final EntityType<GloomVineEntity> GLOOMVINE = Registry.register((
 					Registries.ENTITY_TYPE),
-			new Identifier(ModID, "gloomvine"),
+			Identifier.of(ModID, "gloomvine"),
 			QuiltEntityTypeBuilder.<GloomVineEntity>create(SpawnGroup.CREATURE, GloomVineEntity::new).setDimensions(EntityDimensions.fixed(1f, 0.5f)).build()
 	);
 
 	public static final EntityType<HeavenlyPeachEntity> HEAVENLYPEACH = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "heavenlypeach"),
+			Identifier.of(ModID, "heavenlypeach"),
 			QuiltEntityTypeBuilder.<HeavenlyPeachEntity>create(SpawnGroup.CREATURE, HeavenlyPeachEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.4f)).build()
 	);
 
 	public static final EntityType<MagicshroomEntity> MAGICSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "magicshroom"),
+			Identifier.of(ModID, "magicshroom"),
 			QuiltEntityTypeBuilder.<MagicshroomEntity>create(SpawnGroup.CREATURE, MagicshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<MagichatEntity> MAGICHAT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "magichat"),
+			Identifier.of(ModID, "magichat"),
 			QuiltEntityTypeBuilder.<MagichatEntity>create(SpawnGroup.CREATURE, MagichatEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.6f)).build()
 	);
 
 	public static final EntityType<GambleshroomEntity> GAMBLESHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gambleshroom"),
+			Identifier.of(ModID, "gambleshroom"),
 			QuiltEntityTypeBuilder.<GambleshroomEntity>create(SpawnGroup.CREATURE, GambleshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<GamblehatEntity> GAMBLEHAT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gamblehat"),
+			Identifier.of(ModID, "gamblehat"),
 			QuiltEntityTypeBuilder.<GamblehatEntity>create(SpawnGroup.CREATURE, GamblehatEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.6f)).build()
 	);
 
 	public static final EntityType<SaucerEntity> SAUCER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "saucer"),
+			Identifier.of(ModID, "saucer"),
 			QuiltEntityTypeBuilder.<SaucerEntity>create(SpawnGroup.CREATURE, SaucerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.65f)).build()
 	);
 
 	public static final EntityType<DripphylleiaEntity> DRIPPHYLLEIA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dripphylleia"),
+			Identifier.of(ModID, "dripphylleia"),
 			QuiltEntityTypeBuilder.<DripphylleiaEntity>create(SpawnGroup.CREATURE, DripphylleiaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<PumpkinWitchEntity> PUMPKINWITCH = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pumpkinwitch"),
+			Identifier.of(ModID, "pumpkinwitch"),
 			QuiltEntityTypeBuilder.<PumpkinWitchEntity>create(SpawnGroup.CREATURE, PumpkinWitchEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<TulimpeterEntity> TULIMPETER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "tulimpeter"),
+			Identifier.of(ModID, "tulimpeter"),
 			QuiltEntityTypeBuilder.<TulimpeterEntity>create(SpawnGroup.CREATURE, TulimpeterEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<NarcissusEntity> NARCISSUS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "narcissus"),
+			Identifier.of(ModID, "narcissus"),
 			QuiltEntityTypeBuilder.<NarcissusEntity>create(SpawnGroup.CREATURE, NarcissusEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
 	public static final EntityType<ImpatyensEntity> IMPATYENS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "impatyens"),
+			Identifier.of(ModID, "impatyens"),
 			QuiltEntityTypeBuilder.<ImpatyensEntity>create(SpawnGroup.CREATURE, ImpatyensEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<HammerFlowerEntity> HAMMERFLOWER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hammerflower"),
+			Identifier.of(ModID, "hammerflower"),
 			QuiltEntityTypeBuilder.<HammerFlowerEntity>create(SpawnGroup.CREATURE, HammerFlowerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<MeteorHammerEntity> METEORHAMMER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "meteorhammer"),
+			Identifier.of(ModID, "meteorhammer"),
 			QuiltEntityTypeBuilder.<MeteorHammerEntity>create(SpawnGroup.CREATURE, MeteorHammerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<FrisbloomEntity> FRISBLOOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "frisbloom"),
+			Identifier.of(ModID, "frisbloom"),
 			QuiltEntityTypeBuilder.<FrisbloomEntity>create(SpawnGroup.CREATURE, FrisbloomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1f)).build()
 	);
 
 	public static final EntityType<BeautyshroomEntity> BEAUTYSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "beautyshroom"),
+			Identifier.of(ModID, "beautyshroom"),
 			QuiltEntityTypeBuilder.<BeautyshroomEntity>create(SpawnGroup.CREATURE, BeautyshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<CharmshroomEntity> CHARMSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "charmshroom"),
+			Identifier.of(ModID, "charmshroom"),
 			QuiltEntityTypeBuilder.<CharmshroomEntity>create(SpawnGroup.CREATURE, CharmshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 
 	public static final EntityType<SmackadamiaEntity> SMACKADAMIA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "smackadamia"),
+			Identifier.of(ModID, "smackadamia"),
 			QuiltEntityTypeBuilder.<SmackadamiaEntity>create(SpawnGroup.CREATURE, SmackadamiaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 2.65f)).build()
 	);
 
 	public static final EntityType<BombSeedlingEntity> BOMBSEEDLING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bombseedling"),
+			Identifier.of(ModID, "bombseedling"),
 			QuiltEntityTypeBuilder.<BombSeedlingEntity>create(SpawnGroup.CREATURE, BombSeedlingEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<OilyOliveEntity> OILYOLIVE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "oilyolive"),
+			Identifier.of(ModID, "oilyolive"),
 			QuiltEntityTypeBuilder.<OilyOliveEntity>create(SpawnGroup.CREATURE, OilyOliveEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<SpringPrincessEntity> SPRINGPRINCESS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "springprincess"),
+			Identifier.of(ModID, "springprincess"),
 			QuiltEntityTypeBuilder.<SpringPrincessEntity>create(SpawnGroup.CREATURE, SpringPrincessEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<ZapricotEntity> ZAPRICOT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zapricot"),
+			Identifier.of(ModID, "zapricot"),
 			QuiltEntityTypeBuilder.<ZapricotEntity>create(SpawnGroup.CREATURE, ZapricotEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<BananasaurusEntity> BANANASAURUS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bananasaurus"),
+			Identifier.of(ModID, "bananasaurus"),
 			QuiltEntityTypeBuilder.<BananasaurusEntity>create(SpawnGroup.CREATURE, BananasaurusEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.3f)).build()
 	);
 
 	public static final EntityType<SmooshroomEntity> SMOOSHROOM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "smooshroom"),
+			Identifier.of(ModID, "smooshroom"),
 			QuiltEntityTypeBuilder.<SmooshroomEntity>create(SpawnGroup.CREATURE, SmooshroomEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<NavyBeanEntity> NAVYBEAN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "navybean"),
+			Identifier.of(ModID, "navybean"),
 			QuiltEntityTypeBuilder.<NavyBeanEntity>create(SpawnGroup.CREATURE, NavyBeanEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<AdmiralNavyBeanEntity> ADMIRALNAVYBEAN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "admiralnavybean"),
+			Identifier.of(ModID, "admiralnavybean"),
 			QuiltEntityTypeBuilder.<AdmiralNavyBeanEntity>create(SpawnGroup.CREATURE, AdmiralNavyBeanEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<JumpingBeanEntity> JUMPINGBEAN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "jumpingbean"),
+			Identifier.of(ModID, "jumpingbean"),
 			QuiltEntityTypeBuilder.<JumpingBeanEntity>create(SpawnGroup.CREATURE, JumpingBeanEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<SunflowerSeedEntity> SUNFLOWERSEED = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sunflowerseed"),
+			Identifier.of(ModID, "sunflowerseed"),
 			QuiltEntityTypeBuilder.<SunflowerSeedEntity>create(SpawnGroup.CREATURE, SunflowerSeedEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<BellflowerEntity> BELLFLOWER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bellflower"),
+			Identifier.of(ModID, "bellflower"),
 			QuiltEntityTypeBuilder.<BellflowerEntity>create(SpawnGroup.CREATURE, BellflowerEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<KnightPeaEntity> KNIGHTPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "knightpea"),
+			Identifier.of(ModID, "knightpea"),
 			QuiltEntityTypeBuilder.<KnightPeaEntity>create(SpawnGroup.CREATURE, KnightPeaEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<NightcapEntity> NIGHTCAP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "nightcap"),
+			Identifier.of(ModID, "nightcap"),
 			QuiltEntityTypeBuilder.<NightcapEntity>create(SpawnGroup.CREATURE, NightcapEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 0.8f)).build()
 	);
 
 	public static final EntityType<DoomRoseEntity> DOOMROSE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "doomrose"),
+			Identifier.of(ModID, "doomrose"),
 			QuiltEntityTypeBuilder.<DoomRoseEntity>create(SpawnGroup.CREATURE, DoomRoseEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.25f)).build()
 	);
 
 	public static final EntityType<DogwoodEntity> DOGWOOD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dogwood"),
+			Identifier.of(ModID, "dogwood"),
 			QuiltEntityTypeBuilder.<DogwoodEntity>create(SpawnGroup.CREATURE, DogwoodEntity::new).setDimensions(EntityDimensions.fixed(0.99f, 1.55f)).build()
 	);
 
@@ -952,311 +952,311 @@ public class PvZEntity{
 
     public static final EntityType<ShootingPeaEntity> PEA = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "pea"),
+            Identifier.of(ModID, "pea"),
             QuiltEntityTypeBuilder.<ShootingPeaEntity>create(SpawnGroup.MISC, ShootingPeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
     );
 
 	public static final EntityType<SpitEntity> SPIT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "spit"),
+			Identifier.of(ModID, "spit"),
 			QuiltEntityTypeBuilder.<SpitEntity>create(SpawnGroup.MISC, SpitEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingSnowPeaEntity> SNOWPEAPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "snowpeaproj"),
+			Identifier.of(ModID, "snowpeaproj"),
 			QuiltEntityTypeBuilder.<ShootingSnowPeaEntity>create(SpawnGroup.MISC, ShootingSnowPeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingSnowqueenPeaEntity> SNOWQUEENPEAPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "snowqueenpeaproj"),
+			Identifier.of(ModID, "snowqueenpeaproj"),
 			QuiltEntityTypeBuilder.<ShootingSnowqueenPeaEntity>create(SpawnGroup.MISC, ShootingSnowqueenPeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<CoconutEntity> COCONUTPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "coconutproj"),
+			Identifier.of(ModID, "coconutproj"),
 			QuiltEntityTypeBuilder.<CoconutEntity>create(SpawnGroup.MISC, CoconutEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<PiercePeaEntity> PIERCEPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "piercepea"),
+			Identifier.of(ModID, "piercepea"),
 			QuiltEntityTypeBuilder.<PiercePeaEntity>create(SpawnGroup.MISC, PiercePeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<FirePiercePeaEntity> FIREPIERCEPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "firepiercepea"),
+			Identifier.of(ModID, "firepiercepea"),
 			QuiltEntityTypeBuilder.<FirePiercePeaEntity>create(SpawnGroup.MISC, FirePiercePeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingSpikeEntity> SPIKEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "spikeproj"),
+			Identifier.of(ModID, "spikeproj"),
 			QuiltEntityTypeBuilder.<ShootingSpikeEntity>create(SpawnGroup.MISC, ShootingSpikeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPowerSpikeEntity> POWERSPIKE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "elecspike"),
+			Identifier.of(ModID, "elecspike"),
 			QuiltEntityTypeBuilder.<ShootingPowerSpikeEntity>create(SpawnGroup.MISC, ShootingPowerSpikeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingSwordEntity> SWORDPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "swordproj"),
+			Identifier.of(ModID, "swordproj"),
 			QuiltEntityTypeBuilder.<ShootingSwordEntity>create(SpawnGroup.MISC, ShootingSwordEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPowerSwordEntity> POWERSWORDPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "powerswordproj"),
+			Identifier.of(ModID, "powerswordproj"),
 			QuiltEntityTypeBuilder.<ShootingPowerSwordEntity>create(SpawnGroup.MISC, ShootingPowerSwordEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPowerBeeSpikeEntity> POWERBEESPIKE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "powerbeespike"),
+			Identifier.of(ModID, "powerbeespike"),
 			QuiltEntityTypeBuilder.<ShootingPowerBeeSpikeEntity>create(SpawnGroup.MISC, ShootingPowerBeeSpikeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPowerIcespikeEntity> POWERICESPIKE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "powericespike"),
+			Identifier.of(ModID, "powericespike"),
 			QuiltEntityTypeBuilder.<ShootingPowerIcespikeEntity>create(SpawnGroup.MISC, ShootingPowerIcespikeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<RainbowBulletEntity> RAINBOWBULLET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "rainbowbullet"),
+			Identifier.of(ModID, "rainbowbullet"),
 			QuiltEntityTypeBuilder.<RainbowBulletEntity>create(SpawnGroup.MISC, RainbowBulletEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingBeeSpikeEntity> BEESPIKE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "beespike"),
+			Identifier.of(ModID, "beespike"),
 			QuiltEntityTypeBuilder.<ShootingBeeSpikeEntity>create(SpawnGroup.MISC, ShootingBeeSpikeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingIcespikeEntity> ICESPIKEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "icespikeproj"),
+			Identifier.of(ModID, "icespikeproj"),
 			QuiltEntityTypeBuilder.<ShootingIcespikeEntity>create(SpawnGroup.MISC, ShootingIcespikeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingFlamingPeaEntity> FIREPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "firepea"),
+			Identifier.of(ModID, "firepea"),
 			QuiltEntityTypeBuilder.<ShootingFlamingPeaEntity>create(SpawnGroup.MISC, ShootingFlamingPeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPlasmaPeaEntity> PLASMAPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "plasmapea"),
+			Identifier.of(ModID, "plasmapea"),
 			QuiltEntityTypeBuilder.<ShootingPlasmaPeaEntity>create(SpawnGroup.MISC, ShootingPlasmaPeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingElectricPeaEntity> ELECTRICPEA = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "electricpea"),
+			Identifier.of(ModID, "electricpea"),
 			QuiltEntityTypeBuilder.<ShootingElectricPeaEntity>create(SpawnGroup.MISC, ShootingElectricPeaEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
     public static final EntityType<SporeEntity> SPORE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "spore"),
+            Identifier.of(ModID, "spore"),
             QuiltEntityTypeBuilder.<SporeEntity>create(SpawnGroup.MISC, SporeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
     );
 
 	public static final EntityType<FumeEntity> FUME = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "fume"),
+			Identifier.of(ModID, "fume"),
 			QuiltEntityTypeBuilder.<FumeEntity>create(SpawnGroup.MISC, FumeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<BreezeEntity> BREEZE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "breeze"),
+			Identifier.of(ModID, "breeze"),
 			QuiltEntityTypeBuilder.<BreezeEntity>create(SpawnGroup.MISC, BreezeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<AcidFumeEntity> ACIDFUME = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "acidfume"),
+			Identifier.of(ModID, "acidfume"),
 			QuiltEntityTypeBuilder.<AcidFumeEntity>create(SpawnGroup.MISC, AcidFumeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<AcidSporeEntity> ACIDSPORE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "acidspore"),
+			Identifier.of(ModID, "acidspore"),
 			QuiltEntityTypeBuilder.<AcidSporeEntity>create(SpawnGroup.MISC, AcidSporeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingCabbageEntity> CABBAGE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cabbage"),
+			Identifier.of(ModID, "cabbage"),
 			QuiltEntityTypeBuilder.<ShootingCabbageEntity>create(SpawnGroup.MISC, ShootingCabbageEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingKernalEntity> KERNAL = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "kernal"),
+		Identifier.of(ModID, "kernal"),
 		QuiltEntityTypeBuilder.<ShootingKernalEntity>create(SpawnGroup.MISC, ShootingKernalEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingButterEntity> BUTTER = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "butter"),
+		Identifier.of(ModID, "butter"),
 		QuiltEntityTypeBuilder.<ShootingButterEntity>create(SpawnGroup.MISC, ShootingButterEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingMelonEntity> MELON = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "melon"),
+		Identifier.of(ModID, "melon"),
 		QuiltEntityTypeBuilder.<ShootingMelonEntity>create(SpawnGroup.MISC, ShootingMelonEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 	public static final EntityType<ShootingIceMelonEntity> ICEMELON = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "ice_melon"),
+		Identifier.of(ModID, "ice_melon"),
 		QuiltEntityTypeBuilder.<ShootingIceMelonEntity>create(SpawnGroup.MISC, ShootingIceMelonEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 	public static final EntityType<ShootingMelonSliceEntity> MELONSLICE = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "melon_slice"),
+		Identifier.of(ModID, "melon_slice"),
 		QuiltEntityTypeBuilder.<ShootingMelonSliceEntity>create(SpawnGroup.MISC, ShootingMelonSliceEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingIcebergEntity> ICEBERG = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "iceberg"),
+			Identifier.of(ModID, "iceberg"),
 			QuiltEntityTypeBuilder.<ShootingIcebergEntity>create(SpawnGroup.MISC, ShootingIcebergEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<SmooshProjEntity> SMOOSHPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "smooshproj"),
+			Identifier.of(ModID, "smooshproj"),
 			QuiltEntityTypeBuilder.<SmooshProjEntity>create(SpawnGroup.MISC, SmooshProjEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<MissileToeProjEntity> MISSILETOEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "missiletoeproj"),
+			Identifier.of(ModID, "missiletoeproj"),
 			QuiltEntityTypeBuilder.<MissileToeProjEntity>create(SpawnGroup.MISC, MissileToeProjEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<BananaProjEntity> BANANAPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bananaproj"),
+			Identifier.of(ModID, "bananaproj"),
 			QuiltEntityTypeBuilder.<BananaProjEntity>create(SpawnGroup.MISC, BananaProjEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<CheeseProjEntity> CHEESEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cheeseproj"),
+			Identifier.of(ModID, "cheeseproj"),
 			QuiltEntityTypeBuilder.<CheeseProjEntity>create(SpawnGroup.MISC, CheeseProjEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingBoomerangEntity> BOOMERANGPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "boomerangproj"),
+			Identifier.of(ModID, "boomerangproj"),
 			QuiltEntityTypeBuilder.<ShootingBoomerangEntity>create(SpawnGroup.MISC, ShootingBoomerangEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingCardEntity> CARDPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cardproj"),
+			Identifier.of(ModID, "cardproj"),
 			QuiltEntityTypeBuilder.<ShootingCardEntity>create(SpawnGroup.MISC, ShootingCardEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPepperEntity> PEPPERPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pepperproj"),
+			Identifier.of(ModID, "pepperproj"),
 			QuiltEntityTypeBuilder.<ShootingPepperEntity>create(SpawnGroup.MISC, ShootingPepperEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<SpringProjEntity> SPRINGPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "springproj"),
+			Identifier.of(ModID, "springproj"),
 			QuiltEntityTypeBuilder.<SpringProjEntity>create(SpawnGroup.MISC, SpringProjEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingPumpkinEntity> PUMPKINPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pumpkinproj"),
+			Identifier.of(ModID, "pumpkinproj"),
 			QuiltEntityTypeBuilder.<ShootingPumpkinEntity>create(SpawnGroup.MISC, ShootingPumpkinEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<HypnoProjEntity> HYPNOPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hypnoproj"),
+			Identifier.of(ModID, "hypnoproj"),
 			QuiltEntityTypeBuilder.<HypnoProjEntity>create(SpawnGroup.MISC, HypnoProjEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<BubbleEntity> BUBBLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bubble"),
+			Identifier.of(ModID, "bubble"),
 			QuiltEntityTypeBuilder.<BubbleEntity>create(SpawnGroup.MISC, BubbleEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ArmorBubbleEntity> ARMORBUBBLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "armorbubble"),
+			Identifier.of(ModID, "armorbubble"),
 			QuiltEntityTypeBuilder.<ArmorBubbleEntity>create(SpawnGroup.MISC, ArmorBubbleEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingDyeEntity> DYEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dyeproj"),
+			Identifier.of(ModID, "dyeproj"),
 			QuiltEntityTypeBuilder.<ShootingDyeEntity>create(SpawnGroup.MISC, ShootingDyeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<ShootingFrisbeeEntity> FRISBEEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "frisbeeproj"),
+			Identifier.of(ModID, "frisbeeproj"),
 			QuiltEntityTypeBuilder.<ShootingFrisbeeEntity>create(SpawnGroup.MISC, ShootingFrisbeeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<GroundBounceEntity> GROUNDBOUNCE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "groundbounce"),
+			Identifier.of(ModID, "groundbounce"),
 			QuiltEntityTypeBuilder.<GroundBounceEntity>create(SpawnGroup.MISC, GroundBounceEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<WallnutBowlingEntity> WALLNUTBOWLING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "wallnutbowling"),
+			Identifier.of(ModID, "wallnutbowling"),
 			QuiltEntityTypeBuilder.<WallnutBowlingEntity>create(SpawnGroup.MISC, WallnutBowlingEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<PeanutBowlingEntity> PEANUTBOWLING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peanutbowling"),
+			Identifier.of(ModID, "peanutbowling"),
 			QuiltEntityTypeBuilder.<PeanutBowlingEntity>create(SpawnGroup.MISC, PeanutBowlingEntity::new).setDimensions(EntityDimensions.fixed(2.5f,.5f)).build()
 	);
 
 	public static final EntityType<PeaNutProjEntity> PEANUTPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peanutproj"),
+			Identifier.of(ModID, "peanutproj"),
 			QuiltEntityTypeBuilder.<PeaNutProjEntity>create(SpawnGroup.MISC, PeaNutProjEntity::new).setDimensions(EntityDimensions.fixed(1f,.5f)).build()
 	);
 
 	public static final EntityType<JingleEntity> JINGLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "jingle"),
+			Identifier.of(ModID, "jingle"),
 			QuiltEntityTypeBuilder.<JingleEntity>create(SpawnGroup.MISC, JingleEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<PierceSporeEntity> PIERCESPORE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "piercespore"),
+			Identifier.of(ModID, "piercespore"),
 			QuiltEntityTypeBuilder.<PierceSporeEntity>create(SpawnGroup.MISC, PierceSporeEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
 	public static final EntityType<BarkEntity> BARK = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bark"),
+			Identifier.of(ModID, "bark"),
 			QuiltEntityTypeBuilder.<BarkEntity>create(SpawnGroup.MISC, BarkEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
@@ -1264,1357 +1264,1357 @@ public class PvZEntity{
 
     public static final EntityType<BrowncoatEntity> BROWNCOAT = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "browncoat"),
+            Identifier.of(ModID, "browncoat"),
             QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
     );
 	public static final EntityType<BrowncoatEntity> BROWNCOATHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "browncoat_hypnotized"),
+			Identifier.of(ModID, "browncoat_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> CONEHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "conehead"),
+			Identifier.of(ModID, "conehead"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> CONEHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "conehead_hypnotized"),
+			Identifier.of(ModID, "conehead_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> BUCKETHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "buckethead"),
+			Identifier.of(ModID, "buckethead"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> BUCKETHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "buckethead_hypnotized"),
+			Identifier.of(ModID, "buckethead_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<BrowncoatEntity> SUMMERBASIC = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "summerbasic"),
+			Identifier.of(ModID, "summerbasic"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SUMMERBASICHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "summerbasic_hypnotized"),
+			Identifier.of(ModID, "summerbasic_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SUMMERCONEHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "summerconehead"),
+			Identifier.of(ModID, "summerconehead"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SUMMERCONEHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "summerconehead_hypnotized"),
+			Identifier.of(ModID, "summerconehead_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SUMMERBUCKETHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "summerbuckethead"),
+			Identifier.of(ModID, "summerbuckethead"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SUMMERBUCKETHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "summerbuckethead_hypnotized"),
+			Identifier.of(ModID, "summerbuckethead_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FlagSummerEntity> FLAGSUMMER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagsummer"),
+			Identifier.of(ModID, "flagsummer"),
 			QuiltEntityTypeBuilder.<FlagSummerEntity>create(SpawnGroup.MONSTER, FlagSummerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<FlagSummerEntity> FLAGSUMMERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagsummer_hypnotized"),
+			Identifier.of(ModID, "flagsummer_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagSummerEntity>create(SpawnGroup.CREATURE, FlagSummerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SCREENDOOR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "screendoor"),
+			Identifier.of(ModID, "screendoor"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> SCREENDOORHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "screendoor_hypnotized"),
+			Identifier.of(ModID, "screendoor_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> BRICKHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "brickhead"),
+			Identifier.of(ModID, "brickhead"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> BRICKHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "brickhead_hypnotized"),
+			Identifier.of(ModID, "brickhead_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<MummyEntity> MUMMY = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummy"),
+			Identifier.of(ModID, "mummy"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> MUMMYHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummy_hypnotized"),
+			Identifier.of(ModID, "mummy_hypnotized"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagMummyEntity> FLAGMUMMY = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagmummy"),
+			Identifier.of(ModID, "flagmummy"),
 			QuiltEntityTypeBuilder.<FlagMummyEntity>create(SpawnGroup.MONSTER, FlagMummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagMummyEntity> FLAGMUMMYHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagmummy_hypnotized"),
+			Identifier.of(ModID, "flagmummy_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagMummyEntity>create(SpawnGroup.MONSTER, FlagMummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> MUMMYCONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummycone"),
+			Identifier.of(ModID, "mummycone"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> MUMMYCONEHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummycone_hypnotized"),
+			Identifier.of(ModID, "mummycone_hypnotized"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> MUMMYBUCKET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummybucket"),
+			Identifier.of(ModID, "mummybucket"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> MUMMYBUCKETHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummybucket_hypnotized"),
+			Identifier.of(ModID, "mummybucket_hypnotized"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> TOMBRAISER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "tombraiser"),
+			Identifier.of(ModID, "tombraiser"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> TOMBRAISERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "tombraiser_hypnotized"),
+			Identifier.of(ModID, "tombraiser_hypnotized"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> PYRAMIDHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pyramidhead"),
+			Identifier.of(ModID, "pyramidhead"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MummyEntity> PYRAMIDHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pyramidhead_hypnotized"),
+			Identifier.of(ModID, "pyramidhead_hypnotized"),
 			QuiltEntityTypeBuilder.<MummyEntity>create(SpawnGroup.MONSTER, MummyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PharaohEntity> UNDYINGPHARAOH = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "undyingpharaoh"),
+			Identifier.of(ModID, "undyingpharaoh"),
 			QuiltEntityTypeBuilder.<PharaohEntity>create(SpawnGroup.MONSTER, PharaohEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PharaohEntity> UNDYINGPHARAOHHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "undyingpharaoh_hypnotized"),
+			Identifier.of(ModID, "undyingpharaoh_hypnotized"),
 			QuiltEntityTypeBuilder.<PharaohEntity>create(SpawnGroup.MONSTER, PharaohEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PharaohEntity> PHARAOH = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pharaoh"),
+			Identifier.of(ModID, "pharaoh"),
 			QuiltEntityTypeBuilder.<PharaohEntity>create(SpawnGroup.MONSTER, PharaohEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PharaohEntity> PHARAOHHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pharaoh_hypnotized"),
+			Identifier.of(ModID, "pharaoh_hypnotized"),
 			QuiltEntityTypeBuilder.<PharaohEntity>create(SpawnGroup.MONSTER, PharaohEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<ExplorerEntity> EXPLORER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "explorer"),
+			Identifier.of(ModID, "explorer"),
 			QuiltEntityTypeBuilder.<ExplorerEntity>create(SpawnGroup.MONSTER, ExplorerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<ExplorerEntity> EXPLORERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "explorer_hypnotized"),
+			Identifier.of(ModID, "explorer_hypnotized"),
 			QuiltEntityTypeBuilder.<ExplorerEntity>create(SpawnGroup.MONSTER, ExplorerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<ExplorerEntity> TORCHLIGHT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "torchlight"),
+			Identifier.of(ModID, "torchlight"),
 			QuiltEntityTypeBuilder.<ExplorerEntity>create(SpawnGroup.MONSTER, ExplorerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<ExplorerEntity> TORCHLIGHTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "torchlight_hypnotized"),
+			Identifier.of(ModID, "torchlight_hypnotized"),
 			QuiltEntityTypeBuilder.<ExplorerEntity>create(SpawnGroup.MONSTER, ExplorerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PeasantEntity> PEASANT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasant"),
+			Identifier.of(ModID, "peasant"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasant_hypnotized"),
+			Identifier.of(ModID, "peasant_hypnotized"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagPeasantEntity> FLAGPEASANT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagpeasant"),
+			Identifier.of(ModID, "flagpeasant"),
 			QuiltEntityTypeBuilder.<FlagPeasantEntity>create(SpawnGroup.MONSTER, FlagPeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagPeasantEntity> FLAGPEASANTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagpeasant_hypnotized"),
+			Identifier.of(ModID, "flagpeasant_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagPeasantEntity>create(SpawnGroup.MONSTER, FlagPeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTCONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasantcone"),
+			Identifier.of(ModID, "peasantcone"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTCONEHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasantcone_hypnotized"),
+			Identifier.of(ModID, "peasantcone_hypnotized"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTBUCKET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasantbucket"),
+			Identifier.of(ModID, "peasantbucket"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTBUCKETHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasantbucket_hypnotized"),
+			Identifier.of(ModID, "peasantbucket_hypnotized"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTKNIGHT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasantknight"),
+			Identifier.of(ModID, "peasantknight"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PeasantEntity> PEASANTKNIGHTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "peasantknight_hypnotized"),
+			Identifier.of(ModID, "peasantknight_hypnotized"),
 			QuiltEntityTypeBuilder.<PeasantEntity>create(SpawnGroup.MONSTER, PeasantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FutureZombieEntity> FUTUREZOMBIE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futurezombie"),
+			Identifier.of(ModID, "futurezombie"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> FUTUREHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futurezombie_hypnotized"),
+			Identifier.of(ModID, "futurezombie_hypnotized"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagFutureEntity> FLAGFUTURE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagfuture"),
+			Identifier.of(ModID, "flagfuture"),
 			QuiltEntityTypeBuilder.<FlagFutureEntity>create(SpawnGroup.MONSTER, FlagFutureEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagFutureEntity> FLAGFUTUREHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagfuture_hypnotized"),
+			Identifier.of(ModID, "flagfuture_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagFutureEntity>create(SpawnGroup.MONSTER, FlagFutureEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> FUTURECONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futurecone"),
+			Identifier.of(ModID, "futurecone"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> FUTURECONEHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futurecone_hypnotized"),
+			Identifier.of(ModID, "futurecone_hypnotized"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> FUTUREBUCKET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futurebucket"),
+			Identifier.of(ModID, "futurebucket"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> FUTUREBUCKETHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futurebucket_hypnotized"),
+			Identifier.of(ModID, "futurebucket_hypnotized"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> HOLOHEAD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "holohead"),
+			Identifier.of(ModID, "holohead"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FutureZombieEntity> HOLOHEADHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "holohead_hypnotized"),
+			Identifier.of(ModID, "holohead_hypnotized"),
 			QuiltEntityTypeBuilder.<FutureZombieEntity>create(SpawnGroup.MONSTER, FutureZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PokerEntity> POKER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerzombie"),
+			Identifier.of(ModID, "pokerzombie"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerzombie_hypnotized"),
+			Identifier.of(ModID, "pokerzombie_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlagPokerEntity> FLAGPOKER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagpoker"),
+			Identifier.of(ModID, "flagpoker"),
 			QuiltEntityTypeBuilder.<FlagPokerEntity>create(SpawnGroup.MONSTER, FlagPokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<FlagPokerEntity> FLAGPOKERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagpoker_hypnotized"),
+			Identifier.of(ModID, "flagpoker_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagPokerEntity>create(SpawnGroup.CREATURE, FlagPokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERCONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokercone"),
+			Identifier.of(ModID, "pokercone"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERCONEHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokercone_hypnotized"),
+			Identifier.of(ModID, "pokercone_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERBUCKET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerbucket"),
+			Identifier.of(ModID, "pokerbucket"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERBUCKETHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerbucket_hypnotized"),
+			Identifier.of(ModID, "pokerbucket_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PokerEntity> POKERPAWN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerpawn"),
+			Identifier.of(ModID, "pokerpawn"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERPAWNHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerpawn_hypnotized"),
+			Identifier.of(ModID, "pokerpawn_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERKNIGHT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerknight"),
+			Identifier.of(ModID, "pokerknight"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERKNIGHTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerknight_hypnotized"),
+			Identifier.of(ModID, "pokerknight_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERTOWER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokertower"),
+			Identifier.of(ModID, "pokertower"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERTOWERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokertower_hypnotized"),
+			Identifier.of(ModID, "pokertower_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERBISHOP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerbishop"),
+			Identifier.of(ModID, "pokerbishop"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PokerEntity> POKERBISHOPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerbishop_hypnotized"),
+			Identifier.of(ModID, "pokerbishop_hypnotized"),
 			QuiltEntityTypeBuilder.<PokerEntity>create(SpawnGroup.MONSTER, PokerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<SargeantEntity> SARGEANT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeant"),
+			Identifier.of(ModID, "sergeant"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeant_hypnotized"),
+			Identifier.of(ModID, "sergeant_hypnotized"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTBOWL = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantcone"),
+			Identifier.of(ModID, "sergeantcone"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTBOWLHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantcone_hypnotized"),
+			Identifier.of(ModID, "sergeantcone_hypnotized"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTHELMET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantbucket"),
+			Identifier.of(ModID, "sergeantbucket"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTHELMETHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantbucket_hypnotized"),
+			Identifier.of(ModID, "sergeantbucket_hypnotized"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTSHIELD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantshield"),
+			Identifier.of(ModID, "sergeantshield"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SargeantEntity> SARGEANTSHIELDHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantshield_hypnotized"),
+			Identifier.of(ModID, "sergeantshield_hypnotized"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FlagSargeantEntity> FLAGSARGEANT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagsergeant"),
+			Identifier.of(ModID, "flagsergeant"),
 			QuiltEntityTypeBuilder.<FlagSargeantEntity>create(SpawnGroup.MONSTER, FlagSargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<FlagSargeantEntity> FLAGSARGEANTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagsergeant_hypnotized"),
+			Identifier.of(ModID, "flagsergeant_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagSargeantEntity>create(SpawnGroup.MONSTER, FlagSargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PumpkinZombieEntity> PUMPKINZOMBIE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pumpkinzombie"),
+			Identifier.of(ModID, "pumpkinzombie"),
 			QuiltEntityTypeBuilder.<PumpkinZombieEntity>create(SpawnGroup.MONSTER, PumpkinZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<PumpkinZombieEntity> PUMPKINZOMBIEHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pumpkinzombie_hypnotized"),
+			Identifier.of(ModID, "pumpkinzombie_hypnotized"),
 			QuiltEntityTypeBuilder.<PumpkinZombieEntity>create(SpawnGroup.MONSTER, PumpkinZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<PlasticHelmetEntity> CONEHEADGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "coneheadgear"),
+			Identifier.of(ModID, "coneheadgear"),
 			QuiltEntityTypeBuilder.<PlasticHelmetEntity>create(SpawnGroup.MONSTER, PlasticHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<PlasticHelmetEntity> POKERPAWNGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerpawngear"),
+			Identifier.of(ModID, "pokerpawngear"),
 			QuiltEntityTypeBuilder.<PlasticHelmetEntity>create(SpawnGroup.MONSTER, PlasticHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<PlasticHelmetEntity> POKERKNIGHTGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerknightgear"),
+			Identifier.of(ModID, "pokerknightgear"),
 			QuiltEntityTypeBuilder.<PlasticHelmetEntity>create(SpawnGroup.MONSTER, PlasticHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<PlasticHelmetEntity> POKERTOWERGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokertowergear"),
+			Identifier.of(ModID, "pokertowergear"),
 			QuiltEntityTypeBuilder.<PlasticHelmetEntity>create(SpawnGroup.MONSTER, PlasticHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<PlasticHelmetEntity> POKERBISHOPGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pokerbishopgear"),
+			Identifier.of(ModID, "pokerbishopgear"),
 			QuiltEntityTypeBuilder.<PlasticHelmetEntity>create(SpawnGroup.MONSTER, PlasticHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<PlasticHelmetEntity> KINGPIECEGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "kingpiecegear"),
+			Identifier.of(ModID, "kingpiecegear"),
 			QuiltEntityTypeBuilder.<PlasticHelmetEntity>create(SpawnGroup.MONSTER, PlasticHelmetEntity::new).setDimensions(EntityDimensions.fixed(1f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> BUCKETGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bucketheadgear"),
+			Identifier.of(ModID, "bucketheadgear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> HELMETGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "helmetgear"),
+			Identifier.of(ModID, "helmetgear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.7f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> KNIGHTGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "knightgear"),
+			Identifier.of(ModID, "knightgear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> SOLDIERGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "soldiergear"),
+			Identifier.of(ModID, "soldiergear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<StoneHelmetEntity> PYRAMIDGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pyramidgear"),
+			Identifier.of(ModID, "pyramidgear"),
 			QuiltEntityTypeBuilder.<StoneHelmetEntity>create(SpawnGroup.MONSTER, StoneHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<StoneHelmetEntity> TOWERGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "towergear"),
+			Identifier.of(ModID, "towergear"),
 			QuiltEntityTypeBuilder.<StoneHelmetEntity>create(SpawnGroup.MONSTER, StoneHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<StoneHelmetEntity> BOWLGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bowlgear"),
+			Identifier.of(ModID, "bowlgear"),
 			QuiltEntityTypeBuilder.<StoneHelmetEntity>create(SpawnGroup.MONSTER, StoneHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<StoneHelmetEntity> BRICKGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "brickgear"),
+			Identifier.of(ModID, "brickgear"),
 			QuiltEntityTypeBuilder.<StoneHelmetEntity>create(SpawnGroup.MONSTER, StoneHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<CrystalHelmetEntity> HOLOGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hologear"),
+			Identifier.of(ModID, "hologear"),
 			QuiltEntityTypeBuilder.<CrystalHelmetEntity>create(SpawnGroup.MONSTER, CrystalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<CrystalHelmetEntity> CRYSTALSHOEGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "crystalshoegear"),
+			Identifier.of(ModID, "crystalshoegear"),
 			QuiltEntityTypeBuilder.<CrystalHelmetEntity>create(SpawnGroup.MONSTER, CrystalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<StoneHelmetEntity> SARCOPHAGUS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sarcophagus"),
+			Identifier.of(ModID, "sarcophagus"),
 			QuiltEntityTypeBuilder.<StoneHelmetEntity>create(SpawnGroup.MONSTER, StoneHelmetEntity::new).setDimensions(EntityDimensions.fixed(1f, 2.25f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> MEDALLIONGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "medalliongear"),
+			Identifier.of(ModID, "medalliongear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> FOOTBALLGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "footballgear"),
+			Identifier.of(ModID, "footballgear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> BERSERKERGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "berserkergear"),
+			Identifier.of(ModID, "berserkergear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 
 	public static final EntityType<MetalHelmetEntity> DEFENSIVEENDGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "defensiveendgear"),
+			Identifier.of(ModID, "defensiveendgear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(1.425f, 3.95f)).build()
 	);
 	public static final EntityType<MetalShieldEntity> SCREENDOORSHIELD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "screendoorshield"),
+			Identifier.of(ModID, "screendoorshield"),
 			QuiltEntityTypeBuilder.<MetalShieldEntity>create(SpawnGroup.MONSTER, MetalShieldEntity::new).setDimensions(EntityDimensions.fixed(0.85f, 1.8f)).build()
 	);
 	public static final EntityType<MetalShieldEntity> SERGEANTSHIELDGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sergeantshieldgear"),
+			Identifier.of(ModID, "sergeantshieldgear"),
 			QuiltEntityTypeBuilder.<MetalShieldEntity>create(SpawnGroup.MONSTER, MetalShieldEntity::new).setDimensions(EntityDimensions.fixed(0.85f, 1.8f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> BLASTRONAUTGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blastronautgear"),
+			Identifier.of(ModID, "blastronautgear"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.9f, 2.55f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> BASSGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bassprop"),
+			Identifier.of(ModID, "bassprop"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 	public static final EntityType<MetalHelmetEntity> SCRAPIMPGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scrapimpprop"),
+			Identifier.of(ModID, "scrapimpprop"),
 			QuiltEntityTypeBuilder.<MetalHelmetEntity>create(SpawnGroup.MONSTER, MetalHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 
 	public static final EntityType<PlantHelmetEntity> PUMPKINGEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pumpkingear"),
+			Identifier.of(ModID, "pumpkingear"),
 			QuiltEntityTypeBuilder.<PlantHelmetEntity>create(SpawnGroup.MONSTER, PlantHelmetEntity::new).setDimensions(EntityDimensions.fixed(0.8f, 1.95f)).build()
 	);
 
 	public static final EntityType<MetalHelmetProjEntity> METALHELMETPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(MOD_ID, "metalhelmetprojentity"),
+			Identifier.of(MOD_ID, "metalhelmetprojentity"),
 			QuiltEntityTypeBuilder.<MetalHelmetProjEntity>create(SpawnGroup.MONSTER, MetalHelmetProjEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 
     public static final EntityType<FlagzombieEntity> FLAGZOMBIE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "flagzombie"),
+            Identifier.of(ModID, "flagzombie"),
             QuiltEntityTypeBuilder.<FlagzombieEntity>create(SpawnGroup.MONSTER, FlagzombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
     );
 	public static final EntityType<FlagzombieEntity> FLAGZOMBIE_G = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagzombie_g"),
+			Identifier.of(ModID, "flagzombie_g"),
 			QuiltEntityTypeBuilder.<FlagzombieEntity>create(SpawnGroup.MONSTER, FlagzombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
 	public static final EntityType<FlagzombieEntity> FLAGZOMBIE_T = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagzombie_t"),
+			Identifier.of(ModID, "flagzombie_t"),
 			QuiltEntityTypeBuilder.<FlagzombieEntity>create(SpawnGroup.MONSTER, FlagzombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
     public static final EntityType<FlagzombieEntity> FLAGZOMBIEHYPNO = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "flagzombie_hypnotized"),
+            Identifier.of(ModID, "flagzombie_hypnotized"),
             QuiltEntityTypeBuilder.<FlagzombieEntity>create(SpawnGroup.CREATURE, FlagzombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
     );
 	public static final EntityType<FlagzombieEntity> FLAGZOMBIE_GHYPNO= Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagzombie_g_hypnotized"),
+			Identifier.of(ModID, "flagzombie_g_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagzombieEntity>create(SpawnGroup.CREATURE, FlagzombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<FlagzombieEntity> FLAGZOMBIE_THYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flagzombie_t_hypnotized"),
+			Identifier.of(ModID, "flagzombie_t_hypnotized"),
 			QuiltEntityTypeBuilder.<FlagzombieEntity>create(SpawnGroup.CREATURE, FlagzombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
 
     public static final EntityType<PoleVaultingEntity> POLEVAULTING = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "polevaulting"),
+            Identifier.of(ModID, "polevaulting"),
             QuiltEntityTypeBuilder.<PoleVaultingEntity>create(SpawnGroup.MONSTER, PoleVaultingEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
     );
 	public static final EntityType<PoleVaultingEntity> POLEVAULTINGHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "polevaulting_hypnotized"),
+			Identifier.of(ModID, "polevaulting_hypnotized"),
 			QuiltEntityTypeBuilder.<PoleVaultingEntity>create(SpawnGroup.MONSTER, PoleVaultingEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
     public static final EntityType<NewspaperEntity> NEWSPAPER = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "newspaper"),
+            Identifier.of(ModID, "newspaper"),
             QuiltEntityTypeBuilder.<NewspaperEntity>create(SpawnGroup.MONSTER, NewspaperEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
     );
 	public static final EntityType<NewspaperEntity> NEWSPAPERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "newspaper_hypnotized"),
+			Identifier.of(ModID, "newspaper_hypnotized"),
 			QuiltEntityTypeBuilder.<NewspaperEntity>create(SpawnGroup.MONSTER, NewspaperEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<NewspaperShieldEntity> NEWSPAPERSHIELD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "newspapershield"),
+			Identifier.of(ModID, "newspapershield"),
 			QuiltEntityTypeBuilder.<NewspaperShieldEntity>create(SpawnGroup.MONSTER, NewspaperShieldEntity::new).setDimensions(EntityDimensions.fixed(0.85f, 1.8f)).build()
 	);
 
 	public static final EntityType<NewspaperEntity> SUNDAYEDITION = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sundayedition"),
+			Identifier.of(ModID, "sundayedition"),
 			QuiltEntityTypeBuilder.<NewspaperEntity>create(SpawnGroup.MONSTER, NewspaperEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<NewspaperEntity> SUNDAYEDITIONHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sundayedition_hypnotized"),
+			Identifier.of(ModID, "sundayedition_hypnotized"),
 			QuiltEntityTypeBuilder.<NewspaperEntity>create(SpawnGroup.MONSTER, NewspaperEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<NewspaperShieldEntity> SUNDAYEDITIONSHIELD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sundayeditionshield"),
+			Identifier.of(ModID, "sundayeditionshield"),
 			QuiltEntityTypeBuilder.<NewspaperShieldEntity>create(SpawnGroup.MONSTER, NewspaperShieldEntity::new).setDimensions(EntityDimensions.fixed(0.85f, 1.8f)).build()
 	);
 
 	public static final EntityType<SargeantEntity> BOOKBURNER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bookburner"),
+			Identifier.of(ModID, "bookburner"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<SargeantEntity> BOOKBURNERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bookburner_hypnotized"),
+			Identifier.of(ModID, "bookburner_hypnotized"),
 			QuiltEntityTypeBuilder.<SargeantEntity>create(SpawnGroup.MONSTER, SargeantEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<NewspaperShieldEntity> BOOKSHIELD = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bookshield"),
+			Identifier.of(ModID, "bookshield"),
 			QuiltEntityTypeBuilder.<NewspaperShieldEntity>create(SpawnGroup.MONSTER, NewspaperShieldEntity::new).setDimensions(EntityDimensions.fixed(0.85f, 1.8f)).build()
 	);
 
 	public static final EntityType<FlamingBookEntity> FLAMINGBOOK = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "flamingbook"),
+			Identifier.of(ModID, "flamingbook"),
 			QuiltEntityTypeBuilder.<FlamingBookEntity>create(SpawnGroup.MONSTER, FlamingBookEntity::new).setDimensions(EntityDimensions.fixed(1f, 1f)).build()
 	);
 
     public static final EntityType<FootballEntity> FOOTBALL = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "football"),
+            Identifier.of(ModID, "football"),
             QuiltEntityTypeBuilder.<FootballEntity>create(SpawnGroup.MONSTER, FootballEntity::new).setDimensions(EntityDimensions.fixed(0.6f, 1.85f)).build()
     );
 	public static final EntityType<FootballEntity> BERSERKER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "berserker"),
+			Identifier.of(ModID, "berserker"),
 			QuiltEntityTypeBuilder.<FootballEntity>create(SpawnGroup.MONSTER, FootballEntity::new).setDimensions(EntityDimensions.fixed(0.6f, 1.85f)).build()
 	);
 	public static final EntityType<FootballEntity> FOOTBALLHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "football_hypnotized"),
+			Identifier.of(ModID, "football_hypnotized"),
 			QuiltEntityTypeBuilder.<FootballEntity>create(SpawnGroup.MONSTER, FootballEntity::new).setDimensions(EntityDimensions.fixed(0.6f, 1.85f)).build()
 	);
 	public static final EntityType<FootballEntity> BERSERKERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "berserker_hypnotized"),
+			Identifier.of(ModID, "berserker_hypnotized"),
 			QuiltEntityTypeBuilder.<FootballEntity>create(SpawnGroup.MONSTER, FootballEntity::new).setDimensions(EntityDimensions.fixed(0.6f, 1.85f)).build()
 	);
 
 	public static final EntityType<BrowncoatEntity> TRASHCAN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "trashcan"),
+			Identifier.of(ModID, "trashcan"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<BrowncoatEntity> TRASHCANHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "trashcan_hypnotized"),
+			Identifier.of(ModID, "trashcan_hypnotized"),
 			QuiltEntityTypeBuilder.<BrowncoatEntity>create(SpawnGroup.MONSTER, BrowncoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<MetalObstacleEntity> TRASHCANBIN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "trashcanbin"),
+			Identifier.of(ModID, "trashcanbin"),
 			QuiltEntityTypeBuilder.<MetalObstacleEntity>create(SpawnGroup.MONSTER, MetalObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.8f)).build()
 	);
 
     public static final EntityType<DancingZombieEntity> DANCINGZOMBIE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "dancing_zombie"),
+            Identifier.of(ModID, "dancing_zombie"),
             QuiltEntityTypeBuilder.<DancingZombieEntity>create(SpawnGroup.MONSTER, DancingZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
     );
 
 	public static final EntityType<DancingZombieEntity> DANCINGZOMBIEHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dancing_zombie_hypnotized"),
+			Identifier.of(ModID, "dancing_zombie_hypnotized"),
 			QuiltEntityTypeBuilder.<DancingZombieEntity>create(SpawnGroup.MONSTER, DancingZombieEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
     public static final EntityType<BackupDancerEntity> BACKUPDANCER = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "backup_dancer"),
+            Identifier.of(ModID, "backup_dancer"),
             QuiltEntityTypeBuilder.<BackupDancerEntity>create(SpawnGroup.MONSTER, BackupDancerEntity::new).setDimensions(EntityDimensions.fixed(0.6f, 1.85f)).build()
     );
     public static final EntityType<BackupDancerEntity> BACKUPDANCERHYPNO = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "backup_dancer_hypnotized"),
+            Identifier.of(ModID, "backup_dancer_hypnotized"),
             QuiltEntityTypeBuilder.<BackupDancerEntity>create(SpawnGroup.CREATURE, BackupDancerEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
     );
 
 	public static final EntityType<SnorkelEntity> SNORKEL = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "snorkel"),
+			Identifier.of(ModID, "snorkel"),
 			QuiltEntityTypeBuilder.<SnorkelEntity>create(SpawnGroup.MONSTER, SnorkelEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<SnorkelEntity> SNORKELHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "snorkel_hypnotized"),
+			Identifier.of(ModID, "snorkel_hypnotized"),
 			QuiltEntityTypeBuilder.<SnorkelEntity>create(SpawnGroup.MONSTER, SnorkelEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
 	public static final EntityType<DolphinRiderEntity> DOLPHINRIDER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dolphinrider"),
+			Identifier.of(ModID, "dolphinrider"),
 			QuiltEntityTypeBuilder.<DolphinRiderEntity>create(SpawnGroup.MONSTER, DolphinRiderEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<DolphinRiderEntity> DOLPHINRIDERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "dolphinrider_hypnotized"),
+			Identifier.of(ModID, "dolphinrider_hypnotized"),
 			QuiltEntityTypeBuilder.<DolphinRiderEntity>create(SpawnGroup.MONSTER, DolphinRiderEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
 	public static final EntityType<ZomboniEntity> ZOMBONI = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomboni"),
+			Identifier.of(ModID, "zomboni"),
 			QuiltEntityTypeBuilder.<ZomboniEntity>create(SpawnGroup.MONSTER, ZomboniEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<ZomboniEntity> ZOMBONIHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomboni_hypnotized"),
+			Identifier.of(ModID, "zomboni_hypnotized"),
 			QuiltEntityTypeBuilder.<ZomboniEntity>create(SpawnGroup.MONSTER, ZomboniEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
 	public static final EntityType<MetalVehicleEntity> ZOMBONIVEHICLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zombonivehicle"),
+			Identifier.of(ModID, "zombonivehicle"),
 			QuiltEntityTypeBuilder.<MetalVehicleEntity>create(SpawnGroup.MONSTER, MetalVehicleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.3f)).build()
 	);
 
 	public static final EntityType<BobsledRiderEntity> BOBSLED = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bobsled"),
+			Identifier.of(ModID, "bobsled"),
 			QuiltEntityTypeBuilder.<BobsledRiderEntity>create(SpawnGroup.MONSTER, BobsledRiderEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 	public static final EntityType<BobsledRiderEntity> BOBSLEDHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bobsled_hypnotized"),
+			Identifier.of(ModID, "bobsled_hypnotized"),
 			QuiltEntityTypeBuilder.<BobsledRiderEntity>create(SpawnGroup.MONSTER, BobsledRiderEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.95f)).build()
 	);
 
 	public static final EntityType<MetalVehicleEntity> BOBSLEDVEHICLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bobsledvehicle"),
+			Identifier.of(ModID, "bobsledvehicle"),
 			QuiltEntityTypeBuilder.<MetalVehicleEntity>create(SpawnGroup.MONSTER, MetalVehicleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.3f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> GARGANTUAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gargantuar"),
+			Identifier.of(ModID, "gargantuar"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> GARGANTUARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gargantuar_hypnotized"),
+			Identifier.of(ModID, "gargantuar_hypnotized"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> MUMMYGARGANTUAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummygargantuar"),
+			Identifier.of(ModID, "mummygargantuar"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> MUMMYGARGANTUARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummygargantuar_hypnotized"),
+			Identifier.of(ModID, "mummygargantuar_hypnotized"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEEND = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "defensiveend"),
+			Identifier.of(ModID, "defensiveend"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEENDHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "defensiveend_hypnotized"),
+			Identifier.of(ModID, "defensiveend_hypnotized"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEEND_NEWYEAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "defensiveend_newyear"),
+			Identifier.of(ModID, "defensiveend_newyear"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> DEFENSIVEEND_NEWYEARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "defensiveend_newyear_hypnotized"),
+			Identifier.of(ModID, "defensiveend_newyear_hypnotized"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.85f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> CURSEDGARGOLITH = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cursedgargolith"),
+			Identifier.of(ModID, "cursedgargolith"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> CURSEDGARGOLITHHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cursedgargolith_hypnotized"),
+			Identifier.of(ModID, "cursedgargolith_hypnotized"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<RockObstacleEntity> GARGOLITHOBSTACLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "gargolithobst"),
+			Identifier.of(ModID, "gargolithobst"),
 			QuiltEntityTypeBuilder.<RockObstacleEntity>create(SpawnGroup.MONSTER, RockObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.95f, 3.95f)).build()
 	);
 
 	public static final EntityType<ScrapMechEntity> SCRAPMECH = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scrapmech"),
+			Identifier.of(ModID, "scrapmech"),
 			QuiltEntityTypeBuilder.<ScrapMechEntity>create(SpawnGroup.MONSTER, ScrapMechEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<ScrapMechEntity> SCRAPMECHHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scrapmech_hypnotized"),
+			Identifier.of(ModID, "scrapmech_hypnotized"),
 			QuiltEntityTypeBuilder.<ScrapMechEntity>create(SpawnGroup.CREATURE, ScrapMechEntity::new).setDimensions(EntityDimensions.fixed(1.125f, 3.95f)).build()
 	);
 
 	public static final EntityType<LaserEntity> LASER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "laser"),
+			Identifier.of(ModID, "laser"),
 			QuiltEntityTypeBuilder.<LaserEntity>create(SpawnGroup.MONSTER, LaserEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 
 	public static final EntityType<ImpEntity> IMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "imp"),
+			Identifier.of(ModID, "imp"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> IMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "imp_hypnotized"),
+			Identifier.of(ModID, "imp_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> MUMMYIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummyimp"),
+			Identifier.of(ModID, "mummyimp"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> MUMMYIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mummyimp_hypnotized"),
+			Identifier.of(ModID, "mummyimp_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> SCRAPIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scrapimp"),
+			Identifier.of(ModID, "scrapimp"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> SCRAPIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scrapimp_hypnotized"),
+			Identifier.of(ModID, "scrapimp_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> IMPTHROWER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "impthrower"),
+			Identifier.of(ModID, "impthrower"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> IMPTHROWERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "impthrower_hypnotized"),
+			Identifier.of(ModID, "impthrower_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> IMPDRAGON = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "impdragon"),
+			Identifier.of(ModID, "impdragon"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> IMPDRAGONHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "impdragon_hypnotized"),
+			Identifier.of(ModID, "impdragon_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<SuperFanImpEntity> SUPERFANIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "superfanimp"),
+			Identifier.of(ModID, "superfanimp"),
 			QuiltEntityTypeBuilder.<SuperFanImpEntity>create(SpawnGroup.MONSTER, SuperFanImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<SuperFanImpEntity> SUPERFANIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "superfanimp_hypnotized"),
+			Identifier.of(ModID, "superfanimp_hypnotized"),
 			QuiltEntityTypeBuilder.<SuperFanImpEntity>create(SpawnGroup.MONSTER, SuperFanImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<SuperFanImpEntity> NEWYEARIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "newyearimp"),
+			Identifier.of(ModID, "newyearimp"),
 			QuiltEntityTypeBuilder.<SuperFanImpEntity>create(SpawnGroup.MONSTER, SuperFanImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<SuperFanImpEntity> NEWYEARIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "newyearimp_hypnotized"),
+			Identifier.of(ModID, "newyearimp_hypnotized"),
 			QuiltEntityTypeBuilder.<SuperFanImpEntity>create(SpawnGroup.MONSTER, SuperFanImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 
 	public static final EntityType<AnnouncerImpEntity> ANNOUNCERIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "announcerimp"),
+			Identifier.of(ModID, "announcerimp"),
 			QuiltEntityTypeBuilder.<AnnouncerImpEntity>create(SpawnGroup.MONSTER, AnnouncerImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<AnnouncerImpEntity> ANNOUNCERIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "announcerimp_hypnotized"),
+			Identifier.of(ModID, "announcerimp_hypnotized"),
 			QuiltEntityTypeBuilder.<AnnouncerImpEntity>create(SpawnGroup.CREATURE, AnnouncerImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 
 	public static final EntityType<AnnouncerImpEntity> REDANNOUNCERIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "redannouncerimp"),
+			Identifier.of(ModID, "redannouncerimp"),
 			QuiltEntityTypeBuilder.<AnnouncerImpEntity>create(SpawnGroup.MONSTER, AnnouncerImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<AnnouncerImpEntity> REDANNOUNCERIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "redannouncerimp_hypnotized"),
+			Identifier.of(ModID, "redannouncerimp_hypnotized"),
 			QuiltEntityTypeBuilder.<AnnouncerImpEntity>create(SpawnGroup.CREATURE, AnnouncerImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 
 	public static final EntityType<AnnouncerImpEntity> BLACKANNOUNCERIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blackannouncerimp"),
+			Identifier.of(ModID, "blackannouncerimp"),
 			QuiltEntityTypeBuilder.<AnnouncerImpEntity>create(SpawnGroup.MONSTER, AnnouncerImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<AnnouncerImpEntity> BLACKANNOUNCERIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blackannouncerimp_hypnotized"),
+			Identifier.of(ModID, "blackannouncerimp_hypnotized"),
 			QuiltEntityTypeBuilder.<AnnouncerImpEntity>create(SpawnGroup.CREATURE, AnnouncerImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<RockObstacleEntity> IMPTABLETOBSTACLE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "imptabletobst"),
+			Identifier.of(ModID, "imptabletobst"),
 			QuiltEntityTypeBuilder.<RockObstacleEntity>create(SpawnGroup.MONSTER, RockObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.725f, 1f)).build()
 	);
 
 	public static final EntityType<ZombieKingEntity> ZOMBIEKING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zombieking"),
+			Identifier.of(ModID, "zombieking"),
 			QuiltEntityTypeBuilder.<ZombieKingEntity>create(SpawnGroup.MONSTER, ZombieKingEntity::new).setDimensions(EntityDimensions.fixed(0.925f, 1.8f)).build()
 	);
 
 	public static final EntityType<ZombieKingEntity> ZOMBIEKINGHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zombieking_hypnotized"),
+			Identifier.of(ModID, "zombieking_hypnotized"),
 			QuiltEntityTypeBuilder.<ZombieKingEntity>create(SpawnGroup.CREATURE, ZombieKingEntity::new).setDimensions(EntityDimensions.fixed(0.925f, 1.8f)).build()
 	);
 
 	public static final EntityType<ZombieKingEntity> REDZOMBIEKING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "redzombieking"),
+			Identifier.of(ModID, "redzombieking"),
 			QuiltEntityTypeBuilder.<ZombieKingEntity>create(SpawnGroup.MONSTER, ZombieKingEntity::new).setDimensions(EntityDimensions.fixed(0.925f, 1.8f)).build()
 	);
 
 	public static final EntityType<ZombieKingEntity> REDZOMBIEKINGHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "redzombieking_hypnotized"),
+			Identifier.of(ModID, "redzombieking_hypnotized"),
 			QuiltEntityTypeBuilder.<ZombieKingEntity>create(SpawnGroup.CREATURE, ZombieKingEntity::new).setDimensions(EntityDimensions.fixed(0.925f, 1.8f)).build()
 	);
 
 	public static final EntityType<ZombieKingEntity> BLACKZOMBIEKING = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blackzombieking"),
+			Identifier.of(ModID, "blackzombieking"),
 			QuiltEntityTypeBuilder.<ZombieKingEntity>create(SpawnGroup.MONSTER, ZombieKingEntity::new).setDimensions(EntityDimensions.fixed(0.925f, 1.8f)).build()
 	);
 
 	public static final EntityType<ZombieKingEntity> BLACKZOMBIEKINGHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blackzombieking_hypnotized"),
+			Identifier.of(ModID, "blackzombieking_hypnotized"),
 			QuiltEntityTypeBuilder.<ZombieKingEntity>create(SpawnGroup.CREATURE, ZombieKingEntity::new).setDimensions(EntityDimensions.fixed(0.925f, 1.8f)).build()
 	);
 
 
 	public static final EntityType<LocustSwarmEntity> LOCUSTSWARM = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "locustswarm"),
+			Identifier.of(ModID, "locustswarm"),
 			QuiltEntityTypeBuilder.<LocustSwarmEntity>create(SpawnGroup.MONSTER, LocustSwarmEntity::new).setDimensions(EntityDimensions.fixed(0.62f, 0.5f)).build()
 	);
 
 	public static final EntityType<JetpackEntity> JETPACK = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "jetpack"),
+			Identifier.of(ModID, "jetpack"),
 			QuiltEntityTypeBuilder.<JetpackEntity>create(SpawnGroup.MONSTER, JetpackEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 2.4f)).build()
 	);
 
 	public static final EntityType<JetpackEntity> JETPACKHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "jetpack_hypnotized"),
+			Identifier.of(ModID, "jetpack_hypnotized"),
 			QuiltEntityTypeBuilder.<JetpackEntity>create(SpawnGroup.MONSTER, JetpackEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 2.4f)).build()
 	);
 
 	public static final EntityType<JetpackEntity> BLASTRONAUT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blastronaut"),
+			Identifier.of(ModID, "blastronaut"),
 			QuiltEntityTypeBuilder.<JetpackEntity>create(SpawnGroup.MONSTER, JetpackEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 2.4f)).build()
 	);
 
 	public static final EntityType<JetpackEntity> BLASTRONAUTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "blastronaut_hypnotized"),
+			Identifier.of(ModID, "blastronaut_hypnotized"),
 			QuiltEntityTypeBuilder.<JetpackEntity>create(SpawnGroup.MONSTER, JetpackEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 2.4f)).build()
 	);
 
 	public static final EntityType<HoverGoatEntity> HOVERGOAT = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hovergoat3000"),
+			Identifier.of(ModID, "hovergoat3000"),
 			QuiltEntityTypeBuilder.<HoverGoatEntity>create(SpawnGroup.MONSTER, HoverGoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<HoverGoatEntity> HOVERGOATHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hovergoat3000_hypnotized"),
+			Identifier.of(ModID, "hovergoat3000_hypnotized"),
 			QuiltEntityTypeBuilder.<HoverGoatEntity>create(SpawnGroup.MONSTER, HoverGoatEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<RoboConeEntity> ROBOCONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "robocone"),
+			Identifier.of(ModID, "robocone"),
 			QuiltEntityTypeBuilder.<RoboConeEntity>create(SpawnGroup.MONSTER, RoboConeEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.25f)).build()
 	);
 
 	public static final EntityType<SoldierEntity> SOLDIER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "footsoldier"),
+			Identifier.of(ModID, "footsoldier"),
 			QuiltEntityTypeBuilder.<SoldierEntity>create(SpawnGroup.MONSTER, SoldierEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<SoldierEntity> SOLDIERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "footsoldier_hypnotized"),
+			Identifier.of(ModID, "footsoldier_hypnotized"),
 			QuiltEntityTypeBuilder.<SoldierEntity>create(SpawnGroup.MONSTER, SoldierEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<ZPGEntity> ZPG = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zpgproj"),
+			Identifier.of(ModID, "zpgproj"),
 			QuiltEntityTypeBuilder.<ZPGEntity>create(SpawnGroup.MONSTER, ZPGEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 
 	public static final EntityType<RocketEntity> ROCKETPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "rocketproj"),
+			Identifier.of(ModID, "rocketproj"),
 			QuiltEntityTypeBuilder.<RocketEntity>create(SpawnGroup.MONSTER, RocketEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 
 	public static final EntityType<BullyEntity> BULLY = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bully"),
+			Identifier.of(ModID, "bully"),
 			QuiltEntityTypeBuilder.<BullyEntity>create(SpawnGroup.MONSTER, BullyEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<BullyEntity> BULLYHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bully_hypnotized"),
+			Identifier.of(ModID, "bully_hypnotized"),
 			QuiltEntityTypeBuilder.<BullyEntity>create(SpawnGroup.MONSTER, BullyEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<ActionheroEntity> ACTIONHERO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "80sactionhero"),
+			Identifier.of(ModID, "80sactionhero"),
 			QuiltEntityTypeBuilder.<ActionheroEntity>create(SpawnGroup.MONSTER, ActionheroEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<ActionheroEntity> ACTIONHEROHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "80sactionhero_hypnotized"),
+			Identifier.of(ModID, "80sactionhero_hypnotized"),
 			QuiltEntityTypeBuilder.<ActionheroEntity>create(SpawnGroup.MONSTER, ActionheroEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<OctoEntity> OCTO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "octo"),
+			Identifier.of(ModID, "octo"),
 			QuiltEntityTypeBuilder.<OctoEntity>create(SpawnGroup.MONSTER, OctoEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<OctoEntity> OCTOHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "octo_hypnotized"),
+			Identifier.of(ModID, "octo_hypnotized"),
 			QuiltEntityTypeBuilder.<OctoEntity>create(SpawnGroup.MONSTER, OctoEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<ShootingOctoEntity> OCTOPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "octoproj"),
+			Identifier.of(ModID, "octoproj"),
 			QuiltEntityTypeBuilder.<ShootingOctoEntity>create(SpawnGroup.MONSTER, ShootingOctoEntity::new).setDimensions(EntityDimensions.fixed(1f, 2f)).build()
 	);
 
 	public static final EntityType<BasketballCarrierEntity> BASKETBALLCARRIER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "basketballcarrier"),
+			Identifier.of(ModID, "basketballcarrier"),
 			QuiltEntityTypeBuilder.<BasketballCarrierEntity>create(SpawnGroup.MONSTER, BasketballCarrierEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<BasketballCarrierEntity> BASKETBALLCARRIERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "basketballcarrier_hypnotized"),
+			Identifier.of(ModID, "basketballcarrier_hypnotized"),
 			QuiltEntityTypeBuilder.<BasketballCarrierEntity>create(SpawnGroup.MONSTER, BasketballCarrierEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.2f)).build()
 	);
 
 	public static final EntityType<MetalObstacleEntity> BASKETBALLBIN = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "basketballbin"),
+			Identifier.of(ModID, "basketballbin"),
 			QuiltEntityTypeBuilder.<MetalObstacleEntity>create(SpawnGroup.MONSTER, MetalObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2f)).build()
 	);
 
 	public static final EntityType<ShootingBasketballEntity> BASKETBALLPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "basketballproj"),
+			Identifier.of(ModID, "basketballproj"),
 			QuiltEntityTypeBuilder.<ShootingBasketballEntity>create(SpawnGroup.MONSTER, ShootingBasketballEntity::new).setDimensions(EntityDimensions.fixed(1f, 1f)).build()
 	);
 
 	public static final EntityType<BoneProjEntity> BONEPROJ = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "boneproj"),
+			Identifier.of(ModID, "boneproj"),
 			QuiltEntityTypeBuilder.<BoneProjEntity>create(SpawnGroup.MONSTER, BoneProjEntity::new).setDimensions(EntityDimensions.fixed(1f, 1f)).build()
 	);
 
 	public static final EntityType<BassZombieEntity> BASS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bass"),
+			Identifier.of(ModID, "bass"),
 			QuiltEntityTypeBuilder.<BassZombieEntity>create(SpawnGroup.MONSTER, BassZombieEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.8f)).build()
 	);
 
 	public static final EntityType<BassZombieEntity> BASSHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bass_hypnotized"),
+			Identifier.of(ModID, "bass_hypnotized"),
 			QuiltEntityTypeBuilder.<BassZombieEntity>create(SpawnGroup.MONSTER, BassZombieEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.8f)).build()
 	);
 
 	public static final EntityType<SpeakerVehicleEntity> SPEAKER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "speaker"),
+			Identifier.of(ModID, "speaker"),
 			QuiltEntityTypeBuilder.<SpeakerVehicleEntity>create(SpawnGroup.MONSTER, SpeakerVehicleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.2f)).build()
 	);
 
 	public static final EntityType<SoundwaveEntity> SOUNDWAVE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "soundwave"),
+			Identifier.of(ModID, "soundwave"),
 			QuiltEntityTypeBuilder.<SoundwaveEntity>create(SpawnGroup.MONSTER, SoundwaveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
 	);
 
 	public static final EntityType<HawkerZombieEntity> HAWKERPUSHER = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hawkerpusher"),
+			Identifier.of(ModID, "hawkerpusher"),
 			QuiltEntityTypeBuilder.<HawkerZombieEntity>create(SpawnGroup.MONSTER, HawkerZombieEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.8f)).build()
 	);
 
 	public static final EntityType<HawkerZombieEntity> HAWKERPUSHERHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hawkerpusher_hypnotized"),
+			Identifier.of(ModID, "hawkerpusher_hypnotized"),
 			QuiltEntityTypeBuilder.<HawkerZombieEntity>create(SpawnGroup.MONSTER, HawkerZombieEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.8f)).build()
 	);
 
 	public static final EntityType<WoodObstacleEntity> HAWKERCART = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "hawkercart"),
+			Identifier.of(ModID, "hawkercart"),
 			QuiltEntityTypeBuilder.<WoodObstacleEntity>create(SpawnGroup.MONSTER, WoodObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2f)).build()
 	);
 
 	public static final EntityType<FleshObstacleEntity> OCTOOBST = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "octoobst"),
+			Identifier.of(ModID, "octoobst"),
 			QuiltEntityTypeBuilder.<FleshObstacleEntity>create(SpawnGroup.MONSTER, FleshObstacleEntity::new).setDimensions(EntityDimensions.fixed(1f, 2f)).build()
 	);
 
 
 	public static final EntityType<ScientistEntity> SCIENTIST = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scientist"),
+			Identifier.of(ModID, "scientist"),
 			QuiltEntityTypeBuilder.<ScientistEntity>create(SpawnGroup.MONSTER, ScientistEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 
 	public static final EntityType<ScientistEntity> SCIENTISTHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scientist_hypnotized"),
+			Identifier.of(ModID, "scientist_hypnotized"),
 			QuiltEntityTypeBuilder.<ScientistEntity>create(SpawnGroup.MONSTER, ScientistEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1.8f)).build()
 	);
 	public static final EntityType<MetalObstacleEntity> HEALSTATION = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "healstation"),
+			Identifier.of(ModID, "healstation"),
 			QuiltEntityTypeBuilder.<MetalObstacleEntity>create(SpawnGroup.MONSTER, MetalObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2f)).build()
 	);
 
 	public static final EntityType<ZomblobEntity> ZOMBLOB = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomblob"),
+			Identifier.of(ModID, "zomblob"),
 			QuiltEntityTypeBuilder.<ZomblobEntity>create(SpawnGroup.MONSTER, ZomblobEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.85f)).build()
 	);
 
 	public static final EntityType<ZomblobEntity> ZOMBLOBHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomblob_hypnotized"),
+			Identifier.of(ModID, "zomblob_hypnotized"),
 			QuiltEntityTypeBuilder.<ZomblobEntity>create(SpawnGroup.MONSTER, ZomblobEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.85f)).build()
 	);
 
 	public static final EntityType<ZomblobEntity> ZOMBLOBBIG = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomblobbig"),
+			Identifier.of(ModID, "zomblobbig"),
 			QuiltEntityTypeBuilder.<ZomblobEntity>create(SpawnGroup.MONSTER, ZomblobEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.4f)).build()
 	);
 
 	public static final EntityType<ZomblobEntity> ZOMBLOBBIGHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomblobbig_hypnotized"),
+			Identifier.of(ModID, "zomblobbig_hypnotized"),
 			QuiltEntityTypeBuilder.<ZomblobEntity>create(SpawnGroup.MONSTER, ZomblobEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.4f)).build()
 	);
 
 	public static final EntityType<ZomblobEntity> ZOMBLOBSMALL = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomblobsmall"),
+			Identifier.of(ModID, "zomblobsmall"),
 			QuiltEntityTypeBuilder.<ZomblobEntity>create(SpawnGroup.MONSTER, ZomblobEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1.85f)).build()
 	);
 
 	public static final EntityType<ZomblobEntity> ZOMBLOBSMALLHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zomblobsmall_hypnotized"),
+			Identifier.of(ModID, "zomblobsmall_hypnotized"),
 			QuiltEntityTypeBuilder.<ZomblobEntity>create(SpawnGroup.MONSTER, ZomblobEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 1f)).build()
 	);
 
 	public static final EntityType<PiggyEntity> PIGGY = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "piggy"),
+			Identifier.of(ModID, "piggy"),
 			QuiltEntityTypeBuilder.<PiggyEntity>create(SpawnGroup.MONSTER, PiggyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<PiggyEntity> PIGGYHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "piggy_hypnotized"),
+			Identifier.of(ModID, "piggy_hypnotized"),
 			QuiltEntityTypeBuilder.<PiggyEntity>create(SpawnGroup.CREATURE, PiggyEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> UNICORNGARGANTUAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "unicorngargantuar"),
+			Identifier.of(ModID, "unicorngargantuar"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.MONSTER, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
 	);
 
 	public static final EntityType<GargantuarEntity> UNICORNGARGANTUARHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "unicorngargantuar_hypnotized"),
+			Identifier.of(ModID, "unicorngargantuar_hypnotized"),
 			QuiltEntityTypeBuilder.<GargantuarEntity>create(SpawnGroup.CREATURE, GargantuarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 3.95f)).build()
 	);
 
 	public static final EntityType<ImpEntity> BASSIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bassimp"),
+			Identifier.of(ModID, "bassimp"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> BASSIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bassimp_hypnotized"),
+			Identifier.of(ModID, "bassimp_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<PumpkinCarEntity> PUMPKINCAR = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "pumpkincar"),
+			Identifier.of(ModID, "pumpkincar"),
 			QuiltEntityTypeBuilder.<PumpkinCarEntity>create(SpawnGroup.MONSTER, PumpkinCarEntity::new).setDimensions(EntityDimensions.fixed(0.825f, 2.25f)).build()
 	);
 
 	public static final EntityType<ImpEntity> CINDERELLAIMP = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cinderellaimp"),
+			Identifier.of(ModID, "cinderellaimp"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.MONSTER, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
 	public static final EntityType<ImpEntity> CINDERELLAIMPHYPNO = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cinderellaimp_hypnotized"),
+			Identifier.of(ModID, "cinderellaimp_hypnotized"),
 			QuiltEntityTypeBuilder.<ImpEntity>create(SpawnGroup.CREATURE, ImpEntity::new).setDimensions(EntityDimensions.fixed(0.625f, 1f)).build()
 	);
 
@@ -2623,195 +2623,195 @@ public class PvZEntity{
 
 	public static final EntityType<SolarWinds> SOLARWINDS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "solarwinds"),
+			Identifier.of(ModID, "solarwinds"),
 			QuiltEntityTypeBuilder.<SolarWinds>create(SpawnGroup.MONSTER, SolarWinds::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<MissileToeTarget> MISSILETOETARGET = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "missiletoetarget"),
+			Identifier.of(ModID, "missiletoetarget"),
 			QuiltEntityTypeBuilder.<MissileToeTarget>create(SpawnGroup.MONSTER, MissileToeTarget::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<ScorchedTile> SCORCHEDTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "scorchedtile"),
+			Identifier.of(ModID, "scorchedtile"),
 			QuiltEntityTypeBuilder.<ScorchedTile>create(SpawnGroup.MONSTER, ScorchedTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<IceTile> ICETILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "icetile"),
+			Identifier.of(ModID, "icetile"),
 			QuiltEntityTypeBuilder.<IceTile>create(SpawnGroup.MONSTER, IceTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<OilTile> OILTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "oiltile"),
+			Identifier.of(ModID, "oiltile"),
 			QuiltEntityTypeBuilder.<OilTile>create(SpawnGroup.MONSTER, OilTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<CheeseTile> CHEESETILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cheesetile"),
+			Identifier.of(ModID, "cheesetile"),
 			QuiltEntityTypeBuilder.<CheeseTile>create(SpawnGroup.MONSTER, CheeseTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<BananaTile> BANANAPEEL = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "bananatile"),
+			Identifier.of(ModID, "bananatile"),
 			QuiltEntityTypeBuilder.<BananaTile>create(SpawnGroup.MONSTER, BananaTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<SpringTile> SPRINGTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "springtile"),
+			Identifier.of(ModID, "springtile"),
 			QuiltEntityTypeBuilder.<SpringTile>create(SpawnGroup.MONSTER, SpringTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<SnowTile> SNOWTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "snowtile"),
+			Identifier.of(ModID, "snowtile"),
 			QuiltEntityTypeBuilder.<SnowTile>create(SpawnGroup.MONSTER, SnowTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<WaterTile> WATERTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "watertile"),
+			Identifier.of(ModID, "watertile"),
 			QuiltEntityTypeBuilder.<WaterTile>create(SpawnGroup.MONSTER, WaterTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<ShadowTile> SHADOWTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "shadowtile"),
+			Identifier.of(ModID, "shadowtile"),
 			QuiltEntityTypeBuilder.<ShadowTile>create(SpawnGroup.MONSTER, ShadowTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<ShadowFullTile> SHADOWFULLTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "shadowfulltile"),
+			Identifier.of(ModID, "shadowfulltile"),
 			QuiltEntityTypeBuilder.<ShadowFullTile>create(SpawnGroup.MONSTER, ShadowFullTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 
 	public static final EntityType<CraterTile> CRATERTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "cratertile"),
+			Identifier.of(ModID, "cratertile"),
 			QuiltEntityTypeBuilder.<CraterTile>create(SpawnGroup.MONSTER, CraterTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 
 	public static final EntityType<WeatherTile> WEATHERTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "weathertile"),
+			Identifier.of(ModID, "weathertile"),
 			QuiltEntityTypeBuilder.<WeatherTile>create(SpawnGroup.MONSTER, WeatherTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 	public static final EntityType<TimeTile> TIMETILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "timetile"),
+			Identifier.of(ModID, "timetile"),
 			QuiltEntityTypeBuilder.<TimeTile>create(SpawnGroup.MONSTER, TimeTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 
 	public static final EntityType<RiftTile> RIFTTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "rifttile"),
+			Identifier.of(ModID, "rifttile"),
 			QuiltEntityTypeBuilder.<RiftTile>create(SpawnGroup.MONSTER, RiftTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<GoldTile> GOLDTILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "goldtile"),
+			Identifier.of(ModID, "goldtile"),
 			QuiltEntityTypeBuilder.<GoldTile>create(SpawnGroup.MONSTER, GoldTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<MariTile> MARITILE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "maritile"),
+			Identifier.of(ModID, "maritile"),
 			QuiltEntityTypeBuilder.<MariTile>create(SpawnGroup.MONSTER, MariTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<RoseBudTile> ROSEBUDS = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "rosebuds"),
+			Identifier.of(ModID, "rosebuds"),
 			QuiltEntityTypeBuilder.<RoseBudTile>create(SpawnGroup.MONSTER, RoseBudTile::new).setDimensions(EntityDimensions.fixed(1f, 0.05f)).build()
 	);
 
 	public static final EntityType<SunBombEntity> SUNBOMB = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "sunbomb"),
+			Identifier.of(ModID, "sunbomb"),
 			QuiltEntityTypeBuilder.<SunBombEntity>create(SpawnGroup.MONSTER, SunBombEntity::new).setDimensions(EntityDimensions.fixed(2f, 1f)).build()
 	);
 
 	public static final EntityType<RockObstacleEntity> EGYPTTOMBSTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "egypttombstone"),
+			Identifier.of(ModID, "egypttombstone"),
 			QuiltEntityTypeBuilder.<RockObstacleEntity>create(SpawnGroup.MONSTER, RockObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<RockObstacleEntity> BASICTOMBSTONE = Registry.register(
 		Registries.ENTITY_TYPE,
-		new Identifier(ModID, "basictombstone"),
+		Identifier.of(ModID, "basictombstone"),
 		QuiltEntityTypeBuilder.<RockObstacleEntity>create(SpawnGroup.MONSTER, RockObstacleEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<ZombieGraveEntity> ZOMBIEGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "zombiegrave"),
+			Identifier.of(ModID, "zombiegrave"),
 			QuiltEntityTypeBuilder.<ZombieGraveEntity>create(SpawnGroup.MONSTER, ZombieGraveEntity::new).setDimensions(EntityDimensions.fixed(1f, 1f)).build()
 	);
 
     public static final EntityType<BasicGraveEntity> BASICGRAVESTONE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "basicgrave"),
+            Identifier.of(ModID, "basicgrave"),
             QuiltEntityTypeBuilder.<BasicGraveEntity>create(SpawnGroup.MONSTER, BasicGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
     );
 
     public static final EntityType<NightGraveEntity> NIGHTGRAVESTONE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(ModID, "nightgrave"),
+            Identifier.of(ModID, "nightgrave"),
             QuiltEntityTypeBuilder.<NightGraveEntity>create(SpawnGroup.MONSTER, NightGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
     );
 
 	public static final EntityType<PoolGraveEntity> POOLGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "poolgrave"),
+			Identifier.of(ModID, "poolgrave"),
 			QuiltEntityTypeBuilder.<PoolGraveEntity>create(SpawnGroup.MONSTER, PoolGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<RoofGraveEntity> ROOFGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "roofgrave"),
+			Identifier.of(ModID, "roofgrave"),
 			QuiltEntityTypeBuilder.<RoofGraveEntity>create(SpawnGroup.MONSTER, RoofGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<EgyptGraveEntity> EGYPTGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "egyptgrave"),
+			Identifier.of(ModID, "egyptgrave"),
 			QuiltEntityTypeBuilder.<EgyptGraveEntity>create(SpawnGroup.MONSTER, EgyptGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<FutureGraveEntity> FUTUREGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "futuregrave"),
+			Identifier.of(ModID, "futuregrave"),
 			QuiltEntityTypeBuilder.<FutureGraveEntity>create(SpawnGroup.MONSTER, FutureGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<DarkAgesGraveEntity> DARKAGESGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "darkagesgrave"),
+			Identifier.of(ModID, "darkagesgrave"),
 			QuiltEntityTypeBuilder.<DarkAgesGraveEntity>create(SpawnGroup.MONSTER, DarkAgesGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<FairyTaleGraveEntity> FAIRYTALEGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "fairytalegrave"),
+			Identifier.of(ModID, "fairytalegrave"),
 			QuiltEntityTypeBuilder.<FairyTaleGraveEntity>create(SpawnGroup.MONSTER, FairyTaleGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
 	public static final EntityType<MausoleumGraveEntity> MAUSOLEUMGRAVESTONE = Registry.register(
 			Registries.ENTITY_TYPE,
-			new Identifier(ModID, "mausoleumgrave"),
+			Identifier.of(ModID, "mausoleumgrave"),
 			QuiltEntityTypeBuilder.<MausoleumGraveEntity>create(SpawnGroup.MONSTER, MausoleumGraveEntity::new).setDimensions(EntityDimensions.fixed(0.5f, 1f)).build()
 	);
 
