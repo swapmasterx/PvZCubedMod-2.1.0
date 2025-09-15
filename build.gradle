@@ -102,6 +102,7 @@ dependencies {
 		include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_version}")
 	}
 	modImplementation  "org.quiltmc:quilt-loader:${project.loader_version}"
+//	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	mappings "org.quiltmc:quilt-mappings:1.21.1+build.9:intermediary-v2"
 	modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft}"
 //	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }

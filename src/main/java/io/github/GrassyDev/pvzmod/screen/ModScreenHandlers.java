@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 
 public class ModScreenHandlers {
 	public static final ScreenHandlerType<BotanyStationScreenHandler>  BOTANY_STATION_SCREEN_HANDLER =
-		Registry.register(Registries.SCREEN_HANDLER_TYPE, new Identifier(PvZCubed.MOD_ID, "botany_station"),
+		Registry.register(Registries.SCREEN_HANDLER_TYPE, Identifier.of(PvZCubed.MOD_ID, "botany_station"),
 			new ExtendedScreenHandlerType<>(BotanyStationScreenHandler::new));
 
 		public static void registerScreenHandlers() {

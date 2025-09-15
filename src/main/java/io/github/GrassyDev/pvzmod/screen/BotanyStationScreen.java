@@ -11,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class BotanyStationScreen extends HandledScreen<BotanyStationScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(PvZCubed.MOD_ID, "textures/gui/botany_station_gui.png");
+    private static final Identifier TEXTURE = Identifier.of(PvZCubed.MOD_ID, "textures/gui/botany_station_gui.png");
 
     public BotanyStationScreen(BotanyStationScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
