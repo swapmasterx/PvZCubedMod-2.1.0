@@ -51,9 +51,9 @@ public class MissileToeTarget extends TileEntity {
 
 	private static final TrackedData<Integer> TARGET_ID;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(TARGET_ID, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(TARGET_ID, 0);
 	}
 
 	@Override

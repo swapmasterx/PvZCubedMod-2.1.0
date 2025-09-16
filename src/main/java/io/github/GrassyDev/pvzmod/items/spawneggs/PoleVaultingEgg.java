@@ -6,6 +6,7 @@ import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.polevaulting.PoleVaultingEntity;
 import io.github.GrassyDev.pvzmod.items.seedpackets.SeedItem;
 
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,9 +35,8 @@ public class PoleVaultingEgg extends SeedItem {
         super(settings);
     }
 
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.creative")
 				.formatted(Formatting.UNDERLINE));

@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.soci
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -71,9 +72,9 @@ public class SuperChomperEntity extends PlantEntity implements GeoEntity, Ranged
 		this.targetNotObstacle = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(CHEWTIME, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(CHEWTIME, 0);
 	}
 	public void readCustomDataFromNbt(NbtCompound tag) {
 		super.readCustomDataFromNbt(tag);
@@ -408,8 +409,8 @@ public class SuperChomperEntity extends PlantEntity implements GeoEntity, Ranged
 				else {
 					Vec3d vec3d3 = new Vec3d((double) -0.5, 0.0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					livingEntity.setVelocity(vec3d3);
-					livingEntity.addStatusEffect(new StatusEffectInstance(BOUNCED, 5, 1));
-					livingEntity.addStatusEffect(new StatusEffectInstance(STUN, 5, 1));
+					livingEntity.addStatusEffect(new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 5, 1));
+					livingEntity.addStatusEffect(new StatusEffectInstance(StatusHolder.STUN_HOLDER, 5, 1));
 				}
 			}
 		}

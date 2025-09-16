@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
@@ -55,7 +56,6 @@ public class SunflowerSeeds extends SeedItem implements FabricItem {
         super(settings);
     }
 
-	@Override
 	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return false;
 	}
@@ -80,9 +80,8 @@ public class SunflowerSeeds extends SeedItem implements FabricItem {
 //	}
 
 	//Credits to Patchouli for the tooltip code!
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.enlighten.family").setStyle(Style.EMPTY.withColor(16763392)));
 

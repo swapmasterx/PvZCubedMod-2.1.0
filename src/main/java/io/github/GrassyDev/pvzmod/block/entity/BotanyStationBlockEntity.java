@@ -2,6 +2,8 @@ package io.github.GrassyDev.pvzmod.block.entity;
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.recipe.BotanyStationRecipe;
+import io.github.GrassyDev.pvzmod.recipe.BotanyStationRecipeInput;
+import io.github.GrassyDev.pvzmod.recipe.ModRecipes;
 import io.github.GrassyDev.pvzmod.screen.BotanyStationScreenHandler;
 import io.wispforest.owo.util.ImplementedInventory;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -23,6 +25,7 @@ import net.minecraft.registry.HolderLookup;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -225,14 +228,24 @@ public class BotanyStationBlockEntity extends BlockEntity implements ExtendedScr
         return recipe.isPresent()&& canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
-
     private Optional<RecipeHolder<BotanyStationRecipe>> getCurrentRecipe() {
         SimpleInventory inv = new SimpleInventory(this.size());
-        for(int i = 0; i < this.size(); i++) {
+        int i;
+        for (i = 0; i < this.size(); i++) {
             inv.setStack(i, this.getStack(i));
         }
-        return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.INSTANCE, inv, getWorld());
+        return ((ServerWorld) this.getWorld()).getRecipeManager()
+                .getFirstMatch(ModRecipes.BOTANY_BOX_TYPE, new BotanyStationRecipeInput(inventory, i, inventory.get(INPUT_SLOT_1), inventory.get(INPUT_SLOT_2),
+                        inventory.get(INPUT_SLOT_3), inventory.get(INPUT_SLOT_4), inventory.get(INPUT_SLOT_5), inventory.get(INPUT_SLOT_6),
+                        inventory.get(SEED_PACKET_SLOT)), this.getWorld());
     }
+//    private Optional<RecipeHolder<BotanyStationRecipe>> getCurrentRecipe() {
+//        SimpleInventory inv = new SimpleInventory(this.size());
+//        for(int i = 0; i < this.size(); i++) {
+//            inv.setStack(i, this.getStack(i));
+//        }
+//        return getWorld().getRecipeManager().getFirstMatch(BotanyStationRecipe.Type.INSTANCE, inv, getWorld());
+//    }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
         return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();

@@ -119,13 +119,13 @@ public class TallnutEntity extends PlantEntity implements GeoEntity {
 	public static final Map<Crack, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(Crack.class), (map) -> {
 				map.put(Crack.NONE,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
 				map.put(Crack.LOW,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut.png"));
 				map.put(Crack.MEDIUM,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg1.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg1.png"));
 				map.put(Crack.HIGH,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg2.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/wallnut/wallnut_dmg2.png"));
 			});
 
 

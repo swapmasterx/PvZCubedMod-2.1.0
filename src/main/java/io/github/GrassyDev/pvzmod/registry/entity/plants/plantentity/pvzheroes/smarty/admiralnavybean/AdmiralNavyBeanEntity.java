@@ -178,9 +178,9 @@ public class AdmiralNavyBeanEntity extends PlantEntity implements GeoEntity, Ran
 			this.attackTicksLeft = 20;
 			this.getWorld().sendEntityStatus(this, (byte) 106);
 			boolean bl = damaged.damage(getDamageSources().mobAttack(this), this.getAttackDamage());
-			if (bl) {
-				this.applyDamageEffects(this, target);
-			}
+//			if (bl) {
+//				this.applyDamageEffects(this, target);
+//			}
 			String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 			SoundEvent sound;
 			sound = switch (zombieMaterial) {

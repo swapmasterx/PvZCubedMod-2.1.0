@@ -168,9 +168,9 @@ public class PokerEntity extends BrowncoatEntity {
 		}
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(POKER_TYPE, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(POKER_TYPE, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

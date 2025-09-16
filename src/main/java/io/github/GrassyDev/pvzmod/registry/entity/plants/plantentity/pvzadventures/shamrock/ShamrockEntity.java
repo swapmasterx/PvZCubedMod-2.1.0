@@ -72,9 +72,9 @@ public class ShamrockEntity extends PlantEntity implements GeoEntity, RangedAtta
         this.animationScare = 30;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override

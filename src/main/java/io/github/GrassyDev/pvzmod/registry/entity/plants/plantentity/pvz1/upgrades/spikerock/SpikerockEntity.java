@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -109,11 +110,11 @@ public class SpikerockEntity extends PlantEntity implements GeoEntity {
 	public static final Map<SpikerockEntity.Crack, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(SpikerockEntity.Crack.class), (map) -> {
 				map.put(Crack.FULL,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/spikeweed/spikerock.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/spikeweed/spikerock.png"));
 				map.put(Crack.DAMAGED,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/spikeweed/spikerock_dmg1.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/spikeweed/spikerock_dmg1.png"));
 				map.put(Crack.DYING,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/spikeweed/spikerock_dmg2.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/spikeweed/spikerock_dmg2.png"));
 			});
 
 
@@ -259,7 +260,7 @@ public class SpikerockEntity extends PlantEntity implements GeoEntity {
 		}
 		if (--tickDamage <= 0){
 			this.zombieList.clear();
-			if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
+			if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 				this.damageEntity();
 			}
 			tickDamage = 20;

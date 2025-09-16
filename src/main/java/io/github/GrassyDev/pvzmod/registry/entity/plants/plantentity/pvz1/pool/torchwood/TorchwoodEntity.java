@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -108,7 +109,7 @@ public class TorchwoodEntity extends PlantEntity implements GeoEntity {
 
 			if (((livingEntity instanceof Monster &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
-							&& (generalPvZombieEntity.getHypno()))) && (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET))) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
+							&& (generalPvZombieEntity.getHypno()))) && (!livingEntity.isWet() && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER))) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 				ZombiePropEntity zombiePropEntity2 = null;
 				ZombiePropEntity zombiePropEntity3 = null;
 				for (Entity entity1 : livingEntity.getPassengerList()) {
@@ -141,18 +142,18 @@ public class TorchwoodEntity extends PlantEntity implements GeoEntity {
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
-					if (!(livingEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
-						livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-						livingEntity.removeStatusEffect(PvZCubed.ICE);
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+					if (!(livingEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
+						livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+						livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 						livingEntity.setOnFireFor(4);
 					}
 				}
 			}
-			else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet()){
-				livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-				livingEntity.removeStatusEffect(PvZCubed.ICE);
-				livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+			else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet()){
+				livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+				livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+				livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 			}
 		}
 	}
@@ -189,7 +190,7 @@ public class TorchwoodEntity extends PlantEntity implements GeoEntity {
 		}
 		if (!this.isWet()){
 			if (--tickDamage <= 0){
-				if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					this.damageEntity();
 				}
 				tickDamage = 10;

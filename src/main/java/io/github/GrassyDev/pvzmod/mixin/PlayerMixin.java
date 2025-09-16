@@ -33,7 +33,7 @@ public abstract class PlayerMixin extends LivingEntity {
 	@Inject(method = "tick", at = @At("HEAD"))
     public void pvzmod$tick(CallbackInfo ci) {
 		if (this.getInventory().getMainHandStack().getItem() instanceof HeavenlyPeachSeeds){
-			List<PlantEntity> plantList = this.getWorld().getNonSpectatingEntities(PlantEntity.class, this.getBoundingBox().expand(15));
+			List<PlantEntity> plantList = this.getWorld().getNonSpectatingEntities(PlantEntity.class, this.getBounds().expand(15));
 			for (PlantEntity plantEntity : plantList){
 				if (plantEntity.getHealth() <= plantEntity.getMaxHealth() / 2){
 					plantEntity.addStatusEffect((new StatusEffectInstance(StatusEffects.GLOWING, 2, 1)));

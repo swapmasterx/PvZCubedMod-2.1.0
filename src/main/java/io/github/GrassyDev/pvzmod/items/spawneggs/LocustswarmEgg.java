@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.items.spawneggs;
 
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.sound.SoundEvents;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.miscentity.locustswarm.LocustSwarmEntity;
 import io.github.GrassyDev.pvzmod.items.seedpackets.SeedItem;
@@ -28,9 +29,8 @@ public class LocustswarmEgg extends SeedItem {
         super(settings);
     }
 
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.creative")
 				.formatted(Formatting.UNDERLINE));

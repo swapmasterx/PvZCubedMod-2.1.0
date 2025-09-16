@@ -93,16 +93,16 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 	private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
 			DataTracker.registerData(GraveEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(CHALLENGE_TAG, false);
-		this.dataTracker.startTracking(ONE_TAG, false);
-		this.dataTracker.startTracking(HALF_TAG, false);
-		this.dataTracker.startTracking(INFINITE_TAG, false);
-		this.dataTracker.startTracking(UNLOCKSPECIAL_TAG, false);
-		this.dataTracker.startTracking(UNLOCK_TAG, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
-		this.dataTracker.startTracking(SPELL, (byte)0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(CHALLENGE_TAG, false);
+		builder.add(ONE_TAG, false);
+		builder.add(HALF_TAG, false);
+		builder.add(INFINITE_TAG, false);
+		builder.add(UNLOCKSPECIAL_TAG, false);
+		builder.add(UNLOCK_TAG, false);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
+		builder.add(SPELL, (byte)0);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {

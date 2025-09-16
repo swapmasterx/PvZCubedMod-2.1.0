@@ -28,6 +28,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
@@ -71,9 +72,9 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 		this.nocturnal = true;
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override
@@ -114,7 +115,9 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 						double d = (double)(this.random.range(0, 255) & 255) / 255.0;
 						double e = (double)(this.random.range(0, 255) & 255) / 255.0;
 						double f = (double)(this.random.range(0, 255) & 255) / 255.0;
-						this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
+						ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+						this.getWorld().addParticle(particleEffect, this.getX() + (this.random.range(-2, 2)) * 0.85F,
+								this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
 					}
 				}
 				else if (this.getVariant().equals(FumeshroomVariants.TRANS)) {
@@ -128,10 +131,11 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 					double f2 = (double)(215 & 255) / 255.0;
 
 					for(int j = 0; j < 12; ++j) {
-						this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
-						this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d2, e2, f2);
+						ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+						this.getWorld().addParticle(particleEffect, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
+						this.getWorld().addParticle(particleEffect, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d2, e2, f2);
 						// WHITE
-						this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, 1, 1, 1);
+						this.getWorld().addParticle(particleEffect, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, 1, 1, 1);
 					}
 				}
 				else {
@@ -139,9 +143,9 @@ public class GloomshroomEntity extends PlantEntity implements GeoEntity, RangedA
 					double d = (double)(180 & 255) / 255.0;
 					double e = (double)(30 & 255) / 255.0;
 					double f = (double)(200 & 255) / 255.0;
-
+					ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
 					for(int j = 0; j < 32; ++j) {
-						this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
+						this.getWorld().addParticle(particleEffect, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
 					}
 				}
 			}

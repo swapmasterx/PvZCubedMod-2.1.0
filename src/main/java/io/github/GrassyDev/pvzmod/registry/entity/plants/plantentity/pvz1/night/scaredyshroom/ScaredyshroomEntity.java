@@ -70,9 +70,9 @@ public class ScaredyshroomEntity extends PlantEntity implements GeoEntity, Range
 		this.nocturnal = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override

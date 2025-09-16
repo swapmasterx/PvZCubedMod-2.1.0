@@ -47,7 +47,6 @@ public class ChillyPepperSeeds extends SeedItem implements FabricItem {
         super(settings);
     }
 
-	@Override
 	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return false;
 	}

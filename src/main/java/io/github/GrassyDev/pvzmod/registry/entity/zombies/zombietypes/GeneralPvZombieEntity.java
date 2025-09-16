@@ -114,18 +114,18 @@ public class GeneralPvZombieEntity extends HostileEntity {
 	public int damageMultiplierTicks = 1;
 
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FLYING_TAG, false);
-		this.dataTracker.startTracking(HOVER_TAG, false);
-		this.dataTracker.startTracking(CANHYPNO_TAG, true);
-		this.dataTracker.startTracking(CANBURN_TAG, true);
-		this.dataTracker.startTracking(COVERED_TAG, false);
-		this.dataTracker.startTracking(STEALTH_TAG, false);
-		this.dataTracker.startTracking(RAINBOW_TAG, false);
-		this.dataTracker.startTracking(CHALLENGE_TAG, false);
-		this.dataTracker.startTracking(DATA_ID_HYPNOTIZED, false);
-		this.dataTracker.startTracking(ARMOR2_ID, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FLYING_TAG, false);
+		builder.add(HOVER_TAG, false);
+		builder.add(CANHYPNO_TAG, true);
+		builder.add(CANBURN_TAG, true);
+		builder.add(COVERED_TAG, false);
+		builder.add(STEALTH_TAG, false);
+		builder.add(RAINBOW_TAG, false);
+		builder.add(CHALLENGE_TAG, false);
+		builder.add(DATA_ID_HYPNOTIZED, false);
+		builder.add(ARMOR2_ID, 0);
 	}
 
 	@Override
@@ -212,7 +212,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 								 @Nullable NbtCompound entityNbt) {
 		this.setCanHypno(CanHypno.TRUE);
 		this.setCanBurn(CanBurn.TRUE);
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+		return super.initialize(world, difficulty, spawnReason, entityData);
 	}
 
 

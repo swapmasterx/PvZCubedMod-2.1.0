@@ -74,13 +74,13 @@ public class GhostpepperEntity extends PlantEntity implements GeoEntity {
 		this.setImmune(Immune.TRUE);
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FRONTX, 0);
-		this.dataTracker.startTracking(FRONTZ, 0);
-		this.dataTracker.startTracking(BACKX, 0);
-		this.dataTracker.startTracking(BACKZ, 0);
-		this.dataTracker.startTracking(LIFETIME, 160);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(FRONTX, 0);
+		this.dataTracker.set(FRONTZ, 0);
+		this.dataTracker.set(BACKX, 0);
+		this.dataTracker.set(BACKZ, 0);
+		this.dataTracker.set(LIFETIME, 160);
 	}
 
 	@Override

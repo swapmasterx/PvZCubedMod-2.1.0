@@ -64,9 +64,9 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity 
 
 	public int maxAge = 60;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override
@@ -271,7 +271,7 @@ public class ShootingPeaEntity extends PvZProjectileEntity implements GeoEntity 
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

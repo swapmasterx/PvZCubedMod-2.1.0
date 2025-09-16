@@ -6,6 +6,7 @@ import io.github.GrassyDev.pvzmod.items.seedpackets.VampireSunflowerSeeds;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1c.social.superchomper.SuperChomperEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.upgrades.twinsunflower.TwinSunflowerEntity;
@@ -76,10 +77,10 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
-		this.dataTracker.startTracking(SUN_SPEED, -1);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(DATA_ID_TYPE_VARIANT, 0);
+		this.dataTracker.set(SUN_SPEED, -1);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {
@@ -226,7 +227,7 @@ public class SunflowerEntity extends PlantEntity implements GeoEntity {
 
 	public void tickMovement() {
 		super.tickMovement();
-		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(DISABLE)) {
+		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			if (--raycastDelay >= 0){
 				this.produceSun();
 				raycastDelay = 60;

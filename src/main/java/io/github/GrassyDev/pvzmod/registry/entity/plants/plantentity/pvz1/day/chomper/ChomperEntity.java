@@ -75,10 +75,10 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 		this.isBurst = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
-		this.dataTracker.startTracking(CHEWTIME, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(DATA_ID_TYPE_VARIANT, 0);
+		this.dataTracker.set(CHEWTIME, 0);
 	}
 	public void readCustomDataFromNbt(NbtCompound tag) {
 		super.readCustomDataFromNbt(tag);
@@ -266,9 +266,9 @@ public class ChomperEntity extends PlantEntity implements GeoEntity, RangedAttac
 			}
 		}
 		boolean bl = damaged.damage(getDamageSources().mobAttack(this), damage);
-		if (bl) {
-			this.applyDamageEffects(this, target);
-		}
+//		if (bl) {
+//			this.applyDamageEffects(this, target);
+//		}
 		SoundEvent sound;
 		sound = switch (zombieMaterial) {
 			case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;

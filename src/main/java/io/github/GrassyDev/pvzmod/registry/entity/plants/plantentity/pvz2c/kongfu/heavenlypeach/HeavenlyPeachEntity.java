@@ -57,9 +57,9 @@ public class HeavenlyPeachEntity extends PlantEntity implements GeoEntity {
 		this.prevZ = z;
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DESPAWNTIME, 200);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(DESPAWNTIME, 200);
 	}
 	public void readCustomDataFromNbt(NbtCompound tag) {
 		super.readCustomDataFromNbt(tag);

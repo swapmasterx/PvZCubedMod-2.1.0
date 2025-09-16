@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.items.seedpackets;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -56,7 +57,6 @@ public class SaucerSeeds extends SeedItem implements FabricItem {
         super(settings);
     }
 
-	@Override
 	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return false;
 	}
@@ -82,9 +82,8 @@ public class SaucerSeeds extends SeedItem implements FabricItem {
 //	}
 
 	//Credits to Patchouli for the tooltip code!
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.contain.family").setStyle(Style.EMPTY.withColor(10987175)));
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.fly.tooltip")
@@ -107,7 +106,7 @@ public class SaucerSeeds extends SeedItem implements FabricItem {
 				if (world instanceof ServerWorld serverWorld) {
 					SaucerEntity aquaticEntity = this.createEntity(world, hitResult);
 					aquaticEntity.setYaw(user.getYaw());
-					if (!world.isSpaceEmpty(aquaticEntity, aquaticEntity.getBoundingBox())) {
+					if (!world.isSpaceEmpty(aquaticEntity, aquaticEntity.getBounds())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
 						if (!world.isClient) {

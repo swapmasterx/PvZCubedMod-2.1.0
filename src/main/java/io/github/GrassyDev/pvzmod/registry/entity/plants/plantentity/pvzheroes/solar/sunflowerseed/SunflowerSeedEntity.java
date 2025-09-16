@@ -6,6 +6,7 @@ import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.sunflower.SunflowerEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.heroes.plants.vampireflower.VampireFlowerEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.plants.FumeshroomVariants;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -101,9 +102,9 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 		super.writeCustomDataToNbt(tag);
 		tag.putShort("Fuse", (short)this.sunProducingTime);
 	}
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SUN_SPEED, -1);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SUN_SPEED, -1);
 	}
 	private int currentFuseTime;
 
@@ -343,7 +344,7 @@ public class SunflowerSeedEntity extends PlantEntity implements GeoEntity, Range
 
 	public void tickMovement() {
 		super.tickMovement();
-		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(DISABLE)) {
+		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			if (--raycastDelay >= 0){
 				this.produceSun();
 				raycastDelay = 60;

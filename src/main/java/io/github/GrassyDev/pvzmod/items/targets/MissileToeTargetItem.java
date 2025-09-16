@@ -5,6 +5,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.environment.target.missiletoe.
 import io.github.GrassyDev.pvzmod.items.seedpackets.SeedItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
@@ -55,9 +56,8 @@ public class MissileToeTargetItem extends SeedItem implements FabricItem {
 	}
 
 	//Credits to Patchouli for the tooltip code!
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.missiletoetarget")
 				.formatted(Formatting.LIGHT_PURPLE));
@@ -73,7 +73,7 @@ public class MissileToeTargetItem extends SeedItem implements FabricItem {
 				if (world instanceof ServerWorld serverWorld) {
 					MissileToeTarget tileEntity = this.createEntity(world, hitResult);
 					tileEntity.setYaw(user.getYaw());
-					if (!world.isSpaceEmpty(tileEntity, tileEntity.getBoundingBox())) {
+					if (!world.isSpaceEmpty(tileEntity, tileEntity.getBounds())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
 						if (!world.isClient) {

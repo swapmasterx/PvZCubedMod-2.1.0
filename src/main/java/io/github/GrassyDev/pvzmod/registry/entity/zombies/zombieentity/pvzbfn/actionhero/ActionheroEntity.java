@@ -67,9 +67,9 @@ public class ActionheroEntity extends BullyEntity implements GeoEntity {
 		this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, true);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_COUNT, true);
 	}
 
 	@Override

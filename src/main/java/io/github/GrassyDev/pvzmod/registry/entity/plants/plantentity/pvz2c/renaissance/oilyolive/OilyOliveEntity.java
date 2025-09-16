@@ -76,12 +76,12 @@ public class OilyOliveEntity extends PlantEntity implements GeoEntity {
 		this.isBurst = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
+		builder.add(DATA_ID_TYPE_COUNT, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -323,7 +323,7 @@ public class OilyOliveEntity extends PlantEntity implements GeoEntity {
 			if (tileCheck.isEmpty()) {
 				OilTile tile = (OilTile) PvZEntity.OILTILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 				tile.setPersistent();
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);

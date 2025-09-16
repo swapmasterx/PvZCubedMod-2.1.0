@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -207,7 +208,7 @@ public class SpikeweedEntity extends PlantEntity implements GeoEntity {
 		}
 		if (--tickDamage <= 0){
 			this.zombieList.clear();
-			if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
+			if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 				this.damageEntity();
 			}
 			tickDamage = 20;

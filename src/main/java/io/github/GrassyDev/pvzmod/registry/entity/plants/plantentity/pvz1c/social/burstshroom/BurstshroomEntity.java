@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.spikeweed.SpikeweedEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -172,7 +173,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 				this.setIsAsleep(IsAsleep.TRUE);
 			}
 		}
-		if (this.isWet() || this.hasStatusEffect(WET)){
+		if (this.isWet() || this.hasStatusEffect(StatusHolder.WET_HOLDER)){
 			this.setAltfire(AltFire.TRUE);
 			exhaustTicks = 5;
 		}
@@ -379,8 +380,8 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 						livingEntity.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 						float damage = 30F;
 						if ("paper".equals(zombieMaterial) || "plant".equals(zombieMaterial) || "cloth".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
-							if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
-								livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+							if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER)) {
+								livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 								livingEntity.setOnFireFor(4);
 								if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 									generalPvZombieEntity.fireSplashTicks = 10;
@@ -391,7 +392,7 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 						if ("rubber".equals(zombieMaterial) || "crystal".equals(zombieMaterial)){
 							damage = damage / 2;
 						}
-						if (livingEntity.hasStatusEffect(PvZCubed.WET) || livingEntity.isWet() || (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())){
+						if (livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) || livingEntity.isWet() || (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())){
 							damage = damage / 2;
 						}
 						if (damage > livingEntity.getHealth() &&
@@ -405,8 +406,8 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 							livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 							livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 						}
-						if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET)) {
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						if (!livingEntity.isWet() && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER)) {
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 							livingEntity.setOnFireFor(4);
 							if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 								generalPvZombieEntity.fireSplashTicks = 10;
@@ -430,75 +431,75 @@ public class BurstshroomEntity extends PlantEntity implements GeoEntity, RangedA
 						List<LivingEntity> frontrightList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().offset(frontright));
 						if (livingEntity.squaredDistanceTo(this) <= 1){
 							Vec3d livingEntityVec = new Vec3d((double) -1, 0.0, 0).rotateY(-livingEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(livingEntityVec.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
 								Vec3d vehicleVec = new Vec3d((double) -1, 0.0, 0).rotateY(-vehicle.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(vehicleVec.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (frontList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(front.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(front.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (frontleftList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(frontleft.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(frontleft.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (frontrightList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(frontright.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(frontright.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (leftList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(left.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(left.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (rightList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(right.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(right.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (bottomleftList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(bottomleft.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(bottomleft.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (bottomrightList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(bottomright.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(bottomright.add(new Vec3d(0, 0.5, 0)));
 							}
 						}
 						else if (bottomList.contains(livingEntity)){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 							livingEntity.setVelocity(bottom.add(new Vec3d(0, 0.5, 0)));
 							if (livingEntity.getVehicle() instanceof LivingEntity vehicle){
-								vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+								vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 								vehicle.setVelocity(bottom.add(new Vec3d(0, 0.5, 0)));
 							}
 						}

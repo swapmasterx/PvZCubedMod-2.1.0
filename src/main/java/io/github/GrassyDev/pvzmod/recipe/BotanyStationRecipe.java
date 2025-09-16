@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import static software.bernie.geckolib.constant.dataticket.SerializableDataTicket.STREAM_CODEC;
 
@@ -52,12 +53,14 @@ public record BotanyStationRecipe (int sunCost, List<Ingredient> recipeItems, It
 	public RecipeType<? extends Recipe<BotanyStationRecipeInput>> getType() {
 		return ModRecipes.BOTANY_BOX_TYPE;
 	}
-	public boolean matches(SimpleInventory inventory, World world) {
+
+
+	public boolean matches(BotanyStationRecipeInput input, World world) {
 		RecipeMatcher recipeMatcher = new RecipeMatcher();
 		int notEmptyStacks = 0;
 
-		for(int j = 0; j < inventory.size(); ++j) {
-			ItemStack itemStack = inventory.getStack(j);
+		for(int j = 0; j < input.getSize(); ++j) {
+			ItemStack itemStack = input.get(j);
 			if (!itemStack.isEmpty()) {
 				++notEmptyStacks;
 				recipeMatcher.addInput(itemStack, 1);
@@ -80,10 +83,10 @@ public record BotanyStationRecipe (int sunCost, List<Ingredient> recipeItems, It
 		return this.sunCost;
 	}
 
-	@Override
-	public boolean matches(BotanyStationRecipeInput input, World world) {
-		return false;
-	}
+//	@Override
+//	public boolean matches(BotanyStationRecipeInput input, World world) {
+//		return false;
+//	}
 
 	public boolean fits(int width, int height) {
 		return width * height >= this.recipeItems.size();
@@ -120,11 +123,26 @@ public record BotanyStationRecipe (int sunCost, List<Ingredient> recipeItems, It
 //		public static final Serializer INSTANCE = new Serializer();
 //		public static final String ID = "botany_station";
 
-public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
-		private static final MapCodec<BotanyStationRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-
-				Codec.INT.fieldOf("suncost").forGetter(BotanyStationRecipe::sunCost),
-				Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients").flatXmap(list -> {
+//public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
+//		private static final MapCodec<BotanyStationRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
+//
+//				Codec.INT.fieldOf("suncost").forGetter(BotanyStationRecipe::sunCost),
+//					Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients").flatXmap(list -> {
+//				Ingredient[] ingredients = list.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+//				if (ingredients.length == 0) {
+//					return DataResult.error(() -> "No ingredients for Botany Box recipe");
+//				} else {
+//					return ingredients.length > 7 ?
+//						DataResult.error(() -> "Too many ingredients for Botany Box recipe") :
+//						DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredients));
+//				}}, DataResult::success).forGetter(botanyStationRecipe -> BotanyStationRecipe::recipeItems),
+//				ItemStack.CODEC.fieldOf("result").forGetter(BotanyStationRecipe::output)).apply(instance, BotanyStationRecipe::new);
+//
+//		});
+	public static class Serializer implements RecipeSerializer<BotanyStationRecipe> {
+		public static final MapCodec<BotanyStationRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+			Codec.INT.fieldOf("suncost").forGetter(BotanyStationRecipe::sunCost),
+			Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients").flatXmap(list -> {
 				Ingredient[] ingredients = list.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
 				if (ingredients.length == 0) {
 					return DataResult.error(() -> "No ingredients for Botany Box recipe");
@@ -132,17 +150,22 @@ public static class Serializer implements RecipeSerializer<BotanyStationRecipe> 
 					return ingredients.length > 7 ?
 						DataResult.error(() -> "Too many ingredients for Botany Box recipe") :
 						DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredients));
-				}
-				}, DataResult::success).forGetter(botanyStationRecipe -> BotanyStationRecipe::recipeItems),
-				ItemStack.CODEC.fieldOf("result").forGetter(BotanyStationRecipe::output)).apply(instance, BotanyStationRecipe::new);
-		});
-	@Override
-	public PacketCodec<RegistryByteBuf, BotanyStationRecipe> getPacketCodec() {return STREAM_CODEC;}
+				}}, DataResult::success).forGetter((recipe) -> {
+					return (DefaultedList<Ingredient>) recipe.recipeItems;
+				}),
+			ItemStack.field_51397.fieldOf("result").forGetter(BotanyStationRecipe::output)
+		).apply(inst, BotanyStationRecipe::new));
 
-		@Override
-		public MapCodec<BotanyStationRecipe> getCodec() {
-			return CODEC;
-		}
+
+	@Override
+	public MapCodec<BotanyStationRecipe> getCodec() {
+		return CODEC;
+	}
+	public static final PacketCodec<RegistryByteBuf, BotanyStationRecipe> PACKET_CODEC = PacketCodec.create(Serializer::write, Serializer::read);
+	@Override
+	public PacketCodec<RegistryByteBuf, BotanyStationRecipe> getPacketCodec() {
+		return PACKET_CODEC;
+	}
 
 
 	private static BotanyStationRecipe read(RegistryByteBuf buf) {
@@ -150,7 +173,7 @@ public static class Serializer implements RecipeSerializer<BotanyStationRecipe> 
 		int ingredientsCount = buf.readVarInt();
 		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(ingredientsCount, Ingredient.EMPTY);
 		inputs.replaceAll((ingredient) -> {
-			return (Ingredient)Ingredient.PACKET_CODEC.decode(buf);
+			return Ingredient.PACKET_CODEC.decode(buf);
 		});
 		ItemStack itemStack = (ItemStack)ItemStack.PACKET_CODEC.decode(buf);
 		return new BotanyStationRecipe(suncost, inputs, itemStack);

@@ -57,12 +57,12 @@ public class MetalHelmetProjEntity extends PvZProjectileEntity implements GeoEnt
 
 	public int reverseAge;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
-		this.dataTracker.startTracking(DAMAGE, 0f);
-		this.dataTracker.startTracking(MAXHEALTH, 0f);
-		this.dataTracker.startTracking(MAX_AGE, 60);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
+		builder.add(DAMAGE, 0f);
+		builder.add(MAXHEALTH, 0f);
+		builder.add(MAX_AGE, 60);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.icetile.IceTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.snowtile.SnowTile;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieShieldEntity;
@@ -93,7 +94,7 @@ public class FireTrailEntity extends PathAwareEntity implements GeoEntity {
 
 			if (((livingEntity instanceof Monster &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
-							&& (generalPvZombieEntity.getHypno()))) && (!livingEntity.isWet() && !livingEntity.hasStatusEffect(PvZCubed.WET) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) &&
+							&& (generalPvZombieEntity.getHypno()))) && (!livingEntity.isWet() && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity &&
 							generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering()))) {
 				ZombiePropEntity zombiePropEntity2 = null;
@@ -126,17 +127,17 @@ public class FireTrailEntity extends PathAwareEntity implements GeoEntity {
 						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
 					if (!(livingEntity instanceof ZombieShieldEntity)) {
-						livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-						livingEntity.removeStatusEffect(PvZCubed.ICE);
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+						livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 						livingEntity.setOnFireFor(60);
 					}
 				}
 			}
-			else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet()){
-				livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-				livingEntity.removeStatusEffect(PvZCubed.ICE);
-				livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+			else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet()){
+				livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+				livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+				livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 				livingEntity.setOnFireFor(60);
 			}
 		}

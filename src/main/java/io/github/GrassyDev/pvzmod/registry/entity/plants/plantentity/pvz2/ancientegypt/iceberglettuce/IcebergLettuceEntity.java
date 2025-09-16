@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.ancie
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.scorchedtile.ScorchedTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -71,12 +72,12 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoEntity {
 		this.isBurst = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
+		builder.add(DATA_ID_TYPE_COUNT, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -328,14 +329,14 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoEntity {
 					}
 				}
 				if (!(livingEntity instanceof ZombieShieldEntity) && !(zombiePropEntity2 instanceof ZombieShieldEntity)) {
-					livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-					livingEntity.removeStatusEffect(PvZCubed.ICE);
-					if (livingEntity.hasStatusEffect(PvZCubed.WARM) || livingEntity.isOnFire()) {
-						livingEntity.removeStatusEffect(PvZCubed.WARM);
+					livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+					livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+					if (livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) || livingEntity.isOnFire()) {
+						livingEntity.removeStatusEffect(StatusHolder.WARM_HOLDER);
 						livingEntity.extinguish();
 					}
-					livingEntity.removeStatusEffect(PvZCubed.STUN);
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.FROZEN, 200, 5)));
+					livingEntity.removeStatusEffect(StatusHolder.STUN_HOLDER);
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.FROZEN_HOLDER, 200, 5)));
 				}
 			}
 		}
@@ -525,16 +526,16 @@ public class IcebergLettuceEntity extends PlantEntity implements GeoEntity {
 		LivingEntity attacker = (LivingEntity) source.getAttacker();
 		if (attacker instanceof GargantuarEntity && attacker.isAlive()){
 			attacker.damage(getDamageSources().mobProjectile(this, this), 4);
-			attacker.removeStatusEffect(PvZCubed.FROZEN);
-			attacker.removeStatusEffect(PvZCubed.ICE);
-			if (attacker.hasStatusEffect(PvZCubed.WARM) || attacker.isOnFire()) {
-				attacker.removeStatusEffect(PvZCubed.WARM);
+			attacker.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+			attacker.removeStatusEffect(StatusHolder.ICE_HOLDER);
+			if (attacker.hasStatusEffect(StatusHolder.WARM_HOLDER) || attacker.isOnFire()) {
+				attacker.removeStatusEffect(StatusHolder.WARM_HOLDER);
 				attacker.extinguish();
 			}
-			attacker.removeStatusEffect(PvZCubed.STUN);
-			attacker.addStatusEffect((new StatusEffectInstance(PvZCubed.FROZEN, 200, 5)));
-			attacker.removeStatusEffect(PvZCubed.FROZEN);
-			attacker.addStatusEffect((new StatusEffectInstance(PvZCubed.FROZEN, 200, 5)));
+			attacker.removeStatusEffect(StatusHolder.STUN_HOLDER);
+			attacker.addStatusEffect((new StatusEffectInstance(StatusHolder.FROZEN_HOLDER, 200, 5)));
+			attacker.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+			attacker.addStatusEffect((new StatusEffectInstance(StatusHolder.FROZEN_HOLDER, 200, 5)));
 		}
 		super.onDeath(source);
 	}

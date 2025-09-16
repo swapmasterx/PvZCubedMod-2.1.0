@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -90,18 +91,18 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID2, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID2, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID3, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID3, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID4, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID4, 0);
-		this.dataTracker.startTracking(SPARK_TARGET, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_COUNT, false);
+		builder.add(HYPNO_BEAM_TARGET_ID, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID2, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID2, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID3, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID3, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID4, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID4, 0);
+		builder.add(SPARK_TARGET, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -153,7 +154,7 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 			this.cachedSparkTarget = null;
 		}
 
-		super.onTrackedDataUpdate(data);
+		super.onTrackedDataSet(data);
 	}
 
 	static {
@@ -442,7 +443,7 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 	protected int lightningCounter;
 
 	public void lightning(LivingEntity origin){
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, origin.getBoundingBox().expand(10.0));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, origin.getBounds().expand(10.0));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -478,7 +479,7 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
+				if (livingEntity.isWet() || livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER)){
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), 5);
 				}
 				else {
@@ -955,7 +956,7 @@ public class ZapricotEntity extends PlantEntity implements GeoEntity, RangedAtta
 							this.plantEntity.playSound(PvZSounds.LIGHTNINGSHOOTEVENT, 0.75F, (float) (0.75F + (Math.random() / 2)));
 							damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
 							float damage = 3;
-							if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)) {
+							if (livingEntity.isWet() || livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER)) {
 								damage = damage * 2;
 							}
 							if ("electronic".equals(zombieMaterial) || "crystal".equals(zombieMaterial)) {

@@ -75,11 +75,11 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 		this.nocturnal = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(FUSE_SPEED, -1);
+		this.dataTracker.set(CHARGED, false);
+		this.dataTracker.set(IGNITED, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -351,7 +351,7 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 			areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float) areaEffectCloudEntity.getDuration());
 			this.getWorld().spawnEntity(areaEffectCloudEntity);
 			AreaEffectCloudEntity areaEffectCloudEntity2 = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
-			areaEffectCloudEntity2.setColor(0x5F316E);
+//			areaEffectCloudEntity2.setColor(0x5F316E);
 			areaEffectCloudEntity2.setRadius(2F);
 			areaEffectCloudEntity2.setRadiusOnUse(-0.5F);
 			areaEffectCloudEntity2.setWaitTime(5);
@@ -369,7 +369,7 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 			areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float) areaEffectCloudEntity.getDuration());
 			this.getWorld().spawnEntity(areaEffectCloudEntity);
 			AreaEffectCloudEntity areaEffectCloudEntity2 = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
-			areaEffectCloudEntity2.setColor(0x5F316E);
+//			areaEffectCloudEntity2.setColor(0x5F316E);
 			areaEffectCloudEntity2.setRadius(6F);
 			areaEffectCloudEntity2.setRadiusOnUse(-0.5F);
 			areaEffectCloudEntity2.setWaitTime(5);
@@ -407,7 +407,7 @@ public class DoomshroomEntity extends PlantEntity implements GeoEntity {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			CraterTile tile = (CraterTile) PvZEntity.CRATERTILE.create(getWorld());
 			tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 			tile.setPersistent();
 			tile.setHeadYaw(0);
 			serverWorld.spawnEntityAndPassengers(tile);

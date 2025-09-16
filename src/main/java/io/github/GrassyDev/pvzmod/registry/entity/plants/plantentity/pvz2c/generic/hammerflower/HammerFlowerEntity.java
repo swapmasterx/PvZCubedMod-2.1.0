@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.gene
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -62,9 +63,9 @@ public class HammerFlowerEntity extends PlantEntity implements GeoEntity, Ranged
 		super(entityType, world);
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(ZOMB_ID, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(ZOMB_ID, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound tag) {
@@ -331,7 +332,7 @@ public class HammerFlowerEntity extends PlantEntity implements GeoEntity, Ranged
 		}
 		String zombieSize = PvZCubed.ZOMBIE_SIZE.get(damaged.getType()).orElse("medium");
 		if (!hasHelmet && !zombieSize.equals("big") && !zombieSize.equals("gargantuar")){
-			((LivingEntity) damaged).addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 100, 1)));
+			((LivingEntity) damaged).addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, 100, 1)));
 			this.getWorld().sendEntityStatus(this, (byte) 120);
 			target.playSound(SoundEvents.BLOCK_NETHERRACK_BREAK, 0.3F, (float) (0.5F + Math.random()));
 		}
@@ -348,12 +349,12 @@ public class HammerFlowerEntity extends PlantEntity implements GeoEntity, Ranged
 
 		boolean bl = damaged.damage(getDamageSources().mobAttack(this), 0);
 		boolean bl2 = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
-		if (bl) {
-			this.applyDamageEffects(this, target);
-		}
-		if (bl2) {
-			this.applyDamageEffects(this, target);
-		}
+//		if (bl) {
+//			this.applyDamageEffects(this, target);
+//		}
+//		if (bl2) {
+//			this.applyDamageEffects(this, target);
+//		}
 		SoundEvent sound;
 		sound = switch (zombieMaterial) {
 			case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;

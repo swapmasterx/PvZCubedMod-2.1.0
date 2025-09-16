@@ -49,8 +49,8 @@ public abstract class PvZProjectileEntity extends ThrownItemEntity {
 	public List<Entity> moreEntities = new ArrayList<>();
 
 	public void hitEntities(){
-		List<Entity> hit = this.getWorld().getNonSpectatingEntities(Entity.class, this.getBoundingBox().stretch(0, -0.5, 0));
-		List<TileEntity> tileHit = this.getWorld().getNonSpectatingEntities(TileEntity.class, this.getBoundingBox().expand(0, 2, 0));
+		List<Entity> hit = this.getWorld().getNonSpectatingEntities(Entity.class, this.getBounds().stretch(0, -0.5, 0));
+		List<TileEntity> tileHit = this.getWorld().getNonSpectatingEntities(TileEntity.class, this.getBounds().expand(0, 2, 0));
 		hit.addAll(moreEntities);
 		hitEntities.addAll(tileHit);
 		for (Entity entity : hit){

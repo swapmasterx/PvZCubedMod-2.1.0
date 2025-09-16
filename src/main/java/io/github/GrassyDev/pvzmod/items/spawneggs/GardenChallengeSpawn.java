@@ -7,6 +7,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchalle
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.items.seedpackets.SeedItem;
 
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,9 +35,8 @@ public class GardenChallengeSpawn extends SeedItem {
         super(settings);
     }
 
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.gardenchallenge_spawn.flavour")
 				.formatted(Formatting.LIGHT_PURPLE));

@@ -65,13 +65,13 @@ public class SuperFanImpEntity extends ImpEntity implements GeoEntity {
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 	private String controllerName = "superfancontroller";
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, true);
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
+		builder.add(DATA_ID_TYPE_COUNT, true);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

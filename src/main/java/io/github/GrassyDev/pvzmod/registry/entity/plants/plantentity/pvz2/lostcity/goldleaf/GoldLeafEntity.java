@@ -101,7 +101,7 @@ public class GoldLeafEntity extends PlantEntity implements GeoEntity {
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			GoldTile tile = (GoldTile) PvZEntity.GOLDTILE.create(getWorld());
 			tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+			tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 			tile.setPersistent();
 			tile.setHeadYaw(0);
 			serverWorld.spawnEntityAndPassengers(tile);

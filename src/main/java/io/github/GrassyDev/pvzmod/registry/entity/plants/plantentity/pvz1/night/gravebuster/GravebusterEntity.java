@@ -109,15 +109,16 @@ public class GravebusterEntity extends PlantEntity implements GeoEntity {
 			float f = 1;
 			target.dismountVehicle();
 			boolean bl = target.damage(getDamageSources().mobAttack(this), f);
-			if (bl) {
-				this.applyDamageEffects(this, target);
-			}
+//			if (bl) {
+//				this.applyDamageEffects(this, target);
+//			}
 		}
 		if (i <= 1) {
 			float f = this.getAttackDamage();
-			boolean bl = target.damage(getDamageSources().mobAttack(this), f);if (bl) {
-				this.applyDamageEffects(this, target);
-			}
+			boolean bl = target.damage(getDamageSources().mobAttack(this), f);if (bl)
+//			{
+//				this.applyDamageEffects(this, target);
+//			}
 			this.used = true;
 			target.damage(getDamageSources().mobAttack(this), Integer.MAX_VALUE);
 			this.remove(RemovalReason.DISCARDED);

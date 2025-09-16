@@ -74,9 +74,9 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SLIDING_TAG, false);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SLIDING_TAG, false);
 	}
 
 	@Override

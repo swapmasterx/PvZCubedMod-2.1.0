@@ -2,6 +2,8 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.Ice;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
@@ -28,6 +30,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -93,15 +97,15 @@ public abstract class PlantEntity extends GolemEntity {
 		builder.add(DATA_ID_FIREIMMUNE, false);
 		builder.add(DATA_ID_IMMUNE, false);
 		builder.add(FLYING, false);
-//		this.dataTracker.startTracking(DATA_ID_ASLEEP, false);
-//		this.dataTracker.startTracking(COFFEE, false);
-//		this.dataTracker.startTracking(SHADOW, false);
-//		this.dataTracker.startTracking(MOON, false);
-//		this.dataTracker.startTracking(DATA_ALTFIRE, false);
-//		this.dataTracker.startTracking(DATA_ID_LOWPROF, false);
-//		this.dataTracker.startTracking(DATA_ID_FIREIMMUNE, false);
-//		this.dataTracker.startTracking(DATA_ID_IMMUNE, false);
-//		this.dataTracker.startTracking(FLYING, false);
+//		builder.add(DATA_ID_ASLEEP, false);
+//		builder.add(COFFEE, false);
+//		builder.add(SHADOW, false);
+//		builder.add(MOON, false);
+//		builder.add(DATA_ALTFIRE, false);
+//		builder.add(DATA_ID_LOWPROF, false);
+//		builder.add(DATA_ID_FIREIMMUNE, false);
+//		builder.add(DATA_ID_IMMUNE, false);
+//		builder.add(FLYING, false);
 	}
 
 	@Override
@@ -417,7 +421,7 @@ public abstract class PlantEntity extends GolemEntity {
 				hasZombie = true;
 			}
 		}
-		if (!this.getWorld().isClient() && !this.hasStatusEffect()) {
+		if (!this.getWorld().isClient() && !this.getStatusEffects().isEmpty()) {
 			for (LivingEntity hostileEntity : list) {
 				if (hostileEntity.isAlive() && this.getVisibilityCache().canSee(hostileEntity) &&
 						!(hostileEntity instanceof GraveEntity && targetNotObstacle) &&
@@ -468,7 +472,7 @@ public abstract class PlantEntity extends GolemEntity {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusEffects.INVISIBILITY) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												}
 											}
 										}
@@ -480,7 +484,7 @@ public abstract class PlantEntity extends GolemEntity {
 										zombieStrength = currentStrength;
 										prevZombiePosition = hostileEntity.getPos();
 										targeted = hostileEntity;
-										prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+										prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 									}
 								}
 								if (hostileEntity instanceof ImpEntity impEntity && impEntity.getType().equals(PvZEntity.SCRAPIMP)){
@@ -489,7 +493,7 @@ public abstract class PlantEntity extends GolemEntity {
 										zombieStrength = currentStrength;
 										prevZombiePosition = hostileEntity.getPos();
 										targeted = hostileEntity;
-										prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+										prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 									}
 								}
 							} else if (magnetoshroom) {
@@ -504,7 +508,7 @@ public abstract class PlantEntity extends GolemEntity {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												}
 											}
 										}
@@ -516,7 +520,7 @@ public abstract class PlantEntity extends GolemEntity {
 										zombieStrength = currentStrength;
 										prevZombiePosition = hostileEntity.getPos();
 										targeted = hostileEntity;
-										prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+										prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 									}
 								}
 								if (hostileEntity instanceof ImpEntity impEntity && impEntity.getType().equals(PvZEntity.SCRAPIMP)){
@@ -525,7 +529,7 @@ public abstract class PlantEntity extends GolemEntity {
 										zombieStrength = currentStrength;
 										prevZombiePosition = hostileEntity.getPos();
 										targeted = hostileEntity;
-										prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+										prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 									}
 								}
 							} else if (hostileEntity.squaredDistanceTo(pos) <= Math.pow(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE), 2) &&
@@ -538,31 +542,31 @@ public abstract class PlantEntity extends GolemEntity {
 											!(generalPvZombieEntity instanceof ZombieVehicleEntity && targetNotCovered) &&
 											!(generalPvZombieEntity instanceof ZombieObstacleEntity && targetNotObstacle) &&
 											!(generalPvZombieEntity instanceof ZombieVehicleEntity && targetNotObstacle)) {
-										isIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
-										isPoisoned = hostileEntity.hasStatusEffect(PvZCubed.PVZPOISON);
+										isIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
+										isPoisoned = hostileEntity.hasStatusEffect(StatusHolder.POISON_HOLDER);
 										if (zombieStrength < currentStrength && this.targetStrength) {
 											if (canHitFlying && generalPvZombieEntity.hasPassengers() && generalPvZombieEntity.getFirstPassenger() instanceof ZombieRidersEntity zombieRiderEntity){
 												zombieStrength = currentStrength;
 												prevZombiePosition = zombieRiderEntity.getPos();
 												targeted = zombieRiderEntity;
-												prevIced = zombieRiderEntity.hasStatusEffect(PvZCubed.ICE) || zombieRiderEntity.hasStatusEffect(PvZCubed.FROZEN);
+												prevIced = zombieRiderEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || zombieRiderEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 											}
 											else if (canHitFlying && generalPvZombieEntity.isFlying()) {
 												zombieStrength = currentStrength;
 												prevZombiePosition = hostileEntity.getPos();
 												targeted = hostileEntity;
-												prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+												prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 											} else if (!canHitFlying && !generalPvZombieEntity.isFlying()) {
 												if (canHitSnorkel && generalPvZombieEntity instanceof SnorkelEntity snorkelEntity && snorkelEntity.isInvisibleSnorkel()) {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												} else if (canHitSnorkel && generalPvZombieEntity instanceof SnorkelEntity) {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												} else if (!canHitSnorkel && (generalPvZombieEntity instanceof SnorkelEntity snorkelEntity && !snorkelEntity.isInvisibleSnorkel()) ||
 														!(generalPvZombieEntity instanceof SnorkelEntity)) {
 													if ((canHitStealth && generalPvZombieEntity.isStealth()) ||
@@ -570,17 +574,17 @@ public abstract class PlantEntity extends GolemEntity {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (canHitStealth && !generalPvZombieEntity.isStealth()) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (!canHitStealth && !generalPvZombieEntity.isStealth()) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													}
 												}
 											} else if (canHitFlying) {
@@ -588,12 +592,12 @@ public abstract class PlantEntity extends GolemEntity {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												} else if (canHitSnorkel && generalPvZombieEntity instanceof SnorkelEntity) {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												} else if (!canHitSnorkel && (generalPvZombieEntity instanceof SnorkelEntity snorkelEntity && !snorkelEntity.isInvisibleSnorkel()) ||
 														!(generalPvZombieEntity instanceof SnorkelEntity)) {
 													if ((canHitStealth && generalPvZombieEntity.isStealth()) ||
@@ -601,17 +605,17 @@ public abstract class PlantEntity extends GolemEntity {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (canHitStealth && !generalPvZombieEntity.isStealth()) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (!canHitStealth && !generalPvZombieEntity.isStealth()) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													}
 												}
 											}
@@ -622,24 +626,24 @@ public abstract class PlantEntity extends GolemEntity {
 													zombieStrength = currentStrength;
 													prevZombiePosition = zombieRiderEntity.getPos();
 													targeted = zombieRiderEntity;
-													prevIced = zombieRiderEntity.hasStatusEffect(PvZCubed.ICE) || zombieRiderEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = zombieRiderEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || zombieRiderEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												}
 												else if (canHitFlying && generalPvZombieEntity.isFlying()) {
 													zombieStrength = currentStrength;
 													prevZombiePosition = hostileEntity.getPos();
 													targeted = hostileEntity;
-													prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+													prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 												} else if (!canHitFlying && !generalPvZombieEntity.isFlying()) {
 													if (canHitSnorkel && generalPvZombieEntity instanceof SnorkelEntity snorkelEntity && snorkelEntity.isInvisibleSnorkel()) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (canHitSnorkel && generalPvZombieEntity instanceof SnorkelEntity snorkelEntity) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (!canHitSnorkel && (generalPvZombieEntity instanceof SnorkelEntity snorkelEntity && !snorkelEntity.isInvisibleSnorkel()) ||
 															!(generalPvZombieEntity instanceof SnorkelEntity)) {
 														if ((canHitStealth && generalPvZombieEntity.isStealth()) ||
@@ -647,17 +651,17 @@ public abstract class PlantEntity extends GolemEntity {
 															zombieStrength = currentStrength;
 															prevZombiePosition = hostileEntity.getPos();
 															targeted = hostileEntity;
-															prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+															prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 														} else if (canHitStealth && !generalPvZombieEntity.isStealth()) {
 															zombieStrength = currentStrength;
 															prevZombiePosition = hostileEntity.getPos();
 															targeted = hostileEntity;
-															prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+															prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 														} else if (!canHitStealth && !generalPvZombieEntity.isStealth()) {
 															zombieStrength = currentStrength;
 															prevZombiePosition = hostileEntity.getPos();
 															targeted = hostileEntity;
-															prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+															prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 														}
 													}
 												} else if (canHitFlying) {
@@ -665,12 +669,12 @@ public abstract class PlantEntity extends GolemEntity {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (canHitSnorkel && generalPvZombieEntity instanceof SnorkelEntity snorkelEntity) {
 														zombieStrength = currentStrength;
 														prevZombiePosition = hostileEntity.getPos();
 														targeted = hostileEntity;
-														prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+														prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 													} else if (!canHitSnorkel && (generalPvZombieEntity instanceof SnorkelEntity snorkelEntity && !snorkelEntity.isInvisibleSnorkel()) ||
 															!(generalPvZombieEntity instanceof SnorkelEntity)) {
 														if ((canHitStealth && generalPvZombieEntity.isStealth()) ||
@@ -678,17 +682,17 @@ public abstract class PlantEntity extends GolemEntity {
 															zombieStrength = currentStrength;
 															prevZombiePosition = hostileEntity.getPos();
 															targeted = hostileEntity;
-															prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+															prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 														} else if (canHitStealth && !generalPvZombieEntity.isStealth()) {
 															zombieStrength = currentStrength;
 															prevZombiePosition = hostileEntity.getPos();
 															targeted = hostileEntity;
-															prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+															prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 														} else if (!canHitStealth && !generalPvZombieEntity.isStealth()) {
 															zombieStrength = currentStrength;
 															prevZombiePosition = hostileEntity.getPos();
 															targeted = hostileEntity;
-															prevIced = hostileEntity.hasStatusEffect(PvZCubed.ICE) || hostileEntity.hasStatusEffect(PvZCubed.FROZEN);
+															prevIced = hostileEntity.hasStatusEffect(StatusHolder.ICE_HOLDER) || hostileEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER);
 														}
 													}
 												}
@@ -962,7 +966,7 @@ public abstract class PlantEntity extends GolemEntity {
 		for (WaterTile waterTile : waterTiles) {
 			this.onWaterTile = true;
 		}
-		if (this.hasStatusEffect(DISABLE)){
+		if (this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 			this.setTarget(null);
 		}
 		super.tick();
@@ -1053,7 +1057,7 @@ public abstract class PlantEntity extends GolemEntity {
 		ZombiePropEntity setGear3 = null;
 
 		if (livingEntity != null){
-			List<LivingEntity> magnetList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, livingEntity.getBoundingBox().expand(2));
+			List<LivingEntity> magnetList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, livingEntity.getBounds().expand(2));
 			EntityType<?> entityType = null;
 			EntityType<?> entityType2 = null;
 			EntityType<?> entityType3 = null;
@@ -1397,8 +1401,8 @@ public abstract class PlantEntity extends GolemEntity {
 			}
 		}
 
-		protected void initDataTracker() {
-			super.initDataTracker();
+		protected void initDataTracker(DataTracker.Builder builder) {
+			super.initDataTracker(builder);
 
 		}
 		public void readCustomDataFromNbt(NbtCompound tag) {
@@ -1477,7 +1481,6 @@ public abstract class PlantEntity extends GolemEntity {
 		protected void pushAway(Entity entity) {
 		}
 
-		@Override
 		protected float method_52537(Entity entity) {
 			return 0;
 		}

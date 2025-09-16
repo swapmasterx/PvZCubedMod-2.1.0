@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -31,6 +32,7 @@ import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -239,8 +241,8 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 						livingEntity.damage(getDamageSources().mobProjectile(this, this), 0);
 						livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 					}
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 60, 3)));
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.GENERICSLOW, 60, 1)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 60, 3)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.GENERICSLOW_HOLDER, 60, 1)));
 					this.zombieList.add(livingEntity);
 				}
 			}
@@ -302,7 +304,8 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 			for (int i = 0; i < 16; ++i) {
 				RandomGenerator randomGenerator = this.getRandom();
 				RandomGenerator randomGenerator2 = this.getRandom();
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -2.5F, 2.5F),
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getX() + (double) MathHelper.nextBetween(randomGenerator, -2.5F, 2.5F),
 						this.getY() + (this.random.range(-1, 1)),
 						this.getZ() + (double) MathHelper.nextBetween(randomGenerator2,
 								-2.5F, 2.5F), dx, ex, fx);
@@ -323,7 +326,7 @@ public class NightcapEntity extends PlantEntity implements GeoEntity, RangedAtta
 		if (this.isAfraid) {
 			if (--tickDamage <= 0) {
 				this.zombieList.clear();
-				if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					this.damageEntity();
 				}
 				tickDamage = 20;

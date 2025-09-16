@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2c.skyc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.*;
@@ -204,8 +205,8 @@ public class SaucerEntity extends PlantEntity implements GeoEntity {
 				if (zombiePropEntity2 == null ||
 						zombiePropEntity2 instanceof ZombieShieldEntity) {
 					livingEntity.playSound(PvZSounds.PEAHITEVENT, 0.1F, (float) (0.5F + Math.random()));
-					if (!livingEntity.hasStatusEffect(FROZEN) && !livingEntity.hasStatusEffect(DISABLE)){
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 20, 5)));
+					if (!livingEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !livingEntity.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, 20, 5)));
 					}
 					this.zombieList.add(livingEntity);
 					this.attacking = true;
@@ -234,7 +235,7 @@ public class SaucerEntity extends PlantEntity implements GeoEntity {
 		BlockPos blockPos = this.getBlockPos();
 		if (--tickDamage <= 0){
 			this.zombieList.clear();
-			if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
+			if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 				this.damageEntity();
 			}
 			if (this.attacking){

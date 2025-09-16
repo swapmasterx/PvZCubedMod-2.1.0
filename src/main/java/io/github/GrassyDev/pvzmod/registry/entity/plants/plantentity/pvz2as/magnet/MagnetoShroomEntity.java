@@ -321,7 +321,7 @@ public class MagnetoShroomEntity extends PlantEntity implements GeoEntity, Range
 		return super.startRiding(entity, force);
 	}
 
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 1.35f;
 	}

@@ -57,9 +57,9 @@ public class ShootingBoomerangEntity extends PvZProjectileEntity implements GeoE
 
 	public float ownerYaw;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(RETURNING_TAG, false);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(RETURNING_TAG, false);
 	}
 
 	@Override

@@ -59,10 +59,10 @@ public class ShootingCardEntity extends PvZProjectileEntity implements GeoEntity
 	public float ownerYaw;
 	public int damageCounter = 0;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(RETURNING_TAG, false);
-		this.dataTracker.startTracking(GOLDEN, false);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(RETURNING_TAG, false);
+		builder.add(GOLDEN, false);
 	}
 
 	@Override

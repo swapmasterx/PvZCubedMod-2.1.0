@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.entity.data.DataTracker;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.lilypad.LilyPadEntity;
@@ -76,8 +77,8 @@ public class BubblePadEntity extends PlantEntity.VineEntity implements GeoEntity
 		}
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
 
 	}
 	public void readCustomDataFromNbt(NbtCompound tag) {

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.pool.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
@@ -237,7 +238,7 @@ public class SquashEntity extends PlantEntity implements GeoEntity {
 	public void tick() {
 		super.tick();
 		LivingEntity target = this.getTarget();
-		if (!this.hasStatusEffect(PvZCubed.FROZEN) && target != null) {
+		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && target != null) {
 			if (this.firstAttack && this.animationTicksLeft <= 0) {
 				this.animationTicksLeft = 55;
 				this.playSound(SQUASHHUMEVENT);
@@ -334,14 +335,14 @@ public class SquashEntity extends PlantEntity implements GeoEntity {
 
 	/** //~*~//~ATTRIBUTES~//~*~// **/
 
-	public static EntityAttributeModifier createRangeAttribute(double amount) {
-		return new EntityAttributeModifier(
-				MAX_RANGE_UUID,
-				MOD_ID,
-				amount,
-				EntityAttributeModifier.Operation.ADDITION
-		);
-	}
+//	public static EntityAttributeModifier createRangeAttribute(double amount) {
+//		return new EntityAttributeModifier(
+//				MAX_RANGE_UUID,
+//				MOD_ID,
+//				amount,
+//				EntityAttributeModifier.Operation.ADDITION
+//		);
+//	}
 
 	public static DefaultAttributeContainer.Builder createSquashAttributes() {
 		return MobEntity.createAttributes()

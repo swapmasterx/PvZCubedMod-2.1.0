@@ -53,6 +53,7 @@ import java.util.UUID;
 
 import static io.github.GrassyDev.pvzmod.PvZCubed.MOD_ID;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
+import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MAX_HEALTH;
 
 public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEntity {
 	private String controllerName = "peacontroller";
@@ -70,10 +71,10 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, 0);
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_COUNT, 0);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override
@@ -277,9 +278,10 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 		if (itemStack.isOf(ModItems.PEAPOD_SEED_PACKET) && !player.getItemCooldownManager().isCoolingDown(item) && !this.getCount().equals(PeapodCountVariants.FIVE)) {
 			this.playSound(PvZSounds.PLANTPLANTEDEVENT);
 			this.addCount();
-			EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+			EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(GENERIC_MAX_HEALTH);
 			double health = this.getMaxHealth() - 5;
-			maxHealthAttribute.removeModifier(MAX_HEALTH_UUID);
+            assert maxHealthAttribute != null;
+            maxHealthAttribute.removeModifier(GENERIC_MAX_HEALTH);
 			maxHealthAttribute.addPersistentModifier(createHealthModifier(health + 5));
 			heal(5);
 			if (!player.getAbilities().creativeMode) {
@@ -323,16 +325,15 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 
 	public static EntityAttributeModifier createHealthModifier(double amount) {
 		return new EntityAttributeModifier(
-				MAX_HEALTH_UUID,
-				MOD_ID,
+				GENERIC_MAX_HEALTH,
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 
 	public static DefaultAttributeContainer.Builder createPeapodAttributes() {
 		return MobEntity.createAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 5)
+				.add(GENERIC_MAX_HEALTH, 5)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15D);

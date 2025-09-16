@@ -83,10 +83,10 @@ public class AnnouncerImpEntity extends SummonerEntity implements GeoEntity {
         this.isAggro = false;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
-		this.dataTracker.startTracking(COLOR, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
+		builder.add(COLOR, 0);
 	}
 
 	@Override

@@ -22,6 +22,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
@@ -66,8 +67,8 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoEnti
 
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
 	}
 
 	@Override

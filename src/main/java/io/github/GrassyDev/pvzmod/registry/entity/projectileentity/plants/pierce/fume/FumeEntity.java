@@ -50,9 +50,9 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 
 	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "fume");
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override

@@ -70,11 +70,11 @@ public class PerfoomshroomEntity extends PlantEntity implements GeoEntity {
 		this.nocturnal = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -354,7 +354,7 @@ public class PerfoomshroomEntity extends PlantEntity implements GeoEntity {
 
 	private void spawnEffectsCloud() {
 		AreaEffectCloudEntity areaEffectCloudEntity2 = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
-		areaEffectCloudEntity2.setColor(0xFF66FF);
+//		areaEffectCloudEntity2.setColor(0xFF66FF);
 		areaEffectCloudEntity2.setRadius(6F);
 		areaEffectCloudEntity2.setRadiusOnUse(-0.5F);
 		areaEffectCloudEntity2.setWaitTime(5);

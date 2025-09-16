@@ -80,10 +80,10 @@ public class SnorkelEntity extends PvZombieEntity implements GeoEntity {
         this.experiencePoints = 6;
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SNORKEL_FLAGS, (byte)16);
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SNORKEL_FLAGS, (byte)16);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

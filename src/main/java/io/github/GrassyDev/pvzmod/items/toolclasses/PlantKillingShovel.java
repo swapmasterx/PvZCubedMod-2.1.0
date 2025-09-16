@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchalle
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
 import net.minecraft.block.BlockState;
 
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -27,9 +28,8 @@ public class PlantKillingShovel extends ShovelItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.creative")
 				.formatted(Formatting.UNDERLINE));

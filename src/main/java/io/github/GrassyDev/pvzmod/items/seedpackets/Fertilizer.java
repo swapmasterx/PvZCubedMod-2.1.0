@@ -1,6 +1,7 @@
 package io.github.GrassyDev.pvzmod.items.seedpackets;
 
 
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -17,9 +18,8 @@ public class Fertilizer extends Item {
     }
 
 	//Credits to Patchouli for the tooltip code!
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.fertilizer.flavour")
 				.formatted(Formatting.LIGHT_PURPLE));

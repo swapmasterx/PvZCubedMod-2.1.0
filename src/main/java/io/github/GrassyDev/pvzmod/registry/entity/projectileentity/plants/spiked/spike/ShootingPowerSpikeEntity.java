@@ -61,7 +61,7 @@ public class ShootingPowerSpikeEntity extends PvZProjectileEntity implements Geo
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "elecspike");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "elecspike");
 
     public ShootingPowerSpikeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);

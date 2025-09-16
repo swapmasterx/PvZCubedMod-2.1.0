@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
@@ -68,7 +69,7 @@ public class FirePiercePeaEntity extends PvZProjectileEntity implements GeoEntit
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "firepiercepea");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "firepiercepea");
 
     public FirePiercePeaEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -324,9 +325,9 @@ public class FirePiercePeaEntity extends PvZProjectileEntity implements GeoEntit
 							}
 						}
 					} else if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !entity.isWet()) {
-						((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
-						((LivingEntity) entity).removeStatusEffect(PvZCubed.ICE);
-						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+						((LivingEntity) entity).removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+						((LivingEntity) entity).removeStatusEffect(StatusHolder.ICE_HOLDER);
+						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 					}
 				}
 				entityStore.add((LivingEntity) entity);

@@ -52,10 +52,10 @@ public abstract class TileEntity extends PathAwareEntity implements GeoEntity {
 		}
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SHADOW, false);
-		this.dataTracker.startTracking(MOON, false);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SHADOW, false);
+		builder.add(MOON, false);
 	}
 
 	@Override

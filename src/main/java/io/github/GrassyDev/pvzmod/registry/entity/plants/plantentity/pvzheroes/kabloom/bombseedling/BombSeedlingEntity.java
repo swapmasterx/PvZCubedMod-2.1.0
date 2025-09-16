@@ -72,12 +72,12 @@ public class BombSeedlingEntity extends PlantEntity implements GeoEntity {
 		this.isBurst = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
+		builder.add(DATA_ID_TYPE_COUNT, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

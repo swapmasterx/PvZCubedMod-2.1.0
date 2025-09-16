@@ -343,7 +343,7 @@ public class DoomRoseEntity extends PlantEntity implements GeoEntity, RangedAtta
 						Vec3d vec3d2 = new Vec3d((double) -1, 0.0, 0).rotateY(-this.getTarget().getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						RoseBudTile tile2 = (RoseBudTile) PvZEntity.ROSEBUDS.create(getWorld());
 						tile2.refreshPositionAndAngles(this.getTarget().getBlockPos().getX() + vec3d2.x, this.getTarget().getBlockPos().getY(), this.getTarget().getBlockPos().getZ() + vec3d2.z, 0, 0);
-						tile2.initialize(serverWorld, getWorld().getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+						tile2.initialize(serverWorld, getWorld().getLocalDifficulty(this.getTarget().getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null);
 						tile2.setPersistent();
 						tile2.setHeadYaw(0);
 						tile2.setShadowPowered(TileEntity.Shadow.TRUE);

@@ -155,9 +155,9 @@ public class BananasaurusEntity extends PlantEntity implements GeoEntity, Ranged
 		}
 		if (i <= 0) {
 			boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
-			if (bl) {
-				this.applyDamageEffects(this, target);
-			}
+//			if (bl) {
+//				this.applyDamageEffects(this, target);
+//			}
 			String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 			SoundEvent sound;
 			sound = switch (zombieMaterial) {

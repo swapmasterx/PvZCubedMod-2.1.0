@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.gemiu
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.bananatile.BananaTile;
@@ -70,10 +71,10 @@ public class OlivePitEntity extends PlantEntity implements GeoEntity {
 
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
-		this.dataTracker.startTracking(CHEWTIME, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_COUNT, false);
+		builder.add(CHEWTIME, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound tag) {
@@ -334,7 +335,7 @@ public class OlivePitEntity extends PlantEntity implements GeoEntity {
 				this.reduceCount();
 			} else {
 				this.zombieList.clear();
-				if (!this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					this.damageEntity();
 				}
 			}
@@ -360,7 +361,7 @@ public class OlivePitEntity extends PlantEntity implements GeoEntity {
 			if (tileCheck.isEmpty()) {
 				OilTile tile = (OilTile) PvZEntity.OILTILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 				tile.setPersistent();
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);

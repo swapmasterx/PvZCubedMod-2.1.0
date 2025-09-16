@@ -61,9 +61,9 @@ public class ZombieGraveEntity extends ZombieObstacleEntity implements GeoEntity
         this.experiencePoints = 25;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SUN_SPEED, -1);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SUN_SPEED, -1);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {

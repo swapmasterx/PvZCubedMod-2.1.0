@@ -6,11 +6,12 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 public class ModScreenHandlers {
 	public static final ScreenHandlerType<BotanyStationScreenHandler>  BOTANY_STATION_SCREEN_HANDLER =
 		Registry.register(Registries.SCREEN_HANDLER_TYPE, Identifier.of(PvZCubed.MOD_ID, "botany_station"),
-			new ExtendedScreenHandlerType<>(BotanyStationScreenHandler::new));
+			new ExtendedScreenHandlerType<>(BotanyStationScreenHandler::new, BlockPos.PACKET_CODEC));
 
 		public static void registerScreenHandlers() {
 			PvZCubed.LOGGER.info("Registering Screen Handlers for" + PvZCubed.MOD_ID);

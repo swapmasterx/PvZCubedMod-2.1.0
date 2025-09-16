@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.icetile.IceTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
@@ -70,11 +71,11 @@ public class JalapenoEntity extends PlantEntity implements GeoEntity {
 		this.isBurst = true;
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(FUSE_SPEED, -1);
+		this.dataTracker.set(CHARGED, false);
+		this.dataTracker.set(IGNITED, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -181,7 +182,7 @@ public class JalapenoEntity extends PlantEntity implements GeoEntity {
 		Vec3d vec3d3 = this.getBoundingBox().offset(vec3d2).getCenter();
 		FireTrailEntity fireTrailEntity = new FireTrailEntity(PvZEntity.FIRETRAIL, this.getWorld());
 		fireTrailEntity.updatePositionAndAngles(vec3d3.getX(), this.getBlockY() + 1, vec3d3.getZ(), this.bodyYaw, 0.0F);
-		List<FireTrailEntity> listFlames = this.getWorld().getNonSpectatingEntities(FireTrailEntity.class, fireTrailEntity.getBoundingBox());
+		List<FireTrailEntity> listFlames = this.getWorld().getNonSpectatingEntities(FireTrailEntity.class, fireTrailEntity.getBounds());
 		if (listFlames.isEmpty()) {
 			getWorld().spawnEntity(fireTrailEntity);
 		}
@@ -254,18 +255,18 @@ public class JalapenoEntity extends PlantEntity implements GeoEntity {
 					}
 
 					if ((zombiePropEntity2 == null ||
-							zombiePropEntity2 instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
-						livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-						livingEntity.removeStatusEffect(PvZCubed.ICE);
+							zombiePropEntity2 instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
+						livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+						livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
 						livingEntity.setOnFireFor(4);
 						if (!(livingEntity instanceof ZombieShieldEntity)) {
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 40, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 40, 1)));
 						}
 					}
-					else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet()){
-						livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-						livingEntity.removeStatusEffect(PvZCubed.ICE);
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+					else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet()){
+						livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+						livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 					}
 				}
 			}

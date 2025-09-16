@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.cha
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -70,11 +71,11 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 		this.nocturnal = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -293,8 +294,8 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 					}
 				}
 				if (!(livingEntity instanceof ZombieShieldEntity) && !(zombiePropEntity2 instanceof ZombieShieldEntity)) {
-					if (!livingEntity.hasStatusEffect(FROZEN) && !livingEntity.hasStatusEffect(DISABLE) && random > 0.166) {
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 100, 5)));
+					if (!livingEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !livingEntity.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && random > 0.166) {
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, 100, 5)));
 					}
 				}
 			}
@@ -303,7 +304,7 @@ public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 
 	private void spawnEffectsCloud() {
 		AreaEffectCloudEntity areaEffectCloudEntity2 = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
-		areaEffectCloudEntity2.setColor(0xFF66FF);
+//		areaEffectCloudEntity2.setColor(0xFF66FF);
 		areaEffectCloudEntity2.setRadius(5F);
 		areaEffectCloudEntity2.setRadiusOnUse(-0.5F);
 		areaEffectCloudEntity2.setWaitTime(5);

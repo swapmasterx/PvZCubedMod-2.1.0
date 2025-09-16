@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.util.Identifier;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public class Bounced extends StatusEffect {
                 StatusEffectType.HARMFUL, // whether beneficial or harmful for entity
                 0xFFFFFF); // color in RGB
 		final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.US_ASCII));
-		addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, String.valueOf(MAX_SPEED_UUID), -0.115375, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+		addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, Identifier.parse(String.valueOf(MAX_SPEED_UUID)), -0.115375, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
     }
 
     // This method is called every tick to check whether it should apply the status effect or not
@@ -29,6 +30,7 @@ public class Bounced extends StatusEffect {
 
     // This method is called when it applies the status effect. We implement custom functionality here.
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        return true;
     }
 }

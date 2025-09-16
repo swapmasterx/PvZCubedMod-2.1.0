@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.block.ModBlocks;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.rifttile.RiftTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.sunbomb.SunBombEntity;
@@ -84,30 +85,30 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 		checkEntities();
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(TIERS, 0);
-		this.dataTracker.startTracking(WAVES, 0);
-		this.dataTracker.startTracking(GRAVESSPAWNED, 0);
-		this.dataTracker.startTracking(WAVEINPROGRESS, false);
-		this.dataTracker.startTracking(WAVETICKS, 0);
-		this.dataTracker.startTracking(WORLD1, 0);
-		this.dataTracker.startTracking(WORLD2, 0);
-		this.dataTracker.startTracking(WORLD3, 0);
-		this.dataTracker.startTracking(WORLD4, 0);
-		this.dataTracker.startTracking(WORLD5, 0);
-		this.dataTracker.startTracking(WORLD6, 0);
-		this.dataTracker.startTracking(WORLD7, 0);
-		this.dataTracker.startTracking(WORLD8, 0);
-		this.dataTracker.startTracking(MINNIGHT, 0);
-		this.dataTracker.startTracking(MINPOOL, 0);
-		this.dataTracker.startTracking(MINROOF, 0);
-		this.dataTracker.startTracking(MINEGYPT, 0);
-		this.dataTracker.startTracking(MINDARKAGES, 0);
-		this.dataTracker.startTracking(MINFUTURE, 0);
-		this.dataTracker.startTracking(MINFAIRYTALE, 0);
-		this.dataTracker.startTracking(MINMAUSOLEUM, 0);
-		this.dataTracker.startTracking(LOCKMINCHECK, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(TIERS, 0);
+		this.dataTracker.set(WAVES, 0);
+		this.dataTracker.set(GRAVESSPAWNED, 0);
+		this.dataTracker.set(WAVEINPROGRESS, false);
+		this.dataTracker.set(WAVETICKS, 0);
+		this.dataTracker.set(WORLD1, 0);
+		this.dataTracker.set(WORLD2, 0);
+		this.dataTracker.set(WORLD3, 0);
+		this.dataTracker.set(WORLD4, 0);
+		this.dataTracker.set(WORLD5, 0);
+		this.dataTracker.set(WORLD6, 0);
+		this.dataTracker.set(WORLD7, 0);
+		this.dataTracker.set(WORLD8, 0);
+		this.dataTracker.set(MINNIGHT, 0);
+		this.dataTracker.set(MINPOOL, 0);
+		this.dataTracker.set(MINROOF, 0);
+		this.dataTracker.set(MINEGYPT, 0);
+		this.dataTracker.set(MINDARKAGES, 0);
+		this.dataTracker.set(MINFUTURE, 0);
+		this.dataTracker.set(MINFAIRYTALE, 0);
+		this.dataTracker.set(MINMAUSOLEUM, 0);
+		this.dataTracker.set(LOCKMINCHECK, false);
 	}
 
 	@Override
@@ -663,7 +664,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 			weatherTile.setPersistent();
 			weatherTile.setHeadYaw(0);
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				weatherTile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				weatherTile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null);
 				serverWorld.spawnEntityAndPassengers(weatherTile);
 			}
 			weatherTile.setWeatherType(ChallengeWeather.CLOUD);
@@ -674,7 +675,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 			timeTile.setPersistent();
 			timeTile.setHeadYaw(0);
 			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				timeTile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				timeTile.initialize(serverWorld, getWorld().getLocalDifficulty(this.getBlockPos()), SpawnReason.SPAWN_EGG, (EntityData) null);
 				serverWorld.spawnEntityAndPassengers(timeTile);
 			}
 			timeTile.setTimeType(ChallengeTime.DAY);
@@ -684,10 +685,10 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 				List<HostileEntity> list2 = this.getWorld().getNonSpectatingEntities(HostileEntity.class, this.getBoundingBox().expand(25, 5, 25));
 				for (HostileEntity hostileEntity : list2) {
 					if (!hostileEntity.isWet()) {
-						hostileEntity.removeStatusEffect(PvZCubed.WET);
-						hostileEntity.removeStatusEffect(PvZCubed.ICE);
-						hostileEntity.removeStatusEffect(PvZCubed.FROZEN);
-						hostileEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 5, 1)));
+						hostileEntity.removeStatusEffect(StatusHolder.WET_HOLDER);
+						hostileEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+						hostileEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+						hostileEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 5, 1)));
 					}
 				}
 			}
@@ -1292,7 +1293,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 							BlockPos waterPos = waterSpots.get(this.random.range(0, waterSpots.size() - 1));
 							WaterTile waterTile = (WaterTile) PvZEntity.WATERTILE.create(this.getWorld());
 							waterTile.refreshPositionAndAngles(waterPos, 0.0F, 0.0F);
-							waterTile.initialize(serverWorld, this.getWorld().getLocalDifficulty(waterPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+							waterTile.initialize(serverWorld, this.getWorld().getLocalDifficulty(waterPos), SpawnReason.MOB_SUMMONED, (EntityData) null);
 							waterTile.setPersistent();
 							serverWorld.spawnEntityAndPassengers(waterTile);
 						}
@@ -1302,7 +1303,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 							BlockPos waterPos = waterSpots.get(this.random.range(0, waterSpots.size() - 1));
 							WaterTile waterTile = (WaterTile) PvZEntity.WATERTILE.create(this.getWorld());
 							waterTile.refreshPositionAndAngles(waterPos, 0.0F, 0.0F);
-							waterTile.initialize(serverWorld, this.getWorld().getLocalDifficulty(waterPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+							waterTile.initialize(serverWorld, this.getWorld().getLocalDifficulty(waterPos), SpawnReason.MOB_SUMMONED, (EntityData) null);
 							waterTile.setPersistent();
 							serverWorld.spawnEntityAndPassengers(waterTile);
 						}
@@ -1314,7 +1315,7 @@ public class GardenChallengeEntity extends PlantEntity implements GeoEntity, Ran
 						BlockPos sunPos = waterPos.add(0, 3, 0);
 						SunBombEntity sunBomb = (SunBombEntity) PvZEntity.SUNBOMB.create(this.getWorld());
 						sunBomb.refreshPositionAndAngles(sunPos, 0.0F, 0.0F);
-						sunBomb.initialize(serverWorld, this.getWorld().getLocalDifficulty(sunPos), SpawnReason.MOB_SUMMONED, (EntityData) null, (NbtCompound) null);
+						sunBomb.initialize(serverWorld, this.getWorld().getLocalDifficulty(sunPos), SpawnReason.MOB_SUMMONED, (EntityData) null);
 						sunBomb.setPersistent();
 						serverWorld.spawnEntityAndPassengers(sunBomb);
 					}

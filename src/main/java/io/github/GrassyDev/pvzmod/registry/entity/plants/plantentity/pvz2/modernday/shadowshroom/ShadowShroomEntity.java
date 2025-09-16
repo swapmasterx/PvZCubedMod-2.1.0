@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.moder
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.*;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowTile;
@@ -73,12 +74,12 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 		this.targetHelmet = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
+		builder.add(DATA_ID_TYPE_COUNT, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -219,7 +220,7 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 	private void raycastExplode() {
 		if (!this.getShadowPowered()){
 			if (this.getTarget() != null){
-				this.getTarget().addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
+				this.getTarget().addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 3)));
 			}
 		}
 		else {
@@ -269,29 +270,29 @@ public class ShadowShroomEntity extends PlantEntity implements GeoEntity {
 							!(livingEntity instanceof ZombieShieldEntity) &&
 							livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
 						float damage2 = damage - livingEntity.getHealth();
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
-						generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 3)));
+						generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 3)));
 						checkList.add(livingEntity);
 						checkList.add(generalPvZombieEntity);
 					} else if (livingEntity instanceof ZombieShieldEntity zombieShieldEntity && zombieShieldEntity.getVehicle() != null) {
-						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
+						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 3)));
 						checkList.add((LivingEntity) zombieShieldEntity.getVehicle());
 						checkList.add(zombieShieldEntity);
 					} else if (livingEntity.getVehicle() instanceof ZombieShieldEntity zombieShieldEntity) {
 
-						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 3)));
+						zombieShieldEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 3)));
 						checkList.add(livingEntity);
 						checkList.add(zombieShieldEntity);
 					} else {
 						if (livingEntity instanceof ZombiePropEntity zombiePropEntity && livingEntity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity.getHypno())) {
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 6)));
 							checkList.add(livingEntity);
 							checkList.add(generalPvZombieEntity);
 						} else if (zombiePropEntity2 == null && !checkList.contains(livingEntity)) {
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 6)));
 							checkList.add(livingEntity);
 						} else if (livingEntity instanceof ZombieVehicleEntity && !checkList.contains(livingEntity)) {
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 200, 6)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 200, 6)));
 							checkList.add(livingEntity);
 						}
 					}

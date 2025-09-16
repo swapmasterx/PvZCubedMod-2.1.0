@@ -82,11 +82,11 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
         this.experiencePoints = 3;
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_VARIANT, 0);
-		this.dataTracker.startTracking(DATA_ID_SUMMON, false);
-		this.dataTracker.startTracking(SUMMON_TIMES, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_VARIANT, 0);
+		builder.add(DATA_ID_SUMMON, false);
+		builder.add(SUMMON_TIMES, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

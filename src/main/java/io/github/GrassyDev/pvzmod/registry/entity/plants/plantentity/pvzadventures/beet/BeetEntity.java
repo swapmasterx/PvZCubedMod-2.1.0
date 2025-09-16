@@ -270,12 +270,12 @@ public class BeetEntity extends PlantEntity implements GeoEntity, RangedAttackMo
 		}
 		boolean bl = damaged.damage(getDamageSources().mobAttack(this), 0);
 		boolean bl2 = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), getAttackDamage());
-		if (bl) {
-			this.applyDamageEffects(this, target);
-		}
-		if (bl2) {
-			this.applyDamageEffects(this, target);
-		}
+//		if (bl) {
+//			this.applyDamageEffects(this, target);
+//		}
+//		if (bl2) {
+//			this.applyDamageEffects(this, target);
+//		}
 		String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(damaged.getType()).orElse("flesh");
 		SoundEvent sound;
 		sound = switch (zombieMaterial) {

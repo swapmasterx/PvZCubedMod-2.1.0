@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
@@ -183,7 +184,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoEntity {
 			this.getVehicle().discard();
 		}
 		LivingEntity target = this.getTarget();
-		if (!this.hasStatusEffect(PvZCubed.FROZEN) && target != null) {
+		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && target != null) {
 			if (this.firstAttack && this.animationTicksLeft <= 0 && ((target.isInsideWaterOrBubbleColumn() || !(target instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.dontWater)) && !this.dryLand)) {
 				this.animationTicksLeft = 65;
 				if (!attackLock){
@@ -295,7 +296,7 @@ public class TangleKelpEntity extends PlantEntity implements GeoEntity {
 				float damage = 9999f;
 				boolean bl2 = livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				if (bl2) {
-					this.applyDamageEffects(this, livingEntity);
+//					this.applyDamageEffects(this, livingEntity);
 				}
 				else {
 					this.discard();
@@ -334,14 +335,14 @@ public class TangleKelpEntity extends PlantEntity implements GeoEntity {
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	public static EntityAttributeModifier createRangeAttribute(double amount) {
-		return new EntityAttributeModifier(
-				MAX_RANGE_UUID,
-				MOD_ID,
-				amount,
-				EntityAttributeModifier.Operation.ADDITION
-		);
-	}
+//	public static EntityAttributeModifier createRangeAttribute(double amount) {
+//		return new EntityAttributeModifier(
+//				MAX_RANGE_UUID,
+//				MOD_ID,
+//				amount,
+//				EntityAttributeModifier.Operation.ADD_VALUE
+//		);
+//	}
 
 	public static DefaultAttributeContainer.Builder createTangleKelpAttributes() {
         return MobEntity.createAttributes()

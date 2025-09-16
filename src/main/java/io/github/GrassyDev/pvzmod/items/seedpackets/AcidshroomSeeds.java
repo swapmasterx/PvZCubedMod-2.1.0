@@ -110,7 +110,7 @@ public class AcidshroomSeeds extends SeedItem implements FabricItem {
 				if (world instanceof ServerWorld serverWorld) {
 					AcidshroomEntity aquaticEntity = this.createEntity(world, hitResult);
 					aquaticEntity.setYaw(user.getYaw());
-					if (!world.isSpaceEmpty(aquaticEntity, aquaticEntity.getBoundingBox())) {
+					if (!world.isSpaceEmpty(aquaticEntity, aquaticEntity.getBounds())) {
 						return TypedActionResult.fail(itemStack);
 					} else {
 						if (!world.isClient) {

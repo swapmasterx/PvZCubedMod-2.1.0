@@ -15,6 +15,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
 public class BotanyStationScreenHandler extends ScreenHandler {
@@ -22,11 +23,10 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 	private final PropertyDelegate propertyDelegate;
 	public final BotanyStationBlockEntity blockEntity;
 
-	public BotanyStationScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
-		this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-			new ArrayPropertyDelegate(6));
-	}
 
+	public BotanyStationScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
+		this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(6));
+	}
 
 	public BotanyStationScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
 		super(ModScreenHandlers.BOTANY_STATION_SCREEN_HANDLER, syncId);
@@ -100,6 +100,9 @@ public class BotanyStationScreenHandler extends ScreenHandler {
 
 		addProperties(arrayPropertyDelegate);
 	}
+
+//	public BotanyStationScreenHandler(int i, PlayerInventory playerInventory, Object o) {
+//	}
 
 	public boolean isCrafting(){
 		return propertyDelegate.get(3) > 0;

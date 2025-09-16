@@ -25,9 +25,10 @@ public class Acid extends StatusEffect {
     // This method is called when it applies the status effect. We implement custom functionality here.
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
-			entity.damage(entity.getDamageSources().generic(), 8F);
-		}
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
+            entity.damage(entity.getDamageSources().generic(), 5F);
+        }
+    return true;
     }
 }

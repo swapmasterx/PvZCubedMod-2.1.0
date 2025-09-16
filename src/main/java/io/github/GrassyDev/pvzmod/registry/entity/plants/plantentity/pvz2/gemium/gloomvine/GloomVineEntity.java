@@ -20,11 +20,13 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -66,8 +68,8 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 		this.isBurst = true;
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
 	}
 
 	@Override
@@ -103,9 +105,9 @@ public class GloomVineEntity extends PlantEntity.VineEntity implements GeoEntity
 			double d = (double)(180 & 255) / 255.0;
 			double e = (double)(30 & 255) / 255.0;
 			double f = (double)(200 & 255) / 255.0;
-
+			ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
 			for(int j = 0; j < 32; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
+				this.getWorld().addParticle(particleEffect, this.getX() + (this.random.range(-2, 2)) * 0.85F, this.getY() + (this.random.range(-1, 1)) * 0.5F, this.getZ() + (this.random.range(-2, 2)) * 0.85F, d, e, f);
 			}
 		}
 	}

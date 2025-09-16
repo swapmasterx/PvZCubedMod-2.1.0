@@ -86,17 +86,17 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 
 	private PlantEntity plantOwner;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID2, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID2, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID3, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID3, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID4, 0);
-		this.dataTracker.startTracking(ELECTRIC_BEAM_TARGET_ID4, 0);
-		this.dataTracker.startTracking(SPARK_TARGET, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(HYPNO_BEAM_TARGET_ID, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID2, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID2, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID3, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID3, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID4, 0);
+		builder.add(ELECTRIC_BEAM_TARGET_ID4, 0);
+		builder.add(SPARK_TARGET, 0);
 	}
 
 	public void onTrackedDataSet(TrackedData<?> data) {

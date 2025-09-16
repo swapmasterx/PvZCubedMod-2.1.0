@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.icetile.IceTile;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.scorchedtile.ScorchedTile;
@@ -67,11 +68,11 @@ public class ChillyPepperEntity extends PlantEntity implements GeoEntity {
 		this.setImmune(Immune.TRUE);
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -179,7 +180,7 @@ public class ChillyPepperEntity extends PlantEntity implements GeoEntity {
 		IceTile iceTile = (IceTile) PvZEntity.ICETILE.create(getWorld());
 		iceTile.refreshPositionAndAngles(vec3d3.getX(), this.getY(), vec3d3.getZ(), 0, 0);
 		iceTile.setHeadYaw(0);
-		List<IceTile> listFlames = this.getWorld().getNonSpectatingEntities(IceTile.class, iceTile.getBoundingBox());
+		List<IceTile> listFlames = this.getWorld().getNonSpectatingEntities(IceTile.class, iceTile.getBounds());
 		if (listFlames.isEmpty()) {
 			getWorld().spawnEntity(iceTile);
 		}
@@ -241,14 +242,14 @@ public class ChillyPepperEntity extends PlantEntity implements GeoEntity {
 					}
 				}
 				if (!(livingEntity instanceof ZombieShieldEntity) && !(zombiePropEntity2 instanceof ZombieShieldEntity)) {
-					livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-					livingEntity.removeStatusEffect(PvZCubed.ICE);
-					if (livingEntity.hasStatusEffect(PvZCubed.WARM) || livingEntity.isOnFire()) {
-						livingEntity.removeStatusEffect(PvZCubed.WARM);
+					livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+					livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+					if (livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) || livingEntity.isOnFire()) {
+						livingEntity.removeStatusEffect(StatusHolder.WARM_HOLDER);
 						livingEntity.extinguish();
 					}
-					livingEntity.removeStatusEffect(PvZCubed.STUN);
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.FROZEN, 200, 5)));
+					livingEntity.removeStatusEffect(StatusHolder.STUN_HOLDER);
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.FROZEN_HOLDER, 200, 5)));
 				}
 			}
 		}

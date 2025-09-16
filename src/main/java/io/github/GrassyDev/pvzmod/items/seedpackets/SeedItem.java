@@ -81,7 +81,7 @@ public abstract class SeedItem extends Item {
 //				}
 //			}
 			if (player.isCreative()){
-				nbtCompound.putFloat("Cooldown", 0);
+//				nbtCompound.putFloat("Cooldown", 0);
 				player.getItemCooldownManager().set(stack.getItem(), 0);
 			}
 //			if (player.getStackInHand(player.getActiveHand()).isOf(get)) && player.getInventory().getEmptySlot() != -1 && PVZCONFIG.nestedSeeds.attractSun()) {

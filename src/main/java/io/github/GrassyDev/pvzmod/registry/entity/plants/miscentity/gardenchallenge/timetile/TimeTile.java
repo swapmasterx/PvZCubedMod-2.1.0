@@ -27,9 +27,9 @@ public class TimeTile extends TileEntity {
 
 
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(TYPE, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(TYPE, 0);
 	}
 
 	@Override

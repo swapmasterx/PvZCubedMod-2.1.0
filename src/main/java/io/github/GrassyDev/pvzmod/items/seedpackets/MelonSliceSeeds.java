@@ -13,6 +13,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2as.slic
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 
+import net.minecraft.client.item.TooltipConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.LivingEntity;
@@ -48,7 +49,7 @@ public class MelonSliceSeeds extends SeedItem implements FabricItem {
 		super(settings);
 	}
 
-	@Override
+
 	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return false;
 	}
@@ -74,9 +75,8 @@ public class MelonSliceSeeds extends SeedItem implements FabricItem {
 //	}
 
 	//Credits to Patchouli for the tooltip code!
-	@Override
-	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {
+		super.appendTooltip(stack, context, tooltip, toolconfig);
 
 		tooltip.add(Text.translatable("item.pvzmod.seed_packet.arma.family").setStyle(Style.EMPTY.withColor(8276024)));
 		tooltip.add(Text.translatable("item.pvzmod.melonslice_seed_packet.flavour")

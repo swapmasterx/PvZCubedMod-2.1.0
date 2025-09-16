@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz2.farfu
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -73,12 +74,12 @@ public class EMPeachEntity extends PlantEntity implements GeoEntity {
 		this.setImmune(Immune.TRUE);
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(FUSE_SPEED, -1);
+		builder.add(CHARGED, false);
+		builder.add(IGNITED, false);
+		builder.add(DATA_ID_TYPE_COUNT, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -246,15 +247,15 @@ public class EMPeachEntity extends PlantEntity implements GeoEntity {
 					oilTile.makeFireTrail(oilTile.getBlockPos());
 				}
 				if (IS_MACHINE.get(livingEntity.getType()).orElse(false).equals(false) && !(livingEntity instanceof JetpackEntity) && !(livingEntity instanceof HoverGoatEntity)) {
-					if (!(livingEntity instanceof ZombieVehicleEntity) && !livingEntity.hasStatusEffect(FROZEN) && !livingEntity.hasStatusEffect(DISABLE)) {
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 100, 5)));
+					if (!(livingEntity instanceof ZombieVehicleEntity) && !livingEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !livingEntity.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, 100, 5)));
 					}
 				} else {
-					livingEntity.removeStatusEffect(FROZEN);
-					livingEntity.removeStatusEffect(STUN);
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.DISABLE, 300, 5)));
+					livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+					livingEntity.removeStatusEffect(StatusHolder.STUN_HOLDER);
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.DISABLE_HOLDER, 300, 5)));
 				}
-				if (livingEntity.hasStatusEffect(WET) || livingEntity.isWet()) {
+				if (livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) || livingEntity.isWet()) {
 					damage = damage * 2;
 				}
 				ZombiePropEntity zombiePropEntity2 = null;

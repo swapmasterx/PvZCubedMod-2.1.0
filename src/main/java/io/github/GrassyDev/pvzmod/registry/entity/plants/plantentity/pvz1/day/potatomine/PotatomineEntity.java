@@ -79,12 +79,12 @@ public class PotatomineEntity extends PlantEntity implements GeoEntity {
 		this.isBurst = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(FUSE_SPEED, -1);
-		this.dataTracker.startTracking(CHARGED, false);
-		this.dataTracker.startTracking(IGNITED, false);
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, false);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(FUSE_SPEED, -1);
+		this.dataTracker.set(CHARGED, false);
+		this.dataTracker.set(IGNITED, false);
+		this.dataTracker.set(DATA_ID_TYPE_COUNT, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound tag) {

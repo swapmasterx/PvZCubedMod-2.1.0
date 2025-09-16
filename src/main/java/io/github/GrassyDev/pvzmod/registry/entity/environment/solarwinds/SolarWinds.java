@@ -47,9 +47,9 @@ public class SolarWinds extends TileEntity {
 	private String controllerName = "firetrailcontroller";
 	private static final TrackedData<Integer> ALIVE_TIME;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(ALIVE_TIME, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(ALIVE_TIME, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

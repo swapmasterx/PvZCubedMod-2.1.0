@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.sunflower.SunflowerEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -66,9 +67,9 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 		this.nocturnal = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SUN_SPEED, -1);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		this.dataTracker.set(SUN_SPEED, -1);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {
@@ -206,7 +207,7 @@ public class SunshroomEntity extends PlantEntity implements GeoEntity {
 
 	public void tickMovement() {
 		super.tickMovement();
-		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.getIsAsleep() && !this.hasStatusEffect(DISABLE)) {
+		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && !this.getIsAsleep() && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			if (--raycastDelay >= 0){
 				this.produceSun();
 				raycastDelay = 60;

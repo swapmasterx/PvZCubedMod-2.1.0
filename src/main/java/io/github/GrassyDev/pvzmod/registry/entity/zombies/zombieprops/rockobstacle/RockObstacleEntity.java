@@ -79,9 +79,9 @@ public class RockObstacleEntity extends ZombieObstacleEntity implements GeoEntit
 		}
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SUMMON_TIMES, 0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SUMMON_TIMES, 0);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {

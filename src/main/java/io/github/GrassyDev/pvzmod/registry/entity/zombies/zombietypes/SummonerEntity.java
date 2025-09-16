@@ -121,10 +121,10 @@ public abstract class SummonerEntity extends GeneralPvZombieEntity implements Mo
 		}
 	}
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SUMMON_TIMES, 0);
-		this.dataTracker.startTracking(SPELL, (byte)0);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SUMMON_TIMES, 0);
+		builder.add(SPELL, (byte)0);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound nbt) {

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzgw.hero
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -178,13 +179,13 @@ public class VampireFlowerEntity extends PlantEntity implements GeoEntity, Range
 			this.getWorld().sendEntityStatus(this, (byte) 104);
 			if (damaged.isAlive() && !(damaged instanceof ZombiePropEntity)){
 				this.heldEntity = (LivingEntity) damaged;
-				((LivingEntity) damaged).addStatusEffect(new StatusEffectInstance(STUN, 100 , 1));
+				((LivingEntity) damaged).addStatusEffect(new StatusEffectInstance(StatusHolder.STUN_HOLDER, 100 , 1));
 			}
 		}
 		boolean bl = damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
-		if (bl) {
-			this.applyDamageEffects(this, target);
-		}
+//		if (bl) {
+//			this.applyDamageEffects(this, target);
+//		}
 		SoundEvent sound;
 		sound = switch (zombieMaterial) {
 			case "metallic", "electronic" -> PvZSounds.PEAHITEVENT;
@@ -244,7 +245,7 @@ public class VampireFlowerEntity extends PlantEntity implements GeoEntity, Range
 				if (--damageTicks <= 0) {
 					heldEntity.damage(getDamageSources().mobAttack(this), 0);
 					heldEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 12);
-					heldEntity.addStatusEffect(new StatusEffectInstance(STUN, 100 , 1));
+					heldEntity.addStatusEffect(new StatusEffectInstance(StatusHolder.STUN_HOLDER, 100 , 1));
 					heldEntity.dropItem(ModItems.SMALLSUN, 0);
 					damageTicks = 20;
 					heldEntity.playSound(PvZSounds.SUNDROPEVENT, 1, 1);

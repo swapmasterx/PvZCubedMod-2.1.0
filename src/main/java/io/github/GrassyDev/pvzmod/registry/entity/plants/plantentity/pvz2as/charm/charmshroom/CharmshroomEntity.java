@@ -5,6 +5,7 @@ import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.shadowtile.ShadowFullTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -70,10 +71,10 @@ public class CharmshroomEntity extends PlantEntity implements GeoEntity, RangedA
 		this.nocturnal = true;
     }
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DATA_ID_TYPE_COUNT, 0);
-		this.dataTracker.startTracking(HYPNO_BEAM_TARGET_ID, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DATA_ID_TYPE_COUNT, 0);
+		builder.add(HYPNO_BEAM_TARGET_ID, 0);
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public class CharmshroomEntity extends PlantEntity implements GeoEntity, RangedA
 			this.cachedBeamTarget = null;
 		}
 
-		super.onTrackedDataUpdate(data);
+		super.onTrackedDataSet(data);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {
@@ -272,7 +273,8 @@ public class CharmshroomEntity extends PlantEntity implements GeoEntity, RangedA
 					double rd = (double)(this.random.range(160, 255) & 255) / 255.0;
 					double gr = (double) (170 & 255) / 255.0;
 					double bl = (double)(this.random.range(200, 255) & 255) / 255.0;
-					this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + e * j, this.getEyeY() + f * j, this.getZ() + g * j, rd, gr, bl);
+					ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+					this.getWorld().addParticle(particleEffect, this.getX() + e * j, this.getEyeY() + f * j, this.getZ() + g * j, rd, gr, bl);
 				}
 			}
 		}

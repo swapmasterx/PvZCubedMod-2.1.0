@@ -49,9 +49,9 @@ public class GoldTile extends TileEntity {
 	Entity prevZombie;
 	private boolean zombieSunCheck;
 
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(SUN_SPEED, -1);
+		protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SUN_SPEED, -1);
 	}
 
 	public void readCustomDataFromNbt(NbtCompound tag) {
