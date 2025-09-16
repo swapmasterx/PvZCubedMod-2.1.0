@@ -8,18 +8,18 @@ public class ShadowFullTileModel extends GeoModel<ShadowFullTile> {
     @Override
     public Identifier getModelResource(ShadowFullTile object)
     {
-        return new Identifier("pvzmod", "geo/shadowfulltile.geo.json");
+        return Identifier.of("pvzmod", "geo/shadowfulltile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShadowFullTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(ShadowFullTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

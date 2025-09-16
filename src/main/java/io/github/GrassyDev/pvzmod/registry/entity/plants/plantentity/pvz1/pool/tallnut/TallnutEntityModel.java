@@ -8,7 +8,7 @@ public class TallnutEntityModel extends GeoModel<TallnutEntity> {
     @Override
     public Identifier getModelResource(TallnutEntity object)
     {
-        return new Identifier("pvzmod", "geo/tallnut.geo.json");
+        return Identifier.of("pvzmod", "geo/tallnut.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class TallnutEntityModel extends GeoModel<TallnutEntity> {
     @Override
     public Identifier getAnimationResource(TallnutEntity object)
     {
-        return new Identifier ("pvzmod", "animations/wallnut.json");
+        return Identifier.of ("pvzmod", "animations/wallnut.json");
     }
 }

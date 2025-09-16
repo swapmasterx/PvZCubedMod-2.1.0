@@ -18,27 +18,27 @@ public class ExplorerEntityModel extends GeoModel<ExplorerEntity> {
 		Identifier identifier;
 		if (object.getVariant().equals(ExplorerVariants.TORCHLIGHT) || object.getVariant().equals(ExplorerVariants.TORCHLIGHTHYPNO)) {
 			if (object.getFireStage()) {
-				identifier = new Identifier("pvzmod", "textures/entity/explorer/torchlight.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/explorer/torchlight.png");
 				if (object.armless) {
-					identifier = new Identifier("pvzmod", "textures/entity/explorer/torchlight_dmg1.png");
+					identifier = Identifier.of("pvzmod", "textures/entity/explorer/torchlight_dmg1.png");
 				}
 			} else {
-				identifier = new Identifier("pvzmod", "textures/entity/explorer/torchlight_extinguished.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/explorer/torchlight_extinguished.png");
 				if (object.armless) {
-					identifier = new Identifier("pvzmod", "textures/entity/explorer/torchlight_dmg1_extinguished.png");
+					identifier = Identifier.of("pvzmod", "textures/entity/explorer/torchlight_dmg1_extinguished.png");
 				}
 			}
 		}
 		else {
 			if (object.getFireStage()) {
-				identifier = new Identifier("pvzmod", "textures/entity/explorer/explorer.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/explorer/explorer.png");
 				if (object.armless) {
-					identifier = new Identifier("pvzmod", "textures/entity/explorer/explorer_dmg1.png");
+					identifier = Identifier.of("pvzmod", "textures/entity/explorer/explorer_dmg1.png");
 				}
 			} else {
-				identifier = new Identifier("pvzmod", "textures/entity/explorer/explorer_extinguished.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/explorer/explorer_extinguished.png");
 				if (object.armless) {
-					identifier = new Identifier("pvzmod", "textures/entity/explorer/explorer_dmg1_extinguished.png");
+					identifier = Identifier.of("pvzmod", "textures/entity/explorer/explorer_dmg1_extinguished.png");
 				}
 			}
 		}
@@ -48,6 +48,6 @@ public class ExplorerEntityModel extends GeoModel<ExplorerEntity> {
     @Override
     public Identifier getAnimationResource(ExplorerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

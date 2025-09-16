@@ -8,16 +8,16 @@ public class BurstShroomEntityModel extends GeoModel<BurstshroomEntity> {
     @Override
     public Identifier getModelResource(BurstshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/burstshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/burstshroom.geo.json");
     }
 
 	public Identifier getTextureResource(BurstshroomEntity object) {
-		return new Identifier("pvzmod", "textures/entity/burstshroom/burstshroom.png");
+		return Identifier.of("pvzmod", "textures/entity/burstshroom/burstshroom.png");
 	}
 
     @Override
     public Identifier getAnimationResource(BurstshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/burstshroom.json");
+        return Identifier.of ("pvzmod", "animations/burstshroom.json");
     }
 }

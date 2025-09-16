@@ -8,7 +8,7 @@ public class ShamrockEntityModel extends GeoModel<ShamrockEntity> {
     @Override
     public Identifier getModelResource(ShamrockEntity object)
     {
-        return new Identifier("pvzmod", "geo/shamrock.geo.json");
+        return Identifier.of("pvzmod", "geo/shamrock.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class ShamrockEntityModel extends GeoModel<ShamrockEntity> {
     @Override
     public Identifier getAnimationResource(ShamrockEntity object)
     {
-        return new Identifier ("pvzmod", "animations/shamrock.json");
+        return Identifier.of ("pvzmod", "animations/shamrock.json");
     }
 }

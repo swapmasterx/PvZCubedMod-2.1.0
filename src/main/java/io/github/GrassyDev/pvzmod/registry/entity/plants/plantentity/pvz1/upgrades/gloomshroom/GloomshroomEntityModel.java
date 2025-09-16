@@ -9,7 +9,7 @@ public class GloomshroomEntityModel extends GeoModel<GloomshroomEntity> {
     @Override
     public Identifier getModelResource(GloomshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/gloomshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/gloomshroom.geo.json");
     }
 
 	public Identifier getTextureResource(GloomshroomEntity object) {
@@ -19,6 +19,6 @@ public class GloomshroomEntityModel extends GeoModel<GloomshroomEntity> {
     @Override
     public Identifier getAnimationResource(GloomshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gloomshroom.json");
+        return Identifier.of ("pvzmod", "animations/gloomshroom.json");
     }
 }

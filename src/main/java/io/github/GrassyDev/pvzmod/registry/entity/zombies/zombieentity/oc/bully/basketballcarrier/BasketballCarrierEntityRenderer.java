@@ -39,9 +39,9 @@ public class BasketballCarrierEntityRenderer extends GeoEntityRenderer<Basketbal
 	public static final Map<BullyVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BullyVariants.class), (map) -> {
 				map.put(BullyVariants.BASKET,
-				        new Identifier("pvzmod", "geo/basketballcarrier.geo.json"));
+				        Identifier.of("pvzmod", "geo/basketballcarrier.geo.json"));
 				map.put(BullyVariants.BASKETHYPNO,
-						new Identifier("pvzmod", "geo/basketballcarrier.geo.json"));
+						Identifier.of("pvzmod", "geo/basketballcarrier.geo.json"));
 			});
 
 	public Identifier getModelResource(BasketballCarrierEntity object) {

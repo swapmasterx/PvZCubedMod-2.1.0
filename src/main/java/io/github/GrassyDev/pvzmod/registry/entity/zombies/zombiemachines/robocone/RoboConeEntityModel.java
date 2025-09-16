@@ -8,14 +8,14 @@ public class RoboConeEntityModel extends GeoModel<RoboConeEntity> {
     @Override
     public Identifier getModelResource(RoboConeEntity object)
     {
-		return new Identifier("pvzmod", "geo/robocone.geo.json");
+		return Identifier.of("pvzmod", "geo/robocone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(RoboConeEntity object) {
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/robocone/robocone.png");;
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/robocone/robocone.png");;
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/robocone/robocone_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/robocone/robocone_dmg1.png");
 		}
 		return identifier;
 	}
@@ -23,6 +23,6 @@ public class RoboConeEntityModel extends GeoModel<RoboConeEntity> {
     @Override
     public Identifier getAnimationResource(RoboConeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/robocone.json");
+        return Identifier.of ("pvzmod", "animations/robocone.json");
     }
 }

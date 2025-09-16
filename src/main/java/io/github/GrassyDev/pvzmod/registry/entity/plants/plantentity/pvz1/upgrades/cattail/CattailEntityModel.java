@@ -8,16 +8,16 @@ public class CattailEntityModel extends GeoModel<CattailEntity> {
     @Override
     public Identifier getModelResource(CattailEntity object)
     {
-        return new Identifier("pvzmod", "geo/cattail.geo.json");
+        return Identifier.of("pvzmod", "geo/cattail.geo.json");
     }
 
 	public Identifier getTextureResource(CattailEntity object) {
-		return new Identifier("pvzmod", "textures/entity/cattail/cattail.png");
+		return Identifier.of("pvzmod", "textures/entity/cattail/cattail.png");
 	}
 
     @Override
     public Identifier getAnimationResource(CattailEntity object)
     {
-        return new Identifier ("pvzmod", "animations/cattail.json");
+        return Identifier.of ("pvzmod", "animations/cattail.json");
     }
 }

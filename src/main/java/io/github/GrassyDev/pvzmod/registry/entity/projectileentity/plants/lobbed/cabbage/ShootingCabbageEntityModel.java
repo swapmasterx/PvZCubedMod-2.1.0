@@ -8,17 +8,17 @@ public class  ShootingCabbageEntityModel extends GeoModel<ShootingCabbageEntity>
     @Override
     public Identifier getModelResource(ShootingCabbageEntity object)
     {
-        return new Identifier("pvzmod", "geo/cabbage.geo.json");
+        return Identifier.of("pvzmod", "geo/cabbage.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingCabbageEntity object){
-			return new Identifier("pvzmod", "textures/entity/projectiles/cabbage.png");
+			return Identifier.of("pvzmod", "textures/entity/projectiles/cabbage.png");
 	}
 
     @Override
     public Identifier getAnimationResource(ShootingCabbageEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

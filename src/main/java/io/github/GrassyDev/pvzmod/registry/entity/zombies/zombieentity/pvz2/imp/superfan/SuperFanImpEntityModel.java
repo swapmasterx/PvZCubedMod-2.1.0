@@ -12,17 +12,17 @@ public class SuperFanImpEntityModel extends GeoModel<SuperFanImpEntity> {
     @Override
     public Identifier getModelResource(SuperFanImpEntity object)
     {
-        return new Identifier("pvzmod", "geo/superfanimp.geo.json");
+        return Identifier.of("pvzmod", "geo/superfanimp.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SuperFanImpEntity object) {
 		Identifier identifier;
 		if (object.getVariant().equals(ImpVariants.NEWYEAR) || object.getVariant().equals(ImpVariants.NEWYEARHYPNO)) {
-			identifier = new Identifier("pvzmod", "textures/entity/imp/newyearimp.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/imp/newyearimp.png");
 		}
 		else{
-			identifier = new Identifier("pvzmod", "textures/entity/imp/superfanimp.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/imp/superfanimp.png");
 		}
 		return identifier;
 	}
@@ -30,6 +30,6 @@ public class SuperFanImpEntityModel extends GeoModel<SuperFanImpEntity> {
     @Override
     public Identifier getAnimationResource(SuperFanImpEntity object)
     {
-        return new Identifier ("pvzmod", "animations/imp.json");
+        return Identifier.of ("pvzmod", "animations/imp.json");
     }
 }

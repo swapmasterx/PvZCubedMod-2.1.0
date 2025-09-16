@@ -8,18 +8,18 @@ public class BellflowerEntityModel extends GeoModel<BellflowerEntity> {
     @Override
     public Identifier getModelResource(BellflowerEntity object)
     {
-        return new Identifier("pvzmod", "geo/bellflower.geo.json");
+        return Identifier.of("pvzmod", "geo/bellflower.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BellflowerEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/bellflower/bellflower.png");
+        return Identifier.of("pvzmod", "textures/entity/bellflower/bellflower.png");
     }
 
     @Override
     public Identifier getAnimationResource(BellflowerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/bellflower.json");
+        return Identifier.of ("pvzmod", "animations/bellflower.json");
     }
 }

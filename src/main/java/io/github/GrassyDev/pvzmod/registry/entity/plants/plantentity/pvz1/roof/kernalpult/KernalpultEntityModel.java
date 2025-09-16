@@ -8,18 +8,18 @@ public class KernalpultEntityModel extends GeoModel<KernalpultEntity> {
     @Override
     public Identifier getModelResource(KernalpultEntity object)
     {
-        return new Identifier("pvzmod", "geo/kernalpult.geo.json");
+        return Identifier.of("pvzmod", "geo/kernalpult.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(KernalpultEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cabbagepult/kernalpult.png");
+        return Identifier.of("pvzmod", "textures/entity/cabbagepult/kernalpult.png");
     }
 
     @Override
     public Identifier getAnimationResource(KernalpultEntity object)
     {
-        return new Identifier ("pvzmod", "animations/cabbagepult.json");
+        return Identifier.of ("pvzmod", "animations/cabbagepult.json");
     }
 }

@@ -8,18 +8,18 @@ public class PumpkinCarEntityModel extends GeoModel<PumpkinCarEntity> {
     @Override
     public Identifier getModelResource(PumpkinCarEntity object)
     {
-		return new Identifier("pvzmod", "geo/pumpkincar.geo.json");
+		return Identifier.of("pvzmod", "geo/pumpkincar.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(PumpkinCarEntity object) {
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/pumpkincar/pumpkincar.png");
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/pumpkincar/pumpkincar.png");
 		return identifier;
 	}
 
     @Override
     public Identifier getAnimationResource(PumpkinCarEntity object)
     {
-        return new Identifier ("pvzmod", "animations/pumpkincar.json");
+        return Identifier.of ("pvzmod", "animations/pumpkincar.json");
     }
 }

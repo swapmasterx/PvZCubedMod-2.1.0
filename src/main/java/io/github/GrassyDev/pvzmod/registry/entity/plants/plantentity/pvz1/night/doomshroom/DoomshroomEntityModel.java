@@ -8,23 +8,23 @@ public class DoomshroomEntityModel extends GeoModel<DoomshroomEntity> {
     @Override
     public Identifier getModelResource(DoomshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/doomshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/doomshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(DoomshroomEntity object)
     {
 		if (object.getShadowPowered()) {
-			return new Identifier("pvzmod", "textures/entity/doomshroom/doomshroom_shadow.png");
+			return Identifier.of("pvzmod", "textures/entity/doomshroom/doomshroom_shadow.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/doomshroom/doomshroom.png");
+			return Identifier.of("pvzmod", "textures/entity/doomshroom/doomshroom.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(DoomshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/doomshroom.json");
+        return Identifier.of ("pvzmod", "animations/doomshroom.json");
     }
 }

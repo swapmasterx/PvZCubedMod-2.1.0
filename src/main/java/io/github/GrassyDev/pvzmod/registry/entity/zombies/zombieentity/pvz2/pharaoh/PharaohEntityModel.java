@@ -11,10 +11,10 @@ public class PharaohEntityModel extends GeoModel<PharaohEntity> {
     {
 		Identifier identifier;
 		if (object.getVariant().equals(PharaohVariants.SUMMONED) || object.getVariant().equals(PharaohVariants.SUMMONEDHYPNO)){
-			identifier = new Identifier ("pvzmod", "geo/pharaoh.geo.json");
+			identifier = Identifier.of ("pvzmod", "geo/pharaoh.geo.json");
 		}
 		else {
-			identifier = new Identifier ("pvzmod", "geo/undyingpharaoh.geo.json");
+			identifier = Identifier.of ("pvzmod", "geo/undyingpharaoh.geo.json");
 		}
 		return identifier;
     }
@@ -22,17 +22,17 @@ public class PharaohEntityModel extends GeoModel<PharaohEntity> {
     @Override
     public Identifier getTextureResource(PharaohEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy.png");
 		if (object.armless && object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy_dmg1_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy_dmg1_geardmg1.png");
 		} else if (object.armless && object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy_gearless_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy_gearless_dmg1.png");
 		} else if (object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy_gearless.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy_gearless.png");
 		} else if (object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy_geardmg1.png");
 		} else if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy_dmg1.png");
 		}
 		return identifier;
     }
@@ -40,6 +40,6 @@ public class PharaohEntityModel extends GeoModel<PharaohEntity> {
     @Override
     public Identifier getAnimationResource(PharaohEntity object)
     {
-        return new Identifier ("pvzmod", "animations/pharaoh.json");
+        return Identifier.of ("pvzmod", "animations/pharaoh.json");
     }
 }

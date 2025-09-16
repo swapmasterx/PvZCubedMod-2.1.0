@@ -8,18 +8,18 @@ public class SunBombModel extends GeoModel<SunBombEntity> {
     @Override
     public Identifier getModelResource(SunBombEntity object)
     {
-        return new Identifier("pvzmod", "geo/sunbomb.geo.json");
+        return Identifier.of("pvzmod", "geo/sunbomb.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SunBombEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/sunbomb.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/sunbomb.png");
     }
 
     @Override
     public Identifier getAnimationResource(SunBombEntity object)
     {
-        return new Identifier ("pvzmod", "animations/sunbomb.json");
+        return Identifier.of ("pvzmod", "animations/sunbomb.json");
     }
 }

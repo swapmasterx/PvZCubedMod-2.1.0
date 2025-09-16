@@ -4,6 +4,7 @@
  import io.github.GrassyDev.pvzmod.registry.PvZEntity;
  import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
  import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
+ import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
  import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
  import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
  import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieShieldEntity;
@@ -92,19 +93,19 @@
 
 	 public void tick() {
 		 super.tick();
-		 HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		 HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		 boolean bl = false;
 		 if (hitResult.getType() == HitResult.Type.BLOCK) {
 			 BlockPos blockPos = ((BlockHitResult) hitResult).getBlockPos();
 			 BlockState blockState = this.getWorld().getBlockState(blockPos);
 			 if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				 this.setInNetherPortal(blockPos);
+				 //				this.setInNetherPortal(blockPos);
 				 bl = true;
 			 } else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				 BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				 if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					 EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity) blockEntity);
-				 }
+//				 if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					 EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity) blockEntity);
+//				 }
 
 				 bl = true;
 			 }
@@ -196,12 +197,12 @@
 					 }
 					 entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 				 }
-				 if (!((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
-					 ((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+				 if (!((LivingEntity) entity).hasStatusEffect(StatusHolder.WARM_HOLDER) && !((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
+					 ((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 				 }
 				 hit = true;
 				 Vec3d vec3d = this.getPos();
-				 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+				 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 				 Iterator var10 = list.iterator();
 				 while (true) {
 					 LivingEntity livingEntity;
@@ -248,8 +249,8 @@
 										 }
 										 entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage3);
 									 }
-									 if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
-										 livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+									 if (!livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) && !((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
+										 livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 									 }
 									 entity.extinguish();
 								 }
@@ -263,11 +264,11 @@
 			 }
 		 }
 	 }
-	 List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().shrink(0.5, 0, 0));
+	 List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().shrink(0.5, 0, 0));
 	 private void raycastExplode() {
 		 this.playSound(PvZSounds.MELONHITEVENT, 0.8F, 1F);
 		 Vec3d vec3d = this.getPos();
-		 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(10));
+		 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(10));
 		 Iterator var9 = list.iterator();
 		 while (true) {
 			 LivingEntity livingEntity;
@@ -334,13 +335,13 @@
 					 }
 				 }
 				 if (zombiePropEntity2 == null && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity)) {
-					 if (!(livingEntity instanceof ZombieShieldEntity) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.FROZEN) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.WARM)) {
-						 livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+					 if (!(livingEntity instanceof ZombieShieldEntity) && !((LivingEntity) livingEntity).hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !((LivingEntity) livingEntity).hasStatusEffect(StatusHolder.WARM_HOLDER)) {
+						 livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 					 }
 					 this.getWorld().sendEntityStatus(this, (byte) 3);
 					 this.remove(RemovalReason.DISCARDED);
-				 } else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.FROZEN) && !((LivingEntity) livingEntity).hasStatusEffect(PvZCubed.WARM)) {
-					 livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+				 } else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !((LivingEntity) livingEntity).hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !((LivingEntity) livingEntity).hasStatusEffect(StatusHolder.WARM_HOLDER)) {
+					 livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 					 this.getWorld().sendEntityStatus(this, (byte) 3);
 					 this.remove(RemovalReason.DISCARDED);
 				 }
@@ -349,7 +350,7 @@
 	 }
 	 @Environment(EnvType.CLIENT)
 	 private ParticleEffect getParticleParameters() {
-		 ItemStack itemStack = this.getItem();
+		 ItemStack itemStack = this.getStack();
 		 return (ParticleEffect) (itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
 	 }
 

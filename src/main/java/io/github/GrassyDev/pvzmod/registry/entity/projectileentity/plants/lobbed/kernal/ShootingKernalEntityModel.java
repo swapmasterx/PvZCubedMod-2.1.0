@@ -8,17 +8,17 @@ public class ShootingKernalEntityModel extends GeoModel<ShootingKernalEntity> {
     @Override
     public Identifier getModelResource(ShootingKernalEntity object)
     {
-        return new Identifier("pvzmod", "geo/kernal.geo.json");
+        return Identifier.of("pvzmod", "geo/kernal.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingKernalEntity object){
-			return new Identifier("pvzmod", "textures/entity/cabbagepult/kernalpult.png");
+			return Identifier.of("pvzmod", "textures/entity/cabbagepult/kernalpult.png");
 	}
 
     @Override
     public Identifier getAnimationResource(ShootingKernalEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

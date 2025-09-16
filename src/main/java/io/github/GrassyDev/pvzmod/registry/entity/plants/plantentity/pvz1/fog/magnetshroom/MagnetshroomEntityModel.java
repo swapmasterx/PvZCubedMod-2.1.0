@@ -8,18 +8,18 @@ public class MagnetshroomEntityModel extends GeoModel<MagnetshroomEntity> {
     @Override
     public Identifier getModelResource(MagnetshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/magnetshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/magnetshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MagnetshroomEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/magnetshroom/magnetshroom.png");
+        return Identifier.of("pvzmod", "textures/entity/magnetshroom/magnetshroom.png");
     }
 
     @Override
     public Identifier getAnimationResource(MagnetshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/magnetshroom.json");
+        return Identifier.of ("pvzmod", "animations/magnetshroom.json");
     }
 }

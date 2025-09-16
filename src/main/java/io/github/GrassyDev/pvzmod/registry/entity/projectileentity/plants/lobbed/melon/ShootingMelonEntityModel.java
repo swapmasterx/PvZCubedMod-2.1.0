@@ -9,17 +9,17 @@
 	 @Override
 	 public Identifier getModelResource(ShootingMelonEntity object)
 	 {
-		 return new Identifier("pvzmod", "geo/melon.geo.json");
+		 return Identifier.of("pvzmod", "geo/melon.geo.json");
 	 }
 
 	 @Override
 	 public Identifier getTextureResource(ShootingMelonEntity object){
-		 return new Identifier("pvzmod", "textures/entity/cabbagepult/melonpult.png");
+		 return Identifier.of("pvzmod", "textures/entity/cabbagepult/melonpult.png");
 	 }
 
 	 @Override
 	 public Identifier getAnimationResource(ShootingMelonEntity object)
 	 {
-		 return new Identifier ("pvzmod", "animations/peashot.json");
+		 return Identifier.of ("pvzmod", "animations/peashot.json");
 	 }
  }

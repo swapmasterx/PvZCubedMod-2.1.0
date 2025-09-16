@@ -8,18 +8,18 @@ public class CraterTileModel extends GeoModel<CraterTile> {
     @Override
     public Identifier getModelResource(CraterTile object)
     {
-        return new Identifier("pvzmod", "geo/cratertile.geo.json");
+        return Identifier.of("pvzmod", "geo/cratertile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CraterTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(CraterTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

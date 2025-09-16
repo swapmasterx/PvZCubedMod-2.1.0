@@ -9,7 +9,7 @@ public class WoodObstacleEntityModel extends GeoModel<WoodObstacleEntity> {
     public Identifier getModelResource(WoodObstacleEntity object)
     {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "geo/hawkercart.geo.json");
+		identifier = Identifier.of("pvzmod", "geo/hawkercart.geo.json");
 		return identifier;
     }
 
@@ -17,13 +17,13 @@ public class WoodObstacleEntityModel extends GeoModel<WoodObstacleEntity> {
     public Identifier getTextureResource(WoodObstacleEntity object)
 	{
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/hawker/hawker.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/hawker/hawker.png");
 		return identifier;
     }
 
     @Override
     public Identifier getAnimationResource(WoodObstacleEntity object)
     {
-        return new Identifier ("pvzmod", "animations/hawker.json");
+        return Identifier.of ("pvzmod", "animations/hawker.json");
     }
 }

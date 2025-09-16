@@ -23,6 +23,6 @@ public class MetalHelmetProjEntityModel extends GeoModel<MetalHelmetProjEntity> 
     @Override
     public Identifier getAnimationResource(MetalHelmetProjEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

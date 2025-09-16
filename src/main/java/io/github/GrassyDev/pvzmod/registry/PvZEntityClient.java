@@ -143,8 +143,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.s
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.solar.sunflowerseed.SunflowerSeedEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.armor.MetalHelmetProjEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.groundbounce.GroundBounceEntityRenderer;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.peanut.PeanutBowlingEntityRenderer;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.wallnut.WallnutBowlingEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.butter.ShootingButterEntityRenderer;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.melon.ShootingMelonEntityRenderer;
@@ -589,9 +587,9 @@ public class PvZEntityClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(PvZEntity.GROUNDBOUNCE, GroundBounceEntityRenderer::new);
 
-		EntityRendererRegistry.register(PvZEntity.WALLNUTBOWLING, WallnutBowlingEntityRenderer::new);
-
-		EntityRendererRegistry.register(PvZEntity.PEANUTBOWLING, PeanutBowlingEntityRenderer::new);
+//		EntityRendererRegistry.register(PvZEntity.WALLNUTBOWLING, WallnutBowlingEntityRenderer::new);
+//
+//		EntityRendererRegistry.register(PvZEntity.PEANUTBOWLING, PeanutBowlingEntityRenderer::new);
 
 		EntityRendererRegistry.register(PvZEntity.PEANUTPROJ, PeaNutProjEntityRenderer::new);
 

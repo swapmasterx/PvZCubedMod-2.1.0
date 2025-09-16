@@ -8,17 +8,17 @@ public class ShootingMelonSliceEntityModel extends GeoModel<ShootingMelonSliceEn
 	@Override
 	public Identifier getModelResource(ShootingMelonSliceEntity object)
 	{
-		return new Identifier("pvzmod", "geo/slice.geo.json");
+		return Identifier.of("pvzmod", "geo/slice.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(ShootingMelonSliceEntity object){
-		return new Identifier("pvzmod", "textures/entity/cabbagepult/melonslice.png");
+		return Identifier.of("pvzmod", "textures/entity/cabbagepult/melonslice.png");
 	}
 
 	@Override
 	public Identifier getAnimationResource(ShootingMelonSliceEntity object)
 	{
-		return new Identifier ("pvzmod", "animations/peashot.json");
+		return Identifier.of ("pvzmod", "animations/peashot.json");
 	}
 }

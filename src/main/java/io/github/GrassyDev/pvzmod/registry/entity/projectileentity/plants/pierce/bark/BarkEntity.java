@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
@@ -43,7 +44,7 @@ public class BarkEntity extends PvZProjectileEntity implements GeoEntity {
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "bark");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "bark");
 
 
 	@Override
@@ -141,7 +142,7 @@ public class BarkEntity extends PvZProjectileEntity implements GeoEntity {
 					entityStore.add((LivingEntity) entity);
 				}
 				if (!(entity instanceof ZombieShieldEntity)) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.BARK, 60, 1)));
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.BARK_HOLDER, 60, 1)));
 				}
 				if ((entity instanceof GeneralPvZombieEntity generalPvZombieEntity && ZOMBIE_SIZE.get(generalPvZombieEntity.getType()).orElse("medium").equals("small")) ||
 						(entity.getVehicle() instanceof GeneralPvZombieEntity generalPvZombieEntity1 && ZOMBIE_SIZE.get(generalPvZombieEntity1.getType()).orElse("medium").equals("small"))) {

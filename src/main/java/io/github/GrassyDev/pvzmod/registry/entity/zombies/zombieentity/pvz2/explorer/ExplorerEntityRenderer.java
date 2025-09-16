@@ -43,13 +43,13 @@ public class ExplorerEntityRenderer extends GeoEntityRenderer<ExplorerEntity> {
 	public static final Map<ExplorerVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ExplorerVariants.class), (map) -> {
 				map.put(ExplorerVariants.EXPLORER,
-						new Identifier("pvzmod", "geo/explorer.geo.json"));
+						Identifier.of("pvzmod", "geo/explorer.geo.json"));
 				map.put(ExplorerVariants.EXPLORERHYPNO,
-						new Identifier("pvzmod", "geo/explorer.geo.json"));
+						Identifier.of("pvzmod", "geo/explorer.geo.json"));
 				map.put(ExplorerVariants.TORCHLIGHT,
-						new Identifier("pvzmod", "geo/torchlight.geo.json"));
+						Identifier.of("pvzmod", "geo/torchlight.geo.json"));
 				map.put(ExplorerVariants.TORCHLIGHTHYPNO,
-						new Identifier("pvzmod", "geo/torchlight.geo.json"));
+						Identifier.of("pvzmod", "geo/torchlight.geo.json"));
 			});
 
 	public Identifier getModelResource(ExplorerEntity object) {

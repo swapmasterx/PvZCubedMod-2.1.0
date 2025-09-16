@@ -41,9 +41,9 @@ public class IceTile extends TileEntity {
 							generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 							&& (generalPvZombieEntity.getHypno()))) {
-				if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !livingEntity.isOnFire() && !livingEntity.hasStatusEffect(PvZCubed.FROZEN)){
+				if (!livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) && !livingEntity.isOnFire() && !livingEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER)){
 					if (!(livingEntity instanceof ZombieShieldEntity)) {
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 					}
 				}
 			}

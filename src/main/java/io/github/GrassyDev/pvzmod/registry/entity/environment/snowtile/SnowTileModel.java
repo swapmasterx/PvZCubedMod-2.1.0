@@ -8,18 +8,18 @@ public class SnowTileModel extends GeoModel<SnowTile> {
     @Override
     public Identifier getModelResource(SnowTile object)
     {
-        return new Identifier("pvzmod", "geo/snowtile.geo.json");
+        return Identifier.of("pvzmod", "geo/snowtile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SnowTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(SnowTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

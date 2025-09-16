@@ -8,16 +8,16 @@ public class ZapricotEntityModel extends GeoModel<ZapricotEntity> {
     @Override
     public Identifier getModelResource(ZapricotEntity object)
     {
-        return new Identifier("pvzmod", "geo/zapricot.geo.json");
+        return Identifier.of("pvzmod", "geo/zapricot.geo.json");
     }
 
 	public Identifier getTextureResource(ZapricotEntity object) {
-		return new Identifier("pvzmod", "textures/entity/lightningreed/zapricot.png");
+		return Identifier.of("pvzmod", "textures/entity/lightningreed/zapricot.png");
 	}
 
     @Override
     public Identifier getAnimationResource(ZapricotEntity object)
     {
-        return new Identifier ("pvzmod", "animations/zapricot.json");
+        return Identifier.of ("pvzmod", "animations/zapricot.json");
     }
 }

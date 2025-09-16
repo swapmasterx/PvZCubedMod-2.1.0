@@ -8,18 +8,18 @@ public class KnightPeaEntityModel extends GeoModel<KnightPeaEntity> {
     @Override
     public Identifier getModelResource(KnightPeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/knightpea.geo.json");
+        return Identifier.of("pvzmod", "geo/knightpea.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(KnightPeaEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/peashooter/knightpea.png");
+        return Identifier.of("pvzmod", "textures/entity/peashooter/knightpea.png");
     }
 
     @Override
     public Identifier getAnimationResource(KnightPeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

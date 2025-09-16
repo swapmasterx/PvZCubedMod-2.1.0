@@ -8,15 +8,15 @@ public class FlagPokerEntityModel extends GeoModel<FlagPokerEntity> {
 	@Override
 	public Identifier getModelResource(FlagPokerEntity object)
 	{
-		return new Identifier("pvzmod", "geo/flagpoker.geo.json");
+		return Identifier.of("pvzmod", "geo/flagpoker.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(FlagPokerEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/poker/flagpoker.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/poker/flagpoker.png");
 		if (object.armless){
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/poker/flagpoker_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/poker/flagpoker_dmg1.png");
 		}
 		return identifier;
 	}
@@ -24,6 +24,6 @@ public class FlagPokerEntityModel extends GeoModel<FlagPokerEntity> {
 	@Override
 	public Identifier getAnimationResource(FlagPokerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

@@ -42,33 +42,33 @@ public class ImpEntityRenderer extends GeoEntityRenderer<ImpEntity> {
 	public static final Map<ImpVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ImpVariants.class), (map) -> {
 				map.put(ImpVariants.DEFAULT,
-						new Identifier("pvzmod", "geo/imp.geo.json"));
+						Identifier.of("pvzmod", "geo/imp.geo.json"));
 				map.put(ImpVariants.DEFAULTHYPNO,
-						new Identifier("pvzmod", "geo/imp.geo.json"));
+						Identifier.of("pvzmod", "geo/imp.geo.json"));
 				map.put(ImpVariants.MUMMY,
-						new Identifier("pvzmod", "geo/impmummy.geo.json"));
+						Identifier.of("pvzmod", "geo/impmummy.geo.json"));
 				map.put(ImpVariants.MUMMYHYPNO,
-						new Identifier("pvzmod", "geo/impmummy.geo.json"));
+						Identifier.of("pvzmod", "geo/impmummy.geo.json"));
 				map.put(ImpVariants.IMPDRAGON,
-						new Identifier("pvzmod", "geo/impdragon.geo.json"));
+						Identifier.of("pvzmod", "geo/impdragon.geo.json"));
 				map.put(ImpVariants.IMPDRAGONHYPNO,
-						new Identifier("pvzmod", "geo/impdragon.geo.json"));
+						Identifier.of("pvzmod", "geo/impdragon.geo.json"));
 				map.put(ImpVariants.THROWER,
-						new Identifier("pvzmod", "geo/imp.geo.json"));
+						Identifier.of("pvzmod", "geo/imp.geo.json"));
 				map.put(ImpVariants.THROWERHYPNO,
-						new Identifier("pvzmod", "geo/imp.geo.json"));
+						Identifier.of("pvzmod", "geo/imp.geo.json"));
 				map.put(ImpVariants.SCRAP,
-						new Identifier("pvzmod", "geo/scrapimp.geo.json"));
+						Identifier.of("pvzmod", "geo/scrapimp.geo.json"));
 				map.put(ImpVariants.SCRAPHYPNO,
-						new Identifier("pvzmod", "geo/scrapimp.geo.json"));
+						Identifier.of("pvzmod", "geo/scrapimp.geo.json"));
 				map.put(ImpVariants.BASSIMP,
-						new Identifier("pvzmod", "geo/rainbowbassimp.geo.json"));
+						Identifier.of("pvzmod", "geo/rainbowbassimp.geo.json"));
 				map.put(ImpVariants.BASSIMPHYPNO,
-						new Identifier("pvzmod", "geo/rainbowbassimp.geo.json"));
+						Identifier.of("pvzmod", "geo/rainbowbassimp.geo.json"));
 				map.put(ImpVariants.CINDERELLA,
-						new Identifier("pvzmod", "geo/cinderellaimp.geo.json"));
+						Identifier.of("pvzmod", "geo/cinderellaimp.geo.json"));
 				map.put(ImpVariants.CINDERELLAHYPNO,
-						new Identifier("pvzmod", "geo/cinderellaimp.geo.json"));
+						Identifier.of("pvzmod", "geo/cinderellaimp.geo.json"));
 			});
 
 	public Identifier getModelResource(ImpEntity object) {

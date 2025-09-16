@@ -8,17 +8,17 @@ public class SmooshProjEntityModel extends GeoModel<SmooshProjEntity> {
     @Override
     public Identifier getModelResource(SmooshProjEntity object)
     {
-        return new Identifier("pvzmod", "geo/smooshproj.geo.json");
+        return Identifier.of("pvzmod", "geo/smooshproj.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SmooshProjEntity object){
-			return new Identifier("pvzmod", "textures/entity/smooshroom/smooshroom.png");
+			return Identifier.of("pvzmod", "textures/entity/smooshroom/smooshroom.png");
 	}
 
     @Override
     public Identifier getAnimationResource(SmooshProjEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

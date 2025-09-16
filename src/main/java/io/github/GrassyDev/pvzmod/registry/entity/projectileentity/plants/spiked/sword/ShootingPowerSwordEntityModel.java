@@ -8,18 +8,18 @@ public class ShootingPowerSwordEntityModel extends GeoModel<ShootingPowerSwordEn
     @Override
     public Identifier getModelResource(ShootingPowerSwordEntity object)
     {
-        return new Identifier("pvzmod", "geo/swordproj.geo.json");
+        return Identifier.of("pvzmod", "geo/swordproj.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingPowerSwordEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/powerswordproj.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/powerswordproj.png");
     }
 
     @Override
     public Identifier getAnimationResource(ShootingPowerSwordEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

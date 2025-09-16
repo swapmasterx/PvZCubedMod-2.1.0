@@ -308,7 +308,7 @@ public class FlagSargeantEntity extends SummonerEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -426,7 +426,7 @@ public class FlagSargeantEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean canStart() {
 			LivingEntity livingEntity = FlagSargeantEntity.this.getTarget();
-			if (livingEntity != null && livingEntity.isAlive() && !FlagSargeantEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !FlagSargeantEntity.this.hasStatusEffect(PvZCubed.STUN)) {
+			if (livingEntity != null && livingEntity.isAlive() && !FlagSargeantEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !FlagSargeantEntity.this.hasStatusEffect(PvZCubed.STUN)) {
 				if (FlagSargeantEntity.this.isSpellcasting()) {
 					return false;
 				} else {
@@ -439,7 +439,7 @@ public class FlagSargeantEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean shouldContinue() {
 			LivingEntity livingEntity = FlagSargeantEntity.this.getTarget();
-			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !FlagSargeantEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !FlagSargeantEntity.this.hasStatusEffect(PvZCubed.STUN) && FlagSargeantEntity.this.getTypeCount() < 4;
+			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !FlagSargeantEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !FlagSargeantEntity.this.hasStatusEffect(PvZCubed.STUN) && FlagSargeantEntity.this.getTypeCount() < 4;
 		}
 
 		public void start() {

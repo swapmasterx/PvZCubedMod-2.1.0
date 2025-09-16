@@ -8,18 +8,18 @@ public class WinterMelonEntityModel extends GeoModel<WinterMelonEntity> {
     @Override
     public Identifier getModelResource(WinterMelonEntity object)
     {
-        return new Identifier("pvzmod", "geo/wintermelon.geo.json");
+        return Identifier.of("pvzmod", "geo/wintermelon.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(WinterMelonEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cabbagepult/wintermelon.png");
+        return Identifier.of("pvzmod", "textures/entity/cabbagepult/wintermelon.png");
     }
 
     @Override
     public Identifier getAnimationResource(WinterMelonEntity object)
     {
-        return new Identifier ("pvzmod", "animations/cabbagepult.json");
+        return Identifier.of ("pvzmod", "animations/cabbagepult.json");
     }
 }

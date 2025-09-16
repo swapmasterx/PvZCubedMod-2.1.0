@@ -8,18 +8,18 @@ public class CabbagepultEntityModel extends GeoModel<CabbagepultEntity> {
     @Override
     public Identifier getModelResource(CabbagepultEntity object)
     {
-        return new Identifier("pvzmod", "geo/cabbagepult.geo.json");
+        return Identifier.of("pvzmod", "geo/cabbagepult.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CabbagepultEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cabbagepult/cabbagepult.png");
+        return Identifier.of("pvzmod", "textures/entity/cabbagepult/cabbagepult.png");
     }
 
     @Override
     public Identifier getAnimationResource(CabbagepultEntity object)
     {
-        return new Identifier ("pvzmod", "animations/cabbagepult.json");
+        return Identifier.of ("pvzmod", "animations/cabbagepult.json");
     }
 }

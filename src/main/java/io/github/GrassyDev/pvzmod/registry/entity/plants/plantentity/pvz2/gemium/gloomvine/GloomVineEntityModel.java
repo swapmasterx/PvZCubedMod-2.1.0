@@ -9,16 +9,16 @@ public class GloomVineEntityModel extends GeoModel<GloomVineEntity> {
     @Override
     public Identifier getModelResource(GloomVineEntity object)
     {
-        return new Identifier("pvzmod", "geo/gloomvine.geo.json");
+        return Identifier.of("pvzmod", "geo/gloomvine.geo.json");
     }
 
 	public Identifier getTextureResource(GloomVineEntity object) {
-		return new Identifier(PvZCubed.MOD_ID, "textures/entity/vines/gloomvine.png");
+		return Identifier.of(PvZCubed.MOD_ID, "textures/entity/vines/gloomvine.png");
 	}
 
     @Override
     public Identifier getAnimationResource(GloomVineEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gloomvine.json");
+        return Identifier.of ("pvzmod", "animations/gloomvine.json");
     }
 }

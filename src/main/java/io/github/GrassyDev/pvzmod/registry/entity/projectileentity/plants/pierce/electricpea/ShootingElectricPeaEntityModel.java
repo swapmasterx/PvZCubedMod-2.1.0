@@ -8,18 +8,18 @@ public class ShootingElectricPeaEntityModel extends GeoModel<ShootingElectricPea
     @Override
     public Identifier getModelResource(ShootingElectricPeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/bigpea.geo.json");
+        return Identifier.of("pvzmod", "geo/bigpea.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingElectricPeaEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/electricpea.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/electricpea.png");
     }
 
     @Override
     public Identifier getAnimationResource(ShootingElectricPeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

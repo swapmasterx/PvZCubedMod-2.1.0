@@ -8,18 +8,18 @@ public class BeeshooterEntityModel extends GeoModel<BeeshooterEntity> {
     @Override
     public Identifier getModelResource(BeeshooterEntity object)
     {
-        return new Identifier("pvzmod", "geo/beeshooter.geo.json");
+        return Identifier.of("pvzmod", "geo/beeshooter.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BeeshooterEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/peashooter/beeshooter.png");
+        return Identifier.of("pvzmod", "textures/entity/peashooter/beeshooter.png");
     }
 
     @Override
     public Identifier getAnimationResource(BeeshooterEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

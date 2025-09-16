@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbe
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
@@ -95,20 +96,20 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 
     public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -218,12 +219,12 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 						}
 						entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
 					}
-					if (!((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
-						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+					if (!((LivingEntity) entity).hasStatusEffect(StatusHolder.WARM_HOLDER) && !((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
+						((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 					}
 					hit = true;
 					Vec3d vec3d = this.getPos();
-					List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+					List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 					Iterator var10 = list.iterator();
 					while (true) {
 						LivingEntity livingEntity;
@@ -277,8 +278,8 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 						}
 											entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), 1);
 										}
-										if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
-											livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+										if (!livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) && !((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
+											livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 										}
 									}
 								}
@@ -293,7 +294,7 @@ public class ShootingIcebergEntity extends PvZProjectileEntity implements GeoEnt
 
 	@Environment(EnvType.CLIENT)
 	private ParticleEffect getParticleParameters() {
-		ItemStack itemStack = this.getItem();
+		ItemStack itemStack = this.getStack();
 		return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.SNOWFLAKE : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
 	}
 

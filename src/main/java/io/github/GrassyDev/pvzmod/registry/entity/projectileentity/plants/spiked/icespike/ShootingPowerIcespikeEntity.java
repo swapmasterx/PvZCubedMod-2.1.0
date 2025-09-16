@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.spike
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -69,7 +70,7 @@ public class ShootingPowerIcespikeEntity extends PvZProjectileEntity implements 
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "icespikeproj");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "icespikeproj");
 
 
     public ShootingPowerIcespikeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
@@ -92,20 +93,20 @@ public class ShootingPowerIcespikeEntity extends PvZProjectileEntity implements 
 
     public void tick() {
 		super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -180,10 +181,10 @@ public class ShootingPowerIcespikeEntity extends PvZProjectileEntity implements 
 					!(entity instanceof SnorkelEntity snorkelEntity && snorkelEntity.isInvisibleSnorkel()) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity3 && generalPvZombieEntity3.isStealth()) &&
 					!(entity instanceof GeneralPvZombieEntity generalPvZombieEntity1 && generalPvZombieEntity1.isFlying())) {
 				float damage = PVZCONFIG.nestedProjDMG.icespikeDMGv2() * 1.5f;
-				if (((LivingEntity) entity).hasStatusEffect(PvZCubed.ICE) || ((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
+				if (((LivingEntity) entity).hasStatusEffect(StatusHolder.ICE_HOLDER) || ((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
 					damage = damage * PVZCONFIG.nestedProjDMG.iceSpikeMultiplier() * damageMultiplier;
 				}
-				if (entity.isWet() || ((LivingEntity) entity).hasStatusEffect(PvZCubed.WET)) {
+				if (entity.isWet() || ((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER)) {
 					damage = damage * 2;
 				}
 				String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
@@ -228,7 +229,7 @@ public class ShootingPowerIcespikeEntity extends PvZProjectileEntity implements 
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

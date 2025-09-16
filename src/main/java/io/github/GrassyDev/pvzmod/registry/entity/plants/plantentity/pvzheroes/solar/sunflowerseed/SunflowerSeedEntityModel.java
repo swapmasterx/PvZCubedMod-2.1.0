@@ -8,18 +8,18 @@ public class SunflowerSeedEntityModel extends GeoModel<SunflowerSeedEntity> {
     @Override
     public Identifier getModelResource(SunflowerSeedEntity object)
     {
-        return new Identifier("pvzmod", "geo/sunflowerseed.geo.json");
+        return Identifier.of("pvzmod", "geo/sunflowerseed.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SunflowerSeedEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/small/sunflowerseed.png");
+        return Identifier.of("pvzmod", "textures/entity/small/sunflowerseed.png");
     }
 
     @Override
     public Identifier getAnimationResource(SunflowerSeedEntity object)
     {
-        return new Identifier ("pvzmod", "animations/small.json");
+        return Identifier.of ("pvzmod", "animations/small.json");
     }
 }

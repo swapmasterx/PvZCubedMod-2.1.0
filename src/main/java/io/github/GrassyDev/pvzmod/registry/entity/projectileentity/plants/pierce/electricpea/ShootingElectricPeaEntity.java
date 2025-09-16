@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.sound.SoundEvent;
@@ -137,7 +138,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 			this.cachedSparkTarget = null;
 		}
 
-		super.onTrackedDataUpdate(data);
+		super.onTrackedDataSet(data);
 	}
 
 	static {
@@ -169,7 +170,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "electricpea");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "electricpea");
 
     public ShootingElectricPeaEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -194,20 +195,20 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 		if (this.getOwner() instanceof PlantEntity plantEntity){
 			plantOwner = plantEntity;
 		}
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -366,7 +367,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 	protected int lightningCounter;
 
 	public void lightning(LivingEntity origin){
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, origin.getBoundingBox().expand(10.0));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, origin.getBounds().expand(10.0));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -403,7 +404,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 					default -> PvZSounds.PEAHITEVENT;
 				};
 				damaged.playSound(sound, 0.2F, (float) (0.5F + Math.random()));
-				if (livingEntity.isWet() || livingEntity.hasStatusEffect(PvZCubed.WET)){
+				if (livingEntity.isWet() || livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER)){
 					damaged.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), 0);
 					damaged.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.ELECTRIC_DAMAGE), damage * 2);
 				}
@@ -487,7 +488,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 					String zombieMaterial = PvZCubed.ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh");
 					this.setElectricBeamTargetId(this.getId());
 					this.setHypnoBeamTarget(entity.getId());
-					if (entity.isWet() || ((LivingEntity) entity).hasStatusEffect(PvZCubed.WET)) {
+					if (entity.isWet() || ((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER)) {
 						damage = damage * 2;
 					}
 					if ("electronic".equals(zombieMaterial) || "crystal".equals(zombieMaterial)) {
@@ -539,7 +540,7 @@ public class ShootingElectricPeaEntity extends PvZProjectileEntity implements Ge
 
         @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ELECTRIC_SPARK : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

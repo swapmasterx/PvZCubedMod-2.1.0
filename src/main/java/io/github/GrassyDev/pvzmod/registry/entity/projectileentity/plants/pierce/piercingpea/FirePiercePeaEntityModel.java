@@ -8,18 +8,18 @@ public class FirePiercePeaEntityModel extends GeoModel<FirePiercePeaEntity> {
     @Override
     public Identifier getModelResource(FirePiercePeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/spit.geo.json");
+        return Identifier.of("pvzmod", "geo/spit.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FirePiercePeaEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/firepea.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/firepea.png");
     }
 
     @Override
     public Identifier getAnimationResource(FirePiercePeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

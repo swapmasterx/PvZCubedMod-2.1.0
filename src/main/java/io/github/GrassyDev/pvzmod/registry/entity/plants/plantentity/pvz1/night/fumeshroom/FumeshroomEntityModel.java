@@ -8,7 +8,7 @@ public class FumeshroomEntityModel extends GeoModel<FumeshroomEntity> {
     @Override
     public Identifier getModelResource(FumeshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/fumeshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/fumeshroom.geo.json");
     }
 
 	public Identifier getTextureResource(FumeshroomEntity object) {
@@ -18,6 +18,6 @@ public class FumeshroomEntityModel extends GeoModel<FumeshroomEntity> {
     @Override
     public Identifier getAnimationResource(FumeshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/fumeshroom.json");
+        return Identifier.of ("pvzmod", "animations/fumeshroom.json");
     }
 }

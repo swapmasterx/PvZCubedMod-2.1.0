@@ -93,20 +93,20 @@ public class RocketEntity extends PvZProjectileEntity implements GeoEntity {
 
 	public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -191,7 +191,7 @@ public class RocketEntity extends PvZProjectileEntity implements GeoEntity {
 			if (this.getOwner() instanceof BullyEntity bullyEntity && bullyEntity.getHypno()) {
 				if (livingEntity instanceof Monster &&
 						(livingEntity instanceof GeneralPvZombieEntity zombie1
-								&& (zombie1.getHypno())) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && (zombie1.canBurn())) {
+								&& (zombie1.getHypno())) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet() && (zombie1.canBurn())) {
 					ZombiePropEntity zombiePropEntity4 = null;
 					for (Entity entity1 : livingEntity.getPassengerList()) {
 						if (entity1 instanceof ZombiePropEntity zpe) {
@@ -224,17 +224,17 @@ public class RocketEntity extends PvZProjectileEntity implements GeoEntity {
 							} else {
 								livingEntity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damageSplash);
 							}
-							if (!livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
+							if (!livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet() && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(livingEntity instanceof ZombieShieldEntity)) {
 								livingEntity.setOnFireFor(4);
 								if (!(livingEntity instanceof ZombieShieldEntity)) {
-									livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 40, 1)));
+									livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 40, 1)));
 								}
-								livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-								livingEntity.removeStatusEffect(PvZCubed.ICE);
-							} else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(PvZCubed.WET) && !livingEntity.isWet()) {
-								livingEntity.removeStatusEffect(PvZCubed.FROZEN);
-								livingEntity.removeStatusEffect(PvZCubed.ICE);
-								livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+								livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+								livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+							} else if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn() && !(generalPvZombieEntity instanceof ZombieShieldEntity) && !livingEntity.hasStatusEffect(StatusHolder.WET_HOLDER) && !livingEntity.isWet()) {
+								livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+								livingEntity.removeStatusEffect(StatusHolder.ICE_HOLDER);
+								livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 							}
 							if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 								generalPvZombieEntity.fireSplashTicks = 10;

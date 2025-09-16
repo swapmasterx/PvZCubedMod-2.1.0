@@ -8,18 +8,18 @@ public class ZombieGraveModel extends GeoModel<ZombieGraveEntity> {
     @Override
     public Identifier getModelResource(ZombieGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/zombiegravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/zombiegravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ZombieGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/zombiegravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/zombiegravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(ZombieGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

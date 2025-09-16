@@ -287,7 +287,7 @@ public class RoboConeEntity extends MachinePvZombieEntity implements GeoEntity {
     }
 
 	protected SoundEvent getAmbientSound() {
-		if (this.hasStatusEffect(PvZCubed.FROZEN) || this.isFrozen || this.isStunned || this.isDisabled){
+		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.isFrozen || this.isStunned || this.isDisabled){
 			return null;
 		}
 		else {

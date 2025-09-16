@@ -11,15 +11,15 @@ public class BrowncoatEntityModel extends GeoModel<BrowncoatEntity> {
     {
 		if (object.getType().equals(PvZEntity.SUMMERBASIC) ||
 				object.getType().equals(PvZEntity.SUMMERBASICHYPNO)){
-			return new Identifier("pvzmod", "geo/summerbasic.geo.json");
+			return Identifier.of("pvzmod", "geo/summerbasic.geo.json");
 		}
 		else if (object.getType().equals(PvZEntity.SUMMERCONEHEAD) ||
 				object.getType().equals(PvZEntity.SUMMERCONEHEADHYPNO)){
-			return new Identifier("pvzmod", "geo/summercone.geo.json");
+			return Identifier.of("pvzmod", "geo/summercone.geo.json");
 		}
 		else if (object.getType().equals(PvZEntity.SUMMERBUCKETHEAD) ||
 				object.getType().equals(PvZEntity.SUMMERBUCKETHEADHYPNO)){
-			return new Identifier("pvzmod", "geo/summerbucket.geo.json");
+			return Identifier.of("pvzmod", "geo/summerbucket.geo.json");
 		}
 		else {
 			return BrowncoatEntityRenderer.LOCATION_MODEL_BY_VARIANT.get(object.getVariant());
@@ -29,17 +29,17 @@ public class BrowncoatEntityModel extends GeoModel<BrowncoatEntity> {
     @Override
     public Identifier getTextureResource(BrowncoatEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat.png");
 		if (object.armless && object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_dmg1_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_dmg1_geardmg1.png");
 		} else if (object.armless && object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_gearless_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_gearless_dmg1.png");
 		} else if (object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_gearless.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_gearless.png");
 		} else if (object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_geardmg1.png");
 		} else if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_dmg1.png");
 		}
 		return identifier;
     }
@@ -47,6 +47,6 @@ public class BrowncoatEntityModel extends GeoModel<BrowncoatEntity> {
     @Override
     public Identifier getAnimationResource(BrowncoatEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

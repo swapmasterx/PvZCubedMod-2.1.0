@@ -8,18 +8,18 @@ public class ZPGEntityModel extends GeoModel<ZPGEntity> {
     @Override
     public Identifier getModelResource(ZPGEntity object)
     {
-        return new Identifier("pvzmod", "geo/zpg.geo.json");
+        return Identifier.of("pvzmod", "geo/zpg.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ZPGEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/zpg.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/zpg.png");
     }
 
     @Override
     public Identifier getAnimationResource(ZPGEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

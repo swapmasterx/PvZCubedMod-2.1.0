@@ -8,18 +8,18 @@ public class FrisbloomEntityModel extends GeoModel<FrisbloomEntity> {
     @Override
     public Identifier getModelResource(FrisbloomEntity object)
     {
-        return new Identifier("pvzmod", "geo/frisbloom.geo.json");
+        return Identifier.of("pvzmod", "geo/frisbloom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FrisbloomEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/bloomerang/bloomerang.png");
+        return Identifier.of("pvzmod", "textures/entity/bloomerang/bloomerang.png");
     }
 
     @Override
     public Identifier getAnimationResource(FrisbloomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/bloomerang.json");
+        return Identifier.of ("pvzmod", "animations/bloomerang.json");
     }
 }

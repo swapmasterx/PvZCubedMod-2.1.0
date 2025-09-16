@@ -9,16 +9,16 @@ public class VampireFlowerEntityModel extends GeoModel<VampireFlowerEntity> {
     @Override
     public Identifier getModelResource(VampireFlowerEntity object)
     {
-        return new Identifier("pvzmod", "geo/vampireflower.geo.json");
+        return Identifier.of("pvzmod", "geo/vampireflower.geo.json");
     }
 
 	public Identifier getTextureResource(VampireFlowerEntity object) {
-		return new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/vampiresunflower.png");
+		return Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/vampiresunflower.png");
 	}
 
     @Override
     public Identifier getAnimationResource(VampireFlowerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/sunflower.json");
+        return Identifier.of ("pvzmod", "animations/sunflower.json");
     }
 }

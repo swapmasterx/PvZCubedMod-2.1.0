@@ -8,18 +8,18 @@ public class OlivePitEntityModel extends GeoModel<OlivePitEntity> {
     @Override
     public Identifier getModelResource(OlivePitEntity object)
     {
-        return new Identifier("pvzmod", "geo/olivepit.geo.json");
+        return Identifier.of("pvzmod", "geo/olivepit.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(OlivePitEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/oilyolive/olivepit.png");
+        return Identifier.of("pvzmod", "textures/entity/oilyolive/olivepit.png");
     }
 
     @Override
     public Identifier getAnimationResource(OlivePitEntity object)
     {
-        return new Identifier ("pvzmod", "animations/olivepit.json");
+        return Identifier.of ("pvzmod", "animations/olivepit.json");
     }
 }

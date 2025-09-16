@@ -3,7 +3,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -52,7 +54,7 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 
 	public int sporeAge;
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "acidspore");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "acidspore");
 
 	private Vec3d previousPos;
 	private int tickPosCheck;
@@ -94,19 +96,19 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 
     public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -136,9 +138,9 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 		double d = (double)(112 & 255) / 255.0;
 		double e = (double)(189 & 255) / 255.0;
 		double f = (double)(132 & 255) / 255.0;
-
+		ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
 		for(int i = 0; i < 3; ++i) {
-			this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+			this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 		}
     }
 
@@ -203,7 +205,7 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 					entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.VANILLA_ARMOR_PEN), damage);
 				}
 				if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 40, 3)));
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.ACID_HOLDER, 40, 3)));
 				}
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
@@ -221,9 +223,9 @@ public class AcidSporeEntity extends PvZProjectileEntity implements GeoEntity {
 			double d = (double)(112 & 255) / 255.0;
 			double e = (double)(189 & 255) / 255.0;
 			double f = (double)(132 & 255) / 255.0;
-
+			ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
 			for(int j = 0; j < 8; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
 	}

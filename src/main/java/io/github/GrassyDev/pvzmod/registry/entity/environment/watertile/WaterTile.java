@@ -70,7 +70,7 @@ public class WaterTile extends TileEntity {
 					generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) &&
 				!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 					&& (generalPvZombieEntity.getHypno()))) {
-				livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 120, 1)));
+				livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 120, 1)));
 			}
 		}
 	}

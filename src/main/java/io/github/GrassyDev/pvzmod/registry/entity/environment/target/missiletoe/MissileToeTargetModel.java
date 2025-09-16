@@ -8,18 +8,18 @@ public class MissileToeTargetModel extends GeoModel<MissileToeTarget> {
     @Override
     public Identifier getModelResource(MissileToeTarget object)
     {
-        return new Identifier("pvzmod", "geo/missiletoetarget.geo.json");
+        return Identifier.of("pvzmod", "geo/missiletoetarget.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MissileToeTarget object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(MissileToeTarget object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

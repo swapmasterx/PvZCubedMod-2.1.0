@@ -11,19 +11,19 @@ public class ScrapMechEntityModel extends GeoModel<ScrapMechEntity> {
     @Override
     public Identifier getModelResource(ScrapMechEntity object)
     {
-		return new Identifier("pvzmod", "geo/scrapmech.geo.json");
+		return Identifier.of("pvzmod", "geo/scrapmech.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ScrapMechEntity object)
     {
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/zmech/scrapmech.png");
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/zmech/scrapmech.png");
         return identifier;
     }
 
     @Override
     public Identifier getAnimationResource(ScrapMechEntity object)
     {
-        return new Identifier ("pvzmod", "animations/scrapmech.json");
+        return Identifier.of ("pvzmod", "animations/scrapmech.json");
     }
 }

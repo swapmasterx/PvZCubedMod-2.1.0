@@ -8,18 +8,18 @@ public class MausoleumGraveModel extends GeoModel<MausoleumGraveEntity> {
     @Override
     public Identifier getModelResource(MausoleumGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/mausoleumgravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/mausoleumgravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MausoleumGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/nightgravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/nightgravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(MausoleumGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

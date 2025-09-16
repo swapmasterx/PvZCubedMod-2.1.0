@@ -9,16 +9,16 @@ public class SuperChomperEntityModel extends GeoModel<SuperChomperEntity> {
     @Override
     public Identifier getModelResource(SuperChomperEntity object)
     {
-        return new Identifier("pvzmod", "geo/superchomper.geo.json");
+        return Identifier.of("pvzmod", "geo/superchomper.geo.json");
     }
 
 	public Identifier getTextureResource(SuperChomperEntity object) {
-		return new Identifier(PvZCubed.MOD_ID, "textures/entity/chomper/superchomper.png");
+		return Identifier.of(PvZCubed.MOD_ID, "textures/entity/chomper/superchomper.png");
 	}
 
     @Override
     public Identifier getAnimationResource(SuperChomperEntity object)
     {
-        return new Identifier ("pvzmod", "animations/chomper.json");
+        return Identifier.of ("pvzmod", "animations/chomper.json");
     }
 }

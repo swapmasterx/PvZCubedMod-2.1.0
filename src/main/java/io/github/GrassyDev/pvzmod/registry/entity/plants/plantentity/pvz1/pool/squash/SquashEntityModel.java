@@ -8,17 +8,17 @@ public class SquashEntityModel extends GeoModel<SquashEntity> {
     @Override
     public Identifier getModelResource(SquashEntity object)
     {
-        return new Identifier("pvzmod", "geo/squash.geo.json");
+        return Identifier.of("pvzmod", "geo/squash.geo.json");
     }
 
 	public Identifier getTextureResource(SquashEntity object)
 	{
-		return new Identifier("pvzmod", "textures/entity/squash/squash.png");
+		return Identifier.of("pvzmod", "textures/entity/squash/squash.png");
 	}
 
     @Override
     public Identifier getAnimationResource(SquashEntity object)
     {
-        return new Identifier ("pvzmod", "animations/squash.json");
+        return Identifier.of ("pvzmod", "animations/squash.json");
     }
 }

@@ -8,18 +8,18 @@ public class CrystalHelmetEntityModel extends GeoModel<CrystalHelmetEntity> {
 	@Override
 	public Identifier getModelResource(CrystalHelmetEntity object)
 	{
-		return new Identifier("pvzmod", "geo/blank.geo.json");
+		return Identifier.of("pvzmod", "geo/blank.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(CrystalHelmetEntity object)
 	{
-		return new Identifier("pvzmod", "textures/entity/projectiles/peashot.png");
+		return Identifier.of("pvzmod", "textures/entity/projectiles/peashot.png");
 	}
 
 	@Override
 	public Identifier getAnimationResource(CrystalHelmetEntity object)
 	{
-		return new Identifier ("pvzmod", "animations/peashot.json");
+		return Identifier.of ("pvzmod", "animations/peashot.json");
 	}
 }

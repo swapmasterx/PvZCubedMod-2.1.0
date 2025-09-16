@@ -8,18 +8,18 @@ public class JalapenoEntityModel extends GeoModel<JalapenoEntity> {
     @Override
     public Identifier getModelResource(JalapenoEntity object)
     {
-        return new Identifier("pvzmod", "geo/jalapeno.geo.json");
+        return Identifier.of("pvzmod", "geo/jalapeno.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(JalapenoEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cherrybomb/jalapeno.png");
+        return Identifier.of("pvzmod", "textures/entity/cherrybomb/jalapeno.png");
     }
 
     @Override
     public Identifier getAnimationResource(JalapenoEntity object)
     {
-        return new Identifier ("pvzmod", "animations/jalapeno.json");
+        return Identifier.of ("pvzmod", "animations/jalapeno.json");
     }
 }

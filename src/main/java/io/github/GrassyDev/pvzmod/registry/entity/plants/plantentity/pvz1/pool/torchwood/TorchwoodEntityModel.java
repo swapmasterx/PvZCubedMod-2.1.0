@@ -8,19 +8,19 @@ public class TorchwoodEntityModel extends GeoModel<TorchwoodEntity> {
     @Override
     public Identifier getModelResource(TorchwoodEntity object)
     {
-        return new Identifier("pvzmod", "geo/torchwood.geo.json");
+        return Identifier.of("pvzmod", "geo/torchwood.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(TorchwoodEntity object)
     {
-		return object.isWet()? new Identifier ("pvzmod", "textures/entity/torchwood/torchwood_extinguished.png") :
-				new Identifier ("pvzmod", "textures/entity/torchwood/torchwood.png");
+		return object.isWet()? Identifier.of ("pvzmod", "textures/entity/torchwood/torchwood_extinguished.png") :
+				Identifier.of ("pvzmod", "textures/entity/torchwood/torchwood.png");
     }
 
     @Override
     public Identifier getAnimationResource(TorchwoodEntity object)
     {
-        return new Identifier ("pvzmod", "animations/torchwood.json");
+        return Identifier.of ("pvzmod", "animations/torchwood.json");
     }
 }

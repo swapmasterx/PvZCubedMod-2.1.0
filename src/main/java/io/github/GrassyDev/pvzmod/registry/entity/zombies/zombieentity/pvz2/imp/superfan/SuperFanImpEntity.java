@@ -409,10 +409,10 @@ public class SuperFanImpEntity extends ImpEntity implements GeoEntity {
 
 	public void tick() {
 		super.tick();
-		if (this.isBeingRainedOn() || this.hasStatusEffect(PvZCubed.ICE) || this.hasStatusEffect(PvZCubed.FROZEN) || this.hasStatusEffect(PvZCubed.WET) || this.isSubmergedInWater()){
+		if (this.isBeingRainedOn() || this.hasStatusEffect(StatusHolder.ICE_HOLDER) || this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.WET_HOLDER) || this.isSubmergedInWater()){
 			this.setFireStage(FireStage.EXTINGUISHED);
 		}
-		else if (this.isOnFire() || this.hasStatusEffect(PvZCubed.WARM)){
+		else if (this.isOnFire() || this.hasStatusEffect(StatusHolder.WARM_HOLDER)){
 			this.setFireStage(FireStage.FIRE);
 		}
 		if (this.age < 20){

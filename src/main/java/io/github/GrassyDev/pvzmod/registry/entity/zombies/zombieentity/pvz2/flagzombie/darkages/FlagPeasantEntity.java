@@ -313,7 +313,7 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -431,7 +431,7 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean canStart() {
 			LivingEntity livingEntity = FlagPeasantEntity.this.getTarget();
-			if (livingEntity != null && livingEntity.isAlive() && !FlagPeasantEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !FlagPeasantEntity.this.hasStatusEffect(PvZCubed.STUN)) {
+			if (livingEntity != null && livingEntity.isAlive() && !FlagPeasantEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !FlagPeasantEntity.this.hasStatusEffect(PvZCubed.STUN)) {
 				if (FlagPeasantEntity.this.isSpellcasting()) {
 					return false;
 				} else {
@@ -444,7 +444,7 @@ public class FlagPeasantEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean shouldContinue() {
 			LivingEntity livingEntity = FlagPeasantEntity.this.getTarget();
-			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !FlagPeasantEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !FlagPeasantEntity.this.hasStatusEffect(PvZCubed.STUN) && FlagPeasantEntity.this.getTypeCount() < 4;
+			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !FlagPeasantEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !FlagPeasantEntity.this.hasStatusEffect(PvZCubed.STUN) && FlagPeasantEntity.this.getTypeCount() < 4;
 		}
 
 		public void start() {

@@ -8,18 +8,18 @@ public class ChillyPepperEntityModel extends GeoModel<ChillyPepperEntity> {
     @Override
     public Identifier getModelResource(ChillyPepperEntity object)
     {
-        return new Identifier("pvzmod", "geo/chillypepper.geo.json");
+        return Identifier.of("pvzmod", "geo/chillypepper.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ChillyPepperEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cherrybomb/chillypepper.png");
+        return Identifier.of("pvzmod", "textures/entity/cherrybomb/chillypepper.png");
     }
 
     @Override
     public Identifier getAnimationResource(ChillyPepperEntity object)
     {
-        return new Identifier ("pvzmod", "animations/jalapeno.json");
+        return Identifier.of ("pvzmod", "animations/jalapeno.json");
     }
 }

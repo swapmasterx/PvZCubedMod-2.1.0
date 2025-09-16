@@ -11,18 +11,18 @@ public class MelonpultEntityModel extends GeoModel<MelonpultEntity> {
 	@Override
 	public Identifier getModelResource(MelonpultEntity object)
 	{
-		return new Identifier("pvzmod", "geo/melonpult.geo.json");
+		return Identifier.of("pvzmod", "geo/melonpult.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(MelonpultEntity object)
 	{
-		return new Identifier("pvzmod", "textures/entity/cabbagepult/melonpult.png");
+		return Identifier.of("pvzmod", "textures/entity/cabbagepult/melonpult.png");
 	}
 
 	@Override
 	public Identifier getAnimationResource(MelonpultEntity object)
 	{
-		return new Identifier ("pvzmod", "animations/cabbagepult.json");
+		return Identifier.of ("pvzmod", "animations/cabbagepult.json");
 	}
 }

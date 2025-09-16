@@ -8,18 +8,18 @@ public class DandelionWeedEntityModel extends GeoModel<DandelionWeedEntity> {
     @Override
     public Identifier getModelResource(DandelionWeedEntity object)
     {
-        return new Identifier("pvzmod", "geo/dandelionweed.geo.json");
+        return Identifier.of("pvzmod", "geo/dandelionweed.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(DandelionWeedEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/dandelion/dandelionweed.png");
+        return Identifier.of("pvzmod", "textures/entity/dandelion/dandelionweed.png");
     }
 
     @Override
     public Identifier getAnimationResource(DandelionWeedEntity object)
     {
-        return new Identifier ("pvzmod", "animations/dandelionweed.json");
+        return Identifier.of ("pvzmod", "animations/dandelionweed.json");
     }
 }

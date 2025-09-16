@@ -9,7 +9,7 @@ import software.bernie.geckolib.model.GeoModel;
     @Override
     public Identifier getModelResource(NightcapEntity object)
     {
-        return new Identifier("pvzmod", "geo/nightcap.geo.json");
+        return Identifier.of("pvzmod", "geo/nightcap.geo.json");
     }
 
     @Override
@@ -19,13 +19,13 @@ import software.bernie.geckolib.model.GeoModel;
 			return new  Identifier(PvZCubed.MOD_ID, "textures/entity/nightcap/nightcap_shadow.png");
 		}
 		else {
-			return new Identifier(PvZCubed.MOD_ID, "textures/entity/nightcap/nightcap.png");
+			return Identifier.of(PvZCubed.MOD_ID, "textures/entity/nightcap/nightcap.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(NightcapEntity object)
     {
-        return new Identifier ("pvzmod", "animations/nightcap.json");
+        return Identifier.of ("pvzmod", "animations/nightcap.json");
     }
 }

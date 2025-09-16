@@ -8,16 +8,16 @@ public class HammerFlowerEntityModel extends GeoModel<HammerFlowerEntity> {
     @Override
     public Identifier getModelResource(HammerFlowerEntity object)
     {
-        return new Identifier("pvzmod", "geo/hammerflower.geo.json");
+        return Identifier.of("pvzmod", "geo/hammerflower.geo.json");
     }
 
 	public Identifier getTextureResource(HammerFlowerEntity object) {
-		return new Identifier("pvzmod", "textures/entity/meteorhammer/hammerflower.png");
+		return Identifier.of("pvzmod", "textures/entity/meteorhammer/hammerflower.png");
 	}
 
     @Override
     public Identifier getAnimationResource(HammerFlowerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/hammerflower.json");
+        return Identifier.of ("pvzmod", "animations/hammerflower.json");
     }
 }

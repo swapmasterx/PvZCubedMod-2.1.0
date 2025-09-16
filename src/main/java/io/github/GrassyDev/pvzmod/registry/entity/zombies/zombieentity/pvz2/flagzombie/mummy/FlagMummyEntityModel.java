@@ -8,15 +8,15 @@ public class FlagMummyEntityModel extends GeoModel<FlagMummyEntity> {
 	@Override
 	public Identifier getModelResource(FlagMummyEntity object)
 	{
-		return new Identifier("pvzmod", "geo/flagmummy.geo.json");
+		return Identifier.of("pvzmod", "geo/flagmummy.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(FlagMummyEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/mummy/mummy_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/mummy/mummy_dmg1.png");
 		}
 		return identifier;
 	}
@@ -24,6 +24,6 @@ public class FlagMummyEntityModel extends GeoModel<FlagMummyEntity> {
 	@Override
 	public Identifier getAnimationResource(FlagMummyEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

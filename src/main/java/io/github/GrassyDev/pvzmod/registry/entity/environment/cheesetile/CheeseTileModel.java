@@ -8,18 +8,18 @@ public class CheeseTileModel extends GeoModel<CheeseTile> {
     @Override
     public Identifier getModelResource(CheeseTile object)
     {
-        return new Identifier("pvzmod", "geo/cheesetile.geo.json");
+        return Identifier.of("pvzmod", "geo/cheesetile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CheeseTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(CheeseTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

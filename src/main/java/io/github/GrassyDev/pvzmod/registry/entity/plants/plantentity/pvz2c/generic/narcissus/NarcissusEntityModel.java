@@ -8,18 +8,18 @@ public class NarcissusEntityModel extends GeoModel<NarcissusEntity> {
     @Override
     public Identifier getModelResource(NarcissusEntity object)
     {
-        return new Identifier("pvzmod", "geo/narcissus.geo.json");
+        return Identifier.of("pvzmod", "geo/narcissus.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(NarcissusEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/narcissus/narcissus.png");
+        return Identifier.of("pvzmod", "textures/entity/narcissus/narcissus.png");
     }
 
     @Override
     public Identifier getAnimationResource(NarcissusEntity object)
     {
-        return new Identifier ("pvzmod", "animations/narcissus.json");
+        return Identifier.of ("pvzmod", "animations/narcissus.json");
     }
 }

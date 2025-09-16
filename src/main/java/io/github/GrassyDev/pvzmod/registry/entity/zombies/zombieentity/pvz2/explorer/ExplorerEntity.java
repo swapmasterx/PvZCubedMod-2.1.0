@@ -353,10 +353,10 @@ public class ExplorerEntity extends PvZombieEntity implements GeoEntity {
 				createTileTicks = 100;
 			}
 		}
-		if (this.isBeingRainedOn() || this.hasStatusEffect(PvZCubed.ICE) || this.hasStatusEffect(PvZCubed.FROZEN) || this.hasStatusEffect(PvZCubed.WET) || this.isSubmergedInWater()){
+		if (this.isBeingRainedOn() || this.hasStatusEffect(StatusHolder.ICE_HOLDER) || this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.WET_HOLDER) || this.isSubmergedInWater()){
 			this.setFireStage(FireStage.EXTINGUISHED);
 		}
-		else if (this.isOnFire() || this.hasStatusEffect(PvZCubed.WARM)){
+		else if (this.isOnFire() || this.hasStatusEffect(StatusHolder.WARM_HOLDER)){
 			this.setFireStage(FireStage.FIRE);
 		}
 		if (this.getAttacking() == null && !(this.getHypno())){
@@ -483,7 +483,7 @@ public class ExplorerEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {

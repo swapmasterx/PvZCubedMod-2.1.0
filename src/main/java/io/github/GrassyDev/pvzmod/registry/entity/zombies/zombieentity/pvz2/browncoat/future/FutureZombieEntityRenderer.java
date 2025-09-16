@@ -40,21 +40,21 @@ public class FutureZombieEntityRenderer extends GeoEntityRenderer<FutureZombieEn
 	public static final Map<BrowncoatVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BrowncoatVariants.class), (map) -> {
 				map.put(BrowncoatVariants.BROWNCOAT,
-				        new Identifier("pvzmod", "geo/futurezombie.geo.json"));
+				        Identifier.of("pvzmod", "geo/futurezombie.geo.json"));
 				map.put(BrowncoatVariants.BROWNCOATHYPNO,
-						new Identifier("pvzmod", "geo/futurezombie.geo.json"));
+						Identifier.of("pvzmod", "geo/futurezombie.geo.json"));
 				map.put(BrowncoatVariants.CONEHEAD,
-						new Identifier("pvzmod", "geo/futurecone.geo.json"));
+						Identifier.of("pvzmod", "geo/futurecone.geo.json"));
 				map.put(BrowncoatVariants.CONEHEADHYPNO,
-						new Identifier("pvzmod", "geo/futurecone.geo.json"));
+						Identifier.of("pvzmod", "geo/futurecone.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEAD,
-						new Identifier("pvzmod", "geo/futurebucket.geo.json"));
+						Identifier.of("pvzmod", "geo/futurebucket.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEADHYPNO,
-						new Identifier("pvzmod", "geo/futurebucket.geo.json"));
+						Identifier.of("pvzmod", "geo/futurebucket.geo.json"));
 				map.put(BrowncoatVariants.HOLOHEAD,
-						new Identifier("pvzmod", "geo/holohead.geo.json"));
+						Identifier.of("pvzmod", "geo/holohead.geo.json"));
 				map.put(BrowncoatVariants.HOLOHEADHYPNO,
-						new Identifier("pvzmod", "geo/holohead.geo.json"));
+						Identifier.of("pvzmod", "geo/holohead.geo.json"));
 			});
 
 	public Identifier getModelResource(FutureZombieEntity object) {

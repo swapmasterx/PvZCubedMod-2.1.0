@@ -10,13 +10,13 @@ public class MariTileModel extends GeoModel<MariTile> {
     public Identifier getModelResource(MariTile object)
     {
 		if (object.getCount().equals(PeapodCountVariants.ONE)){
-			return new Identifier("pvzmod", "geo/maritile.geo.json");
+			return Identifier.of("pvzmod", "geo/maritile.geo.json");
 		}
 		else if (object.getCount().equals(PeapodCountVariants.TWO)){
-			return new Identifier("pvzmod", "geo/maritile2.geo.json");
+			return Identifier.of("pvzmod", "geo/maritile2.geo.json");
 		}
 		else {
-			return new Identifier("pvzmod", "geo/maritile3.geo.json");
+			return Identifier.of("pvzmod", "geo/maritile3.geo.json");
 		}
     }
 
@@ -24,16 +24,16 @@ public class MariTileModel extends GeoModel<MariTile> {
     public Identifier getTextureResource(MariTile object)
     {
 		if (object.getShadowPowered()){
-			return new Identifier("pvzmod", "textures/entity/environment/maritile_shadow.png");
+			return Identifier.of("pvzmod", "textures/entity/environment/maritile_shadow.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/environment/maritile.png");
+			return Identifier.of("pvzmod", "textures/entity/environment/maritile.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(MariTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

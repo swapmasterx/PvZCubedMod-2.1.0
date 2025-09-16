@@ -8,18 +8,18 @@ public class ArmorBubbleEntityModel extends GeoModel<ArmorBubbleEntity> {
     @Override
     public Identifier getModelResource(ArmorBubbleEntity object)
     {
-        return new Identifier("pvzmod", "geo/bigpea.geo.json");
+        return Identifier.of("pvzmod", "geo/bigpea.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ArmorBubbleEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/armorbubble.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/armorbubble.png");
     }
 
     @Override
     public Identifier getAnimationResource(ArmorBubbleEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

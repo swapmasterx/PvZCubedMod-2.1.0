@@ -9,17 +9,17 @@ public class RainbowBulletEntityModel extends GeoModel<RainbowBulletEntity> {
     @Override
     public Identifier getModelResource(RainbowBulletEntity object)
     {
-        return new Identifier("pvzmod", "geo/peashot.geo.json");
+        return Identifier.of("pvzmod", "geo/peashot.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(RainbowBulletEntity object){
-		return new Identifier(PvZCubed.MOD_ID, "textures/entity/projectiles/rainbowbullet.png");
+		return Identifier.of(PvZCubed.MOD_ID, "textures/entity/projectiles/rainbowbullet.png");
 	}
 
     @Override
     public Identifier getAnimationResource(RainbowBulletEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

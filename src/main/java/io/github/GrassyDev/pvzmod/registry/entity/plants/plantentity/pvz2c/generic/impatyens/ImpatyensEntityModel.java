@@ -8,7 +8,7 @@ public class ImpatyensEntityModel extends GeoModel<ImpatyensEntity> {
     @Override
     public Identifier getModelResource(ImpatyensEntity object)
     {
-        return new Identifier("pvzmod", "geo/impatyens.geo.json");
+        return Identifier.of("pvzmod", "geo/impatyens.geo.json");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class ImpatyensEntityModel extends GeoModel<ImpatyensEntity> {
     @Override
     public Identifier getAnimationResource(ImpatyensEntity object)
     {
-        return new Identifier ("pvzmod", "animations/impatyens.json");
+        return Identifier.of ("pvzmod", "animations/impatyens.json");
     }
 }

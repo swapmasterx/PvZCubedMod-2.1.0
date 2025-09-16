@@ -34,13 +34,13 @@ public class JetpackEntityRenderer extends GeoEntityRenderer<JetpackEntity> {
 	public static final Map<JetpackVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(JetpackVariants.class), (map) -> {
 				map.put(JetpackVariants.JETPACK,
-				        new Identifier("pvzmod", "geo/jetpack.geo.json"));
+				        Identifier.of("pvzmod", "geo/jetpack.geo.json"));
 				map.put(JetpackVariants.JETPACKHYPNO,
-						new Identifier("pvzmod", "geo/jetpack.geo.json"));
+						Identifier.of("pvzmod", "geo/jetpack.geo.json"));
 				map.put(JetpackVariants.BLASTRONAUT,
-						new Identifier("pvzmod", "geo/blastronaut.geo.json"));
+						Identifier.of("pvzmod", "geo/blastronaut.geo.json"));
 				map.put(JetpackVariants.BLASTRONAUTHYPNO,
-						new Identifier("pvzmod", "geo/blastronaut.geo.json"));
+						Identifier.of("pvzmod", "geo/blastronaut.geo.json"));
 			});
 
 	public Identifier getModelResource(JetpackEntity object) {

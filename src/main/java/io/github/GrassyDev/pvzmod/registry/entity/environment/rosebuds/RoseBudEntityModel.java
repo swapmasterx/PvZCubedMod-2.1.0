@@ -8,24 +8,24 @@ public class RoseBudEntityModel extends GeoModel<RoseBudTile> {
     @Override
     public Identifier getModelResource(RoseBudTile object)
     {
-        return new Identifier("pvzmod", "geo/doomrose.geo.json");
+        return Identifier.of("pvzmod", "geo/doomrose.geo.json");
     }
 
 	public Identifier getTextureResource(RoseBudTile object) {
 		if (object.getShadowPowered()){
-			return new Identifier("pvzmod", "textures/entity/rose/doomrose_shadow.png");
+			return Identifier.of("pvzmod", "textures/entity/rose/doomrose_shadow.png");
 		}
 		else if (object.getMoonPowered()){
-			return new Identifier("pvzmod", "textures/entity/rose/doomrose_moon.png");
+			return Identifier.of("pvzmod", "textures/entity/rose/doomrose_moon.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/rose/doomrose.png");
+			return Identifier.of("pvzmod", "textures/entity/rose/doomrose.png");
 		}
 	}
 
     @Override
     public Identifier getAnimationResource(RoseBudTile object)
     {
-        return new Identifier ("pvzmod", "animations/doomrose.json");
+        return Identifier.of ("pvzmod", "animations/doomrose.json");
     }
 }

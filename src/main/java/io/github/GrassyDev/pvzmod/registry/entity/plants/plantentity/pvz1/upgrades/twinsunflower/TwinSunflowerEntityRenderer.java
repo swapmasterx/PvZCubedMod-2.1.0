@@ -19,17 +19,17 @@ public class TwinSunflowerEntityRenderer extends GeoEntityRenderer<TwinSunflower
 	public static final Map<TwinSunflowerVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(TwinSunflowerVariants.class), (map) -> {
 				map.put(TwinSunflowerVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower.png"));
 				map.put(TwinSunflowerVariants.LESBIAN,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_lesbian.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_lesbian.png"));
 				map.put(TwinSunflowerVariants.WLW,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_wlw.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_wlw.png"));
 				map.put(TwinSunflowerVariants.MLM,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_mlm.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_mlm.png"));
 				map.put(TwinSunflowerVariants.WLW_MLM,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_wlw_n_mlm.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_wlw_n_mlm.png"));
 				map.put(TwinSunflowerVariants.LESBIAN_WLW,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_lesbian_n_wlw.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/sunflower/pvzsunflower_lesbian_n_wlw.png"));
 			});
 
     public TwinSunflowerEntityRenderer(EntityRendererFactory.Context ctx) {

@@ -20,39 +20,39 @@ public class FootballEntityModel extends GeoModel<FootballEntity> {
 	{
 		Identifier identifier;
 		if (object.getVariant().equals(FootballVariants.BERSERKER) || object.getVariant().equals(FootballVariants.BERSERKERHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/football/berserker.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/football/berserker.png");
 			if (object.armless && object.geardmg){
-				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_dmg1_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/berserker_dmg1_geardmg1.png");
 			}
 			else if (object.armless && object.gear1less){
-				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_gearless_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/berserker_gearless_dmg1.png");
 			}
 			else if (object.gear1less){
-				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/berserker_gearless.png");
 			}
 			else if (object.geardmg){
-				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/berserker_geardmg1.png");
 			}
 			else if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/football/berserker_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/berserker_dmg1.png");
 			}
 		}
 		else {
-			identifier = new Identifier("pvzmod", "textures/entity/football/football.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/football/football.png");
 			if (object.armless && object.geardmg){
-				identifier = new Identifier("pvzmod", "textures/entity/football/football_dmg1_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/football_dmg1_geardmg1.png");
 			}
 			else if (object.armless && object.gear1less){
-				identifier = new Identifier("pvzmod", "textures/entity/football/football_gearless_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/football_gearless_dmg1.png");
 			}
 			else if (object.gear1less){
-				identifier = new Identifier("pvzmod", "textures/entity/football/football_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/football_gearless.png");
 			}
 			else if (object.geardmg){
-				identifier = new Identifier("pvzmod", "textures/entity/football/football_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/football_geardmg1.png");
 			}
 			else if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/football/football_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/football/football_dmg1.png");
 			}
 		}
 		return identifier;
@@ -61,6 +61,6 @@ public class FootballEntityModel extends GeoModel<FootballEntity> {
     @Override
     public Identifier getAnimationResource(FootballEntity object)
     {
-        return new Identifier ("pvzmod", "animations/football.json");
+        return Identifier.of ("pvzmod", "animations/football.json");
     }
 }

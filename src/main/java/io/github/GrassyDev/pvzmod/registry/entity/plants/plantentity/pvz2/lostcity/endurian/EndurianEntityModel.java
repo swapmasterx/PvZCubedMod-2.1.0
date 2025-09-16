@@ -8,7 +8,7 @@ public class EndurianEntityModel extends GeoModel<EndurianEntity> {
     @Override
     public Identifier getModelResource(EndurianEntity object)
     {
-        return new Identifier("pvzmod", "geo/endurian.geo.json");
+        return Identifier.of("pvzmod", "geo/endurian.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class EndurianEntityModel extends GeoModel<EndurianEntity> {
     @Override
     public Identifier getAnimationResource(EndurianEntity object)
     {
-        return new Identifier ("pvzmod", "animations/wallnut.json");
+        return Identifier.of ("pvzmod", "animations/wallnut.json");
     }
 }

@@ -9,7 +9,7 @@ public class FlagzombieEntityModel extends GeoModel<FlagzombieEntity> {
     @Override
     public Identifier getModelResource(FlagzombieEntity object)
     {
-        return new Identifier("pvzmod", "geo/flagzombie.geo.json");
+        return Identifier.of("pvzmod", "geo/flagzombie.geo.json");
     }
 
     @Override
@@ -17,21 +17,21 @@ public class FlagzombieEntityModel extends GeoModel<FlagzombieEntity> {
     {
 		Identifier identifier;
 		if (object.getVariant().equals(FlagZombieVariants.GAY) || object.getVariant().equals(FlagZombieVariants.GAYHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_g.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_g.png");
 			if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_g_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_g_dmg1.png");
 			}
 		}
 		else if (object.getVariant().equals(FlagZombieVariants.TRANS) || object.getVariant().equals(FlagZombieVariants.TRANSHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_t.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_t.png");
 			if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_t_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/browncoat/flagzombie/browncoat_t_dmg1.png");
 			}
 		}
 		else {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat.png");
 			if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_dmg1.png");
 			}
 		}
 		return identifier;
@@ -40,6 +40,6 @@ public class FlagzombieEntityModel extends GeoModel<FlagzombieEntity> {
     @Override
     public Identifier getAnimationResource(FlagzombieEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.sky.m
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.bananatile.BananaTile;
@@ -99,20 +100,20 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 
     public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -186,7 +187,7 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 				createIceTile(new BlockPos(entity.getBlockPos().getX() - 2, (int) entity.getY(), entity.getBlockPos().getZ()));
 				createIceTile(new BlockPos(entity.getBlockPos().getX(), (int) entity.getY(), entity.getBlockPos().getZ() - 2));
 				missileToeTarget.discard();
-				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 				boolean hasZombie = false;
 				for (LivingEntity livingEntity : list) {
 					if (livingEntity instanceof Monster &&
@@ -253,8 +254,8 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 						}
 										entity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.GENERIC_ANTI_IFRAME), damage);
 									}
-									if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
-										livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+									if (!livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) && !((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
+										livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 									}
 								}
 							}
@@ -280,7 +281,7 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 			if (tileCheck.isEmpty()) {
 				IceTile tile = (IceTile) PvZEntity.ICETILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 				tile.setPersistent();
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);
@@ -290,7 +291,7 @@ public class MissileToeProjEntity extends PvZProjectileEntity implements GeoEnti
 
 	@Environment(EnvType.CLIENT)
 	private ParticleEffect getParticleParameters() {
-		ItemStack itemStack = this.getItem();
+		ItemStack itemStack = this.getStack();
 		return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.SNOWFLAKE : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
 	}
 

@@ -8,16 +8,16 @@ public class SmooshroomEntityModel extends GeoModel<SmooshroomEntity> {
     @Override
     public Identifier getModelResource(SmooshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/smooshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/smooshroom.geo.json");
     }
 
 	public Identifier getTextureResource(SmooshroomEntity object) {
-		return new Identifier("pvzmod", "textures/entity/smooshroom/smooshroom.png");
+		return Identifier.of("pvzmod", "textures/entity/smooshroom/smooshroom.png");
 	}
 
     @Override
     public Identifier getAnimationResource(SmooshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/smooshroom.json");
+        return Identifier.of ("pvzmod", "animations/smooshroom.json");
     }
 }

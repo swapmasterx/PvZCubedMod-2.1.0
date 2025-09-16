@@ -8,16 +8,16 @@ public class BananasaurusEntityModel extends GeoModel<BananasaurusEntity> {
     @Override
     public Identifier getModelResource(BananasaurusEntity object)
     {
-        return new Identifier("pvzmod", "geo/bananasaurus.geo.json");
+        return Identifier.of("pvzmod", "geo/bananasaurus.geo.json");
     }
 
 	public Identifier getTextureResource(BananasaurusEntity object) {
-		return new Identifier("pvzmod", "textures/entity/bananasaurus/bananasaurus.png");
+		return Identifier.of("pvzmod", "textures/entity/bananasaurus/bananasaurus.png");
 	}
 
     @Override
     public Identifier getAnimationResource(BananasaurusEntity object)
     {
-        return new Identifier ("pvzmod", "animations/bananasaurus.json");
+        return Identifier.of ("pvzmod", "animations/bananasaurus.json");
     }
 }

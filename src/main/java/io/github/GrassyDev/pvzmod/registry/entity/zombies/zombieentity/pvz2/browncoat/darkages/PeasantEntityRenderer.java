@@ -42,21 +42,21 @@ public class PeasantEntityRenderer extends GeoEntityRenderer<PeasantEntity> {
 	public static final Map<BrowncoatVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BrowncoatVariants.class), (map) -> {
 				map.put(BrowncoatVariants.BROWNCOAT,
-				        new Identifier("pvzmod", "geo/peasant.geo.json"));
+				        Identifier.of("pvzmod", "geo/peasant.geo.json"));
 				map.put(BrowncoatVariants.BROWNCOATHYPNO,
-						new Identifier("pvzmod", "geo/peasant.geo.json"));
+						Identifier.of("pvzmod", "geo/peasant.geo.json"));
 				map.put(BrowncoatVariants.CONEHEAD,
-						new Identifier("pvzmod", "geo/peasantcone.geo.json"));
+						Identifier.of("pvzmod", "geo/peasantcone.geo.json"));
 				map.put(BrowncoatVariants.CONEHEADHYPNO,
-						new Identifier("pvzmod", "geo/peasantcone.geo.json"));
+						Identifier.of("pvzmod", "geo/peasantcone.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEAD,
-						new Identifier("pvzmod", "geo/peasantbucket.geo.json"));
+						Identifier.of("pvzmod", "geo/peasantbucket.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEADHYPNO,
-						new Identifier("pvzmod", "geo/peasantbucket.geo.json"));
+						Identifier.of("pvzmod", "geo/peasantbucket.geo.json"));
 				map.put(BrowncoatVariants.PEASANTKNIGHT,
-						new Identifier("pvzmod", "geo/peasantknight.geo.json"));
+						Identifier.of("pvzmod", "geo/peasantknight.geo.json"));
 				map.put(BrowncoatVariants.PEASANTKNIGHTHYPNO,
-						new Identifier("pvzmod", "geo/peasantknight.geo.json"));
+						Identifier.of("pvzmod", "geo/peasantknight.geo.json"));
 			});
 
 	public Identifier getModelResource(PeasantEntity object) {

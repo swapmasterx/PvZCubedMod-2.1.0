@@ -14,17 +14,17 @@ public class FutureZombieEntityModel extends GeoModel<FutureZombieEntity> {
     @Override
     public Identifier getTextureResource(FutureZombieEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/future/future.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/future/future.png");
 		if (object.armless && object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/future/future_dmg1_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/future/future_dmg1_geardmg1.png");
 		} else if (object.armless && object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/future/future_gearless_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/future/future_gearless_dmg1.png");
 		} else if (object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/future/future_gearless.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/future/future_gearless.png");
 		} else if (object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/future/future_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/future/future_geardmg1.png");
 		} else if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/future/future_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/future/future_dmg1.png");
 		}
 		return identifier;
     }
@@ -32,6 +32,6 @@ public class FutureZombieEntityModel extends GeoModel<FutureZombieEntity> {
     @Override
     public Identifier getAnimationResource(FutureZombieEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

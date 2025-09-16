@@ -44,9 +44,9 @@ public class SuperFanImpEntityRenderer extends GeoEntityRenderer<SuperFanImpEnti
 	public static final Map<ImpVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ImpVariants.class), (map) -> {
 				map.put(ImpVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/imp/superfanimp.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/imp/superfanimp.png"));
 				map.put(ImpVariants.NEWYEAR,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/imp/newyearimp.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/imp/newyearimp.png"));
 			});
 
 	public Identifier getTextureResource(SuperFanImpEntity object) {

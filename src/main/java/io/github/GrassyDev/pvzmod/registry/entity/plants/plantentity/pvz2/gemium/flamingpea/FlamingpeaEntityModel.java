@@ -8,19 +8,19 @@ public class FlamingpeaEntityModel extends GeoModel<FlamingpeaEntity> {
     @Override
     public Identifier getModelResource(FlamingpeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/flamingpea.geo.json");
+        return Identifier.of("pvzmod", "geo/flamingpea.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FlamingpeaEntity object)
     {
-		return object.isWet()? new Identifier ("pvzmod", "textures/entity/peashooter/flamingpea_wet.png") :
-				new Identifier ("pvzmod", "textures/entity/peashooter/flamingpea.png");
+		return object.isWet()? Identifier.of ("pvzmod", "textures/entity/peashooter/flamingpea_wet.png") :
+				Identifier.of ("pvzmod", "textures/entity/peashooter/flamingpea.png");
     }
 
     @Override
     public Identifier getAnimationResource(FlamingpeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

@@ -8,18 +8,18 @@ public class BeautyshroomEntityModel extends GeoModel<BeautyshroomEntity> {
     @Override
     public Identifier getModelResource(BeautyshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/beautyshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/beautyshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BeautyshroomEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/hypnoshroom/beautyshroom.png");
+        return Identifier.of("pvzmod", "textures/entity/hypnoshroom/beautyshroom.png");
     }
 
     @Override
     public Identifier getAnimationResource(BeautyshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/beautyshroom.json");
+        return Identifier.of ("pvzmod", "animations/beautyshroom.json");
     }
 }

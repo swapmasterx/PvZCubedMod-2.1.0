@@ -8,38 +8,38 @@ public class SoldierEntityModel extends GeoModel<SoldierEntity> {
     @Override
     public Identifier getModelResource(SoldierEntity object)
     {
-		return new Identifier("pvzmod", "geo/soldier.geo.json");
+		return Identifier.of("pvzmod", "geo/soldier.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SoldierEntity object) {
 		Identifier identifier;
 		if (object.getZPGStage()){
-			identifier = new Identifier("pvzmod", "textures/entity/soldier/soldier.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/soldier/soldier.png");
 			if (object.armless && object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/soldier_dmg1_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/soldier_dmg1_geardmg1.png");
 			} else if (object.armless && object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/soldier_gearless_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/soldier_gearless_dmg1.png");
 			} else if (object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/soldier_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/soldier_gearless.png");
 			} else if (object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/soldier_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/soldier_geardmg1.png");
 			} else if (object.armless) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/soldier_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/soldier_dmg1.png");
 			}
 		}
 		else {
-			identifier = new Identifier("pvzmod", "textures/entity/soldier/rocketless/soldier.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/soldier/rocketless/soldier.png");
 			if (object.armless && object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/rocketless/soldier_dmg1_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/rocketless/soldier_dmg1_geardmg1.png");
 			} else if (object.armless && object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/rocketless/soldier_gearless_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/rocketless/soldier_gearless_dmg1.png");
 			} else if (object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/rocketless/soldier_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/rocketless/soldier_gearless.png");
 			} else if (object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/rocketless/soldier_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/rocketless/soldier_geardmg1.png");
 			} else if (object.armless) {
-				identifier = new Identifier("pvzmod", "textures/entity/soldier/rocketless/soldier_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/soldier/rocketless/soldier_dmg1.png");
 			}
 		}
 		return identifier;
@@ -48,6 +48,6 @@ public class SoldierEntityModel extends GeoModel<SoldierEntity> {
     @Override
     public Identifier getAnimationResource(SoldierEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

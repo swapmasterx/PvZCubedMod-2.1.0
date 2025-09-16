@@ -8,18 +8,18 @@ public class OxygaeEntityModel extends GeoModel<OxygaeEntity> {
     @Override
     public Identifier getModelResource(OxygaeEntity object)
     {
-        return new Identifier("pvzmod", "geo/oxygae.geo.json");
+        return Identifier.of("pvzmod", "geo/oxygae.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(OxygaeEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/oxygae/oxygae.png");
+        return Identifier.of("pvzmod", "textures/entity/oxygae/oxygae.png");
     }
 
     @Override
     public Identifier getAnimationResource(OxygaeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/oxygae.json");
+        return Identifier.of ("pvzmod", "animations/oxygae.json");
     }
 }

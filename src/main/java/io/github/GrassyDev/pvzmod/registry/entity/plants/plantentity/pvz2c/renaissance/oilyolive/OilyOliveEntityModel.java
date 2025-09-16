@@ -8,18 +8,18 @@ public class OilyOliveEntityModel extends GeoModel<OilyOliveEntity> {
     @Override
     public Identifier getModelResource(OilyOliveEntity object)
     {
-        return new Identifier("pvzmod", "geo/oilyolive.geo.json");
+        return Identifier.of("pvzmod", "geo/oilyolive.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(OilyOliveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/oilyolive/oilyolive.png");
+        return Identifier.of("pvzmod", "textures/entity/oilyolive/oilyolive.png");
     }
 
     @Override
     public Identifier getAnimationResource(OilyOliveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/small.json");
+        return Identifier.of ("pvzmod", "animations/small.json");
     }
 }

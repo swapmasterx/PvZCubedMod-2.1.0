@@ -174,12 +174,12 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 
 	public void tick() {
 		if (this.getVariant().equals(PapershieldVariants.BOOKSHIELD)) {
-			if (this.isBeingRainedOn() || this.hasStatusEffect(PvZCubed.ICE) || this.hasStatusEffect(PvZCubed.FROZEN) || this.hasStatusEffect(PvZCubed.WET) || this.isSubmergedInWater()) {
+			if (this.isBeingRainedOn() || this.hasStatusEffect(StatusHolder.ICE_HOLDER) || this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.WET_HOLDER) || this.isSubmergedInWater()) {
 				this.setFireStage(ExplorerEntity.FireStage.EXTINGUISHED);
 				if (this.getVehicle() instanceof SargeantEntity sargeantEntity){
 					sargeantEntity.setFireStage(SargeantEntity.FireStage.EXTINGUISHED);
 				}
-			} else if (this.isOnFire() || this.hasStatusEffect(PvZCubed.WARM)) {
+			} else if (this.isOnFire() || this.hasStatusEffect(StatusHolder.WARM_HOLDER)) {
 				this.setFireStage(ExplorerEntity.FireStage.FIRE);
 				if (this.getVehicle() instanceof SargeantEntity sargeantEntity){
 					sargeantEntity.setFireStage(SargeantEntity.FireStage.EXTINGUISHED);

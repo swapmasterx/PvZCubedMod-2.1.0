@@ -8,18 +8,18 @@ public class SoundwaveModel extends GeoModel<SoundwaveEntity> {
     @Override
     public Identifier getModelResource(SoundwaveEntity object)
     {
-        return new Identifier("pvzmod", "geo/bark.geo.json");
+        return Identifier.of("pvzmod", "geo/bark.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SoundwaveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/bark.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/bark.png");
     }
 
     @Override
     public Identifier getAnimationResource(SoundwaveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

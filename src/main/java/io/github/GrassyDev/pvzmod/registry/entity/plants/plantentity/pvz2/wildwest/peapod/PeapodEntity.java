@@ -31,6 +31,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -281,7 +282,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 			EntityAttributeInstance maxHealthAttribute = this.getAttributeInstance(GENERIC_MAX_HEALTH);
 			double health = this.getMaxHealth() - 5;
             assert maxHealthAttribute != null;
-            maxHealthAttribute.removeModifier(GENERIC_MAX_HEALTH);
+            maxHealthAttribute.removeModifier(Identifier.of("minecraft", "max_health"));
 			maxHealthAttribute.addPersistentModifier(createHealthModifier(health + 5));
 			heal(5);
 			if (!player.getAbilities().creativeMode) {
@@ -325,7 +326,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 
 	public static EntityAttributeModifier createHealthModifier(double amount) {
 		return new EntityAttributeModifier(
-				GENERIC_MAX_HEALTH,
+			Identifier.of("minecraft", "max_health"),
 				amount,
 				EntityAttributeModifier.Operation.ADD_VALUE
 		);

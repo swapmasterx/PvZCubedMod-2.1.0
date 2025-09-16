@@ -8,15 +8,15 @@ public class DancingZombieEntityModel extends GeoModel<DancingZombieEntity> {
     @Override
     public Identifier getModelResource(DancingZombieEntity object)
     {
-        return new Identifier("pvzmod", "geo/dancingzombie.geo.json");
+        return Identifier.of("pvzmod", "geo/dancingzombie.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(DancingZombieEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/dancingzombie/dancingzombie.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/dancingzombie/dancingzombie.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/dancingzombie/dancingzombie_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/dancingzombie/dancingzombie_dmg1.png");
 		}
 		return identifier;
     }
@@ -24,6 +24,6 @@ public class DancingZombieEntityModel extends GeoModel<DancingZombieEntity> {
     @Override
     public Identifier getAnimationResource(DancingZombieEntity object)
     {
-        return new Identifier ("pvzmod", "animations/dancingzombie.json");
+        return Identifier.of ("pvzmod", "animations/dancingzombie.json");
     }
 }

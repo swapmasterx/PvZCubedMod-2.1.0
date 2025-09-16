@@ -8,18 +8,18 @@ public class RetroGatlingEntityModel extends GeoModel<RetroGatlingEntity> {
     @Override
     public Identifier getModelResource(RetroGatlingEntity object)
     {
-        return new Identifier("pvzmod", "geo/retrogatling.geo.json");
+        return Identifier.of("pvzmod", "geo/retrogatling.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(RetroGatlingEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/peashooter/retrogatling.png");
+        return Identifier.of("pvzmod", "textures/entity/peashooter/retrogatling.png");
     }
 
     @Override
     public Identifier getAnimationResource(RetroGatlingEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

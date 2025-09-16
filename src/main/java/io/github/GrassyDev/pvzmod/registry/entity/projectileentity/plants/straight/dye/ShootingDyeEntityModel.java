@@ -8,7 +8,7 @@ public class ShootingDyeEntityModel extends GeoModel<ShootingDyeEntity> {
     @Override
     public Identifier getModelResource(ShootingDyeEntity object)
     {
-        return new Identifier("pvzmod", "geo/dyeproj.geo.json");
+        return Identifier.of("pvzmod", "geo/dyeproj.geo.json");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class ShootingDyeEntityModel extends GeoModel<ShootingDyeEntity> {
     @Override
     public Identifier getAnimationResource(ShootingDyeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

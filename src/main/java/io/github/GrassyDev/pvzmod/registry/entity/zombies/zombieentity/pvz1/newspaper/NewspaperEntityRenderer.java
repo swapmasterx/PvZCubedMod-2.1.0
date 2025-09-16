@@ -42,13 +42,13 @@ public class NewspaperEntityRenderer extends GeoEntityRenderer<NewspaperEntity> 
 	public static final Map<NewspaperVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(NewspaperVariants.class), (map) -> {
 				map.put(NewspaperVariants.DEFAULT,
-						new Identifier("pvzmod", "geo/newspaper.geo.json"));
+						Identifier.of("pvzmod", "geo/newspaper.geo.json"));
 				map.put(NewspaperVariants.DEFAULTHYPNO,
-						new Identifier("pvzmod", "geo/newspaper.geo.json"));
+						Identifier.of("pvzmod", "geo/newspaper.geo.json"));
 				map.put(NewspaperVariants.SUNDAYEDITION,
-						new Identifier("pvzmod", "geo/sundayedition.geo.json"));
+						Identifier.of("pvzmod", "geo/sundayedition.geo.json"));
 				map.put(NewspaperVariants.SUNDAYEDITIONHYPNO,
-						new Identifier("pvzmod", "geo/sundayedition.geo.json"));
+						Identifier.of("pvzmod", "geo/sundayedition.geo.json"));
 			});
 
 	public Identifier getModelResource(NewspaperEntity object) {

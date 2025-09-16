@@ -8,18 +8,18 @@ public class FairyTaleGraveModel extends GeoModel<FairyTaleGraveEntity> {
     @Override
     public Identifier getModelResource(FairyTaleGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/fairytalegravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/fairytalegravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FairyTaleGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/fairytalegravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/fairytalegravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(FairyTaleGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

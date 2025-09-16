@@ -8,19 +8,19 @@ public class ElectropeaEntityModel extends GeoModel<ElectropeaEntity> {
     @Override
     public Identifier getModelResource(ElectropeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/electropea.geo.json");
+        return Identifier.of("pvzmod", "geo/electropea.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ElectropeaEntity object)
     {
-		return new Identifier ("pvzmod", "textures/entity/peashooter/electropea.png");
+		return Identifier.of ("pvzmod", "textures/entity/peashooter/electropea.png");
 
     }
 
     @Override
     public Identifier getAnimationResource(ElectropeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

@@ -8,7 +8,7 @@ public class ScaredyshroomEntityModel extends GeoModel<ScaredyshroomEntity> {
     @Override
     public Identifier getModelResource(ScaredyshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/scaredyshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/scaredyshroom.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class ScaredyshroomEntityModel extends GeoModel<ScaredyshroomEntity> {
     @Override
     public Identifier getAnimationResource(ScaredyshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/scaredyshroom.json");
+        return Identifier.of ("pvzmod", "animations/scaredyshroom.json");
     }
 }

@@ -14,17 +14,17 @@ public class BullyEntityModel extends GeoModel<BullyEntity> {
     @Override
     public Identifier getTextureResource(BullyEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/bully/bully.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/bully/bully.png");
 		if (object.armless && object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/bully/bully_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bully/bully_dmg1.png");
 		} else if (object.armless && object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/bully/bully_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bully/bully_dmg1.png");
 		} else if (object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/bully/bully.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bully/bully.png");
 		} else if (object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/bully/bully.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bully/bully.png");
 		} else if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/bully/bully_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bully/bully_dmg1.png");
 		}
 		return identifier;
     }
@@ -32,6 +32,6 @@ public class BullyEntityModel extends GeoModel<BullyEntity> {
     @Override
     public Identifier getAnimationResource(BullyEntity object)
     {
-        return new Identifier ("pvzmod", "animations/bully.json");
+        return Identifier.of ("pvzmod", "animations/bully.json");
     }
 }

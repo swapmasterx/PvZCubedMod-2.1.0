@@ -90,19 +90,19 @@
 
 	 public void tick() {
 		 super.tick();
-		 HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		 HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		 boolean bl = false;
 		 if (hitResult.getType() == HitResult.Type.BLOCK) {
 			 BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			 BlockState blockState = this.getWorld().getBlockState(blockPos);
 			 if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				 this.setInNetherPortal(blockPos);
+				 //				this.setInNetherPortal(blockPos);
 				 bl = true;
 			 } else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				 BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				 if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					 EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				 }
+//				 if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					 EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				 }
 
 				 bl = true;
 			 }
@@ -190,7 +190,7 @@
 				 }
 				 hit = true;
 				 Vec3d vec3d = this.getPos();
-				 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+				 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 				 Iterator var10 = list.iterator();
 				 while (true) {
 					 LivingEntity livingEntity;
@@ -251,11 +251,11 @@
 			 }
 		 }
 	 }
-	 List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().shrink(0.5, 0, 0));
+	 List<LivingEntity> checkList = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().shrink(0.5, 0, 0));
 	 private void raycastExplode() {
 		 this.playSound(MELONHITEVENT, 0.8F, 1F);
 		 Vec3d vec3d = this.getPos();
-		 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(10));
+		 List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(10));
 		 Iterator var9 = list.iterator();
 		 while (true) {
 			 LivingEntity livingEntity;
@@ -336,7 +336,7 @@
 
 	 @Environment(EnvType.CLIENT)
 	 private ParticleEffect getParticleParameters() {
-		 ItemStack itemStack = this.getItem();
+		 ItemStack itemStack = this.getStack();
 		 return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
 	 }
 

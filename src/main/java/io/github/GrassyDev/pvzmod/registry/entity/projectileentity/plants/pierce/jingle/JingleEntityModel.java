@@ -8,18 +8,18 @@ public class JingleEntityModel extends GeoModel<JingleEntity> {
     @Override
     public Identifier getModelResource(JingleEntity object)
     {
-        return new Identifier("pvzmod", "geo/blank.geo.json");
+        return Identifier.of("pvzmod", "geo/blank.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(JingleEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/peashot.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/peashot.png");
     }
 
     @Override
     public Identifier getAnimationResource(JingleEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

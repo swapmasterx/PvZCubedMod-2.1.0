@@ -40,7 +40,7 @@ public class CheeseTile extends TileEntity {
 							generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) &&
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 							&& (generalPvZombieEntity.getHypno()))) {
-				if (!livingEntity.hasStatusEffect(PvZCubed.WARM) && !livingEntity.isOnFire() && !livingEntity.hasStatusEffect(PvZCubed.FROZEN)){
+				if (!livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) && !livingEntity.isOnFire() && !livingEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER)){
 					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.CHEESE, 20, 1)));
 				}
 			}

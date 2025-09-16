@@ -19,11 +19,11 @@ public class TulimpeterEntityRenderer extends GeoEntityRenderer<TulimpeterEntity
 	public static final Map<TulipVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(TulipVariants.class), (map) -> {
 				map.put(TulipVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/tulimpeter/tulimpeter.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/tulimpeter/tulimpeter.png"));
 				map.put(TulipVariants.HEAL,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/tulimpeter/tulimpeter_heal.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/tulimpeter/tulimpeter_heal.png"));
 				map.put(TulipVariants.HYPNO,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/tulimpeter/tulimpeter_hypno.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/tulimpeter/tulimpeter_hypno.png"));
 			});
 
 	public Identifier getTextureResource(TulimpeterEntity object) {

@@ -8,18 +8,18 @@ public class EgyptGraveModel extends GeoModel<EgyptGraveEntity> {
     @Override
     public Identifier getModelResource(EgyptGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/egyptgravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/egyptgravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(EgyptGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/egyptgravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/egyptgravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(EgyptGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

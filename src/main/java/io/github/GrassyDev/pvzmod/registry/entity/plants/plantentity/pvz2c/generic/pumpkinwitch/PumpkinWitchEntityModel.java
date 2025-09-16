@@ -8,23 +8,23 @@ public class PumpkinWitchEntityModel extends GeoModel<PumpkinWitchEntity> {
     @Override
     public Identifier getModelResource(PumpkinWitchEntity object)
     {
-        return new Identifier("pvzmod", "geo/pumpkinwitch.geo.json");
+        return Identifier.of("pvzmod", "geo/pumpkinwitch.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(PumpkinWitchEntity object)
     {
 		if (!object.hasProj()){
-			return new Identifier("pvzmod", "textures/entity/pumpkinwitch/pumpkinwitch_projless.png");
+			return Identifier.of("pvzmod", "textures/entity/pumpkinwitch/pumpkinwitch_projless.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/pumpkinwitch/pumpkinwitch.png");
+			return Identifier.of("pvzmod", "textures/entity/pumpkinwitch/pumpkinwitch.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(PumpkinWitchEntity object)
     {
-        return new Identifier ("pvzmod", "animations/pumpkinwitch.json");
+        return Identifier.of ("pvzmod", "animations/pumpkinwitch.json");
     }
 }

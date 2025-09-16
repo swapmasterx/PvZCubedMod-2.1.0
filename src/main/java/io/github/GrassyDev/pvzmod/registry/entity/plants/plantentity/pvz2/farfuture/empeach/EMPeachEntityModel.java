@@ -8,18 +8,18 @@ public class EMPeachEntityModel extends GeoModel<EMPeachEntity> {
     @Override
     public Identifier getModelResource(EMPeachEntity object)
     {
-        return new Identifier("pvzmod", "geo/empeach.geo.json");
+        return Identifier.of("pvzmod", "geo/empeach.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(EMPeachEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/empeach/empeach.png");
+        return Identifier.of("pvzmod", "textures/entity/empeach/empeach.png");
     }
 
     @Override
     public Identifier getAnimationResource(EMPeachEntity object)
     {
-        return new Identifier ("pvzmod", "animations/empeach.json");
+        return Identifier.of ("pvzmod", "animations/empeach.json");
     }
 }

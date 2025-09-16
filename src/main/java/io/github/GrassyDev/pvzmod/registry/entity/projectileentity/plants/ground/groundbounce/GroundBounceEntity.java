@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.groun
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -85,10 +86,10 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 	private boolean canBounce;
 	private int airTicks = 10;
 
-	@Override
-	protected float getGravity() {
-		return (this.age > 1)? 1 : super.getGravity();
-	}
+//	@Override
+//	protected float getGravity() {
+//		return (this.age > 1)? 1 : super.getGravity();
+//	}
 
 	public void tick() {
         super.tick();
@@ -181,7 +182,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 	}
 
 	protected void splashDamage() {
-		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(2));
+		List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(2));
 		Iterator var9 = list.iterator();
 		while (true) {
 			LivingEntity livingEntity;
@@ -234,7 +235,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 	}
 
 	protected void bounceZombies(Vec3d pos) {
-		List<HostileEntity> list = this.getWorld().getNonSpectatingEntities(HostileEntity.class, this.getBoundingBox().expand(3));
+		List<HostileEntity> list = this.getWorld().getNonSpectatingEntities(HostileEntity.class, this.getBounds().expand(3));
 		Iterator var9 = list.iterator();
 		while (true) {
 			HostileEntity hostileEntity;
@@ -249,7 +250,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 				if (hostileEntity.getY() < (this.getY() + 2) && hostileEntity.getY() > (this.getY() - 2) &&
 						!(hostileEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying()) && !(hostileEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) {
 					Vec3d vec3d = new Vec3d((double) -1, +0.5, 0).rotateY(-hostileEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					hostileEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+					hostileEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 					hostileEntity.setVelocity(Vec3d.ZERO);
 					hostileEntity.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 				}
@@ -259,7 +260,7 @@ public class GroundBounceEntity extends PvZProjectileEntity implements GeoEntity
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

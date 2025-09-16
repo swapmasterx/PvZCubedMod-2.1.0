@@ -8,7 +8,7 @@ public class PeapodEntityModel extends GeoModel<PeapodEntity> {
     @Override
     public Identifier getModelResource(PeapodEntity object)
     {
-        return new Identifier("pvzmod", "geo/peapod.geo.json");
+        return Identifier.of("pvzmod", "geo/peapod.geo.json");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class PeapodEntityModel extends GeoModel<PeapodEntity> {
     @Override
     public Identifier getAnimationResource(PeapodEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peapod.json");
+        return Identifier.of ("pvzmod", "animations/peapod.json");
     }
 }

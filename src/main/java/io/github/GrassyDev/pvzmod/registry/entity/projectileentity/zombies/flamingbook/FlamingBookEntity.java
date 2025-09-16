@@ -141,19 +141,19 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 
     public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -256,8 +256,8 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 							}
 							float damage = 16 * damageMultiplier;
 							if ("paper".equals(zombieMaterial) || "plant".equals(zombieMaterial) || "cloth".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
-								if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET)) {
-									((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+								if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER)) {
+									((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 									entity.setOnFireFor(4);
 									if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 										generalPvZombieEntity.fireSplashTicks = 10;
@@ -268,7 +268,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 							if ("rubber".equals(zombieMaterial) || "crystal".equals(zombieMaterial)){
 								damage = damage / 2;
 							}
-							if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) || entity.isWet() || !this.getFireStage() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) || (entity instanceof PlantEntity plantEntity && plantEntity.getFireImmune())) {
+							if (((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER) || entity.isWet() || !this.getFireStage() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) || (entity instanceof PlantEntity plantEntity && plantEntity.getFireImmune())) {
 								damage = damage / 2;
 							}
 							if (damage > ((LivingEntity) entity).getHealth() &&
@@ -280,9 +280,9 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 							} else {
 								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 							}
-							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
-								((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
-								((LivingEntity) entity).removeStatusEffect(PvZCubed.ICE);
+							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
+								((LivingEntity) entity).removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+								((LivingEntity) entity).removeStatusEffect(StatusHolder.ICE_HOLDER);
 								entity.setOnFireFor(4);
 								if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 									generalPvZombieEntity.fireSplashTicks = 10;
@@ -293,7 +293,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 								if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 									generalPvZombieEntity.fireSplashTicks = 10;
 								}
-								((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+								((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 							}
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);
@@ -317,8 +317,8 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 							}
 							float damage = 16 * damageMultiplier;
 							if ("paper".equals(zombieMaterial) || "plant".equals(zombieMaterial) || "cloth".equals(zombieMaterial) || "gold".equals(zombieMaterial)) {
-								if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET)) {
-									((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+								if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER)) {
+									((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 									entity.setOnFireFor(4);
 									if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 										generalPvZombieEntity.fireSplashTicks = 10;
@@ -329,7 +329,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 							if ("rubber".equals(zombieMaterial) || "crystal".equals(zombieMaterial)){
 								damage = damage / 2;
 							}
-							if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) || entity.isWet() || !this.getFireStage() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
+							if (((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER) || entity.isWet() || !this.getFireStage() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 								damage = damage / 2;
 							}
 							if (damage > ((LivingEntity) entity).getHealth() &&
@@ -341,9 +341,9 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 							} else {
 								entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
 							}
-							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
-								((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
-								((LivingEntity) entity).removeStatusEffect(PvZCubed.ICE);
+							if (!entity.isWet() && this.getFireStage() && !((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER) && !(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) && !(entity instanceof ZombieShieldEntity)) {
+								((LivingEntity) entity).removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+								((LivingEntity) entity).removeStatusEffect(StatusHolder.ICE_HOLDER);
 								entity.setOnFireFor(4);
 								if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 									generalPvZombieEntity.fireSplashTicks = 10;
@@ -354,7 +354,7 @@ public class FlamingBookEntity extends PvZProjectileEntity implements GeoEntity 
 								if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 									generalPvZombieEntity.fireSplashTicks = 10;
 								}
-								((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
+								((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
 							}
 							this.getWorld().sendEntityStatus(this, (byte) 3);
 							this.remove(RemovalReason.DISCARDED);

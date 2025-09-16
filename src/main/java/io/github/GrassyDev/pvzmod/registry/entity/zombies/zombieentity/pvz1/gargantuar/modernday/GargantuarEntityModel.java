@@ -18,26 +18,26 @@ public class GargantuarEntityModel extends GeoModel<GargantuarEntity> {
     @Override
     public Identifier getTextureResource(GargantuarEntity object)
     {
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/gargantuar/gargantuar.png");
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/gargantuar.png");
 		if (object.getVariant().equals(GargantuarVariants.UNICORNGARGANTUAR) || object.getVariant().equals(GargantuarVariants.UNICORNGARGANTUARHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/unicorngargantuar.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/unicorngargantuar.png");
 		}
 		else if (object.getVariant().equals(GargantuarVariants.GARGOLITH) || object.getVariant().equals(GargantuarVariants.GARGOLITHHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/gargolith.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/gargolith.png");
 		}
 		else if (object.getVariant().equals(GargantuarVariants.MUMMY) || object.getVariant().equals(GargantuarVariants.MUMMYHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/mummygargantuar.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/mummygargantuar.png");
 		}
 		else if (object.getVariant().equals(GargantuarVariants.DEFENSIVEEND) || object.getVariant().equals(GargantuarVariants.DEFENSIVEENDHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/defensiveend.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/defensiveend.png");
 			if (object.gear1less){
-				identifier = new Identifier("pvzmod", "textures/entity/gargantuar/defensiveend_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/defensiveend_gearless.png");
 			}
 		}
 		else if (object.getVariant().equals(GargantuarVariants.DEFENSIVEEND_NEWYEAR) || object.getVariant().equals(GargantuarVariants.DEFENSIVEEND_NEWYEARHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/defensiveend_newyear.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/defensiveend_newyear.png");
 			if (object.gear1less){
-				identifier = new Identifier("pvzmod", "textures/entity/gargantuar/defensiveend_newyear_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/defensiveend_newyear_gearless.png");
 			}
 		}
         return identifier;
@@ -46,6 +46,6 @@ public class GargantuarEntityModel extends GeoModel<GargantuarEntity> {
     @Override
     public Identifier getAnimationResource(GargantuarEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gargantuar.json");
+        return Identifier.of ("pvzmod", "animations/gargantuar.json");
     }
 }

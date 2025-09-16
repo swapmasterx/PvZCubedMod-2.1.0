@@ -8,16 +8,16 @@ public class NavyBeanEntityModel extends GeoModel<NavyBeanEntity> {
     @Override
     public Identifier getModelResource(NavyBeanEntity object)
     {
-        return new Identifier("pvzmod", "geo/navybean.geo.json");
+        return Identifier.of("pvzmod", "geo/navybean.geo.json");
     }
 
 	public Identifier getTextureResource(NavyBeanEntity object) {
-		return new Identifier("pvzmod", "textures/entity/bean/navybean.png");
+		return Identifier.of("pvzmod", "textures/entity/bean/navybean.png");
 	}
 
     @Override
     public Identifier getAnimationResource(NavyBeanEntity object)
     {
-        return new Identifier ("pvzmod", "animations/navybean.json");
+        return Identifier.of ("pvzmod", "animations/navybean.json");
     }
 }

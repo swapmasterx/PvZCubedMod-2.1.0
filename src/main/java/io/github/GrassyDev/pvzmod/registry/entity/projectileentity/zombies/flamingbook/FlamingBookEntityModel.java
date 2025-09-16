@@ -8,22 +8,22 @@ public class FlamingBookEntityModel extends GeoModel<FlamingBookEntity> {
     @Override
     public Identifier getModelResource(FlamingBookEntity object)
     {
-        return new Identifier("pvzmod", "geo/flamingbook.geo.json");
+        return Identifier.of("pvzmod", "geo/flamingbook.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FlamingBookEntity object){
 		if (object.getFireStage()) {
-			return new Identifier("pvzmod", "textures/entity/browncoat/sargeant/sargeant.png");
+			return Identifier.of("pvzmod", "textures/entity/browncoat/sargeant/sargeant.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/browncoat/sargeant/sargeant_extinguished.png");
+			return Identifier.of("pvzmod", "textures/entity/browncoat/sargeant/sargeant_extinguished.png");
 		}
 	}
 
     @Override
     public Identifier getAnimationResource(FlamingBookEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

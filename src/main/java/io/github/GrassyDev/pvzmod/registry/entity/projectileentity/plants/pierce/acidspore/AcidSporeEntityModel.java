@@ -8,18 +8,18 @@ public class AcidSporeEntityModel extends GeoModel<AcidSporeEntity> {
     @Override
     public Identifier getModelResource(AcidSporeEntity object)
     {
-        return new Identifier("pvzmod", "geo/peashot.geo.json");
+        return Identifier.of("pvzmod", "geo/peashot.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(AcidSporeEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/acidspore.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/acidspore.png");
     }
 
     @Override
     public Identifier getAnimationResource(AcidSporeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

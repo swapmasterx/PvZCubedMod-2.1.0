@@ -8,18 +8,18 @@ public class GatlingpeaEntityModel extends GeoModel<GatlingpeaEntity> {
     @Override
     public Identifier getModelResource(GatlingpeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/gatlingpea.geo.json");
+        return Identifier.of("pvzmod", "geo/gatlingpea.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(GatlingpeaEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/peashooter/gatlingpea.png");
+        return Identifier.of("pvzmod", "textures/entity/peashooter/gatlingpea.png");
     }
 
     @Override
     public Identifier getAnimationResource(GatlingpeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

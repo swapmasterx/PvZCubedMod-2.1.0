@@ -163,7 +163,7 @@ public class MummyEntity extends BrowncoatEntity {
 
 
 	public boolean tryAttack(Entity target) {
-		if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation && this.getTarget() != null) {
+		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation && this.getTarget() != null) {
 			return super.tryAttack(this.getTarget());
 		}
 		else {
@@ -175,7 +175,7 @@ public class MummyEntity extends BrowncoatEntity {
 	public void tryLaunch(Vec3d location) {
 		BoneProjEntity boneProj = new BoneProjEntity(PvZEntity.BONEPROJ, this.getWorld());
 		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
-		if (launchAnimation == 10 * animationMultiplier && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (launchAnimation == 10 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			double d = this.squaredDistanceTo(location);
 			float df = (float) d;
 			float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
@@ -195,7 +195,7 @@ public class MummyEntity extends BrowncoatEntity {
 
 	protected void mobTick() {
 		super.mobTick();
-		if (this.getVariant().equals(BrowncoatVariants.TOMB) && !this.getHypno() && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (this.getVariant().equals(BrowncoatVariants.TOMB) && !this.getHypno() && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			double random = Math.random();
 			for (int x = 0; x <= 15; ++x){
 				if ((this.CollidesWithPlant((float)x, 0f) != null)

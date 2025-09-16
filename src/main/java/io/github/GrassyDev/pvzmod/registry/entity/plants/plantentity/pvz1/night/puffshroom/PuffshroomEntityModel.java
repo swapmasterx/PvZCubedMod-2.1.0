@@ -8,18 +8,18 @@ public class PuffshroomEntityModel extends GeoModel<PuffshroomEntity> {
     @Override
     public Identifier getModelResource(PuffshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/puffshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/puffshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(PuffshroomEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/puffshroom/puffshroom.png");
+        return Identifier.of("pvzmod", "textures/entity/puffshroom/puffshroom.png");
     }
 
     @Override
     public Identifier getAnimationResource(PuffshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/puffshroom.json");
+        return Identifier.of ("pvzmod", "animations/puffshroom.json");
     }
 }

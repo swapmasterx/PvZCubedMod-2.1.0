@@ -21,15 +21,15 @@ public class ShootingPeaEntityRenderer extends GeoEntityRenderer<ShootingPeaEnti
 	public static final Map<ShootingPeaVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ShootingPeaVariants.class), (map) -> {
 				map.put(ShootingPeaVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot.png"));
 				map.put(ShootingPeaVariants.BLACK,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_black.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_black.png"));
 				map.put(ShootingPeaVariants.PURPLE,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_purple.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_purple.png"));
 				map.put(ShootingPeaVariants.BLUE,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_blue.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_blue.png"));
 				map.put(ShootingPeaVariants.CYAN,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_cyan.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/projectiles/peashot_cyan.png"));
 			});
 
 	public Identifier getTextureResource(ShootingPeaEntity object) {

@@ -17,31 +17,31 @@ public class JetpackEntityModel extends GeoModel<JetpackEntity> {
 	{
 		Identifier identifier;
 		if (object.getVariant().equals(JetpackVariants.BLASTRONAUT) || object.getVariant().equals(JetpackVariants.BLASTRONAUTHYPNO)) {
-			identifier = new Identifier("pvzmod", "textures/entity/jetpack/blastronaut.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/jetpack/blastronaut.png");
 			if (object.armless && object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/blastronaut_dmg1_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/blastronaut_dmg1_geardmg1.png");
 			} else if (object.armless && object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/blastronaut_gearless_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/blastronaut_gearless_dmg1.png");
 			} else if (object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/blastronaut_gearless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/blastronaut_gearless.png");
 			} else if (object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/blastronaut_geardmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/blastronaut_geardmg1.png");
 			} else if (object.armless) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/blastronaut_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/blastronaut_dmg1.png");
 			}
 		}
 		else {
-			identifier = new Identifier("pvzmod", "textures/entity/jetpack/jetpack.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/jetpack/jetpack.png");
 			if (object.armless && object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/jetpack_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/jetpack_dmg1.png");
 			} else if (object.armless && object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/jetpack_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/jetpack_dmg1.png");
 			} else if (object.gear1less) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/jetpack.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/jetpack.png");
 			} else if (object.geardmg) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/jetpack.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/jetpack.png");
 			} else if (object.armless) {
-				identifier = new Identifier("pvzmod", "textures/entity/jetpack/jetpack_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/jetpack/jetpack_dmg1.png");
 			}
 		}
 		return identifier;
@@ -50,6 +50,6 @@ public class JetpackEntityModel extends GeoModel<JetpackEntity> {
     @Override
     public Identifier getAnimationResource(JetpackEntity object)
     {
-        return new Identifier ("pvzmod", "animations/jetpack.json");
+        return Identifier.of ("pvzmod", "animations/jetpack.json");
     }
 }

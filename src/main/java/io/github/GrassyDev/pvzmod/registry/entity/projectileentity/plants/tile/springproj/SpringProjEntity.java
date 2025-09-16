@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.tile.
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
@@ -105,19 +106,19 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoEntity {
 			}
 		}
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -213,7 +214,7 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoEntity {
 					Vec3d vec3d2 = new Vec3d((double) 2.33, -0.5, 1).rotateY(-ownerYaw * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					if (!(livingEntity instanceof ZombiePropEntity) && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno())) {
 						Vec3d vec3d = new Vec3d((double) 0.25, +0.5, 0).rotateY(-ownerYaw * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 						livingEntity.setVelocity(Vec3d.ZERO);
 						livingEntity.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 					}
@@ -229,7 +230,7 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoEntity {
 			if (tileCheck.isEmpty()) {
 				SpringTile tile = (SpringTile) PvZEntity.SPRINGTILE.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 				tile.setPersistent();
 				serverWorld.spawnEntityAndPassengers(tile);
 			}
@@ -238,7 +239,7 @@ public class SpringProjEntity extends PvZProjectileEntity implements GeoEntity {
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

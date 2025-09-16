@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.FumeVariants;
@@ -48,7 +49,7 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "fume");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "fume");
 
 		protected void initDataTracker(DataTracker.Builder builder) {
 		super.initDataTracker(builder);
@@ -135,7 +136,8 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 				double d = (double)(this.random.range(0, 255) & 255) / 255.0;
 				double e = (double)(this.random.range(0, 255) & 255) / 255.0;
 				double f = (double)(this.random.range(0, 255) & 255) / 255.0;
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
 		else if (this.getVariant().equals(FumeVariants.TRANS)){
@@ -149,10 +151,11 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 			double f2 = (double)(215 & 255) / 255.0;
 
 			for(int j = 0; j < 4; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d2, e2, f2);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d2, e2, f2);
 				// WHITE
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 1, 1, 1);
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 1, 1, 1);
 			}
 		}
 		else {
@@ -161,7 +164,8 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 			double e = (double)(30 & 255) / 255.0;
 			double f = (double)(200 & 255) / 255.0;
 			for(int j = 0; j < 8; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
 	}
@@ -252,9 +256,9 @@ public class FumeEntity extends PvZProjectileEntity implements GeoEntity {
 			double d = (double) (180 & 255) / 255.0;
 			double e = (double) (30 & 255) / 255.0;
 			double f = (double) (200 & 255) / 255.0;
-
+			ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
 			for (int j = 0; j < 8; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
     }

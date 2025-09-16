@@ -139,8 +139,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.s
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvzheroes.solar.sunflowerseed.SunflowerSeedEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.armor.MetalHelmetProjEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.groundbounce.GroundBounceEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.peanut.PeanutBowlingEntity;
-import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.ground.wallnut.WallnutBowlingEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.butter.ShootingButterEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.cabbage.ShootingCabbageEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed.iceberg.ShootingIcebergEntity;
@@ -1224,17 +1222,17 @@ public class PvZEntity{
 			QuiltEntityTypeBuilder.<GroundBounceEntity>create(SpawnGroup.MISC, GroundBounceEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
 	);
 
-	public static final EntityType<WallnutBowlingEntity> WALLNUTBOWLING = Registry.register(
-			Registries.ENTITY_TYPE,
-			Identifier.of(ModID, "wallnutbowling"),
-			QuiltEntityTypeBuilder.<WallnutBowlingEntity>create(SpawnGroup.MISC, WallnutBowlingEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
-	);
-
-	public static final EntityType<PeanutBowlingEntity> PEANUTBOWLING = Registry.register(
-			Registries.ENTITY_TYPE,
-			Identifier.of(ModID, "peanutbowling"),
-			QuiltEntityTypeBuilder.<PeanutBowlingEntity>create(SpawnGroup.MISC, PeanutBowlingEntity::new).setDimensions(EntityDimensions.fixed(2.5f,.5f)).build()
-	);
+//	public static final EntityType<WallnutBowlingEntity> WALLNUTBOWLING = Registry.register(
+//			Registries.ENTITY_TYPE,
+//			Identifier.of(ModID, "wallnutbowling"),
+//			QuiltEntityTypeBuilder.<WallnutBowlingEntity>create(SpawnGroup.MISC, WallnutBowlingEntity::new).setDimensions(EntityDimensions.fixed(.5f,.5f)).build()
+//	);
+//
+//	public static final EntityType<PeanutBowlingEntity> PEANUTBOWLING = Registry.register(
+//			Registries.ENTITY_TYPE,
+//			Identifier.of(ModID, "peanutbowling"),
+//			QuiltEntityTypeBuilder.<PeanutBowlingEntity>create(SpawnGroup.MISC, PeanutBowlingEntity::new).setDimensions(EntityDimensions.fixed(2.5f,.5f)).build()
+//	);
 
 	public static final EntityType<PeaNutProjEntity> PEANUTPROJ = Registry.register(
 			Registries.ENTITY_TYPE,

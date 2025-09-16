@@ -8,16 +8,16 @@ public class DogwoodEntityModel extends GeoModel<DogwoodEntity> {
     @Override
     public Identifier getModelResource(DogwoodEntity object)
     {
-        return new Identifier("pvzmod", "geo/dogwood.geo.json");
+        return Identifier.of("pvzmod", "geo/dogwood.geo.json");
     }
 
 	public Identifier getTextureResource(DogwoodEntity object) {
-		return new Identifier("pvzmod", "textures/entity/dogwood/dogwood.png");
+		return Identifier.of("pvzmod", "textures/entity/dogwood/dogwood.png");
 	}
 
     @Override
     public Identifier getAnimationResource(DogwoodEntity object)
     {
-        return new Identifier ("pvzmod", "animations/dogwood.json");
+        return Identifier.of ("pvzmod", "animations/dogwood.json");
     }
 }

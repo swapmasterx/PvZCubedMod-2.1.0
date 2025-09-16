@@ -9,7 +9,7 @@ public class FleshObstacleEntityModel extends GeoModel<FleshObstacleEntity> {
     public Identifier getModelResource(FleshObstacleEntity object)
     {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "geo/octoobstacle.geo.json");
+		identifier = Identifier.of("pvzmod", "geo/octoobstacle.geo.json");
 		return identifier;
     }
 
@@ -17,13 +17,13 @@ public class FleshObstacleEntityModel extends GeoModel<FleshObstacleEntity> {
     public Identifier getTextureResource(FleshObstacleEntity object)
 	{
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/bully/octo.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/bully/octo.png");
 		return identifier;
     }
 
     @Override
     public Identifier getAnimationResource(FleshObstacleEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

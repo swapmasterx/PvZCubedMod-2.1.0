@@ -8,18 +8,18 @@ public class ShootingFlamingPeaEntityModel extends GeoModel<ShootingFlamingPeaEn
     @Override
     public Identifier getModelResource(ShootingFlamingPeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/peashot.geo.json");
+        return Identifier.of("pvzmod", "geo/peashot.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingFlamingPeaEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/firepea.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/firepea.png");
     }
 
     @Override
     public Identifier getAnimationResource(ShootingFlamingPeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

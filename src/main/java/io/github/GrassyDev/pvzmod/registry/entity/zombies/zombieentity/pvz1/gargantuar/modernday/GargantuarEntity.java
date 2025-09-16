@@ -393,7 +393,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	//Smash
 	public boolean tryAttack(Entity target) {
 		if (!this.getPassengerList().contains(target)) {
-			if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation) {
+			if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation) {
 				boolean bl = false;
 				if (this.firstAttack && this.animationTicksLeft <= 0 && this.squaredDistanceTo(target) < 36D) {
 					this.animationTicksLeft = 90 * animationMultiplier;
@@ -467,7 +467,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	//Launch Imp
 	public void tryLaunch(Entity target){
 		this.setImp();
-		if (this.getImpStage().equals(Boolean.TRUE) && launchAnimation == 20 * animationMultiplier && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (this.getImpStage().equals(Boolean.TRUE) && launchAnimation == 20 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
 			if (target != null){
 				double d = this.squaredDistanceTo(target);
 				float df = (float) d;
@@ -598,7 +598,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	public void mobTick() {
 		if (!this.inDyingAnimation) {
 			super.mobTick();
-			if (this.hasStatusEffect(PvZCubed.ICE)) {
+			if (this.hasStatusEffect(StatusHolder.ICE_HOLDER)) {
 				if (this.animationTicksLeft <= 0) {
 					this.animationMultiplier = 2;
 					this.isIced = true;
@@ -634,9 +634,9 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 				}
 			}
 			if (this.animationTicksLeft == 40 * animationMultiplier && !inLaunchAnimation) {
-				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 					this.playSound(PvZSounds.GARGANTUARSMASHEVENT, 1F, 1.0F);
-				} else if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				} else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 					getWorld().sendEntityStatus(this, (byte) 107);
 					this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 				}
@@ -793,7 +793,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.GARGANTUARMOANEVENT;
 		}
 		else {

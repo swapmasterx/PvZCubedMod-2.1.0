@@ -18,9 +18,9 @@ public class ShamrockEntityRenderer extends GeoEntityRenderer<ShamrockEntity> {
 	public static final Map<ShamrockVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(ShamrockVariants.class), (map) -> {
 				map.put(ShamrockVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/shamrock/shamrock.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/shamrock/shamrock.png"));
 				map.put(ShamrockVariants.PRIDE,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/shamrock/shamrock_pride.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/shamrock/shamrock_pride.png"));
 			});
 
 	public Identifier getTextureResource(ShamrockEntity object) {

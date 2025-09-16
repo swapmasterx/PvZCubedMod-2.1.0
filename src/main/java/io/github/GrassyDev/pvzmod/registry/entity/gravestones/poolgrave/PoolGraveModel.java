@@ -8,18 +8,18 @@ public class PoolGraveModel extends GeoModel<PoolGraveEntity> {
     @Override
     public Identifier getModelResource(PoolGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/poolgravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/poolgravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(PoolGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/poolgravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/poolgravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(PoolGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

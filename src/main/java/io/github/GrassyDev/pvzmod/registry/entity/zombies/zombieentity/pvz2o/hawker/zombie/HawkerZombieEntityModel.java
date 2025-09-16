@@ -8,15 +8,15 @@ public class HawkerZombieEntityModel extends GeoModel<HawkerZombieEntity> {
     @Override
     public Identifier getModelResource(HawkerZombieEntity object)
     {
-		return new Identifier("pvzmod", "geo/hawker.geo.json");
+		return Identifier.of("pvzmod", "geo/hawker.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(HawkerZombieEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/hawker/hawker.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/hawker/hawker.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/hawker/hawker_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/hawker/hawker_dmg1.png");
 		}
 		return identifier;
     }
@@ -24,6 +24,6 @@ public class HawkerZombieEntityModel extends GeoModel<HawkerZombieEntity> {
     @Override
     public Identifier getAnimationResource(HawkerZombieEntity object)
     {
-        return new Identifier ("pvzmod", "animations/hawker.json");
+        return Identifier.of ("pvzmod", "animations/hawker.json");
     }
 }

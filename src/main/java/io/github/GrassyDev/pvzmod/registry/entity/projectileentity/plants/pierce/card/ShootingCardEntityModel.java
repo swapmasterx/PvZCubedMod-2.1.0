@@ -9,21 +9,21 @@ public class ShootingCardEntityModel extends GeoModel<ShootingCardEntity> {
     public Identifier getModelResource(ShootingCardEntity object)
     {
 		if (object.getGolden()){
-			return new Identifier("pvzmod", "geo/goldencard.geo.json");
+			return Identifier.of("pvzmod", "geo/goldencard.geo.json");
 		}
 		else{
-			return new Identifier("pvzmod", "geo/card.geo.json");
+			return Identifier.of("pvzmod", "geo/card.geo.json");
 		}
     }
 
     @Override
     public Identifier getTextureResource(ShootingCardEntity object){
-		return new Identifier("pvzmod", "textures/entity/projectiles/card.png");
+		return Identifier.of("pvzmod", "textures/entity/projectiles/card.png");
 	}
 
     @Override
     public Identifier getAnimationResource(ShootingCardEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

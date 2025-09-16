@@ -8,15 +8,15 @@ public class CoconutCannonEntityModel extends GeoModel<CoconutCannonEntity> {
     @Override
     public Identifier getModelResource(CoconutCannonEntity object)
     {
-        return new Identifier("pvzmod", "geo/coconutcannon.geo.json");
+        return Identifier.of("pvzmod", "geo/coconutcannon.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CoconutCannonEntity object)
     {
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/coconut/coconutcannon.png");
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/coconut/coconutcannon.png");
 		if (object.blink){
-			identifier = new Identifier("pvzmod", "textures/entity/coconut/coconutcannon_blink.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/coconut/coconutcannon_blink.png");
 		}
 		return identifier;
     }
@@ -24,6 +24,6 @@ public class CoconutCannonEntityModel extends GeoModel<CoconutCannonEntity> {
     @Override
     public Identifier getAnimationResource(CoconutCannonEntity object)
     {
-        return new Identifier ("pvzmod", "animations/coconutcannon.json");
+        return Identifier.of ("pvzmod", "animations/coconutcannon.json");
     }
 }

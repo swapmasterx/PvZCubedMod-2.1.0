@@ -8,17 +8,17 @@ public class ZomblobEntityModel extends GeoModel<ZomblobEntity> {
     @Override
     public Identifier getModelResource(ZomblobEntity object)
     {
-        return new Identifier("pvzmod", "geo/zomblob.geo.json");
+        return Identifier.of("pvzmod", "geo/zomblob.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ZomblobEntity object) {
-		return new Identifier("pvzmod", "textures/entity/browncoat/zomblob.png");
+		return Identifier.of("pvzmod", "textures/entity/browncoat/zomblob.png");
     }
 
     @Override
     public Identifier getAnimationResource(ZomblobEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

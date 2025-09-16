@@ -17,15 +17,15 @@ public class NewspaperEntityModel extends GeoModel<NewspaperEntity> {
     {
 		Identifier identifier;
 		if (object.getVariant().equals(NewspaperVariants.SUNDAYEDITION) || object.getVariant().equals(NewspaperVariants.SUNDAYEDITIONHYPNO)){
-			identifier = new Identifier("pvzmod", "textures/entity/newspaper/sundayedition.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/newspaper/sundayedition.png");
 			if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/newspaper/sundayedition_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/newspaper/sundayedition_dmg1.png");
 			}
 		}
 		else {
-			identifier = new Identifier("pvzmod", "textures/entity/newspaper/newspaper.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/newspaper/newspaper.png");
 			if (object.armless){
-				identifier = new Identifier("pvzmod", "textures/entity/newspaper/newspaper_dmg1.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/newspaper/newspaper_dmg1.png");
 			}
 		}
 		return identifier;
@@ -34,6 +34,6 @@ public class NewspaperEntityModel extends GeoModel<NewspaperEntity> {
     @Override
     public Identifier getAnimationResource(NewspaperEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newspaper.json");
+        return Identifier.of ("pvzmod", "animations/newspaper.json");
     }
 }

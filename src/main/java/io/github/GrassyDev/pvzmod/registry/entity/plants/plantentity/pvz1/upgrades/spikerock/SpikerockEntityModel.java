@@ -8,7 +8,7 @@ public class SpikerockEntityModel extends GeoModel<SpikerockEntity> {
     @Override
     public Identifier getModelResource(SpikerockEntity object)
     {
-        return new Identifier("pvzmod", "geo/spikerock.geo.json");
+        return Identifier.of("pvzmod", "geo/spikerock.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class SpikerockEntityModel extends GeoModel<SpikerockEntity> {
     @Override
     public Identifier getAnimationResource(SpikerockEntity object)
     {
-        return new Identifier ("pvzmod", "animations/spikeweed.json");
+        return Identifier.of ("pvzmod", "animations/spikeweed.json");
     }
 }

@@ -8,18 +8,18 @@ public class RoofGraveModel extends GeoModel<RoofGraveEntity> {
     @Override
     public Identifier getModelResource(RoofGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/roofgravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/roofgravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(RoofGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/nightgravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/nightgravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(RoofGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

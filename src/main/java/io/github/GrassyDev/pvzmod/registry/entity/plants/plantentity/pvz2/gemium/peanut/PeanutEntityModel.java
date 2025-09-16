@@ -8,7 +8,7 @@ public class PeanutEntityModel extends GeoModel<PeanutEntity> {
     @Override
     public Identifier getModelResource(PeanutEntity object)
     {
-        return new Identifier("pvzmod", "geo/peanut.geo.json");
+        return Identifier.of("pvzmod", "geo/peanut.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class PeanutEntityModel extends GeoModel<PeanutEntity> {
     @Override
     public Identifier getAnimationResource(PeanutEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peanut.json");
+        return Identifier.of ("pvzmod", "animations/peanut.json");
     }
 }

@@ -8,15 +8,15 @@ public class FlagSummerEntityModel extends GeoModel<FlagSummerEntity> {
 	@Override
 	public Identifier getModelResource(FlagSummerEntity object)
 	{
-		return new Identifier("pvzmod", "geo/flagsummer.geo.json");
+		return Identifier.of("pvzmod", "geo/flagsummer.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(FlagSummerEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat.png");
 		if (object.armless){
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/browncoat_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/browncoat_dmg1.png");
 		}
 		return identifier;
 	}
@@ -24,6 +24,6 @@ public class FlagSummerEntityModel extends GeoModel<FlagSummerEntity> {
 	@Override
 	public Identifier getAnimationResource(FlagSummerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

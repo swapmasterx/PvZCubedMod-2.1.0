@@ -17,7 +17,7 @@ public class StatusHolder {
     public static final Holder<StatusEffect> BOUNCED_HOLDER = register("bounced", PvZCubed.BOUNCED);
     public static final Holder<StatusEffect> WARM_HOLDER = register("warm", PvZCubed.WARM);
     public static final Holder<StatusEffect> DISABLE_HOLDER = register("disable", PvZCubed.DISABLE);
-    public static final Holder<StatusEffect> WET_HOLDER = register("wet", PvZCubed.WET);
+    public static final Holder<StatusEffect> WET_HOLDER = register("wet", StatusHolder.WET_HOLDER);
     public static final Holder<StatusEffect> BARK_HOLDER = register("bark", PvZCubed.BARK);
     public static final Holder<StatusEffect> CHEESE_HOLDER = register("cheese", PvZCubed.CHEESE);
     public static final Holder<StatusEffect> GENERICSLOW_HOLDER = register("genericslow", PvZCubed.GENERICSLOW);

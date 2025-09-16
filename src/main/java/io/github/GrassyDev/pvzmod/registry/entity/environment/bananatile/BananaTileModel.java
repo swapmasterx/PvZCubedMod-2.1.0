@@ -8,18 +8,18 @@ public class BananaTileModel extends GeoModel<BananaTile> {
     @Override
     public Identifier getModelResource(BananaTile object)
     {
-        return new Identifier("pvzmod", "geo/bananapeel.geo.json");
+        return Identifier.of("pvzmod", "geo/bananapeel.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BananaTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/bananasaurus/bananapeel.png");
+        return Identifier.of("pvzmod", "textures/entity/bananasaurus/bananapeel.png");
     }
 
     @Override
     public Identifier getAnimationResource(BananaTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

@@ -8,15 +8,15 @@ public class PoleVaultingEntityModel extends GeoModel<PoleVaultingEntity> {
     @Override
     public Identifier getModelResource(PoleVaultingEntity object)
     {
-        return new Identifier("pvzmod", "geo/polevaulting.geo.json");
+        return Identifier.of("pvzmod", "geo/polevaulting.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(PoleVaultingEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/polevaulting/polevaulting.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/polevaulting/polevaulting.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/polevaulting/polevaulting_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/polevaulting/polevaulting_dmg1.png");
 		}
 		return identifier;
     }
@@ -24,6 +24,6 @@ public class PoleVaultingEntityModel extends GeoModel<PoleVaultingEntity> {
     @Override
     public Identifier getAnimationResource(PoleVaultingEntity object)
     {
-        return new Identifier ("pvzmod", "animations/polevaulting.json");
+        return Identifier.of ("pvzmod", "animations/polevaulting.json");
     }
 }

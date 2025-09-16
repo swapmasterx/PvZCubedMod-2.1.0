@@ -9,7 +9,7 @@ public class TulimpeterEntityModel extends GeoModel<TulimpeterEntity> {
     @Override
     public Identifier getModelResource(TulimpeterEntity object)
     {
-        return new Identifier("pvzmod", "geo/tulimpeter.geo.json");
+        return Identifier.of("pvzmod", "geo/tulimpeter.geo.json");
     }
 
 	public Identifier getTextureResource(TulimpeterEntity object) {
@@ -19,6 +19,6 @@ public class TulimpeterEntityModel extends GeoModel<TulimpeterEntity> {
     @Override
     public Identifier getAnimationResource(TulimpeterEntity object)
     {
-        return new Identifier ("pvzmod", "animations/tulimpeter.json");
+        return Identifier.of ("pvzmod", "animations/tulimpeter.json");
     }
 }

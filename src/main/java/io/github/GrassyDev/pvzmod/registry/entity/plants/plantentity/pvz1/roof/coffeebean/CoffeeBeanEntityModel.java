@@ -8,18 +8,18 @@ public class CoffeeBeanEntityModel extends GeoModel<CoffeeBeanEntity> {
     @Override
     public Identifier getModelResource(CoffeeBeanEntity object)
     {
-        return new Identifier("pvzmod", "geo/coffeebean.geo.json");
+        return Identifier.of("pvzmod", "geo/coffeebean.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CoffeeBeanEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/bean/coffeebean.png");
+        return Identifier.of("pvzmod", "textures/entity/bean/coffeebean.png");
     }
 
     @Override
     public Identifier getAnimationResource(CoffeeBeanEntity object)
     {
-        return new Identifier ("pvzmod", "animations/coffeebean.json");
+        return Identifier.of ("pvzmod", "animations/coffeebean.json");
     }
 }

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -45,7 +46,7 @@ public class BreezeEntity extends PvZProjectileEntity implements GeoEntity {
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "breeze");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "breeze");
 
 
 	@Override
@@ -200,8 +201,8 @@ public class BreezeEntity extends PvZProjectileEntity implements GeoEntity {
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				if (!((LivingEntity) entity).hasStatusEffect(PvZCubed.WARM) && !((LivingEntity) entity).isOnFire() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.FROZEN)) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ICE, 120, 1)));
+				if (!((LivingEntity) entity).hasStatusEffect(StatusHolder.WARM_HOLDER) && !((LivingEntity) entity).isOnFire() && !((LivingEntity) entity).hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.ICE_HOLDER, 120, 1)));
 					((LivingEntity) entity).playSound(PvZSounds.ICEBERGEXPLOSIONEVENT, 0.1f, 1);
 				}
 				entityStore.add((LivingEntity) entity);

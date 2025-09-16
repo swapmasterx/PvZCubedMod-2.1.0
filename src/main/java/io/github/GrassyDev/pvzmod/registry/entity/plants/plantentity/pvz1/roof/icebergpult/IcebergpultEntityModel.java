@@ -8,18 +8,18 @@ public class IcebergpultEntityModel extends GeoModel<IcebergpultEntity> {
     @Override
     public Identifier getModelResource(IcebergpultEntity object)
     {
-        return new Identifier("pvzmod", "geo/icebergpult.geo.json");
+        return Identifier.of("pvzmod", "geo/icebergpult.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(IcebergpultEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cabbagepult/icebergpult.png");
+        return Identifier.of("pvzmod", "textures/entity/cabbagepult/icebergpult.png");
     }
 
     @Override
     public Identifier getAnimationResource(IcebergpultEntity object)
     {
-        return new Identifier ("pvzmod", "animations/cabbagepult.json");
+        return Identifier.of ("pvzmod", "animations/cabbagepult.json");
     }
 }

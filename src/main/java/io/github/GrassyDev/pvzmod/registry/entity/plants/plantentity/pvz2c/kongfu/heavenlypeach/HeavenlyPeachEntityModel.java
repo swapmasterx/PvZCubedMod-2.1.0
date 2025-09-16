@@ -8,18 +8,18 @@ public class HeavenlyPeachEntityModel extends GeoModel<HeavenlyPeachEntity> {
     @Override
     public Identifier getModelResource(HeavenlyPeachEntity object)
     {
-        return new Identifier("pvzmod", "geo/heavenlypeach.geo.json");
+        return Identifier.of("pvzmod", "geo/heavenlypeach.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(HeavenlyPeachEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/heavenlypeach/heavenlypeach.png");
+        return Identifier.of("pvzmod", "textures/entity/heavenlypeach/heavenlypeach.png");
     }
 
     @Override
     public Identifier getAnimationResource(HeavenlyPeachEntity object)
     {
-        return new Identifier ("pvzmod", "animations/heavenlypeach.json");
+        return Identifier.of ("pvzmod", "animations/heavenlypeach.json");
     }
 }

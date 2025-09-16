@@ -8,18 +8,18 @@ public class SporeEntityModel extends GeoModel<SporeEntity> {
     @Override
     public Identifier getModelResource(SporeEntity object)
     {
-        return new Identifier("pvzmod", "geo/peashot.geo.json");
+        return Identifier.of("pvzmod", "geo/peashot.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SporeEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/fume.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/fume.png");
     }
 
     @Override
     public Identifier getAnimationResource(SporeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

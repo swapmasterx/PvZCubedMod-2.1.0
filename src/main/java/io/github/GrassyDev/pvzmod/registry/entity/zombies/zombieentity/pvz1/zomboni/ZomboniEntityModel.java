@@ -8,18 +8,18 @@ public class ZomboniEntityModel extends GeoModel<ZomboniEntity> {
 	@Override
 	public Identifier getModelResource(ZomboniEntity object)
 	{
-		return new Identifier("pvzmod", "geo/blank.geo.json");
+		return Identifier.of("pvzmod", "geo/blank.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(ZomboniEntity object)
 	{
-		return new Identifier("pvzmod", "textures/entity/zomboni/zomboni.png");
+		return Identifier.of("pvzmod", "textures/entity/zomboni/zomboni.png");
 	}
 
 	@Override
 	public Identifier getAnimationResource(ZomboniEntity object)
 	{
-		return new Identifier ("pvzmod", "animations/zomboni.json");
+		return Identifier.of ("pvzmod", "animations/zomboni.json");
 	}
 }

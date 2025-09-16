@@ -8,18 +8,18 @@ public class SpitEntityModel extends GeoModel<SpitEntity> {
     @Override
     public Identifier getModelResource(SpitEntity object)
     {
-        return new Identifier("pvzmod", "geo/spit.geo.json");
+        return Identifier.of("pvzmod", "geo/spit.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SpitEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/spit.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/spit.png");
     }
 
     @Override
     public Identifier getAnimationResource(SpitEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

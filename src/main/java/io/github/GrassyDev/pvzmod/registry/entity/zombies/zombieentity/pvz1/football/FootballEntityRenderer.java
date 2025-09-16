@@ -42,13 +42,13 @@ public class FootballEntityRenderer extends GeoEntityRenderer<FootballEntity> {
 	public static final Map<FootballVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(FootballVariants.class), (map) -> {
 				map.put(FootballVariants.DEFAULT,
-						new Identifier("pvzmod", "geo/football.geo.json"));
+						Identifier.of("pvzmod", "geo/football.geo.json"));
 				map.put(FootballVariants.BERSERKER,
-						new Identifier("pvzmod", "geo/berserker.geo.json"));
+						Identifier.of("pvzmod", "geo/berserker.geo.json"));
 				map.put(FootballVariants.FOOTBALLHYPNO,
-						new Identifier("pvzmod", "geo/football.geo.json"));
+						Identifier.of("pvzmod", "geo/football.geo.json"));
 				map.put(FootballVariants.BERSERKERHYPNO,
-						new Identifier("pvzmod", "geo/berserker.geo.json"));
+						Identifier.of("pvzmod", "geo/berserker.geo.json"));
 			});
 
 	public Identifier getModelResource(FootballEntity object) {

@@ -8,18 +8,18 @@ public class GoldLeafEntityModel extends GeoModel<GoldLeafEntity> {
     @Override
     public Identifier getModelResource(GoldLeafEntity object)
     {
-        return new Identifier("pvzmod", "geo/goldleaf.geo.json");
+        return Identifier.of("pvzmod", "geo/goldleaf.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(GoldLeafEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/goldleaf.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/goldleaf.png");
     }
 
     @Override
     public Identifier getAnimationResource(GoldLeafEntity object)
     {
-        return new Identifier ("pvzmod", "animations/goldleaf.json");
+        return Identifier.of ("pvzmod", "animations/goldleaf.json");
     }
 }

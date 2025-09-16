@@ -8,18 +8,18 @@ public class DarkAgesGraveModel extends GeoModel<DarkAgesGraveEntity> {
     @Override
     public Identifier getModelResource(DarkAgesGraveEntity object)
     {
-        return new Identifier("pvzmod", "geo/darkagesgravestone.geo.json");
+        return Identifier.of("pvzmod", "geo/darkagesgravestone.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(DarkAgesGraveEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravestone/nightgravestone.png");
+        return Identifier.of("pvzmod", "textures/entity/gravestone/nightgravestone.png");
     }
 
     @Override
     public Identifier getAnimationResource(DarkAgesGraveEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

@@ -42,29 +42,29 @@ public class GargantuarEntityRenderer extends GeoEntityRenderer<GargantuarEntity
 	public static final Map<GargantuarVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(GargantuarVariants.class), (map) -> {
 				map.put(GargantuarVariants.GARGANTUAR,
-						new Identifier("pvzmod", "geo/gargantuar.geo.json"));
+						Identifier.of("pvzmod", "geo/gargantuar.geo.json"));
 				map.put(GargantuarVariants.GARGANTUARHYPNO,
-						new Identifier("pvzmod", "geo/gargantuar.geo.json"));
+						Identifier.of("pvzmod", "geo/gargantuar.geo.json"));
 				map.put(GargantuarVariants.MUMMY,
-						new Identifier("pvzmod", "geo/mummygargantuar.geo.json"));
+						Identifier.of("pvzmod", "geo/mummygargantuar.geo.json"));
 				map.put(GargantuarVariants.MUMMYHYPNO,
-						new Identifier("pvzmod", "geo/mummygargantuar.geo.json"));
+						Identifier.of("pvzmod", "geo/mummygargantuar.geo.json"));
 				map.put(GargantuarVariants.UNICORNGARGANTUAR,
-						new Identifier("pvzmod", "geo/unicorngargantuar.geo.json"));
+						Identifier.of("pvzmod", "geo/unicorngargantuar.geo.json"));
 				map.put(GargantuarVariants.UNICORNGARGANTUARHYPNO,
-						new Identifier("pvzmod", "geo/unicorngargantuar.geo.json"));
+						Identifier.of("pvzmod", "geo/unicorngargantuar.geo.json"));
 				map.put(GargantuarVariants.DEFENSIVEEND,
-						new Identifier("pvzmod", "geo/defensiveend.geo.json"));
+						Identifier.of("pvzmod", "geo/defensiveend.geo.json"));
 				map.put(GargantuarVariants.DEFENSIVEENDHYPNO,
-						new Identifier("pvzmod", "geo/defensiveend.geo.json"));
+						Identifier.of("pvzmod", "geo/defensiveend.geo.json"));
 				map.put(GargantuarVariants.DEFENSIVEEND_NEWYEAR,
-						new Identifier("pvzmod", "geo/defensiveend.geo.json"));
+						Identifier.of("pvzmod", "geo/defensiveend.geo.json"));
 				map.put(GargantuarVariants.DEFENSIVEEND_NEWYEARHYPNO,
-						new Identifier("pvzmod", "geo/defensiveend.geo.json"));
+						Identifier.of("pvzmod", "geo/defensiveend.geo.json"));
 				map.put(GargantuarVariants.GARGOLITH,
-						new Identifier("pvzmod", "geo/gargolith.geo.json"));
+						Identifier.of("pvzmod", "geo/gargolith.geo.json"));
 				map.put(GargantuarVariants.GARGOLITHHYPNO,
-						new Identifier("pvzmod", "geo/gargolith.geo.json"));
+						Identifier.of("pvzmod", "geo/gargolith.geo.json"));
 			});
 
 	public Identifier getModelResource(GargantuarEntity object) {

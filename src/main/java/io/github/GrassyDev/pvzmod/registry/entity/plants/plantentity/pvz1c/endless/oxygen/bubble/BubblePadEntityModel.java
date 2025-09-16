@@ -8,18 +8,18 @@ public class BubblePadEntityModel extends GeoModel<BubblePadEntity> {
     @Override
     public Identifier getModelResource(BubblePadEntity object)
     {
-        return new Identifier("pvzmod", "geo/bubble.geo.json");
+        return Identifier.of("pvzmod", "geo/bubble.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BubblePadEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/oxygae/bubble.png");
+        return Identifier.of("pvzmod", "textures/entity/oxygae/bubble.png");
     }
 
     @Override
     public Identifier getAnimationResource(BubblePadEntity object)
     {
-        return new Identifier ("pvzmod", "animations/oxygae.json");
+        return Identifier.of ("pvzmod", "animations/oxygae.json");
     }
 }

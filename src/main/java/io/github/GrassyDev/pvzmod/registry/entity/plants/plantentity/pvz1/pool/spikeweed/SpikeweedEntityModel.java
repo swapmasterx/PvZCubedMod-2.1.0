@@ -8,18 +8,18 @@ public class SpikeweedEntityModel extends GeoModel<SpikeweedEntity> {
     @Override
     public Identifier getModelResource(SpikeweedEntity object)
     {
-        return new Identifier("pvzmod", "geo/spikeweed.geo.json");
+        return Identifier.of("pvzmod", "geo/spikeweed.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SpikeweedEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/spikeweed/spikeweed.png");
+        return Identifier.of("pvzmod", "textures/entity/spikeweed/spikeweed.png");
     }
 
     @Override
     public Identifier getAnimationResource(SpikeweedEntity object)
     {
-        return new Identifier ("pvzmod", "animations/spikeweed.json");
+        return Identifier.of ("pvzmod", "animations/spikeweed.json");
     }
 }

@@ -8,17 +8,17 @@ public class ShootingBasketballEntityModel extends GeoModel<ShootingBasketballEn
     @Override
     public Identifier getModelResource(ShootingBasketballEntity object)
     {
-        return new Identifier("pvzmod", "geo/basketball.geo.json");
+        return Identifier.of("pvzmod", "geo/basketball.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingBasketballEntity object){
-			return new Identifier("pvzmod", "textures/entity/obstacles/basketballbin.png");
+			return Identifier.of("pvzmod", "textures/entity/obstacles/basketballbin.png");
 	}
 
     @Override
     public Identifier getAnimationResource(ShootingBasketballEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

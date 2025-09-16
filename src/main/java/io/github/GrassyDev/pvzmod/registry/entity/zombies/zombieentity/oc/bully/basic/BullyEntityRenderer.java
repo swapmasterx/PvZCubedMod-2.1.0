@@ -71,9 +71,9 @@ public class BullyEntityRenderer extends GeoEntityRenderer<BullyEntity> {
 	public static final Map<BullyVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BullyVariants.class), (map) -> {
 				map.put(BullyVariants.BULLY,
-				        new Identifier("pvzmod", "geo/bully.geo.json"));
+				        Identifier.of("pvzmod", "geo/bully.geo.json"));
 				map.put(BullyVariants.BULLYHYPNO,
-						new Identifier("pvzmod", "geo/bully.geo.json"));
+						Identifier.of("pvzmod", "geo/bully.geo.json"));
 			});
 
 	public Identifier getModelResource(BullyEntity object) {

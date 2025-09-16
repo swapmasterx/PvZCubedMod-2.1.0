@@ -11,15 +11,15 @@ public class SnorkelEntityModel extends GeoModel<SnorkelEntity> {
     @Override
     public Identifier getModelResource(SnorkelEntity object)
     {
-        return new Identifier("pvzmod", "geo/snorkel.geo.json");
+        return Identifier.of("pvzmod", "geo/snorkel.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SnorkelEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/snorkel/snorkel.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/snorkel/snorkel.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/snorkel/snorkel_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/snorkel/snorkel_dmg1.png");
 		}
 		return identifier;
     }
@@ -27,6 +27,6 @@ public class SnorkelEntityModel extends GeoModel<SnorkelEntity> {
     @Override
     public Identifier getAnimationResource(SnorkelEntity object)
     {
-        return new Identifier ("pvzmod", "animations/snorkel.json");
+        return Identifier.of ("pvzmod", "animations/snorkel.json");
     }
 }

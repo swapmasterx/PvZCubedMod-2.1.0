@@ -9,32 +9,32 @@ public class DoomRoseEntityModel extends GeoModel<DoomRoseEntity> {
     public Identifier getModelResource(DoomRoseEntity object)
     {
 		if (object.getShadowPowered()){
-			return new Identifier("pvzmod", "geo/doomrose_shadow.geo.json");
+			return Identifier.of("pvzmod", "geo/doomrose_shadow.geo.json");
 
 		}
 		else if (object.getMoonPowered()){
-			return new Identifier("pvzmod", "geo/doomrose_moon.geo.json");
+			return Identifier.of("pvzmod", "geo/doomrose_moon.geo.json");
 		}
 		else {
-			return new Identifier("pvzmod", "geo/doomrose.geo.json");
+			return Identifier.of("pvzmod", "geo/doomrose.geo.json");
 		}
     }
 
 	public Identifier getTextureResource(DoomRoseEntity object) {
 		if (object.getShadowPowered()){
-			return new Identifier("pvzmod", "textures/entity/rose/doomrose_shadow.png");
+			return Identifier.of("pvzmod", "textures/entity/rose/doomrose_shadow.png");
 		}
 		else if (object.getMoonPowered()){
-			return new Identifier("pvzmod", "textures/entity/rose/doomrose_moon.png");
+			return Identifier.of("pvzmod", "textures/entity/rose/doomrose_moon.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/rose/doomrose.png");
+			return Identifier.of("pvzmod", "textures/entity/rose/doomrose.png");
 		}
 	}
 
     @Override
     public Identifier getAnimationResource(DoomRoseEntity object)
     {
-        return new Identifier ("pvzmod", "animations/doomrose.json");
+        return Identifier.of ("pvzmod", "animations/doomrose.json");
     }
 }

@@ -3,7 +3,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.projectiles.ShadowSporeVariants;
@@ -101,7 +103,7 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "piercespore");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "piercespore");
 
     public PierceSporeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -114,20 +116,20 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 
     public void tick() {
 		super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -162,7 +164,8 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 			double e = (double) (73 & 255) / 255.0;
 			double f = (double) (184 & 255) / 255.0;
 			for (int j = 0; j < 2; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
 		else {
@@ -170,7 +173,8 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 			double e = (double) (30 & 255) / 255.0;
 			double f = (double) (200 & 255) / 255.0;
 			for (int j = 0; j < 2; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
 	}
@@ -253,7 +257,7 @@ public class PierceSporeEntity extends PvZProjectileEntity implements GeoEntity 
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, 30, 2)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, 30, 2)));
 				entityStore.add((LivingEntity) entity);
 			}
 		}

@@ -8,18 +8,18 @@ public class HypnoProjModel extends GeoModel<HypnoProjEntity> {
     @Override
     public Identifier getModelResource(HypnoProjEntity object)
     {
-        return new Identifier("pvzmod", "geo/hypnoproj.geo.json");
+        return Identifier.of("pvzmod", "geo/hypnoproj.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(HypnoProjEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/hypnoproj.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/hypnoproj.png");
     }
 
     @Override
     public Identifier getAnimationResource(HypnoProjEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

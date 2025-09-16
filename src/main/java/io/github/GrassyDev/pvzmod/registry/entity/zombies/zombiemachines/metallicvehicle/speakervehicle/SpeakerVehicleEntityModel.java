@@ -8,18 +8,18 @@ public class SpeakerVehicleEntityModel extends GeoModel<SpeakerVehicleEntity> {
     @Override
     public Identifier getModelResource(SpeakerVehicleEntity object)
     {
-		return new Identifier("pvzmod", "geo/speaker.geo.json");
+		return Identifier.of("pvzmod", "geo/speaker.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SpeakerVehicleEntity object)
 	{
-		return new Identifier("pvzmod", "textures/entity/bass/speaker.png");
+		return Identifier.of("pvzmod", "textures/entity/bass/speaker.png");
     }
 
     @Override
     public Identifier getAnimationResource(SpeakerVehicleEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravestone.json");
+        return Identifier.of ("pvzmod", "animations/gravestone.json");
     }
 }

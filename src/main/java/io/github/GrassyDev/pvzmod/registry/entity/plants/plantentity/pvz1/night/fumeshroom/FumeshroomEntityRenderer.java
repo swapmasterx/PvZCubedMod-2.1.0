@@ -19,11 +19,11 @@ public class FumeshroomEntityRenderer extends GeoEntityRenderer<FumeshroomEntity
 	public static final Map<FumeshroomVariants, Identifier> LOCATION_BY_VARIANT =
 			Util.make(Maps.newEnumMap(FumeshroomVariants.class), (map) -> {
 				map.put(FumeshroomVariants.DEFAULT,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/fumeshroom/fumeshroom.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/fumeshroom/fumeshroom.png"));
 				map.put(FumeshroomVariants.GAY,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/fumeshroom/fumeshroom_g.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/fumeshroom/fumeshroom_g.png"));
 				map.put(FumeshroomVariants.TRANS,
-						new Identifier(PvZCubed.MOD_ID, "textures/entity/fumeshroom/fumeshroom_t.png"));
+						Identifier.of(PvZCubed.MOD_ID, "textures/entity/fumeshroom/fumeshroom_t.png"));
 			});
 
 	public Identifier getTextureResource(FumeshroomEntity object) {

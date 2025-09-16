@@ -8,18 +8,18 @@ public class SpringTileModel extends GeoModel<SpringTile> {
     @Override
     public Identifier getModelResource(SpringTile object)
     {
-        return new Identifier("pvzmod", "geo/springtile.geo.json");
+        return Identifier.of("pvzmod", "geo/springtile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SpringTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/springprincess/springprincess.png");
+        return Identifier.of("pvzmod", "textures/entity/springprincess/springprincess.png");
     }
 
     @Override
     public Identifier getAnimationResource(SpringTile object)
     {
-        return new Identifier ("pvzmod", "animations/springprincess.json");
+        return Identifier.of ("pvzmod", "animations/springprincess.json");
     }
 }

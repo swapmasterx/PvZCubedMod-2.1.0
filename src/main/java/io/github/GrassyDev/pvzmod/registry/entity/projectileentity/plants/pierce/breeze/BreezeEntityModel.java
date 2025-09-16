@@ -8,18 +8,18 @@ public class BreezeEntityModel extends GeoModel<BreezeEntity> {
     @Override
     public Identifier getModelResource(BreezeEntity object)
     {
-        return new Identifier("pvzmod", "geo/blank.geo.json");
+        return Identifier.of("pvzmod", "geo/blank.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BreezeEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/fume.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/fume.png");
     }
 
     @Override
     public Identifier getAnimationResource(BreezeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

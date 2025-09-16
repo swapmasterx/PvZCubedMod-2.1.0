@@ -42,7 +42,7 @@ public class JingleEntity extends PvZProjectileEntity implements GeoEntity {
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "jingle");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "jingle");
 	public int jingleAge = 7;
 
 	public boolean critical;

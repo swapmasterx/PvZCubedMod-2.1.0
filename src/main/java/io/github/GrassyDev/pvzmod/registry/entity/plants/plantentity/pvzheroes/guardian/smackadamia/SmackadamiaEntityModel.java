@@ -8,16 +8,16 @@ public class SmackadamiaEntityModel extends GeoModel<SmackadamiaEntity> {
     @Override
     public Identifier getModelResource(SmackadamiaEntity object)
     {
-        return new Identifier("pvzmod", "geo/smackadamia.geo.json");
+        return Identifier.of("pvzmod", "geo/smackadamia.geo.json");
     }
 
 	public Identifier getTextureResource(SmackadamiaEntity object) {
-		return new Identifier("pvzmod", "textures/entity/loquat/smackadamia.png");
+		return Identifier.of("pvzmod", "textures/entity/loquat/smackadamia.png");
 	}
 
     @Override
     public Identifier getAnimationResource(SmackadamiaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/smackadamia.json");
+        return Identifier.of ("pvzmod", "animations/smackadamia.json");
     }
 }

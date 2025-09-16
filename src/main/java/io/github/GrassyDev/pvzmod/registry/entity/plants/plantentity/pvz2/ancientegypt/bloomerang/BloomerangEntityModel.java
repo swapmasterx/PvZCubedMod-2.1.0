@@ -8,18 +8,18 @@ public class BloomerangEntityModel extends GeoModel<BloomerangEntity> {
     @Override
     public Identifier getModelResource(BloomerangEntity object)
     {
-        return new Identifier("pvzmod", "geo/bloomerang.geo.json");
+        return Identifier.of("pvzmod", "geo/bloomerang.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BloomerangEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/bloomerang/bloomerang.png");
+        return Identifier.of("pvzmod", "textures/entity/bloomerang/bloomerang.png");
     }
 
     @Override
     public Identifier getAnimationResource(BloomerangEntity object)
     {
-        return new Identifier ("pvzmod", "animations/bloomerang.json");
+        return Identifier.of ("pvzmod", "animations/bloomerang.json");
     }
 }

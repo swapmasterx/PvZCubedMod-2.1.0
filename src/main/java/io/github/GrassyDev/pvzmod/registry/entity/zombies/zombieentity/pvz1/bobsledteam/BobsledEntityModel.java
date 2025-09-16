@@ -8,16 +8,16 @@ public class BobsledEntityModel extends GeoModel<BobsledRiderEntity> {
 	@Override
 	public Identifier getModelResource(BobsledRiderEntity object)
 	{
-		return new Identifier("pvzmod", "geo/bobsledrider.geo.json");
+		return Identifier.of("pvzmod", "geo/bobsledrider.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(BobsledRiderEntity object)
 	{
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/bobsled/bobsledrider.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/bobsled/bobsledrider.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/bobsled/bobsledrider_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bobsled/bobsledrider_dmg1.png");
 		}
 		return identifier;
 	}
@@ -25,6 +25,6 @@ public class BobsledEntityModel extends GeoModel<BobsledRiderEntity> {
 	@Override
 	public Identifier getAnimationResource(BobsledRiderEntity object)
 	{
-		return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+		return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
 	}
 }

@@ -8,16 +8,16 @@ public class AdmiralNavyBeanEntityModel extends GeoModel<AdmiralNavyBeanEntity> 
     @Override
     public Identifier getModelResource(AdmiralNavyBeanEntity object)
     {
-        return new Identifier("pvzmod", "geo/admiralnavybean.geo.json");
+        return Identifier.of("pvzmod", "geo/admiralnavybean.geo.json");
     }
 
 	public Identifier getTextureResource(AdmiralNavyBeanEntity object) {
-		return new Identifier("pvzmod", "textures/entity/bean/admiralnavybean.png");
+		return Identifier.of("pvzmod", "textures/entity/bean/admiralnavybean.png");
 	}
 
     @Override
     public Identifier getAnimationResource(AdmiralNavyBeanEntity object)
     {
-        return new Identifier ("pvzmod", "animations/navybean.json");
+        return Identifier.of ("pvzmod", "animations/navybean.json");
     }
 }

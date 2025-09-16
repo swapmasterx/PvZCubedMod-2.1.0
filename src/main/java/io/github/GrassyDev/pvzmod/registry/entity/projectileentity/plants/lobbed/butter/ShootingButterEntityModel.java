@@ -8,17 +8,17 @@ public class ShootingButterEntityModel extends GeoModel<ShootingButterEntity> {
     @Override
     public Identifier getModelResource(ShootingButterEntity object)
     {
-        return new Identifier("pvzmod", "geo/butter.geo.json");
+        return Identifier.of("pvzmod", "geo/butter.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingButterEntity object){
-			return new Identifier("pvzmod", "textures/entity/cabbagepult/kernalpult.png");
+			return Identifier.of("pvzmod", "textures/entity/cabbagepult/kernalpult.png");
 	}
 
     @Override
     public Identifier getAnimationResource(ShootingButterEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

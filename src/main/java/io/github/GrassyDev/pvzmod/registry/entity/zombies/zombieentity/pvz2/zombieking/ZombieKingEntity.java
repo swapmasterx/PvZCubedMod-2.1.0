@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.zom
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -56,7 +57,6 @@ import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import org.jetbrains.annotations.Nullable;
 
 
-import static io.github.GrassyDev.pvzmod.PvZCubed.FROZEN;
 import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 
 public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
@@ -365,7 +365,7 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PeasantEntity peasantEntity && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
 			this.upgradeKnight(peasantEntity);
 		}
-		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PokerEntity pokerEntity && !this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PokerEntity pokerEntity && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
 			double random2 = Math.random();
 			if (this.getColor().equals(ZombieKingVariants.RED)){
 				if (random2 <= 0.5) {
@@ -391,13 +391,13 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 				pokerEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 			}
 		}
-		if (convertTicks <= 0 && this.getTarget() instanceof PeasantEntity peasantEntity && random <= 0.01 && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (convertTicks <= 0 && this.getTarget() instanceof PeasantEntity peasantEntity && random <= 0.01 && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			this.convertTicks = 45 * animationMultiplier;
 		}
-		if (convertTicks <= 0 && this.getTarget() instanceof PokerEntity && random <= 0.01 && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (convertTicks <= 0 && this.getTarget() instanceof PokerEntity && random <= 0.01 && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			this.convertTicks = 45 * animationMultiplier;
 		}
-		if (this.hasStatusEffect(PvZCubed.FROZEN) || this.hasStatusEffect(PvZCubed.STUN) || this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(PvZCubed.STUN) || this.hasStatusEffect(PvZCubed.DISABLE)){
 			this.convertTicks = 0;
 		}
 	}
@@ -416,7 +416,7 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 		else {
 			this.getWorld().sendEntityStatus(this, (byte) 116);
 		}
-		if (this.hasStatusEffect(PvZCubed.ICE)){
+		if (this.hasStatusEffect(StatusHolder.ICE_HOLDER)){
 			this.animationMultiplier = 2;
 		}
 		else {
@@ -465,7 +465,7 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
     }
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {

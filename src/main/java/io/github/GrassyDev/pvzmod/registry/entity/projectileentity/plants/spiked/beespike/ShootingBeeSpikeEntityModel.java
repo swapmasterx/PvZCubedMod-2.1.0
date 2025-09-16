@@ -8,18 +8,18 @@ public class ShootingBeeSpikeEntityModel extends GeoModel<ShootingBeeSpikeEntity
     @Override
     public Identifier getModelResource(ShootingBeeSpikeEntity object)
     {
-        return new Identifier("pvzmod", "geo/spike.geo.json");
+        return Identifier.of("pvzmod", "geo/spike.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShootingBeeSpikeEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/beespike.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/beespike.png");
     }
 
     @Override
     public Identifier getAnimationResource(ShootingBeeSpikeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

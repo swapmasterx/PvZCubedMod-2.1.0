@@ -8,23 +8,23 @@ public class ShadowShroomEntityModel extends GeoModel<ShadowShroomEntity> {
     @Override
     public Identifier getModelResource(ShadowShroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/shadowshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/shadowshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ShadowShroomEntity object)
     {
 		if (object.getShadowPowered()){
-			return new Identifier("pvzmod", "textures/entity/shadowshroom/shadowshroom_shadow.png");
+			return Identifier.of("pvzmod", "textures/entity/shadowshroom/shadowshroom_shadow.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/shadowshroom/shadowshroom.png");
+			return Identifier.of("pvzmod", "textures/entity/shadowshroom/shadowshroom.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(ShadowShroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/shadowshroom.json");
+        return Identifier.of ("pvzmod", "animations/shadowshroom.json");
     }
 }

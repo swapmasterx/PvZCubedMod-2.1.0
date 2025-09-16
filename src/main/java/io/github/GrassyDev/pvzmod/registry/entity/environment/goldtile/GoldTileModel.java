@@ -8,18 +8,18 @@ public class GoldTileModel extends GeoModel<GoldTile> {
     @Override
     public Identifier getModelResource(GoldTile object)
     {
-        return new Identifier("pvzmod", "geo/goldtile.geo.json");
+        return Identifier.of("pvzmod", "geo/goldtile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(GoldTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(GoldTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

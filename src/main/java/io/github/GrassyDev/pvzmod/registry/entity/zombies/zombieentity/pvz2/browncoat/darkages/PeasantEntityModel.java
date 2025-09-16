@@ -14,17 +14,17 @@ public class PeasantEntityModel extends GeoModel<PeasantEntity> {
     @Override
     public Identifier getTextureResource(PeasantEntity object) {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/browncoat/peasant/peasant.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/browncoat/peasant/peasant.png");
 		if (object.armless && object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/peasant/peasant_dmg1_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/peasant/peasant_dmg1_geardmg1.png");
 		} else if (object.armless && object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/peasant/peasant_gearless_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/peasant/peasant_gearless_dmg1.png");
 		} else if (object.gear1less) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/peasant/peasant_gearless.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/peasant/peasant_gearless.png");
 		} else if (object.geardmg) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/peasant/peasant_geardmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/peasant/peasant_geardmg1.png");
 		} else if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/browncoat/peasant/peasant_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/browncoat/peasant/peasant_dmg1.png");
 		}
 		return identifier;
     }
@@ -32,6 +32,6 @@ public class PeasantEntityModel extends GeoModel<PeasantEntity> {
     @Override
     public Identifier getAnimationResource(PeasantEntity object)
     {
-        return new Identifier ("pvzmod", "animations/newbrowncoat.json");
+        return Identifier.of ("pvzmod", "animations/newbrowncoat.json");
     }
 }

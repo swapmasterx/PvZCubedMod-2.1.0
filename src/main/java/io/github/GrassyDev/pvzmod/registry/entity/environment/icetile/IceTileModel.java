@@ -8,18 +8,18 @@ public class IceTileModel extends GeoModel<IceTile> {
     @Override
     public Identifier getModelResource(IceTile object)
     {
-        return new Identifier("pvzmod", "geo/icetile.geo.json");
+        return Identifier.of("pvzmod", "geo/icetile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(IceTile object)
     {
-        return new Identifier("pvzmod", "textures/entity/environment/tiles.png");
+        return Identifier.of("pvzmod", "textures/entity/environment/tiles.png");
     }
 
     @Override
     public Identifier getAnimationResource(IceTile object)
     {
-        return new Identifier ("pvzmod", "animations/tile.json");
+        return Identifier.of ("pvzmod", "animations/tile.json");
     }
 }

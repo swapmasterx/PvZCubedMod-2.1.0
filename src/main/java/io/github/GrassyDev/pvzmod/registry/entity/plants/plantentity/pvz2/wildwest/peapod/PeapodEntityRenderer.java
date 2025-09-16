@@ -18,9 +18,9 @@ public class PeapodEntityRenderer extends GeoEntityRenderer<PeapodEntity> {
 	public static final Map<PeapodVariants, Identifier> LOCATION_BY_VARIANT =
 		Util.make(Maps.newEnumMap(PeapodVariants.class), (map) -> {
 			map.put(PeapodVariants.DEFAULT,
-					new Identifier(PvZCubed.MOD_ID, "textures/entity/peashooter/peapod.png"));
+					Identifier.of(PvZCubed.MOD_ID, "textures/entity/peashooter/peapod.png"));
 			map.put(PeapodVariants.PLURAL,
-					new Identifier(PvZCubed.MOD_ID, "textures/entity/peashooter/peapod_plural.png"));
+					Identifier.of(PvZCubed.MOD_ID, "textures/entity/peashooter/peapod_plural.png"));
 		});
 
 	public Identifier getTextureResource(PeapodEntity object) {

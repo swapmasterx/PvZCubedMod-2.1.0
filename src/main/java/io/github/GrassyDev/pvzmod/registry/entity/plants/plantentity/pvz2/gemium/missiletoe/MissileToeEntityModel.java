@@ -8,18 +8,18 @@ public class MissileToeEntityModel extends GeoModel<MissileToeEntity> {
     @Override
     public Identifier getModelResource(MissileToeEntity object)
     {
-        return new Identifier("pvzmod", "geo/missiletoe.geo.json");
+        return Identifier.of("pvzmod", "geo/missiletoe.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MissileToeEntity object)
     {
-		return new Identifier("pvzmod", "textures/entity/missiletoe/missiletoe.png");
+		return Identifier.of("pvzmod", "textures/entity/missiletoe/missiletoe.png");
     }
 
     @Override
     public Identifier getAnimationResource(MissileToeEntity object)
     {
-        return new Identifier ("pvzmod", "animations/missiletoe.json");
+        return Identifier.of ("pvzmod", "animations/missiletoe.json");
     }
 }

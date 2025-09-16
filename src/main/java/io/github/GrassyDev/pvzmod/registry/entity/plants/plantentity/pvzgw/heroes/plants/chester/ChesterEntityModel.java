@@ -9,7 +9,7 @@ public class ChesterEntityModel extends GeoModel<ChesterEntity> {
     @Override
     public Identifier getModelResource(ChesterEntity object)
     {
-        return new Identifier("pvzmod", "geo/chester.geo.json");
+        return Identifier.of("pvzmod", "geo/chester.geo.json");
     }
 
 	public Identifier getTextureResource(ChesterEntity object) {
@@ -19,6 +19,6 @@ public class ChesterEntityModel extends GeoModel<ChesterEntity> {
     @Override
     public Identifier getAnimationResource(ChesterEntity object)
     {
-        return new Identifier ("pvzmod", "animations/chomper.json");
+        return Identifier.of ("pvzmod", "animations/chomper.json");
     }
 }

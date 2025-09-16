@@ -8,23 +8,23 @@ public class CharmshroomEntityModel extends GeoModel<CharmshroomEntity> {
     @Override
     public Identifier getModelResource(CharmshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/charmshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/charmshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(CharmshroomEntity object)
     {
 		if (object.getMoonPowered()) {
-			return new Identifier("pvzmod", "textures/entity/hypnoshroom/charmshroom_shadow.png");
+			return Identifier.of("pvzmod", "textures/entity/hypnoshroom/charmshroom_shadow.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/hypnoshroom/charmshroom.png");
+			return Identifier.of("pvzmod", "textures/entity/hypnoshroom/charmshroom.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(CharmshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/charmshroom.json");
+        return Identifier.of ("pvzmod", "animations/charmshroom.json");
     }
 }

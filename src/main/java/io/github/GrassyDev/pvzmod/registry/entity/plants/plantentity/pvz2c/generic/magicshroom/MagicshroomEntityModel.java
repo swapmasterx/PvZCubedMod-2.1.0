@@ -8,15 +8,15 @@ public class MagicshroomEntityModel extends GeoModel<MagicshroomEntity> {
     @Override
     public Identifier getModelResource(MagicshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/magicshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/magicshroom.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MagicshroomEntity object)
     {
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/magicshroom/magicshroom.png");
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/magicshroom/magicshroom.png");
 		if (!object.hasHat()){
-			identifier = new Identifier("pvzmod", "textures/entity/magicshroom/magicshroom_hatless.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/magicshroom/magicshroom_hatless.png");
 		}
         return identifier;
     }
@@ -24,6 +24,6 @@ public class MagicshroomEntityModel extends GeoModel<MagicshroomEntity> {
     @Override
     public Identifier getAnimationResource(MagicshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/magicshroom.json");
+        return Identifier.of ("pvzmod", "animations/magicshroom.json");
     }
 }

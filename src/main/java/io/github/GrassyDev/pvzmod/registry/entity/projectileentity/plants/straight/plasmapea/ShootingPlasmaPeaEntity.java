@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.strai
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -69,7 +70,7 @@ public class ShootingPlasmaPeaEntity extends PvZProjectileEntity implements GeoE
 		return PlayState.CONTINUE;
 	}
 
-    public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "plasmapea");
+    public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "plasmapea");
 
     public ShootingPlasmaPeaEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -91,20 +92,20 @@ public class ShootingPlasmaPeaEntity extends PvZProjectileEntity implements GeoE
 
     public void tick() {
         super.tick();
-		HitResult hitResult = ProjectileUtil.method_49997(this, this::canHit);
+		HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		RandomGenerator randomGenerator = this.random;
 		boolean bl = false;
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
 			BlockState blockState = this.getWorld().getBlockState(blockPos);
 			if (blockState.isOf(Blocks.NETHER_PORTAL)) {
-				this.setInNetherPortal(blockPos);
+				//				this.setInNetherPortal(blockPos);
 				bl = true;
 			} else if (blockState.isOf(Blocks.END_GATEWAY)) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
-				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
-				}
+		//				if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
+//					EndGatewayBlockEntity.tryTeleportingEntity(this.getWorld(), blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+//				}
 
 				bl = true;
 			}
@@ -189,7 +190,8 @@ public class ShootingPlasmaPeaEntity extends PvZProjectileEntity implements GeoE
 				if ("rubber".equals(zombieMaterial) || "crystal".equals(zombieMaterial)){
 					damage = damage / 2;
 				}
-				if (((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) || entity.isWet() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
+				Object object;
+				if (((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER) || entity.isWet() || (entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn())) {
 					damage = damage / 2;
 				}
 				if (et == null) {
@@ -211,12 +213,12 @@ public class ShootingPlasmaPeaEntity extends PvZProjectileEntity implements GeoE
 					}
 					entityStore.add((LivingEntity) entity);
 				}
-				if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(PvZCubed.WET) &&
+				if (!entity.isWet() && !((LivingEntity) entity).hasStatusEffect(StatusHolder.WET_HOLDER) &&
 						!(entity instanceof GeneralPvZombieEntity generalPvZombieEntity && !generalPvZombieEntity.canBurn()) &&
 						!(entity instanceof ZombieShieldEntity)) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WARM, 60, 1)));
-					((LivingEntity) entity).removeStatusEffect(PvZCubed.FROZEN);
-					((LivingEntity) entity).removeStatusEffect(PvZCubed.ICE);
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, 60, 1)));
+					((LivingEntity) entity).removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+					((LivingEntity) entity).removeStatusEffect(StatusHolder.ICE_HOLDER);
 					entity.setOnFireFor(4);
 					if (entity instanceof GeneralPvZombieEntity generalPvZombieEntity) {
 						generalPvZombieEntity.fireSplashTicks = 10;
@@ -232,7 +234,7 @@ public class ShootingPlasmaPeaEntity extends PvZProjectileEntity implements GeoE
 
         @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.SOUL_FIRE_FLAME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

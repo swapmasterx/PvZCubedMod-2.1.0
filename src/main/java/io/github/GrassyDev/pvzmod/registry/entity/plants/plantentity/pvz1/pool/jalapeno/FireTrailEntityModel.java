@@ -8,18 +8,18 @@ public class FireTrailEntityModel extends GeoModel<FireTrailEntity> {
     @Override
     public Identifier getModelResource(FireTrailEntity object)
     {
-        return new Identifier("pvzmod", "geo/firetrail.geo.json");
+        return Identifier.of("pvzmod", "geo/firetrail.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FireTrailEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/cherrybomb/firetrail.png");
+        return Identifier.of("pvzmod", "textures/entity/cherrybomb/firetrail.png");
     }
 
     @Override
     public Identifier getAnimationResource(FireTrailEntity object)
     {
-        return new Identifier ("pvzmod", "animations/firetrail.json");
+        return Identifier.of ("pvzmod", "animations/firetrail.json");
     }
 }

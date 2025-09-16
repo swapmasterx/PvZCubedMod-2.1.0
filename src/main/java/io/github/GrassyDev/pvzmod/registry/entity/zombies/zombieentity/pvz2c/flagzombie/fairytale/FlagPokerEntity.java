@@ -306,7 +306,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -424,7 +424,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean canStart() {
 			LivingEntity livingEntity = FlagPokerEntity.this.getTarget();
-			if (livingEntity != null && livingEntity.isAlive() && !FlagPokerEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !FlagPokerEntity.this.hasStatusEffect(PvZCubed.STUN)) {
+			if (livingEntity != null && livingEntity.isAlive() && !FlagPokerEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !FlagPokerEntity.this.hasStatusEffect(PvZCubed.STUN)) {
 				if (FlagPokerEntity.this.isSpellcasting()) {
 					return false;
 				} else {
@@ -437,7 +437,7 @@ public class FlagPokerEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean shouldContinue() {
 			LivingEntity livingEntity = FlagPokerEntity.this.getTarget();
-			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !FlagPokerEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !FlagPokerEntity.this.hasStatusEffect(PvZCubed.STUN) && FlagPokerEntity.this.getTypeCount() < 4;
+			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !FlagPokerEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !FlagPokerEntity.this.hasStatusEffect(PvZCubed.STUN) && FlagPokerEntity.this.getTypeCount() < 4;
 		}
 
 		public void start() {

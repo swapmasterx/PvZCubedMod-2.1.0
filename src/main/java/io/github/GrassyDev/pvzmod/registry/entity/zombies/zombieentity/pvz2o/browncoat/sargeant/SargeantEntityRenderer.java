@@ -43,25 +43,25 @@ public class SargeantEntityRenderer extends GeoEntityRenderer<SargeantEntity> {
 	public static final Map<BrowncoatVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BrowncoatVariants.class), (map) -> {
 				map.put(BrowncoatVariants.BROWNCOAT,
-				        new Identifier("pvzmod", "geo/sargeant.geo.json"));
+				        Identifier.of("pvzmod", "geo/sargeant.geo.json"));
 				map.put(BrowncoatVariants.BROWNCOATHYPNO,
-						new Identifier("pvzmod", "geo/sargeant.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeant.geo.json"));
 				map.put(BrowncoatVariants.CONEHEAD,
-						new Identifier("pvzmod", "geo/sargeantbowl.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeantbowl.geo.json"));
 				map.put(BrowncoatVariants.CONEHEADHYPNO,
-						new Identifier("pvzmod", "geo/sargeantbowl.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeantbowl.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEAD,
-						new Identifier("pvzmod", "geo/sargeanthelmet.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeanthelmet.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEADHYPNO,
-						new Identifier("pvzmod", "geo/sargeanthelmet.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeanthelmet.geo.json"));
 				map.put(BrowncoatVariants.SCREENDOOR,
-						new Identifier("pvzmod", "geo/sargeantshield.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeantshield.geo.json"));
 				map.put(BrowncoatVariants.SCREENDOORHYPNO,
-						new Identifier("pvzmod", "geo/sargeantshield.geo.json"));
+						Identifier.of("pvzmod", "geo/sargeantshield.geo.json"));
 				map.put(BrowncoatVariants.BOOKBURN,
-						new Identifier("pvzmod", "geo/bookburner.geo.json"));
+						Identifier.of("pvzmod", "geo/bookburner.geo.json"));
 				map.put(BrowncoatVariants.BOOKBURNHYPNO,
-						new Identifier("pvzmod", "geo/bookburner.geo.json"));
+						Identifier.of("pvzmod", "geo/bookburner.geo.json"));
 			});
 
 	public Identifier getModelResource(SargeantEntity object) {

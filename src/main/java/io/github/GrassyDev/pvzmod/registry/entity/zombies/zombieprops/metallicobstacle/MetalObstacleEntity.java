@@ -87,7 +87,7 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 				this.removeStatusEffect(PVZPOISON);
 				this.removeStatusEffect(MARIGOLD);
 				this.extinguish();
-				this.addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
+				this.addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 100, 1)));
 			}
 			if (!this.hasStatusEffect(DISABLE)) {
 				for (int i = 0; i < 12; ++i) {
@@ -304,7 +304,7 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 				livingEntity.removeStatusEffect(PVZPOISON);
 				livingEntity.removeStatusEffect(MARIGOLD);
 				livingEntity.extinguish();
-				livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
+				livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 100, 1)));
 			}
 		}
 	}

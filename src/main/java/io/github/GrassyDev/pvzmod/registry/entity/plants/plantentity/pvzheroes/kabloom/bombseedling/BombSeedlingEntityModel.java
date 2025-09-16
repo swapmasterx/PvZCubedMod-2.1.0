@@ -8,18 +8,18 @@ public class BombSeedlingEntityModel extends GeoModel<BombSeedlingEntity> {
     @Override
     public Identifier getModelResource(BombSeedlingEntity object)
     {
-        return new Identifier("pvzmod", "geo/bombseedling.geo.json");
+        return Identifier.of("pvzmod", "geo/bombseedling.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BombSeedlingEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/small/bombseedling.png");
+        return Identifier.of("pvzmod", "textures/entity/small/bombseedling.png");
     }
 
     @Override
     public Identifier getAnimationResource(BombSeedlingEntity object)
     {
-        return new Identifier ("pvzmod", "animations/small.json");
+        return Identifier.of ("pvzmod", "animations/small.json");
     }
 }

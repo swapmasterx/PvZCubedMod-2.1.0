@@ -8,18 +8,18 @@ public class BarkModel extends GeoModel<BarkEntity> {
     @Override
     public Identifier getModelResource(BarkEntity object)
     {
-        return new Identifier("pvzmod", "geo/bark.geo.json");
+        return Identifier.of("pvzmod", "geo/bark.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(BarkEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/projectiles/bark.png");
+        return Identifier.of("pvzmod", "textures/entity/projectiles/bark.png");
     }
 
     @Override
     public Identifier getAnimationResource(BarkEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

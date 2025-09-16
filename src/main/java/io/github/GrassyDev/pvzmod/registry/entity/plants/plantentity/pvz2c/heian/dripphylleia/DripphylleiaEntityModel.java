@@ -8,18 +8,18 @@ public class DripphylleiaEntityModel extends GeoModel<DripphylleiaEntity> {
     @Override
     public Identifier getModelResource(DripphylleiaEntity object)
     {
-        return new Identifier("pvzmod", "geo/dripphylleia.geo.json");
+        return Identifier.of("pvzmod", "geo/dripphylleia.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(DripphylleiaEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/drip/dripphylleia.png");
+        return Identifier.of("pvzmod", "textures/entity/drip/dripphylleia.png");
     }
 
     @Override
     public Identifier getAnimationResource(DripphylleiaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/drip.json");
+        return Identifier.of ("pvzmod", "animations/drip.json");
     }
 }

@@ -8,18 +8,18 @@ public class GravebusterEntityModel extends GeoModel<GravebusterEntity> {
     @Override
     public Identifier getModelResource(GravebusterEntity object)
     {
-        return new Identifier("pvzmod", "geo/gravebuster.geo.json");
+        return Identifier.of("pvzmod", "geo/gravebuster.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(GravebusterEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/gravebuster/gravebuster.png");
+        return Identifier.of("pvzmod", "textures/entity/gravebuster/gravebuster.png");
     }
 
     @Override
     public Identifier getAnimationResource(GravebusterEntity object)
     {
-        return new Identifier ("pvzmod", "animations/gravebuster.json");
+        return Identifier.of ("pvzmod", "animations/gravebuster.json");
     }
 }

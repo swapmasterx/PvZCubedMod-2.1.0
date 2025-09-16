@@ -8,16 +8,16 @@ public class LightningReedEntityModel extends GeoModel<LightningReedEntity> {
     @Override
     public Identifier getModelResource(LightningReedEntity object)
     {
-        return new Identifier("pvzmod", "geo/lightningreed.geo.json");
+        return Identifier.of("pvzmod", "geo/lightningreed.geo.json");
     }
 
 	public Identifier getTextureResource(LightningReedEntity object) {
-		return new Identifier("pvzmod", "textures/entity/lightningreed/lightningreed.png");
+		return Identifier.of("pvzmod", "textures/entity/lightningreed/lightningreed.png");
 	}
 
     @Override
     public Identifier getAnimationResource(LightningReedEntity object)
     {
-        return new Identifier ("pvzmod", "animations/lightningreed.json");
+        return Identifier.of ("pvzmod", "animations/lightningreed.json");
     }
 }

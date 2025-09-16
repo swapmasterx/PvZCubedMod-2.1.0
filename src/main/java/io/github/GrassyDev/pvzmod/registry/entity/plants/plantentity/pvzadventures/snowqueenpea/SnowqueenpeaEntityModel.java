@@ -8,7 +8,7 @@ public class SnowqueenpeaEntityModel extends GeoModel<SnowqueenpeaEntity> {
     @Override
     public Identifier getModelResource(SnowqueenpeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/snowqueenpea.geo.json");
+        return Identifier.of("pvzmod", "geo/snowqueenpea.geo.json");
     }
 
 	public Identifier getTextureResource(SnowqueenpeaEntity object) {
@@ -18,6 +18,6 @@ public class SnowqueenpeaEntityModel extends GeoModel<SnowqueenpeaEntity> {
     @Override
     public Identifier getAnimationResource(SnowqueenpeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashooter.json");
+        return Identifier.of ("pvzmod", "animations/peashooter.json");
     }
 }

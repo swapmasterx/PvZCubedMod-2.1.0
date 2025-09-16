@@ -8,16 +8,16 @@ public class BeetEntityModel extends GeoModel<BeetEntity> {
     @Override
     public Identifier getModelResource(BeetEntity object)
     {
-        return new Identifier("pvzmod", "geo/beet.geo.json");
+        return Identifier.of("pvzmod", "geo/beet.geo.json");
     }
 
 	public Identifier getTextureResource(BeetEntity object) {
-		return new Identifier("pvzmod", "textures/entity/beet/beet.png");
+		return Identifier.of("pvzmod", "textures/entity/beet/beet.png");
 	}
 
     @Override
     public Identifier getAnimationResource(BeetEntity object)
     {
-        return new Identifier ("pvzmod", "animations/beet.json");
+        return Identifier.of ("pvzmod", "animations/beet.json");
     }
 }

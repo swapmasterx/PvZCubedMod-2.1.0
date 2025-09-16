@@ -355,7 +355,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 		if (this.getTarget() != null &&
 				(!(PLANT_LOCATION.get(this.getTarget().getType()).orElse("normal").equals("ground")) && !(this.getTarget() instanceof PlantEntity plantEntity && plantEntity.getLowProfile()) && !(PLANT_LOCATION.get(this.getTarget().getType()).orElse("normal").equals("flying"))) && !((LivingEntity) target).hasStatusEffect(StatusEffects.RESISTANCE)) {
 			if (!(this.getPassengerList().contains(target))) {
-				if (!this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 					if (this.getTackleStage() && !this.isInsideWaterOrBubbleColumn()) {
 						if (i <= 0) {
 							this.attackTicksLeft = 20;
@@ -381,7 +381,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 							this.attackTicksLeft = 20;
 							float f = this.getAttackDamage();
 							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
-							if (bl && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+							if (bl && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 								target.playSound(PvZSounds.ZOMBIEBITEEVENT, 0.75f, 1f);
 								this.setStealthTag(Stealth.FALSE);
 								this.applyDamageEffects(this, target);
@@ -548,7 +548,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(PvZCubed.FROZEN) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {

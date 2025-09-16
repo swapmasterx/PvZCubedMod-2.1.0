@@ -8,18 +8,18 @@ public class MagichatEntityModel extends GeoModel<MagichatEntity> {
     @Override
     public Identifier getModelResource(MagichatEntity object)
     {
-        return new Identifier("pvzmod", "geo/magichat.geo.json");
+        return Identifier.of("pvzmod", "geo/magichat.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(MagichatEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/magicshroom/magicshroom.png");
+        return Identifier.of("pvzmod", "textures/entity/magicshroom/magicshroom.png");
     }
 
     @Override
     public Identifier getAnimationResource(MagichatEntity object)
     {
-        return new Identifier ("pvzmod", "animations/magicshroom.json");
+        return Identifier.of ("pvzmod", "animations/magicshroom.json");
     }
 }

@@ -8,7 +8,7 @@ public class TwinSunflowerEntityModel extends GeoModel<TwinSunflowerEntity> {
     @Override
     public Identifier getModelResource(TwinSunflowerEntity object)
     {
-        return new Identifier("pvzmod", "geo/twinsunflower.geo.json");
+        return Identifier.of("pvzmod", "geo/twinsunflower.geo.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class TwinSunflowerEntityModel extends GeoModel<TwinSunflowerEntity> {
     @Override
     public Identifier getAnimationResource(TwinSunflowerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/sunflower.json");
+        return Identifier.of ("pvzmod", "animations/sunflower.json");
     }
 }

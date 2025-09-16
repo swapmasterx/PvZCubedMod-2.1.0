@@ -10,13 +10,13 @@ public class AnnouncerImpEntityModel extends GeoModel<AnnouncerImpEntity> {
     public Identifier getModelResource(AnnouncerImpEntity object)
     {
 		if (object.getColor().equals(ZombieKingVariants.RED)) {
-			return new Identifier("pvzmod", "geo/redannouncerimp.geo.json");
+			return Identifier.of("pvzmod", "geo/redannouncerimp.geo.json");
 		}
 		else if (object.getColor().equals(ZombieKingVariants.BLACK)) {
-			return new Identifier("pvzmod", "geo/blackannouncerimp.geo.json");
+			return Identifier.of("pvzmod", "geo/blackannouncerimp.geo.json");
 		}
 		else {
-			return new Identifier("pvzmod", "geo/announcerimp.geo.json");
+			return Identifier.of("pvzmod", "geo/announcerimp.geo.json");
 		}
     }
 
@@ -24,19 +24,19 @@ public class AnnouncerImpEntityModel extends GeoModel<AnnouncerImpEntity> {
     public Identifier getTextureResource(AnnouncerImpEntity object)
     {
 		if (object.getColor().equals(ZombieKingVariants.RED)) {
-			return new Identifier("pvzmod", "textures/entity/imp/announcerimp_red.png");
+			return Identifier.of("pvzmod", "textures/entity/imp/announcerimp_red.png");
 		}
 		else if (object.getColor().equals(ZombieKingVariants.BLACK)) {
-			return new Identifier("pvzmod", "textures/entity/imp/announcerimp_black.png");
+			return Identifier.of("pvzmod", "textures/entity/imp/announcerimp_black.png");
 		}
 		else {
-			return new Identifier("pvzmod", "textures/entity/imp/announcerimp.png");
+			return Identifier.of("pvzmod", "textures/entity/imp/announcerimp.png");
 		}
     }
 
     @Override
     public Identifier getAnimationResource(AnnouncerImpEntity object)
     {
-        return new Identifier ("pvzmod", "animations/imp.json");
+        return Identifier.of ("pvzmod", "animations/imp.json");
     }
 }

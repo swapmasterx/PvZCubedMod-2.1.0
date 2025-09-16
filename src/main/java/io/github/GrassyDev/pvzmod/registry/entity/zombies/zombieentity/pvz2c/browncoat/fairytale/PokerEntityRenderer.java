@@ -43,33 +43,33 @@ public class PokerEntityRenderer extends GeoEntityRenderer<PokerEntity> {
 	public static final Map<BrowncoatVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BrowncoatVariants.class), (map) -> {
 				map.put(BrowncoatVariants.BROWNCOAT,
-				        new Identifier("pvzmod", "geo/pokerzombie.geo.json"));
+				        Identifier.of("pvzmod", "geo/pokerzombie.geo.json"));
 				map.put(BrowncoatVariants.BROWNCOATHYPNO,
-						new Identifier("pvzmod", "geo/pokerzombie.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerzombie.geo.json"));
 				map.put(BrowncoatVariants.CONEHEAD,
-						new Identifier("pvzmod", "geo/pokerconehead.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerconehead.geo.json"));
 				map.put(BrowncoatVariants.CONEHEADHYPNO,
-						new Identifier("pvzmod", "geo/pokerconehead.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerconehead.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEAD,
-						new Identifier("pvzmod", "geo/pokerbuckethead.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerbuckethead.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEADHYPNO,
-						new Identifier("pvzmod", "geo/pokerbuckethead.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerbuckethead.geo.json"));
 				map.put(BrowncoatVariants.POKERPAWN,
-						new Identifier("pvzmod", "geo/pokerpawn.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerpawn.geo.json"));
 				map.put(BrowncoatVariants.POKERPAWNHYPNO,
-						new Identifier("pvzmod", "geo/pokerpawn.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerpawn.geo.json"));
 				map.put(BrowncoatVariants.POKERKNIGHT,
-						new Identifier("pvzmod", "geo/pokerknight.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerknight.geo.json"));
 				map.put(BrowncoatVariants.POKERKNIGHTHYPNO,
-						new Identifier("pvzmod", "geo/pokerknight.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerknight.geo.json"));
 				map.put(BrowncoatVariants.POKERTOWER,
-						new Identifier("pvzmod", "geo/pokertower.geo.json"));
+						Identifier.of("pvzmod", "geo/pokertower.geo.json"));
 				map.put(BrowncoatVariants.POKERTOWERHYPNO,
-						new Identifier("pvzmod", "geo/pokertower.geo.json"));
+						Identifier.of("pvzmod", "geo/pokertower.geo.json"));
 				map.put(BrowncoatVariants.POKERBISHOP,
-						new Identifier("pvzmod", "geo/pokerbishop.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerbishop.geo.json"));
 				map.put(BrowncoatVariants.POKERBISHOPHYPNO,
-						new Identifier("pvzmod", "geo/pokerbishop.geo.json"));
+						Identifier.of("pvzmod", "geo/pokerbishop.geo.json"));
 			});
 
 	public Identifier getModelResource(PeasantEntity object) {

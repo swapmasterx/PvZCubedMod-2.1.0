@@ -8,18 +8,18 @@ public class SpringbeanEntityModel extends GeoModel<SpringbeanEntity> {
     @Override
     public Identifier getModelResource(SpringbeanEntity object)
     {
-        return new Identifier("pvzmod", "geo/springbean.geo.json");
+        return Identifier.of("pvzmod", "geo/springbean.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SpringbeanEntity object)
     {
-		return new Identifier("pvzmod", "textures/entity/springbean/springbean.png");
+		return Identifier.of("pvzmod", "textures/entity/springbean/springbean.png");
     }
 
     @Override
     public Identifier getAnimationResource(SpringbeanEntity object)
     {
-        return new Identifier ("pvzmod", "animations/springbean.json");
+        return Identifier.of ("pvzmod", "animations/springbean.json");
     }
 }

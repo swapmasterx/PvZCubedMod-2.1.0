@@ -8,16 +8,16 @@ public class BassZombieEntityModel extends GeoModel<BassZombieEntity> {
 	@Override
 	public Identifier getModelResource(BassZombieEntity object)
 	{
-		return new Identifier("pvzmod", "geo/bass.geo.json");
+		return Identifier.of("pvzmod", "geo/bass.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureResource(BassZombieEntity object)
 	{
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/bass/bass.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/bass/bass.png");
 		if (object.armless) {
-			identifier = new Identifier("pvzmod", "textures/entity/bass/bass_dmg1.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bass/bass_dmg1.png");
 		}
 		return identifier;
 	}
@@ -25,6 +25,6 @@ public class BassZombieEntityModel extends GeoModel<BassZombieEntity> {
 	@Override
 	public Identifier getAnimationResource(BassZombieEntity object)
 	{
-		return new Identifier ("pvzmod", "animations/bass.json");
+		return Identifier.of ("pvzmod", "animations/bass.json");
 	}
 }

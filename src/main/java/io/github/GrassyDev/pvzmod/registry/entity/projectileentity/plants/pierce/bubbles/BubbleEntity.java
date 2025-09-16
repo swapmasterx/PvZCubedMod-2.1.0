@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -18,6 +19,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -42,7 +44,7 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoEntity {
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "bubbles");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "bubbles");
 
 
 	@Override
@@ -95,7 +97,8 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoEntity {
 			double e = (double)(180 & 255) / 255.0;
 			double f = (double)(250 & 255) / 255.0;
 			for(int j = 0; j < 8; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
 	}
@@ -178,7 +181,7 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoEntity {
 					entityStore.add((LivingEntity) entity);
 				}
 
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 100, 1)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 100, 1)));
 				entity.extinguish();
 				entityStore.add((LivingEntity) entity);
 			}
@@ -194,9 +197,9 @@ public class BubbleEntity extends PvZProjectileEntity implements GeoEntity {
 			double d = (double)(60 & 255) / 255.0;
 			double e = (double)(180 & 255) / 255.0;
 			double f = (double)(250 & 255) / 255.0;
-
+			ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
 			for (int j = 0; j < 8; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
     }

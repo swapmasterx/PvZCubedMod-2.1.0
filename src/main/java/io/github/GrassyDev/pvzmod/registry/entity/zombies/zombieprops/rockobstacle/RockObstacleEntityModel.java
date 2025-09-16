@@ -10,15 +10,15 @@ public class RockObstacleEntityModel extends GeoModel<RockObstacleEntity> {
     public Identifier getModelResource(RockObstacleEntity object)
     {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "geo/egypttombstone.geo.json");
+		identifier = Identifier.of("pvzmod", "geo/egypttombstone.geo.json");
 		if (object.getType().equals(PvZEntity.GARGOLITHOBSTACLE)) {
-			identifier = new Identifier("pvzmod", "geo/gargolith.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/gargolith.geo.json");
 		}
 		else if (object.getType().equals(PvZEntity.IMPTABLETOBSTACLE)) {
-			identifier = new Identifier("pvzmod", "geo/imptablet.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/imptablet.geo.json");
 		}
 		else if (object.getType().equals(PvZEntity.BASICTOMBSTONE)) {
-			identifier = new Identifier("pvzmod", "geo/basicgravestone.geo.json");
+			identifier = Identifier.of("pvzmod", "geo/basicgravestone.geo.json");
 		}
 		return identifier;
     }
@@ -27,15 +27,15 @@ public class RockObstacleEntityModel extends GeoModel<RockObstacleEntity> {
     public Identifier getTextureResource(RockObstacleEntity object)
 	{
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "textures/entity/tombstone/egypttombstone.png");
+		identifier = Identifier.of("pvzmod", "textures/entity/tombstone/egypttombstone.png");
 		if (object.getType().equals(PvZEntity.GARGOLITHOBSTACLE)) {
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/gargolith.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/gargolith.png");
 		}
 		else if (object.getType().equals(PvZEntity.IMPTABLETOBSTACLE)) {
-			identifier = new Identifier("pvzmod", "textures/entity/gargantuar/gargolith.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gargantuar/gargolith.png");
 		}
 		else if (object.getType().equals(PvZEntity.BASICTOMBSTONE)) {
-			identifier = new Identifier("pvzmod", "textures/entity/gravestone/basicgravestone.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/gravestone/basicgravestone.png");
 		}
 		return identifier;
     }
@@ -44,9 +44,9 @@ public class RockObstacleEntityModel extends GeoModel<RockObstacleEntity> {
     public Identifier getAnimationResource(RockObstacleEntity object)
     {
 		Identifier identifier;
-		identifier = new Identifier("pvzmod", "animations/gravestone.json");
+		identifier = Identifier.of("pvzmod", "animations/gravestone.json");
 		if (object.getType().equals(PvZEntity.GARGOLITHOBSTACLE)) {
-			identifier = new Identifier("pvzmod", "animations/gargantuar.json");
+			identifier = Identifier.of("pvzmod", "animations/gargantuar.json");
 		}
 		return identifier;
     }

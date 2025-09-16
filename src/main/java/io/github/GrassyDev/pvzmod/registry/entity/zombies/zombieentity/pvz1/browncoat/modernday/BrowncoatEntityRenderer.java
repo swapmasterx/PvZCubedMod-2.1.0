@@ -44,29 +44,29 @@ public class BrowncoatEntityRenderer extends GeoEntityRenderer<BrowncoatEntity> 
 	public static final Map<BrowncoatVariants, Identifier> LOCATION_MODEL_BY_VARIANT =
 			Util.make(Maps.newEnumMap(BrowncoatVariants.class), (map) -> {
 				map.put(BrowncoatVariants.BROWNCOAT,
-				        new Identifier("pvzmod", "geo/browncoat.geo.json"));
+				        Identifier.of("pvzmod", "geo/browncoat.geo.json"));
 				map.put(BrowncoatVariants.BROWNCOATHYPNO,
-						new Identifier("pvzmod", "geo/browncoat.geo.json"));
+						Identifier.of("pvzmod", "geo/browncoat.geo.json"));
 				map.put(BrowncoatVariants.CONEHEAD,
-						new Identifier("pvzmod", "geo/conehead.geo.json"));
+						Identifier.of("pvzmod", "geo/conehead.geo.json"));
 				map.put(BrowncoatVariants.CONEHEADHYPNO,
-						new Identifier("pvzmod", "geo/conehead.geo.json"));
+						Identifier.of("pvzmod", "geo/conehead.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEAD,
-						new Identifier("pvzmod", "geo/buckethead.geo.json"));
+						Identifier.of("pvzmod", "geo/buckethead.geo.json"));
 				map.put(BrowncoatVariants.BUCKETHEADHYPNO,
-						new Identifier("pvzmod", "geo/buckethead.geo.json"));
+						Identifier.of("pvzmod", "geo/buckethead.geo.json"));
 				map.put(BrowncoatVariants.SCREENDOOR,
-						new Identifier("pvzmod", "geo/screendoor.geo.json"));
+						Identifier.of("pvzmod", "geo/screendoor.geo.json"));
 				map.put(BrowncoatVariants.SCREENDOORHYPNO,
-						new Identifier("pvzmod", "geo/screendoor.geo.json"));
+						Identifier.of("pvzmod", "geo/screendoor.geo.json"));
 				map.put(BrowncoatVariants.TRASHCAN,
-						new Identifier("pvzmod", "geo/trashcan.geo.json"));
+						Identifier.of("pvzmod", "geo/trashcan.geo.json"));
 				map.put(BrowncoatVariants.TRASHCANHYPNO,
-						new Identifier("pvzmod", "geo/trashcan.geo.json"));
+						Identifier.of("pvzmod", "geo/trashcan.geo.json"));
 				map.put(BrowncoatVariants.BRICKHEAD,
-						new Identifier("pvzmod", "geo/brickhead.geo.json"));
+						Identifier.of("pvzmod", "geo/brickhead.geo.json"));
 				map.put(BrowncoatVariants.BRICKHEADHYPNO,
-						new Identifier("pvzmod", "geo/brickhead.geo.json"));
+						Identifier.of("pvzmod", "geo/brickhead.geo.json"));
 			});
 
 	public Identifier getModelResource(BrowncoatEntity object) {

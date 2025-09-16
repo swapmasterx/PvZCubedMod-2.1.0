@@ -8,7 +8,7 @@ public class ShootingPeaEntityModel extends GeoModel<ShootingPeaEntity> {
     @Override
     public Identifier getModelResource(ShootingPeaEntity object)
     {
-        return new Identifier("pvzmod", "geo/peashot.geo.json");
+        return Identifier.of("pvzmod", "geo/peashot.geo.json");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class ShootingPeaEntityModel extends GeoModel<ShootingPeaEntity> {
     @Override
     public Identifier getAnimationResource(ShootingPeaEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

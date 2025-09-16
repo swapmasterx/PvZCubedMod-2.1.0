@@ -482,7 +482,7 @@ public class AnnouncerImpEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean canStart() {
 			LivingEntity livingEntity = AnnouncerImpEntity.this.getTarget();
-			if (livingEntity != null && livingEntity.isAlive() && !AnnouncerImpEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !AnnouncerImpEntity.this.hasStatusEffect(PvZCubed.STUN)) {
+			if (livingEntity != null && livingEntity.isAlive() && !AnnouncerImpEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !AnnouncerImpEntity.this.hasStatusEffect(PvZCubed.STUN)) {
 				if (AnnouncerImpEntity.this.isSpellcasting()) {
 					return false;
 				} else {
@@ -495,7 +495,7 @@ public class AnnouncerImpEntity extends SummonerEntity implements GeoEntity {
 
 		public boolean shouldContinue() {
 			LivingEntity livingEntity = AnnouncerImpEntity.this.getTarget();
-			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !AnnouncerImpEntity.this.hasStatusEffect(PvZCubed.FROZEN) && !AnnouncerImpEntity.this.hasStatusEffect(PvZCubed.STUN);
+			return livingEntity != null && livingEntity.isAlive() && this.spellCooldown > 0 && !AnnouncerImpEntity.this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !AnnouncerImpEntity.this.hasStatusEffect(PvZCubed.STUN);
 		}
 
 		public void start() {

@@ -9,16 +9,16 @@ public class AcidshroomEntityModel extends GeoModel<AcidshroomEntity> {
     @Override
     public Identifier getModelResource(AcidshroomEntity object)
     {
-        return new Identifier("pvzmod", "geo/acidshroom.geo.json");
+        return Identifier.of("pvzmod", "geo/acidshroom.geo.json");
     }
 
 	public Identifier getTextureResource(AcidshroomEntity object) {
-		return new Identifier(PvZCubed.MOD_ID, "textures/entity/fumeshroom/acidshroom.png");
+		return Identifier.of(PvZCubed.MOD_ID, "textures/entity/fumeshroom/acidshroom.png");
 	}
 
     @Override
     public Identifier getAnimationResource(AcidshroomEntity object)
     {
-        return new Identifier ("pvzmod", "animations/fumeshroom.json");
+        return Identifier.of ("pvzmod", "animations/fumeshroom.json");
     }
 }

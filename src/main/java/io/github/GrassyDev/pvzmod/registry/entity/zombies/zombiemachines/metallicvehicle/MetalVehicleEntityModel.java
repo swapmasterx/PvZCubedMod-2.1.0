@@ -10,31 +10,31 @@ public class MetalVehicleEntityModel extends GeoModel<MetalVehicleEntity> {
 	public Identifier getModelResource(MetalVehicleEntity object)
 	{
 		if (object.getType().equals(PvZEntity.ZOMBONIVEHICLE)) {
-			return new Identifier("pvzmod", "geo/zomboni.geo.json");
+			return Identifier.of("pvzmod", "geo/zomboni.geo.json");
 		}
 		else {
-			return new Identifier("pvzmod", "geo/bobsled.geo.json");
+			return Identifier.of("pvzmod", "geo/bobsled.geo.json");
 		}
 	}
 
 	@Override
 	public Identifier getTextureResource(MetalVehicleEntity object)
 	{
-		Identifier identifier = new Identifier("pvzmod", "textures/entity/zomboni/zomboni.png");
+		Identifier identifier = Identifier.of("pvzmod", "textures/entity/zomboni/zomboni.png");
 		if (object.getType().equals(PvZEntity.ZOMBONIVEHICLE)) {
 			if (object.hasPassengers()) {
 				if (object.armless) {
-					identifier = new Identifier("pvzmod", "textures/entity/zomboni/zomboni_dmg.png");
+					identifier = Identifier.of("pvzmod", "textures/entity/zomboni/zomboni_dmg.png");
 				}
 			} else {
-				identifier = new Identifier("pvzmod", "textures/entity/zomboni/zomboni_riderless.png");
+				identifier = Identifier.of("pvzmod", "textures/entity/zomboni/zomboni_riderless.png");
 				if (object.armless) {
-					identifier = new Identifier("pvzmod", "textures/entity/zomboni/zomboni_dmg_riderless.png");
+					identifier = Identifier.of("pvzmod", "textures/entity/zomboni/zomboni_dmg_riderless.png");
 				}
 			}
 		}
 		else {
-			identifier = new Identifier("pvzmod", "textures/entity/bobsled/bobsled_riderless.png");
+			identifier = Identifier.of("pvzmod", "textures/entity/bobsled/bobsled_riderless.png");
 		}
 		return identifier;
 	}
@@ -43,10 +43,10 @@ public class MetalVehicleEntityModel extends GeoModel<MetalVehicleEntity> {
 	public Identifier getAnimationResource(MetalVehicleEntity object)
 	{
 		if (object.getType().equals(PvZEntity.ZOMBONIVEHICLE)) {
-			return new Identifier("pvzmod", "animations/zomboni.json");
+			return Identifier.of("pvzmod", "animations/zomboni.json");
 		}
 		else {
-			return new Identifier("pvzmod", "animations/bobsled.json");
+			return Identifier.of("pvzmod", "animations/bobsled.json");
 		}
 	}
 }

@@ -8,18 +8,18 @@ public class SpringProjEntityModel extends GeoModel<SpringProjEntity> {
     @Override
     public Identifier getModelResource(SpringProjEntity object)
     {
-        return new Identifier("pvzmod", "geo/springtile.geo.json");
+        return Identifier.of("pvzmod", "geo/springtile.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SpringProjEntity object)
     {
-        return new Identifier("pvzmod", "textures/entity/springprincess/springprincess.png");
+        return Identifier.of("pvzmod", "textures/entity/springprincess/springprincess.png");
     }
 
     @Override
     public Identifier getAnimationResource(SpringProjEntity object)
     {
-        return new Identifier ("pvzmod", "animations/peashot.json");
+        return Identifier.of ("pvzmod", "animations/peashot.json");
     }
 }

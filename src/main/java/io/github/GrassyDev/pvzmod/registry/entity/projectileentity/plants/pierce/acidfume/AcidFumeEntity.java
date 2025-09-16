@@ -3,7 +3,9 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierc
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.PvZProjectileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.snorkel.SnorkelEntity;
@@ -44,7 +46,7 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 	private String controllerName = "projectilecontroller";
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final Identifier PacketID = new Identifier(PvZEntity.ModID, "acidfume");
+	public static final Identifier PacketID = Identifier.of(PvZEntity.ModID, "acidfume");
 
 
 	@Override
@@ -97,7 +99,8 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 		double f = (double)(132 & 255) / 255.0;
 
 		for (int j = 0; j < 8; ++j) {
-			this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+			ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+			this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 		}
 	}
 
@@ -179,9 +182,9 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 					entityStore.add((LivingEntity) entity);
 				}
 				if (ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("metallic") || ZOMBIE_MATERIAL.get(entity.getType()).orElse("flesh").equals("electronic")) {
-					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.ACID, 30, 0)));
+					((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.ACID_HOLDER, 30, 0)));
 				}
-				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(PvZCubed.WET, 50, 0)));
+				((LivingEntity) entity).addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 50, 0)));
 				entity.extinguish();
 				entityStore.add((LivingEntity) entity);
 			}
@@ -200,7 +203,8 @@ public class AcidFumeEntity extends PvZProjectileEntity implements GeoEntity {
 			double f = (double)(132 & 255) / 255.0;
 
 			for (int j = 0; j < 8; ++j) {
-				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+				ParticleEffect particleEffect = (ParticleEffect) ParticleTypes.ENTITY_EFFECT;
+				this.getWorld().addParticle(particleEffect, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
 			}
 		}
     }

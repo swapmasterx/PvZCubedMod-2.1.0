@@ -8,16 +8,16 @@ public class SaucerEntityModel extends GeoModel<SaucerEntity> {
     @Override
     public Identifier getModelResource(SaucerEntity object)
     {
-        return new Identifier("pvzmod", "geo/saucer.geo.json");
+        return Identifier.of("pvzmod", "geo/saucer.geo.json");
     }
 
 	public Identifier getTextureResource(SaucerEntity object) {
-		return new Identifier("pvzmod", "textures/entity/loquat/saucer.png");
+		return Identifier.of("pvzmod", "textures/entity/loquat/saucer.png");
 	}
 
     @Override
     public Identifier getAnimationResource(SaucerEntity object)
     {
-        return new Identifier ("pvzmod", "animations/loquat.json");
+        return Identifier.of ("pvzmod", "animations/loquat.json");
     }
 }
