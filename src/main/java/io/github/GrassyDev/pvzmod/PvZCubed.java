@@ -131,8 +131,8 @@ public class PvZCubed implements ModInitializer {
 		ModComponents.initialize();
 		PvZEntity.setPlantList();
 		PvZEntity.Entities();
-		GeckoLibConstants.init();
-		GeckoLibNetworking.init();
+//		GeckoLibConstants.init();
+//		GeckoLibNetworking.init();
 		PvZEntitySpawn.addEntitySpawn();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
