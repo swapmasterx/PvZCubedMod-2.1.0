@@ -65,7 +65,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 
 	private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-	public static final	UUID MAX_HEALTH_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
+	public static final	Identifier MAX_HEALTH_UUID = Identifier.of("minecraft", "max_health");
 
 	public PeapodEntity(EntityType<? extends PeapodEntity> entityType, World world) {
 		super(entityType, world);
@@ -326,7 +326,7 @@ public class PeapodEntity extends PlantEntity implements RangedAttackMob, GeoEnt
 
 	public static EntityAttributeModifier createHealthModifier(double amount) {
 		return new EntityAttributeModifier(
-			Identifier.of("minecraft", "max_health"),
+				MAX_HEALTH_UUID,
 				amount,
 				EntityAttributeModifier.Operation.ADD_VALUE
 		);

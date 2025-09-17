@@ -16,7 +16,7 @@ import software.bernie.geckolib.model.GeoModel;
     public Identifier getTextureResource(NightcapEntity object)
     {
 		if (object.getShadowPowered()){
-			return new  Identifier(PvZCubed.MOD_ID, "textures/entity/nightcap/nightcap_shadow.png");
+			return  Identifier.of(PvZCubed.MOD_ID, "textures/entity/nightcap/nightcap_shadow.png");
 		}
 		else {
 			return Identifier.of(PvZCubed.MOD_ID, "textures/entity/nightcap/nightcap.png");

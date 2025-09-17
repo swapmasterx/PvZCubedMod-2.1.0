@@ -35,7 +35,7 @@ public class ShootingPeaEntityRenderer extends GeoEntityRenderer<ShootingPeaEnti
 	public Identifier getTextureResource(ShootingPeaEntity object) {
 		return LOCATION_BY_VARIANT.get(object.getVariant());
 	}
-	@Override
+
 	public void preRender(MatrixStack poseStack, ShootingPeaEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
 		RenderUtil.faceRotation(poseStack, animatable, partialTick);

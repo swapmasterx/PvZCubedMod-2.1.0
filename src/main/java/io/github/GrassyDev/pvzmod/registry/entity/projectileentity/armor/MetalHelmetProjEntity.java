@@ -272,7 +272,7 @@ public class MetalHelmetProjEntity extends PvZProjectileEntity implements GeoEnt
 					if (!(entity instanceof ZombieShieldEntity)) {
 						Vec3d vec3d = this.getPos();
 						hit = true;
-						List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+						List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 						Iterator var10 = list.iterator();
 						while (true) {
 							LivingEntity livingEntity;

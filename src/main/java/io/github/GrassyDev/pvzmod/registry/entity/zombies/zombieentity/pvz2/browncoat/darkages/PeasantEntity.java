@@ -1,8 +1,9 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.browncoat.darkages;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.BrowncoatVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.browncoat.modernday.BrowncoatEntity;
 import net.minecraft.entity.EntityType;
@@ -24,8 +25,8 @@ public class PeasantEntity extends BrowncoatEntity {
 
 	@Override
 	public void tick() {
-		if (this.hasStatusEffect(PvZCubed.PVZPOISON)){
-			this.removeStatusEffect(PvZCubed.PVZPOISON);
+		if (this.hasStatusEffect(StatusHolder.POISON_HOLDER)){
+			this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 		}
 		super.tick();
 	}
@@ -55,8 +56,8 @@ public class PeasantEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createPeasantAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.14D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)

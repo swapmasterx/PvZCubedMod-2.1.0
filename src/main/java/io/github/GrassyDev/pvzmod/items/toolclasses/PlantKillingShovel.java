@@ -25,7 +25,7 @@ import java.util.List;
 
 public class PlantKillingShovel extends ShovelItem {
     public PlantKillingShovel(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
+        super(material, settings);
     }
 
 public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, TooltipConfig toolconfig) {

@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -28,8 +28,9 @@ public class PvZombieAttackGoal extends MeleeAttackGoal {
 //	}
 	@Override
 	protected void attack(LivingEntity entity) {
-		float f = (float) pvzombie.getBaseValue(ReachEntityAttributes.ATTACK_RANGE);
-		if (this.pvzombie.squaredDistanceTo(entity) <= (double)((entity.getWidth() * f + 0.5F) * (entity.getWidth() * f + 0.5F))) {
+//		float f = (float) pvzombie.getBaseValue(ReachEntityAttributes.ATTACK_RANGE);
+		if (this.pvzombie.squaredDistanceTo(entity) <= (double)((entity.getWidth() + 0.5F) * (entity.getWidth() + 0.5F))) {
+//            if (this.pvzombie.squaredDistanceTo(entity) <= (double)((entity.getWidth() * f + 0.5F) * (entity.getWidth() * f + 0.5F))) {
 			if (this.isCooledDown()){
 //			if (this.method_53715(entity)) {
 				this.pvzombie.tryAttack(entity);

@@ -13,7 +13,7 @@ public class ChesterEntityModel extends GeoModel<ChesterEntity> {
     }
 
 	public Identifier getTextureResource(ChesterEntity object) {
-		return new  Identifier(PvZCubed.MOD_ID, "textures/entity/chomper/chester.png");
+		return Identifier.of(PvZCubed.MOD_ID, "textures/entity/chomper/chester.png");
 	}
 
     @Override

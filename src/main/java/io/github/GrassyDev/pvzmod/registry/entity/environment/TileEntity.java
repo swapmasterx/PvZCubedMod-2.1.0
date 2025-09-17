@@ -199,7 +199,7 @@ public abstract class TileEntity extends PathAwareEntity implements GeoEntity {
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	@Override
+
 	public boolean canBeLeashedBy(PlayerEntity player) {
 		return false;
 	}

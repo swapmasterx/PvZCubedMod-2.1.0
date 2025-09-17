@@ -4,6 +4,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.papershie
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -190,7 +191,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) instanceof PlantEntity plantEntity && !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+				else if (this.CollidesWithPlant(0.1f, 0f) instanceof PlantEntity plantEntity && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 					if (!plantEntity.onWater && !plantEntity.getFireImmune() && this.getFireStage()) {
 						BlockPos blockPos = plantEntity.getBlockPos();
 						boolean bl = plantEntity.hasVehicle();
@@ -216,7 +217,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 				else if (this.CollidesWithPlant(0.1f, 0f) == null) {
 							this.getWorld().sendEntityStatus(this, (byte) 115);
 						}
-					} else if (!this.hasStatusEffect(PvZCubed.BOUNCED)) {
+					} else if (!this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 						this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 						this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -226,7 +227,7 @@ public class NewspaperShieldEntity extends ZombieShieldEntity implements GeoEnti
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 					this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 					this.setTarget(CollidesWithPlant(0.1f, 0f));

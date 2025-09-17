@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.springtile;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
 import net.fabricmc.api.EnvType;
@@ -94,7 +95,7 @@ public class SpringTile extends TileEntity {
 				if (livingEntity.getY() < (this.getY() + 2) && livingEntity.getY() > (this.getY() - 2) &&
 						!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isFlying()) && !(livingEntity instanceof GeneralPvZombieEntity zombie && zombie.isHovering())) {
 					Vec3d vec3d = new Vec3d((double) -0.5, +0.25, 0).rotateY(-livingEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.BOUNCED, 20, 1)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.BOUNCED_HOLDER, 20, 1)));
 					livingEntity.setVelocity(Vec3d.ZERO);
 					livingEntity.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 					this.tickDown = true;

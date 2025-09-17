@@ -53,7 +53,7 @@ public class ShootingDyeEntityRenderer extends GeoEntityRenderer<ShootingDyeEnti
 	public Identifier getTextureResource(ShootingDyeEntity object) {
 		return LOCATION_BY_VARIANT.get(object.getVariant());
 	}
-	@Override
+
 	public void preRender(MatrixStack poseStack, ShootingDyeEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
 		RenderUtil.faceRotation(poseStack, animatable, partialTick);

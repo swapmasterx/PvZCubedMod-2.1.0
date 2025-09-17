@@ -11,7 +11,7 @@ import software.bernie.geckolib.util.RenderUtil;
 
 public class AcidFumeEntityRenderer extends GeoEntityRenderer<AcidFumeEntity> {
 
-	@Override
+
 	public void preRender(MatrixStack poseStack, AcidFumeEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
 		RenderUtil.faceRotation(poseStack, animatable, partialTick);

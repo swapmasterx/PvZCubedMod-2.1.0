@@ -4,6 +4,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.fleshobst
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -73,7 +74,7 @@ public class FleshObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 				list2.add(plantEntity);
 				plantEntity.setImmune(PlantEntity.Immune.TRUE);
 				plantEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 5, 1));
-				plantEntity.addStatusEffect(new StatusEffectInstance(PvZCubed.DISABLE, 5, 1));
+				plantEntity.addStatusEffect(new StatusEffectInstance(StatusHolder.DISABLE_HOLDER, 5, 1));
 				this.setPosition(plantEntity.getPos());
 			}
 			else {

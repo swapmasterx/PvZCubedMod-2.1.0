@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.bananatile;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieObstacleEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
@@ -20,7 +21,6 @@ import net.minecraft.world.World;
 import java.util.Iterator;
 import java.util.List;
 
-import static io.github.GrassyDev.pvzmod.PvZCubed.BOUNCED;
 
 public class BananaTile extends TileEntity {
 
@@ -60,10 +60,10 @@ public class BananaTile extends TileEntity {
 					if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered()){
 						livingEntity.setVelocity(0, 0, 0);
 					}
-					else if (!livingEntity.hasStatusEffect(BOUNCED)) {
+					else if (!livingEntity.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 						livingEntity.setVelocity(0, 0, 0);
 						Vec3d vec3d = new Vec3d((double) 1, 0, 0).rotateY(-livingEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 60, 5)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, 60, 5)));
 						livingEntity.setVelocity(vec3d.x, vec3d.y, vec3d.z);
 					}
 					ZombiePropEntity zombiePropEntity2 = null;

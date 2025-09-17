@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.metall
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.day.potatomine.PotatomineEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.gravebuster.GravebusterEntity;
@@ -133,7 +134,7 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoEnti
 			this.setVelocity(0, -1, 0);
 		}
 		this.getNavigation().stop();
-		if (this.hasStatusEffect(DISABLE)) {
+		if (this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			this.getWorld().sendEntityStatus(this, (byte) 106);
 		}
 		if (this.hasPassengers() && this.getFirstPassenger() instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.getHypno()) {
@@ -175,9 +176,9 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoEnti
 			this.removeAllPassengers();
 		}
 		if (this.isOnGround() && this.getFirstPassenger() instanceof BassZombieEntity bassZombieEntity &&
-				(!bassZombieEntity.hasStatusEffect(FROZEN) && !bassZombieEntity.hasStatusEffect(STUN) && !bassZombieEntity.hasStatusEffect(DISABLE)) &&
+				(!bassZombieEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !bassZombieEntity.hasStatusEffect(StatusHolder.STUN_HOLDER) && !bassZombieEntity.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) &&
 				!this.beingEaten &&
-				(!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(STUN) && !this.hasStatusEffect(DISABLE))) {
+				(!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER))) {
 			if (--this.launchTicks <= 0) {
 				double time = 1;
 				Vec3d noZombie = new Vec3d((double) +1, 0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -205,7 +206,7 @@ public class SpeakerVehicleEntity extends ZombieVehicleEntity implements GeoEnti
 		}
 	}
 
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 1.00F;
 	}

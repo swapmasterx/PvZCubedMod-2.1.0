@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.pharaoh;
 
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
@@ -45,6 +46,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -415,7 +417,7 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 				if ((this.getVariant().equals(PharaohVariants.UNDYING) || this.getVariant().equals(PharaohVariants.UNDYINGHYPNO)) && sarcophagusEntity != null) {
 					for (int x = 0; x <= 5; ++x){
 						if ((this.CollidesWithPlant(x + 0.5f, 0f) != null)
-								&& !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+								&& !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 							this.setSummoning(IsSummoning.TRUE);
 						} else {
 							this.setSummoning(IsSummoning.FALSE);
@@ -439,7 +441,7 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 		else {
 			this.animationMultiplier = 1;
 		}
-		if (this.hasStatusEffect(FROZEN) || this.hasStatusEffect(PvZCubed.STUN) || this.hasStatusEffect(PvZCubed.DISABLE) || this.isFrozen || this.isStunned) {
+		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.STUN_HOLDER) || this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) || this.isFrozen || this.isStunned) {
 			this.summonTicks = 160 * animationMultiplier;
 			this.animationTicks = 0;
 		}
@@ -485,7 +487,7 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -523,16 +525,16 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 		EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
 		if (sarcophagusEntity == null &&
-				this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
-					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
-					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
-					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
+				this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED) &&
+					!this.hasStatusEffect(StatusHolder.ICE_HOLDER) && !this.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && !this.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.BARK_HOLDER) && !this.hasStatusEffect(StatusHolder.SHADOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER)) {
 			assert maxSpeedAttribute != null;
-			maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
+			maxSpeedAttribute.removeModifier(Identifier.of("minecraft", "movement_speed"));
 			this.setRainbowTag(Rainbow.TRUE);
 			this.rainbowTicks = 30;
 		} else if (sarcophagusEntity != null) {
-			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+			if (!this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.08));
 			}
@@ -559,23 +561,21 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 	public static EntityAttributeModifier createSpeedModifier(double amount) {
 		return new EntityAttributeModifier(
-				MAX_SPEED_UUID,
-				MOD_ID,
+				Identifier.of("minecraft", "movement_speed"),
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) );
 		float f = 0.0F;
 
 		Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 		passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 		passenger.setBodyYaw(this.bodyYaw);
 	}
-	@Override
-	protected float method_52537(Entity entity) {
+		protected float method_52537(Entity entity) {
 		return 0.0F;
 	}
 
@@ -589,8 +589,8 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createUndyingPharaohAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
@@ -600,8 +600,8 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createPharaohAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.18D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
@@ -610,7 +610,7 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -698,10 +698,10 @@ public class PharaohEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

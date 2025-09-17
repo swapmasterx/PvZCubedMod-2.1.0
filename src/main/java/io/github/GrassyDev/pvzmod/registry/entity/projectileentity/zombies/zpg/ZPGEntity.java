@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.zpg;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -234,7 +235,7 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 					((LivingEntity) entity).removeStatusEffect(StatusHolder.FROZEN_HOLDER);
 					((LivingEntity) entity).removeStatusEffect(StatusHolder.ICE_HOLDER);
 					Vec3d vec3d = this.getPos();
-					List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+					List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 					Iterator var10 = list.iterator();
 					while (true) {
 						LivingEntity livingEntity;
@@ -328,7 +329,7 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 			if (!getWorld().isClient && !(entity instanceof PlantEntity plantEntity && plantEntity.getImmune()) && (entity instanceof GolemEntity || entity instanceof VillagerEntity || entity instanceof PlayerEntity) && !(entity instanceof PlantEntity plantEntity2 && (plantEntity2.getLowProfile() || PLANT_LOCATION.get(plantEntity2.getType()).orElse("normal").equals("flying"))) && !(entity.getVehicle() instanceof BubblePadEntity)) {
 				entity.playSound(PvZSounds.CHERRYBOMBEXPLOSIONEVENT, 0.2F, 1F);
 				entity.damage(getDamageSources().mobProjectile(this, (LivingEntity) this.getOwner()), damage);
-				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
+				List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBounds().expand(5.0));
 				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.remove(RemovalReason.DISCARDED);
 				Iterator var10 = list.iterator();
@@ -359,7 +360,7 @@ public class ZPGEntity extends PvZProjectileEntity implements GeoEntity {
 
         @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.FLAME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

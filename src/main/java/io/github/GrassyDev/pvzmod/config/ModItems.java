@@ -641,7 +641,7 @@ public class ModItems {
 	public static final BlockItem LEGENDARY_TILE = new BlockItem(ModBlocks.LEGENDARY_TILE, new Item.Settings());
 
     //Tools
-    public static ToolItem DAVES_SHOVEL = new PlantKillingShovel(PlantKillingMaterial.INSTANCE, 2, 0F, new Item.Settings().rarity(Rarity.EPIC));
+    public static ToolItem DAVES_SHOVEL = new PlantKillingShovel(PlantKillingMaterial.INSTANCE, 2000, 0F, new Item.Settings().rarity(Rarity.EPIC));
 
 	public static List<Item> SEED_PACKET_LIST = new ArrayList<>();
 	public static List<Item> NIGHT_SEED_LIST = new ArrayList<>();

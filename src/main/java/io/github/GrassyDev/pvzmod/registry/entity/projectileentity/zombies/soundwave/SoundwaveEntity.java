@@ -225,7 +225,7 @@ public class SoundwaveEntity extends PvZProjectileEntity implements GeoEntity {
 
     @Environment(EnvType.CLIENT)
     private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
+        ItemStack itemStack = this.getStack();
         return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.NOTE : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 

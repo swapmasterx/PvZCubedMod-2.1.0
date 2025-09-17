@@ -1,6 +1,6 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.oc.pumpkincar;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
@@ -165,7 +165,7 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoEntity {
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 0.00F;
 	}
@@ -181,8 +181,8 @@ public class PumpkinCarEntity extends ZombieVehicleEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createPumpkinCarAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.16D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)

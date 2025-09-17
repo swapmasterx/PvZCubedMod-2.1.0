@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieprops.metallico
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundEvent;
@@ -73,23 +74,23 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 	public void tick() {
 		super.tick();
 		if (this.getType().equals(PvZEntity.HEALSTATION)) {
-			if (--healTicks <= 0 && !this.hasStatusEffect(DISABLE)) {
+			if (--healTicks <= 0 && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 				this.healEntity();
 				this.healTicks = 20;
-				this.removeStatusEffect(ICE);
-				this.removeStatusEffect(WARM);
-				this.removeStatusEffect(BARK);
-				this.removeStatusEffect(CHEESE);
-				this.removeStatusEffect(GENERICSLOW);
-				this.removeStatusEffect(SHADOW);
-				this.removeStatusEffect(STUN);
-				this.removeStatusEffect(FROZEN);
-				this.removeStatusEffect(PVZPOISON);
-				this.removeStatusEffect(MARIGOLD);
+				this.removeStatusEffect(StatusHolder.ICE_HOLDER);
+				this.removeStatusEffect(StatusHolder.WARM_HOLDER);
+				this.removeStatusEffect(StatusHolder.BARK_HOLDER);
+				this.removeStatusEffect(StatusHolder.CHEESE_HOLDER);
+				this.removeStatusEffect(StatusHolder.GENERICSLOW_HOLDER);
+				this.removeStatusEffect(StatusHolder.SHADOW_HOLDER);
+				this.removeStatusEffect(StatusHolder.ACID_HOLDER);
+				this.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+				this.removeStatusEffect(StatusHolder.POISON_HOLDER);
+				this.removeStatusEffect(StatusHolder.MARIGOLD_HOLDER);
 				this.extinguish();
 				this.addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 100, 1)));
 			}
-			if (!this.hasStatusEffect(DISABLE)) {
+			if (!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 				for (int i = 0; i < 12; ++i) {
 					double d = this.random.nextDouble() / 10 * this.random.range(-1, 1);
 					double e = this.random.nextDouble() / 1200 * this.random.range(0, 1);
@@ -155,7 +156,7 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("obstacle.eating"));
 		}
 		else if (this.getType().equals(PvZEntity.HEALSTATION)){
-			if (this.hasStatusEffect(DISABLE)){
+			if (this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 				event.getController().setAnimation(RawAnimation.begin().thenLoop("healstation.disabled"));
 			}
 			else {
@@ -293,16 +294,16 @@ public class MetalObstacleEntity extends ZombieObstacleEntity implements GeoEnti
 				this.zombieList.remove(livingEntity);
 			}
 			if (livingEntity instanceof GeneralPvZombieEntity){
-				livingEntity.removeStatusEffect(ICE);
-				livingEntity.removeStatusEffect(WARM);
-				livingEntity.removeStatusEffect(BARK);
-				livingEntity.removeStatusEffect(CHEESE);
-				livingEntity.removeStatusEffect(GENERICSLOW);
-				livingEntity.removeStatusEffect(SHADOW);
-				livingEntity.removeStatusEffect(STUN);
-				livingEntity.removeStatusEffect(FROZEN);
-				livingEntity.removeStatusEffect(PVZPOISON);
-				livingEntity.removeStatusEffect(MARIGOLD);
+				this.removeStatusEffect(StatusHolder.ICE_HOLDER);
+				this.removeStatusEffect(StatusHolder.WARM_HOLDER);
+				this.removeStatusEffect(StatusHolder.BARK_HOLDER);
+				this.removeStatusEffect(StatusHolder.CHEESE_HOLDER);
+				this.removeStatusEffect(StatusHolder.GENERICSLOW_HOLDER);
+				this.removeStatusEffect(StatusHolder.SHADOW_HOLDER);
+				this.removeStatusEffect(StatusHolder.ACID_HOLDER);
+				this.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
+				this.removeStatusEffect(StatusHolder.POISON_HOLDER);
+				this.removeStatusEffect(StatusHolder.MARIGOLD_HOLDER);
 				livingEntity.extinguish();
 				livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, 100, 1)));
 			}

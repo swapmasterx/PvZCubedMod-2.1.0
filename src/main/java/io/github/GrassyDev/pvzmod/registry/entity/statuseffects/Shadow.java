@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.util.Identifier;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -18,8 +19,8 @@ public class Shadow extends StatusEffect {
                 0x3249B8); // color in RGB
 		final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.US_ASCII));
 		final UUID MAX_STRENGTH_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.US_ASCII));
-		addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, String.valueOf(MAX_SPEED_UUID), -0.115375, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-		addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, String.valueOf(MAX_STRENGTH_UUID), -0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        this.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, Identifier.of("minecraft", "movement_speed"), -0.115375, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        this.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE,  Identifier.of("minecraft", "attack_damage"), -0.25, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     // This method is called every tick to check whether it should apply the status effect or not
@@ -32,6 +33,7 @@ public class Shadow extends StatusEffect {
     // This method is called when it applies the status effect. We implement custom functionality here.
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        return true;
     }
 }

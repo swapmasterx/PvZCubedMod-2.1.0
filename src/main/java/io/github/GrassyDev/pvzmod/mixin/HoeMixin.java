@@ -24,15 +24,15 @@ import static io.github.GrassyDev.pvzmod.PvZCubed.PVZCONFIG;
 @Mixin(HoeItem.class)
 public abstract class HoeMixin {
 
-	@Inject(method = "useOnBlock", at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V"), locals = LocalCapture.CAPTURE_FAILSOFT)
-    public void pvzmod$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, BlockPos blockPos, Pair pair, Predicate predicate, Consumer consumer, PlayerEntity playerEntity) {
-		double random2 = Math.random();
-		if (random2 <= 0.2 && PVZCONFIG.nestedSpawns.hoeAlternative()) {
-			Item item2 = ModItems.PLANTFOOD_LIST.get(world.getRandom().nextInt(ModItems.PLANTFOOD_LIST.size()));
-			ItemEntity itemEntity = new ItemEntity(world, blockPos.getX(), blockPos.getY() + 1, blockPos.getZ(), item2.getDefaultStack());
-			itemEntity.setToDefaultPickupDelay();
-			world.spawnEntity(itemEntity);
-			context.getStack().damage(PVZCONFIG.nestedSpawns.hoeBreak(), playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
-		}
-    }
+//	@Inject(method = "useOnBlock", at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V"), locals = LocalCapture.CAPTURE_FAILSOFT)
+//    public void pvzmod$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, BlockPos blockPos, Pair pair, Predicate predicate, Consumer consumer, PlayerEntity playerEntity) {
+//		double random2 = Math.random();
+//		if (random2 <= 0.2 && PVZCONFIG.nestedSpawns.hoeAlternative()) {
+//			Item item2 = ModItems.PLANTFOOD_LIST.get(world.getRandom().nextInt(ModItems.PLANTFOOD_LIST.size()));
+//			ItemEntity itemEntity = new ItemEntity(world, blockPos.getX(), blockPos.getY() + 1, blockPos.getZ(), item2.getDefaultStack());
+//			itemEntity.setToDefaultPickupDelay();
+//			world.spawnEntity(itemEntity);
+//			context.getStack().damage(PVZCONFIG.nestedSpawns.hoeBreak(), playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
+//		}
+//    }
 }

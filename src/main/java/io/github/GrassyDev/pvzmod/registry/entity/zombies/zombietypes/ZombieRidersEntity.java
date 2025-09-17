@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
@@ -36,7 +37,7 @@ public abstract class ZombieRidersEntity extends PvZombieEntity{
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 					this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 					this.setTarget(CollidesWithPlant(0.1f, 0f));

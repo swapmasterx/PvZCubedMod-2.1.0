@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.cheesetile;
 
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -41,7 +42,7 @@ public class CheeseTile extends TileEntity {
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 							&& (generalPvZombieEntity.getHypno()))) {
 				if (!livingEntity.hasStatusEffect(StatusHolder.WARM_HOLDER) && !livingEntity.isOnFire() && !livingEntity.hasStatusEffect(StatusHolder.FROZEN_HOLDER)){
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.CHEESE, 20, 1)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.CHEESE_HOLDER, 20, 1)));
 				}
 			}
 		}

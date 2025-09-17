@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzgw.soldier;
 
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
@@ -384,24 +385,24 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 		}
 		if (this.getAttacking() == null && !(this.getHypno()) && !this.getWorld().isClient()){
 			for (float x = 0; x <= 4; ++x) {
-				if ((this.CollidesWithPlant(x, 0f) != null || this.hasStatusEffect(FROZEN)) && !this.hasStatusEffect(PvZCubed.BOUNCED) && this.getZPGStage() && !this.inLaunchAnimation && (canFly || this.hasStatusEffect(FROZEN))) {
+				if ((this.CollidesWithPlant(x, 0f) != null || this.hasStatusEffect(StatusHolder.FROZEN_HOLDER)) && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && this.getZPGStage() && !this.inLaunchAnimation && (canFly || this.hasStatusEffect(StatusHolder.FROZEN_HOLDER))) {
 					Vec3d vec3d = new Vec3d(1, 0.7, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 					this.getWorld().sendEntityStatus(this, (byte) 109);
 					this.setZPGStage(ZPGStage.NOZPG);
 					this.playSound(PvZSounds.SOLDIERJUMPEVENT, 0.75f, 1);
 					if (livingEntity != null){
-						livingEntity.removeStatusEffect(FROZEN);
+						livingEntity.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
 					}
-					this.removeStatusEffect(FROZEN);
+					this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 				}
-				else if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && this.getZPGStage() && !canFly) {
+				else if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && this.getZPGStage() && !canFly) {
 					this.inLaunchAnimation = true;
 					this.getWorld().sendEntityStatus(this, (byte) 113);
 				}
 			}
 			for (float x = 0; x <= 1; ++x) {
-				if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("flying")) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()) {
+				if (this.CollidesWithPlant(x, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && (PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(x, 0f).getType()).orElse("normal").equals("flying")) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()) {
 					Vec3d vec3d = new Vec3d(-0.175, -0.3, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 					this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 				}
@@ -410,7 +411,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (this.isOnGround() || this.isInsideWaterOrBubbleColumn())){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && (this.isOnGround() || this.isInsideWaterOrBubbleColumn())){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -436,14 +437,14 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) );
 		float f = 0.05F;
 
 		Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 		passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 		passenger.setBodyYaw(this.bodyYaw);
 	}
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 0.00F;
 	}
@@ -459,8 +460,8 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createSoldierAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.13D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -469,7 +470,7 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -556,10 +557,10 @@ public class SoldierEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

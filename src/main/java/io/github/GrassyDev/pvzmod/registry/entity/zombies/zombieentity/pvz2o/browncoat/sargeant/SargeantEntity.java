@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2o.browncoat.sargeant;
 
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
@@ -128,8 +129,8 @@ public class SargeantEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createSergeantAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 3.0D)
-				.add(ReachEntityAttributes.REACH, 3.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 3.0D)
+//				.add(ReachEntityAttributes.REACH, 3.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -138,8 +139,8 @@ public class SargeantEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createBookBurnerAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
+//				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
+//				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, PVZCONFIG.nestedZombieHealth.sargeantH());
 	}
@@ -147,7 +148,7 @@ public class SargeantEntity extends BrowncoatEntity {
 
 
 	public boolean tryAttack(Entity target) {
-		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation && this.getTarget() != null) {
+		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.inLaunchAnimation && this.getTarget() != null) {
 			return super.tryAttack(this.getTarget());
 		}
 		else {
@@ -173,7 +174,7 @@ public class SargeantEntity extends BrowncoatEntity {
 				}
 			}
 		}
-		if (launchAnimation == 29 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (launchAnimation == 29 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			if (this.getTarget() instanceof ZombiePropEntity zombiePropEntity && zombiePropEntity.hasVehicle()){
 				target = zombiePropEntity.getVehicle();
 			}
@@ -215,7 +216,7 @@ public class SargeantEntity extends BrowncoatEntity {
 			double random = Math.random();
 			for (int x = 0; x <= 10; ++x){
 				if ((this.CollidesWithPlant((float)x, 0f) != null)
-						&& !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+						&& !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 					if (random <= 0.0075 && this.hasPassengers() && getTarget() != null && !this.inLaunchAnimation) {
 						this.launchAnimation = 80 * animationMultiplier;
 						this.inLaunchAnimation = true;

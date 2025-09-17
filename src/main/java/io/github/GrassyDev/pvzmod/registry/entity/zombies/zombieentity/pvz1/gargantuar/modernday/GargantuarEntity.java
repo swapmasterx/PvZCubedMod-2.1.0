@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.gargantuar.modernday;
 
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -393,7 +394,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	//Smash
 	public boolean tryAttack(Entity target) {
 		if (!this.getPassengerList().contains(target)) {
-			if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation) {
+			if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.inLaunchAnimation) {
 				boolean bl = false;
 				if (this.firstAttack && this.animationTicksLeft <= 0 && this.squaredDistanceTo(target) < 36D) {
 					this.animationTicksLeft = 90 * animationMultiplier;
@@ -413,7 +414,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 				}
 				if (bl) {
 					target.damage(getDamageSources().mobAttack(this), 90);
-					this.applyDamageEffects(this, target);
+//					this.applyDamageEffects(this, target);
 					return true;
 				}
 			}
@@ -467,7 +468,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	//Launch Imp
 	public void tryLaunch(Entity target){
 		this.setImp();
-		if (this.getImpStage().equals(Boolean.TRUE) && launchAnimation == 20 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (this.getImpStage().equals(Boolean.TRUE) && launchAnimation == 20 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 			if (target != null){
 				double d = this.squaredDistanceTo(target);
 				float df = (float) d;
@@ -535,7 +536,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*TICKING*~//~*~/ **/
 
 	public void tick() {
-		if (!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(STUN)) {
+		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER)) {
 			if (this.getVariant().equals(GargantuarVariants.UNICORNGARGANTUAR) || this.getVariant().equals(GargantuarVariants.UNICORNGARGANTUARHYPNO)) {
 				for (int x = -2; x >= -9; --x) {
 					rainbowZombies(x);
@@ -564,7 +565,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 		}
 		super.tick();
 		if (this.getVariant().equals(GargantuarVariants.GARGOLITH) && this.getAttacking() == null && !(this.getHypno())){
-			if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+			if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -576,13 +577,13 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 			}
 		}
 		else if (!this.getVariant().equals(GargantuarVariants.GARGOLITH) && this.getAttacking() == null && !(this.getHypno())){
-			if (this.CollidesWithPlant(0f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+			if (this.CollidesWithPlant(0f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0f, 0f));
 				this.setStealthTag(Stealth.FALSE);
 			}
-			else if (this.CollidesWithPlant(1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+			else if (this.CollidesWithPlant(1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(1f, 0f));
@@ -634,9 +635,9 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 				}
 			}
 			if (this.animationTicksLeft == 40 * animationMultiplier && !inLaunchAnimation) {
-				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					this.playSound(PvZSounds.GARGANTUARSMASHEVENT, 1F, 1.0F);
-				} else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				} else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					getWorld().sendEntityStatus(this, (byte) 107);
 					this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 				}
@@ -703,14 +704,14 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
-		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) );
 		float f = 0.05F;
 
 		Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 		passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 		passenger.setBodyYaw(this.bodyYaw);
 	}
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 0.00F;
 	}
@@ -744,8 +745,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createGargantuarAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
-				.add(ReachEntityAttributes.REACH, 10.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+//				.add(ReachEntityAttributes.REACH, 10.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -754,8 +755,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createMummyGargantuarAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
-				.add(ReachEntityAttributes.REACH, 10.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+//				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -764,8 +765,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createDefensiveendAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
-				.add(ReachEntityAttributes.REACH, 10.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+//				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -774,8 +775,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createUnicornGargantuarAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
-				.add(ReachEntityAttributes.REACH, 10.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+//				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.17D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -784,8 +785,8 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createGargolithAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
-				.add(ReachEntityAttributes.REACH, 10.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 10.0D)
+//				.add(ReachEntityAttributes.REACH, 10.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.14D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 90.0D)
 				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -793,7 +794,7 @@ public class GargantuarEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.GARGANTUARMOANEVENT;
 		}
 		else {

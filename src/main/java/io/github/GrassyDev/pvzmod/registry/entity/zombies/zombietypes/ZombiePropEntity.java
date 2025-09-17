@@ -109,29 +109,29 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && this instanceof ZombieShieldEntity){
 			this.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.SHADOW) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, Objects.requireNonNull(this.getStatusEffect(PvZCubed.SHADOW)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.SHADOW)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.SHADOW_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.SHADOW_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.SHADOW_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.SHADOW_HOLDER)).getAmplifier())));
 		}
-		else if (this.hasStatusEffect(PvZCubed.SHADOW) && vehicle != null && !vehicle.hasStatusEffect(PvZCubed.SHADOW) && !(this instanceof ZombieShieldEntity)){
-			this.removeStatusEffect(PvZCubed.SHADOW);
+		else if (this.hasStatusEffect(StatusHolder.SHADOW_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.SHADOW_HOLDER) && !(this instanceof ZombieShieldEntity)){
+			this.removeStatusEffect(StatusHolder.SHADOW_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.BARK) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.BARK, Objects.requireNonNull(this.getStatusEffect(PvZCubed.BARK)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.BARK)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.BARK_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.BARK_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.BARK_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.BARK_HOLDER)).getAmplifier())));
 		}
-		else if (this.hasStatusEffect(PvZCubed.BARK) && vehicle != null && !vehicle.hasStatusEffect(PvZCubed.BARK) && !(this instanceof ZombieShieldEntity)){
-			this.removeStatusEffect(PvZCubed.BARK);
+		else if (this.hasStatusEffect(StatusHolder.BARK_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.BARK_HOLDER) && !(this instanceof ZombieShieldEntity)){
+			this.removeStatusEffect(StatusHolder.BARK_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.CHEESE) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.CHEESE, Objects.requireNonNull(this.getStatusEffect(PvZCubed.CHEESE)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.CHEESE)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.CHEESE_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.CHEESE_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.CHEESE_HOLDER)).getAmplifier())));
 		}
-		else if (this.hasStatusEffect(PvZCubed.CHEESE) && vehicle != null && !vehicle.hasStatusEffect(PvZCubed.CHEESE) && !(this instanceof ZombieShieldEntity)){
-			this.removeStatusEffect(PvZCubed.CHEESE);
+		else if (this.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && !(this instanceof ZombieShieldEntity)){
+			this.removeStatusEffect(StatusHolder.CHEESE_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.GENERICSLOW) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.GENERICSLOW, Objects.requireNonNull(this.getStatusEffect(PvZCubed.GENERICSLOW)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.GENERICSLOW)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.GENERICSLOW_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.GENERICSLOW_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.GENERICSLOW_HOLDER)).getAmplifier())));
 		}
-		else if (this.hasStatusEffect(PvZCubed.GENERICSLOW) && vehicle != null && !vehicle.hasStatusEffect(PvZCubed.GENERICSLOW) && !(this instanceof ZombieShieldEntity)){
-			this.removeStatusEffect(PvZCubed.GENERICSLOW);
+		else if (this.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) && !(this instanceof ZombieShieldEntity)){
+			this.removeStatusEffect(StatusHolder.GENERICSLOW_HOLDER);
 		}
 		if (this.hasStatusEffect(StatusHolder.WET_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
 			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.WET_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.WET_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.WET_HOLDER)).getAmplifier())));
@@ -140,23 +140,23 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 			this.removeStatusEffect(StatusHolder.WET_HOLDER);
 		}
 		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.removeStatusEffect(PvZCubed.STUN);
+			vehicle.removeStatusEffect(StatusHolder.STUN_HOLDER);
 			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.FROZEN_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.FROZEN_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.FROZEN_HOLDER)).getAmplifier())));
 		}
 		else if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !(this instanceof ZombieShieldEntity)){
 			this.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.STUN) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, Objects.requireNonNull(this.getStatusEffect(PvZCubed.STUN)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.STUN)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.STUN_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.STUN_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.STUN_HOLDER)).getAmplifier())));
 		}
-		else if (this.hasStatusEffect(PvZCubed.STUN) && vehicle != null && !vehicle.hasStatusEffect(PvZCubed.STUN) && !(this instanceof ZombieShieldEntity)){
-			this.removeStatusEffect(PvZCubed.STUN);
+		else if (this.hasStatusEffect(StatusHolder.STUN_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.STUN_HOLDER) && !(this instanceof ZombieShieldEntity)){
+			this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.DISABLE) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.DISABLE, Objects.requireNonNull(this.getStatusEffect(PvZCubed.DISABLE)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.DISABLE)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.DISABLE_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.DISABLE_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.DISABLE_HOLDER)).getAmplifier())));
 		}
-		else if (this.hasStatusEffect(PvZCubed.DISABLE) && vehicle != null && !vehicle.hasStatusEffect(PvZCubed.DISABLE) && !(this instanceof ZombieShieldEntity)){
-			this.removeStatusEffect(PvZCubed.DISABLE);
+		else if (this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !(this instanceof ZombieShieldEntity)){
+			this.removeStatusEffect(StatusHolder.DISABLE_HOLDER);
 		}
 		if (this.hasStatusEffect(StatusHolder.WARM_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
 			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.WARM_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.WARM_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.WARM_HOLDER)).getAmplifier())));
@@ -164,10 +164,10 @@ public class ZombiePropEntity extends GeneralPvZombieEntity implements Monster {
 		else if (this.hasStatusEffect(StatusHolder.WARM_HOLDER) && vehicle != null && !vehicle.hasStatusEffect(StatusHolder.WARM_HOLDER) && !(this instanceof ZombieShieldEntity)){
 			this.removeStatusEffect(StatusHolder.WARM_HOLDER);
 		}
-		if (this.hasStatusEffect(PvZCubed.PVZPOISON) && vehicle != null && !(this instanceof ZombieShieldEntity)){
-			vehicle.addStatusEffect((new StatusEffectInstance(PvZCubed.PVZPOISON, Objects.requireNonNull(this.getStatusEffect(PvZCubed.PVZPOISON)).getDuration(), Objects.requireNonNull(this.getStatusEffect(PvZCubed.PVZPOISON)).getAmplifier())));
+		if (this.hasStatusEffect(StatusHolder.POISON_HOLDER) && vehicle != null && !(this instanceof ZombieShieldEntity)){
+			vehicle.addStatusEffect((new StatusEffectInstance(StatusHolder.POISON_HOLDER, Objects.requireNonNull(this.getStatusEffect(StatusHolder.POISON_HOLDER)).getDuration(), Objects.requireNonNull(this.getStatusEffect(StatusHolder.POISON_HOLDER)).getAmplifier())));
 			if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("flesh")) && !(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant"))){
-				this.removeStatusEffect(PvZCubed.PVZPOISON);
+				this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 			}
 		}
 		if (this.hasStatusEffect(StatusEffects.POISON) && vehicle != null && !(this instanceof ZombieShieldEntity)){

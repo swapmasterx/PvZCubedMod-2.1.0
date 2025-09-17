@@ -4,6 +4,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.a
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.pvz1.night.gravebuster.GravebusterEntity;
@@ -58,13 +59,13 @@ public class ActionheroEntity extends BullyEntity implements GeoEntity {
         this.experiencePoints = 3;
 		this.getNavigation().setCanSwim(true);
 		this.speedSwitch = false;
-		this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.LAVA, -1.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.POWDER_SNOW, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.WATER_BORDER, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.WATER, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.LAVA, -1.0F);
+		this.addPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 8.0F);
+		this.addPathfindingPenalty(PathNodeType.POWDER_SNOW, 8.0F);
+		this.addPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
 	}
 
 		protected void initDataTracker(DataTracker.Builder builder) {
@@ -198,7 +199,7 @@ public class ActionheroEntity extends BullyEntity implements GeoEntity {
 	public void tick() {
 		super.tick();
 		if (this.getAttacking() == null && !(this.getHypno())){
-			if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && !(this.CollidesWithPlant(0.1f, 0f) instanceof LilyPadEntity) && this.getPoleStage() && !this.isFlying()){
+			if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && !(this.CollidesWithPlant(0.1f, 0f) instanceof LilyPadEntity) && this.getPoleStage() && !this.isFlying()){
 				this.riding = true;
 				this.getWorld().sendEntityStatus(this, (byte) 101);
 				this.ridingTicks = 160;
@@ -210,14 +211,14 @@ public class ActionheroEntity extends BullyEntity implements GeoEntity {
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
 				this.setStealthTag(Stealth.FALSE);
 			}
-			else if (this.CollidesWithPlant(0.1f, 0f) != null && this.riding && !this.hasStatusEffect(PvZCubed.BOUNCED) && (PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("maintarget") ||
+			else if (this.CollidesWithPlant(0.1f, 0f) != null && this.riding && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && (PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("maintarget") ||
 					PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("flying"))) {
 				this.setVelocity(0, -0.3, 0);
 				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
 				this.setStealthTag(Stealth.FALSE);
 			}
-			else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.riding && !this.hasStatusEffect(PvZCubed.BOUNCED) && !(this.CollidesWithPlant(0.1f, 0f) instanceof GravebusterEntity)){
+			else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.riding && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && !(this.CollidesWithPlant(0.1f, 0f) instanceof GravebusterEntity)){
 				this.setVelocity(0, -0.3, 0);
 				this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));

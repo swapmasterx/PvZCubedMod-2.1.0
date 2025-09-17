@@ -2,6 +2,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.environment.goldtile;
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
@@ -144,7 +145,7 @@ public class GoldTile extends TileEntity {
 
 	public void tickMovement() {
 		super.tickMovement();
-		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && this.powered && !this.hasStatusEffect(DISABLE)) {
+		if (!this.getWorld().isClient && this.isAlive() && --this.sunProducingTime <= 0 && !this.isInsideWaterOrBubbleColumn() && this.powered && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			if (--raycastDelay >= 0) {
 				this.produceSun();
 				raycastDelay = 60;

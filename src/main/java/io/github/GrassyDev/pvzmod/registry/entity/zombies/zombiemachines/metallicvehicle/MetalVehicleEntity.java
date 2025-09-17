@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombiemachines.metall
 
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.icetile.IceTile;
@@ -158,7 +159,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 					zombiePassenger = (GeneralPvZombieEntity) entity;
 				}
 			}
-			if (zombiePassenger == null && this.isAlive() && !this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(DISABLE)){
+			if (zombiePassenger == null && this.isAlive() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 				Vec3d vec3d2 = new Vec3d((double) 0.08, 0.0, 0).rotateY(-this.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				this.setVelocity(vec3d2);
 			}
@@ -181,7 +182,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 				projectileEntity.moreEntities.add(this);
 				projectileEntity.hitEntities();
 			}
-			if (age >= 150 && !this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(DISABLE)){
+			if (age >= 150 && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 				Vec3d vec3d2 = new Vec3d((double) -1, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				BlockPos blockPos = new BlockPos(Vec3i.ZERO.add ((int) (this.getX() + vec3d2.x), (int) (this.getY() + vec3d2.y), (int) (this.getZ() + vec3d2.z)));
 				if (getWorld().getBlockState(blockPos).isOf(Blocks.AIR) || getWorld().getBlockState(blockPos).isOf(Blocks.CAVE_AIR)){
@@ -288,7 +289,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (this.getType().equals(PvZEntity.BOBSLEDVEHICLE)) {
 			if (!this.isSliding()) {
-				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger) + passenger.getHeightOffset(passenger)));
+				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger) ));
 				Vec3d vec3d = new Vec3d((double) 1, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				if (this.getPassengerList().size() == 1) {
 					vec3d = new Vec3d((double) 0.3, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -322,7 +323,7 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 				passenger.setBodyYaw(this.bodyYaw);
 			}
 			else {
-				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger) + passenger.getHeightOffset(passenger)));
+				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger) ));
 				Vec3d vec3d = new Vec3d((double) 0, 0.0, 1).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				if (this.getPassengerList().size() == 1) {
 					vec3d = new Vec3d((double) 0, 0.0, 0.3).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -358,7 +359,6 @@ public class MetalVehicleEntity extends ZombieVehicleEntity implements GeoEntity
 		}
 	}
 
-	@Override
 	protected float method_52537(Entity entity) {
 		return 0.25F;
 	}

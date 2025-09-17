@@ -10,6 +10,7 @@ import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.lobbed
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.pierce.piercingpea.FirePiercePeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.flamingpea.ShootingFlamingPeaEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.plants.straight.plasmapea.ShootingPlasmaPeaEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombieObstacleEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
@@ -27,8 +28,6 @@ import net.minecraft.world.World;
 import java.util.Iterator;
 import java.util.List;
 
-import static io.github.GrassyDev.pvzmod.PvZCubed.BOUNCED;
-import static io.github.GrassyDev.pvzmod.PvZCubed.STUN;
 
 public class OilTile extends TileEntity {
 
@@ -65,12 +64,12 @@ public class OilTile extends TileEntity {
 					!(livingEntity instanceof ZombiePropEntity)) {
 				boolean isMachine = PvZCubed.IS_MACHINE.get(livingEntity.getType()).orElse(false);
 				if (!isMachine && !(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.isCovered())) {
-					if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.canSlide && !livingEntity.hasStatusEffect(BOUNCED)) {
+					if (livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity && generalPvZombieEntity.canSlide && !livingEntity.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 						Vec3d vec3d = new Vec3d((double) 1, -0.1, 0).rotateY(-livingEntity.getHeadYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 						livingEntity.setVelocity(0, 0, 0);
 
-						if (!generalPvZombieEntity.hasStatusEffect(STUN) && generalPvZombieEntity.oilTicks <= 0) {
-							generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.STUN, 100, 5)));
+						if (!generalPvZombieEntity.hasStatusEffect(StatusHolder.STUN_HOLDER) && generalPvZombieEntity.oilTicks <= 0) {
+							generalPvZombieEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.STUN_HOLDER, 100, 5)));
 							generalPvZombieEntity.oilTicks = 300;
 						}
 						livingEntity.setVelocity(vec3d.x, vec3d.y, vec3d.z);
@@ -154,7 +153,7 @@ public class OilTile extends TileEntity {
 			if (bl) {
 				FireTrailEntity tile = (FireTrailEntity) PvZEntity.FIRETRAIL.create(getWorld());
 				tile.refreshPositionAndAngles(blockPos.getX(), blockPos.getY() + 0.5f, blockPos.getZ(), 0, 0);
-				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null, (NbtCompound) null);
+				tile.initialize(serverWorld, getWorld().getLocalDifficulty(blockPos), SpawnReason.SPAWN_EGG, (EntityData) null);
 				tile.setHeadYaw(0);
 				serverWorld.spawnEntityAndPassengers(tile);
 				tile.ageMax = 300;

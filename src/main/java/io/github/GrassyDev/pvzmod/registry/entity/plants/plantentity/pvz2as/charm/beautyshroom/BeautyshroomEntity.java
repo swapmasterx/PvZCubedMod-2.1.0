@@ -49,7 +49,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import static io.github.GrassyDev.pvzmod.PvZCubed.DISABLE;
 public class BeautyshroomEntity extends PlantEntity implements GeoEntity {
 
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);

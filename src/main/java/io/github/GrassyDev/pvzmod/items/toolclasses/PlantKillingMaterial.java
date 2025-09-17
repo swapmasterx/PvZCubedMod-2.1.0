@@ -1,8 +1,10 @@
 package io.github.GrassyDev.pvzmod.items.toolclasses;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.tag.TagKey;
 
 public class PlantKillingMaterial implements ToolMaterial {
 
@@ -11,6 +13,11 @@ public class PlantKillingMaterial implements ToolMaterial {
     @Override
     public float getAttackDamage() {
         return 999.0f;
+    }
+
+    @Override
+    public TagKey<Block> getIncorrectForDropsBlocks() {
+        return null;
     }
 
     @Override
@@ -23,7 +30,7 @@ public class PlantKillingMaterial implements ToolMaterial {
         return 1.0F;
     }
 
-    @Override
+
     public int getMiningLevel() {
         return 0;
     }

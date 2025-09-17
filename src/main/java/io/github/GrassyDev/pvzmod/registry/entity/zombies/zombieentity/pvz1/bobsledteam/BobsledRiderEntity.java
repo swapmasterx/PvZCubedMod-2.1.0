@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.bobsledteam;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
@@ -275,7 +276,7 @@ public class BobsledRiderEntity extends ZombieRidersEntity implements GeoEntity 
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -313,8 +314,8 @@ public class BobsledRiderEntity extends ZombieRidersEntity implements GeoEntity 
 
 	public static DefaultAttributeContainer.Builder createBobsledAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -322,7 +323,7 @@ public class BobsledRiderEntity extends ZombieRidersEntity implements GeoEntity 
     }
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -405,10 +406,10 @@ public class BobsledRiderEntity extends ZombieRidersEntity implements GeoEntity 
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

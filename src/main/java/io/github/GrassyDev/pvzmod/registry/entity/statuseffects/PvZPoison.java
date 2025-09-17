@@ -21,7 +21,8 @@ public class PvZPoison extends StatusEffect {
     // This method is called when it applies the status effect. We implement custom functionality here.
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		entity.damage(entity.getDamageSources().generic(), 1.5F);
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+		entity.damage(entity.getDamageSources().generic(), 1F);
+        return true;
     }
 }

@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.oc.bully.basic;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.sound.SoundEvent;
@@ -46,6 +47,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -75,7 +77,8 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
     private String controllerName = "walkingcontroller";
 
 	public boolean speedSwitch;
-	public static final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
+	public static final Identifier MAX_SPEED_UUID = Identifier.of("minecraft",
+			"movement_speed");
 
 	public BullyEntity(EntityType<? extends BullyEntity> entityType, World world) {
         super(entityType, world);
@@ -83,13 +86,13 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
         this.experiencePoints = 3;
 		this.getNavigation().setCanSwim(true);
 		this.speedSwitch = false;
-		this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.LAVA, -1.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.POWDER_SNOW, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.WATER_BORDER, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.WATER, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.LAVA, -1.0F);
+		this.addPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 8.0F);
+		this.addPathfindingPenalty(PathNodeType.POWDER_SNOW, 8.0F);
+		this.addPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
 	}
 
 		protected void initDataTracker(DataTracker.Builder builder) {
@@ -279,9 +282,9 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*TICKING*~//~*~/ **/
 
 	public void tick() {
-		this.removeStatusEffect(STUN);
+		this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 		super.tick();
-		this.removeStatusEffect(STUN);
+		this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 		var zombieObstacleEntity = this.getPassengerList()
 				.stream()
 				.filter(e -> e instanceof ZombieObstacleEntity)
@@ -292,7 +295,7 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && !(this.CollidesWithPlant(0.1f, 0f) instanceof GravebusterEntity)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && !(this.CollidesWithPlant(0.1f, 0f) instanceof GravebusterEntity)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -322,14 +325,14 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 
 		EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
 		if (zombieObstacleEntity.isEmpty() &&
-				this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
-					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
-					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
-					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
+				this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED) &&
+					!this.hasStatusEffect(StatusHolder.ICE_HOLDER) && !this.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && !this.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.BARK_HOLDER) && !this.hasStatusEffect(StatusHolder.SHADOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER)) {
 			assert maxSpeedAttribute != null;
 			maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 		} else if (zombieObstacleEntity.isPresent()) {
-			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+			if (!this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.06));
 			}
@@ -342,7 +345,7 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 		if (this.getVariant().equals(BullyVariants.BASKET) ||
 				this.getVariant().equals(BullyVariants.BASKETHYPNO)) {
 			if (this.hasPassenger(passenger)) {
-				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+				float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) );
 				float f = 0.9F;
 
 				Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -368,13 +371,12 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 	public static EntityAttributeModifier createSpeedModifier(double amount) {
 		return new EntityAttributeModifier(
 				MAX_SPEED_UUID,
-				MOD_ID,
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 0.00F;
 	}
@@ -391,8 +393,8 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 	public static DefaultAttributeContainer.Builder createBullyAttributes() {
         return HostileEntity.createAttributes()
 			.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 			.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.115D)
 			.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
 			.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -400,7 +402,7 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
     }
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -493,10 +495,10 @@ public class BullyEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

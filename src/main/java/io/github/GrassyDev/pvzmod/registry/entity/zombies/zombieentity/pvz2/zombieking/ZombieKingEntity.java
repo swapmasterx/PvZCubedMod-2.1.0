@@ -362,10 +362,10 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 		if (--spawningTicks <= 0){
 			--convertTicks;
 		}
-		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PeasantEntity peasantEntity && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PeasantEntity peasantEntity && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 			this.upgradeKnight(peasantEntity);
 		}
-		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PokerEntity pokerEntity && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (convertTicks == 25 * animationMultiplier && this.getTarget() instanceof PokerEntity pokerEntity && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 			double random2 = Math.random();
 			if (this.getColor().equals(ZombieKingVariants.RED)){
 				if (random2 <= 0.5) {
@@ -391,13 +391,13 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 				pokerEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 			}
 		}
-		if (convertTicks <= 0 && this.getTarget() instanceof PeasantEntity peasantEntity && random <= 0.01 && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (convertTicks <= 0 && this.getTarget() instanceof PeasantEntity peasantEntity && random <= 0.01 && (peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOAT) || peasantEntity.getVariant().equals(BrowncoatVariants.BROWNCOATHYPNO)) && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			this.convertTicks = 45 * animationMultiplier;
 		}
-		if (convertTicks <= 0 && this.getTarget() instanceof PokerEntity && random <= 0.01 && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (convertTicks <= 0 && this.getTarget() instanceof PokerEntity && random <= 0.01 && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			this.convertTicks = 45 * animationMultiplier;
 		}
-		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(PvZCubed.STUN) || this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.STUN_HOLDER) || this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 			this.convertTicks = 0;
 		}
 	}
@@ -442,7 +442,7 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
 
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 0.00F;
 	}
@@ -465,7 +465,7 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
     }
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -553,10 +553,10 @@ public class ZombieKingEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

@@ -3,6 +3,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.gravestones;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.garden.GardenEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
@@ -149,7 +150,7 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 				this.setUnlockSpecial(UnlockSpecial.TRUE);
 			}
 		}
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+		return super.initialize(world, difficulty, spawnReason, entityData);
 	}
 
 	private int getTypeVariant() {
@@ -454,8 +455,8 @@ public abstract class GraveEntity extends PathAwareEntity implements Monster {
 				this.setTarget(this.getClosestGarden(checkGarden(this.getPos(), serverWorldAccess), TargetPredicate.DEFAULT, this, this.getX(), this.getY(), this.getZ()));
 			}
 		}
-		if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("flesh")) && !(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant")) && (this.hasStatusEffect(PVZPOISON) || this.hasStatusEffect(StatusEffects.POISON))){
-			this.removeStatusEffect(PVZPOISON);
+		if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("flesh")) && !(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant")) && (this.hasStatusEffect(StatusHolder.POISON_HOLDER) || this.hasStatusEffect(StatusEffects.POISON))){
+			this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 			this.removeStatusEffect(StatusEffects.POISON);
 		}
 		super.tick();

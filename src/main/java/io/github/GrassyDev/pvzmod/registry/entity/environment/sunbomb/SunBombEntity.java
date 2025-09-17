@@ -217,7 +217,7 @@ public class SunBombEntity extends PathAwareEntity implements GeoAnimatable {
 	 * /~*~//~*ATTRIBUTES*~//~*~/
 	 **/
 
-	@Override
+
 	public boolean canBeLeashedBy(PlayerEntity player) {
 		return false;
 	}

@@ -37,7 +37,7 @@ public class MissileToeTargetItem extends SeedItem implements FabricItem {
 		targetID = 0;
     }
 
-	@Override
+
 	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return false;
 	}

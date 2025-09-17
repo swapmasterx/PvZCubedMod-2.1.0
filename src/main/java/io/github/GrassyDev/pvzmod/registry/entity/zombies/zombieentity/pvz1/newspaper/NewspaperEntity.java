@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.newspaper;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
@@ -48,6 +49,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -78,8 +80,10 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
     private String controllerName = "walkingcontroller";
 	private boolean speedUp;
 	public boolean speedSwitch;
-	public static final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
-	public static final UUID MAX_STRENGTH_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
+	public static final Identifier MAX_SPEED_UUID = Identifier.of("minecraft",
+			"attack_damage");
+	public static final Identifier MAX_STRENGTH_UUID = Identifier.of("minecraft",
+			"movement_speed");
 
 
 	public NewspaperEntity(EntityType<? extends NewspaperEntity> entityType, World world) {
@@ -327,7 +331,7 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -385,7 +389,7 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater){
 		if (this.hasPassenger(passenger)) {
-			float g = (float)((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+			float g = (float)((this.isRemoved() ? 0.01F : this.method_52537(passenger)) );
 			float f = 0.6F;
 
 			Vec3d vec3d = new Vec3d((double)f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -406,8 +410,7 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	@Override
-	protected float method_52537(Entity entity) {
+		protected float method_52537(Entity entity) {
 		return 0.0F;
 	}
 
@@ -422,25 +425,23 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 	public static EntityAttributeModifier createSpeedModifier(double amount) {
 		return new EntityAttributeModifier(
 				MAX_SPEED_UUID,
-				MOD_ID,
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 
 	public static EntityAttributeModifier createStrengthModifier(double amount) {
 		return new EntityAttributeModifier(
 				MAX_STRENGTH_UUID,
-				MOD_ID,
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 
 	public static DefaultAttributeContainer.Builder createNewspaperAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.22D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
@@ -450,8 +451,8 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createSundayEditionAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.27D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D)
@@ -460,7 +461,7 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -548,10 +549,10 @@ public class NewspaperEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

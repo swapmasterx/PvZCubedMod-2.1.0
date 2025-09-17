@@ -12,7 +12,7 @@ import software.bernie.geckolib.util.RenderUtil;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class PiercePeaEntityRenderer extends GeoEntityRenderer<PiercePeaEntity> {
-	@Override
+
 	public void preRender(MatrixStack poseStack, PiercePeaEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
 		RenderUtil.faceRotation(poseStack, animatable, partialTick);

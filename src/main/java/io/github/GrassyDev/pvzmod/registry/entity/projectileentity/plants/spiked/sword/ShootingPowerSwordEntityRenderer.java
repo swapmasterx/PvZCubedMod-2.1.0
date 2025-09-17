@@ -11,7 +11,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.util.RenderUtil;
 
 public class ShootingPowerSwordEntityRenderer extends GeoEntityRenderer <ShootingPowerSwordEntity>{
-	@Override
+
 	public void preRender(MatrixStack poseStack, ShootingPowerSwordEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue,
 						  float alpha) {
 		RenderUtil.faceRotation(poseStack, animatable, partialTick);

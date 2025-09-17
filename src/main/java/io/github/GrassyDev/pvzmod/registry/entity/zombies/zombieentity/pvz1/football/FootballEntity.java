@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.football;
 
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
@@ -52,6 +53,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -84,8 +86,8 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 
 
 	public boolean speedSwitch;
-
-	public static final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
+	public static final Identifier MAX_SPEED_UUID = Identifier.of("minecraft",
+			"movement_speed");
 
     public FootballEntity(EntityType<? extends FootballEntity> entityType, World world) {
         super(entityType, world);
@@ -93,13 +95,13 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
         this.experiencePoints = 12;
 		this.getNavigation().setCanSwim(true);
 		this.speedSwitch = false;
-		this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.LAVA, -1.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.POWDER_SNOW, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.WATER_BORDER, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.WATER, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.LAVA, -1.0F);
+		this.addPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 8.0F);
+		this.addPathfindingPenalty(PathNodeType.POWDER_SNOW, 8.0F);
+		this.addPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
+		this.addPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
     }
 
 		protected void initDataTracker(DataTracker.Builder builder) {
@@ -355,7 +357,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 		if (this.getTarget() != null &&
 				(!(PLANT_LOCATION.get(this.getTarget().getType()).orElse("normal").equals("ground")) && !(this.getTarget() instanceof PlantEntity plantEntity && plantEntity.getLowProfile()) && !(PLANT_LOCATION.get(this.getTarget().getType()).orElse("normal").equals("flying"))) && !((LivingEntity) target).hasStatusEffect(StatusEffects.RESISTANCE)) {
 			if (!(this.getPassengerList().contains(target))) {
-				if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					if (this.getTackleStage() && !this.isInsideWaterOrBubbleColumn()) {
 						if (i <= 0) {
 							this.attackTicksLeft = 20;
@@ -366,9 +368,9 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 								f = 25;
 							}
 							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
-							if (bl) {
-								this.applyDamageEffects(this, target);
-							}
+//							if (bl) {
+//								this.applyDamageEffects(this, target);
+//							}
 							this.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, 1F, 1.0F);
 							this.setTackleStage(TackleStage.EATING);
 							return bl;
@@ -381,10 +383,10 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 							this.attackTicksLeft = 20;
 							float f = this.getAttackDamage();
 							boolean bl = target.damage(getDamageSources().mobAttack(this), f);
-							if (bl && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+							if (bl && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 								target.playSound(PvZSounds.ZOMBIEBITEEVENT, 0.75f, 1f);
 								this.setStealthTag(Stealth.FALSE);
-								this.applyDamageEffects(this, target);
+//								this.applyDamageEffects(this, target);
 							}
 							if (target instanceof HypnoshroomEntity hypnoshroomEntity && !hypnoshroomEntity.getIsAsleep()){
 								hypnoshroomEntity.damage(getDamageSources().mobAttack(this), hypnoshroomEntity.getMaxHealth() * 5);
@@ -414,7 +416,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 		super.tick();
 		if (this.getAttacking() == null && !(this.getHypno())){
 			LivingEntity zombie = this.CollidesWithZombie(1f);
-			if (this.CollidesWithZombie(1f) instanceof SuperFanImpEntity superFanImpEntity && superFanImpEntity.CollidesWithPlant(1f, 0f) == null && superFanImpEntity.isOnGround() && !this.hasStatusEffect(PvZCubed.BOUNCED) && this.getTackleStage()){
+			if (this.CollidesWithZombie(1f) instanceof SuperFanImpEntity superFanImpEntity && superFanImpEntity.CollidesWithPlant(1f, 0f) == null && superFanImpEntity.isOnGround() && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && this.getTackleStage()){
 				this.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, 1F, 1.0F);
 				if (this.getVariant().equals(FootballVariants.DEFAULT) || this.getVariant().equals(FootballVariants.FOOTBALLHYPNO)) {
 					this.setTackleStage(TackleStage.EATING);
@@ -422,7 +424,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 				Vec3d vec3d = new Vec3d(1.25, 0.8, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				superFanImpEntity.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			}
-			else if (zombie instanceof GeneralPvZombieEntity generalPvZombieEntity && ZOMBIE_SIZE.get(generalPvZombieEntity.getType()).orElse("medium").equals("small") && generalPvZombieEntity.CollidesWithPlant(1f, 0f) == null && generalPvZombieEntity.isOnGround() && !this.hasStatusEffect(PvZCubed.BOUNCED) && this.getTackleStage()) {
+			else if (zombie instanceof GeneralPvZombieEntity generalPvZombieEntity && ZOMBIE_SIZE.get(generalPvZombieEntity.getType()).orElse("medium").equals("small") && generalPvZombieEntity.CollidesWithPlant(1f, 0f) == null && generalPvZombieEntity.isOnGround() && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && this.getTackleStage()) {
 				if (this.getVariant().equals(FootballVariants.BERSERKERHYPNO) || this.getVariant().equals(FootballVariants.BERSERKER)) {
 					this.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, 1F, 1.0F);
 					Vec3d vec3d = new Vec3d(1.25, 0.8, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
@@ -433,7 +435,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -469,14 +471,14 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 		if (this.getVariant().equals(FootballVariants.BERSERKER) ||
 				this.getVariant().equals(FootballVariants.BERSERKERHYPNO) ) {
 			EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-			if (this.getTackleStage() &&this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
-					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
-					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
-					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
+			if (this.getTackleStage() &&this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED) &&
+					!this.hasStatusEffect(StatusHolder.ICE_HOLDER) && !this.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && !this.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.BARK_HOLDER) && !this.hasStatusEffect(StatusHolder.SHADOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 			} else if (!this.getTackleStage()) {
-				if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+				if (!this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)) {
 					assert maxSpeedAttribute != null;
 					maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.09));
 				}
@@ -497,14 +499,13 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 	@Override
 	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater) {
-		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) + passenger.getHeightOffset(passenger));
+		float g = (float) ((this.isRemoved() ? 0.01F : this.method_52537(passenger)) );
 		float f = 0.00F;
 		Vec3d vec3d = new Vec3d((double) f, 0.0, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 		passenger.setPosition(this.getX() + vec3d.x, this.getY() + (double) g, this.getZ() + vec3d.z);
 		passenger.setBodyYaw(this.bodyYaw);
 	}
-	@Override
-	protected float method_52537(Entity entity) {
+		protected float method_52537(Entity entity) {
 		return 0.0F;
 	}
 
@@ -519,16 +520,15 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	public static EntityAttributeModifier createSpeedModifier(double amount) {
 		return new EntityAttributeModifier(
 				MAX_SPEED_UUID,
-				MOD_ID,
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 
 	public static DefaultAttributeContainer.Builder createFootballAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -538,8 +538,8 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createBerserkerAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.22D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -548,7 +548,7 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -640,10 +640,10 @@ public class FootballEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

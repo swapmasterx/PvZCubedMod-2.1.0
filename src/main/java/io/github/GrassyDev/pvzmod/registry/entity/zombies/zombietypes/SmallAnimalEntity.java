@@ -4,6 +4,7 @@ import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.miscentity.gardenchallenge.GardenChallengeEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.plants.plantentity.PlantEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
@@ -52,7 +53,7 @@ public abstract class SmallAnimalEntity extends PvZombieEntity implements GeoEnt
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				if (this.isOnGround() || this.isInsideWaterOrBubbleColumn()){
 					this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
@@ -72,7 +73,7 @@ public abstract class SmallAnimalEntity extends PvZombieEntity implements GeoEnt
 				list1.add(plantEntity);
 			}
 		}
-		if (!list1.isEmpty() && !this.hasStatusEffect(PvZCubed.BOUNCED) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
+		if (!list1.isEmpty() && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
 			this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 			this.setTarget(list1.get(0));

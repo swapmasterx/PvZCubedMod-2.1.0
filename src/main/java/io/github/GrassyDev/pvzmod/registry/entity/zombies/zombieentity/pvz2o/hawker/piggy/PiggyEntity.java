@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2o.hawker.piggy;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.sound.SoundEvent;
@@ -243,7 +244,7 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	@Override
+
 	protected float method_52537(Entity entity) {
 		return 1.00F;
 	}
@@ -259,8 +260,8 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 
 	public static DefaultAttributeContainer.Builder createZombiePiggyAttributes() {
         return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.0D)
-				.add(ReachEntityAttributes.REACH, 1.0D)
+//				.add(ReachEntityAttributes.ATTACK_RANGE, 1.0D)
+//				.add(ReachEntityAttributes.REACH, 1.0D)
 
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -284,7 +285,7 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return SoundEvents.ENTITY_PIGLIN_AMBIENT;
 		}
 		else {
@@ -369,10 +370,10 @@ public class PiggyEntity extends SmallAnimalEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

@@ -1,10 +1,11 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz2.browncoat.mummy;
 
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.projectileentity.zombies.bone.BoneProjEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.zombies.BrowncoatVariants;
@@ -140,8 +141,8 @@ public class MummyEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createMummyAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -151,8 +152,8 @@ public class MummyEntity extends BrowncoatEntity {
 
 	public static DefaultAttributeContainer.Builder createTombRaiserAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -163,7 +164,7 @@ public class MummyEntity extends BrowncoatEntity {
 
 
 	public boolean tryAttack(Entity target) {
-		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation && this.getTarget() != null) {
+		if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.inLaunchAnimation && this.getTarget() != null) {
 			return super.tryAttack(this.getTarget());
 		}
 		else {
@@ -175,7 +176,7 @@ public class MummyEntity extends BrowncoatEntity {
 	public void tryLaunch(Vec3d location) {
 		BoneProjEntity boneProj = new BoneProjEntity(PvZEntity.BONEPROJ, this.getWorld());
 		List<LivingEntity> list = getWorld().getNonSpectatingEntities(LivingEntity.class, PvZEntity.PEASHOOTER.getDimensions().getBoxAt(this.getPos()).expand(this.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE) + 1));
-		if (launchAnimation == 10 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (launchAnimation == 10 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			double d = this.squaredDistanceTo(location);
 			float df = (float) d;
 			float h = MathHelper.sqrt(MathHelper.sqrt(df)) * 0.5F;
@@ -195,11 +196,11 @@ public class MummyEntity extends BrowncoatEntity {
 
 	protected void mobTick() {
 		super.mobTick();
-		if (this.getVariant().equals(BrowncoatVariants.TOMB) && !this.getHypno() && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (this.getVariant().equals(BrowncoatVariants.TOMB) && !this.getHypno() && !this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			double random = Math.random();
 			for (int x = 0; x <= 15; ++x){
 				if ((this.CollidesWithPlant((float)x, 0f) != null)
-						&& !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+						&& !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 					if (random <= 0.0075 && getTarget() != null && !this.inLaunchAnimation) {
 						this.playSound(PvZSounds.TOMBRAISERLICKEVENT);
 						this.launchAnimation = 40 * animationMultiplier;

@@ -4,6 +4,7 @@ import blue.endless.jankson.annotation.Nullable;
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.TileEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.registry.entity.variants.plants.PeapodCountVariants;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.GeneralPvZombieEntity;
 import io.github.GrassyDev.pvzmod.registry.entity.zombies.zombietypes.ZombiePropEntity;
@@ -60,7 +61,7 @@ public class MariTile extends TileEntity {
 								 SpawnReason spawnReason, @Nullable EntityData entityData,
 								 @Nullable NbtCompound entityNbt) {
 
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+		return super.initialize(world, difficulty, spawnReason, entityData);
 	}
 
 	private int getTypeCount() {
@@ -129,38 +130,38 @@ public class MariTile extends TileEntity {
 					!(livingEntity instanceof GeneralPvZombieEntity generalPvZombieEntity
 							&& (generalPvZombieEntity.getHypno()))) && !checkList.contains(livingEntity) && !(livingEntity instanceof ZombiePropEntity) && livingEntity.isAlive()) {
 				if (this.getShadowPowered()){
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 200, 1)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.SHADOW_HOLDER, 200, 1)));
 				}
-				else if (livingEntity.hasStatusEffect(PvZCubed.MARIGOLD)){
+				else if (livingEntity.hasStatusEffect(StatusHolder.MARIGOLD_HOLDER)){
 					livingEntity.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 				}
 				else {
-					livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.MARIGOLD, 200, 1)));
+					livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.MARIGOLD_HOLDER, 200, 1)));
 				}
 				checkList.add(livingEntity);
 				for (Entity entity : getPassengerList()){
 					if (entity instanceof LivingEntity livingEntity1){
 						if (this.getShadowPowered()){
-							livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 200, 1)));
+							livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.SHADOW_HOLDER, 200, 1)));
 						}
-						else if (livingEntity1.hasStatusEffect(PvZCubed.MARIGOLD)) {
+						else if (livingEntity1.hasStatusEffect(StatusHolder.MARIGOLD_HOLDER)) {
 							livingEntity1.damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 						}
 						else {
-							livingEntity1.addStatusEffect((new StatusEffectInstance(PvZCubed.MARIGOLD, 200, 1)));
+							livingEntity1.addStatusEffect((new StatusEffectInstance(StatusHolder.MARIGOLD_HOLDER, 200, 1)));
 						}
 						checkList.add(livingEntity1);
 					}
 				}
 				if (livingEntity.hasVehicle()){
 					if (this.getShadowPowered()){
-						livingEntity.addStatusEffect((new StatusEffectInstance(PvZCubed.SHADOW, 200, 1)));
+						livingEntity.addStatusEffect((new StatusEffectInstance(StatusHolder.SHADOW_HOLDER, 200, 1)));
 					}
-					else if (((LivingEntity) livingEntity.getVehicle()).hasStatusEffect(PvZCubed.MARIGOLD)){
+					else if (((LivingEntity) livingEntity.getVehicle()).hasStatusEffect(StatusHolder.MARIGOLD_HOLDER)){
 						livingEntity.getVehicle().damage(PvZDamageTypes.of(getWorld(), PvZDamageTypes.HYPNO_DAMAGE), 0f);
 					}
 					else {
-						((LivingEntity) livingEntity.getVehicle()).addStatusEffect((new StatusEffectInstance(PvZCubed.MARIGOLD, 200, 1)));
+						((LivingEntity) livingEntity.getVehicle()).addStatusEffect((new StatusEffectInstance(StatusHolder.MARIGOLD_HOLDER, 200, 1)));
 					}
 					checkList.add((LivingEntity) livingEntity.getVehicle());
 				}

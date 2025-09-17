@@ -1,9 +1,10 @@
 package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvz1.polevaulting;
 
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.damage.PvZDamageTypes;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
@@ -46,6 +47,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -75,7 +77,8 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 	public boolean firstAttack;
 
 	public boolean speedSwitch;
-	public static final UUID MAX_SPEED_UUID = UUID.nameUUIDFromBytes(MOD_ID.getBytes(StandardCharsets.UTF_8));
+	public static final Identifier MAX_SPEED_UUID = Identifier.of("minecraft",
+			"movement_speed");
 	private String controllerName = "runningcontroller";
 
 
@@ -293,7 +296,7 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && !(this.CollidesWithPlant(0.1f, 0f) instanceof LilyPadEntity) && this.getPoleStage() && this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && !(this.CollidesWithPlant(0.1f, 0f) instanceof LilyPadEntity) && this.getPoleStage() && this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
 				Vec3d vec3d = new Vec3d(0.4, 0.8, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 				this.setPoleStage(PoleStage.NOPOLE);
@@ -303,7 +306,7 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && (PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("flying")) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && (PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("tall") || PLANT_LOCATION.get(this.CollidesWithPlant(0.1f, 0f).getType()).orElse("normal").equals("flying")) && !this.isOnGround() && !this.isInsideWaterOrBubbleColumn()){
 				Vec3d vec3d = new Vec3d(-0.175, -0.3, 0.0).rotateY(-this.getYaw() * (float) (Math.PI / 180.0) - ((float) (Math.PI / 2)));
 				this.addVelocity(vec3d.getX(), vec3d.getY(), vec3d.getZ());
 			}
@@ -311,7 +314,7 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 					this.setTarget(CollidesWithPlant(0.1f, 0f));
 					this.setStealthTag(Stealth.FALSE);
 				}
-				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED) && ((this.isOnGround() && !this.getPoleStage()) || this.isInsideWaterOrBubbleColumn())){
+				else if (this.CollidesWithPlant(0.1f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && ((this.isOnGround() && !this.getPoleStage()) || this.isInsideWaterOrBubbleColumn())){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0.1f, 0f));
@@ -329,14 +332,14 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 
 		EntityAttributeInstance maxSpeedAttribute = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
 		if (this.getPoleStage() &&
-				this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID) &&
-					!this.hasStatusEffect(ICE) && !this.hasStatusEffect(CHEESE) && !this.hasStatusEffect(GENERICSLOW) &&
-					!this.hasStatusEffect(FROZEN) && !this.hasStatusEffect(BARK) && !this.hasStatusEffect(SHADOW) &&
-					!this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(STUN)) {
+				this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED) &&
+					!this.hasStatusEffect(StatusHolder.ICE_HOLDER) && !this.hasStatusEffect(StatusHolder.CHEESE_HOLDER) && !this.hasStatusEffect(StatusHolder.GENERICSLOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.BARK_HOLDER) && !this.hasStatusEffect(StatusHolder.SHADOW_HOLDER) &&
+					!this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER)) {
 			assert maxSpeedAttribute != null;
 			maxSpeedAttribute.removeModifier(MAX_SPEED_UUID);
 		} else if (!this.getPoleStage()) {
-			if (!this.getAttributes().hasModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, MAX_SPEED_UUID)) {
+			if (!this.getAttributes().hasAttribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)) {
 				assert maxSpeedAttribute != null;
 				maxSpeedAttribute.addPersistentModifier(createSpeedModifier(-0.08));
 			}
@@ -355,8 +358,7 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	@Override
-	protected float method_52537(Entity entity) {
+		protected float method_52537(Entity entity) {
 		return 0.0F;
 	}
 
@@ -371,16 +373,15 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 	public static EntityAttributeModifier createSpeedModifier(double amount) {
 		return new EntityAttributeModifier(
 				MAX_SPEED_UUID,
-				MOD_ID,
 				amount,
-				EntityAttributeModifier.Operation.ADDITION
+				EntityAttributeModifier.Operation.ADD_VALUE
 		);
 	}
 
 	public static DefaultAttributeContainer.Builder createPoleVaultingAttributes() {
 		return HostileEntity.createAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 75.0D)
-				.add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
-				.add(ReachEntityAttributes.REACH, 1.5D)
+				// .add(ReachEntityAttributes.ATTACK_RANGE, 1.5D)
+//			.add(ReachEntityAttributes.REACH, 1.5D)
 
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D)
@@ -389,7 +390,7 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.PVZOMBIEMOANEVENT;
 		}
 		else {
@@ -478,10 +479,10 @@ public class PoleVaultingEntity extends PvZombieEntity implements GeoEntity {
 
 			ZombieVillagerEntity zombieVillagerEntity = (ZombieVillagerEntity)villagerEntity.convertTo(EntityType.ZOMBIE_VILLAGER, false);
 			if (zombieVillagerEntity != null) {
-				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true), (NbtCompound)null);
+				zombieVillagerEntity.initialize(world, world.getLocalDifficulty(zombieVillagerEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
 				zombieVillagerEntity.setVillagerData(villagerEntity.getVillagerData());
 				zombieVillagerEntity.setGossipData((NbtElement)villagerEntity.getGossip().serialize(NbtOps.INSTANCE));
-				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
+				//				zombieVillagerEntity.setOfferData(villagerEntity.getOffers().toNbt());
 				zombieVillagerEntity.setXp(villagerEntity.getExperience());
 				if (!this.isSilent()) {
 					world.syncWorldEvent((PlayerEntity)null, 1026, this.getBlockPos(), 0);

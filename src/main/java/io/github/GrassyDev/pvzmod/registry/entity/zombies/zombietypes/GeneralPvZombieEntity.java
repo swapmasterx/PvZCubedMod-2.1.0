@@ -68,7 +68,8 @@ import static io.github.GrassyDev.pvzmod.sound.PvZSounds.*;
 public class GeneralPvZombieEntity extends HostileEntity {
 	public GeneralPvZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
 		super(entityType, world);
-		this.setStepHeight(PVZCONFIG.nestedGeneralZombie.zombieStep());
+//		this.setStepHeight(PVZCONFIG.nestedGeneralZombie.zombieStep());
+		this.getStepHeight();
 		this.addPathfindingPenalty(PathNodeType.RAIL, 0.0F);
 		this.addPathfindingPenalty(PathNodeType.RAIL, 0.0F);
 		this.addPathfindingPenalty(PathNodeType.UNPASSABLE_RAIL, 0.0F);
@@ -1006,13 +1007,13 @@ public class GeneralPvZombieEntity extends HostileEntity {
 				}
 			}
 			if (chillTicks >= 80) {
-				this.removeStatusEffect(ICE);
+				this.removeStatusEffect(StatusHolder.ICE_HOLDER);
 				this.chillCDTicks = 80;
 			}
 			if (--chillCDTicks > 0) {
-				this.removeStatusEffect(ICE);
+				this.removeStatusEffect(StatusHolder.ICE_HOLDER);
 			}
-			if (!this.hasStatusEffect(STUN)) {
+			if (!this.hasStatusEffect(StatusHolder.STUN_HOLDER)) {
 				this.canSlide = oilTicks <= 0;
 			}
 			if (--oilTicks <= 0) {
@@ -1027,7 +1028,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		if (this.getOwner() instanceof GraveEntity graveEntity && graveEntity.isChallengeGrave()) {
 			this.setChallengeZombie(Challenge.TRUE);
 		}
-		this.setStepHeight(PVZCONFIG.nestedGeneralZombie.zombieStep());
+//		this.setStepHeight(PVZCONFIG.nestedGeneralZombie.zombieStep());
 		if (this.isOnFire() || this.hasStatusEffect(StatusHolder.WARM_HOLDER)) {
 			this.setStealthTag(Stealth.FALSE);
 		}
@@ -1052,7 +1053,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		}
 		Vec3d lastPos = this.getPos();
 		if (this.firstPos != null && !this.isFlying() && !this.isHovering()) {
-			if (lastPos.squaredDistanceTo(firstPos) < 0.0001 && this.CollidesWithPlant(0.1f, 0f) == null && !this.hasStatusEffect(PvZCubed.BOUNCED) && this.getTarget() != null && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.hasStatusEffect(StatusHolder.ICE_HOLDER) && this.age >= 30 && this.attackingTick <= 0 && --this.unstuckDelay <= 0 && !this.isInsideWaterOrBubbleColumn()) {
+			if (lastPos.squaredDistanceTo(firstPos) < 0.0001 && this.CollidesWithPlant(0.1f, 0f) == null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && this.getTarget() != null && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.ICE_HOLDER) && this.age >= 30 && this.attackingTick <= 0 && --this.unstuckDelay <= 0 && !this.isInsideWaterOrBubbleColumn()) {
 				this.setVelocity(0, 0, 0);
 				this.addVelocity(0, 0.3, 0);
 				++this.stuckTimes;
@@ -1060,7 +1061,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			}
 		}
 		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER)) {
-			this.removeStatusEffect(STUN);
+			this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 		}
 		ZombiePropEntity zombiePropEntity = null;
 		ZombiePropEntity zombiePropEntity2 = (ZombiePropEntity) getArmor2();
@@ -1107,7 +1108,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 				this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 			}
 			if (e.isCovered()) {
-				this.removeStatusEffect(PVZPOISON);
+				this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 				this.removeStatusEffect(StatusEffects.POISON);
 			}
 		}
@@ -1134,7 +1135,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			}
 		}
 		if (IS_MACHINE.get(this.getType()).orElse(false).equals(false) && !(this instanceof HoverGoatEntity)) {
-			this.removeStatusEffect(DISABLE);
+			this.removeStatusEffect(StatusHolder.DISABLE_HOLDER);
 		} else if (IS_MACHINE.get(this.getType()).orElse(false).equals(true) && !(this instanceof HoverGoatEntity)) {
 			this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 		}
@@ -1142,26 +1143,26 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			this.removeStatusEffect(StatusHolder.STUN_HOLDER);
 		}
 		if (this.isCovered()) {
-			this.removeStatusEffect(PVZPOISON);
+			this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 			this.removeStatusEffect(StatusEffects.POISON);
 		}
 		if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("metallic")) &&
 				!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("electronic")) &&
 				!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant")) &&
 				!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("cloth")) &&
-				!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("paper")) && this.hasStatusEffect(ACID)) {
-			this.removeStatusEffect(ACID);
+				!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("paper")) && this.hasStatusEffect(StatusHolder.ACID_HOLDER)) {
+			this.removeStatusEffect(StatusHolder.ACID_HOLDER);
 		}
 		if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("flesh")) &&
 				!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant")) &&
-				this.hasStatusEffect(PVZPOISON)) {
-			this.removeStatusEffect(PVZPOISON);
+				this.hasStatusEffect(StatusHolder.POISON_HOLDER)) {
+			this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 		}
 		if (ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("stone") || ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("crystal") || ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("cloth")) {
 			this.removeStatusEffect(StatusHolder.FROZEN_HOLDER);
 		}
 		if (ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("cloth")) {
-			this.removeStatusEffect(ICE);
+			this.removeStatusEffect(StatusHolder.ICE_HOLDER);
 		}
 		LivingEntity target = this.getTarget();
 		if (this.getHypno() && (target instanceof PlayerEntity || target instanceof PassiveEntity || target instanceof GolemEntity)) {
@@ -1172,7 +1173,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		}
 		if (!this.hasNoGravity() && !this.isFlying() && !this.isHovering()) {
 			if (target != null) {
-				if (target.squaredDistanceTo(this) < 2.25 && !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+				if (target.squaredDistanceTo(this) < 2.25 && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 					this.setVelocity(0, -0.3, 0);
 
 				}
@@ -1181,7 +1182,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && this.isInsideWaterOrBubbleColumn()) {
 			this.kill();
 		}
-		if (this.hasStatusEffect(BOUNCED) && ZOMBIE_SIZE.get(this.getType()).orElse("normal").equals("small") && this.isAlive()) {
+		if (this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER) && ZOMBIE_SIZE.get(this.getType()).orElse("normal").equals("small") && this.isAlive()) {
 			this.addVelocity(0, 1, 0);
 			this.kill();
 		}
@@ -1256,8 +1257,8 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		if (this.submergedInWater){
 			this.jump();
 		}
-		if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("flesh")) && !(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant")) && (this.hasStatusEffect(PVZPOISON) || this.hasStatusEffect(StatusEffects.POISON) ) && !(this instanceof ZombiePropEntity)){
-			this.removeStatusEffect(PVZPOISON);
+		if (!(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("flesh")) && !(ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("plant")) && (this.hasStatusEffect(StatusHolder.POISON_HOLDER) || this.hasStatusEffect(StatusEffects.POISON) ) && !(this instanceof ZombiePropEntity)){
+			this.removeStatusEffect(StatusHolder.POISON_HOLDER);
 			this.removeStatusEffect(StatusEffects.POISON);
 		}
 		if (ZOMBIE_MATERIAL.get(this.getType()).orElse("flesh").equals("electronic") && (this.hasStatusEffect(StatusHolder.WET_HOLDER) || this.isWet())){
@@ -1283,12 +1284,12 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			this.frzHeadYaw = this.getHeadYaw();
 			this.frzBodyYaw = this.bodyYaw;
 		}
-		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(DISABLE) || this.hasStatusEffect(StatusHolder.STUN_HOLDER) || this.isFrozen || this.isStunned) {
+		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) || this.hasStatusEffect(StatusHolder.STUN_HOLDER) || this.isFrozen || this.isStunned) {
 			this.setHeadYaw(frzHeadYaw);
 			this.setBodyYaw(frzBodyYaw);
 			frozenStart = false;
 		}
-		else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.isFrozen && !this.isStunned) {
+		else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.isFrozen && !this.isStunned) {
 			frozenStart = true;
 		}
 		super.tick();
@@ -1300,12 +1301,12 @@ public class GeneralPvZombieEntity extends HostileEntity {
 		for (WaterTile waterTile : waterTiles) {
 			this.dontWater = true;
 		}
-		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(DISABLE) || this.hasStatusEffect(StatusHolder.STUN_HOLDER) || this.isFrozen || this.isStunned) {
+		if (this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) || this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) || this.hasStatusEffect(StatusHolder.STUN_HOLDER) || this.isFrozen || this.isStunned) {
 			this.setHeadYaw(frzHeadYaw);
 			this.setBodyYaw(frzBodyYaw);
 			frozenStart = false;
 		}
-		else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(DISABLE) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.isFrozen && !this.isStunned) {
+		else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.isFrozen && !this.isStunned) {
 			frozenStart = true;
 		}
 		if (fireSplashTicks == 10){
@@ -1317,10 +1318,10 @@ public class GeneralPvZombieEntity extends HostileEntity {
 			damageCooldown = 30;
 		}
 		if (!this.getWorld().isClient) {
-			if (this.hasStatusEffect(PVZPOISON) && !poisonSound) {
+			if (this.hasStatusEffect(StatusHolder.POISON_HOLDER) && !poisonSound) {
 				this.playSound(POISONSPLASHEVENT, 1f, 1);
 				poisonSound = true;
-			} else if (!this.hasStatusEffect(PVZPOISON)) {
+			} else if (!this.hasStatusEffect(StatusHolder.POISON_HOLDER)) {
 				poisonSound = false;
 			}
 		}
@@ -1368,8 +1369,8 @@ public class GeneralPvZombieEntity extends HostileEntity {
 				source.getSource() instanceof ChesterEntity ||
 				source.getSource() instanceof OlivePitEntity) && this.swallowed) ||
 				source.getSource() instanceof GravebusterEntity ||
-				source.getAttacker() == this ||
-				source.isIndirect())){
+				source.getAttacker() == this )){
+//				|| source.isIndirect()
 			super.applyDamage(source, amount);
 		}
 	}
@@ -1427,7 +1428,7 @@ public class GeneralPvZombieEntity extends HostileEntity {
 					!(this.getTarget() instanceof PlantEntity plantEntity && plantEntity.getLowProfile()) &&
 					!((PLANT_LOCATION.get(this.getTarget().getType()).orElse("normal").equals("flying"))) &&
 					!(target instanceof PlantEntity plantEntity2 && plantEntity2.getImmune())) {
-				if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					float sound = 0.75f;
 					if (this.getHypno()) {
 						sound = 0.33f;

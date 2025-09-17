@@ -4,6 +4,7 @@ package io.github.GrassyDev.pvzmod.registry.entity.zombies.zombieentity.pvzbfn.z
 import io.github.GrassyDev.pvzmod.PvZCubed;
 import io.github.GrassyDev.pvzmod.config.ModItems;
 import io.github.GrassyDev.pvzmod.registry.PvZEntity;
+import io.github.GrassyDev.pvzmod.registry.entity.statuseffects.StatusHolder;
 import io.github.GrassyDev.pvzmod.sound.PvZSounds;
 import io.github.GrassyDev.pvzmod.registry.entity.environment.oiltile.OilTile;
 import io.github.GrassyDev.pvzmod.registry.entity.gravestones.GraveEntity;
@@ -270,7 +271,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 	//Smash
 	public boolean tryAttack(Entity target) {
 		if (!this.getPassengerList().contains(target)) {
-			if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE) && !this.inLaunchAnimation) {
+			if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER) && !this.inLaunchAnimation) {
 				boolean bl = false;
 				if (this.firstAttack && this.animationTicksLeft <= 0 && this.squaredDistanceTo(target) < 16D) {
 					this.animationTicksLeft = 90 * animationMultiplier;
@@ -289,7 +290,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 				}
 				if (bl) {
 					target.damage(getDamageSources().mobAttack(this), 90);
-					this.applyDamageEffects(this, target);
+//					this.applyDamageEffects(this, target);
 					return true;
 				}
 			}
@@ -315,7 +316,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 				}
 			}
 		}
-		if (launchAnimation == 16 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (launchAnimation == 16 * animationMultiplier && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			if (target instanceof ZombiePropEntity zombiePropEntity && zombiePropEntity.hasVehicle()){
 				target = zombiePropEntity.getVehicle();
 			}
@@ -451,13 +452,13 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 		}
 		super.tick();
 		if (this.getAttacking() == null && !(this.getHypno())){
-			if (this.CollidesWithPlant(0f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+			if (this.CollidesWithPlant(0f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(0f, 0f));
 				this.setStealthTag(Stealth.FALSE);
 			}
-			else if (this.CollidesWithPlant(2f, 0f) != null && !this.hasStatusEffect(PvZCubed.BOUNCED)){
+			else if (this.CollidesWithPlant(2f, 0f) != null && !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)){
 				this.setVelocity(0, -0.3, 0);
 						this.getNavigation().stop();
 				this.setTarget(CollidesWithPlant(2f, 0f));
@@ -471,7 +472,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 	}
 
 	public void mobTick() {
-		if (this.hasStatusEffect(PvZCubed.DISABLE)){
+		if (this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)){
 			this.isDisabled = true;
 			this.getWorld().sendEntityStatus(this, (byte) 73);
 		}
@@ -497,7 +498,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 				double random = Math.random();
 				for (int x = 0; x <= 7; ++x){
 					if ((this.CollidesWithPlant((float)x, 0f) != null)
-							&& !this.hasStatusEffect(PvZCubed.BOUNCED)) {
+							&& !this.hasStatusEffect(StatusHolder.BOUNCED_HOLDER)) {
 						if (random <= 0.01 && getTarget() != null && !this.inLaunchAnimation) {
 							this.launchAnimation = 50 * animationMultiplier;
 							this.inLaunchAnimation = true;
@@ -521,9 +522,9 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 				}
 			}
 			if (this.animationTicksLeft == 40 * animationMultiplier && !inLaunchAnimation) {
-				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				if (!this.isInsideWaterOrBubbleColumn() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					this.playSound(PvZSounds.GARGANTUARSMASHEVENT, 1F, 1.0F);
-				} else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(PvZCubed.STUN) && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+				} else if (!this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.hasStatusEffect(StatusHolder.STUN_HOLDER) && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 					getWorld().sendEntityStatus(this, (byte) 107);
 					this.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1.5F, 1.0F);
 				}
@@ -569,7 +570,6 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
 
 	/** /~*~//~*ATTRIBUTES*~//~*~/ **/
 
-	@Override
 	protected float method_52537(Entity entity) {
 		return 0.00F;
 	}
@@ -609,7 +609,7 @@ public class ScrapMechEntity extends MachinePvZombieEntity implements GeoEntity 
     }
 
 	protected SoundEvent getAmbientSound() {
-		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(PvZCubed.DISABLE)) {
+		if (!this.getHypno() && !this.hasStatusEffect(StatusHolder.FROZEN_HOLDER) && !this.isFrozen && !this.isStunned && !this.hasStatusEffect(StatusHolder.DISABLE_HOLDER)) {
 			return PvZSounds.IMPMOANEVENT;
 		}
 		else {
